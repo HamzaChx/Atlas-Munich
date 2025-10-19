@@ -1,9 +1,16 @@
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
-import { HomeIcon, GraduationCap, FileText, UtensilsCrossed, Briefcase, Users, ChevronRight } from "lucide-react";
+import { HomeIcon, GraduationCap, FileText, UtensilsCrossed, Briefcase, Users, ChevronRight, LucideIcon } from "lucide-react";
 
-type Category = { icon: any; title: string; desc: string; href: string; color: string; count: string | number; };
+type Category = { 
+  icon: LucideIcon; 
+  title: string; 
+  desc: string; 
+  href: string; 
+  color: string; 
+  count: string | number; 
+};
 
 function CategoryCard({ icon: Icon, title, desc, href, color, count }: Category) {
   return (

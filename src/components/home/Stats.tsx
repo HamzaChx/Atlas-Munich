@@ -1,6 +1,16 @@
-import { BookOpen, MapPin, Users } from "lucide-react";
+import { BookOpen, MapPin, Users, LucideIcon } from "lucide-react";
 
-function StatItem({ icon: Icon, value, label, accentClass }: { icon: any; value: string | number; label: string; accentClass: string; }) {
+function StatItem({ 
+  icon: Icon, 
+  value, 
+  label, 
+  accentClass 
+}: { 
+  icon: LucideIcon;
+  value: string | number; 
+  label: string; 
+  accentClass: string; 
+}) {
   return (
     <div className="flex flex-col items-center">
       <div className={`mb-3 rounded-full p-3 ${accentClass}`}>

@@ -47,7 +47,7 @@ export default function Home() {
       {/* Hero Section - Moroccan-Munich Fusion */}
       <section className="relative min-h-[90vh] overflow-hidden bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-950">
         {/* Authentic Moroccan Zellige Pattern - Inspired by traditional mosaics */}
-        <div className="absolute inset-0 opacity-[0.08]">
+        <div className="absolute inset-0 z-0 opacity-[0.08]">
           <svg className="h-full w-full" xmlns="http://www.w3.org/2000/svg">
             <defs>
               {/* Traditional Moroccan Zellige Tile Pattern */}
@@ -105,12 +105,12 @@ export default function Home() {
         </div>
 
         {/* Gradient Orbs - Morocco & Germany colors */}
-        <div className="absolute -left-32 top-1/4 h-[500px] w-[500px] rounded-full bg-gradient-to-br from-red-600/20 to-green-600/20 blur-[120px]" />
-        <div className="absolute -right-32 bottom-1/4 h-[500px] w-[500px] rounded-full bg-gradient-to-br from-amber-500/15 to-red-600/15 blur-[120px]" />
-        <div className="absolute left-1/2 top-1/2 h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br from-emerald-500/10 to-teal-500/10 blur-[100px]" />
+        <div className="absolute -left-32 top-1/4 z-[5] h-[500px] w-[500px] rounded-full bg-gradient-to-br from-red-600/20 to-green-600/20 blur-[120px]" />
+        <div className="absolute -right-32 bottom-1/4 z-[5] h-[500px] w-[500px] rounded-full bg-gradient-to-br from-amber-500/15 to-red-600/15 blur-[120px]" />
+        <div className="absolute left-1/2 top-1/2 z-[5] h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br from-emerald-500/10 to-teal-500/10 blur-[100px]" />
 
         {/* Detailed Munich Skyline Silhouette - Bottom */}
-        <div className="absolute bottom-0 left-0 right-0 h-52 opacity-[0.10]">
+        <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-10 h-52 opacity-[0.2]">
           <svg viewBox="0 0 1440 200" className="h-full w-full" preserveAspectRatio="none">
             
             {/* Main skyline base */}
@@ -204,7 +204,7 @@ export default function Home() {
         </div>
 
         {/* Content */}
-        <div className="relative mx-auto flex min-h-[90vh] max-w-7xl flex-col items-center justify-center px-4 py-20 text-center sm:px-6 lg:px-8">
+        <div className="relative z-20 mx-auto flex min-h-[90vh] max-w-7xl flex-col items-center justify-center px-4 py-20 text-center sm:px-6 lg:px-8">
           {/* Cultural Bridge Badge */}
           <div className="mb-8 inline-flex items-center gap-3 rounded-full border border-white/10 bg-white/5 px-6 py-3 backdrop-blur-xl">
             <span className="text-3xl" role="img" aria-label="Morocco">🇲🇦</span>

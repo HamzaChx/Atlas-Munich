@@ -67,7 +67,7 @@ export function SearchBar({
           onChange={(e) => setQuery(e.target.value)}
           autoFocus={autoFocus}
           className={cn(
-            "pr-20 border-white/10 bg-white/5 text-white placeholder:text-zinc-500 focus-visible:border-emerald-500/50 focus-visible:ring-emerald-500/20",
+            "pr-20 border-white/20 bg-white/10 text-white placeholder:text-zinc-400 shadow-2xl shadow-emerald-500/10 backdrop-blur-xl focus-visible:border-emerald-500/50 focus-visible:ring-emerald-500/20 focus-visible:shadow-emerald-500/20",
             size === "lg"
               ? "h-14 pl-12 text-lg"
               : "h-10 pl-10 text-sm",

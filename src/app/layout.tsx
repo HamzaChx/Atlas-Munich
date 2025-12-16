@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Header, Footer } from "@/components/layout";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -13,8 +14,35 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Atlas Munich",
-  description: "A Guide for Moroccans in Munich.",
+  title: {
+    default: "Atlas Munich | Your Guide to Thriving in Munich",
+    template: "%s | Atlas Munich",
+  },
+  description:
+    "The complete starter guide for Moroccan students and professionals in Munich. Housing, KVR, university, halal food, and more.",
+  icons: {
+    icon: "/logo.png",
+    shortcut: "/logo.png",
+    apple: "/logo.png",
+  },
+  keywords: [
+    "Munich",
+    "Morocco",
+    "Moroccan students",
+    "Germany",
+    "student guide",
+    "Anmeldung",
+    "KVR",
+    "halal Munich",
+    "housing Munich",
+  ],
+  openGraph: {
+    title: "Atlas Munich | Your Guide to Thriving in Munich",
+    description:
+      "The complete starter guide for Moroccan students and professionals in Munich.",
+    type: "website",
+    locale: "en_US",
+  },
 };
 
 export default function RootLayout({
@@ -29,7 +57,11 @@ export default function RootLayout({
         " "
       )}
     >
-      <body>{children}</body>
+      <body className="min-h-screen bg-background">
+        <Header />
+        <main>{children}</main>
+        <Footer />
+      </body>
     </html>
   );
 }

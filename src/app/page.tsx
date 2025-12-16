@@ -46,27 +46,61 @@ export default function Home() {
     <div className="min-h-screen">
       {/* Hero Section - Moroccan-Munich Fusion */}
       <section className="relative min-h-[90vh] overflow-hidden bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-950">
-        {/* Moroccan Geometric Pattern Overlay */}
-        <div className="absolute inset-0 opacity-[0.04]">
+        {/* Authentic Moroccan Zellige Pattern - Inspired by traditional mosaics */}
+        <div className="absolute inset-0 opacity-[0.08]">
           <svg className="h-full w-full" xmlns="http://www.w3.org/2000/svg">
             <defs>
-              <pattern id="moroccan-pattern" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
-                {/* Main diamond */}
-                <path d="M30 0L60 30L30 60L0 30Z" fill="none" stroke="white" strokeWidth="1"/>
-                {/* Inner circle */}
-                <circle cx="30" cy="30" r="10" fill="none" stroke="white" strokeWidth="0.8"/>
-                {/* Inner diamond */}
-                <path d="M30 20L40 30L30 40L20 30Z" fill="none" stroke="white" strokeWidth="0.5"/>
-                {/* Corner stars */}
-                <circle cx="0" cy="0" r="3" fill="none" stroke="white" strokeWidth="0.5"/>
-                <circle cx="60" cy="0" r="3" fill="none" stroke="white" strokeWidth="0.5"/>
-                <circle cx="0" cy="60" r="3" fill="none" stroke="white" strokeWidth="0.5"/>
-                <circle cx="60" cy="60" r="3" fill="none" stroke="white" strokeWidth="0.5"/>
-                {/* Decorative lines */}
-                <path d="M15 15L30 0M45 15L30 0M15 45L30 60M45 45L30 60" fill="none" stroke="white" strokeWidth="0.3"/>
+              {/* Traditional Moroccan Zellige Tile Pattern */}
+              <pattern id="moroccan-zellige" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+                {/* Central hexagon with star (classic zellige motif) */}
+                <g transform="translate(50, 50)">
+                  {/* Outer hexagon */}
+                  <path d="M 0,-30 L 26,-15 L 26,15 L 0,30 L -26,15 L -26,-15 Z" 
+                        fill="none" stroke="white" strokeWidth="2" opacity="0.9"/>
+                  
+                  {/* 6-pointed star inside */}
+                  <path d="M 0,-20 L 6,-6 L 20,0 L 6,6 L 0,20 L -6,6 L -20,0 L -6,-6 Z" 
+                        fill="none" stroke="white" strokeWidth="1.5" opacity="0.8"/>
+                  
+                  {/* Inner hexagon */}
+                  <path d="M 0,-12 L 10,-6 L 10,6 L 0,12 L -10,6 L -10,-6 Z" 
+                        fill="none" stroke="white" strokeWidth="1" opacity="0.7"/>
+                  
+                  {/* Central small star */}
+                  <path d="M 0,-5 L 2,-2 L 5,0 L 2,2 L 0,5 L -2,2 L -5,0 L -2,-2 Z" 
+                        fill="white" opacity="0.6"/>
+                </g>
+                
+                {/* Four corner motifs (smaller geometric patterns) */}
+                <g transform="translate(0, 0)">
+                  <path d="M 8,0 L 4,4 L 0,8 L 4,4 L 8,8 L 4,4 Z" 
+                        fill="none" stroke="white" strokeWidth="0.8" opacity="0.5"/>
+                  <circle cx="4" cy="4" r="2" fill="none" stroke="white" strokeWidth="0.5" opacity="0.4"/>
+                </g>
+                <g transform="translate(100, 0)">
+                  <path d="M -8,0 L -4,4 L 0,8 L -4,4 L -8,8 L -4,4 Z" 
+                        fill="none" stroke="white" strokeWidth="0.8" opacity="0.5"/>
+                  <circle cx="-4" cy="4" r="2" fill="none" stroke="white" strokeWidth="0.5" opacity="0.4"/>
+                </g>
+                <g transform="translate(0, 100)">
+                  <path d="M 8,0 L 4,-4 L 0,-8 L 4,-4 L 8,-8 L 4,-4 Z" 
+                        fill="none" stroke="white" strokeWidth="0.8" opacity="0.5"/>
+                  <circle cx="4" cy="-4" r="2" fill="none" stroke="white" strokeWidth="0.5" opacity="0.4"/>
+                </g>
+                <g transform="translate(100, 100)">
+                  <path d="M -8,0 L -4,-4 L 0,-8 L -4,-4 L -8,-8 L -4,-4 Z" 
+                        fill="none" stroke="white" strokeWidth="0.8" opacity="0.5"/>
+                  <circle cx="-4" cy="-4" r="2" fill="none" stroke="white" strokeWidth="0.5" opacity="0.4"/>
+                </g>
+                
+                {/* Connecting crosses (traditional zellige element) */}
+                <path d="M 50,0 L 50,10 M 45,5 L 55,5" stroke="white" strokeWidth="1" opacity="0.4"/>
+                <path d="M 0,50 L 10,50 M 5,45 L 5,55" stroke="white" strokeWidth="1" opacity="0.4"/>
+                <path d="M 50,100 L 50,90 M 45,95 L 55,95" stroke="white" strokeWidth="1" opacity="0.4"/>
+                <path d="M 100,50 L 90,50 M 95,45 L 95,55" stroke="white" strokeWidth="1" opacity="0.4"/>
               </pattern>
             </defs>
-            <rect width="100%" height="100%" fill="url(#moroccan-pattern)"/>
+            <rect width="100%" height="100%" fill="url(#moroccan-zellige)"/>
           </svg>
         </div>
 
@@ -334,24 +368,29 @@ export default function Home() {
             {/* Left - Visual */}
             <div className="relative">
               <div className="relative aspect-square max-w-lg overflow-hidden rounded-3xl">
-                {/* Gradient Background */}
-                <div className="absolute inset-0 bg-gradient-to-br from-emerald-500 via-teal-500 to-cyan-500" />
-                
-                {/* Moroccan Star Pattern Overlay */}
-                <div className="absolute inset-0 opacity-20">
-                  <svg className="h-full w-full" viewBox="0 0 200 200">
-                    <defs>
-                      <pattern id="star-pattern" x="0" y="0" width="50" height="50" patternUnits="userSpaceOnUse">
-                        <polygon points="25,2 32,18 50,18 36,28 42,45 25,35 8,45 14,28 0,18 18,18" fill="white"/>
-                      </pattern>
-                    </defs>
-                    <rect width="100%" height="100%" fill="url(#star-pattern)"/>
-                  </svg>
-                </div>
+                {/* Main gradient background with Moroccan colors */}
+                <div className="absolute inset-0 bg-gradient-to-br from-red-600/20 via-amber-500/20 to-green-600/20" />
 
-                {/* Content */}
+                {/* Content - Central gathering metaphor */}
                 <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-white">
-                  <span className="mb-4 text-7xl">🤝</span>
+                  <div className="relative mb-6">
+                    {/* Community circle - people gathering */}
+                    <div className="relative">
+                      <div className="flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 shadow-2xl shadow-emerald-500/50">
+                        <span className="text-4xl">🤝</span>
+                      </div>
+                      {/* Orbiting community members */}
+                      <div className="absolute -right-3 -top-3 h-12 w-12 animate-pulse rounded-full bg-gradient-to-br from-amber-500 to-red-600 p-2 shadow-lg">
+                        <span className="flex h-full w-full items-center justify-center text-xl">🇲🇦</span>
+                      </div>
+                      <div className="absolute -bottom-3 -left-3 h-12 w-12 animate-pulse rounded-full bg-gradient-to-br from-green-600 to-emerald-600 p-2 shadow-lg" style={{ animationDelay: '0.5s' }}>
+                        <span className="flex h-full w-full items-center justify-center text-xl">🏰</span>
+                      </div>
+                      <div className="absolute -bottom-1 -right-3 h-10 w-10 animate-pulse rounded-full bg-gradient-to-br from-teal-500 to-cyan-600 p-2 shadow-lg" style={{ animationDelay: '1s' }}>
+                        <span className="flex h-full w-full items-center justify-center text-lg">💚</span>
+                      </div>
+                    </div>
+                  </div>
                   <h3 className="text-center text-3xl font-bold">Built Together</h3>
                   <p className="mt-2 text-center text-lg text-white/80">
                     By the community, for the community

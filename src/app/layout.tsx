@@ -57,7 +57,7 @@ export default function RootLayout({
         " "
       )}
     >
-      <body className="min-h-screen bg-background">
+      <body className="min-h-screen bg-zinc-950">
         <Header />
         <main>{children}</main>
         <Footer />

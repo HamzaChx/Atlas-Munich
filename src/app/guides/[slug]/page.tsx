@@ -1,6 +1,8 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { 
@@ -159,20 +161,24 @@ export default async function GuidePage({ params }: PageProps) {
           {/* Main content */}
           <article className="min-w-0">
             {/* Sections */}
-            <div className="prose prose-lg prose-invert max-w-none prose-headings:text-white prose-p:text-zinc-400 prose-strong:text-white prose-li:text-zinc-400">
+            <div className="prose prose-lg prose-invert max-w-none prose-headings:text-white prose-p:text-zinc-400 prose-strong:text-white prose-li:text-zinc-400 prose-a:text-emerald-400 prose-a:no-underline hover:prose-a:text-emerald-300 prose-ul:text-zinc-400 prose-ol:text-zinc-400">
               {guide.sections.map((section) => (
                 <section key={section.id} id={section.id} className="mb-12 scroll-mt-24">
                   <h2 className="text-2xl font-bold tracking-tight text-white">{section.title}</h2>
-                  <div className="mt-4 whitespace-pre-wrap leading-relaxed text-zinc-400">
-                    {section.content}
+                  <div className="mt-4 whitespace-pre-line leading-relaxed text-zinc-400">
+                    <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                      {section.content}
+                    </ReactMarkdown>
                   </div>
 
                   {/* Subsections */}
                   {section.subsections?.map((sub) => (
                     <div key={sub.id} id={sub.id} className="mt-8 scroll-mt-24">
                       <h3 className="text-xl font-semibold text-white">{sub.title}</h3>
-                      <div className="mt-3 whitespace-pre-wrap leading-relaxed text-zinc-400">
-                        {sub.content}
+                      <div className="mt-3 whitespace-pre-line leading-relaxed text-zinc-400">
+                        <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                          {sub.content}
+                        </ReactMarkdown>
                       </div>
                     </div>
                   ))}

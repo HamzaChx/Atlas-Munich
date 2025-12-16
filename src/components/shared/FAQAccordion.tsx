@@ -1,5 +1,7 @@
 "use client";
 
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import {
   Accordion,
   AccordionContent,
@@ -31,8 +33,10 @@ export function FAQAccordion({ faqs, className, defaultOpen }: FAQAccordionProps
             <span className="pr-4 font-semibold">{faq.question}</span>
           </AccordionTrigger>
           <AccordionContent className="text-zinc-300">
-            <div className="prose prose-sm prose-invert max-w-none text-zinc-300">
-              {faq.answer}
+            <div className="prose prose-sm prose-invert max-w-none text-zinc-300 prose-strong:text-white prose-a:text-emerald-400 prose-a:no-underline hover:prose-a:text-emerald-300">
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                {faq.answer}
+              </ReactMarkdown>
             </div>
           </AccordionContent>
         </AccordionItem>

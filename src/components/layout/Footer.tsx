@@ -166,14 +166,6 @@ export function Footer() {
           </p>
         </div>
 
-        {/* Cultural Touch - Flag Colors Line */}
-        <div className="mt-8 flex justify-center gap-1">
-          <div className="h-1 w-12 rounded-full bg-gradient-to-r from-red-600 to-red-500" />
-          <div className="h-1 w-12 rounded-full bg-gradient-to-r from-green-600 to-green-500" />
-          <div className="h-1 w-8 rounded-full bg-zinc-900" />
-          <div className="h-1 w-8 rounded-full bg-gradient-to-r from-red-600 to-red-500" />
-          <div className="h-1 w-8 rounded-full bg-gradient-to-r from-amber-500 to-amber-400" />
-        </div>
       </div>
     </footer>
   );

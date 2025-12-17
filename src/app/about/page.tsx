@@ -69,52 +69,38 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen bg-zinc-950">
       {/* Hero Section */}
-      <section className="relative overflow-hidden border-b border-white/5 bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-950">
-        {/* Moroccan Pattern Overlay */}
-        <div className="absolute inset-0 opacity-[0.03]">
-          <svg className="h-full w-full" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <pattern id="moroccan-about" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
-                <path d="M30 0L60 30L30 60L0 30Z" fill="none" stroke="white" strokeWidth="1"/>
-                <circle cx="30" cy="30" r="10" fill="none" stroke="white" strokeWidth="0.8"/>
-                <path d="M30 20L40 30L30 40L20 30Z" fill="none" stroke="white" strokeWidth="0.5"/>
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#moroccan-about)"/>
-          </svg>
-        </div>
-
+      <section className="relative overflow-hidden border-b border-white/10 bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-950">
         {/* Gradient Orbs */}
-        <div className="absolute -left-32 top-0 h-[500px] w-[500px] rounded-full bg-gradient-to-br from-emerald-600/20 to-teal-600/20 blur-[120px]" />
-        <div className="absolute -right-32 bottom-0 h-[500px] w-[500px] rounded-full bg-gradient-to-br from-rose-500/15 to-amber-500/15 blur-[120px]" />
+        <div className="absolute -left-32 top-0 z-[5] h-[400px] w-[400px] rounded-full bg-gradient-to-br from-emerald-600/20 to-teal-600/20 blur-[100px]" />
+        <div className="absolute -right-32 bottom-0 z-[5] h-[400px] w-[400px] rounded-full bg-gradient-to-br from-rose-500/15 to-amber-500/15 blur-[100px]" />
 
-        <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 sm:py-28 lg:px-8">
+        <div className="relative z-10 mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
           <div className="text-center">
             {/* Badge */}
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 backdrop-blur-sm">
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-2">
               <Users className="h-4 w-4 text-emerald-400" />
-              <span className="text-sm font-medium text-zinc-300">Community Project</span>
+              <span className="text-sm font-semibold text-emerald-400">Community Project</span>
             </div>
 
             {/* Cultural flags */}
-            <div className="mb-8 flex items-center justify-center gap-4">
-              <span className="text-5xl" role="img" aria-label="Morocco flag">🇲🇦</span>
+            <div className="mb-6 flex items-center justify-center gap-4">
+              <span className="text-4xl" role="img" aria-label="Morocco flag">🇲🇦</span>
               <div className="flex items-center gap-2">
-                <span className="h-px w-8 bg-gradient-to-r from-red-500 via-amber-500 to-green-500" />
-                <Sparkles className="h-6 w-6 text-amber-400" />
-                <span className="h-px w-8 bg-gradient-to-r from-black via-red-500 to-amber-400" />
+                <span className="h-px w-6 bg-gradient-to-r from-red-500 via-amber-500 to-green-500" />
+                <Sparkles className="h-5 w-5 text-amber-400" />
+                <span className="h-px w-6 bg-gradient-to-r from-black via-red-500 to-amber-400" />
               </div>
-              <span className="text-5xl" role="img" aria-label="Germany flag">🇩🇪</span>
+              <span className="text-4xl" role="img" aria-label="Germany flag">🇩🇪</span>
             </div>
 
             {/* Title */}
-            <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
+            <h1 className="text-4xl font-black tracking-tight text-white sm:text-5xl lg:text-6xl">
               About{" "}
               <span className="bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 bg-clip-text text-transparent">
                 Atlas Munich
               </span>
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg text-zinc-400">
+            <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-zinc-400 sm:text-lg">
               Your trusted guide to navigating life in Munich as a Moroccan student or professional. 
               Built by the community, for the community.
             </p>
@@ -123,20 +109,19 @@ export default function AboutPage() {
       </section>
 
       {/* Main Content */}
-      <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+      <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         
         {/* Our Story */}
-        <section className="mb-24">
+        <section className="mb-20">
           <div className="mx-auto max-w-3xl text-center">
-            <div className="mb-4 inline-flex items-center gap-2">
-              <span className="h-1 w-8 rounded-full bg-gradient-to-r from-emerald-400 to-teal-400" />
-              <span className="text-sm font-medium uppercase tracking-wider text-emerald-400">Our Story</span>
-              <span className="h-1 w-8 rounded-full bg-gradient-to-r from-teal-400 to-emerald-400" />
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-2">
+              <span className="text-sm">📖</span>
+              <span className="text-sm font-semibold text-emerald-400">Our Story</span>
             </div>
-            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">
               Why We Built This
             </h2>
-            <div className="mt-8 space-y-6 text-lg leading-relaxed text-zinc-400">
+            <div className="mt-6 space-y-4 text-base leading-relaxed text-zinc-400">
               <p>
                 Moving to Munich as a Moroccan student or professional can be overwhelming. 
                 The bureaucracy is complex, finding housing is challenging, and figuring out 
@@ -157,69 +142,67 @@ export default function AboutPage() {
         </section>
 
         {/* Values */}
-        <section className="mb-24">
-          <div className="mb-12 text-center">
-            <div className="mb-4 inline-flex items-center gap-2">
-              <span className="h-1 w-8 rounded-full bg-gradient-to-r from-emerald-400 to-teal-400" />
-              <span className="text-sm font-medium uppercase tracking-wider text-emerald-400">What We Believe</span>
-              <span className="h-1 w-8 rounded-full bg-gradient-to-r from-teal-400 to-emerald-400" />
+        <section className="mb-20">
+          <div className="mb-10 text-center">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-rose-500/30 bg-rose-500/10 px-4 py-2">
+              <span className="text-sm">💡</span>
+              <span className="text-sm font-semibold text-rose-400">What We Believe</span>
             </div>
-            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">Our Values</h2>
+            <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">Our Values</h2>
           </div>
           
-          <div className="grid gap-6 sm:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-3">
             {values.map((value) => (
               <div
                 key={value.title}
-                className="group rounded-2xl border border-white/10 bg-zinc-900/50 p-8 text-center backdrop-blur-sm transition-all hover:border-white/20 hover:bg-zinc-900/80"
+                className="group rounded-2xl border border-white/10 bg-zinc-900/50 p-6 text-center backdrop-blur-sm transition-all hover:border-white/20 hover:bg-zinc-900/80"
               >
-                <div className={`mx-auto mb-5 inline-flex rounded-2xl bg-gradient-to-br ${value.gradient} p-4`}>
-                  <value.icon className={`h-7 w-7 ${value.iconColor}`} />
+                <div className={`mx-auto mb-4 inline-flex rounded-xl bg-gradient-to-br ${value.gradient} p-3`}>
+                  <value.icon className={`h-6 w-6 ${value.iconColor}`} />
                 </div>
-                <h3 className="text-xl font-semibold text-white">{value.title}</h3>
-                <p className="mt-3 text-zinc-400">{value.description}</p>
+                <h3 className="text-lg font-semibold text-white">{value.title}</h3>
+                <p className="mt-2 text-sm text-zinc-400">{value.description}</p>
               </div>
             ))}
           </div>
         </section>
 
         {/* How to Contribute */}
-        <section id="contribute" className="mb-24 scroll-mt-24">
-          <div className="mb-12 text-center">
-            <div className="mb-4 inline-flex items-center gap-2">
-              <span className="h-1 w-8 rounded-full bg-gradient-to-r from-amber-400 to-orange-400" />
-              <span className="text-sm font-medium uppercase tracking-wider text-amber-400">Get Involved</span>
-              <span className="h-1 w-8 rounded-full bg-gradient-to-r from-orange-400 to-amber-400" />
+        <section id="contribute" className="mb-20 scroll-mt-24">
+          <div className="mb-10 text-center">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-4 py-2">
+              <span className="text-sm">🤝</span>
+              <span className="text-sm font-semibold text-amber-400">Get Involved</span>
             </div>
-            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">How to Contribute</h2>
-            <p className="mx-auto mt-4 max-w-2xl text-zinc-400">
+            <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">How to Contribute</h2>
+            <p className="mx-auto mt-3 max-w-2xl text-sm text-zinc-400">
               Atlas Munich is open source and community-driven. Here&apos;s how you can help:
             </p>
           </div>
           
-          <div className="grid gap-6 sm:grid-cols-2">
+          <div className="grid gap-4 sm:grid-cols-2">
             {ways.map((way) => (
               <div
                 key={way.title}
-                className="group rounded-2xl border border-white/10 bg-zinc-900/50 p-6 backdrop-blur-sm transition-all hover:border-white/20 hover:bg-zinc-900/80"
+                className="group rounded-2xl border border-white/10 bg-zinc-900/50 p-5 backdrop-blur-sm transition-all hover:border-white/20 hover:bg-zinc-900/80"
               >
                 <div className="flex items-start gap-4">
-                  <div className="rounded-xl bg-gradient-to-br from-zinc-800 to-zinc-900 p-3">
-                    <way.icon className="h-5 w-5 text-zinc-300" />
+                  <div className="rounded-lg bg-gradient-to-br from-zinc-800 to-zinc-900 p-2.5">
+                    <way.icon className="h-4 w-4 text-zinc-300" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-lg font-semibold text-white">{way.title}</h3>
-                    <p className="mt-2 text-sm text-zinc-400">{way.description}</p>
+                    <h3 className="text-base font-semibold text-white">{way.title}</h3>
+                    <p className="mt-1 text-sm text-zinc-400">{way.description}</p>
                     <Link
                       href={way.action.href}
                       target={way.action.href.startsWith("http") ? "_blank" : undefined}
-                      className="mt-4 inline-flex items-center gap-2 text-sm font-medium text-emerald-400 transition-colors hover:text-emerald-300"
+                      className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-emerald-400 transition-colors hover:text-emerald-300"
                     >
                       {way.action.label}
                       {way.action.href.startsWith("http") ? (
-                        <ExternalLink className="h-3.5 w-3.5" />
+                        <ExternalLink className="h-3 w-3" />
                       ) : (
-                        <ArrowRight className="h-3.5 w-3.5" />
+                        <ArrowRight className="h-3 w-3" />
                       )}
                     </Link>
                   </div>
@@ -230,40 +213,39 @@ export default function AboutPage() {
         </section>
 
         {/* Contributors */}
-        <section className="mb-24">
-          <div className="mb-12 text-center">
-            <div className="mb-4 inline-flex items-center gap-2">
-              <span className="h-1 w-8 rounded-full bg-gradient-to-r from-purple-400 to-pink-400" />
-              <span className="text-sm font-medium uppercase tracking-wider text-purple-400">The Team</span>
-              <span className="h-1 w-8 rounded-full bg-gradient-to-r from-pink-400 to-purple-400" />
+        <section className="mb-20">
+          <div className="mb-10 text-center">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-purple-500/30 bg-purple-500/10 px-4 py-2">
+              <span className="text-sm">👥</span>
+              <span className="text-sm font-semibold text-purple-400">The Team</span>
             </div>
-            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">Contributors</h2>
+            <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">Contributors</h2>
           </div>
           
-          <div className="flex flex-wrap justify-center gap-6">
+          <div className="flex flex-wrap justify-center gap-4">
             {contributors.map((contributor) => (
               <div
                 key={contributor.name}
-                className="w-64 rounded-2xl border border-white/10 bg-zinc-900/50 p-6 text-center backdrop-blur-sm"
+                className="w-56 rounded-2xl border border-white/10 bg-zinc-900/50 p-5 text-center backdrop-blur-sm"
               >
-                <div className="mx-auto mb-4 text-5xl">{contributor.avatar}</div>
-                <h3 className="font-semibold text-white">{contributor.name}</h3>
-                <p className="text-sm text-zinc-400">{contributor.role}</p>
+                <div className="mx-auto mb-3 text-4xl">{contributor.avatar}</div>
+                <h3 className="text-sm font-semibold text-white">{contributor.name}</h3>
+                <p className="text-xs text-zinc-400">{contributor.role}</p>
               </div>
             ))}
             
             {/* Join CTA */}
-            <div className="w-64 rounded-2xl border-2 border-dashed border-white/10 bg-zinc-900/30 p-6 text-center">
-              <div className="mx-auto mb-4 text-5xl">🙋</div>
-              <h3 className="font-semibold text-white">You?</h3>
-              <p className="text-sm text-zinc-400">Join the team!</p>
+            <div className="w-56 rounded-2xl border-2 border-dashed border-white/10 bg-zinc-900/30 p-5 text-center">
+              <div className="mx-auto mb-3 text-4xl">🙋</div>
+              <h3 className="text-sm font-semibold text-white">You?</h3>
+              <p className="text-xs text-zinc-400">Join the team!</p>
               <Link
                 href="https://github.com/HamzaChx/Atlas-Munich"
                 target="_blank"
-                className="mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-emerald-400 hover:text-emerald-300"
+                className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-emerald-400 hover:text-emerald-300"
               >
                 Contribute on GitHub
-                <ExternalLink className="h-3.5 w-3.5" />
+                <ExternalLink className="h-3 w-3" />
               </Link>
             </div>
           </div>
@@ -271,32 +253,35 @@ export default function AboutPage() {
 
         {/* Contact */}
         <section id="contact" className="scroll-mt-24">
-          <div className="relative overflow-hidden rounded-3xl border border-emerald-500/20 bg-gradient-to-br from-zinc-900 via-emerald-950/20 to-zinc-900 p-8 md:p-12">
+          <div className="relative overflow-hidden rounded-2xl border border-emerald-500/20 bg-gradient-to-br from-zinc-900 via-emerald-950/20 to-zinc-900 p-6 md:p-10">
             {/* Background decoration */}
-            <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-emerald-500/10 blur-3xl" />
-            <div className="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-teal-500/10 blur-3xl" />
+            <div className="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-emerald-500/10 blur-3xl" />
+            <div className="absolute -bottom-16 -left-16 h-48 w-48 rounded-full bg-teal-500/10 blur-3xl" />
             
             <div className="relative text-center">
               <div className="mb-4 inline-flex rounded-full bg-gradient-to-br from-emerald-500/20 to-teal-500/20 p-3">
-                <Mail className="h-6 w-6 text-emerald-400" />
+                <Mail className="h-5 w-5 text-emerald-400" />
               </div>
-              <h2 className="text-2xl font-bold tracking-tight text-white sm:text-3xl">Get in Touch</h2>
-              <p className="mx-auto mt-4 max-w-xl text-zinc-400">
+              <h2 className="text-xl font-bold tracking-tight text-white sm:text-2xl">Get in Touch</h2>
+              <p className="mx-auto mt-3 max-w-xl text-sm text-zinc-400">
                 Have questions, suggestions, or just want to say hello? We&apos;d love to hear from you!
               </p>
-              <div className="mt-8 flex flex-wrap items-center justify-center gap-4">
-                <Button asChild size="lg" className="rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 text-white hover:from-emerald-600 hover:to-teal-600">
-                  <Link href="https://github.com/HamzaChx/Atlas-Munich" target="_blank">
-                    <Github className="mr-2 h-5 w-5" />
-                    GitHub
-                  </Link>
-                </Button>
-                <Button asChild variant="outline" size="lg" className="rounded-full">
-                  <Link href="mailto:hello@atlas-munich.de">
-                    <Mail className="mr-2 h-5 w-5" />
-                    Email Us
-                  </Link>
-                </Button>
+              <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+                <Link
+                  href="https://github.com/HamzaChx/Atlas-Munich"
+                  target="_blank"
+                  className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 px-6 py-3 text-sm font-medium text-white transition-all hover:from-emerald-600 hover:to-teal-600"
+                >
+                  <Github className="h-4 w-4" />
+                  GitHub
+                </Link>
+                <Link
+                  href="mailto:hello@atlas-munich.de"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-6 py-3 text-sm font-medium text-zinc-300 transition-all hover:border-emerald-500/50 hover:bg-emerald-500/10 hover:text-emerald-400"
+                >
+                  <Mail className="h-4 w-4" />
+                  Email Us
+                </Link>
               </div>
             </div>
           </div>

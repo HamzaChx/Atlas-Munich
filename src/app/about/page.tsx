@@ -75,33 +75,84 @@ export default function AboutPage() {
         <div className="absolute -left-32 top-0 z-[5] h-[400px] w-[400px] rounded-full bg-gradient-to-br from-emerald-400/30 dark:from-emerald-600/20 to-teal-400/30 dark:to-teal-600/20 blur-[100px]" />
         <div className="absolute -right-32 bottom-0 z-[5] h-[400px] w-[400px] rounded-full bg-gradient-to-br from-rose-400/25 dark:from-rose-500/15 to-amber-400/25 dark:to-amber-500/15 blur-[100px]" />
 
-        <div className="relative z-10 mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
-          <div className="text-center">
-            {/* Badge */}
-            <HeroBadge icon={Users} text="Community Project" color="emerald" />
-
-            {/* Cultural flags */}
-            <div className="mb-8 flex items-center justify-center gap-4">
-              <span className="text-5xl" role="img" aria-label="Morocco flag">🇲🇦</span>
-              <div className="flex items-center gap-2">
-                <span className="h-px w-8 bg-gradient-to-r from-red-500 via-amber-500 to-green-500" />
-                <Sparkles className="h-6 w-6 text-amber-400" />
-                <span className="h-px w-8 bg-gradient-to-r from-black via-red-500 to-amber-400" />
+        <div className="relative z-10 mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+          <div className="grid items-center gap-10 lg:grid-cols-2">
+            {/* Left: story-driven intro */}
+            <div className="text-center lg:text-left">
+              <div className="flex justify-center lg:justify-start">
+                <HeroBadge icon={Users} text="Community Project" color="emerald" />
               </div>
-              <span className="text-5xl" role="img" aria-label="Germany flag">🇩🇪</span>
+
+              <h1 className="mt-6 text-5xl font-black tracking-tight text-zinc-900 dark:text-white sm:text-6xl lg:text-7xl">
+                About{" "}
+                <span className="bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 dark:from-emerald-400 dark:via-teal-400 dark:to-cyan-400 bg-clip-text text-transparent">
+                  Atlas Munich
+                </span>
+              </h1>
+
+              <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-zinc-600 dark:text-zinc-400 lg:mx-0">
+                Atlas Munich is a community guide built to reduce the friction of arriving in Munich — especially for Moroccan students navigating bureaucracy, housing, and daily life.
+              </p>
+
+              <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row lg:justify-start">
+                <Button asChild className="text-white bg-emerald-600 px-6 shadow-xl shadow-emerald-500/20 hover:bg-emerald-500">
+                  <Link href="#contribute">
+                    <Sparkles className="mr-2 h-4 w-4" />
+                    How to Contribute
+                  </Link>
+                </Button>
+                <Button
+                  asChild
+                  variant="outline"
+                  className="border-2 border-zinc-200 dark:border-white/10 px-6 text-zinc-900 dark:text-white hover:bg-zinc-100 dark:hover:bg-white/5"
+                >
+                  <Link href="#contact">
+                    <Mail className="mr-2 h-4 w-4" />
+                    Get in Touch
+                  </Link>
+                </Button>
+              </div>
             </div>
 
-            {/* Title */}
-            <h1 className="text-5xl font-black tracking-tight text-zinc-900 dark:text-white sm:text-6xl lg:text-7xl">
-              About{" "}
-              <span className="bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 dark:from-emerald-400 dark:via-teal-400 dark:to-cyan-400 bg-clip-text text-transparent">
-                Atlas Munich
-              </span>
-            </h1>
-            <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
-              Your trusted guide to navigating life in Munich as a Moroccan student or professional. 
-              Built by the community, for the community.
-            </p>
+            {/* Right: manifesto card (distinct from homepage stats) */}
+            <div className="mx-auto w-full max-w-xl mt-8">
+              <div className="relative overflow-hidden rounded-3xl border border-zinc-200 dark:border-white/10 bg-white/80 dark:bg-white/5 p-6 shadow-sm dark:shadow-none backdrop-blur-sm">
+                <div className="absolute -right-20 -top-20 h-56 w-56 rounded-full bg-emerald-400/10 dark:bg-emerald-500/10 blur-3xl" />
+                <div className="absolute -bottom-20 -left-20 h-56 w-56 rounded-full bg-amber-400/10 dark:bg-amber-500/10 blur-3xl" />
+
+                <div className="relative">
+                  <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 px-4 py-2 text-sm font-medium text-zinc-700 dark:text-zinc-300">
+                    <Heart className="h-4 w-4 text-rose-500 dark:text-rose-400" />
+                    Built for newcomers
+                  </div>
+
+                  <h2 className="mt-1 text-xl font-bold tracking-tight text-zinc-900 dark:text-white">
+                    A guide that feels like a friend
+                  </h2>
+                  <p className="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+                    We focus on practical steps, real experiences, and small details that make Munich easier to navigate.
+                  </p>
+
+                  <div className="mt-6 space-y-3">
+                    {[ 
+                      { icon: CheckCircle2, title: "Practical, step-by-step", desc: "No fluff — just what works." },
+                      { icon: BookOpen, title: "Student-aware", desc: "LMU/TUM realities, deadlines, and systems." },
+                      { icon: Github, title: "Open source", desc: "Anyone can improve it — transparently." },
+                    ].map((item) => (
+                      <div key={item.title} className="flex items-start gap-3 rounded-2xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 p-4">
+                        <div className="mt-0.5 inline-flex rounded-lg bg-emerald-100 dark:bg-emerald-500/15 p-2">
+                          <item.icon className="h-4 w-4 text-emerald-700 dark:text-emerald-300" />
+                        </div>
+                        <div className="min-w-0">
+                          <div className="text-sm font-semibold text-zinc-900 dark:text-white">{item.title}</div>
+                          <div className="text-sm text-zinc-600 dark:text-zinc-400">{item.desc}</div>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>

@@ -31,6 +31,20 @@ export function SearchBar({
   const [isSearching, setIsSearching] = React.useState(false);
   const inputRef = React.useRef<HTMLInputElement>(null);
 
+  const inputRightPadding = showButton
+    ? size === "lg"
+      ? "pr-40"
+      : "pr-24"
+    : size === "lg"
+      ? "pr-12"
+      : "pr-10";
+
+  const clearRight = showButton
+    ? size === "lg"
+      ? "right-28"
+      : "right-20"
+    : "right-3";
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!query.trim()) return;
@@ -55,8 +69,8 @@ export function SearchBar({
       <div className="relative flex items-center">
         <Search
           className={cn(
-            "absolute left-3 text-zinc-400",
-            size === "lg" ? "h-5 w-5" : "h-4 w-4"
+            "absolute top-1/2 -translate-y-1/2 text-zinc-400 dark:text-zinc-500",
+            size === "lg" ? "left-5 h-5 w-5" : "left-4 h-4 w-4"
           )}
         />
         <Input
@@ -67,11 +81,12 @@ export function SearchBar({
           onChange={(e) => setQuery(e.target.value)}
           autoFocus={autoFocus}
           className={cn(
-            "pr-20 border-zinc-200 dark:border-white/20 bg-white dark:bg-white/10 text-zinc-900 dark:text-white placeholder:text-zinc-400 shadow-lg dark:shadow-2xl shadow-zinc-200/50 dark:shadow-emerald-500/10 backdrop-blur-xl focus-visible:border-emerald-500/50 focus-visible:ring-emerald-500/20 focus-visible:shadow-emerald-200 dark:focus-visible:shadow-emerald-500/20",
+            inputRightPadding,
+            "border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 text-zinc-900 dark:text-white placeholder:text-zinc-400 dark:placeholder:text-zinc-500 shadow-sm dark:shadow-none focus:border-emerald-500/50 focus:ring-emerald-500/20 focus-visible:border-emerald-500/50 focus-visible:ring-emerald-500/20",
             size === "lg"
-              ? "h-14 pl-12 text-lg"
-              : "h-10 pl-10 text-sm",
-            "rounded-full border-2"
+              ? "h-14 pl-14 text-lg"
+              : "h-10 pl-11 text-sm",
+            "rounded-full border"
           )}
         />
         {query && (
@@ -79,9 +94,8 @@ export function SearchBar({
             type="button"
             onClick={handleClear}
             className={cn(
-              "absolute text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-white",
-              showButton ? "right-24" : "right-3",
-              size === "lg" ? "right-28" : ""
+              "absolute top-1/2 -translate-y-1/2 rounded-full p-1 text-zinc-400 dark:text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-zinc-600 dark:hover:bg-white/10 dark:hover:text-white",
+              clearRight
             )}
           >
             <X className={size === "lg" ? "h-5 w-5" : "h-4 w-4"} />
@@ -93,7 +107,7 @@ export function SearchBar({
             type="submit"
             disabled={isSearching || !query.trim()}
             className={cn(
-              "absolute right-1 rounded-full bg-emerald-600 hover:bg-emerald-500",
+              "absolute right-1 top-1/2 -translate-y-1/2 rounded-full bg-emerald-600 shadow-md shadow-emerald-500/20 transition-colors hover:bg-emerald-500 dark:shadow-emerald-500/10 focus-visible:ring-2 focus-visible:ring-emerald-500/30 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent",
               size === "lg" ? "h-12 px-6" : "h-8 px-4"
             )}
           >

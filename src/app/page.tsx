@@ -184,6 +184,8 @@ export default function Home() {
             <div className="relative">
               <SearchBar
                 placeholder="Search for guides, places, or answers..."
+                size="lg"
+                showButton={false}
               />
             </div>
           </div>
@@ -357,7 +359,7 @@ export default function Home() {
               </p>
 
               <div className="mt-6 flex flex-wrap gap-3">
-                <Button asChild className="bg-emerald-600 shadow-lg hover:bg-emerald-500">
+                <Button asChild className="text-white bg-emerald-600 shadow-lg hover:bg-emerald-500">
                   <Link href="/about">
                     <Users className="mr-2 h-4 w-4" />
                     About Our Community
@@ -400,7 +402,7 @@ export default function Home() {
           </p>
 
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Button asChild className="bg-emerald-600 px-6 shadow-xl shadow-emerald-500/25 hover:bg-emerald-500">
+            <Button asChild className="text-white bg-emerald-600 px-6 shadow-xl shadow-emerald-500/25 hover:bg-emerald-500">
               <Link
                 href="https://github.com/HamzaChx/Atlas-Munich"
                 target="_blank"

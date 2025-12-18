@@ -58,7 +58,11 @@ export default function GuidesPage() {
 
             {/* Search */}
             <div className="mx-auto mt-10 max-w-2xl">
-              <SearchBar placeholder="Search for apartment tips, visa info, halal food..." />
+              <SearchBar
+                placeholder="Search for apartment tips, visa info, halal food..."
+                size="lg"
+                showButton={false}
+              />
             </div>
 
             {/* Quick Stats */}

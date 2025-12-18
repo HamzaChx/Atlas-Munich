@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { SearchBar, CategoryCard } from "@/components/shared";
+import { SearchBar, CategoryCard, HeroBadge } from "@/components/shared";
 import { categories } from "@/data/categories";
 import { guides } from "@/data/guides";
 import { places } from "@/data/places";
@@ -148,10 +148,10 @@ export default function Home() {
         </div>
 
         {/* Content */}
-        <div className="relative z-20 mx-auto flex min-h-[90vh] max-w-7xl flex-col items-center justify-center px-4 py-16 text-center sm:px-6 lg:px-8">
+        <div className="relative z-20 mx-auto flex min-h-[90vh] max-w-7xl flex-col items-center justify-center px-4 py-20 text-center sm:px-6 lg:px-8">
           
           {/* Main Title */}
-          <h1 className="max-w-4xl text-4xl font-black tracking-tight text-white sm:text-5xl lg:text-6xl mt-8">
+          <h1 className="max-w-4xl text-5xl font-black tracking-tight text-white sm:text-6xl lg:text-7xl mt-6">
             Your Complete Guide to
             <span className="relative mt-2 block">
               <span className="relative z-10 bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 bg-clip-text text-transparent">
@@ -162,13 +162,13 @@ export default function Home() {
           </h1>
 
           {/* Subtitle */}
-          <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-zinc-400 sm:text-lg">
+          <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-zinc-400">
             Built by the <span className="font-semibold text-amber-400">Moroccan community</span>, for the Moroccan community.
             Everything you need to navigate life in Munich — from your first Anmeldung to finding the best tajine in town.
           </p>
 
           {/* Search Bar */}
-          <div className="mx-auto mt-8 w-full max-w-xl">
+          <div className="mx-auto mt-10 w-full max-w-2xl">
             <div className="relative">
               <SearchBar
                 placeholder="Search for guides, places, or answers..."
@@ -177,12 +177,12 @@ export default function Home() {
           </div>
 
           {/* Quick Links */}
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             {quickLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="group flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-zinc-300 backdrop-blur-sm transition-all hover:border-emerald-500/50 hover:bg-emerald-500/10 hover:text-emerald-400"
+                className="group flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-medium text-zinc-300 backdrop-blur-sm transition-all hover:border-emerald-500/50 hover:bg-emerald-500/10 hover:text-emerald-400"
               >
                 <link.icon className="h-4 w-4" />
                 {link.label}
@@ -192,17 +192,17 @@ export default function Home() {
           </div>
 
           {/* Stats Bar */}
-          <div className="mt-12 grid w-full max-w-3xl grid-cols-2 gap-3 sm:grid-cols-4">
+          <div className="mt-14 grid w-full max-w-3xl grid-cols-2 gap-4 sm:grid-cols-4">
             {stats.map((stat) => (
               <div
                 key={stat.label}
-                className="group rounded-xl border border-white/5 bg-white/5 p-3 backdrop-blur-sm transition-all hover:border-white/10 hover:bg-white/10"
+                className="group rounded-xl border border-white/5 bg-white/5 p-4 backdrop-blur-sm transition-all hover:border-white/10 hover:bg-white/10"
               >
-                <div className="text-2xl font-bold text-white sm:text-3xl">
+                <div className="text-3xl font-bold text-white">
                   {stat.value}
                   <span className="text-emerald-400">{stat.suffix}</span>
                 </div>
-                <div className="text-xs text-zinc-500 sm:text-sm">{stat.label}</div>
+                <div className="text-sm text-zinc-500">{stat.label}</div>
               </div>
             ))}
           </div>

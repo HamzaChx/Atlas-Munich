@@ -5,13 +5,13 @@ export const faqs: FAQ[] = [
   {
     id: "faq-general-1",
     question: "What should I do in my first week in Munich?",
-    answer: "Priority tasks: 1) Get a SIM card, 2) Book Anmeldung appointment, 3) Find temporary housing if needed, 4) Open a bank account. See our 'First Weeks in Munich' guide for a complete checklist.",
+    answer: "Priority tasks: 1) Get a SIM card, 2) Find temporary housing if needed, 3) Book Anmeldung appointment, 4) Open a bank account. See our 'First Weeks in Munich' guide for a complete checklist.",
     tags: ["newcomer", "urgent"],
   },
   {
     id: "faq-general-2",
     question: "How much money do I need per month to live in Munich?",
-    answer: "Budget around €900-1200/month minimum: Rent €500-800, Food €150-250, Transport €0 (semester ticket) or €59 (Deutschland Ticket), Health Insurance €110, Others €100-150. Munich is one of Germany's most expensive cities.",
+    answer: "Budget around €1000-1400/month minimum: Rent €500-800, Food €400-500, Transport €43 (Deutschland Ticket), Health Insurance €140, Others €100-150. Munich is one of Germany's most expensive cities.",
     tags: ["newcomer", "budget-friendly"],
   },
   {
@@ -52,7 +52,7 @@ export const faqs: FAQ[] = [
   {
     id: "faq-housing-5",
     question: "Can I rent without a SCHUFA?",
-    answer: "It's very difficult. Most landlords require SCHUFA (credit report). If you're new to Germany, get a SCHUFA showing 'no negative entries' - this is actually good for newcomers.",
+    answer: "Yes but it doesn't hurt to have one since most landlords require SCHUFA (credit report). If you're new to Germany, get a SCHUFA showing 'no negative entries' - this is actually good for newcomers.",
     categoryKey: "rent-housing",
     tags: ["documents"],
   },

@@ -2,7 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { SearchBar, CategoryCard, GuideCard } from "@/components/shared";
+import { SearchBar, CategoryCard, GuideCard, HeroBadge } from "@/components/shared";
 import { categories } from "@/data/categories";
 import { guides } from "@/data/guides";
 import { 
@@ -37,16 +37,13 @@ export default function GuidesPage() {
         <div className="absolute -left-32 top-1/4 z-[5] h-[400px] w-[400px] rounded-full bg-gradient-to-br from-emerald-600/20 to-teal-600/20 blur-[100px]" />
         <div className="absolute -right-32 bottom-0 z-[5] h-[400px] w-[400px] rounded-full bg-gradient-to-br from-cyan-500/15 to-blue-600/15 blur-[100px]" />
 
-        <div className="relative z-10 mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+        <div className="relative z-10 mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
           <div className="text-center">
             {/* Badge */}
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-2">
-              <BookOpen className="h-4 w-4 text-emerald-400" />
-              <span className="text-sm font-semibold text-emerald-400">{guides.length}+ Community Guides</span>
-            </div>
+            <HeroBadge icon={BookOpen} text={`${guides.length}+ Community Guides`} color="emerald" />
 
             {/* Title */}
-            <h1 className="text-4xl font-black tracking-tight text-white sm:text-5xl lg:text-6xl">
+            <h1 className="text-5xl font-black tracking-tight text-white sm:text-6xl lg:text-7xl">
               Your Complete
               <span className="mt-2 block bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 bg-clip-text text-transparent">
                 Munich Playbook
@@ -54,25 +51,25 @@ export default function GuidesPage() {
             </h1>
 
             {/* Subtitle */}
-            <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-zinc-400 sm:text-lg">
+            <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-zinc-400">
               From your first day to feeling at home — comprehensive guides written by 
               <span className="font-semibold text-amber-400"> Moroccans who&apos;ve been there</span>
             </p>
 
             {/* Search */}
-            <div className="mx-auto mt-8 max-w-xl">
+            <div className="mx-auto mt-10 max-w-2xl">
               <SearchBar placeholder="Search for apartment tips, visa info, halal food..." />
             </div>
 
             {/* Quick Stats */}
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-sm">
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-8 text-base">
               {[
                 { label: "Categories", value: categories.length },
                 { label: "Total Guides", value: guides.length },
                 { label: "Community Verified", value: "100%" },
               ].map((stat) => (
                 <div key={stat.label} className="flex items-center gap-2">
-                  <span className="text-lg font-bold text-emerald-400">{stat.value}</span>
+                  <span className="text-xl font-bold text-emerald-400">{stat.value}</span>
                   <span className="text-zinc-500">{stat.label}</span>
                 </div>
               ))}

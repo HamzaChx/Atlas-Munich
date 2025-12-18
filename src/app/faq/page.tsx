@@ -4,7 +4,7 @@ import { useState, useMemo } from "react";
 import Link from "next/link";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
-import { FAQAccordion, EmptyState } from "@/components/shared";
+import { FAQAccordion, EmptyState, HeroBadge } from "@/components/shared";
 import { getAllFaqs } from "@/data/faqs";
 import { categories } from "@/data/categories";
 import { HelpCircle, Search, Sparkles, ArrowRight } from "lucide-react";
@@ -77,45 +77,42 @@ export default function FAQPage() {
         <div className="absolute -left-32 top-0 z-[5] h-[400px] w-[400px] rounded-full bg-gradient-to-br from-blue-600/20 to-indigo-600/20 blur-[100px]" />
         <div className="absolute -right-32 bottom-0 z-[5] h-[400px] w-[400px] rounded-full bg-gradient-to-br from-emerald-500/15 to-teal-500/15 blur-[100px]" />
 
-        <div className="relative z-10 mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+        <div className="relative z-10 mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
           <div className="text-center">
             {/* Badge */}
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/10 px-4 py-2">
-              <HelpCircle className="h-4 w-4 text-blue-400" />
-              <span className="text-sm font-semibold text-blue-400">{allFaqs.length}+ Questions Answered</span>
-            </div>
+            <HeroBadge icon={HelpCircle} text={`${allFaqs.length}+ Questions Answered`} color="blue" />
 
             {/* Title */}
-            <h1 className="text-4xl font-black tracking-tight text-white sm:text-5xl lg:text-6xl">
+            <h1 className="text-5xl font-black tracking-tight text-white sm:text-6xl lg:text-7xl">
               Frequently Asked{" "}
               <span className="bg-gradient-to-r from-blue-400 via-indigo-400 to-purple-400 bg-clip-text text-transparent">
                 Questions
               </span>
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-zinc-400 sm:text-lg">
+            <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-zinc-400">
               Quick answers to common questions about living in Munich as a Moroccan student or professional.
             </p>
 
             {/* Search */}
-            <div className="relative mx-auto mt-8 max-w-xl">
-              <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-zinc-500" />
+            <div className="relative mx-auto mt-10 max-w-2xl">
+              <Search className="absolute left-5 top-1/2 h-5 w-5 -translate-y-1/2 text-zinc-500" />
               <Input
                 type="search"
                 placeholder="Search questions..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="h-12 rounded-full border-white/10 bg-white/5 pl-12 text-base text-white placeholder:text-zinc-500 focus:border-blue-500/50 focus:ring-blue-500/20"
+                className="h-14 rounded-full border-white/10 bg-white/5 pl-14 text-lg text-white placeholder:text-zinc-500 focus:border-blue-500/50 focus:ring-blue-500/20"
               />
             </div>
 
             {/* Category filters */}
-            <div className="mx-auto mt-8 flex max-w-4xl flex-wrap items-center justify-center gap-2">
+            <div className="mx-auto mt-10 flex max-w-4xl flex-wrap items-center justify-center gap-3">
               {categoryFilters.map((filter) => (
                 <button
                   key={filter.key || "all"}
                   onClick={() => setSelectedCategory(filter.key)}
                   className={cn(
-                    "flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-all",
+                    "flex items-center gap-2 rounded-full px-5 py-2.5 text-base font-medium transition-all",
                     selectedCategory === filter.key
                       ? "bg-gradient-to-r from-blue-500 to-indigo-500 text-white shadow-lg shadow-blue-500/25"
                       : "border border-white/10 bg-white/5 text-zinc-400 hover:border-white/20 hover:bg-white/10 hover:text-white"

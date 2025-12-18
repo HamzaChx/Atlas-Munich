@@ -8,3 +8,4 @@ export { PlaceCard } from "./PlaceCard";
 export { PlacesMap } from "./PlacesMap";
 export { Callout } from "./Callout";
 export { EmptyState } from "./EmptyState";
+export { HeroBadge } from "./HeroBadge";

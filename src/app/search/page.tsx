@@ -4,12 +4,12 @@ import { useState, useMemo, useEffect, Suspense } from "react";
 import { useSearchParams, useRouter } from "next/navigation";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import { GuideCard, PlaceCard, FAQAccordion, EmptyState } from "@/components/shared";
+import { GuideCard, PlaceCard, FAQAccordion, EmptyState, HeroBadge } from "@/components/shared";
 import { searchGuides } from "@/data/guides";
 import { places } from "@/data/places";
 import { searchFaqs } from "@/data/faqs";
 import { categories } from "@/data/categories";
-import { Search, FileText, MapPin, HelpCircle, Tag } from "lucide-react";
+import { Search, FileText, MapPin, HelpCircle, Tag, Sparkles, ArrowRight, Compass } from "lucide-react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 
@@ -58,7 +58,7 @@ function SearchContent() {
   const tabs: { key: SearchTab; label: string; count: number; icon: React.ReactNode }[] = [
     {
       key: "all",
-      label: "All",
+      label: "All Results",
       count: totalResults,
       icon: <Search className="h-4 w-4" />,
     },
@@ -82,31 +82,74 @@ function SearchContent() {
     },
   ];
 
+  // Popular search terms
+  const popularSearches = [
+    "apartment",
+    "Anmeldung",
+    "visa",
+    "halal restaurant",
+    "semester ticket",
+    "werkstudent",
+    "mosque",
+    "grocery",
+  ];
+
+  // Category icons
+  const categoryIcons: Record<string, string> = {
+    "rent-housing": "🏠",
+    "kvr-residence": "📋",
+    "university-life": "🎓",
+    "halal-food": "🍽️",
+    "career": "💼",
+    "useful-apps": "📱",
+  };
+
   return (
-    <div className="min-h-screen">
-      {/* Header */}
-      <section className="border-b bg-gradient-to-br from-blue-50 via-white to-purple-50 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950">
-        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-zinc-950">
+      {/* Hero Section */}
+      <section className="relative overflow-hidden border-b border-white/10 bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-950">
+        {/* Gradient Orbs */}
+        <div className="absolute -left-32 top-0 z-[5] h-[400px] w-[400px] rounded-full bg-gradient-to-br from-purple-600/20 to-pink-600/20 blur-[100px]" />
+        <div className="absolute -right-32 bottom-0 z-[5] h-[400px] w-[400px] rounded-full bg-gradient-to-br from-cyan-500/15 to-blue-600/15 blur-[100px]" />
+
+        <div className="relative z-10 mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
-              Search
+            {/* Badge */}
+            <HeroBadge icon={Search} text="Search Everything" color="purple" />
+
+            {/* Title */}
+            <h1 className="text-5xl font-black tracking-tight text-white sm:text-6xl lg:text-7xl">
+              Find What You{" "}
+              <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-rose-400 bg-clip-text text-transparent">
+                Need
+              </span>
             </h1>
-            <p className="mx-auto mt-4 max-w-2xl text-lg text-muted-foreground">
-              Find guides, places, and answers across our entire knowledge base.
+            <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-zinc-400">
+              Search across guides, places, and FAQs — your complete Munich knowledge base at your fingertips.
             </p>
 
             {/* Search */}
-            <div className="relative mx-auto mt-8 max-w-2xl">
-              <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
+            <div className="relative mx-auto mt-10 max-w-2xl">
+              <Search className="absolute left-5 top-1/2 h-5 w-5 -translate-y-1/2 text-zinc-500" />
               <Input
                 type="search"
                 placeholder="Search for guides, places, FAQs..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="h-14 rounded-full border-2 pl-12 pr-4 text-lg"
+                className="h-14 rounded-full border-white/10 bg-white/5 pl-14 text-lg text-white placeholder:text-zinc-500 focus:border-purple-500/50 focus:ring-purple-500/20"
                 autoFocus
               />
             </div>
+
+            {/* Quick Stats */}
+            {searchQuery.trim() && (
+              <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-base">
+                <div className="flex items-center gap-2">
+                  <span className="text-xl font-bold text-purple-400">{totalResults}</span>
+                  <span className="text-zinc-500">Results found</span>
+                </div>
+              </div>
+            )}
           </div>
         </div>
       </section>
@@ -116,29 +159,30 @@ function SearchContent() {
         {searchQuery.trim() ? (
           <>
             {/* Tabs */}
-            <div className="mb-8 flex flex-wrap items-center gap-2 border-b pb-4">
+            <div className="mb-10 flex flex-wrap items-center gap-3">
               {tabs.map((tab) => (
                 <button
                   key={tab.key}
                   onClick={() => setActiveTab(tab.key)}
                   className={cn(
-                    "flex items-center gap-2 rounded-full px-4 py-2 text-sm font-medium transition-colors",
+                    "flex items-center gap-2 rounded-full px-5 py-2.5 text-base font-medium transition-all",
                     activeTab === tab.key
-                      ? "bg-primary text-primary-foreground"
-                      : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
+                      ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white shadow-lg shadow-purple-500/25"
+                      : "border border-white/10 bg-white/5 text-zinc-400 hover:border-white/20 hover:bg-white/10 hover:text-white"
                   )}
                 >
                   {tab.icon}
                   {tab.label}
-                  <Badge
-                    variant="secondary"
+                  <span
                     className={cn(
-                      "ml-1",
-                      activeTab === tab.key && "bg-primary-foreground/20 text-primary-foreground"
+                      "ml-1 rounded-full px-2 py-0.5 text-xs font-semibold",
+                      activeTab === tab.key
+                        ? "bg-white/20 text-white"
+                        : "bg-white/10 text-zinc-400"
                     )}
                   >
                     {tab.count}
-                  </Badge>
+                  </span>
                 </button>
               ))}
             </div>
@@ -151,23 +195,28 @@ function SearchContent() {
                 description={`We couldn't find anything matching "${searchQuery}". Try different keywords.`}
               />
             ) : (
-              <div className="space-y-12">
+              <div className="space-y-16">
                 {/* Guides */}
                 {(activeTab === "all" || activeTab === "guides") &&
                   searchResults.guides.length > 0 && (
                     <section>
-                      <div className="mb-4 flex items-center justify-between">
-                        <h2 className="flex items-center gap-2 text-xl font-semibold">
-                          <FileText className="h-5 w-5" />
-                          Guides
-                          <Badge variant="secondary">{searchResults.guides.length}</Badge>
-                        </h2>
+                      <div className="mb-6 flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <div className="rounded-xl bg-emerald-500/10 p-2.5">
+                            <FileText className="h-5 w-5 text-emerald-400" />
+                          </div>
+                          <div>
+                            <h2 className="text-xl font-bold text-white">Guides</h2>
+                            <p className="text-sm text-zinc-500">{searchResults.guides.length} results found</p>
+                          </div>
+                        </div>
                         {activeTab === "all" && searchResults.guides.length > 3 && (
                           <button
                             onClick={() => setActiveTab("guides")}
-                            className="text-sm text-primary hover:underline"
+                            className="group flex items-center gap-1.5 text-sm font-medium text-emerald-400 transition-colors hover:text-emerald-300"
                           >
-                            View all →
+                            View all
+                            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                           </button>
                         )}
                       </div>
@@ -186,18 +235,23 @@ function SearchContent() {
                 {(activeTab === "all" || activeTab === "places") &&
                   searchResults.places.length > 0 && (
                     <section>
-                      <div className="mb-4 flex items-center justify-between">
-                        <h2 className="flex items-center gap-2 text-xl font-semibold">
-                          <MapPin className="h-5 w-5" />
-                          Places
-                          <Badge variant="secondary">{searchResults.places.length}</Badge>
-                        </h2>
+                      <div className="mb-6 flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <div className="rounded-xl bg-orange-500/10 p-2.5">
+                            <MapPin className="h-5 w-5 text-orange-400" />
+                          </div>
+                          <div>
+                            <h2 className="text-xl font-bold text-white">Places</h2>
+                            <p className="text-sm text-zinc-500">{searchResults.places.length} results found</p>
+                          </div>
+                        </div>
                         {activeTab === "all" && searchResults.places.length > 3 && (
                           <button
                             onClick={() => setActiveTab("places")}
-                            className="text-sm text-primary hover:underline"
+                            className="group flex items-center gap-1.5 text-sm font-medium text-orange-400 transition-colors hover:text-orange-300"
                           >
-                            View all →
+                            View all
+                            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                           </button>
                         )}
                       </div>
@@ -216,18 +270,23 @@ function SearchContent() {
                 {(activeTab === "all" || activeTab === "faqs") &&
                   searchResults.faqs.length > 0 && (
                     <section>
-                      <div className="mb-4 flex items-center justify-between">
-                        <h2 className="flex items-center gap-2 text-xl font-semibold">
-                          <HelpCircle className="h-5 w-5" />
-                          FAQs
-                          <Badge variant="secondary">{searchResults.faqs.length}</Badge>
-                        </h2>
+                      <div className="mb-6 flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                          <div className="rounded-xl bg-blue-500/10 p-2.5">
+                            <HelpCircle className="h-5 w-5 text-blue-400" />
+                          </div>
+                          <div>
+                            <h2 className="text-xl font-bold text-white">FAQs</h2>
+                            <p className="text-sm text-zinc-500">{searchResults.faqs.length} results found</p>
+                          </div>
+                        </div>
                         {activeTab === "all" && searchResults.faqs.length > 5 && (
                           <button
                             onClick={() => setActiveTab("faqs")}
-                            className="text-sm text-primary hover:underline"
+                            className="group flex items-center gap-1.5 text-sm font-medium text-blue-400 transition-colors hover:text-blue-300"
                           >
-                            View all →
+                            View all
+                            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
                           </button>
                         )}
                       </div>
@@ -246,27 +305,33 @@ function SearchContent() {
             )}
           </>
         ) : (
-          /* Empty state - show quick links */
-          <div className="py-12 text-center">
-            <Search className="mx-auto h-16 w-16 text-muted-foreground/30" />
-            <h2 className="mt-4 text-xl font-semibold">Start searching</h2>
-            <p className="mt-2 text-muted-foreground">
-              Enter a keyword to search across all guides, places, and FAQs.
-            </p>
+          /* Empty state - show discovery */
+          <div className="py-8">
+            {/* Empty state header */}
+            <div className="mb-12 text-center">
+              <div className="mx-auto mb-4 inline-flex rounded-2xl bg-gradient-to-br from-purple-500/10 to-pink-500/10 p-4">
+                <Compass className="h-12 w-12 text-purple-400" />
+              </div>
+              <h2 className="text-2xl font-bold text-white">Discover Content</h2>
+              <p className="mt-2 text-zinc-400">
+                Start typing above or explore our popular categories and searches below.
+              </p>
+            </div>
 
-            {/* Quick links */}
-            <div className="mx-auto mt-8 max-w-2xl">
-              <h3 className="mb-4 text-sm font-medium text-muted-foreground">
-                Popular categories
+            {/* Popular Categories */}
+            <div className="mx-auto mb-12 max-w-4xl">
+              <h3 className="mb-5 flex items-center justify-center gap-2 text-sm font-semibold uppercase tracking-wider text-zinc-500">
+                <Tag className="h-4 w-4" />
+                Browse Categories
               </h3>
-              <div className="flex flex-wrap justify-center gap-2">
+              <div className="flex flex-wrap justify-center gap-3">
                 {categories.map((category) => (
                   <Link
                     key={category.key}
                     href={`/category/${category.key}`}
-                    className="flex items-center gap-2 rounded-full bg-muted px-4 py-2 text-sm font-medium transition-colors hover:bg-accent"
+                    className="group flex items-center gap-2.5 rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-base font-medium text-zinc-300 transition-all hover:border-purple-500/50 hover:bg-purple-500/10 hover:text-purple-400"
                   >
-                    <Tag className="h-3 w-3" />
+                    <span>{categoryIcons[category.key] || "📌"}</span>
                     {category.title}
                   </Link>
                 ))}
@@ -274,29 +339,49 @@ function SearchContent() {
             </div>
 
             {/* Popular searches */}
-            <div className="mx-auto mt-8 max-w-2xl">
-              <h3 className="mb-4 text-sm font-medium text-muted-foreground">
-                Popular searches
+            <div className="mx-auto max-w-3xl">
+              <h3 className="mb-5 flex items-center justify-center gap-2 text-sm font-semibold uppercase tracking-wider text-zinc-500">
+                <Sparkles className="h-4 w-4" />
+                Popular Searches
               </h3>
-              <div className="flex flex-wrap justify-center gap-2">
-                {[
-                  "apartment",
-                  "Anmeldung",
-                  "visa",
-                  "halal restaurant",
-                  "semester ticket",
-                  "werkstudent",
-                  "mosque",
-                  "grocery",
-                ].map((term) => (
+              <div className="flex flex-wrap justify-center gap-3">
+                {popularSearches.map((term) => (
                   <button
                     key={term}
                     onClick={() => setSearchQuery(term)}
-                    className="rounded-full border px-4 py-2 text-sm transition-colors hover:bg-accent"
+                    className="rounded-full border border-white/10 bg-white/5 px-5 py-2.5 text-base font-medium text-zinc-400 transition-all hover:border-pink-500/50 hover:bg-pink-500/10 hover:text-pink-400"
                   >
                     {term}
                   </button>
                 ))}
+              </div>
+            </div>
+
+            {/* Quick links */}
+            <div className="mx-auto mt-16 max-w-4xl">
+              <div className="rounded-2xl border border-white/10 bg-gradient-to-br from-zinc-900/80 to-zinc-900/50 p-8 text-center backdrop-blur-sm">
+                <div className="mb-4 inline-flex rounded-full bg-gradient-to-br from-amber-500/20 to-orange-500/20 p-3">
+                  <Sparkles className="h-6 w-6 text-amber-400" />
+                </div>
+                <h3 className="text-lg font-bold text-white">Looking for something specific?</h3>
+                <p className="mx-auto mt-2 max-w-md text-base text-zinc-400">
+                  Browse our curated guides or check out the community-verified places directory.
+                </p>
+                <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
+                  <Link
+                    href="/guides"
+                    className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-purple-500 to-pink-500 px-6 py-3 text-sm font-medium text-white transition-all hover:from-purple-600 hover:to-pink-600"
+                  >
+                    Browse Guides
+                  </Link>
+                  <Link
+                    href="/places"
+                    className="group inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-6 py-3 text-sm font-medium text-zinc-300 transition-all hover:border-purple-500/50 hover:bg-purple-500/10 hover:text-purple-400"
+                  >
+                    Explore Places
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </Link>
+                </div>
               </div>
             </div>
           </div>
@@ -309,8 +394,11 @@ function SearchContent() {
 export default function SearchPage() {
   return (
     <Suspense fallback={
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-muted-foreground">Loading search...</div>
+      <div className="min-h-screen flex items-center justify-center bg-zinc-950">
+        <div className="flex flex-col items-center gap-4">
+          <div className="h-8 w-8 animate-spin rounded-full border-2 border-purple-500 border-t-transparent" />
+          <span className="text-zinc-400">Loading search...</span>
+        </div>
       </div>
     }>
       <SearchContent />

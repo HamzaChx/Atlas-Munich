@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { HeroBadge } from "@/components/shared";
 import {
   Users,
   Heart,
@@ -74,33 +75,30 @@ export default function AboutPage() {
         <div className="absolute -left-32 top-0 z-[5] h-[400px] w-[400px] rounded-full bg-gradient-to-br from-emerald-600/20 to-teal-600/20 blur-[100px]" />
         <div className="absolute -right-32 bottom-0 z-[5] h-[400px] w-[400px] rounded-full bg-gradient-to-br from-rose-500/15 to-amber-500/15 blur-[100px]" />
 
-        <div className="relative z-10 mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+        <div className="relative z-10 mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
           <div className="text-center">
             {/* Badge */}
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-4 py-2">
-              <Users className="h-4 w-4 text-emerald-400" />
-              <span className="text-sm font-semibold text-emerald-400">Community Project</span>
-            </div>
+            <HeroBadge icon={Users} text="Community Project" color="emerald" />
 
             {/* Cultural flags */}
-            <div className="mb-6 flex items-center justify-center gap-4">
-              <span className="text-4xl" role="img" aria-label="Morocco flag">🇲🇦</span>
+            <div className="mb-8 flex items-center justify-center gap-4">
+              <span className="text-5xl" role="img" aria-label="Morocco flag">🇲🇦</span>
               <div className="flex items-center gap-2">
-                <span className="h-px w-6 bg-gradient-to-r from-red-500 via-amber-500 to-green-500" />
-                <Sparkles className="h-5 w-5 text-amber-400" />
-                <span className="h-px w-6 bg-gradient-to-r from-black via-red-500 to-amber-400" />
+                <span className="h-px w-8 bg-gradient-to-r from-red-500 via-amber-500 to-green-500" />
+                <Sparkles className="h-6 w-6 text-amber-400" />
+                <span className="h-px w-8 bg-gradient-to-r from-black via-red-500 to-amber-400" />
               </div>
-              <span className="text-4xl" role="img" aria-label="Germany flag">🇩🇪</span>
+              <span className="text-5xl" role="img" aria-label="Germany flag">🇩🇪</span>
             </div>
 
             {/* Title */}
-            <h1 className="text-4xl font-black tracking-tight text-white sm:text-5xl lg:text-6xl">
+            <h1 className="text-5xl font-black tracking-tight text-white sm:text-6xl lg:text-7xl">
               About{" "}
               <span className="bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 bg-clip-text text-transparent">
                 Atlas Munich
               </span>
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-zinc-400 sm:text-lg">
+            <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-zinc-400">
               Your trusted guide to navigating life in Munich as a Moroccan student or professional. 
               Built by the community, for the community.
             </p>

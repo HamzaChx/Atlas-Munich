@@ -23,17 +23,17 @@ const footerLinks = {
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-zinc-950">
+    <footer className="relative overflow-hidden bg-zinc-50 dark:bg-zinc-950">
       {/* Moroccan Pattern Background */}
-      <div className="absolute inset-0 opacity-[0.02]">
+      <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.02]">
         <svg className="h-full w-full" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <pattern id="footer-pattern" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
-              <path d="M30 0L60 30L30 60L0 30Z" fill="none" stroke="white" strokeWidth="1"/>
-              <circle cx="30" cy="30" r="8" fill="none" stroke="white" strokeWidth="1"/>
+              <path d="M30 0L60 30L30 60L0 30Z" fill="none" stroke="currentColor" strokeWidth="1"/>
+              <circle cx="30" cy="30" r="8" fill="none" stroke="currentColor" strokeWidth="1"/>
             </pattern>
           </defs>
-          <rect width="100%" height="100%" fill="url(#footer-pattern)"/>
+          <rect width="100%" height="100%" fill="url(#footer-pattern)" className="text-zinc-900 dark:text-white"/>
         </svg>
       </div>
 
@@ -45,20 +45,20 @@ export function Footer() {
           {/* Brand Section - Larger */}
           <div className="lg:col-span-2">
             <Link href="/" className="group inline-flex items-center gap-2">
-              <div className="flex items-center justify-center gap-1.5 rounded-full border border-white/10 bg-white/5 px-3 py-1.5 backdrop-blur-sm transition-all group-hover:border-emerald-500/30 group-hover:bg-emerald-500/10">
+              <div className="flex items-center justify-center gap-1.5 rounded-full border border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 px-3 py-1.5 shadow-sm dark:shadow-none backdrop-blur-sm transition-all group-hover:border-emerald-500/30 group-hover:bg-emerald-50 dark:group-hover:bg-emerald-500/10">
                 <span className="text-lg" role="img" aria-label="Morocco flag">🇲🇦</span>
-                <Sparkles className="h-3 w-3 text-amber-400" />
+                <Sparkles className="h-3 w-3 text-amber-500 dark:text-amber-400" />
                 <span className="text-lg" role="img" aria-label="Germany flag">🇩🇪</span>
               </div>
               <span className="text-xl font-bold tracking-tight">
-                <span className="bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-400 dark:to-teal-400 bg-clip-text text-transparent">
                   Atlas
                 </span>{" "}
-                <span className="text-white">Munich</span>
+                <span className="text-zinc-900 dark:text-white">Munich</span>
               </span>
             </Link>
             
-            <p className="mt-6 max-w-sm text-sm leading-relaxed text-zinc-400">
+            <p className="mt-6 max-w-sm text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
               Your complete guide to thriving in Munich as a Moroccan student or professional.
               Built by the community, for the community.
             </p>
@@ -69,14 +69,14 @@ export function Footer() {
                 href="https://github.com/HamzaChx/Atlas-Munich"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-zinc-400 transition-all hover:border-emerald-500/30 hover:bg-emerald-500/10 hover:text-emerald-400"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 text-zinc-600 dark:text-zinc-400 shadow-sm dark:shadow-none transition-all hover:border-emerald-500/30 hover:bg-emerald-50 dark:hover:bg-emerald-500/10 hover:text-emerald-600 dark:hover:text-emerald-400"
               >
                 <Github className="h-5 w-5" />
                 <span className="sr-only">GitHub</span>
               </Link>
               <Link
                 href="mailto:hello@atlas-munich.de"
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/5 text-zinc-400 transition-all hover:border-emerald-500/30 hover:bg-emerald-500/10 hover:text-emerald-400"
+                className="flex h-10 w-10 items-center justify-center rounded-full border border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 text-zinc-600 dark:text-zinc-400 shadow-sm dark:shadow-none transition-all hover:border-emerald-500/30 hover:bg-emerald-50 dark:hover:bg-emerald-500/10 hover:text-emerald-600 dark:hover:text-emerald-400"
               >
                 <Mail className="h-5 w-5" />
                 <span className="sr-only">Email</span>
@@ -86,7 +86,7 @@ export function Footer() {
 
           {/* Guides */}
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-white">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-zinc-900 dark:text-white">
               Guides
             </h3>
             <ul className="mt-6 space-y-4">
@@ -94,7 +94,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="group flex items-center gap-1 text-sm text-zinc-400 transition-colors hover:text-emerald-400"
+                    className="group flex items-center gap-1 text-sm text-zinc-600 dark:text-zinc-400 transition-colors hover:text-emerald-600 dark:hover:text-emerald-400"
                   >
                     {link.label}
                     <ArrowUpRight className="h-3 w-3 opacity-0 transition-all group-hover:opacity-100" />
@@ -106,7 +106,7 @@ export function Footer() {
 
           {/* Resources */}
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-white">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-zinc-900 dark:text-white">
               Resources
             </h3>
             <ul className="mt-6 space-y-4">
@@ -114,7 +114,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="group flex items-center gap-1 text-sm text-zinc-400 transition-colors hover:text-emerald-400"
+                    className="group flex items-center gap-1 text-sm text-zinc-600 dark:text-zinc-400 transition-colors hover:text-emerald-600 dark:hover:text-emerald-400"
                   >
                     {link.label}
                     <ArrowUpRight className="h-3 w-3 opacity-0 transition-all group-hover:opacity-100" />
@@ -126,7 +126,7 @@ export function Footer() {
 
           {/* Community */}
           <div>
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-white">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-zinc-900 dark:text-white">
               Community
             </h3>
             <ul className="mt-6 space-y-4">
@@ -134,7 +134,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="group flex items-center gap-1 text-sm text-zinc-400 transition-colors hover:text-emerald-400"
+                    className="group flex items-center gap-1 text-sm text-zinc-600 dark:text-zinc-400 transition-colors hover:text-emerald-600 dark:hover:text-emerald-400"
                   >
                     {link.label}
                     <ArrowUpRight className="h-3 w-3 opacity-0 transition-all group-hover:opacity-100" />
@@ -146,7 +146,7 @@ export function Footer() {
         </div>
 
         {/* Bottom Section */}
-        <div className="mt-16 flex flex-col items-center justify-between gap-6 border-t border-white/10 pt-8 sm:flex-row">
+        <div className="mt-16 flex flex-col items-center justify-between gap-6 border-t border-zinc-200 dark:border-white/10 pt-8 sm:flex-row">
           <p className="text-sm text-zinc-500">
             © {new Date().getFullYear()} Atlas Munich. All rights reserved.
           </p>
@@ -159,7 +159,7 @@ export function Footer() {
               href="https://github.com/HamzaChx"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-medium text-zinc-300 transition-colors hover:text-emerald-400"
+              className="font-medium text-zinc-700 dark:text-zinc-300 transition-colors hover:text-emerald-600 dark:hover:text-emerald-400"
             >
               Hamza Chaouki
             </Link>

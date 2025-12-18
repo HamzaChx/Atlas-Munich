@@ -118,11 +118,10 @@
     @apply border-border outline-ring/50;
   }
   html {
-    @apply bg-zinc-950;
     overscroll-behavior: none;
   }
   body {
-    @apply bg-zinc-950 text-foreground;
+    @apply bg-white text-foreground dark:bg-zinc-950;
     overscroll-behavior: none;
   }
 }

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { ThemeToggle } from "@/components/shared";
 import {
   Menu,
   X,
@@ -44,10 +45,10 @@ export function Header() {
 
   // Dynamic styles based on scroll and page
   const headerBg = scrolled
-    ? "bg-zinc-950/95 backdrop-blur-xl border-b border-white/10"
+    ? "bg-white/95 dark:bg-zinc-950/95 backdrop-blur-xl border-b border-zinc-200 dark:border-white/10 shadow-sm dark:shadow-none"
     : isHomePage
     ? "bg-transparent"
-    : "bg-zinc-950 border-b border-white/10";
+    : "bg-white dark:bg-zinc-950 border-b border-zinc-200 dark:border-white/10";
 
   return (
     <header
@@ -59,7 +60,7 @@ export function Header() {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo */}
         <Link href="/" className="group flex items-center gap-3">
-          <div className="relative h-10 w-10 overflow-hidden rounded-full border border-white/10 bg-white/5 backdrop-blur-sm transition-all group-hover:border-emerald-500/30 group-hover:bg-emerald-500/10">
+          <div className="relative h-10 w-10 overflow-hidden rounded-full border border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-white/5 backdrop-blur-sm transition-all group-hover:border-emerald-500/30 group-hover:bg-emerald-50 dark:group-hover:bg-emerald-500/10">
             <img 
               src="/logo.png" 
               alt="Atlas Munich Logo" 
@@ -67,10 +68,10 @@ export function Header() {
             />
           </div>
           <span className="text-xl font-bold tracking-tight">
-            <span className="bg-gradient-to-r from-emerald-400 to-teal-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-400 dark:to-teal-400 bg-clip-text text-transparent">
               Atlas
             </span>{" "}
-            <span className="text-white">Munich</span>
+            <span className="text-zinc-900 dark:text-white">Munich</span>
           </span>
         </Link>
 
@@ -88,8 +89,8 @@ export function Header() {
                 className={cn(
                   "flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-all",
                   isActive
-                    ? "bg-emerald-500/20 text-emerald-400"
-                    : "text-zinc-400 hover:bg-white/5 hover:text-white"
+                    ? "bg-emerald-100 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-400"
+                    : "text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-white/5 hover:text-zinc-900 dark:hover:text-white"
                 )}
               >
                 <item.icon className="h-4 w-4" />
@@ -101,11 +102,14 @@ export function Header() {
 
         {/* Right Side Actions */}
         <div className="flex items-center gap-2">
+          {/* Theme Toggle */}
+          <ThemeToggle className="hidden sm:flex" />
+
           {/* Search Button */}
           <Button
             variant="ghost"
             size="icon"
-            className="hidden text-zinc-400 hover:bg-white/5 hover:text-white sm:flex"
+            className="hidden text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-white/5 hover:text-zinc-900 dark:hover:text-white sm:flex"
             asChild
           >
             <Link href="/search">
@@ -118,7 +122,7 @@ export function Header() {
           <Button
             variant="ghost"
             size="icon"
-            className="hidden text-zinc-400 hover:bg-white/5 hover:text-white sm:flex"
+            className="hidden text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-white/5 hover:text-zinc-900 dark:hover:text-white sm:flex"
             asChild
           >
             <Link
@@ -147,7 +151,7 @@ export function Header() {
           <Button
             variant="ghost"
             size="icon"
-            className="text-zinc-400 hover:bg-white/5 hover:text-white md:hidden"
+            className="text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-white/5 hover:text-zinc-900 dark:hover:text-white md:hidden"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
           >
@@ -162,7 +166,7 @@ export function Header() {
 
       {/* Mobile Navigation */}
       {mobileMenuOpen && (
-        <div className="border-t border-white/10 bg-zinc-950/98 backdrop-blur-xl md:hidden">
+        <div className="border-t border-zinc-200 dark:border-white/10 bg-white/98 dark:bg-zinc-950/98 backdrop-blur-xl md:hidden">
           <nav className="mx-auto max-w-7xl space-y-1 px-4 py-4">
             {navItems.map((item) => {
               const isActive =
@@ -177,8 +181,8 @@ export function Header() {
                   className={cn(
                     "flex items-center gap-3 rounded-xl px-4 py-3 text-base font-medium transition-all",
                     isActive
-                      ? "bg-emerald-500/20 text-emerald-400"
-                      : "text-zinc-400 hover:bg-white/5 hover:text-white"
+                      ? "bg-emerald-100 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-400"
+                      : "text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-white/5 hover:text-zinc-900 dark:hover:text-white"
                   )}
                 >
                   <item.icon className="h-5 w-5" />
@@ -191,11 +195,17 @@ export function Header() {
             <Link
               href="/search"
               onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center gap-3 rounded-xl px-4 py-3 text-base font-medium text-zinc-400 transition-all hover:bg-white/5 hover:text-white"
+              className="flex items-center gap-3 rounded-xl px-4 py-3 text-base font-medium text-zinc-600 dark:text-zinc-400 transition-all hover:bg-zinc-100 dark:hover:bg-white/5 hover:text-zinc-900 dark:hover:text-white"
             >
               <Search className="h-5 w-5" />
               Search
             </Link>
+
+            {/* Mobile Theme Toggle */}
+            <div className="flex items-center gap-3 rounded-xl px-4 py-3 text-base font-medium text-zinc-600 dark:text-zinc-400">
+              <ThemeToggle />
+              <span>Toggle Theme</span>
+            </div>
 
             {/* Mobile CTA */}
             <div className="pt-4">

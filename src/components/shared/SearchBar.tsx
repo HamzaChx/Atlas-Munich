@@ -67,7 +67,7 @@ export function SearchBar({
           onChange={(e) => setQuery(e.target.value)}
           autoFocus={autoFocus}
           className={cn(
-            "pr-20 border-white/20 bg-white/10 text-white placeholder:text-zinc-400 shadow-2xl shadow-emerald-500/10 backdrop-blur-xl focus-visible:border-emerald-500/50 focus-visible:ring-emerald-500/20 focus-visible:shadow-emerald-500/20",
+            "pr-20 border-zinc-200 dark:border-white/20 bg-white dark:bg-white/10 text-zinc-900 dark:text-white placeholder:text-zinc-400 shadow-lg dark:shadow-2xl shadow-zinc-200/50 dark:shadow-emerald-500/10 backdrop-blur-xl focus-visible:border-emerald-500/50 focus-visible:ring-emerald-500/20 focus-visible:shadow-emerald-200 dark:focus-visible:shadow-emerald-500/20",
             size === "lg"
               ? "h-14 pl-12 text-lg"
               : "h-10 pl-10 text-sm",
@@ -79,7 +79,7 @@ export function SearchBar({
             type="button"
             onClick={handleClear}
             className={cn(
-              "absolute text-zinc-500 hover:text-white",
+              "absolute text-zinc-400 dark:text-zinc-500 hover:text-zinc-600 dark:hover:text-white",
               showButton ? "right-24" : "right-3",
               size === "lg" ? "right-28" : ""
             )}

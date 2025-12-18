@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useTheme } from "next-themes";
 import { Place } from "@/types";
 import { cn } from "@/lib/utils";
 
@@ -45,10 +46,10 @@ export function PlacesMap({ places, className }: PlacesMapProps) {
 
   if (!isClient || !Map) {
     return (
-      <div className={cn("relative h-[500px] w-full rounded-2xl border border-white/10 bg-zinc-900/50 flex items-center justify-center", className)}>
+      <div className={cn("relative h-[500px] w-full rounded-2xl border border-zinc-200 dark:border-white/10 bg-zinc-100 dark:bg-zinc-900/50 flex items-center justify-center", className)}>
         <div className="flex flex-col items-center gap-3">
-          <div className="h-8 w-8 animate-spin rounded-full border-2 border-emerald-400 border-t-transparent" />
-          <span className="text-sm text-zinc-400">Loading map...</span>
+          <div className="h-8 w-8 animate-spin rounded-full border-2 border-emerald-500 dark:border-emerald-400 border-t-transparent" />
+          <span className="text-sm text-zinc-500 dark:text-zinc-400">Loading map...</span>
         </div>
       </div>
     );
@@ -61,20 +62,20 @@ export function PlacesMap({ places, className }: PlacesMapProps) {
   const center: [number, number] = [48.1351, 11.5820];
 
   return (
-    <div className={cn("relative overflow-hidden rounded-2xl border border-white/10", className)}>
+    <div className={cn("relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-white/10 shadow-lg dark:shadow-none", className)}>
       <MapWrapper 
         places={placesWithCoords} 
         center={center}
       />
       
       {/* Legend */}
-      <div className="absolute bottom-4 left-4 z-[1000] rounded-lg border border-white/10 bg-zinc-900/90 p-3 backdrop-blur-sm">
-        <p className="mb-2 text-xs font-medium text-zinc-400">Legend</p>
+      <div className="absolute bottom-4 left-4 z-[1000] rounded-lg border border-zinc-200 dark:border-white/10 bg-white/95 dark:bg-zinc-900/90 p-3 backdrop-blur-sm shadow-lg dark:shadow-none">
+        <p className="mb-2 text-xs font-medium text-zinc-600 dark:text-zinc-400">Legend</p>
         <div className="grid grid-cols-2 gap-x-4 gap-y-1">
           {Object.entries(categoryIcons).slice(0, 6).map(([key, icon]) => (
             <div key={key} className="flex items-center gap-1.5">
               <span className="text-sm">{icon}</span>
-              <span className="text-xs capitalize text-zinc-400">
+              <span className="text-xs capitalize text-zinc-600 dark:text-zinc-400">
                 {key.replace("-", " ")}
               </span>
             </div>
@@ -93,6 +94,7 @@ function MapWrapper({
   places: Place[]; 
   center: [number, number]; 
 }) {
+  const { resolvedTheme } = useTheme();
   const [leaflet, setLeaflet] = useState<{
     MapContainer: React.ComponentType<Record<string, unknown>>;
     TileLayer: React.ComponentType<Record<string, unknown>>;
@@ -100,6 +102,8 @@ function MapWrapper({
     Popup: React.ComponentType<Record<string, unknown>>;
   } | null>(null);
   const [L, setL] = useState<typeof import("leaflet") | null>(null);
+  
+  const isDark = resolvedTheme === "dark";
 
   useEffect(() => {
     // Import Leaflet and react-leaflet on client side
@@ -119,10 +123,10 @@ function MapWrapper({
 
   if (!leaflet || !L) {
     return (
-      <div className="h-[500px] w-full flex items-center justify-center bg-zinc-900/50">
+      <div className="h-[500px] w-full flex items-center justify-center bg-zinc-100 dark:bg-zinc-900/50">
         <div className="flex flex-col items-center gap-3">
-          <div className="h-8 w-8 animate-spin rounded-full border-2 border-emerald-400 border-t-transparent" />
-          <span className="text-sm text-zinc-400">Loading map...</span>
+          <div className="h-8 w-8 animate-spin rounded-full border-2 border-emerald-500 dark:border-emerald-400 border-t-transparent" />
+          <span className="text-sm text-zinc-500 dark:text-zinc-400">Loading map...</span>
         </div>
       </div>
     );
@@ -130,7 +134,7 @@ function MapWrapper({
 
   const { MapContainer, TileLayer, Marker, Popup } = leaflet;
 
-  // Create custom icons for each category
+  // Create custom icons for each category with sharper styling
   const createIcon = (category: string) => {
     const color = categoryColors[category] || "#10b981";
     const emoji = categoryIcons[category] || "📍";
@@ -142,25 +146,26 @@ function MapWrapper({
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 36px;
-          height: 36px;
-          background: ${color};
+          width: 40px;
+          height: 40px;
+          background: linear-gradient(135deg, ${color} 0%, ${color}dd 100%);
           border-radius: 50% 50% 50% 0;
           transform: rotate(-45deg);
-          border: 2px solid white;
-          box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3);
+          border: 3px solid white;
+          box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
         ">
-          <span style="transform: rotate(45deg); font-size: 16px;">${emoji}</span>
+          <span style="transform: rotate(45deg); font-size: 18px; filter: drop-shadow(0 1px 1px rgba(0,0,0,0.3));">${emoji}</span>
         </div>
       `,
-      iconSize: [36, 36],
-      iconAnchor: [18, 36],
-      popupAnchor: [0, -36],
+      iconSize: [40, 40],
+      iconAnchor: [20, 40],
+      popupAnchor: [0, -40],
     });
   };
 
   return (
     <MapContainer
+      key={isDark ? "dark" : "light"}
       center={center}
       zoom={12}
       scrollWheelZoom={true}
@@ -169,7 +174,10 @@ function MapWrapper({
     >
       <TileLayer
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
-        url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+        url={isDark 
+          ? "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+          : "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+        }
       />
       {places.map((place) => (
         <Marker

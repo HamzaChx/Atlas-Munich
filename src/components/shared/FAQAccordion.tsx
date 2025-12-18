@@ -25,15 +25,15 @@ export function FAQAccordion({ faqs, className, defaultOpen }: FAQAccordionProps
       type="single"
       collapsible
       defaultValue={defaultOpen}
-      className={cn("w-full text-white", className)}
+      className={cn("w-full text-zinc-900 dark:text-white", className)}
     >
       {faqs.map((faq) => (
-        <AccordionItem key={faq.id} value={faq.id} className="border-b border-white/10">
-          <AccordionTrigger className="text-left text-white hover:no-underline data-[state=open]:text-emerald-400">
+        <AccordionItem key={faq.id} value={faq.id} className="border-b border-zinc-200 dark:border-white/10">
+          <AccordionTrigger className="text-left text-zinc-900 dark:text-white hover:no-underline data-[state=open]:text-emerald-600 dark:data-[state=open]:text-emerald-400">
             <span className="pr-4 font-semibold">{faq.question}</span>
           </AccordionTrigger>
-          <AccordionContent className="text-zinc-300">
-            <div className="prose prose-sm prose-invert max-w-none text-zinc-300 prose-strong:text-white prose-a:text-emerald-400 prose-a:no-underline hover:prose-a:text-emerald-300">
+          <AccordionContent className="text-zinc-600 dark:text-zinc-300">
+            <div className="prose prose-sm dark:prose-invert max-w-none text-zinc-600 dark:text-zinc-300 prose-strong:text-zinc-900 dark:prose-strong:text-white prose-a:text-emerald-600 dark:prose-a:text-emerald-400 prose-a:no-underline hover:prose-a:text-emerald-500 dark:hover:prose-a:text-emerald-300">
               <ReactMarkdown remarkPlugins={[remarkGfm]}>
                 {faq.answer}
               </ReactMarkdown>

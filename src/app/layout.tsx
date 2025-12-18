@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Header, Footer } from "@/components/layout";
+import { ThemeProvider } from "@/components/shared";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -53,14 +54,22 @@ export default function RootLayout({
   return (
     <html
       lang="en"
+      suppressHydrationWarning
       className={[geistSans.variable, geistMono.variable, "antialiased"].join(
         " "
       )}
     >
-      <body className="min-h-screen bg-zinc-950">
-        <Header />
-        <main>{children}</main>
-        <Footer />
+      <body className="min-h-screen bg-white transition-colors dark:bg-zinc-950">
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Header />
+          <main>{children}</main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

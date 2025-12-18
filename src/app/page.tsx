@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { SearchBar, CategoryCard } from "@/components/shared";
+import { SearchBar, CategoryCard, HeroBadge } from "@/components/shared";
 import { categories } from "@/data/categories";
 import { guides } from "@/data/guides";
 import { places } from "@/data/places";
@@ -45,18 +45,18 @@ export default function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Section - Moroccan-Munich Fusion */}
-      <section className="relative min-h-[90vh] overflow-hidden bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-950">
+      <section className="relative min-h-[90vh] overflow-hidden bg-gradient-to-br from-red-50 via-white to-green-50 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950">
         {/* Gradient Orbs - Morocco & Germany colors */}
-        <div className="absolute -left-32 top-1/4 z-[5] h-[500px] w-[500px] rounded-full bg-gradient-to-br from-red-600/20 to-green-600/20 blur-[120px]" />
-        <div className="absolute -right-32 bottom-1/4 z-[5] h-[500px] w-[500px] rounded-full bg-gradient-to-br from-amber-500/15 to-red-600/15 blur-[120px]" />
-        <div className="absolute left-1/2 top-1/2 z-[5] h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br from-emerald-500/10 to-teal-500/10 blur-[100px]" />
+        <div className="absolute -left-32 top-1/4 z-[5] h-[500px] w-[500px] rounded-full bg-gradient-to-br from-red-300/50 to-red-200/30 dark:from-red-600/25 dark:to-red-500/15 blur-[120px]" />
+        <div className="absolute -right-32 bottom-1/4 z-[5] h-[500px] w-[500px] rounded-full bg-gradient-to-br from-green-300/50 to-emerald-200/30 dark:from-green-600/25 dark:to-emerald-500/15 blur-[120px]" />
+        <div className="absolute left-1/2 top-1/2 z-[5] h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br from-amber-200/20 to-white/30 dark:from-amber-500/10 dark:to-white/5 blur-[100px]" />
 
         {/* Munich Skyline Silhouette - Bottom */}
-        <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-10 h-52 opacity-[0.15]">
+        <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-10 h-52 opacity-[0.12] dark:opacity-[0.15]">
           <svg viewBox="0 0 1440 200" className="h-full w-full" preserveAspectRatio="none">
             {/* Main Munich skyline base */}
             <path 
-              fill="white" 
+              className="fill-zinc-900 dark:fill-white"
               d="M0,200 L0,175
                 L40,175 L40,165 L55,165 L55,175
                 
@@ -76,7 +76,7 @@ export default function Home() {
                 
                 L510,175 L510,160 L530,160 L530,175
                 
-                L570,175 L570,150 L580,150 L580,135 L590,135 L590,120 L600,100 L610,120 L610,135 L620,135 L620,150 L630,150 L630,175
+                L170,175 L170,150 L180,150 L180,135 L190,135 L190,120 L200,100 L210,120 L210,135 L220,135 L220,150 L230,150 L230,175
                 
                 L680,175 L680,160 L700,160 L700,175
                 L740,175 L740,155 L760,155 L760,175
@@ -100,75 +100,87 @@ export default function Home() {
                 L1440,175 L1440,200 Z"
             />
             
+            {/* === Hochhaus Uptown München (O2 Tower) - rectangular skyscraper === */}
+            <g transform="translate(1060, 35)">
+              {/* Main rectangular tower body */}
+              <rect x="0" y="20" width="40" height="140" className="fill-zinc-900 dark:fill-white"/>
+            </g>
+            
             {/* === BMW Vier-Zylinder (4 Cylinders) - accurate representation === */}
-            {/* Four distinct cylindrical towers with rounded tops */}
-            <ellipse cx="960" cy="95" rx="12" ry="8" fill="white"/>
-            <rect x="948" y="95" width="24" height="80" fill="white"/>
-            
-            <ellipse cx="985" cy="85" rx="12" ry="8" fill="white"/>
-            <rect x="973" y="85" width="24" height="90" fill="white"/>
-            
-            <ellipse cx="1010" cy="90" rx="12" ry="8" fill="white"/>
-            <rect x="998" y="90" width="24" height="85" fill="white"/>
-            
-            <ellipse cx="1035" cy="100" rx="12" ry="8" fill="white"/>
-            <rect x="1023" y="100" width="24" height="75" fill="white"/>
+            {/* Four connected cylindrical towers in a 2x2 cluster */}
+            <g transform="translate(1220, 85)">
+              {/* Tower 1 - front left */}
+              <ellipse cx="0" cy="0" rx="14" ry="6" className="fill-zinc-900 dark:fill-white"/>
+              <rect x="-14" y="0" width="28" height="90" className="fill-zinc-900 dark:fill-white"/>
+              
+              {/* Tower 2 - front right */}
+              <ellipse cx="30" cy="5" rx="14" ry="6" className="fill-zinc-900 dark:fill-white"/>
+              <rect x="16" y="5" width="28" height="85" className="fill-zinc-900 dark:fill-white"/>
+              
+              {/* Tower 3 - back left */}
+              <ellipse cx="8" cy="-8" rx="14" ry="6" className="fill-zinc-900 dark:fill-white"/>
+              <rect x="-6" y="-8" width="28" height="98" className="fill-zinc-900 dark:fill-white"/>
+              
+              {/* Tower 4 - back right */}
+              <ellipse cx="38" cy="-3" rx="14" ry="6" className="fill-zinc-900 dark:fill-white"/>
+              <rect x="24" y="-3" width="28" height="93" className="fill-zinc-900 dark:fill-white"/>
+            </g>
             
             {/* === Olympiaturm (Olympic Tower) - accurate representation === */}
             {/* Main tower shaft */}
-            <rect x="1370" y="55" width="10" height="120" fill="white"/>
+            <rect x="1370" y="55" width="10" height="120" className="fill-zinc-900 dark:fill-white"/>
             
             {/* Observation deck / restaurant pod - distinctive bulge */}
-            <ellipse cx="1375" cy="55" rx="25" ry="18" fill="white"/>
-            <ellipse cx="1375" cy="45" rx="20" ry="12" fill="white"/>
+            <ellipse cx="1375" cy="55" rx="25" ry="18" className="fill-zinc-900 dark:fill-white"/>
+            <ellipse cx="1375" cy="45" rx="20" ry="12" className="fill-zinc-900 dark:fill-white"/>
             
             {/* Lower observation deck */}
-            <ellipse cx="1375" cy="85" rx="15" ry="8" fill="white"/>
+            <ellipse cx="1375" cy="85" rx="15" ry="8" className="fill-zinc-900 dark:fill-white"/>
             
             {/* Antenna mast */}
-            <rect x="1373" y="5" width="4" height="40" fill="white"/>
+            <rect x="1373" y="5" width="4" height="40" className="fill-zinc-900 dark:fill-white"/>
             
             {/* Antenna top */}
-            <polygon points="1375,0 1371,8 1379,8" fill="white"/>
+            <polygon points="1375,0 1371,8 1379,8" className="fill-zinc-900 dark:fill-white"/>
             
             {/* Frauenkirche dome crosses */}
-            <rect x="99" y="28" width="2" height="12" fill="white"/>
-            <rect x="95" y="32" width="10" height="2" fill="white"/>
-            <rect x="129" y="28" width="2" height="12" fill="white"/>
-            <rect x="125" y="32" width="10" height="2" fill="white"/>
+            <rect x="99" y="28" width="2" height="12" className="fill-zinc-900 dark:fill-white"/>
+            <rect x="95" y="32" width="10" height="2" className="fill-zinc-900 dark:fill-white"/>
+            <rect x="129" y="28" width="2" height="12" className="fill-zinc-900 dark:fill-white"/>
+            <rect x="125" y="32" width="10" height="2" className="fill-zinc-900 dark:fill-white"/>
             
             {/* Rathaus spire cross */}
-            <rect x="429" y="25" width="2" height="18" fill="white"/>
-            <rect x="425" y="30" width="10" height="2" fill="white"/>
+            <rect x="429" y="25" width="2" height="18" className="fill-zinc-900 dark:fill-white"/>
+            <rect x="425" y="30" width="10" height="2" className="fill-zinc-900 dark:fill-white"/>
             
             {/* St. Peter's spire cross */}
-            <rect x="599" y="90" width="2" height="14" fill="white"/>
-            <rect x="595" y="95" width="10" height="2" fill="white"/>
+            <rect x="199" y="90" width="2" height="14" className="fill-zinc-900 dark:fill-white"/>
+            <rect x="195" y="95" width="10" height="2" className="fill-zinc-900 dark:fill-white"/>
           </svg>
         </div>
 
         {/* Content */}
-        <div className="relative z-20 mx-auto flex min-h-[90vh] max-w-7xl flex-col items-center justify-center px-4 py-16 text-center sm:px-6 lg:px-8">
+        <div className="relative z-20 mx-auto flex min-h-[90vh] max-w-7xl flex-col items-center justify-center px-4 py-20 text-center sm:px-6 lg:px-8">
           
           {/* Main Title */}
-          <h1 className="max-w-4xl text-4xl font-black tracking-tight text-white sm:text-5xl lg:text-6xl mt-8">
+          <h1 className="max-w-4xl text-5xl font-black tracking-tight text-zinc-900 dark:text-white sm:text-6xl lg:text-7xl mt-6">
             Your Complete Guide to
             <span className="relative mt-2 block">
-              <span className="relative z-10 bg-gradient-to-r from-emerald-400 via-teal-400 to-cyan-400 bg-clip-text text-transparent">
+              <span className="relative z-10  bg-emerald-600 dark:bg-emerald-400 bg-clip-text text-transparent">
                 Thriving in Munich
               </span>
-              <span className="absolute -bottom-2 left-0 right-0 h-3 bg-gradient-to-r from-emerald-500/30 via-teal-500/30 to-cyan-500/30 blur-xl" />
+              <span className="absolute -bottom-2 left-0 right-0 h-3 bg-gradient-to-r from-red-500/30 via-amber-500/30 to-green-500/30 blur-xl" />
             </span>
           </h1>
 
           {/* Subtitle */}
-          <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed text-zinc-400 sm:text-lg">
-            Built by the <span className="font-semibold text-amber-400">Moroccan community</span>, for the Moroccan community.
+          <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
+            Built by the <span className="font-semibold text-amber-600 dark:text-amber-400">Moroccan community</span>, for the Moroccan community.
             Everything you need to navigate life in Munich — from your first Anmeldung to finding the best tajine in town.
           </p>
 
           {/* Search Bar */}
-          <div className="mx-auto mt-8 w-full max-w-xl">
+          <div className="mx-auto mt-10 w-full max-w-2xl">
             <div className="relative">
               <SearchBar
                 placeholder="Search for guides, places, or answers..."
@@ -177,12 +189,12 @@ export default function Home() {
           </div>
 
           {/* Quick Links */}
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
             {quickLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="group flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-zinc-300 backdrop-blur-sm transition-all hover:border-emerald-500/50 hover:bg-emerald-500/10 hover:text-emerald-400"
+                className="group flex items-center gap-2 rounded-full border border-zinc-200 dark:border-white/10 bg-white/80 dark:bg-white/5 px-5 py-2.5 text-sm font-medium text-zinc-700 dark:text-zinc-300 shadow-sm dark:shadow-none backdrop-blur-sm transition-all hover:border-emerald-500/50 hover:bg-emerald-50 dark:hover:bg-emerald-500/10 hover:text-emerald-600 dark:hover:text-emerald-400"
               >
                 <link.icon className="h-4 w-4" />
                 {link.label}
@@ -192,17 +204,17 @@ export default function Home() {
           </div>
 
           {/* Stats Bar */}
-          <div className="mt-12 grid w-full max-w-3xl grid-cols-2 gap-3 sm:grid-cols-4">
+          <div className="mt-14 grid w-full max-w-3xl grid-cols-2 gap-4 sm:grid-cols-4">
             {stats.map((stat) => (
               <div
                 key={stat.label}
-                className="group rounded-xl border border-white/5 bg-white/5 p-3 backdrop-blur-sm transition-all hover:border-white/10 hover:bg-white/10"
+                className="group rounded-xl border border-zinc-200 dark:border-white/5 bg-white/80 dark:bg-white/5 p-4 shadow-sm dark:shadow-none backdrop-blur-sm transition-all hover:border-emerald-200 dark:hover:border-white/10 hover:bg-white dark:hover:bg-white/10"
               >
-                <div className="text-2xl font-bold text-white sm:text-3xl">
+                <div className="text-3xl font-bold text-zinc-900 dark:text-white">
                   {stat.value}
-                  <span className="text-emerald-400">{stat.suffix}</span>
+                  <span className="text-emerald-600 dark:text-emerald-400">{stat.suffix}</span>
                 </div>
-                <div className="text-xs text-zinc-500 sm:text-sm">{stat.label}</div>
+                <div className="text-sm text-zinc-500">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -211,22 +223,22 @@ export default function Home() {
       </section>
 
       {/* Categories Section */}
-      <section className="relative overflow-hidden border-b border-white/10 bg-zinc-950 py-20">
+      <section className="relative overflow-hidden border-b border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-950 py-20">
         {/* Decorative Elements */}
         <div className="absolute left-0 top-0 h-1 w-full bg-gradient-to-r from-red-500 via-amber-500 to-green-500" />
         
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
           <div className="mb-12 text-center">
-            <Badge className="mb-4 border-emerald-500/30 bg-emerald-500/10 text-emerald-400">
+            <Badge className="mb-4 border-emerald-500/30 bg-emerald-100 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400">
               <Compass className="mr-1.5 h-3.5 w-3.5" />
               Navigate Munich
             </Badge>
-            <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            <h2 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-4xl">
               Everything You Need,
-              <span className="block text-emerald-400">One Place</span>
+              <span className="block text-emerald-600 dark:text-emerald-400">One Place</span>
             </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-base text-zinc-400">
+            <p className="mx-auto mt-4 max-w-2xl text-base text-zinc-600 dark:text-zinc-400">
               Comprehensive guides organized by what matters most to you
             </p>
           </div>
@@ -249,7 +261,7 @@ export default function Home() {
 
           {/* View All Button */}
           <div className="mt-10 text-center">
-            <Button asChild size="lg" variant="outline" className="group border-2 border-white/10 text-white hover:border-emerald-500/50 hover:bg-emerald-500/10">
+            <Button asChild size="lg" variant="outline" className="group border-2 border-zinc-200 dark:border-white/10 text-zinc-900 dark:text-white hover:border-emerald-500/50 hover:bg-emerald-50 dark:hover:bg-emerald-500/10">
               <Link href="/guides">
                 <BookOpen className="mr-2 h-4 w-4" />
                 Browse All Guides
@@ -261,10 +273,10 @@ export default function Home() {
       </section>
 
       {/* Community Mission Section */}
-      <section className="relative overflow-hidden border-b border-white/10 bg-zinc-950 py-20">
+      <section className="relative overflow-hidden border-b border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-zinc-950 py-20">
         {/* Gradient orbs */}
-        <div className="absolute -left-32 top-1/4 h-[400px] w-[400px] rounded-full bg-gradient-to-br from-emerald-600/10 to-teal-600/10 blur-[100px]" />
-        <div className="absolute -right-32 bottom-1/4 h-[400px] w-[400px] rounded-full bg-gradient-to-br from-amber-500/10 to-red-600/10 blur-[100px]" />
+        <div className="absolute -left-32 top-1/4 h-[400px] w-[400px] rounded-full bg-gradient-to-br from-red-400/15 to-red-500/10 dark:from-red-600/10 dark:to-red-500/5 blur-[100px]" />
+        <div className="absolute -right-32 bottom-1/4 h-[400px] w-[400px] rounded-full bg-gradient-to-br from-green-400/15 to-emerald-500/10 dark:from-green-600/10 dark:to-emerald-500/5 blur-[100px]" />
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid items-center gap-10 lg:grid-cols-2">
@@ -275,7 +287,7 @@ export default function Home() {
                 <div className="absolute inset-0 bg-gradient-to-br from-red-600/20 via-amber-500/20 to-green-600/20" />
 
                 {/* Content - Central gathering metaphor */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-white">
+                <div className="absolute inset-0 flex flex-col items-center justify-center p-6">
                   <div className="relative mb-5">
                     {/* Community circle - people gathering */}
                     <div className="relative">
@@ -294,33 +306,33 @@ export default function Home() {
                       </div>
                     </div>
                   </div>
-                  <h3 className="text-center text-2xl font-bold">Built Together</h3>
-                  <p className="mt-1 text-center text-base text-white/80">
+                  <h3 className="text-center text-2xl font-bold text-zinc-900 dark:text-white">Built Together</h3>
+                  <p className="mt-1 text-center text-base text-zinc-600 dark:text-white/80">
                     By the community, for the community
                   </p>
                 </div>
               </div>
 
               {/* Floating Elements */}
-              <div className="absolute -right-3 -top-3 rounded-xl border border-white/10 bg-zinc-900 p-3 shadow-xl">
+              <div className="absolute -right-3 -top-3 rounded-xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900 p-3 shadow-lg dark:shadow-xl">
                 <div className="flex items-center gap-2">
-                  <div className="rounded-lg bg-red-500/20 p-1.5">
+                  <div className="rounded-lg bg-red-100 dark:bg-red-500/20 p-1.5">
                     <span className="text-xl">🇲🇦</span>
                   </div>
                   <div>
-                    <div className="text-xs font-semibold text-white">Moroccan Roots</div>
+                    <div className="text-xs font-semibold text-zinc-900 dark:text-white">Moroccan Roots</div>
                     <div className="text-xs text-zinc-500">Authentic guidance</div>
                   </div>
                 </div>
               </div>
 
-              <div className="absolute -bottom-3 -left-3 rounded-xl border border-white/10 bg-zinc-900 p-3 shadow-xl">
+              <div className="absolute -bottom-3 -left-3 rounded-xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900 p-3 shadow-lg dark:shadow-xl">
                 <div className="flex items-center gap-2">
-                  <div className="rounded-lg bg-amber-500/20 p-1.5">
+                  <div className="rounded-lg bg-amber-100 dark:bg-amber-500/20 p-1.5">
                     <span className="text-xl">🏰</span>
                   </div>
                   <div>
-                    <div className="text-xs font-semibold text-white">Munich Life</div>
+                    <div className="text-xs font-semibold text-zinc-900 dark:text-white">Munich Life</div>
                     <div className="text-xs text-zinc-500">Local expertise</div>
                   </div>
                 </div>
@@ -329,19 +341,19 @@ export default function Home() {
 
             {/* Right - Content */}
             <div>
-              <Badge className="mb-3 border-amber-500/30 bg-amber-500/10 text-amber-400">
+              <Badge className="mb-3 border-amber-500/30 bg-amber-100 dark:bg-amber-500/10 text-amber-700 dark:text-amber-400">
                 <Heart className="mr-1.5 h-3.5 w-3.5" />
                 Our Story
               </Badge>
-              <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+              <h2 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-4xl">
                 Making Munich Feel
-                <span className="text-emerald-400"> Like Home</span>
+                <span className="text-emerald-600 dark:text-emerald-400"> Like Home</span>
               </h2>
-              <p className="mt-5 text-base leading-relaxed text-zinc-400">
+              <p className="mt-5 text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
                 We know the struggle — navigating German bureaucracy, finding halal food, understanding university systems, and feeling a bit lost in a new city. 
               </p>
-              <p className="mt-3 text-base leading-relaxed text-zinc-400">
-                That&apos;s why we built <span className="font-semibold text-white">Atlas Munich</span> — a collective knowledge base where every tip, every guide, and every hidden gem comes from people who&apos;ve walked the same path.
+              <p className="mt-3 text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
+                That&apos;s why we built <span className="font-semibold text-zinc-900 dark:text-white">Atlas Munich</span> — a collective knowledge base where every tip, every guide, and every hidden gem comes from people who&apos;ve walked the same path.
               </p>
 
               <div className="mt-6 flex flex-wrap gap-3">
@@ -351,7 +363,7 @@ export default function Home() {
                     About Our Community
                   </Link>
                 </Button>
-                <Button asChild variant="outline" className="border-2 border-white/10 text-white hover:border-emerald-500/50 hover:bg-emerald-500/10">
+                <Button asChild variant="outline" className="border-2 border-zinc-200 dark:border-white/10 text-zinc-900 dark:text-white hover:border-emerald-500/50 hover:bg-emerald-50 dark:hover:bg-emerald-500/10">
                   <Link href="/faq">
                     <HelpCircle className="mr-2 h-4 w-4" />
                     Common Questions
@@ -364,25 +376,25 @@ export default function Home() {
       </section>
 
       {/* CTA Section - Contribute */}
-      <section className="relative overflow-hidden bg-zinc-950 py-20">
+      <section className="relative overflow-hidden bg-gradient-to-br from-red-50 via-white to-green-50 dark:from-zinc-950 dark:via-zinc-950 dark:to-zinc-950 py-20">
         {/* Animated Gradient Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-950 via-zinc-950 to-teal-950" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-emerald-500/10 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-br from-red-100/40 via-transparent to-green-100/40 dark:from-red-950/30 dark:via-zinc-950 dark:to-green-950/30" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-200/20 dark:from-amber-500/10 via-transparent to-transparent" />
 
         <div className="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
-          <Badge className="mb-5 border-emerald-500/30 bg-emerald-500/10 text-emerald-400">
+          <Badge className="mb-5 border-emerald-500/30 bg-emerald-100 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400">
             <Sparkles className="mr-1.5 h-3.5 w-3.5" />
             Open Source
           </Badge>
           
-          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+          <h2 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-4xl">
             Help Us Grow This
-            <span className="block bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">
+            <span className="block bg-gradient-to-r from-red-600 via-amber-500 to-green-600 dark:from-red-500 dark:via-amber-400 dark:to-green-500 bg-clip-text text-transparent">
               Knowledge Hub
             </span>
           </h2>
           
-          <p className="mx-auto mt-5 max-w-2xl text-base text-zinc-400">
+          <p className="mx-auto mt-5 max-w-2xl text-base text-zinc-600 dark:text-zinc-400">
             Every correction, every new guide, every shared experience helps the next Moroccan arriving in Munich. 
             Your knowledge is valuable — share it with the community.
           </p>
@@ -398,7 +410,7 @@ export default function Home() {
                 Contribute on GitHub
               </Link>
             </Button>
-            <Button asChild variant="outline" className="border-2 border-zinc-700 px-6 text-white hover:bg-zinc-800">
+            <Button asChild variant="outline" className="border-2 border-zinc-200 dark:border-zinc-700 px-6 text-zinc-900 dark:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800">
               <Link href="/about">
                 Learn How
                 <ChevronRight className="ml-2 h-4 w-4" />

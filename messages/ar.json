@@ -67,7 +67,7 @@
   },
   "places": {
     "badge": "Blayess Mwetto9a",
-    "title": "Dalil",
+    "title": "Jami3",
     "titleHighlight": "l'Blayess",
     "subtitle": "Ristorat 7alal, m7allat Maghribiya, jwame3, blayess dyal l9raya, w bzzaf — kolhom mwetto9in mn l'community dyalna.",
     "searchPlaceholder": "9elleb 3la blayess b l'ism, tag, wla maw9i3...",
@@ -95,7 +95,7 @@
     "cta": {
       "icon": "🍽️",
       "title": "Kat3ref chi blassa mezyana?",
-      "description": "3awenna nkabbro dalil dyalna bach t9tere7 ristorat 7alal jdad, m7allat, wla amaken dyal l'community.",
+      "description": "3awenna nkebbro guide dyalna bach t9tere7 ristorat 7alal jdad, m7allat, wla amaken dyal l'community.",
       "button": "9tere7 Blassa"
     },
     "card": {
@@ -156,12 +156,12 @@
     "badge": "Projet dyal l'Community",
     "title": "3lina",
     "titleHighlight": "Atlas Munich",
-    "subtitle": "Atlas Munich howa dalil dyal l'community mebni bach yne99ess sso3oba dyal lwossol l Munich — khossossan l tolba l'Magharba li kayt3amlo m3a l'bureaucratie, sken, w l7ayat lyawmiya.",
+    "subtitle": "Atlas Munich howa guide dyal l'community mebni bach yne99ess sso3oba dyal lwossol l Munich — khossossan l tolba l'Magharba li kayt3amlo m3a l'bureaucratie, sken, w l7ayat lyawmiya.",
     "howToContribute": "Kifach Tsahem",
     "getInTouch": "Twassal M3ana",
     "manifesto": {
       "badge": "Mebni l l'Wafidin Jdad",
-      "title": "Dalil kay7ess b7al ssa7eb",
+      "title": "Guide kay7ess b7al ssa7eb",
       "description": "Kanrakzo 3la l'khottowat l'3amaliya, tajriba 7a9i9iya, w tafassil ssghar li kaykhalliw Munich sahla.",
       "items": {
         "practical": "3amali, Khottwa b Khottwa",
@@ -285,7 +285,7 @@
       "browseCategories": "Tseffef l'Fi2at",
       "popularSearches": "3amaliyat B7eth Cha2i3a",
       "lookingFor": "Katb7eth 3la chi 7aja mo7addada?",
-      "lookingForDesc": "Tseffef l'guides l'mokhara dyalna wla chouf dalil blayess mwetto9 mn l'community.",
+      "lookingForDesc": "Tseffef l'guides l'mokhara dyalna wla chouf guide blayess mwetto9 mn l'community.",
       "browseGuides": "Tseffef l'Guides",
       "explorePlaces": "Ktachef l'Blayess"
     },

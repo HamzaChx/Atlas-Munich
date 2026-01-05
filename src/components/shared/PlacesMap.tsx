@@ -19,6 +19,7 @@ const categoryColors: Record<string, string> = {
   bakery: "#eab308", // yellow-500
   "study-spot": "#3b82f6", // blue-500
   cowork: "#a855f7", // purple-500
+  barber: "#64748b", // slate-500
 };
 
 const categoryIcons: Record<string, string> = {
@@ -30,6 +31,7 @@ const categoryIcons: Record<string, string> = {
   bakery: "🥐",
   "study-spot": "📚",
   cowork: "💻",
+  barber: "💈",
 };
 
 export function PlacesMap({ places, className }: PlacesMapProps) {

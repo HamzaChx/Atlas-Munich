@@ -98,7 +98,8 @@ export type PlaceCategory =
   | "cafe"
   | "bakery"
   | "study-spot"
-  | "cowork";
+  | "cowork"
+  | "barber";
 
 export type PriceLevel = "€" | "€€" | "€€€";
 

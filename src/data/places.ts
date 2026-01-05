@@ -599,6 +599,21 @@ export const places: Place[] = [
     tags: ["cafe", "view", "rooftop", "tum", "bright"],
     description: "Located on the TUM rooftop, this spot offers decent coffee, large tables, and one of the best views over Munich.",
     verified: true,
+  },
+
+  // === BARBER SHOPS ===
+  {
+    slug: "friseur-new-york",
+    name: "Friseur New York",
+    category: "barber",
+    address: "Implerstraße 53, 81371 München",
+    district: "Sendling",
+    lat: 48.1172,
+    lng: 11.5385,
+    price: "€€",
+    tags: ["moroccan", "barber", "haircut", "beard-trim", "traditional"],
+    description: "Moroccan barber shop offering professional haircuts and traditional beard grooming services in a welcoming atmosphere.",
+    verified: true,
   }
 ];
 

@@ -1,7 +1,10 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
-import { MapPin, Star, ExternalLink, Clock, CheckCircle2 } from "lucide-react";
+import { MapPin, Star, ExternalLink, Clock, CheckCircle2, ChevronDown, ChevronUp } from "lucide-react";
 import { Place } from "@/types";
 
 /**
@@ -27,6 +30,7 @@ const categoryLabels: Record<string, string> = {
   bakery: "Bakery",
   "study-spot": "Study Spot",
   cowork: "Coworking",
+  barber: "Barber Shop",
 };
 
 const categoryColors: Record<string, string> = {
@@ -38,6 +42,7 @@ const categoryColors: Record<string, string> = {
   bakery: "from-yellow-500 to-amber-500",
   "study-spot": "from-blue-500 to-indigo-500",
   cowork: "from-purple-500 to-pink-500",
+  barber: "from-slate-500 to-zinc-500",
 };
 
 const categoryIcons: Record<string, string> = {
@@ -49,9 +54,15 @@ const categoryIcons: Record<string, string> = {
   bakery: "🥐",
   "study-spot": "📚",
   cowork: "💻",
+  barber: "💈",
 };
 
 export function PlaceCard({ place, className }: PlaceCardProps) {
+  const [isExpanded, setIsExpanded] = useState(false);
+  
+  // Check if description needs truncation (roughly 100 characters = 2 lines)
+  const needsTruncation = place.description && place.description.length > 100;
+  
   return (
     <div
       className={cn(
@@ -89,9 +100,32 @@ export function PlaceCard({ place, className }: PlaceCardProps) {
 
         {/* Description */}
         {place.description && (
-          <p className="mt-2.5 line-clamp-2 text-[15px] leading-relaxed text-zinc-600 dark:text-zinc-400">
-            {place.description}
-          </p>
+          <div className="mt-2.5">
+            <p className={cn(
+              "text-[15px] leading-relaxed text-zinc-600 dark:text-zinc-400 transition-all duration-200",
+              !isExpanded && needsTruncation && "line-clamp-2"
+            )}>
+              {place.description}
+            </p>
+            {needsTruncation && (
+              <button
+                onClick={() => setIsExpanded(!isExpanded)}
+                className="mt-1 inline-flex items-center gap-1 text-xs font-medium text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300 transition-colors duration-150"
+              >
+                {isExpanded ? (
+                  <>
+                    Show less
+                    <ChevronUp className="h-3 w-3" />
+                  </>
+                ) : (
+                  <>
+                    Read more
+                    <ChevronDown className="h-3 w-3" />
+                  </>
+                )}
+              </button>
+            )}
+          </div>
         )}
 
         {/* Address - Rule 16: Group related elements visually */}
@@ -150,17 +184,15 @@ export function PlaceCard({ place, className }: PlaceCardProps) {
               Website
             </Link>
           )}
-          {place.lat && place.lng && (
-            <Link
-              href={`https://www.google.com/maps/search/?api=1&query=${place.lat},${place.lng}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex flex-1 items-center justify-center gap-1.5 rounded-xl border border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-white/5 px-4 py-2.5 text-sm font-medium text-zinc-700 dark:text-zinc-300 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:border-emerald-500 dark:hover:border-emerald-500/50 hover:bg-emerald-50 dark:hover:bg-emerald-500/10 hover:text-emerald-600 dark:hover:text-emerald-400 active:scale-[0.98] outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/50 focus-visible:ring-offset-2"
-            >
-              <MapPin className="h-3.5 w-3.5" />
-              Directions
-            </Link>
-          )}
+          <Link
+            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.address)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex flex-1 items-center justify-center gap-1.5 rounded-xl border border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-white/5 px-4 py-2.5 text-sm font-medium text-zinc-700 dark:text-zinc-300 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:border-emerald-500 dark:hover:border-emerald-500/50 hover:bg-emerald-50 dark:hover:bg-emerald-500/10 hover:text-emerald-600 dark:hover:text-emerald-400 active:scale-[0.98] outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/50 focus-visible:ring-offset-2"
+          >
+            <MapPin className="h-3.5 w-3.5" />
+            Directions
+          </Link>
         </div>
       </div>
     </div>

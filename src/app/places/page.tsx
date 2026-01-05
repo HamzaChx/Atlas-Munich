@@ -13,7 +13,6 @@ import { cn } from "@/lib/utils";
 const categoryFilters: { key: PlaceCategory | null; label: string; icon: string }[] = [
   { key: null, label: "All", icon: "🗺️" },
   { key: "restaurant", label: "Restaurants", icon: "🍽️" },
-  { key: "grocery", label: "Groceries", icon: "🛒" },
   { key: "butcher", label: "Butchers", icon: "🥩" },
   { key: "mosque", label: "Mosques", icon: "🕌" },
   { key: "study-spot", label: "Study Spots", icon: "📚" },

@@ -9,19 +9,21 @@ import { places } from "@/data/places";
 import { PlaceCategory } from "@/types";
 import { MapPin, Search, Utensils, Info, ArrowRight, Map, LayoutGrid } from "lucide-react";
 import { cn } from "@/lib/utils";
-
-const categoryFilters: { key: PlaceCategory | null; label: string; icon: string }[] = [
-  { key: null, label: "All", icon: "🗺️" },
-  { key: "restaurant", label: "Restaurants", icon: "🍽️" },
-  { key: "butcher", label: "Butchers", icon: "🥩" },
-  { key: "mosque", label: "Mosques", icon: "🕌" },
-  { key: "study-spot", label: "Study Spots", icon: "📚" },
-];
+import { useTranslations } from "next-intl";
 
 export default function PlacesPage() {
+  const t = useTranslations("places");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<PlaceCategory | null>(null);
   const [viewMode, setViewMode] = useState<"grid" | "map">("grid");
+
+  const categoryFilters: { key: PlaceCategory | null; label: string; icon: string }[] = [
+    { key: null, label: t("filters.all"), icon: "🗺️" },
+    { key: "restaurant", label: t("filters.restaurants"), icon: "🍽️" },
+    { key: "butcher", label: t("filters.butchers"), icon: "🥩" },
+    { key: "mosque", label: t("filters.mosques"), icon: "🕌" },
+    { key: "study-spot", label: t("filters.studySpots"), icon: "📚" },
+  ];
 
   const filteredPlaces = useMemo(() => {
     let result = places;
@@ -58,17 +60,17 @@ export default function PlacesPage() {
         <div className="relative z-10 mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
           <div className="text-center">
             {/* Badge */}
-            <HeroBadge icon={MapPin} text={`${places.length}+ Verified Places`} color="orange" />
+            <HeroBadge icon={MapPin} text={`${places.length}+ ${t("badge")}`} color="orange" />
 
             {/* Title */}
             <h1 className="text-5xl font-black tracking-tight text-zinc-900 dark:text-white sm:text-6xl lg:text-7xl">
-              Places{" "}
+              {t("title")}{" "}
               <span className="bg-gradient-to-r from-orange-500 via-red-500 to-rose-500 dark:from-orange-400 dark:via-red-400 dark:to-rose-400 bg-clip-text text-transparent">
-                Directory
+                {t("titleHighlight")}
               </span>
             </h1>
             <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
-              Halal restaurants, Moroccan groceries, mosques, study spots, and more — all verified by our community.
+              {t("subtitle")}
             </p>
 
             {/* Search */}
@@ -76,7 +78,7 @@ export default function PlacesPage() {
               <Search className="absolute left-5 top-1/2 h-5 w-5 -translate-y-1/2 text-zinc-400 dark:text-zinc-500" />
               <Input
                 type="search"
-                placeholder="Search places by name, tag, or location..."
+                placeholder={t("searchPlaceholder")}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="h-14 rounded-full border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 pl-14 text-lg text-zinc-900 dark:text-white placeholder:text-zinc-400 dark:placeholder:text-zinc-500 focus:border-orange-500/50 focus:ring-orange-500/20 shadow-sm dark:shadow-none"
@@ -111,11 +113,11 @@ export default function PlacesPage() {
         <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm text-zinc-500 dark:text-zinc-400">
             <span className="text-base font-bold text-zinc-900 dark:text-white">{filteredPlaces.length}</span>{" "}
-            {filteredPlaces.length === 1 ? "place" : "places"}
+            {filteredPlaces.length === 1 ? t("results.place") : t("results.places")}
             {selectedCategory && (
-              <> in <span className="font-medium text-orange-600 dark:text-orange-400">{categoryFilters.find((c) => c.key === selectedCategory)?.label}</span></>
+              <> {t("results.in")} <span className="font-medium text-orange-600 dark:text-orange-400">{categoryFilters.find((c) => c.key === selectedCategory)?.label}</span></>
             )}
-            {searchQuery && <> matching &ldquo;<span className="font-medium text-zinc-900 dark:text-white">{searchQuery}</span>&rdquo;</>}
+            {searchQuery && <> {t("results.matching")} &ldquo;<span className="font-medium text-zinc-900 dark:text-white">{searchQuery}</span>&rdquo;</>}
           </p>
           <div className="flex items-center gap-2">
             {(selectedCategory || searchQuery) && (
@@ -126,7 +128,7 @@ export default function PlacesPage() {
                 }}
                 className="mr-2 text-sm font-medium text-emerald-600 dark:text-emerald-400 hover:text-emerald-500 dark:hover:text-emerald-300 hover:underline"
               >
-                Clear filters
+                {t("results.clearFilters")}
               </button>
             )}
             {/* View Toggle */}
@@ -141,7 +143,7 @@ export default function PlacesPage() {
                 )}
               >
                 <LayoutGrid className="h-4 w-4" />
-                Grid
+                {t("viewMode.grid")}
               </button>
               <button
                 onClick={() => setViewMode("map")}
@@ -153,7 +155,7 @@ export default function PlacesPage() {
                 )}
               >
                 <Map className="h-4 w-4" />
-                Map
+                {t("viewMode.map")}
               </button>
             </div>
           </div>
@@ -167,7 +169,7 @@ export default function PlacesPage() {
               className="h-[500px]"
             />
             <p className="mt-4 text-center text-sm text-zinc-500">
-              Click on markers to see details. Only places with coordinates are shown on the map.
+              {t("mapNote")}
             </p>
           </div>
         )}
@@ -183,8 +185,8 @@ export default function PlacesPage() {
           ) : (
             <EmptyState
               type="places"
-              title="No places found"
-              description="Try adjusting your search or filters."
+              title={t("noResults")}
+              description={t("noResultsDescription")}
             />
           )
         )}
@@ -194,9 +196,9 @@ export default function PlacesPage() {
           <div className="mb-6 inline-flex rounded-full bg-gradient-to-br from-orange-100 to-red-100 dark:from-orange-500/20 dark:to-red-500/20 p-4">
             <Utensils className="h-8 w-8 text-orange-600 dark:text-orange-400" />
           </div>
-          <h3 className="text-2xl font-bold text-zinc-900 dark:text-white">Know a great place?</h3>
+          <h3 className="text-2xl font-bold text-zinc-900 dark:text-white">{t("cta.title")}</h3>
           <p className="mx-auto mt-3 max-w-md text-lg text-zinc-600 dark:text-zinc-400">
-            Help us grow our directory by suggesting new halal restaurants, groceries, or community spots.
+            {t("cta.description")}
           </p>
           <div className="mt-8">
             <Link
@@ -205,7 +207,7 @@ export default function PlacesPage() {
               rel="noopener noreferrer"
               className="group inline-flex items-center gap-2 rounded-full border border-zinc-300 dark:border-white/10 bg-white dark:bg-white/5 px-8 py-4 text-base font-medium text-zinc-700 dark:text-zinc-300 transition-all hover:border-orange-500 dark:hover:border-orange-500/50 hover:bg-orange-50 dark:hover:bg-orange-500/10 hover:text-orange-600 dark:hover:text-orange-400"
             >
-              Suggest a place
+              {t("cta.button")}
               <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
             </Link>
           </div>

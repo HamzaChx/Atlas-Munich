@@ -27,14 +27,6 @@ export const categories: Category[] = [
   },
   {
     id: 4,
-    key: "halal-food",
-    title: "Halal Food & Culture",
-    description: "Halal restaurants, Moroccan groceries, mosques, and community gathering spots.",
-    icon: "UtensilsCrossed",
-    color: "from-orange-500 to-red-500",
-  },
-  {
-    id: 5,
     key: "career",
     title: "Career & Jobs",
     description: "Job search, internships, Werkstudent positions, CV tips, and networking events.",
@@ -42,7 +34,7 @@ export const categories: Category[] = [
     color: "from-rose-500 to-pink-500",
   },
   {
-    id: 6,
+    id: 5,
     key: "useful-apps",
     title: "Useful Apps & Tools",
     description: "Essential apps for transport, banking, communication, and daily life in Munich.",

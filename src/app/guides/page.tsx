@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { SearchBar, CategoryCard, GuideCard, HeroBadge } from "@/components/shared";
 import { categories } from "@/data/categories";
 import { guides } from "@/data/guides";
+import { getTranslations } from "next-intl/server";
 import { 
   BookOpen, 
   ChevronRight, 
@@ -19,7 +20,9 @@ export const metadata: Metadata = {
   description: "Comprehensive guides to help you navigate life in Munich as a Moroccan student or professional.",
 };
 
-export default function GuidesPage() {
+export default async function GuidesPage() {
+  const t = await getTranslations("guides");
+
   const guideCountByCategory = (key: string) =>
     guides.filter((g) => g.categoryKey === key).length;
 
@@ -28,6 +31,13 @@ export default function GuidesPage() {
     category,
     guides: guides.filter((g) => g.categoryKey === category.key),
   }));
+
+  // Stats
+  const stats = [
+    { label: t("stats.categories"), value: categories.length },
+    { label: t("stats.totalGuides"), value: guides.length },
+    { label: t("stats.communityVerified"), value: "100%" },
+  ];
 
   return (
     <div className="min-h-screen bg-white dark:bg-zinc-950">
@@ -40,26 +50,26 @@ export default function GuidesPage() {
         <div className="relative z-10 mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
           <div className="text-center">
             {/* Badge */}
-            <HeroBadge icon={BookOpen} text={`${guides.length}+ Community Guides`} color="emerald" />
+            <HeroBadge icon={BookOpen} text={`${guides.length}+ ${t("badge")}`} color="emerald" />
 
             {/* Title */}
             <h1 className="text-5xl font-black tracking-tight text-zinc-900 dark:text-white sm:text-6xl lg:text-7xl">
-              Your Complete
+              {t("title")}
               <span className="mt-2 block bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 dark:from-emerald-400 dark:via-teal-400 dark:to-cyan-400 bg-clip-text text-transparent">
-                Munich Playbook
+                {t("titleHighlight")}
               </span>
             </h1>
 
             {/* Subtitle */}
             <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
-              From your first day to feeling at home — comprehensive guides written by 
-              <span className="font-semibold text-amber-600 dark:text-amber-400"> Moroccans who&apos;ve been there</span>
+              {t("subtitle")}
+              <span className="font-semibold text-amber-600 dark:text-amber-400">{t("subtitleHighlight")}</span>
             </p>
 
             {/* Search */}
             <div className="mx-auto mt-10 max-w-2xl">
               <SearchBar
-                placeholder="Search for apartment tips, visa info, halal food..."
+                placeholder={t("searchPlaceholder")}
                 size="lg"
                 showButton={false}
               />
@@ -67,11 +77,7 @@ export default function GuidesPage() {
 
             {/* Quick Stats */}
             <div className="mt-10 flex flex-wrap items-center justify-center gap-8 text-base">
-              {[
-                { label: "Categories", value: categories.length },
-                { label: "Total Guides", value: guides.length },
-                { label: "Community Verified", value: "100%" },
-              ].map((stat) => (
+              {stats.map((stat) => (
                 <div key={stat.label} className="flex items-center gap-2">
                   <span className="text-xl font-bold text-emerald-600 dark:text-emerald-400">{stat.value}</span>
                   <span className="text-zinc-500">{stat.label}</span>
@@ -91,32 +97,40 @@ export default function GuidesPage() {
               <div className="mb-2 flex items-center gap-2">
                 <Compass className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
                 <span className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
-                  Browse by Topic
+                  {t("categoriesSection.badge")}
                 </span>
               </div>
               <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-3xl">
-                Explore Categories
+                {t("categoriesSection.title")}
               </h2>
             </div>
             <Button asChild variant="outline" className="border-zinc-200 dark:border-white/10 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-white/5 hover:text-zinc-900 dark:hover:text-white">
               <Link href="/search">
                 <Filter className="mr-2 h-4 w-4" />
-                Advanced Search
+                {t("categoriesSection.advancedSearch")}
               </Link>
             </Button>
           </div>
 
           {/* Categories Grid */}
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-            {categories.map((category) => (
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
+            {categories.map((category, index) => (
               <CategoryCard
                 key={category.key}
+                categoryKey={category.key}
                 title={category.title}
                 description={category.description}
                 href={`/category/${category.key}`}
                 icon={category.icon}
                 color={category.color}
                 count={guideCountByCategory(category.key) || "New"}
+                className={
+                  index <= 2
+                    ? "lg:col-span-2"
+                    : index === 3
+                    ? "sm:col-span-2 lg:col-span-2 lg:col-start-2"
+                    : "lg:col-span-2"
+                }
               />
             ))}
           </div>
@@ -132,23 +146,23 @@ export default function GuidesPage() {
               <Sparkles className="h-6 w-6 text-amber-600 dark:text-amber-400" />
             </div>
             <h2 className="text-xl font-bold text-zinc-900 dark:text-white">
-              Can&apos;t Find What You Need?
+              {t("cta.title")}
             </h2>
             <p className="mx-auto mt-2 max-w-md text-base text-zinc-600 dark:text-zinc-400">
-              Our guides are constantly growing. If you have knowledge to share or need help, join our community.
+              {t("cta.description")}
             </p>
             <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
               <Link
                 href="/faq"
                 className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 px-6 py-3 text-sm font-medium text-white transition-all hover:from-emerald-600 hover:to-teal-600"
               >
-                Browse FAQs
+                {t("cta.browseFaqs")}
               </Link>
               <Link
                 href="/about#contribute"
                 className="group inline-flex items-center gap-2 rounded-full border border-zinc-300 dark:border-white/10 bg-white dark:bg-white/5 px-6 py-3 text-sm font-medium text-zinc-700 dark:text-zinc-300 transition-all hover:border-emerald-500 dark:hover:border-emerald-500/50 hover:bg-emerald-50 dark:hover:bg-emerald-500/10 hover:text-emerald-600 dark:hover:text-emerald-400"
               >
-                Contribute a Guide
+                {t("cta.contributeGuide")}
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </div>

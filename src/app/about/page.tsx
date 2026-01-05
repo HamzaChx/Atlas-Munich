@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { HeroBadge } from "@/components/shared";
+import { getTranslations } from "next-intl/server";
 import {
   Users,
   Heart,
@@ -22,50 +23,57 @@ export const metadata: Metadata = {
   description: "Learn about Atlas Munich - the community-driven guide for Moroccan students and professionals in Munich.",
 };
 
-const values = [
-  {
-    icon: Heart,
-    title: "Community First",
-    description: "Built by Moroccans in Munich, for Moroccans in Munich. Every piece of advice comes from real experience.",
-    gradient: "from-red-500/20 to-rose-500/20",
-    iconColor: "text-red-400",
-  },
-  {
-    icon: CheckCircle2,
-    title: "Accuracy Matters",
-    description: "We verify information regularly and update guides to reflect the latest processes and requirements.",
-    gradient: "from-emerald-500/20 to-teal-500/20",
-    iconColor: "text-emerald-400",
-  },
-  {
-    icon: Globe,
-    title: "Open & Free",
-    description: "All content is free and open source. We believe knowledge should be accessible to everyone.",
-    gradient: "from-blue-500/20 to-indigo-500/20",
-    iconColor: "text-blue-400",
-  },
-];
-
 const contributors = [
   { name: "Hamza Chaouki", role: "Founder & Developer", avatar: "👨‍💻" },
 ];
 
-const ways = [
-  {
-    icon: MessageCircle,
-    title: "Suggest Updates",
-    description: "Found outdated info? Know a better way? Reach out to us!",
-    action: { label: "Contact Us", href: "mailto:hello@atlas-munich.de" },
-  },
-  {
-    icon: Star,
-    title: "Spread the Word",
-    description: "Share Atlas Munich with other Moroccans coming to Munich. Word of mouth helps!",
-    action: { label: "Share", href: "#" },
-  }
-];
+export default async function AboutPage() {
+  const t = await getTranslations("about");
 
-export default function AboutPage() {
+  const values = [
+    {
+      icon: Heart,
+      title: t("values.communityFirst"),
+      description: t("values.communityFirstDesc"),
+      gradient: "from-red-500/20 to-rose-500/20",
+      iconColor: "text-red-400",
+    },
+    {
+      icon: CheckCircle2,
+      title: t("values.accuracyMatters"),
+      description: t("values.accuracyMattersDesc"),
+      gradient: "from-emerald-500/20 to-teal-500/20",
+      iconColor: "text-emerald-400",
+    },
+    {
+      icon: Globe,
+      title: t("values.openAndFree"),
+      description: t("values.openAndFreeDesc"),
+      gradient: "from-blue-500/20 to-indigo-500/20",
+      iconColor: "text-blue-400",
+    },
+  ];
+
+  const ways = [
+    {
+      icon: MessageCircle,
+      title: t("contribute.suggestUpdates"),
+      description: t("contribute.suggestUpdatesDesc"),
+      action: { label: t("contribute.contactUs"), href: "mailto:hello@atlas-munich.de" },
+    },
+    {
+      icon: Star,
+      title: t("contribute.spreadTheWord"),
+      description: t("contribute.spreadTheWordDesc"),
+      action: { label: t("contribute.share"), href: "#" },
+    }
+  ];
+
+  const manifestoItems = [
+    { icon: CheckCircle2, title: t("manifesto.items.practical"), desc: t("manifesto.items.practicalDesc") },
+    { icon: BookOpen, title: t("manifesto.items.studentAware"), desc: t("manifesto.items.studentAwareDesc") },
+    { icon: GithubIcon, title: t("manifesto.items.openSource"), desc: t("manifesto.items.openSourceDesc") },
+  ];
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950">
       {/* Hero Section */}
@@ -79,25 +87,25 @@ export default function AboutPage() {
             {/* Left: story-driven intro */}
             <div className="text-center lg:text-left">
               <div className="flex justify-center lg:justify-start">
-                <HeroBadge icon={Users} text="Community Project" color="emerald" />
+                <HeroBadge icon={Users} text={t("badge")} color="emerald" />
               </div>
 
               <h1 className="mt-6 text-5xl font-black tracking-tight text-zinc-900 dark:text-white sm:text-6xl lg:text-7xl">
-                About{" "}
+                {t("title")}
                 <span className="bg-gradient-to-r from-emerald-600 via-teal-500 to-emerald-700 dark:from-emerald-400 dark:via-teal-400 dark:to-cyan-400 bg-clip-text text-transparent">
-                  Atlas Munich
+                  {t("titleHighlight")}
                 </span>
               </h1>
 
               <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-zinc-600 dark:text-zinc-400 lg:mx-0">
-                Atlas Munich is a community guide built to reduce the friction of arriving in Munich — especially for Moroccan students navigating bureaucracy, housing, and daily life.
+                {t("subtitle")}
               </p>
 
               <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row lg:justify-start">
                 <Button asChild className="text-white bg-emerald-600 px-6 shadow-xl shadow-emerald-500/20 hover:bg-emerald-500">
                   <Link href="#contribute">
                     <Sparkles className="mr-2 h-4 w-4" />
-                    How to Contribute
+                    {t("howToContribute")}
                   </Link>
                 </Button>
                 <Button
@@ -107,7 +115,7 @@ export default function AboutPage() {
                 >
                   <Link href="#contact">
                     <Mail className="mr-2 h-4 w-4" />
-                    Get in Touch
+                    {t("getInTouch")}
                   </Link>
                 </Button>
               </div>
@@ -122,22 +130,18 @@ export default function AboutPage() {
                 <div className="relative">
                   <div className="mb-6 inline-flex items-center gap-2 rounded-full border-2 border-rose-200 dark:border-white/10 bg-gradient-to-r from-rose-50 to-pink-50 dark:from-white/5 dark:to-white/5 px-4 py-2.5 text-sm font-semibold text-rose-700 dark:text-zinc-300 shadow-lg shadow-rose-900/10 dark:shadow-none ring-1 ring-rose-900/5 dark:ring-0">
                     <Heart className="h-4 w-4 text-rose-600 dark:text-rose-400 fill-rose-200 dark:fill-transparent" />
-                    Built for newcomers
+                    {t("manifesto.badge")}
                   </div>
 
                   <h2 className="mt-1 text-2xl font-bold tracking-tight bg-gradient-to-r from-zinc-900 via-emerald-900 to-zinc-900 dark:from-white dark:via-white dark:to-white bg-clip-text text-transparent">
-                    A guide that feels like a friend
+                    {t("manifesto.title")}
                   </h2>
                   <p className="mt-3 text-sm leading-relaxed text-zinc-700 dark:text-zinc-400">
-                    We focus on practical steps, real experiences, and small details that make Munich easier to navigate.
+                    {t("manifesto.description")}
                   </p>
 
                   <div className="mt-7 space-y-3">
-                    {[
-                      { icon: CheckCircle2, title: "Practical, step-by-step", desc: "No fluff — just what works." },
-                      { icon: BookOpen, title: "Student-aware", desc: "LMU/TUM realities, deadlines, and systems." },
-                      { icon: GithubIcon, title: "Open source", desc: "Anyone can improve it — transparently." },
-                    ].map((item) => (
+                    {manifestoItems.map((item) => (
                       <div
                         key={item.title}
                         className="group flex items-start gap-3.5 rounded-2xl border-2 border-emerald-100/80 dark:border-white/10 bg-white/80 dark:bg-white/5 p-4 shadow-lg shadow-emerald-900/5 dark:shadow-none transition-all hover:border-emerald-200 dark:hover:border-white/20 hover:shadow-xl hover:shadow-emerald-900/10 dark:hover:shadow-none hover:bg-emerald-50/50 dark:hover:bg-white/10"
@@ -169,26 +173,20 @@ export default function AboutPage() {
               <div className="mx-auto max-w-3xl text-center">
                 <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-emerald-200 dark:border-emerald-500/30 bg-emerald-50 dark:bg-emerald-500/10 px-4 py-2 shadow-sm shadow-emerald-900/5 dark:shadow-none">
                   <span className="text-sm">📖</span>
-                  <span className="text-sm font-semibold text-emerald-700 dark:text-emerald-400">Our Story</span>
+                  <span className="text-sm font-semibold text-emerald-700 dark:text-emerald-400">{t("story.badge")}</span>
                 </div>
                 <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-3xl">
-                  Why We Built This
+                  {t("story.title")}
                 </h2>
                 <div className="mt-6 space-y-4 text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
                   <p>
-                    Moving to Munich as a Moroccan student or professional can be overwhelming.
-                    The bureaucracy is complex, finding housing is challenging, and figuring out
-                    where to find halal food takes time.
+                    {t("story.p1")}
                   </p>
                   <p>
-                    <span className="font-semibold text-zinc-900 dark:text-white">Atlas Munich was born from this experience.</span>{" "}
-                    We wanted to create a single, trusted resource that answers all the questions
-                    newcomers have — the same questions we once had.
+                    <span className="font-semibold text-zinc-900 dark:text-white">{t("story.p2Start")}</span>{t("story.p2End")}
                   </p>
                   <p>
-                    Today, Atlas Munich is a growing collection of guides, tips, and resources
-                    maintained by volunteers who have been through it all and want to help others
-                    do the same.
+                    {t("story.p3")}
                   </p>
                 </div>
               </div>
@@ -201,9 +199,9 @@ export default function AboutPage() {
           <div className="mb-10 text-center">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-rose-200 dark:border-rose-500/30 bg-rose-50 dark:bg-rose-500/10 px-4 py-2 shadow-sm shadow-rose-900/5 dark:shadow-none">
               <span className="text-sm">💡</span>
-              <span className="text-sm font-semibold text-rose-700 dark:text-rose-400">What We Believe</span>
+              <span className="text-sm font-semibold text-rose-700 dark:text-rose-400">{t("values.badge")}</span>
             </div>
-            <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-3xl">Our Values</h2>
+            <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-3xl">{t("values.title")}</h2>
           </div>
           
           <div className="grid gap-4 sm:grid-cols-3">
@@ -227,11 +225,11 @@ export default function AboutPage() {
           <div className="mb-10 text-center">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-amber-200 dark:border-amber-500/30 bg-amber-50 dark:bg-amber-500/10 px-4 py-2 shadow-sm shadow-amber-900/5 dark:shadow-none">
               <span className="text-sm">🤝</span>
-              <span className="text-sm font-semibold text-amber-700 dark:text-amber-400">Get Involved</span>
+              <span className="text-sm font-semibold text-amber-700 dark:text-amber-400">{t("contribute.badge")}</span>
             </div>
-            <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-3xl">How to Contribute</h2>
+            <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-3xl">{t("contribute.title")}</h2>
             <p className="mx-auto mt-3 max-w-2xl text-sm text-zinc-600 dark:text-zinc-400">
-              Atlas Munich is open source and community-driven. Here&apos;s how you can help:
+              {t("contribute.description")}
             </p>
           </div>
           
@@ -272,9 +270,9 @@ export default function AboutPage() {
           <div className="mb-10 text-center">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-purple-200 dark:border-purple-500/30 bg-purple-50 dark:bg-purple-500/10 px-4 py-2 shadow-sm shadow-purple-900/5 dark:shadow-none">
               <span className="text-sm">👥</span>
-              <span className="text-sm font-semibold text-purple-700 dark:text-purple-400">The Team</span>
+              <span className="text-sm font-semibold text-purple-700 dark:text-purple-400">{t("contributors.badge")}</span>
             </div>
-            <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-3xl">Contributors</h2>
+            <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-3xl">{t("contributors.title")}</h2>
           </div>
           
           <div className="flex flex-wrap justify-center gap-4">
@@ -292,14 +290,14 @@ export default function AboutPage() {
             {/* Join CTA */}
             <div className="w-56 rounded-2xl border-2 border-dashed border-zinc-300/80 dark:border-white/10 bg-white dark:bg-zinc-900/30 p-5 text-center shadow-sm shadow-zinc-900/5 dark:shadow-none">
               <div className="mx-auto mb-3 text-4xl">🙋</div>
-              <h3 className="text-sm font-semibold text-zinc-900 dark:text-white">You?</h3>
-              <p className="text-xs text-zinc-600 dark:text-zinc-400">Join the team!</p>
+              <h3 className="text-sm font-semibold text-zinc-900 dark:text-white">{t("contributors.you")}</h3>
+              <p className="text-xs text-zinc-600 dark:text-zinc-400">{t("contributors.joinTeam")}</p>
               <Link
                 href="https://github.com/HamzaChx/Atlas-Munich"
                 target="_blank"
                 className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-emerald-600 dark:text-emerald-400 hover:text-emerald-500 dark:hover:text-emerald-300"
               >
-                Contribute on GitHub
+                {t("contributors.contributeOnGithub")}
                 <ExternalLink className="h-3 w-3" />
               </Link>
             </div>
@@ -317,9 +315,9 @@ export default function AboutPage() {
               <div className="mb-4 inline-flex rounded-full bg-gradient-to-br from-emerald-200 dark:from-emerald-500/20 to-teal-200 dark:to-teal-500/20 p-3">
                 <Mail className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
               </div>
-              <h2 className="text-xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-2xl">Get in Touch</h2>
+              <h2 className="text-xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-2xl">{t("contact.title")}</h2>
               <p className="mx-auto mt-3 max-w-xl text-sm text-zinc-600 dark:text-zinc-400">
-                Have questions, suggestions, or just want to say hello? We&apos;d love to hear from you!
+                {t("contact.description")}
               </p>
               <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
                 <Link
@@ -328,14 +326,14 @@ export default function AboutPage() {
                   className="inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-emerald-500 to-teal-500 px-6 py-3 text-sm font-medium text-white transition-all hover:from-emerald-600 hover:to-teal-600"
                 >
                   <GithubIcon className="h-4 w-4" />
-                  GitHub
+                  {t("contact.github")}
                 </Link>
                 <Link
                   href="mailto:hello@atlas-munich.de"
                   className="inline-flex items-center gap-2 rounded-full border border-zinc-300 dark:border-white/10 bg-white dark:bg-white/5 px-6 py-3 text-sm font-medium text-zinc-700 dark:text-zinc-300 transition-all hover:border-emerald-500 dark:hover:border-emerald-500/50 hover:bg-emerald-50 dark:hover:bg-emerald-500/10 hover:text-emerald-600 dark:hover:text-emerald-400"
                 >
                   <Mail className="h-4 w-4" />
-                  Email Us
+                  {t("contact.emailUs")}
                 </Link>
               </div>
             </div>

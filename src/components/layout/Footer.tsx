@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Sparkles, Heart, Github, Mail, ArrowUpRight, MapPin } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 /**
  * Footer component following premium UI principles:
@@ -10,27 +11,8 @@ import { Sparkles, Heart, Github, Mail, ArrowUpRight, MapPin } from "lucide-reac
  * - Rule 35: Animations 150-300ms
  */
 
-const footerLinks = {
-  guides: [
-    { label: "Housing & Rent", href: "/category/rent-housing" },
-    { label: "KVR & Residence", href: "/category/kvr-residence" },
-    { label: "University Life", href: "/category/university-life" },
-    { label: "Career & Jobs", href: "/category/career" },
-  ],
-  resources: [
-    { label: "Halal Places", href: "/places" },
-    { label: "FAQ", href: "/faq" },
-    { label: "Useful Apps", href: "/category/useful-apps" },
-    { label: "Search", href: "/search" },
-  ],
-  community: [
-    { label: "About Us", href: "/about" },
-    { label: "Contribute", href: "/about#contribute" },
-    { label: "Contact", href: "/about#contact" },
-  ],
-};
-
 export function Footer() {
+  const t = useTranslations("footer");
   return (
     <footer className="relative overflow-hidden bg-zinc-50/80 dark:bg-zinc-950/80 backdrop-blur-sm">
       {/* Moroccan Pattern Background */}
@@ -69,7 +51,7 @@ export function Footer() {
             </Link>
             
             <p className="mt-6 max-w-sm text-[15px] leading-relaxed text-zinc-600 dark:text-zinc-400">
-              Your complete guide to thriving in Munich as a Moroccan student or young professional.
+              {t("description")}
             </p>
 
             {/* Social Links - Rule 34: Hover states required */}
@@ -96,60 +78,126 @@ export function Footer() {
           {/* Guides */}
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider text-zinc-900 dark:text-white">
-              Guides
+              {t("guides")}
             </h3>
             <ul className="mt-6 space-y-4">
-              {footerLinks.guides.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="group inline-flex items-center gap-1 text-[15px] text-zinc-600 dark:text-zinc-400 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:text-emerald-600 dark:hover:text-emerald-400 outline-none focus-visible:text-emerald-600 dark:focus-visible:text-emerald-400"
-                  >
-                    {link.label}
-                    <ArrowUpRight className="h-3 w-3 opacity-0 -translate-x-1 translate-y-1 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0" />
-                  </Link>
-                </li>
-              ))}
+              <li>
+                <Link
+                  href="/category/rent-housing"
+                  className="group inline-flex items-center gap-1 text-[15px] text-zinc-600 dark:text-zinc-400 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:text-emerald-600 dark:hover:text-emerald-400 outline-none focus-visible:text-emerald-600 dark:focus-visible:text-emerald-400"
+                >
+                  {t("links.housingRent")}
+                  <ArrowUpRight className="h-3 w-3 opacity-0 -translate-x-1 translate-y-1 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0" />
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/category/kvr-residence"
+                  className="group inline-flex items-center gap-1 text-[15px] text-zinc-600 dark:text-zinc-400 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:text-emerald-600 dark:hover:text-emerald-400 outline-none focus-visible:text-emerald-600 dark:focus-visible:text-emerald-400"
+                >
+                  {t("links.kvrResidence")}
+                  <ArrowUpRight className="h-3 w-3 opacity-0 -translate-x-1 translate-y-1 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0" />
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/category/university-life"
+                  className="group inline-flex items-center gap-1 text-[15px] text-zinc-600 dark:text-zinc-400 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:text-emerald-600 dark:hover:text-emerald-400 outline-none focus-visible:text-emerald-600 dark:focus-visible:text-emerald-400"
+                >
+                  {t("links.universityLife")}
+                  <ArrowUpRight className="h-3 w-3 opacity-0 -translate-x-1 translate-y-1 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0" />
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/category/career"
+                  className="group inline-flex items-center gap-1 text-[15px] text-zinc-600 dark:text-zinc-400 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:text-emerald-600 dark:hover:text-emerald-400 outline-none focus-visible:text-emerald-600 dark:focus-visible:text-emerald-400"
+                >
+                  {t("links.careerJobs")}
+                  <ArrowUpRight className="h-3 w-3 opacity-0 -translate-x-1 translate-y-1 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0" />
+                </Link>
+              </li>
             </ul>
           </div>
 
           {/* Resources */}
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider text-zinc-900 dark:text-white">
-              Resources
+              {t("resources")}
             </h3>
             <ul className="mt-6 space-y-4">
-              {footerLinks.resources.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="group inline-flex items-center gap-1 text-[15px] text-zinc-600 dark:text-zinc-400 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:text-emerald-600 dark:hover:text-emerald-400 outline-none focus-visible:text-emerald-600 dark:focus-visible:text-emerald-400"
-                  >
-                    {link.label}
-                    <ArrowUpRight className="h-3 w-3 opacity-0 -translate-x-1 translate-y-1 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0" />
-                  </Link>
-                </li>
-              ))}
+              <li>
+                <Link
+                  href="/places"
+                  className="group inline-flex items-center gap-1 text-[15px] text-zinc-600 dark:text-zinc-400 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:text-emerald-600 dark:hover:text-emerald-400 outline-none focus-visible:text-emerald-600 dark:focus-visible:text-emerald-400"
+                >
+                  {t("links.halalPlaces")}
+                  <ArrowUpRight className="h-3 w-3 opacity-0 -translate-x-1 translate-y-1 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0" />
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/faq"
+                  className="group inline-flex items-center gap-1 text-[15px] text-zinc-600 dark:text-zinc-400 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:text-emerald-600 dark:hover:text-emerald-400 outline-none focus-visible:text-emerald-600 dark:focus-visible:text-emerald-400"
+                >
+                  {t("links.faq")}
+                  <ArrowUpRight className="h-3 w-3 opacity-0 -translate-x-1 translate-y-1 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0" />
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/category/useful-apps"
+                  className="group inline-flex items-center gap-1 text-[15px] text-zinc-600 dark:text-zinc-400 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:text-emerald-600 dark:hover:text-emerald-400 outline-none focus-visible:text-emerald-600 dark:focus-visible:text-emerald-400"
+                >
+                  {t("links.usefulApps")}
+                  <ArrowUpRight className="h-3 w-3 opacity-0 -translate-x-1 translate-y-1 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0" />
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/search"
+                  className="group inline-flex items-center gap-1 text-[15px] text-zinc-600 dark:text-zinc-400 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:text-emerald-600 dark:hover:text-emerald-400 outline-none focus-visible:text-emerald-600 dark:focus-visible:text-emerald-400"
+                >
+                  {t("links.search")}
+                  <ArrowUpRight className="h-3 w-3 opacity-0 -translate-x-1 translate-y-1 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0" />
+                </Link>
+              </li>
             </ul>
           </div>
 
           {/* Community */}
           <div>
             <h3 className="text-sm font-semibold uppercase tracking-wider text-zinc-900 dark:text-white">
-              Community
+              {t("community")}
             </h3>
             <ul className="mt-6 space-y-4">
-              {footerLinks.community.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className="group inline-flex items-center gap-1 text-[15px] text-zinc-600 dark:text-zinc-400 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:text-emerald-600 dark:hover:text-emerald-400 outline-none focus-visible:text-emerald-600 dark:focus-visible:text-emerald-400"
-                  >
-                    {link.label}
-                    <ArrowUpRight className="h-3 w-3 opacity-0 -translate-x-1 translate-y-1 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0" />
-                  </Link>
-                </li>
-              ))}
+              <li>
+                <Link
+                  href="/about"
+                  className="group inline-flex items-center gap-1 text-[15px] text-zinc-600 dark:text-zinc-400 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:text-emerald-600 dark:hover:text-emerald-400 outline-none focus-visible:text-emerald-600 dark:focus-visible:text-emerald-400"
+                >
+                  {t("links.aboutUs")}
+                  <ArrowUpRight className="h-3 w-3 opacity-0 -translate-x-1 translate-y-1 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0" />
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/about#contribute"
+                  className="group inline-flex items-center gap-1 text-[15px] text-zinc-600 dark:text-zinc-400 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:text-emerald-600 dark:hover:text-emerald-400 outline-none focus-visible:text-emerald-600 dark:focus-visible:text-emerald-400"
+                >
+                  {t("links.contribute")}
+                  <ArrowUpRight className="h-3 w-3 opacity-0 -translate-x-1 translate-y-1 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0" />
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/about#contact"
+                  className="group inline-flex items-center gap-1 text-[15px] text-zinc-600 dark:text-zinc-400 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:text-emerald-600 dark:hover:text-emerald-400 outline-none focus-visible:text-emerald-600 dark:focus-visible:text-emerald-400"
+                >
+                  {t("links.contact")}
+                  <ArrowUpRight className="h-3 w-3 opacity-0 -translate-x-1 translate-y-1 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0" />
+                </Link>
+              </li>
             </ul>
           </div>
         </div>
@@ -158,7 +206,7 @@ export function Footer() {
         <div className="mt-20 flex flex-col items-center justify-between gap-6 border-t border-zinc-200/80 dark:border-white/8 pt-10 sm:flex-row">
           <div className="flex flex-col items-center gap-3 sm:flex-row sm:gap-6">
             <p className="text-sm text-zinc-500">
-              © {new Date().getFullYear()} Atlas Munich. All rights reserved.
+              © {new Date().getFullYear()} Atlas Munich. {t("rights")}
             </p>
           </div>
         </div>

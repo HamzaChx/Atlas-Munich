@@ -1,0 +1,305 @@
+{
+  "nav": {
+    "home": "Startseite",
+    "guides": "Ratgeber",
+    "places": "Orte",
+    "faq": "FAQ",
+    "about": "Über uns",
+    "search": "Suche",
+    "explore": "Entdecken",
+    "exploreAll": "Alle Ratgeber erkunden",
+    "toggleTheme": "Theme wechseln"
+  },
+  "home": {
+    "heroTitle": "Dein vollständiger Handbuch zum",
+    "heroTitleHighlight": "Leben in München",
+    "heroSubtitle": "Von der",
+    "heroCommunity": "marokkanischen Community",
+    "heroSubtitle2": " erstellt, für die marokkanische Community. Alles, was du brauchst, um dich in München zurechtzufinden — von deiner ersten Anmeldung bis zum besten Tajine der Stadt.",
+    "searchPlaceholder": "Suche nach Ratgebern, Orten oder Antworten...",
+    "quickLinks": {
+      "findHousing": "Wohnung finden",
+      "kvrRegistration": "KVR-Anmeldung",
+      "halalFood": "Halal-Essen",
+      "allGuides": "Alle Ratgeber"
+    },
+    "stats": {
+      "guides": "Ratgeber",
+      "places": "Orte",
+      "faqsAnswered": "FAQs beantwortet",
+      "freeAndOpen": "Kostenlos & Offen"
+    },
+    "categories": {
+      "badge": "München navigieren",
+      "title": "Alles, was du brauchst,",
+      "titleHighlight": "An einem Ort",
+      "subtitle": "Umfassende Ratgeber organisiert nach dem, was dir am wichtigsten ist",
+      "browseAll": "Alle Ratgeber durchsuchen"
+    },
+    "community": {
+      "badge": "Unsere Geschichte",
+      "title": "München zu einem",
+      "titleHighlight": " Zuhause machen",
+      "description1": "Wir kennen die Herausforderung — deutsche Bürokratie bewältigen, Halal-Essen finden, Universitätssysteme verstehen und sich in einer neuen Stadt ein wenig verloren fühlen.",
+      "description2": "Deshalb haben wir",
+      "atlasName": "Atlas München",
+      "description3": " erstellt — eine kollektive Wissensdatenbank, in der jeder Tipp, jeder Ratgeber und jeder versteckte Schatz von Menschen stammt, die den gleichen Weg gegangen sind.",
+      "aboutCommunity": "Über unsere Community",
+      "commonQuestions": "Häufige Fragen"
+    },
+    "cta": {
+      "badge": "Open Source",
+      "title": "Hilf uns, diesen",
+      "titleHighlight": "Wissens-Hub zu erweitern",
+      "description": "Jede Korrektur, jeder neue Ratgeber, jede geteilte Erfahrung hilft dem nächsten Marokkaner, der in München ankommt. Dein Wissen ist wertvoll — teile es mit der Community.",
+      "contributeGithub": "Auf GitHub beitragen",
+      "learnHow": "Erfahre wie",
+      "freeForever": "100% kostenlos für immer",
+      "communityDriven": "Von der Community getrieben",
+      "madeWithLove": "Mit Liebe gemacht"
+    },
+    "builtTogether": "Gemeinsam gebaut",
+    "byTheCommunity": "Von der Community, für die Community",
+    "moroccanRoots": "Marokkanische Wurzeln",
+    "authenticGuidance": "Authentische Anleitung",
+    "munichLife": "München Leben",
+    "localExpertise": "Lokales Fachwissen"
+  },
+  "places": {
+    "badge": "Verifizierte Orte",
+    "title": "Orte",
+    "titleHighlight": "Verzeichnis",
+    "subtitle": "Halal-Restaurants, marokkanische Lebensmittelgeschäfte, Moscheen, Lernorte und mehr — alle von unserer Community verifiziert.",
+    "searchPlaceholder": "Suche Orte nach Name, Tag oder Standort...",
+    "filters": {
+      "all": "Alle",
+      "restaurants": "Restaurants",
+      "butchers": "Metzgereien",
+      "mosques": "Moscheen",
+      "studySpots": "Lernorte"
+    },
+    "results": {
+      "place": "Ort",
+      "places": "Orte",
+      "in": "in",
+      "matching": "passend zu",
+      "clearFilters": "Filter löschen"
+    },
+    "viewMode": {
+      "grid": "Raster",
+      "map": "Karte"
+    },
+    "mapNote": "Klicke auf die Markierungen, um Details zu sehen. Nur Orte mit Koordinaten werden auf der Karte angezeigt.",
+    "noResults": "Keine Orte gefunden",
+    "noResultsDescription": "Versuche, deine Suche oder Filter anzupassen.",
+    "cta": {
+      "icon": "🍽️",
+      "title": "Kennst du einen tollen Ort?",
+      "description": "Hilf uns, unser Verzeichnis zu erweitern, indem du neue Halal-Restaurants, Lebensmittelgeschäfte oder Community-Orte vorschlägst.",
+      "button": "Ort vorschlagen"
+    },
+    "card": {
+      "website": "Webseite",
+      "directions": "Wegbeschreibung",
+      "readMore": "Mehr lesen",
+      "showLess": "Weniger anzeigen",
+      "verified": "Verifiziert"
+    }
+  },
+  "guides": {
+    "badge": "Community-Ratgeber",
+    "title": "Dein komplettes",
+    "titleHighlight": "München Playbook",
+    "subtitle": "Vom ersten Tag bis zum Zuhause-Gefühl — umfassende Ratgeber geschrieben von",
+    "subtitleHighlight": " Marokkanern, die dort gewesen sind",
+    "searchPlaceholder": "Suche nach Wohnungstipps, Visa-Infos, Halal-Essen...",
+    "stats": {
+      "categories": "Kategorien",
+      "totalGuides": "Ratgeber insgesamt",
+      "communityVerified": "Von der Community verifiziert"
+    },
+    "categoriesSection": {
+      "badge": "Nach Thema durchsuchen",
+      "title": "Kategorien erkunden",
+      "advancedSearch": "Erweiterte Suche"
+    },
+    "cta": {
+      "title": "Findest du nicht, was du brauchst?",
+      "description": "Unsere Ratgeber wachsen ständig. Wenn du Wissen teilen möchtest oder Hilfe benötigst, tritt unserer Community bei.",
+      "browseFaqs": "FAQs durchsuchen",
+      "contributeGuide": "Ratgeber beitragen"
+    }
+  },
+  "faq": {
+    "badge": "Fragen beantwortet",
+    "title": "Häufig gestellte",
+    "titleHighlight": "Fragen",
+    "subtitle": "Schnelle Antworten auf häufige Fragen über das Leben in München als marokkanischer Student oder Berufstätiger.",
+    "searchPlaceholder": "Fragen durchsuchen...",
+    "filters": {
+      "all": "Alle"
+    },
+    "results": {
+      "result": "Ergebnis",
+      "results": "Ergebnisse",
+      "for": "für",
+      "clearFilters": "Filter löschen"
+    },
+    "cta": {
+      "title": "Findest du nicht, was du suchst?",
+      "description": "Schau dir unsere detaillierten Ratgeber an oder wende dich an die Community.",
+      "browseGuides": "Ratgeber durchsuchen",
+      "contactUs": "Kontaktiere uns"
+    }
+  },
+  "about": {
+    "badge": "Community-Projekt",
+    "title": "Über",
+    "titleHighlight": "Atlas München",
+    "subtitle": "Atlas München ist ein Community-Handbuch, der erstellt wurde, um die Reibung bei der Ankunft in München zu reduzieren — insbesondere für marokkanische Studenten, die Bürokratie, Wohnung und Alltag bewältigen.",
+    "howToContribute": "Wie man beiträgt",
+    "getInTouch": "Kontakt aufnehmen",
+    "manifesto": {
+      "badge": "Für Neuankömmlinge gebaut",
+      "title": "Ein Handbuch, der sich wie ein Freund anfühlt",
+      "description": "Wir konzentrieren uns auf praktische Schritte, echte Erfahrungen und kleine Details, die München leichter navigierbar machen.",
+      "items": {
+        "practical": "Praktisch, Schritt für Schritt",
+        "practicalDesc": "Kein Füllstoff — nur was funktioniert.",
+        "studentAware": "Studentenbewusst",
+        "studentAwareDesc": "LMU/TUM-Realitäten, Fristen und Systeme.",
+        "openSource": "Open Source",
+        "openSourceDesc": "Jeder kann es verbessern — transparent."
+      }
+    },
+    "story": {
+      "badge": "Unsere Geschichte",
+      "title": "Warum wir das gebaut haben",
+      "p1": "Der Umzug nach München als marokkanischer Student oder Berufstätiger kann überwältigend sein. Die Bürokratie ist komplex, eine Wohnung zu finden ist herausfordernd, und herauszufinden, wo man Halal-Essen findet, braucht Zeit.",
+      "p2Start": "Atlas München wurde aus dieser Erfahrung geboren.",
+      "p2End": " Wir wollten eine einzige, vertrauenswürdige Ressource schaffen, die alle Fragen von Neuankömmlingen beantwortet — die gleichen Fragen, die wir einst hatten.",
+      "p3": "Heute ist Atlas München eine wachsende Sammlung von Ratgebern, Tipps und Ressourcen, die von Freiwilligen gepflegt wird, die alles durchgemacht haben und anderen helfen wollen, dasselbe zu tun."
+    },
+    "values": {
+      "badge": "Woran wir glauben",
+      "title": "Unsere Werte",
+      "communityFirst": "Community zuerst",
+      "communityFirstDesc": "Von Marokkanern in München gebaut, für Marokkaner in München. Jeder Ratschlag stammt aus echter Erfahrung.",
+      "accuracyMatters": "Genauigkeit zählt",
+      "accuracyMattersDesc": "Wir überprüfen Informationen regelmäßig und aktualisieren Ratgeber, um die neuesten Prozesse und Anforderungen widerzuspiegeln.",
+      "openAndFree": "Offen & Kostenlos",
+      "openAndFreeDesc": "Alle Inhalte sind kostenlos und Open Source. Wir glauben, dass Wissen für alle zugänglich sein sollte."
+    },
+    "contribute": {
+      "badge": "Mitmachen",
+      "title": "Wie man beiträgt",
+      "description": "Atlas München ist Open Source und von der Community getrieben. So kannst du helfen:",
+      "suggestUpdates": "Aktualisierungen vorschlagen",
+      "suggestUpdatesDesc": "Veraltete Infos gefunden? Einen besseren Weg kennst? Melde dich bei uns!",
+      "contactUs": "Kontaktiere uns",
+      "spreadTheWord": "Verbreite die Nachricht",
+      "spreadTheWordDesc": "Teile Atlas München mit anderen Marokkanern, die nach München kommen. Mundpropaganda hilft!",
+      "share": "Teilen"
+    },
+    "contributors": {
+      "badge": "Das Team",
+      "title": "Mitwirkende",
+      "you": "Du?",
+      "joinTeam": "Tritt dem Team bei!",
+      "contributeOnGithub": "Auf GitHub beitragen"
+    },
+    "contact": {
+      "title": "Kontakt aufnehmen",
+      "description": "Hast du Fragen, Vorschläge oder möchtest einfach Hallo sagen? Wir würden uns freuen, von dir zu hören!",
+      "github": "GitHub",
+      "emailUs": "E-Mail an uns"
+    }
+  },
+  "categories": {
+    "rent-housing": {
+      "title": "Miete & Wohnung",
+      "description": "Wohnungen finden, Mietverträge verstehen, den Münchner Wohnungsmarkt navigieren und Betrug vermeiden."
+    },
+    "kvr-residence": {
+      "title": "KVR & Aufenthaltstitel",
+      "description": "Stadtanmeldung (Anmeldung), Aufenthaltstitel, Visumsverlängerungen und alle bürokratischen Verfahren."
+    },
+    "university-life": {
+      "title": "Universitätsleben",
+      "description": "Studentenausweis, Semestertickets, Kursanmeldung, Bibliotheken und Campus-Ressourcen."
+    },
+    "career": {
+      "title": "Karriere & Jobs",
+      "description": "Jobsuche, Praktika, Werkstudent-Positionen, Lebenslauf-Tipps und Networking-Events."
+    },
+    "useful-apps": {
+      "title": "Nützliche Apps & Tools",
+      "description": "Unverzichtbare Apps für Transport, Banking, Kommunikation und Alltag in München."
+    }
+  },
+  "footer": {
+    "description": "Dein vollständiger Handbuch zum Leben in München als marokkanischer Student oder junger Berufstätiger.",
+    "guides": "Ratgeber",
+    "resources": "Ressourcen",
+    "community": "Community",
+    "rights": "Alle Rechte vorbehalten.",
+    "links": {
+      "housingRent": "Wohnung & Miete",
+      "kvrResidence": "KVR & Aufenthalt",
+      "universityLife": "Universitätsleben",
+      "careerJobs": "Karriere & Jobs",
+      "halalPlaces": "Halal-Orte",
+      "faq": "FAQ",
+      "usefulApps": "Nützliche Apps",
+      "search": "Suche",
+      "aboutUs": "Über uns",
+      "contribute": "Beitragen",
+      "contact": "Kontakt"
+    }
+  },
+  "search": {
+    "badge": "Alles durchsuchen",
+    "title": "Finde was du",
+    "titleHighlight": "brauchst",
+    "subtitle": "Durchsuche Ratgeber, Orte und FAQs — deine vollständige München-Wissensdatenbank zur Hand.",
+    "placeholder": "Suche nach Ratgebern, Orten, FAQs...",
+    "resultsFound": "Ergebnisse gefunden",
+    "noResults": "Keine Ergebnisse gefunden",
+    "noResultsDescription": "Wir konnten nichts finden, das mit",
+    "tryDifferent": "Versuche es mit anderen Suchbegriffen.",
+    "tabs": {
+      "all": "Alle Ergebnisse",
+      "guides": "Ratgeber",
+      "places": "Orte",
+      "faqs": "FAQ"
+    },
+    "sections": {
+      "guidesFound": "Ergebnisse gefunden",
+      "placesFound": "Ergebnisse gefunden",
+      "faqsFound": "Ergebnisse gefunden",
+      "viewAll": "Alle anzeigen"
+    },
+    "discover": {
+      "title": "Inhalte entdecken",
+      "subtitle": "Beginne oben zu tippen oder erkunde unsere beliebten Kategorien und Suchanfragen unten.",
+      "browseCategories": "Kategorien durchsuchen",
+      "popularSearches": "Beliebte Suchanfragen",
+      "lookingFor": "Suchst du etwas Bestimmtes?",
+      "lookingForDesc": "Durchsuche unsere kuratierten Ratgeber oder schau dir das von der Community verifizierte Orte-Verzeichnis an.",
+      "browseGuides": "Ratgeber durchsuchen",
+      "explorePlaces": "Orte erkunden"
+    },
+    "loading": "Suche wird geladen..."
+  },
+  "common": {
+    "loading": "Lädt...",
+    "error": "Etwas ist schiefgelaufen",
+    "retry": "Nochmal versuchen",
+    "back": "Zurück",
+    "next": "Weiter",
+    "previous": "Zurück",
+    "close": "Schließen",
+    "open": "Öffnen",
+    "language": "Sprache"
+  }
+}

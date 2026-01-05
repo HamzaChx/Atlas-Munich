@@ -1,0 +1,303 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "guides": "Guides",
+    "places": "Lieux",
+    "faq": "FAQ",
+    "about": "À propos",
+    "search": "Rechercher",
+    "explore": "Explorer",
+    "exploreAll": "Explorer tous les guides",
+    "toggleTheme": "Changer de thème"
+  },
+  "home": {
+    "heroTitle": "Votre guide complet pour",
+    "heroTitleHighlight": "réussir à Munich",
+    "heroSubtitle": "Créé par la",
+    "heroCommunity": "communauté marocaine",
+    "heroSubtitle2": ", pour la communauté marocaine. Tout ce dont vous avez besoin pour naviguer la vie à Munich — de votre premier Anmeldung à la découverte du meilleur tajine en ville.",
+    "searchPlaceholder": "Rechercher des guides, lieux ou réponses...",
+    "quickLinks": {
+      "findHousing": "Trouver un logement",
+      "kvrRegistration": "Inscription KVR",
+      "halalFood": "Nourriture Halal",
+      "allGuides": "Tous les guides"
+    },
+    "stats": {
+      "guides": "Guides",
+      "places": "Lieux",
+      "faqsAnswered": "Questions répondues",
+      "freeAndOpen": "Gratuit & Ouvert"
+    },
+    "categories": {
+      "badge": "Naviguer Munich",
+      "title": "Tout ce dont vous avez besoin,",
+      "titleHighlight": "Au même endroit",
+      "subtitle": "Des guides complets organisés selon ce qui compte le plus pour vous",
+      "browseAll": "Parcourir tous les guides"
+    },
+    "community": {
+      "badge": "Notre histoire",
+      "title": "Faire de Munich",
+      "titleHighlight": " votre chez-vous",
+      "description1": "Nous connaissons les défis — naviguer la bureaucratie allemande, trouver de la nourriture halal, comprendre les systèmes universitaires, et se sentir un peu perdu dans une nouvelle ville.",
+      "description2": "C'est pourquoi nous avons créé",
+      "atlasName": "Atlas Munich",
+      "description3": " — une base de connaissances collective où chaque conseil, chaque guide et chaque bon plan vient de personnes qui ont parcouru le même chemin.",
+      "aboutCommunity": "À propos de notre communauté",
+      "commonQuestions": "Questions fréquentes"
+    },
+    "cta": {
+      "badge": "Open Source",
+      "title": "Aidez-nous à développer ce",
+      "titleHighlight": "Centre de connaissances",
+      "description": "Chaque correction, chaque nouveau guide, chaque expérience partagée aide le prochain Marocain arrivant à Munich. Vos connaissances sont précieuses — partagez-les avec la communauté.",
+      "contributeGithub": "Contribuer sur GitHub",
+      "learnHow": "En savoir plus",
+      "freeForever": "100% Gratuit pour toujours",
+      "communityDriven": "Piloté par la communauté",
+      "madeWithLove": "Fait avec amour"
+    },
+    "builtTogether": "Construit ensemble",
+    "byTheCommunity": "Par la communauté, pour la communauté",
+    "moroccanRoots": "Racines marocaines",
+    "authenticGuidance": "Conseils authentiques",
+    "munichLife": "Vie à Munich",
+    "localExpertise": "Expertise locale"
+  },
+  "places": {
+    "badge": "Lieux vérifiés",
+    "title": "Receuil des",
+    "titleHighlight": "Lieux",
+    "subtitle": "Restaurants halal, épiceries marocaines, mosquées, espaces d'étude et plus encore — tous vérifiés par notre communauté.",
+    "searchPlaceholder": "Rechercher des lieux par nom, tag ou emplacement...",
+    "filters": {
+      "all": "Tous",
+      "restaurants": "Restaurants",
+      "butchers": "Boucheries",
+      "mosques": "Mosquées",
+      "studySpots": "Espaces d'étude"
+    },
+    "results": {
+      "place": "lieu",
+      "places": "lieux",
+      "in": "dans",
+      "matching": "correspondant à",
+      "clearFilters": "Effacer les filtres"
+    },
+    "viewMode": {
+      "grid": "Grille",
+      "map": "Carte"
+    },
+    "mapNote": "Cliquez sur les marqueurs pour voir les détails. Seuls les lieux avec coordonnées sont affichés sur la carte.",
+    "noResults": "Aucun lieu trouvé",
+    "noResultsDescription": "Essayez d'ajuster votre recherche ou vos filtres.",
+    "cta": {
+      "icon": "🍽️",
+      "title": "Vous connaissez un bon endroit ?",
+      "description": "Aidez-nous à enrichir notre receuil en suggérant de nouveaux restaurants halal, épiceries ou lieux communautaires.",
+      "button": "Suggérer un lieu"
+    },
+    "card": {
+      "website": "Site web",
+      "directions": "Itinéraire",
+      "readMore": "Lire plus",
+      "showLess": "Réduire",
+      "verified": "Vérifié"
+    }
+  },
+  "guides": {
+    "badge": "Guides communautaires",
+    "title": "Votre",
+    "titleHighlight": "Guide Munich complet",
+    "subtitle": "De votre premier jour jusqu'à vous sentir chez vous — des guides complets écrits par",
+    "subtitleHighlight": " des Marocains qui sont passés par là",
+    "searchPlaceholder": "Rechercher des conseils logement, visa, nourriture halal...",
+    "stats": {
+      "categories": "Catégories",
+      "totalGuides": "Guides au total",
+      "communityVerified": "Vérifié par la communauté"
+    },
+    "categoriesSection": {
+      "badge": "Parcourir par thème",
+      "title": "Explorer les catégories",
+      "advancedSearch": "Recherche avancée"
+    },
+    "cta": {
+      "title": "Vous ne trouvez pas ce qu'il vous faut ?",
+      "description": "Nos guides sont en constante évolution. Si vous avez des connaissances à partager ou besoin d'aide, rejoignez notre communauté.",
+      "browseFaqs": "Parcourir les FAQs",
+      "contributeGuide": "Contribuer un guide"
+    }
+  },
+  "faq": {
+    "badge": "Questions répondues",
+    "title": "Questions",
+    "titleHighlight": "Fréquentes",
+    "subtitle": "Réponses rapides aux questions courantes sur la vie à Munich en tant qu'étudiant ou professionnel marocain.",
+    "searchPlaceholder": "Rechercher des questions...",
+    "filters": {
+      "all": "Toutes"
+    },
+    "results": {
+      "result": "résultat",
+      "results": "résultats",
+      "for": "pour",
+      "clearFilters": "Effacer les filtres"
+    },
+    "cta": {
+      "title": "Vous ne trouvez pas ce que vous cherchez ?",
+      "description": "Consultez nos guides détaillés ou contactez la communauté.",
+      "browseGuides": "Parcourir les guides",
+      "contactUs": "Nous contacter"
+    }
+  },
+  "about": {
+    "badge": "Projet communautaire",
+    "title": "À propos d'",
+    "titleHighlight": "Atlas Munich",
+    "subtitle": "Atlas Munich est un guide communautaire créé pour faciliter l'arrivée à Munich — particulièrement pour les étudiants marocains naviguant la bureaucratie, le logement et la vie quotidienne.",
+    "howToContribute": "Comment contribuer",
+    "getInTouch": "Nous contacter",
+    "manifesto": {
+      "badge": "Créé pour les nouveaux arrivants",
+      "title": "Un guide comme un ami",
+      "description": "Nous nous concentrons sur des étapes pratiques, des expériences réelles et les petits détails qui rendent Munich plus facile à naviguer.",
+      "items": {
+        "practical": "Pratique, étape par étape",
+        "practicalDesc": "Pas de superflu — juste ce qui fonctionne.",
+        "studentAware": "Adapté aux étudiants",
+        "studentAwareDesc": "Réalités LMU/TUM, délais et systèmes.",
+        "openSource": "Open source",
+        "openSourceDesc": "Tout le monde peut l'améliorer — en toute transparence."
+      }
+    },
+    "story": {
+      "badge": "Notre histoire",
+      "title": "Pourquoi nous avons créé ceci",
+      "p1": "Déménager à Munich en tant qu'étudiant ou professionnel marocain peut être accablant. La bureaucratie est complexe, trouver un logement est difficile, et découvrir où trouver de la nourriture halal prend du temps.",
+      "p2Start": "Atlas Munich est né de cette expérience.",
+      "p2End": " Nous voulions créer une ressource unique et fiable qui répond à toutes les questions des nouveaux arrivants — les mêmes questions que nous avions autrefois.",
+      "p3": "Aujourd'hui, Atlas Munich est une collection grandissante de guides, conseils et ressources maintenue par des bénévoles qui sont passés par là et veulent aider les autres à faire de même."
+    },
+    "values": {
+      "badge": "Ce en quoi nous croyons",
+      "title": "Nos valeurs",
+      "communityFirst": "La communauté d'abord",
+      "communityFirstDesc": "Créé par des Marocains à Munich, pour les Marocains à Munich. Chaque conseil vient d'une expérience réelle.",
+      "accuracyMatters": "La précision compte",
+      "accuracyMattersDesc": "Nous vérifions régulièrement les informations et mettons à jour les guides pour refléter les derniers processus et exigences.",
+      "openAndFree": "Ouvert et gratuit",
+      "openAndFreeDesc": "Tout le contenu est gratuit et open source. Nous croyons que la connaissance doit être accessible à tous."
+    },
+    "contribute": {
+      "badge": "S'impliquer",
+      "title": "Comment contribuer",
+      "description": "Atlas Munich est open source et piloté par la communauté. Voici comment vous pouvez aider :",
+      "suggestUpdates": "Suggérer des mises à jour",
+      "suggestUpdatesDesc": "Trouvé des infos obsolètes ? Vous connaissez une meilleure façon ? Contactez-nous !",
+      "contactUs": "Nous contacter",
+      "spreadTheWord": "Faites passer le mot",
+      "spreadTheWordDesc": "Partagez Atlas Munich avec d'autres Marocains venant à Munich. Le bouche-à-oreille aide !",
+      "share": "Partager"
+    },
+    "contributors": {
+      "badge": "L'équipe",
+      "title": "Contributeurs",
+      "you": "Vous ?",
+      "joinTeam": "Rejoignez l'équipe !",
+      "contributeOnGithub": "Contribuer sur GitHub"
+    },
+    "contact": {
+      "title": "Nous contacter",
+      "description": "Vous avez des questions, des suggestions ou juste envie de dire bonjour ? Nous serions ravis de vous entendre !",
+      "github": "GitHub",
+      "emailUs": "Nous envoyer un email"
+    }
+  },
+  "categories": {
+    "rent-housing": {
+      "title": "Logement & Location",
+      "description": "Trouvez des appartements, comprenez les contrats de location, naviguez le marché immobilier munichois et évitez les arnaques."
+    },
+    "kvr-residence": {
+      "title": "KVR & Titre de Séjour",
+      "description": "Enregistrement en mairie (Anmeldung), titres de séjour, extensions de visa et toutes les procédures bureaucratiques."
+    },
+    "university-life": {
+      "title": "Vie Universitaire",
+      "description": "Carte étudiante, tickets semestriels, inscription aux cours, bibliothèques et ressources du campus."
+    },
+    "career": {
+      "title": "Carrière & Emploi",
+      "description": "Recherche d'emploi, stages, postes Werkstudent, conseils CV et événements de réseautage."
+    },
+    "useful-apps": {
+      "title": "Applications & Outils Utiles",
+      "description": "Applications essentielles pour les transports, la banque, la communication et la vie quotidienne à Munich."
+    }
+  },
+  "footer": {
+    "description": "Votre guide complet pour réussir à Munich en tant qu'étudiant ou jeune professionnel marocain.",
+    "guides": "Guides",
+    "resources": "Ressources",
+    "community": "Communauté",
+    "rights": "Tous droits réservés.",
+    "links": {
+      "housingRent": "Logement & Location",
+      "kvrResidence": "KVR & Titre de séjour",
+      "universityLife": "Vie universitaire",
+      "careerJobs": "Carrière & Emploi",
+      "halalPlaces": "Lieux Halal",
+      "faq": "FAQ",
+      "usefulApps": "Applications utiles",
+      "search": "Rechercher",
+      "aboutUs": "À propos",
+      "contribute": "Contribuer",
+      "contact": "Contact"
+    }
+  },  "search": {
+    "badge": "Tout rechercher",
+    "title": "Trouvez ce dont vous",
+    "titleHighlight": "avez besoin",
+    "subtitle": "Recherchez parmi les guides, les lieux et les FAQ — votre base de connaissances complète sur Munich à portée de main.",
+    "placeholder": "Rechercher des guides, des lieux, des FAQ...",
+    "resultsFound": "Résultats trouvés",
+    "noResults": "Aucun résultat trouvé",
+    "noResultsDescription": "Nous n'avons rien trouvé correspondant à",
+    "tryDifferent": "Essayez des mots-clés différents.",
+    "tabs": {
+      "all": "Tous les résultats",
+      "guides": "Guides",
+      "places": "Lieux",
+      "faqs": "FAQ"
+    },
+    "sections": {
+      "guidesFound": "résultats trouvés",
+      "placesFound": "résultats trouvés",
+      "faqsFound": "résultats trouvés",
+      "viewAll": "Voir tout"
+    },
+    "discover": {
+      "title": "Découvrir le contenu",
+      "subtitle": "Commencez à taper ci-dessus ou explorez nos catégories et recherches populaires ci-dessous.",
+      "browseCategories": "Parcourir les catégories",
+      "popularSearches": "Recherches populaires",
+      "lookingFor": "Vous cherchez quelque chose de spécifique ?",
+      "lookingForDesc": "Parcourez nos guides sélectionnés ou consultez le répertoire des lieux vérifiés par la communauté.",
+      "browseGuides": "Parcourir les guides",
+      "explorePlaces": "Explorer les lieux"
+    },
+    "loading": "Chargement de la recherche..."
+  },  "common": {
+    "loading": "Chargement...",
+    "error": "Une erreur s'est produite",
+    "retry": "Réessayer",
+    "back": "Retour",
+    "next": "Suivant",
+    "previous": "Précédent",
+    "close": "Fermer",
+    "open": "Ouvrir",
+    "language": "Langue"
+  }
+}

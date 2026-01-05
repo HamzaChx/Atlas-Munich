@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { ArrowRight } from "lucide-react";
 import * as Icons from "lucide-react";
+import { useTranslations } from "next-intl";
 
 /**
  * CategoryCard component following premium UI principles:
@@ -24,6 +25,7 @@ interface CategoryCardProps {
   color: string;
   count?: number | string;
   className?: string;
+  categoryKey?: string; // Optional category key for translations
 }
 
 export function CategoryCard({
@@ -34,7 +36,13 @@ export function CategoryCard({
   color,
   count,
   className,
+  categoryKey,
 }: CategoryCardProps) {
+  const t = useTranslations("categories");
+  
+  // Use translations if categoryKey is provided, otherwise use props
+  const displayTitle = categoryKey ? t(`${categoryKey}.title`) : title;
+  const displayDescription = categoryKey ? t(`${categoryKey}.description`) : description;
   // Dynamically get icon component
   const IconComponent = iconMap[icon] || Icons.Folder;
 
@@ -83,12 +91,12 @@ export function CategoryCard({
 
           {/* Title - Rule 25: Headings communicate meaning */}
           <h3 className="text-lg font-semibold leading-snug tracking-tight text-zinc-900 dark:text-white transition-colors duration-200 group-hover:text-emerald-600 dark:group-hover:text-emerald-400">
-            {title}
+            {displayTitle}
           </h3>
 
           {/* Description - Rule 24: Break content */}
           <p className="mt-2.5 line-clamp-2 text-[15px] leading-relaxed text-zinc-600 dark:text-zinc-400">
-            {description}
+            {displayDescription}
           </p>
 
           {/* CTA - Rule 17: Clear action */}

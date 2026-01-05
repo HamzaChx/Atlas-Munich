@@ -5,7 +5,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { ThemeToggle } from "@/components/shared";
+import { ThemeToggle, LanguageSwitcher } from "@/components/shared";
+import { Locale } from "@/i18n";
 import {
   Menu,
   X,
@@ -28,18 +29,35 @@ import {
  * - Rule 35: Animations 150-300ms
  */
 
-const navItems = [
-  { label: "Home", href: "/", icon: Home },
-  { label: "Guides", href: "/guides", icon: BookOpen },
-  { label: "Places", href: "/places", icon: MapPin },
-  { label: "FAQ", href: "/faq", icon: HelpCircle },
-  { label: "About", href: "/about", icon: Users },
-];
+interface NavTranslations {
+  home: string;
+  guides: string;
+  places: string;
+  faq: string;
+  about: string;
+  search: string;
+  explore: string;
+  exploreAll: string;
+  toggleTheme: string;
+}
 
-export function Header() {
+interface HeaderProps {
+  locale: Locale;
+  translations: NavTranslations;
+}
+
+export function Header({ locale, translations }: HeaderProps) {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
+
+  const navItems = [
+    { label: translations.home, href: "/", icon: Home },
+    { label: translations.guides, href: "/guides", icon: BookOpen },
+    { label: translations.places, href: "/places", icon: MapPin },
+    { label: translations.faq, href: "/faq", icon: HelpCircle },
+    { label: translations.about, href: "/about", icon: Users },
+  ];
 
   // Check if we're on the home page (dark hero)
   const isHomePage = pathname === "/";
@@ -112,6 +130,9 @@ export function Header() {
 
         {/* Right Side Actions */}
         <div className="flex items-center gap-2">
+          {/* Language Switcher */}
+          <LanguageSwitcher currentLocale={locale} className="hidden sm:block" />
+
           {/* Theme Toggle */}
           <ThemeToggle className="hidden sm:flex" />
 
@@ -124,24 +145,7 @@ export function Header() {
           >
             <Link href="/search">
               <Search className="h-5 w-5" />
-              <span className="sr-only">Search</span>
-            </Link>
-          </Button>
-
-          {/* GitHub Link */}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="hidden text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-white/5 hover:text-zinc-900 dark:hover:text-white sm:flex"
-            asChild
-          >
-            <Link
-              href="https://github.com/HamzaChx/Atlas-Munich"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Github className="h-5 w-5" />
-              <span className="sr-only">GitHub</span>
+              <span className="sr-only">{translations.search}</span>
             </Link>
           </Button>
 
@@ -153,7 +157,7 @@ export function Header() {
           >
             <Link href="/guides">
               <BookOpen className="mr-1.5 h-4 w-4" />
-              Explore
+              {translations.explore}
               <ChevronRight className="ml-0.5 h-3.5 w-3.5 opacity-60" />
             </Link>
           </Button>
@@ -213,13 +217,18 @@ export function Header() {
               className="flex items-center gap-3 rounded-xl px-4 py-3 text-base font-medium text-zinc-600 dark:text-zinc-400 transition-all hover:bg-zinc-100 dark:hover:bg-white/5 hover:text-zinc-900 dark:hover:text-white"
             >
               <Search className="h-5 w-5" />
-              Search
+              {translations.search}
             </Link>
+
+            {/* Mobile Language Switcher */}
+            <div className="flex items-center gap-3 rounded-xl px-4 py-3 text-base font-medium text-zinc-600 dark:text-zinc-400">
+              <LanguageSwitcher currentLocale={locale} />
+            </div>
 
             {/* Mobile Theme Toggle */}
             <div className="flex items-center gap-3 rounded-xl px-4 py-3 text-base font-medium text-zinc-600 dark:text-zinc-400">
               <ThemeToggle />
-              <span>Toggle Theme</span>
+              <span>{translations.toggleTheme}</span>
             </div>
 
             {/* Mobile CTA */}
@@ -230,7 +239,7 @@ export function Header() {
               >
                 <Link href="/guides" onClick={() => setMobileMenuOpen(false)}>
                   <BookOpen className="mr-2 h-4 w-4" />
-                  Explore All Guides
+                  {translations.exploreAll}
                 </Link>
               </Button>
             </div>

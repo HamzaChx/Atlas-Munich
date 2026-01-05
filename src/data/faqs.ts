@@ -172,26 +172,26 @@ export const faqs: FAQ[] = [
     categoryKey: "university-life",
   },
   
-  // Halal Food FAQs
+  // Halal Food FAQs (categorized as general since there's a dedicated Places page)
   {
     id: "faq-food-1",
     question: "Where can I find halal meat in Munich?",
     answer: "Main areas: Around Munich Hauptbahnhof, Giesing, Neuperlach, and Moosach. Look for Turkish/Arabic butchers (Metzger) or supermarkets like Turkish markets. See our Places directory for verified spots.",
-    categoryKey: "halal-food",
+    categoryKey: undefined,
     tags: ["community-verified"],
   },
   {
     id: "faq-food-2",
     question: "Are there Moroccan restaurants in Munich?",
     answer: "Yes! There are several Moroccan and North African restaurants. Check our Places directory for recommendations. Also, the Arab community often organizes food events.",
-    categoryKey: "halal-food",
+    categoryKey: undefined,
     tags: ["community-verified"],
   },
   {
     id: "faq-food-3",
     question: "Where can I find Moroccan spices and ingredients?",
     answer: "Turkish and Arabic grocery stores usually have most spices, couscous, and ingredients. Check stores around Hauptbahnhof, Giesing, and in Neuperlach.",
-    categoryKey: "halal-food",
+    categoryKey: undefined,
     tags: ["tips"],
   },
   

@@ -9,8 +9,10 @@ import { getAllFaqs } from "@/data/faqs";
 import { categories } from "@/data/categories";
 import { HelpCircle, Search, Sparkles, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useTranslations } from "next-intl";
 
 export default function FAQPage() {
+  const t = useTranslations("faq");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
@@ -59,13 +61,12 @@ export default function FAQPage() {
     "rent-housing": "🏠",
     "kvr-residence": "📋",
     "university-life": "🎓",
-    "halal-food": "🍽️",
     "career": "💼",
     "useful-apps": "📱",
   };
 
   const categoryFilters = [
-    { key: null, label: "All", icon: "❓" },
+    { key: null, label: t("filters.all"), icon: "❓" },
     ...categories.map((c) => ({ key: c.key, label: c.title, icon: categoryEmojis[c.key] || "📌" })),
   ];
 
@@ -80,17 +81,17 @@ export default function FAQPage() {
         <div className="relative z-10 mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
           <div className="text-center">
             {/* Badge */}
-            <HeroBadge icon={HelpCircle} text={`${allFaqs.length}+ Questions Answered`} color="blue" />
+            <HeroBadge icon={HelpCircle} text={`${allFaqs.length}+ ${t("badge")}`} color="blue" />
 
             {/* Title */}
             <h1 className="text-5xl font-black tracking-tight text-zinc-900 dark:text-white sm:text-6xl lg:text-7xl">
-              Frequently Asked{" "}
+              {t("title")}{" "}
               <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 dark:from-blue-400 dark:via-indigo-400 dark:to-purple-400 bg-clip-text text-transparent">
-                Questions
+                {t("titleHighlight")}
               </span>
             </h1>
             <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
-              Quick answers to common questions about living in Munich as a Moroccan student or professional.
+              {t("subtitle")}
             </p>
 
             {/* Search */}
@@ -98,7 +99,7 @@ export default function FAQPage() {
               <Search className="absolute left-5 top-1/2 h-5 w-5 -translate-y-1/2 text-zinc-400 dark:text-zinc-500" />
               <Input
                 type="search"
-                placeholder="Search questions..."
+                placeholder={t("searchPlaceholder")}
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className="h-14 rounded-full border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 pl-14 text-lg text-zinc-900 dark:text-white placeholder:text-zinc-400 dark:placeholder:text-zinc-500 focus:border-blue-500/50 focus:ring-blue-500/20 shadow-sm dark:shadow-none"
@@ -136,8 +137,8 @@ export default function FAQPage() {
               <div className="rounded-2xl border border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-zinc-900/50 p-6 shadow-sm dark:shadow-none backdrop-blur-sm">
                 <div className="mb-6 flex items-center justify-between">
                   <p className="text-sm text-zinc-500 dark:text-zinc-400">
-                    <span className="text-base font-bold text-zinc-900 dark:text-white">{filteredFaqs.length}</span> {filteredFaqs.length === 1 ? "result" : "results"}
-                    {searchQuery && <span className="text-zinc-500"> for &ldquo;{searchQuery}&rdquo;</span>}
+                    <span className="text-base font-bold text-zinc-900 dark:text-white">{filteredFaqs.length}</span> {filteredFaqs.length === 1 ? t("results.result") : t("results.results")}
+                    {searchQuery && <span className="text-zinc-500"> {t("results.for")} &ldquo;{searchQuery}&rdquo;</span>}
                   </p>
                   {(selectedCategory || searchQuery) && (
                     <button
@@ -147,7 +148,7 @@ export default function FAQPage() {
                       }}
                       className="text-sm font-medium text-emerald-600 dark:text-emerald-400 hover:text-emerald-500 dark:hover:text-emerald-300 hover:underline"
                     >
-                      Clear filters
+                      {t("results.clearFilters")}
                     </button>
                   )}
                 </div>
@@ -190,23 +191,23 @@ export default function FAQPage() {
           <div className="mb-5 inline-flex rounded-full bg-gradient-to-br from-emerald-100 to-teal-100 dark:from-emerald-500/20 dark:to-teal-500/20 p-3">
             <Sparkles className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
           </div>
-          <h3 className="text-xl font-bold text-zinc-900 dark:text-white">Can&apos;t find what you&apos;re looking for?</h3>
+          <h3 className="text-xl font-bold text-zinc-900 dark:text-white">{t("cta.title")}</h3>
           <p className="mx-auto mt-2 max-w-md text-base text-zinc-600 dark:text-zinc-400">
-            Check our detailed guides or reach out to the community.
+            {t("cta.description")}
           </p>
           <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
             <Link
               href="/guides"
               className="group inline-flex items-center gap-2 rounded-full border border-zinc-300 dark:border-white/10 bg-white dark:bg-white/5 px-6 py-3 text-sm font-medium text-zinc-700 dark:text-zinc-300 transition-all hover:border-emerald-500 dark:hover:border-emerald-500/50 hover:bg-emerald-50 dark:hover:bg-emerald-500/10 hover:text-emerald-600 dark:hover:text-emerald-400"
             >
-              Browse Guides
+              {t("cta.browseGuides")}
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
             <Link
               href="/about#contact"
               className="group inline-flex items-center gap-2 rounded-full border border-zinc-300 dark:border-white/10 bg-white dark:bg-white/5 px-6 py-3 text-sm font-medium text-zinc-700 dark:text-zinc-300 transition-all hover:border-emerald-500 dark:hover:border-emerald-500/50 hover:bg-emerald-50 dark:hover:bg-emerald-500/10 hover:text-emerald-600 dark:hover:text-emerald-400"
             >
-              Contact Us
+              {t("cta.contactUs")}
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
           </div>

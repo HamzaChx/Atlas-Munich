@@ -6,6 +6,7 @@ import { categories } from "@/data/categories";
 import { guides } from "@/data/guides";
 import { places } from "@/data/places";
 import { faqs } from "@/data/faqs";
+import { getTranslations } from "next-intl/server";
 import {
   BookOpen,
   ChevronRight,
@@ -22,23 +23,25 @@ import {
   ArrowRight,
 } from "lucide-react";
 
-// Quick links for the hero
-const quickLinks = [
-  { label: "Find Housing", href: "/category/rent-housing", icon: HomeIcon },
-  { label: "KVR Registration", href: "/category/kvr-residence", icon: FileText },
-  { label: "Halal Food", href: "/places", icon: Coffee },
-  { label: "All Guides", href: "/guides", icon: Compass },
-];
+export default async function Home() {
+  const t = await getTranslations("home");
+  const tNav = await getTranslations("nav");
 
-// Stats
-const stats = [
-  { value: guides.length, suffix: "+", label: "Guides", icon: BookOpen },
-  { value: places.length, suffix: "+", label: "Places", icon: MapPin },
-  { value: faqs.length, suffix: "+", label: "FAQs Answered", icon: HelpCircle },
-  { value: "100", suffix: "%", label: "Free & Open", icon: Heart },
-];
+  // Quick links for the hero
+  const quickLinks = [
+    { label: t("quickLinks.findHousing"), href: "/category/rent-housing", icon: HomeIcon },
+    { label: t("quickLinks.kvrRegistration"), href: "/category/kvr-residence", icon: FileText },
+    { label: t("quickLinks.halalFood"), href: "/places", icon: Coffee },
+    { label: t("quickLinks.allGuides"), href: "/guides", icon: Compass },
+  ];
 
-export default function Home() {
+  // Stats
+  const stats = [
+    { value: guides.length, suffix: "+", label: t("stats.guides"), icon: BookOpen },
+    { value: places.length, suffix: "+", label: t("stats.places"), icon: MapPin },
+    { value: faqs.length, suffix: "+", label: t("stats.faqsAnswered"), icon: HelpCircle },
+    { value: "100", suffix: "%", label: t("stats.freeAndOpen"), icon: Heart },
+  ];
   const guideCountByCategory = (key: string) =>
     guides.filter((g) => g.categoryKey === key).length;
 
@@ -164,10 +167,10 @@ export default function Home() {
           
           {/* Main Title */}
           <h1 className="max-w-4xl text-5xl font-black tracking-tight text-zinc-900 dark:text-white sm:text-6xl lg:text-7xl mt-6">
-            Your Complete Guide to
+            {t("heroTitle")}
             <span className="relative mt-2 block">
               <span className="relative z-10  bg-emerald-600 dark:bg-emerald-400 bg-clip-text text-transparent">
-                Thriving in Munich
+                {t("heroTitleHighlight")}
               </span>
               <span className="absolute -bottom-2 left-0 right-0 h-3 bg-gradient-to-r from-red-500/30 via-amber-500/30 to-green-500/30 blur-xl" />
             </span>
@@ -175,15 +178,14 @@ export default function Home() {
 
           {/* Subtitle */}
           <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
-            Built by the <span className="font-semibold text-amber-600 dark:text-amber-400">Moroccan community</span>, for the Moroccan community.
-            Everything you need to navigate life in Munich — from your first Anmeldung to finding the best tajine in town.
+            {t("heroSubtitle")} <span className="font-semibold text-amber-600 dark:text-amber-400">{t("heroCommunity")}</span>{t("heroSubtitle2")}
           </p>
 
           {/* Search Bar */}
           <div className="mx-auto mt-10 w-full max-w-2xl">
             <div className="relative">
               <SearchBar
-                placeholder="Search for guides, places, or answers..."
+                placeholder={t("searchPlaceholder")}
                 size="lg"
                 showButton={false}
               />
@@ -234,29 +236,38 @@ export default function Home() {
           <div className="mb-12 text-center">
             <Badge className="mb-4 border-emerald-500/30 bg-emerald-100 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400">
               <Compass className="mr-1.5 h-3.5 w-3.5" />
-              Navigate Munich
+              {t("categories.badge")}
             </Badge>
             <h2 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-4xl">
-              Everything You Need,
-              <span className="block text-emerald-600 dark:text-emerald-400">One Place</span>
+              {t("categories.title")}
+              <span className="block text-emerald-600 dark:text-emerald-400">{t("categories.titleHighlight")}</span>
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-base text-zinc-600 dark:text-zinc-400">
-              Comprehensive guides organized by what matters most to you
+              {t("categories.subtitle")}
             </p>
           </div>
 
           {/* Categories Grid - Bento Style */}
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
             {categories.map((category, index) => (
               <CategoryCard
                 key={category.key}
+                categoryKey={category.key}
                 title={category.title}
                 description={category.description}
                 href={`/category/${category.key}`}
                 icon={category.icon}
                 color={category.color}
                 count={guideCountByCategory(category.key) || "New"}
-                className={index === 0 ? "sm:col-span-2 lg:col-span-1" : ""}
+                className={
+                  index === 0 
+                    ? "sm:col-span-2 lg:col-span-2" 
+                    : index <= 2
+                    ? "lg:col-span-2"
+                    : index === 3
+                    ? "sm:col-span-2 lg:col-span-2 lg:col-start-2"
+                    : "lg:col-span-2"
+                }
               />
             ))}
           </div>
@@ -266,7 +277,7 @@ export default function Home() {
             <Button asChild size="lg" variant="outline" className="group border-2 border-zinc-200 dark:border-white/10 text-zinc-900 dark:text-white hover:border-emerald-500/50 hover:bg-emerald-50 dark:hover:bg-emerald-500/10">
               <Link href="/guides">
                 <BookOpen className="mr-2 h-4 w-4" />
-                Browse All Guides
+                {t("categories.browseAll")}
                 <ChevronRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </Button>
@@ -308,9 +319,9 @@ export default function Home() {
                       </div>
                     </div>
                   </div>
-                  <h3 className="text-center text-2xl font-bold text-zinc-900 dark:text-white">Built Together</h3>
+                  <h3 className="text-center text-2xl font-bold text-zinc-900 dark:text-white">{t("builtTogether")}</h3>
                   <p className="mt-1 text-center text-base text-zinc-600 dark:text-white/80">
-                    By the community, for the community
+                    {t("byTheCommunity")}
                   </p>
                 </div>
               </div>
@@ -322,8 +333,8 @@ export default function Home() {
                     <span className="text-xl">🇲🇦</span>
                   </div>
                   <div>
-                    <div className="text-xs font-semibold text-zinc-900 dark:text-white">Moroccan Roots</div>
-                    <div className="text-xs text-zinc-500">Authentic guidance</div>
+                    <div className="text-xs font-semibold text-zinc-900 dark:text-white">{t("moroccanRoots")}</div>
+                    <div className="text-xs text-zinc-500">{t("authenticGuidance")}</div>
                   </div>
                 </div>
               </div>
@@ -334,8 +345,8 @@ export default function Home() {
                     <span className="text-xl">🏰</span>
                   </div>
                   <div>
-                    <div className="text-xs font-semibold text-zinc-900 dark:text-white">Munich Life</div>
-                    <div className="text-xs text-zinc-500">Local expertise</div>
+                    <div className="text-xs font-semibold text-zinc-900 dark:text-white">{t("munichLife")}</div>
+                    <div className="text-xs text-zinc-500">{t("localExpertise")}</div>
                   </div>
                 </div>
               </div>
@@ -345,30 +356,30 @@ export default function Home() {
             <div>
               <Badge className="mb-3 border-amber-500/30 bg-amber-100 dark:bg-amber-500/10 text-amber-700 dark:text-amber-400">
                 <Heart className="mr-1.5 h-3.5 w-3.5" />
-                Our Story
+                {t("community.badge")}
               </Badge>
               <h2 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-4xl">
-                Making Munich Feel
-                <span className="text-emerald-600 dark:text-emerald-400"> Like Home</span>
+                {t("community.title")}
+                <span className="text-emerald-600 dark:text-emerald-400">{t("community.titleHighlight")}</span>
               </h2>
               <p className="mt-5 text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
-                We know the struggle — navigating German bureaucracy, finding halal food, understanding university systems, and feeling a bit lost in a new city. 
+                {t("community.description1")} 
               </p>
               <p className="mt-3 text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
-                That&apos;s why we built <span className="font-semibold text-zinc-900 dark:text-white">Atlas Munich</span> — a collective knowledge base where every tip, every guide, and every hidden gem comes from people who&apos;ve walked the same path.
+                {t("community.description2")} <span className="font-semibold text-zinc-900 dark:text-white">{t("community.atlasName")}</span>{t("community.description3")}
               </p>
 
               <div className="mt-6 flex flex-wrap gap-3">
                 <Button asChild className="text-white bg-emerald-600 shadow-lg hover:bg-emerald-500">
                   <Link href="/about">
                     <Users className="mr-2 h-4 w-4" />
-                    About Our Community
+                    {t("community.aboutCommunity")}
                   </Link>
                 </Button>
                 <Button asChild variant="outline" className="border-2 border-zinc-200 dark:border-white/10 text-zinc-900 dark:text-white hover:border-emerald-500/50 hover:bg-emerald-50 dark:hover:bg-emerald-500/10">
                   <Link href="/faq">
                     <HelpCircle className="mr-2 h-4 w-4" />
-                    Common Questions
+                    {t("community.commonQuestions")}
                   </Link>
                 </Button>
               </div>
@@ -386,19 +397,18 @@ export default function Home() {
         <div className="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
           <Badge className="mb-5 border-emerald-500/30 bg-emerald-100 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400">
             <Sparkles className="mr-1.5 h-3.5 w-3.5" />
-            Open Source
+            {t("cta.badge")}
           </Badge>
           
           <h2 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-4xl">
-            Help Us Grow This
+            {t("cta.title")}
             <span className="block bg-gradient-to-r from-red-600 via-amber-500 to-green-600 dark:from-red-500 dark:via-amber-400 dark:to-green-500 bg-clip-text text-transparent">
-              Knowledge Hub
+              {t("cta.titleHighlight")}
             </span>
           </h2>
           
           <p className="mx-auto mt-5 max-w-2xl text-base text-zinc-600 dark:text-zinc-400">
-            Every correction, every new guide, every shared experience helps the next Moroccan arriving in Munich. 
-            Your knowledge is valuable — share it with the community.
+            {t("cta.description")}
           </p>
 
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
@@ -409,12 +419,12 @@ export default function Home() {
                 rel="noopener noreferrer"
               >
                 <Sparkles className="mr-2 h-4 w-4" />
-                Contribute on GitHub
+                {t("cta.contributeGithub")}
               </Link>
             </Button>
             <Button asChild variant="outline" className="border-2 border-zinc-200 dark:border-zinc-700 px-6 text-zinc-900 dark:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800">
               <Link href="/about">
-                Learn How
+                {t("cta.learnHow")}
                 <ChevronRight className="ml-2 h-4 w-4" />
               </Link>
             </Button>
@@ -423,9 +433,9 @@ export default function Home() {
           {/* Trust Badges */}
           <div className="mt-10 flex flex-wrap items-center justify-center gap-6 text-sm text-zinc-500">
             {[
-              { icon: CheckCircle2, text: "100% Free Forever" },
-              { icon: Users, text: "Community Driven" },
-              { icon: Heart, text: "Made with Love" },
+              { icon: CheckCircle2, text: t("cta.freeForever") },
+              { icon: Users, text: t("cta.communityDriven") },
+              { icon: Heart, text: t("cta.madeWithLove") },
             ].map((item) => (
               <div key={item.text} className="flex items-center gap-2">
                 <item.icon className="h-4 w-4 text-emerald-500" />

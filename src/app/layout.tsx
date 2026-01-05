@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages, getLocale } from "next-intl/server";
 import { Header, Footer } from "@/components/layout";
 import { ThemeProvider } from "@/components/shared";
 import "./globals.css";
@@ -46,30 +48,48 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = await getLocale();
+  const messages = await getMessages();
+  
+  // Extract nav translations for the header
+  const navTranslations = messages.nav as {
+    home: string;
+    guides: string;
+    places: string;
+    faq: string;
+    about: string;
+    search: string;
+    explore: string;
+    exploreAll: string;
+    toggleTheme: string;
+  };
+
   return (
     <html
-      lang="en"
+      lang={locale}
       suppressHydrationWarning
       className={[geistSans.variable, geistMono.variable, "antialiased"].join(
         " "
       )}
     >
       <body className="min-h-screen bg-white transition-colors dark:bg-zinc-950">
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="dark"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Header />
-          <main>{children}</main>
-          <Footer />
-        </ThemeProvider>
+        <NextIntlClientProvider messages={messages}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <Header locale={locale as "en" | "fr"} translations={navTranslations} />
+            <main>{children}</main>
+            <Footer />
+          </ThemeProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

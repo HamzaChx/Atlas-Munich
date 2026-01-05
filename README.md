@@ -1,6 +1,9 @@
 <div align="center">
 
-# <img src="./public/logo.png" alt="Atlas Munich Logo" height="42" style="vertical-align: middle; border-radius: 8px;" /> Atlas Munich
+<h1>
+  <img src="./public/logo.png" alt="Atlas Munich Logo" height="42" style="vertical-align: middle; border-radius: 8px; margin-right: 8px;" />
+  <span style="vertical-align: middle;">Atlas Munich</span>
+</h1>
 
 **Your Complete Guide to Thriving in Munich**
 

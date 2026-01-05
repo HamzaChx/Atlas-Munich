@@ -17,7 +17,16 @@ import {
   MapPin,
   Sparkles,
   Github,
+  ChevronRight,
 } from "lucide-react";
+
+/**
+ * Header component following premium UI principles:
+ * - Rule 6: Visual hierarchy obvious in under 1 second
+ * - Rule 8: UI feels invisible - users focus on content
+ * - Rule 17: One primary action per screen (Explore CTA)
+ * - Rule 35: Animations 150-300ms
+ */
 
 const navItems = [
   { label: "Home", href: "/", icon: Home },
@@ -43,12 +52,12 @@ export function Header() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Dynamic styles based on scroll and page
+  // Dynamic styles based on scroll and page - Rule 35: 150-300ms transitions
   const headerBg = scrolled
-    ? "bg-white/95 dark:bg-zinc-950/95 backdrop-blur-xl border-b border-zinc-200 dark:border-white/10 shadow-sm dark:shadow-none"
+    ? "bg-white/98 dark:bg-zinc-950/98 backdrop-blur-2xl border-b border-zinc-200/80 dark:border-white/8 shadow-[0_1px_3px_0_rgb(0_0_0_/_0.05)] dark:shadow-none"
     : isHomePage
-    ? "bg-transparent"
-    : "bg-white dark:bg-zinc-950 border-b border-zinc-200 dark:border-white/10";
+    ? "bg-transparent border-b border-transparent"
+    : "bg-white dark:bg-zinc-950 border-b border-zinc-200/80 dark:border-white/8";
 
   return (
     <header
@@ -57,10 +66,11 @@ export function Header() {
         headerBg
       )}
     >
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        {/* Logo */}
-        <Link href="/" className="group flex items-center gap-3">
-          <div className="relative h-10 w-10 overflow-hidden rounded-full border border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-white/5 backdrop-blur-sm transition-all group-hover:border-emerald-500/30 group-hover:bg-emerald-50 dark:group-hover:bg-emerald-500/10">
+      {/* Rule 12: Max content width 1100-1280px for readability */}
+      <div className="mx-auto flex h-16 max-w-[1280px] items-center justify-between px-4 sm:px-6 lg:px-8">
+        {/* Logo - Rule 34: Hover states required */}
+        <Link href="/" className="group flex items-center gap-3 outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-lg">
+          <div className="relative h-10 w-10 overflow-hidden rounded-full border border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-white/5 backdrop-blur-sm transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:border-emerald-500/40 group-hover:bg-emerald-50 dark:group-hover:bg-emerald-500/10 group-hover:shadow-sm group-hover:shadow-emerald-500/10">
             <img 
               src="/logo.png" 
               alt="Atlas Munich Logo" 
@@ -87,9 +97,9 @@ export function Header() {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-all",
+                  "flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                   isActive
-                    ? "bg-emerald-100 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-400"
+                    ? "bg-emerald-100 dark:bg-emerald-500/15 text-emerald-700 dark:text-emerald-400 shadow-sm shadow-emerald-500/5"
                     : "text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-white/5 hover:text-zinc-900 dark:hover:text-white"
                 )}
               >
@@ -135,15 +145,16 @@ export function Header() {
             </Link>
           </Button>
 
-          {/* CTA Button */}
+          {/* CTA Button - Rule 17: One primary action per screen */}
           <Button
             asChild
             size="sm"
-            className="hidden bg-emerald-600 text-white hover:bg-emerald-500 sm:flex"
+            className="hidden bg-emerald-600 text-white shadow-sm shadow-emerald-600/25 hover:bg-emerald-500 hover:shadow-md hover:shadow-emerald-500/30 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] sm:flex"
           >
             <Link href="/guides">
               <BookOpen className="mr-1.5 h-4 w-4" />
               Explore
+              <ChevronRight className="ml-0.5 h-3.5 w-3.5 opacity-60" />
             </Link>
           </Button>
 
@@ -164,9 +175,13 @@ export function Header() {
         </div>
       </div>
 
-      {/* Mobile Navigation */}
-      {mobileMenuOpen && (
-        <div className="border-t border-zinc-200 dark:border-white/10 bg-white/98 dark:bg-zinc-950/98 backdrop-blur-xl md:hidden">
+      {/* Mobile Navigation - Rule 36: Motion to explain cause and effect */}
+      <div 
+        className={cn(
+          "border-t border-zinc-200/80 dark:border-white/8 bg-white/98 dark:bg-zinc-950/98 backdrop-blur-2xl md:hidden overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]",
+          mobileMenuOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+        )}
+      >
           <nav className="mx-auto max-w-7xl space-y-1 px-4 py-4">
             {navItems.map((item) => {
               const isActive =
@@ -179,9 +194,9 @@ export function Header() {
                   href={item.href}
                   onClick={() => setMobileMenuOpen(false)}
                   className={cn(
-                    "flex items-center gap-3 rounded-xl px-4 py-3 text-base font-medium transition-all",
+                    "flex items-center gap-3 rounded-xl px-4 py-3.5 text-base font-medium transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98]",
                     isActive
-                      ? "bg-emerald-100 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-400"
+                      ? "bg-emerald-100 dark:bg-emerald-500/15 text-emerald-700 dark:text-emerald-400"
                       : "text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-white/5 hover:text-zinc-900 dark:hover:text-white"
                   )}
                 >
@@ -221,7 +236,6 @@ export function Header() {
             </div>
           </nav>
         </div>
-      )}
     </header>
   );
 }

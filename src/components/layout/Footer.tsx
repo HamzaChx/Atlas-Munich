@@ -1,5 +1,14 @@
 import Link from "next/link";
-import { Sparkles, Heart, Github, Mail, ArrowUpRight } from "lucide-react";
+import { Sparkles, Heart, Github, Mail, ArrowUpRight, MapPin } from "lucide-react";
+
+/**
+ * Footer component following premium UI principles:
+ * - Rule 11: 8-point spacing system
+ * - Rule 13: Use whitespace aggressively (luxury brands)
+ * - Rule 14: Align everything
+ * - Rule 34: Hover states required
+ * - Rule 35: Animations 150-300ms
+ */
 
 const footerLinks = {
   guides: [
@@ -23,7 +32,7 @@ const footerLinks = {
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-zinc-50 dark:bg-zinc-950">
+    <footer className="relative overflow-hidden bg-zinc-50/80 dark:bg-zinc-950/80 backdrop-blur-sm">
       {/* Moroccan Pattern Background */}
       <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.02]">
         <svg className="h-full w-full" xmlns="http://www.w3.org/2000/svg">
@@ -37,15 +46,16 @@ export function Footer() {
         </svg>
       </div>
 
-      {/* Top gradient line */}
-      <div className="h-px bg-gradient-to-r from-transparent via-emerald-500/50 to-transparent" />
+      {/* Top gradient line - Moroccan colors */}
+      <div className="h-px bg-gradient-to-r from-transparent via-emerald-500/40 to-transparent" />
 
-      <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      {/* Rule 11: 8-point spacing system - py-20 = 80px */}
+      <div className="relative mx-auto max-w-[1280px] px-4 py-20 sm:px-6 lg:px-8">
         <div className="grid gap-12 lg:grid-cols-5">
           {/* Brand Section - Larger */}
           <div className="lg:col-span-2">
-            <Link href="/" className="group inline-flex items-center gap-2">
-              <div className="flex items-center justify-center gap-1.5 rounded-full border border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 px-3 py-1.5 shadow-sm dark:shadow-none backdrop-blur-sm transition-all group-hover:border-emerald-500/30 group-hover:bg-emerald-50 dark:group-hover:bg-emerald-500/10">
+            <Link href="/" className="group inline-flex items-center gap-2.5 outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-lg">
+              <div className="flex items-center justify-center gap-1.5 rounded-full border border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 px-3.5 py-2 shadow-sm dark:shadow-none backdrop-blur-sm transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:border-emerald-500/30 group-hover:bg-emerald-50 dark:group-hover:bg-emerald-500/10 group-hover:shadow-md group-hover:shadow-emerald-500/5">
                 <span className="text-lg" role="img" aria-label="Morocco flag">🇲🇦</span>
                 <Sparkles className="h-3 w-3 text-amber-500 dark:text-amber-400" />
                 <span className="text-lg" role="img" aria-label="Germany flag">🇩🇪</span>
@@ -58,25 +68,24 @@ export function Footer() {
               </span>
             </Link>
             
-            <p className="mt-6 max-w-sm text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-              Your complete guide to thriving in Munich as a Moroccan student or professional.
-              Built by the community, for the community.
+            <p className="mt-6 max-w-sm text-[15px] leading-relaxed text-zinc-600 dark:text-zinc-400">
+              Your complete guide to thriving in Munich as a Moroccan student or young professional.
             </p>
 
-            {/* Social Links */}
+            {/* Social Links - Rule 34: Hover states required */}
             <div className="mt-8 flex items-center gap-3">
               <Link
                 href="https://github.com/HamzaChx/Atlas-Munich"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 text-zinc-600 dark:text-zinc-400 shadow-sm dark:shadow-none transition-all hover:border-emerald-500/30 hover:bg-emerald-50 dark:hover:bg-emerald-500/10 hover:text-emerald-600 dark:hover:text-emerald-400"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 text-zinc-600 dark:text-zinc-400 shadow-sm dark:shadow-none transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:border-emerald-500/30 hover:bg-emerald-50 dark:hover:bg-emerald-500/10 hover:text-emerald-600 dark:hover:text-emerald-400 hover:shadow-md hover:shadow-emerald-500/5 outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/50 focus-visible:ring-offset-2 active:scale-95"
               >
                 <Github className="h-5 w-5" />
                 <span className="sr-only">GitHub</span>
               </Link>
               <Link
                 href="mailto:hello@atlas-munich.de"
-                className="flex h-10 w-10 items-center justify-center rounded-full border border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 text-zinc-600 dark:text-zinc-400 shadow-sm dark:shadow-none transition-all hover:border-emerald-500/30 hover:bg-emerald-50 dark:hover:bg-emerald-500/10 hover:text-emerald-600 dark:hover:text-emerald-400"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 text-zinc-600 dark:text-zinc-400 shadow-sm dark:shadow-none transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:border-emerald-500/30 hover:bg-emerald-50 dark:hover:bg-emerald-500/10 hover:text-emerald-600 dark:hover:text-emerald-400 hover:shadow-md hover:shadow-emerald-500/5 outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/50 focus-visible:ring-offset-2 active:scale-95"
               >
                 <Mail className="h-5 w-5" />
                 <span className="sr-only">Email</span>
@@ -94,10 +103,10 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="group flex items-center gap-1 text-sm text-zinc-600 dark:text-zinc-400 transition-colors hover:text-emerald-600 dark:hover:text-emerald-400"
+                    className="group inline-flex items-center gap-1 text-[15px] text-zinc-600 dark:text-zinc-400 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:text-emerald-600 dark:hover:text-emerald-400 outline-none focus-visible:text-emerald-600 dark:focus-visible:text-emerald-400"
                   >
                     {link.label}
-                    <ArrowUpRight className="h-3 w-3 opacity-0 transition-all group-hover:opacity-100" />
+                    <ArrowUpRight className="h-3 w-3 opacity-0 -translate-x-1 translate-y-1 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0" />
                   </Link>
                 </li>
               ))}
@@ -114,10 +123,10 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="group flex items-center gap-1 text-sm text-zinc-600 dark:text-zinc-400 transition-colors hover:text-emerald-600 dark:hover:text-emerald-400"
+                    className="group inline-flex items-center gap-1 text-[15px] text-zinc-600 dark:text-zinc-400 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:text-emerald-600 dark:hover:text-emerald-400 outline-none focus-visible:text-emerald-600 dark:focus-visible:text-emerald-400"
                   >
                     {link.label}
-                    <ArrowUpRight className="h-3 w-3 opacity-0 transition-all group-hover:opacity-100" />
+                    <ArrowUpRight className="h-3 w-3 opacity-0 -translate-x-1 translate-y-1 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0" />
                   </Link>
                 </li>
               ))}
@@ -134,10 +143,10 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="group flex items-center gap-1 text-sm text-zinc-600 dark:text-zinc-400 transition-colors hover:text-emerald-600 dark:hover:text-emerald-400"
+                    className="group inline-flex items-center gap-1 text-[15px] text-zinc-600 dark:text-zinc-400 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:text-emerald-600 dark:hover:text-emerald-400 outline-none focus-visible:text-emerald-600 dark:focus-visible:text-emerald-400"
                   >
                     {link.label}
-                    <ArrowUpRight className="h-3 w-3 opacity-0 transition-all group-hover:opacity-100" />
+                    <ArrowUpRight className="h-3 w-3 opacity-0 -translate-x-1 translate-y-1 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:opacity-100 group-hover:translate-x-0 group-hover:translate-y-0" />
                   </Link>
                 </li>
               ))}
@@ -145,25 +154,13 @@ export function Footer() {
           </div>
         </div>
 
-        {/* Bottom Section */}
-        <div className="mt-16 flex flex-col items-center justify-between gap-6 border-t border-zinc-200 dark:border-white/10 pt-8 sm:flex-row">
-          <p className="text-sm text-zinc-500">
-            © {new Date().getFullYear()} Atlas Munich. All rights reserved.
-          </p>
-          
-          <p className="flex items-center gap-1.5 text-sm text-zinc-500">
-            Built with{" "}
-            <Heart className="h-4 w-4 fill-rose-500 text-rose-500" />{" "}
-            by{" "}
-            <Link
-              href="https://github.com/HamzaChx"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-medium text-zinc-700 dark:text-zinc-300 transition-colors hover:text-emerald-600 dark:hover:text-emerald-400"
-            >
-              Hamza Chaouki
-            </Link>
-          </p>
+        {/* Bottom Section - Rule 14: Align everything */}
+        <div className="mt-20 flex flex-col items-center justify-between gap-6 border-t border-zinc-200/80 dark:border-white/8 pt-10 sm:flex-row">
+          <div className="flex flex-col items-center gap-3 sm:flex-row sm:gap-6">
+            <p className="text-sm text-zinc-500">
+              © {new Date().getFullYear()} Atlas Munich. All rights reserved.
+            </p>
+          </div>
         </div>
 
       </div>

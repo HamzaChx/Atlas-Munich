@@ -5,6 +5,14 @@ import { ArrowRight, Clock, CheckCircle2 } from "lucide-react";
 import { Guide, ContentTag } from "@/types";
 import { fmtUpdated } from "@/lib/date";
 
+/**
+ * GuideCard component following premium UI principles:
+ * - Rule 6: Visual hierarchy obvious in under 1 second
+ * - Rule 34: Hover states required on desktop
+ * - Rule 35: Animations 150-300ms
+ * - Rule 37: Skeleton loaders beat spinners (prep for loading state)
+ * - Rule 43: Avoid layout shifts
+ */
 interface GuideCardProps {
   guide: Guide;
   className?: string;
@@ -12,31 +20,37 @@ interface GuideCardProps {
 }
 
 const tagColors: Record<ContentTag, string> = {
-  newcomer: "border-blue-500/30 bg-blue-500/10 text-blue-400",
-  urgent: "border-red-500/30 bg-red-500/10 text-red-400",
-  documents: "border-amber-500/30 bg-amber-500/10 text-amber-400",
-  tips: "border-emerald-500/30 bg-emerald-500/10 text-emerald-400",
-  official: "border-purple-500/30 bg-purple-500/10 text-purple-400",
-  "community-verified": "border-teal-500/30 bg-teal-500/10 text-teal-400",
-  "budget-friendly": "border-green-500/30 bg-green-500/10 text-green-400",
-  "time-sensitive": "border-orange-500/30 bg-orange-500/10 text-orange-400",
+  newcomer: "border-blue-500/30 bg-blue-500/10 text-blue-600 dark:text-blue-400",
+  urgent: "border-red-500/30 bg-red-500/10 text-red-600 dark:text-red-400",
+  documents: "border-amber-500/30 bg-amber-500/10 text-amber-600 dark:text-amber-400",
+  tips: "border-emerald-500/30 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400",
+  official: "border-purple-500/30 bg-purple-500/10 text-purple-600 dark:text-purple-400",
+  "community-verified": "border-teal-500/30 bg-teal-500/10 text-teal-600 dark:text-teal-400",
+  "budget-friendly": "border-green-500/30 bg-green-500/10 text-green-600 dark:text-green-400",
+  "time-sensitive": "border-orange-500/30 bg-orange-500/10 text-orange-600 dark:text-orange-400",
 };
 
 export function GuideCard({ guide, className, showCategory = true }: GuideCardProps) {
   return (
-    <Link href={`/guides/${guide.slug}`} className={cn("group block", className)}>
-      <div className="relative h-full overflow-hidden rounded-2xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900/50 p-5 shadow-sm dark:shadow-none transition-all duration-300 hover:-translate-y-0.5 hover:border-emerald-200 dark:hover:border-emerald-500/30 hover:bg-zinc-50 dark:hover:bg-zinc-800/50 hover:shadow-md dark:hover:shadow-none">
-        {/* Subtle gradient on hover */}
-        <div className="absolute -right-16 -top-16 h-32 w-32 rounded-full bg-emerald-500/0 blur-2xl transition-all duration-500 group-hover:bg-emerald-500/10" />
+    <Link 
+      href={`/guides/${guide.slug}`} 
+      className={cn(
+        "group block outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-2xl", 
+        className
+      )}
+    >
+      <div className="relative h-full overflow-hidden rounded-2xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900/50 p-6 shadow-sm dark:shadow-none transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:border-emerald-200 dark:hover:border-emerald-500/30 hover:bg-zinc-50/80 dark:hover:bg-zinc-800/50 hover:shadow-lg hover:shadow-zinc-200/50 dark:hover:shadow-none">
+        {/* Subtle gradient glow on hover - Rule 44: Micro-interactions sparingly */}
+        <div className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-emerald-500/0 blur-3xl transition-all duration-500 ease-out group-hover:bg-emerald-500/10" />
 
         {/* Content */}
         <div className="relative">
-          {/* Tags */}
-          <div className="mb-3 flex flex-wrap items-center gap-2">
+          {/* Tags - Rule 6: Visual hierarchy */}
+          <div className="mb-4 flex flex-wrap items-center gap-2">
             {showCategory && (
               <Badge 
                 variant="secondary" 
-                className="border-zinc-200 dark:border-white/10 bg-zinc-100 dark:bg-white/5 font-medium capitalize text-zinc-700 dark:text-zinc-300"
+                className="border-zinc-200 dark:border-white/10 bg-zinc-100 dark:bg-white/5 font-medium capitalize text-zinc-700 dark:text-zinc-300 text-xs"
               >
                 {guide.categoryKey.replace(/-/g, " ")}
               </Badge>
@@ -44,42 +58,82 @@ export function GuideCard({ guide, className, showCategory = true }: GuideCardPr
             {guide.tags.slice(0, 2).map((tag) => (
               <Badge 
                 key={tag} 
-                className={cn("border text-xs", tagColors[tag])}
+                className={cn("border text-xs font-medium", tagColors[tag])}
               >
                 {tag}
               </Badge>
             ))}
           </div>
 
-          {/* Title */}
-          <h3 className="line-clamp-2 text-lg font-semibold leading-snug text-zinc-900 dark:text-white transition-colors group-hover:text-emerald-600 dark:group-hover:text-emerald-400">
+          {/* Title - Rule 25: Headings communicate meaning */}
+          <h3 className="line-clamp-2 text-lg font-semibold leading-snug tracking-tight text-zinc-900 dark:text-white transition-colors duration-200 group-hover:text-emerald-600 dark:group-hover:text-emerald-400">
             {guide.title}
           </h3>
 
-          {/* Summary */}
-          <p className="mt-2 line-clamp-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+          {/* Summary - Rule 24: Break content every 2-3 lines */}
+          <p className="mt-3 line-clamp-2 text-[15px] leading-relaxed text-zinc-600 dark:text-zinc-400">
             {guide.summary}
           </p>
 
-          {/* Footer */}
-          <div className="mt-4 flex items-center justify-between border-t border-zinc-100 dark:border-white/5 pt-4 text-xs text-zinc-500">
-            <div className="flex items-center gap-3">
-              <span className="flex items-center gap-1">
+          {/* Footer - Rule 16: Group related elements visually */}
+          <div className="mt-5 flex items-center justify-between border-t border-zinc-100 dark:border-white/5 pt-4 text-xs text-zinc-500">
+            <div className="flex items-center gap-4">
+              <span className="flex items-center gap-1.5">
                 <Clock className="h-3.5 w-3.5" />
                 {guide.readingTime} min
               </span>
-              <span className="flex items-center gap-1">
+              <span className="flex items-center gap-1.5">
                 <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500" />
                 {fmtUpdated(guide.lastUpdated)}
               </span>
             </div>
-            <span className="flex items-center font-medium text-emerald-600 dark:text-emerald-400 transition-transform group-hover:translate-x-0.5">
+            <span className="flex items-center font-medium text-emerald-600 dark:text-emerald-400 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-0.5">
               Read
-              <ArrowRight className="ml-1 h-3.5 w-3.5" />
+              <ArrowRight className="ml-1 h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
             </span>
           </div>
         </div>
       </div>
     </Link>
+  );
+}
+
+/**
+ * Skeleton loader for GuideCard - Rule 37
+ */
+export function GuideCardSkeleton({ className }: { className?: string }) {
+  return (
+    <div className={cn("block", className)}>
+      <div className="relative h-full overflow-hidden rounded-2xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900/50 p-6">
+        <div className="space-y-4">
+          {/* Tags skeleton */}
+          <div className="flex gap-2">
+            <div className="h-5 w-20 rounded-full skeleton" />
+            <div className="h-5 w-16 rounded-full skeleton" />
+          </div>
+          
+          {/* Title skeleton */}
+          <div className="space-y-2">
+            <div className="h-5 w-full rounded skeleton" />
+            <div className="h-5 w-3/4 rounded skeleton" />
+          </div>
+          
+          {/* Summary skeleton */}
+          <div className="space-y-2">
+            <div className="h-4 w-full rounded skeleton" />
+            <div className="h-4 w-5/6 rounded skeleton" />
+          </div>
+          
+          {/* Footer skeleton */}
+          <div className="mt-5 flex items-center justify-between border-t border-zinc-100 dark:border-white/5 pt-4">
+            <div className="flex gap-4">
+              <div className="h-4 w-16 rounded skeleton" />
+              <div className="h-4 w-20 rounded skeleton" />
+            </div>
+            <div className="h-4 w-12 rounded skeleton" />
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }

@@ -1,6 +1,6 @@
 export { SearchBar } from "./SearchBar";
 export { CategoryCard } from "./CategoryCard";
-export { GuideCard } from "./GuideCard";
+export { GuideCard, GuideCardSkeleton } from "./GuideCard";
 export { Breadcrumbs } from "./Breadcrumbs";
 export { TableOfContents } from "./TableOfContents";
 export { FAQAccordion } from "./FAQAccordion";
@@ -12,3 +12,4 @@ export { HeroBadge } from "./HeroBadge";
 export { ThemeProvider } from "./ThemeProvider";
 export { ThemeToggle } from "./ThemeToggle";
 export { ShareButton } from "./ShareButton";
+export { PageTransition, StaggerChildren, RevealSection } from "./PageTransition";

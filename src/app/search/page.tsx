@@ -102,16 +102,6 @@ function SearchContent() {
     "grocery",
   ];
 
-  // Category icons
-  const categoryIcons: Record<string, string> = {
-    "rent-housing": "🏠",
-    "kvr-residence": "📋",
-    "university-life": "🎓",
-    "halal-food": "🍽️",
-    "career": "💼",
-    "useful-apps": "📱",
-  };
-
   return (
     <div className="min-h-screen bg-white dark:bg-zinc-950">
       {/* Hero Section - Purple/Indigo Theme */}
@@ -207,7 +197,7 @@ function SearchContent() {
                 </div>
                 <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">{t("noResults")}</h3>
                 <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-                  {t("noResultsDescription")} "{searchQuery}". {t("tryDifferent")}
+                  {t("noResultsDescription")} &ldquo;{searchQuery}&rdquo;. {t("tryDifferent")}
                 </p>
               </div>
             ) : (

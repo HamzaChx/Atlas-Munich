@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 
-const locales = ["en", "fr", "de"] as const;
+const locales = ["en", "fr", "de", "ar"] as const;
 const defaultLocale = "en";
 const COOKIE_NAME = "NEXT_LOCALE";
 

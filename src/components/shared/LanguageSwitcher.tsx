@@ -11,6 +11,7 @@ const languages: { code: Locale; label: string; flag: string }[] = [
   { code: "en", label: "English", flag: "🇬🇧" },
   { code: "fr", label: "Français", flag: "🇫🇷" },
   { code: "de", label: "Deutsch", flag: "🇩🇪" },
+  { code: "ar", label: "Darija", flag: "🇲🇦" },
 ];
 
 interface LanguageSwitcherProps {

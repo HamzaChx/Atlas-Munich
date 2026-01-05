@@ -1,0 +1,305 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "guides": "Guides",
+    "places": "Blayess",
+    "faq": "As2ila Cha2i3a",
+    "about": "3lina",
+    "search": "B7eth",
+    "explore": "Ktachef",
+    "exploreAll": "Chouf Ga3 l'Guides",
+    "toggleTheme": "Beddel Theme"
+  },
+  "home": {
+    "heroTitle": "L Guide Kamel Dyalek Bach",
+    "heroTitleHighlight": "T3ich Mezyan f Munich",
+    "heroSubtitle": "Msnou3 mn taraf",
+    "heroCommunity": "l'Community l'Maghribiya",
+    "heroSubtitle2": ", l l'Community l'Maghribiya. Kolchi li khessek bach t3ref l7ayat f Munich — mn awal Anmeldung 7ta l a7sen tajine f l'mdina.",
+    "searchPlaceholder": "9elleb 3la guides, blayess, wla ajwiba...",
+    "quickLinks": {
+      "findHousing": "L9a Sken",
+      "kvrRegistration": "Tsjil KVR",
+      "halalFood": "Makla 7alal",
+      "allGuides": "Ga3 l'Guides"
+    },
+    "stats": {
+      "guides": "Guides",
+      "places": "Blayess",
+      "faqsAnswered": "As2ila Mjawbin 3liha",
+      "freeAndOpen": "Majjani w Meftou7"
+    },
+    "categories": {
+      "badge": "Tne99el f Munich",
+      "title": "Kolchi li Khessek,",
+      "titleHighlight": "F Blassa We7da",
+      "subtitle": "Guides kamlin mneddmin 7sab li mohim lik",
+      "browseAll": "Chouf Ga3 l'Guides"
+    },
+    "community": {
+      "badge": "L9issa Dyalna",
+      "title": "Nkhelliw Munich Tkoun",
+      "titleHighlight": " B7al Dar",
+      "description1": "Kan3arfo sou3oubat — l'ta3amol m3a l'bureaucratie l'Almanya, l9a l'makla l'7alal, fhem systeme l'jami3a, w l'i7sas b chwiya dya3 f mdina jdida.",
+      "description2": "3lach bnina",
+      "atlasName": "Atlas Munich",
+      "description3": " — 9a3ida dyal ma3rifa jama3iya fin kol nsi7a, kol guide, w kol blassa mkhabbya jaya mn nas mchaw f nefs tri9.",
+      "aboutCommunity": "3lina w 3la l'Community",
+      "commonQuestions": "As2ila Cha2i3a"
+    },
+    "cta": {
+      "badge": "Open Source",
+      "title": "3awenna Nkabbro Had",
+      "titleHighlight": "Maktaba dyal l'Ma3lomat",
+      "description": "Kol tss7i7, kol guide jdid, kol tajriba mcherka ktsa3ed l'Maghribi jay l Munich. L'ma3rifa dyalek ghalya — charkha m3a l'community.",
+      "contributeGithub": "Sahem f GitHub",
+      "learnHow": "T3allem Kifach",
+      "freeForever": "100% Majjani l l'Abad",
+      "communityDriven": "Mdfou3 mn l'Community",
+      "madeWithLove": "Msnou3 b l'7ob"
+    },
+    "builtTogether": "Mebni b Jma3a",
+    "byTheCommunity": "Mn l'Community, l l'Community",
+    "moroccanRoots": "Jdour Maghribiya",
+    "authenticGuidance": "Irchad Asil",
+    "munichLife": "L7ayat f Munich",
+    "localExpertise": "Khibra Ma7alliya"
+  },
+  "places": {
+    "badge": "Blayess Mwetto9a",
+    "title": "Dalil",
+    "titleHighlight": "l'Blayess",
+    "subtitle": "Ristorat 7alal, m7allat Maghribiya, jwame3, blayess dyal l9raya, w bzzaf — kolhom mwetto9in mn l'community dyalna.",
+    "searchPlaceholder": "9elleb 3la blayess b l'ism, tag, wla maw9i3...",
+    "filters": {
+      "all": "Kolchi",
+      "restaurants": "Ristorat",
+      "butchers": "9essaba",
+      "mosques": "Jwame3",
+      "studySpots": "Blayess dyal l9raya"
+    },
+    "results": {
+      "place": "Blassa",
+      "places": "Blayess",
+      "in": "F",
+      "matching": "Mtabe9 l",
+      "clearFilters": "Mse7 l'Filtrat"
+    },
+    "viewMode": {
+      "grid": "Chabaka",
+      "map": "Kharita"
+    },
+    "mapNote": "Kliki 3la l'markers bach tchouf tafassil. Ghir l'blayess li 3andhom coordinates kaybanin 3la l'kharita.",
+    "noResults": "Ma l9inach blayess",
+    "noResultsDescription": "Jerreb t3addel l'b7eth wla l'filtrat dyalek.",
+    "cta": {
+      "icon": "🍽️",
+      "title": "Kat3ref chi blassa mezyana?",
+      "description": "3awenna nkabbro dalil dyalna bach t9tere7 ristorat 7alal jdad, m7allat, wla amaken dyal l'community.",
+      "button": "9tere7 Blassa"
+    },
+    "card": {
+      "website": "L'Maw9i3",
+      "directions": "Ittijahat",
+      "readMore": "9ra Kter",
+      "showLess": "Werri 9ell",
+      "verified": "Mwetto9"
+    }
+  },
+  "guides": {
+    "badge": "Guides dyal l'Community",
+    "title": "L Guide Kamel",
+    "titleHighlight": "Dyal Munich",
+    "subtitle": "Mn awal jour dyalek 7ta t7ess b ra7tek — guides kamlin mktoubin mn",
+    "subtitleHighlight": " Magharba 3achow nefs tajriba",
+    "searchPlaceholder": "9elleb 3la nsa2i7 sken, ma3loumat l'visa, makla 7alal...",
+    "stats": {
+      "categories": "Fi2at",
+      "totalGuides": "Majmou3 l'Guides",
+      "communityVerified": "Mwetto9 mn l'Community"
+    },
+    "categoriesSection": {
+      "badge": "Tseffef 7sab Mawdou3",
+      "title": "Ktachef l'Fi2at",
+      "advancedSearch": "B7eth Mta9addem"
+    },
+    "cta": {
+      "title": "Ma l9itich li katb7eth 3lih?",
+      "description": "L'guides dyalna kaykabrou b sti mrar. Ila 3andek ma3rifa bach tcharkha wla m7taj mosa3ada, nded l l'community.",
+      "browseFaqs": "Chouf As2ila Cha2i3a",
+      "contributeGuide": "Sahem b Guide"
+    }
+  },
+  "faq": {
+    "badge": "As2ila Mjawbin 3liha",
+    "title": "As2ila",
+    "titleHighlight": "Cha2i3a",
+    "subtitle": "Ajwiba sri3a 3la as2ila cha2i3a 3la l7ayat f Munich k talib wla mo7tarif Maghribi.",
+    "searchPlaceholder": "9elleb 3la as2ila...",
+    "filters": {
+      "all": "Kolchi"
+    },
+    "results": {
+      "result": "Natija",
+      "results": "Nata2ij",
+      "for": "L",
+      "clearFilters": "Mse7 l'Filtrat"
+    },
+    "cta": {
+      "title": "Ma l9itich li katb7eth 3lih?",
+      "description": "Chouf l'guides tafsiliya dyalna wla twassal m3a l'community.",
+      "browseGuides": "Tseffef l'Guides",
+      "contactUs": "Twassal M3ana"
+    }
+  },
+  "about": {
+    "badge": "Projet dyal l'Community",
+    "title": "3lina",
+    "titleHighlight": "Atlas Munich",
+    "subtitle": "Atlas Munich howa dalil dyal l'community mebni bach yne99ess sso3oba dyal lwossol l Munich — khossossan l tolba l'Magharba li kayt3amlo m3a l'bureaucratie, sken, w l7ayat lyawmiya.",
+    "howToContribute": "Kifach Tsahem",
+    "getInTouch": "Twassal M3ana",
+    "manifesto": {
+      "badge": "Mebni l l'Wafidin Jdad",
+      "title": "Dalil kay7ess b7al ssa7eb",
+      "description": "Kanrakzo 3la l'khottowat l'3amaliya, tajriba 7a9i9iya, w tafassil ssghar li kaykhalliw Munich sahla.",
+      "items": {
+        "practical": "3amali, Khottwa b Khottwa",
+        "practicalDesc": "Bla blabla — ghir li kaykhddem.",
+        "studentAware": "Wa3i b Tolba",
+        "studentAwareDesc": "Wa9i3 LMU/TUM, mawa3id nihya2iya, w l'andima.",
+        "openSource": "Open Source",
+        "openSourceDesc": "Ay wa7ed y9der y7assno — b chafafiya."
+      }
+    },
+    "story": {
+      "badge": "L9issa Dyalna",
+      "title": "3lach Bnina Hadchi",
+      "p1": "L'inti9al l Munich k talib wla mo7tarif Maghribi momkin ykoun ssa3ib. L'bureaucratie m3a99da, l9a sken ssa3ib, w m3reft fin tl9a makla 7alal kayakhod lwa9t.",
+      "p2Start": "Atlas Munich twelled mn had tajriba.",
+      "p2End": " Bghina nkhal9o massdar wa7ed mwetto9 kayjaweb 3la jami3 as2ila dyal l'wafidin jdad — nefs as2ila li kant 3andna.",
+      "p3": "Lyoum, Atlas Munich hiya majmou3a kbira dyal guides, nsa2i7, w mawarid li kaydirouha mottatawi3in 3achow kolchi w bghaw ysa3do l'akhrin ydiro nefs chi."
+    },
+    "values": {
+      "badge": "Li Kan2amno Bih",
+      "title": "L9iyam Dyalna",
+      "communityFirst": "L'Community Lewwel",
+      "communityFirstDesc": "Mebni mn Magharba f Munich, l Magharba f Munich. Kol nsi7a jaya mn tajriba 7a9i9iya.",
+      "accuracyMatters": "Ddi9a Mohimma",
+      "accuracyMattersDesc": "Kant7a99o mn l'ma3loumat b intiddam w kan7adtho l'guides bach t3akess akher l'ijra2at w l'motatalabat.",
+      "openAndFree": "Meftou7 w Majjani",
+      "openAndFreeDesc": "Jami3 l'mo7tawa majjani w open source. Kan2amno anna l'ma3rifa khassaha tkoun mota7a l jami3."
+    },
+    "contribute": {
+      "badge": "Charek M3ana",
+      "title": "Kifach Tsahem",
+      "description": "Atlas Munich open source w mdfou3 mn l'community. Hakifach t9der tsa3ed:",
+      "suggestUpdates": "9tere7 Ta7didat",
+      "suggestUpdatesDesc": "L9iti ma3loumat 9dima? Kat3ref tri9a a7sen? Twassal m3ana!",
+      "contactUs": "Twassal M3ana",
+      "spreadTheWord": "Ncher l'Kelma",
+      "spreadTheWordDesc": "Charek Atlas Munich m3a Magharba akhrin jayin l Munich. L'klam f l'fomm kaysa3ed!",
+      "share": "Charek"
+    },
+    "contributors": {
+      "badge": "L'Fari9",
+      "title": "L'Mosahemin",
+      "you": "Nta?",
+      "joinTeam": "Nded l l'Fari9!",
+      "contributeOnGithub": "Sahem f GitHub"
+    },
+    "contact": {
+      "title": "Twassal M3ana",
+      "description": "3andek as2ila, i9tira7at, wla bghiti tsellem? Far7anin nssm3o mennek!",
+      "github": "GitHub",
+      "emailUs": "Rasselna"
+    }
+  },
+  "categories": {
+    "rent-housing": {
+      "title": "Kira w Sken",
+      "description": "L9a ch9a9, fhem 3o9od l'kira, tne99el f sou9 sken dyal Munich, w tjenneb nnessaba."
+    },
+    "kvr-residence": {
+      "title": "KVR w Tasri7 l'I9ama",
+      "description": "Tsjil f l'mdina (Anmeldung), tasri7at l'i9ama, temdid l'visa, w jami3 l'ijra2at l'bureaucratiya."
+    },
+    "university-life": {
+      "title": "L7ayat Jami3iya",
+      "description": "Bit9at talib, tikirrat l'fassl dirasi, tsjil f l'courses, maktabat, w mawarid campus."
+    },
+    "career": {
+      "title": "L'Massar l'Mihani w Wada2if",
+      "description": "L'b7eth 3la choghl, tadribat, wada2if Werkstudent, nsa2i7 CV, w a7dath networking."
+    },
+    "useful-apps": {
+      "title": "Tatbi9at w Adawat Mofida",
+      "description": "Tatbi9at asasiya l tne9ol, l'bonok, twasol, w l7ayat lyawmiya f Munich."
+    }
+  },
+  "footer": {
+    "description": "L guide kamel dyalek bach t3ich mezyan f Munich k talib wla mo7tarif chab Maghribi.",
+    "guides": "Guides",
+    "resources": "Mawarid",
+    "community": "L'Community",
+    "rights": "Jami3 l7o9o9 ma7foda.",
+    "links": {
+      "housingRent": "Sken w Kira",
+      "kvrResidence": "KVR w I9ama",
+      "universityLife": "L7ayat Jami3iya",
+      "careerJobs": "L'Massar l'Mihani w Wada2if",
+      "halalPlaces": "Blayess 7alal",
+      "faq": "As2ila Cha2i3a",
+      "usefulApps": "Tatbi9at Mofida",
+      "search": "B7eth",
+      "aboutUs": "3lina",
+      "contribute": "Sahem",
+      "contact": "Twassal"
+    }
+  },
+  "search": {
+    "badge": "9elleb 3la Kolchi",
+    "title": "L9a Li",
+    "titleHighlight": "Katb7eth 3lih",
+    "subtitle": "9elleb f guides, blayess, w as2ila cha2i3a — 9a3idat ma3rifa kamla dyal Munich f yddik.",
+    "placeholder": "9elleb 3la guides, blayess, as2ila cha2i3a...",
+    "resultsFound": "Nata2ij Ml9aya",
+    "noResults": "Ma l9inach Nata2ij",
+    "noResultsDescription": "Ma 9drnach nl9aw chi 7aja mtabe9a l",
+    "tryDifferent": "Jerreb kalimat mifta7iya okhra.",
+    "tabs": {
+      "all": "Ga3 Nata2ij",
+      "guides": "Guides",
+      "places": "Blayess",
+      "faqs": "As2ila Cha2i3a"
+    },
+    "sections": {
+      "guidesFound": "nata2ij ml9aya",
+      "placesFound": "nata2ij ml9aya",
+      "faqsFound": "nata2ij ml9aya",
+      "viewAll": "Chouf Kolchi"
+    },
+    "discover": {
+      "title": "Ktachef l'Mo7tawa",
+      "subtitle": "Bda l'ktaba fo9 wla ktachef l'fi2at w 3amaliyat b7eth cha2i3a lt7et.",
+      "browseCategories": "Tseffef l'Fi2at",
+      "popularSearches": "3amaliyat B7eth Cha2i3a",
+      "lookingFor": "Katb7eth 3la chi 7aja mo7addada?",
+      "lookingForDesc": "Tseffef l'guides l'mokhara dyalna wla chouf dalil blayess mwetto9 mn l'community.",
+      "browseGuides": "Tseffef l'Guides",
+      "explorePlaces": "Ktachef l'Blayess"
+    },
+    "loading": "Kan7ammlo l'b7eth..."
+  },
+  "common": {
+    "loading": "Kan7ammel...",
+    "error": "We93 chi ghalet",
+    "retry": "3awed Jerreb",
+    "back": "Rje3",
+    "next": "Li Jay",
+    "previous": "Li Fat",
+    "close": "Sedd",
+    "open": "7ell",
+    "language": "Logha"
+  }
+}

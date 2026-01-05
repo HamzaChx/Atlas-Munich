@@ -3,7 +3,6 @@
 import { useState, useMemo } from "react";
 import Link from "next/link";
 import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
 import { FAQAccordion, EmptyState, HeroBadge } from "@/components/shared";
 import { getAllFaqs } from "@/data/faqs";
 import { categories } from "@/data/categories";
@@ -29,8 +28,7 @@ export default function FAQPage() {
       const query = searchQuery.toLowerCase();
       result = result.filter(
         (faq) =>
-          faq.question.toLowerCase().includes(query) ||
-          faq.answer.toLowerCase().includes(query)
+          faq.question.toLowerCase().includes(query) || faq.answer.toLowerCase().includes(query)
       );
     }
 
@@ -44,7 +42,7 @@ export default function FAQPage() {
     }
 
     const grouped: Record<string, typeof allFaqs> = {};
-    
+
     allFaqs.forEach((faq) => {
       const key = faq.categoryKey || "general";
       if (!grouped[key]) {
@@ -61,7 +59,7 @@ export default function FAQPage() {
     "rent-housing": "🏠",
     "kvr-residence": "📋",
     "university-life": "🎓",
-    "career": "💼",
+    career: "💼",
     "useful-apps": "📱",
   };
 
@@ -133,12 +131,20 @@ export default function FAQPage() {
         {filteredFaqs.length > 0 ? (
           <>
             {/* Filtered/Searched view */}
-            {(selectedCategory || searchQuery) ? (
+            {selectedCategory || searchQuery ? (
               <div className="rounded-2xl border border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-zinc-900/50 p-6 shadow-sm dark:shadow-none backdrop-blur-sm">
                 <div className="mb-6 flex items-center justify-between">
                   <p className="text-sm text-zinc-500 dark:text-zinc-400">
-                    <span className="text-base font-bold text-zinc-900 dark:text-white">{filteredFaqs.length}</span> {filteredFaqs.length === 1 ? t("results.result") : t("results.results")}
-                    {searchQuery && <span className="text-zinc-500"> {t("results.for")} &ldquo;{searchQuery}&rdquo;</span>}
+                    <span className="text-base font-bold text-zinc-900 dark:text-white">
+                      {filteredFaqs.length}
+                    </span>{" "}
+                    {filteredFaqs.length === 1 ? t("results.result") : t("results.results")}
+                    {searchQuery && (
+                      <span className="text-zinc-500">
+                        {" "}
+                        {t("results.for")} &ldquo;{searchQuery}&rdquo;
+                      </span>
+                    )}
                   </p>
                   {(selectedCategory || searchQuery) && (
                     <button
@@ -157,23 +163,24 @@ export default function FAQPage() {
             ) : (
               /* Grouped by category view */
               <div className="space-y-10">
-                {faqsByCategory && Object.entries(faqsByCategory).map(([categoryKey, categoryFaqs]) => {
-                  const category = categories.find((c) => c.key === categoryKey);
-                  const title = category?.title || "General Questions";
-                  const emoji = categoryEmojis[categoryKey] || "📌";
+                {faqsByCategory &&
+                  Object.entries(faqsByCategory).map(([categoryKey, categoryFaqs]) => {
+                    const category = categories.find((c) => c.key === categoryKey);
+                    const title = category?.title || "General Questions";
+                    const emoji = categoryEmojis[categoryKey] || "📌";
 
-                  return (
-                    <section key={categoryKey}>
-                      <h2 className="mb-5 flex items-center gap-2.5 text-xl font-bold tracking-tight text-zinc-900 dark:text-white">
-                        <span>{emoji}</span>
-                        {title}
-                      </h2>
-                      <div className="rounded-2xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900/50 p-6 shadow-sm dark:shadow-none backdrop-blur-sm">
-                        <FAQAccordion faqs={categoryFaqs} />
-                      </div>
-                    </section>
-                  );
-                })}
+                    return (
+                      <section key={categoryKey}>
+                        <h2 className="mb-5 flex items-center gap-2.5 text-xl font-bold tracking-tight text-zinc-900 dark:text-white">
+                          <span>{emoji}</span>
+                          {title}
+                        </h2>
+                        <div className="rounded-2xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900/50 p-6 shadow-sm dark:shadow-none backdrop-blur-sm">
+                          <FAQAccordion faqs={categoryFaqs} />
+                        </div>
+                      </section>
+                    );
+                  })}
               </div>
             )}
           </>

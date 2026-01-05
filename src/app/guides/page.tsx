@@ -1,36 +1,22 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { SearchBar, CategoryCard, GuideCard, HeroBadge } from "@/components/shared";
+import { SearchBar, CategoryCard, HeroBadge } from "@/components/shared";
 import { categories } from "@/data/categories";
 import { guides } from "@/data/guides";
 import { getTranslations } from "next-intl/server";
-import { 
-  BookOpen, 
-  ChevronRight, 
-  Compass, 
-  Sparkles,
-  ArrowRight,
-  Filter,
-} from "lucide-react";
+import { BookOpen, Compass, Sparkles, ArrowRight, Filter } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "All Guides",
-  description: "Comprehensive guides to help you navigate life in Munich as a Moroccan student or professional.",
+  description:
+    "Comprehensive guides to help you navigate life in Munich as a Moroccan student or professional.",
 };
 
 export default async function GuidesPage() {
   const t = await getTranslations("guides");
 
-  const guideCountByCategory = (key: string) =>
-    guides.filter((g) => g.categoryKey === key).length;
-
-  // Group guides by category
-  const guidesByCategory = categories.map((category) => ({
-    category,
-    guides: guides.filter((g) => g.categoryKey === category.key),
-  }));
+  const guideCountByCategory = (key: string) => guides.filter((g) => g.categoryKey === key).length;
 
   // Stats
   const stats = [
@@ -63,23 +49,23 @@ export default async function GuidesPage() {
             {/* Subtitle */}
             <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
               {t("subtitle")}
-              <span className="font-semibold text-amber-600 dark:text-amber-400">{t("subtitleHighlight")}</span>
+              <span className="font-semibold text-amber-600 dark:text-amber-400">
+                {t("subtitleHighlight")}
+              </span>
             </p>
 
             {/* Search */}
             <div className="mx-auto mt-10 max-w-2xl">
-              <SearchBar
-                placeholder={t("searchPlaceholder")}
-                size="lg"
-                showButton={false}
-              />
+              <SearchBar placeholder={t("searchPlaceholder")} size="lg" showButton={false} />
             </div>
 
             {/* Quick Stats */}
             <div className="mt-10 flex flex-wrap items-center justify-center gap-8 text-base">
               {stats.map((stat) => (
                 <div key={stat.label} className="flex items-center gap-2">
-                  <span className="text-xl font-bold text-emerald-600 dark:text-emerald-400">{stat.value}</span>
+                  <span className="text-xl font-bold text-emerald-600 dark:text-emerald-400">
+                    {stat.value}
+                  </span>
                   <span className="text-zinc-500">{stat.label}</span>
                 </div>
               ))}
@@ -104,7 +90,11 @@ export default async function GuidesPage() {
                 {t("categoriesSection.title")}
               </h2>
             </div>
-            <Button asChild variant="outline" className="border-zinc-200 dark:border-white/10 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-white/5 hover:text-zinc-900 dark:hover:text-white">
+            <Button
+              asChild
+              variant="outline"
+              className="border-zinc-200 dark:border-white/10 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-white/5 hover:text-zinc-900 dark:hover:text-white"
+            >
               <Link href="/search">
                 <Filter className="mr-2 h-4 w-4" />
                 {t("categoriesSection.advancedSearch")}
@@ -128,15 +118,14 @@ export default async function GuidesPage() {
                   index <= 2
                     ? "lg:col-span-2"
                     : index === 3
-                    ? "sm:col-span-2 lg:col-span-2 lg:col-start-2"
-                    : "lg:col-span-2"
+                      ? "sm:col-span-2 lg:col-span-2 lg:col-start-2"
+                      : "lg:col-span-2"
                 }
               />
             ))}
           </div>
         </div>
       </section>
-
 
       {/* CTA Section */}
       <section className="py-16">
@@ -145,9 +134,7 @@ export default async function GuidesPage() {
             <div className="mb-5 inline-flex rounded-full bg-gradient-to-br from-amber-100 to-orange-100 dark:from-amber-500/20 dark:to-orange-500/20 p-3">
               <Sparkles className="h-6 w-6 text-amber-600 dark:text-amber-400" />
             </div>
-            <h2 className="text-xl font-bold text-zinc-900 dark:text-white">
-              {t("cta.title")}
-            </h2>
+            <h2 className="text-xl font-bold text-zinc-900 dark:text-white">{t("cta.title")}</h2>
             <p className="mx-auto mt-2 max-w-md text-base text-zinc-600 dark:text-zinc-400">
               {t("cta.description")}
             </p>

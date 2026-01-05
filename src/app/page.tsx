@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { SearchBar, CategoryCard, HeroBadge } from "@/components/shared";
+import { SearchBar, CategoryCard } from "@/components/shared";
 import { categories } from "@/data/categories";
 import { guides } from "@/data/guides";
 import { places } from "@/data/places";
@@ -25,7 +25,6 @@ import {
 
 export default async function Home() {
   const t = await getTranslations("home");
-  const tNav = await getTranslations("nav");
 
   // Quick links for the hero
   const quickLinks = [
@@ -42,8 +41,7 @@ export default async function Home() {
     { value: faqs.length, suffix: "+", label: t("stats.faqsAnswered"), icon: HelpCircle },
     { value: "100", suffix: "%", label: t("stats.freeAndOpen"), icon: Heart },
   ];
-  const guideCountByCategory = (key: string) =>
-    guides.filter((g) => g.categoryKey === key).length;
+  const guideCountByCategory = (key: string) => guides.filter((g) => g.categoryKey === key).length;
 
   return (
     <div className="min-h-screen">
@@ -58,7 +56,7 @@ export default async function Home() {
         <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-10 h-52 opacity-[0.12] dark:opacity-[0.15]">
           <svg viewBox="0 0 1440 200" className="h-full w-full" preserveAspectRatio="none">
             {/* Main Munich skyline base */}
-            <path 
+            <path
               className="fill-zinc-900 dark:fill-white"
               d="M0,200 L0,175
                 L40,175 L40,165 L55,165 L55,175
@@ -102,69 +100,98 @@ export default async function Home() {
                 
                 L1440,175 L1440,200 Z"
             />
-            
+
             {/* === Hochhaus Uptown München (O2 Tower) - rectangular skyscraper === */}
             <g transform="translate(1060, 35)">
               {/* Main rectangular tower body */}
-              <rect x="0" y="20" width="40" height="140" className="fill-zinc-900 dark:fill-white"/>
+              <rect
+                x="0"
+                y="20"
+                width="40"
+                height="140"
+                className="fill-zinc-900 dark:fill-white"
+              />
             </g>
-            
+
             {/* === BMW Vier-Zylinder (4 Cylinders) - accurate representation === */}
             {/* Four connected cylindrical towers in a 2x2 cluster */}
             <g transform="translate(1220, 85)">
               {/* Tower 1 - front left */}
-              <ellipse cx="0" cy="0" rx="14" ry="6" className="fill-zinc-900 dark:fill-white"/>
-              <rect x="-14" y="0" width="28" height="90" className="fill-zinc-900 dark:fill-white"/>
-              
+              <ellipse cx="0" cy="0" rx="14" ry="6" className="fill-zinc-900 dark:fill-white" />
+              <rect
+                x="-14"
+                y="0"
+                width="28"
+                height="90"
+                className="fill-zinc-900 dark:fill-white"
+              />
+
               {/* Tower 2 - front right */}
-              <ellipse cx="30" cy="5" rx="14" ry="6" className="fill-zinc-900 dark:fill-white"/>
-              <rect x="16" y="5" width="28" height="85" className="fill-zinc-900 dark:fill-white"/>
-              
+              <ellipse cx="30" cy="5" rx="14" ry="6" className="fill-zinc-900 dark:fill-white" />
+              <rect x="16" y="5" width="28" height="85" className="fill-zinc-900 dark:fill-white" />
+
               {/* Tower 3 - back left */}
-              <ellipse cx="8" cy="-8" rx="14" ry="6" className="fill-zinc-900 dark:fill-white"/>
-              <rect x="-6" y="-8" width="28" height="98" className="fill-zinc-900 dark:fill-white"/>
-              
+              <ellipse cx="8" cy="-8" rx="14" ry="6" className="fill-zinc-900 dark:fill-white" />
+              <rect
+                x="-6"
+                y="-8"
+                width="28"
+                height="98"
+                className="fill-zinc-900 dark:fill-white"
+              />
+
               {/* Tower 4 - back right */}
-              <ellipse cx="38" cy="-3" rx="14" ry="6" className="fill-zinc-900 dark:fill-white"/>
-              <rect x="24" y="-3" width="28" height="93" className="fill-zinc-900 dark:fill-white"/>
+              <ellipse cx="38" cy="-3" rx="14" ry="6" className="fill-zinc-900 dark:fill-white" />
+              <rect
+                x="24"
+                y="-3"
+                width="28"
+                height="93"
+                className="fill-zinc-900 dark:fill-white"
+              />
             </g>
-            
+
             {/* === Olympiaturm (Olympic Tower) - accurate representation === */}
             {/* Main tower shaft */}
-            <rect x="1370" y="55" width="10" height="120" className="fill-zinc-900 dark:fill-white"/>
-            
+            <rect
+              x="1370"
+              y="55"
+              width="10"
+              height="120"
+              className="fill-zinc-900 dark:fill-white"
+            />
+
             {/* Observation deck / restaurant pod - distinctive bulge */}
-            <ellipse cx="1375" cy="55" rx="25" ry="18" className="fill-zinc-900 dark:fill-white"/>
-            <ellipse cx="1375" cy="45" rx="20" ry="12" className="fill-zinc-900 dark:fill-white"/>
-            
+            <ellipse cx="1375" cy="55" rx="25" ry="18" className="fill-zinc-900 dark:fill-white" />
+            <ellipse cx="1375" cy="45" rx="20" ry="12" className="fill-zinc-900 dark:fill-white" />
+
             {/* Lower observation deck */}
-            <ellipse cx="1375" cy="85" rx="15" ry="8" className="fill-zinc-900 dark:fill-white"/>
-            
+            <ellipse cx="1375" cy="85" rx="15" ry="8" className="fill-zinc-900 dark:fill-white" />
+
             {/* Antenna mast */}
-            <rect x="1373" y="5" width="4" height="40" className="fill-zinc-900 dark:fill-white"/>
-            
+            <rect x="1373" y="5" width="4" height="40" className="fill-zinc-900 dark:fill-white" />
+
             {/* Antenna top */}
-            <polygon points="1375,0 1371,8 1379,8" className="fill-zinc-900 dark:fill-white"/>
-            
+            <polygon points="1375,0 1371,8 1379,8" className="fill-zinc-900 dark:fill-white" />
+
             {/* Frauenkirche dome crosses */}
-            <rect x="99" y="28" width="2" height="12" className="fill-zinc-900 dark:fill-white"/>
-            <rect x="95" y="32" width="10" height="2" className="fill-zinc-900 dark:fill-white"/>
-            <rect x="129" y="28" width="2" height="12" className="fill-zinc-900 dark:fill-white"/>
-            <rect x="125" y="32" width="10" height="2" className="fill-zinc-900 dark:fill-white"/>
-            
+            <rect x="99" y="28" width="2" height="12" className="fill-zinc-900 dark:fill-white" />
+            <rect x="95" y="32" width="10" height="2" className="fill-zinc-900 dark:fill-white" />
+            <rect x="129" y="28" width="2" height="12" className="fill-zinc-900 dark:fill-white" />
+            <rect x="125" y="32" width="10" height="2" className="fill-zinc-900 dark:fill-white" />
+
             {/* Rathaus spire cross */}
-            <rect x="429" y="25" width="2" height="18" className="fill-zinc-900 dark:fill-white"/>
-            <rect x="425" y="30" width="10" height="2" className="fill-zinc-900 dark:fill-white"/>
-            
+            <rect x="429" y="25" width="2" height="18" className="fill-zinc-900 dark:fill-white" />
+            <rect x="425" y="30" width="10" height="2" className="fill-zinc-900 dark:fill-white" />
+
             {/* St. Peter's spire cross */}
-            <rect x="199" y="90" width="2" height="14" className="fill-zinc-900 dark:fill-white"/>
-            <rect x="195" y="95" width="10" height="2" className="fill-zinc-900 dark:fill-white"/>
+            <rect x="199" y="90" width="2" height="14" className="fill-zinc-900 dark:fill-white" />
+            <rect x="195" y="95" width="10" height="2" className="fill-zinc-900 dark:fill-white" />
           </svg>
         </div>
 
         {/* Content */}
         <div className="relative z-20 mx-auto flex min-h-[90vh] max-w-7xl flex-col items-center justify-center px-4 py-20 text-center sm:px-6 lg:px-8">
-          
           {/* Main Title */}
           <h1 className="max-w-4xl text-5xl font-black tracking-tight text-zinc-900 dark:text-white sm:text-6xl lg:text-7xl mt-6">
             {t("heroTitle")}
@@ -178,17 +205,17 @@ export default async function Home() {
 
           {/* Subtitle */}
           <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
-            {t("heroSubtitle")} <span className="font-semibold text-amber-600 dark:text-amber-400">{t("heroCommunity")}</span>{t("heroSubtitle2")}
+            {t("heroSubtitle")}{" "}
+            <span className="font-semibold text-amber-600 dark:text-amber-400">
+              {t("heroCommunity")}
+            </span>
+            {t("heroSubtitle2")}
           </p>
 
           {/* Search Bar */}
           <div className="mx-auto mt-10 w-full max-w-2xl">
             <div className="relative">
-              <SearchBar
-                placeholder={t("searchPlaceholder")}
-                size="lg"
-                showButton={false}
-              />
+              <SearchBar placeholder={t("searchPlaceholder")} size="lg" showButton={false} />
             </div>
           </div>
 
@@ -222,7 +249,6 @@ export default async function Home() {
               </div>
             ))}
           </div>
-
         </div>
       </section>
 
@@ -230,7 +256,7 @@ export default async function Home() {
       <section className="relative overflow-hidden border-b border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-950 py-20">
         {/* Decorative Elements */}
         <div className="absolute left-0 top-0 h-1 w-full bg-gradient-to-r from-red-500 via-amber-500 to-green-500" />
-        
+
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
           <div className="mb-12 text-center">
@@ -240,7 +266,9 @@ export default async function Home() {
             </Badge>
             <h2 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-4xl">
               {t("categories.title")}
-              <span className="block text-emerald-600 dark:text-emerald-400">{t("categories.titleHighlight")}</span>
+              <span className="block text-emerald-600 dark:text-emerald-400">
+                {t("categories.titleHighlight")}
+              </span>
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-base text-zinc-600 dark:text-zinc-400">
               {t("categories.subtitle")}
@@ -260,13 +288,13 @@ export default async function Home() {
                 color={category.color}
                 count={guideCountByCategory(category.key) || "New"}
                 className={
-                  index === 0 
-                    ? "sm:col-span-2 lg:col-span-2" 
+                  index === 0
+                    ? "sm:col-span-2 lg:col-span-2"
                     : index <= 2
-                    ? "lg:col-span-2"
-                    : index === 3
-                    ? "sm:col-span-2 lg:col-span-2 lg:col-start-2"
-                    : "lg:col-span-2"
+                      ? "lg:col-span-2"
+                      : index === 3
+                        ? "sm:col-span-2 lg:col-span-2 lg:col-start-2"
+                        : "lg:col-span-2"
                 }
               />
             ))}
@@ -274,7 +302,12 @@ export default async function Home() {
 
           {/* View All Button */}
           <div className="mt-10 text-center">
-            <Button asChild size="lg" variant="outline" className="group border-2 border-zinc-200 dark:border-white/10 text-zinc-900 dark:text-white hover:border-emerald-500/50 hover:bg-emerald-50 dark:hover:bg-emerald-500/10">
+            <Button
+              asChild
+              size="lg"
+              variant="outline"
+              className="group border-2 border-zinc-200 dark:border-white/10 text-zinc-900 dark:text-white hover:border-emerald-500/50 hover:bg-emerald-50 dark:hover:bg-emerald-500/10"
+            >
               <Link href="/guides">
                 <BookOpen className="mr-2 h-4 w-4" />
                 {t("categories.browseAll")}
@@ -309,17 +342,31 @@ export default async function Home() {
                       </div>
                       {/* Orbiting community members */}
                       <div className="absolute -right-2 -top-2 h-10 w-10 animate-pulse rounded-full bg-gradient-to-br from-amber-500 to-red-600 p-1.5 shadow-lg">
-                        <span className="flex h-full w-full items-center justify-center text-lg">🇲🇦</span>
+                        <span className="flex h-full w-full items-center justify-center text-lg">
+                          🇲🇦
+                        </span>
                       </div>
-                      <div className="absolute -bottom-2 -left-2 h-10 w-10 animate-pulse rounded-full bg-gradient-to-br from-green-600 to-emerald-600 p-1.5 shadow-lg" style={{ animationDelay: '0.5s' }}>
-                        <span className="flex h-full w-full items-center justify-center text-lg">🏰</span>
+                      <div
+                        className="absolute -bottom-2 -left-2 h-10 w-10 animate-pulse rounded-full bg-gradient-to-br from-green-600 to-emerald-600 p-1.5 shadow-lg"
+                        style={{ animationDelay: "0.5s" }}
+                      >
+                        <span className="flex h-full w-full items-center justify-center text-lg">
+                          🏰
+                        </span>
                       </div>
-                      <div className="absolute -bottom-1 -right-2 h-8 w-8 animate-pulse rounded-full bg-gradient-to-br from-teal-500 to-cyan-600 p-1.5 shadow-lg" style={{ animationDelay: '1s' }}>
-                        <span className="flex h-full w-full items-center justify-center text-sm">💚</span>
+                      <div
+                        className="absolute -bottom-1 -right-2 h-8 w-8 animate-pulse rounded-full bg-gradient-to-br from-teal-500 to-cyan-600 p-1.5 shadow-lg"
+                        style={{ animationDelay: "1s" }}
+                      >
+                        <span className="flex h-full w-full items-center justify-center text-sm">
+                          💚
+                        </span>
                       </div>
                     </div>
                   </div>
-                  <h3 className="text-center text-2xl font-bold text-zinc-900 dark:text-white">{t("builtTogether")}</h3>
+                  <h3 className="text-center text-2xl font-bold text-zinc-900 dark:text-white">
+                    {t("builtTogether")}
+                  </h3>
                   <p className="mt-1 text-center text-base text-zinc-600 dark:text-white/80">
                     {t("byTheCommunity")}
                   </p>
@@ -333,7 +380,9 @@ export default async function Home() {
                     <span className="text-xl">🇲🇦</span>
                   </div>
                   <div>
-                    <div className="text-xs font-semibold text-zinc-900 dark:text-white">{t("moroccanRoots")}</div>
+                    <div className="text-xs font-semibold text-zinc-900 dark:text-white">
+                      {t("moroccanRoots")}
+                    </div>
                     <div className="text-xs text-zinc-500">{t("authenticGuidance")}</div>
                   </div>
                 </div>
@@ -345,7 +394,9 @@ export default async function Home() {
                     <span className="text-xl">🏰</span>
                   </div>
                   <div>
-                    <div className="text-xs font-semibold text-zinc-900 dark:text-white">{t("munichLife")}</div>
+                    <div className="text-xs font-semibold text-zinc-900 dark:text-white">
+                      {t("munichLife")}
+                    </div>
                     <div className="text-xs text-zinc-500">{t("localExpertise")}</div>
                   </div>
                 </div>
@@ -360,23 +411,36 @@ export default async function Home() {
               </Badge>
               <h2 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-4xl">
                 {t("community.title")}
-                <span className="text-emerald-600 dark:text-emerald-400">{t("community.titleHighlight")}</span>
+                <span className="text-emerald-600 dark:text-emerald-400">
+                  {t("community.titleHighlight")}
+                </span>
               </h2>
               <p className="mt-5 text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
-                {t("community.description1")} 
+                {t("community.description1")}
               </p>
               <p className="mt-3 text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
-                {t("community.description2")} <span className="font-semibold text-zinc-900 dark:text-white">{t("community.atlasName")}</span>{t("community.description3")}
+                {t("community.description2")}{" "}
+                <span className="font-semibold text-zinc-900 dark:text-white">
+                  {t("community.atlasName")}
+                </span>
+                {t("community.description3")}
               </p>
 
               <div className="mt-6 flex flex-wrap gap-3">
-                <Button asChild className="text-white bg-emerald-600 shadow-lg hover:bg-emerald-500">
+                <Button
+                  asChild
+                  className="text-white bg-emerald-600 shadow-lg hover:bg-emerald-500"
+                >
                   <Link href="/about">
                     <Users className="mr-2 h-4 w-4" />
                     {t("community.aboutCommunity")}
                   </Link>
                 </Button>
-                <Button asChild variant="outline" className="border-2 border-zinc-200 dark:border-white/10 text-zinc-900 dark:text-white hover:border-emerald-500/50 hover:bg-emerald-50 dark:hover:bg-emerald-500/10">
+                <Button
+                  asChild
+                  variant="outline"
+                  className="border-2 border-zinc-200 dark:border-white/10 text-zinc-900 dark:text-white hover:border-emerald-500/50 hover:bg-emerald-50 dark:hover:bg-emerald-500/10"
+                >
                   <Link href="/faq">
                     <HelpCircle className="mr-2 h-4 w-4" />
                     {t("community.commonQuestions")}
@@ -399,20 +463,23 @@ export default async function Home() {
             <Sparkles className="mr-1.5 h-3.5 w-3.5" />
             {t("cta.badge")}
           </Badge>
-          
+
           <h2 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-4xl">
             {t("cta.title")}
             <span className="block bg-gradient-to-r from-red-600 via-amber-500 to-green-600 dark:from-red-500 dark:via-amber-400 dark:to-green-500 bg-clip-text text-transparent">
               {t("cta.titleHighlight")}
             </span>
           </h2>
-          
+
           <p className="mx-auto mt-5 max-w-2xl text-base text-zinc-600 dark:text-zinc-400">
             {t("cta.description")}
           </p>
 
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-            <Button asChild className="text-white bg-emerald-600 px-6 shadow-xl shadow-emerald-500/25 hover:bg-emerald-500">
+            <Button
+              asChild
+              className="text-white bg-emerald-600 px-6 shadow-xl shadow-emerald-500/25 hover:bg-emerald-500"
+            >
               <Link
                 href="https://github.com/HamzaChx/Atlas-Munich"
                 target="_blank"
@@ -422,7 +489,11 @@ export default async function Home() {
                 {t("cta.contributeGithub")}
               </Link>
             </Button>
-            <Button asChild variant="outline" className="border-2 border-zinc-200 dark:border-zinc-700 px-6 text-zinc-900 dark:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800">
+            <Button
+              asChild
+              variant="outline"
+              className="border-2 border-zinc-200 dark:border-zinc-700 px-6 text-zinc-900 dark:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800"
+            >
               <Link href="/about">
                 {t("cta.learnHow")}
                 <ChevronRight className="ml-2 h-4 w-4" />

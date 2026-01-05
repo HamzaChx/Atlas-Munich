@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
-import { MapPin, Star, ExternalLink, Clock, CheckCircle2, ChevronDown, ChevronUp } from "lucide-react";
+import { MapPin, Star, ExternalLink, CheckCircle2, ChevronDown, ChevronUp } from "lucide-react";
 import { Place } from "@/types";
 
 /**
@@ -59,10 +59,10 @@ const categoryIcons: Record<string, string> = {
 
 export function PlaceCard({ place, className }: PlaceCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
-  
+
   // Check if description needs truncation (roughly 100 characters = 2 lines)
   const needsTruncation = place.description && place.description.length > 100;
-  
+
   return (
     <div
       className={cn(
@@ -72,14 +72,14 @@ export function PlaceCard({ place, className }: PlaceCardProps) {
     >
       {/* Category gradient bar */}
       <div className={cn("h-1 bg-gradient-to-r", categoryColors[place.category])} />
-      
+
       <div className="p-6 flex flex-col flex-1">
         {/* Header */}
         <div className="mb-4 flex items-start justify-between gap-3">
           <div className="flex items-center gap-2">
             <span className="text-xl">{categoryIcons[place.category]}</span>
-            <Badge 
-              variant="secondary" 
+            <Badge
+              variant="secondary"
               className="border-zinc-200 dark:border-white/10 bg-zinc-100 dark:bg-white/5 text-xs font-medium text-zinc-700 dark:text-zinc-300"
             >
               {categoryLabels[place.category] || place.category}
@@ -101,10 +101,12 @@ export function PlaceCard({ place, className }: PlaceCardProps) {
         {/* Description */}
         {place.description && (
           <div className="mt-2.5">
-            <p className={cn(
-              "text-[15px] leading-relaxed text-zinc-600 dark:text-zinc-400 transition-all duration-200",
-              !isExpanded && needsTruncation && "line-clamp-2"
-            )}>
+            <p
+              className={cn(
+                "text-[15px] leading-relaxed text-zinc-600 dark:text-zinc-400 transition-all duration-200",
+                !isExpanded && needsTruncation && "line-clamp-2"
+              )}
+            >
               {place.description}
             </p>
             {needsTruncation && (
@@ -139,16 +141,16 @@ export function PlaceCard({ place, className }: PlaceCardProps) {
           {place.rating && (
             <div className="flex items-center gap-1.5">
               <Star className="h-4 w-4 fill-amber-400 text-amber-400" />
-              <span className="text-sm font-medium text-zinc-900 dark:text-white">{place.rating}</span>
+              <span className="text-sm font-medium text-zinc-900 dark:text-white">
+                {place.rating}
+              </span>
               {place.reviewCount && (
                 <span className="text-sm text-zinc-500">({place.reviewCount})</span>
               )}
             </div>
           )}
           {place.price && (
-            <span className="text-sm font-semibold text-emerald-400">
-              {place.price}
-            </span>
+            <span className="text-sm font-semibold text-emerald-400">{place.price}</span>
           )}
         </div>
 

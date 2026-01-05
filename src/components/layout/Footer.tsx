@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Sparkles, Heart, Github, Mail, ArrowUpRight, MapPin } from "lucide-react";
+import { Sparkles, Github, Mail, ArrowUpRight } from "lucide-react";
 import { useTranslations } from "next-intl";
 
 /**
@@ -19,12 +19,24 @@ export function Footer() {
       <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.02]">
         <svg className="h-full w-full" xmlns="http://www.w3.org/2000/svg">
           <defs>
-            <pattern id="footer-pattern" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
-              <path d="M30 0L60 30L30 60L0 30Z" fill="none" stroke="currentColor" strokeWidth="1"/>
-              <circle cx="30" cy="30" r="8" fill="none" stroke="currentColor" strokeWidth="1"/>
+            <pattern
+              id="footer-pattern"
+              x="0"
+              y="0"
+              width="60"
+              height="60"
+              patternUnits="userSpaceOnUse"
+            >
+              <path d="M30 0L60 30L30 60L0 30Z" fill="none" stroke="currentColor" strokeWidth="1" />
+              <circle cx="30" cy="30" r="8" fill="none" stroke="currentColor" strokeWidth="1" />
             </pattern>
           </defs>
-          <rect width="100%" height="100%" fill="url(#footer-pattern)" className="text-zinc-900 dark:text-white"/>
+          <rect
+            width="100%"
+            height="100%"
+            fill="url(#footer-pattern)"
+            className="text-zinc-900 dark:text-white"
+          />
         </svg>
       </div>
 
@@ -36,11 +48,18 @@ export function Footer() {
         <div className="grid gap-12 lg:grid-cols-5">
           {/* Brand Section - Larger */}
           <div className="lg:col-span-2">
-            <Link href="/" className="group inline-flex items-center gap-2.5 outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-lg">
+            <Link
+              href="/"
+              className="group inline-flex items-center gap-2.5 outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-lg"
+            >
               <div className="flex items-center justify-center gap-1.5 rounded-full border border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 px-3.5 py-2 shadow-sm dark:shadow-none backdrop-blur-sm transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:border-emerald-500/30 group-hover:bg-emerald-50 dark:group-hover:bg-emerald-500/10 group-hover:shadow-md group-hover:shadow-emerald-500/5">
-                <span className="text-lg" role="img" aria-label="Morocco flag">🇲🇦</span>
+                <span className="text-lg" role="img" aria-label="Morocco flag">
+                  🇲🇦
+                </span>
                 <Sparkles className="h-3 w-3 text-amber-500 dark:text-amber-400" />
-                <span className="text-lg" role="img" aria-label="Germany flag">🇩🇪</span>
+                <span className="text-lg" role="img" aria-label="Germany flag">
+                  🇩🇪
+                </span>
               </div>
               <span className="text-xl font-bold tracking-tight">
                 <span className="bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-400 dark:to-teal-400 bg-clip-text text-transparent">
@@ -49,7 +68,7 @@ export function Footer() {
                 <span className="text-zinc-900 dark:text-white">Munich</span>
               </span>
             </Link>
-            
+
             <p className="mt-6 max-w-sm text-[15px] leading-relaxed text-zinc-600 dark:text-zinc-400">
               {t("description")}
             </p>
@@ -210,7 +229,6 @@ export function Footer() {
             </p>
           </div>
         </div>
-
       </div>
     </footer>
   );

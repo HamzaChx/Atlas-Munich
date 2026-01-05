@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Share2, Check, Copy } from "lucide-react";
+import { Share2, Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface ShareButtonProps {
@@ -13,18 +13,18 @@ interface ShareButtonProps {
   text?: string;
 }
 
-export function ShareButton({ 
-  className, 
-  variant = "outline", 
+export function ShareButton({
+  className,
+  variant = "outline",
   size = "lg",
   showText = true,
-  text = "Share"
+  text = "Share",
 }: ShareButtonProps) {
   const [copied, setCopied] = useState(false);
 
   const handleShare = async () => {
     const url = window.location.href;
-    
+
     // Try native share API first (mobile)
     if (navigator.share) {
       try {
@@ -37,7 +37,7 @@ export function ShareButton({
         // User cancelled or share failed, fall back to clipboard
       }
     }
-    
+
     // Fall back to clipboard
     try {
       await navigator.clipboard.writeText(url);
@@ -63,7 +63,8 @@ export function ShareButton({
       onClick={handleShare}
       className={cn(
         "transition-all duration-200",
-        copied && "bg-emerald-100 dark:bg-emerald-500/20 border-emerald-300 dark:border-emerald-500/30 text-emerald-700 dark:text-emerald-300",
+        copied &&
+          "bg-emerald-100 dark:bg-emerald-500/20 border-emerald-300 dark:border-emerald-500/30 text-emerald-700 dark:text-emerald-300",
         className
       )}
     >

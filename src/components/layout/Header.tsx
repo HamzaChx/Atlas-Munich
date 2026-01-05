@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -16,8 +17,6 @@ import {
   HelpCircle,
   Users,
   MapPin,
-  Sparkles,
-  Github,
   ChevronRight,
 } from "lucide-react";
 
@@ -74,24 +73,24 @@ export function Header({ locale, translations }: HeaderProps) {
   const headerBg = scrolled
     ? "bg-white/98 dark:bg-zinc-950/98 backdrop-blur-2xl border-b border-zinc-200/80 dark:border-white/8 shadow-[0_1px_3px_0_rgb(0_0_0_/_0.05)] dark:shadow-none"
     : isHomePage
-    ? "bg-transparent border-b border-transparent"
-    : "bg-white dark:bg-zinc-950 border-b border-zinc-200/80 dark:border-white/8";
+      ? "bg-transparent border-b border-transparent"
+      : "bg-white dark:bg-zinc-950 border-b border-zinc-200/80 dark:border-white/8";
 
   return (
-    <header
-      className={cn(
-        "fixed top-0 z-50 w-full transition-all duration-300",
-        headerBg
-      )}
-    >
+    <header className={cn("fixed top-0 z-50 w-full transition-all duration-300", headerBg)}>
       {/* Rule 12: Max content width 1100-1280px for readability */}
       <div className="mx-auto flex h-16 max-w-[1280px] items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Logo - Rule 34: Hover states required */}
-        <Link href="/" className="group flex items-center gap-3 outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-lg">
+        <Link
+          href="/"
+          className="group flex items-center gap-3 outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-lg"
+        >
           <div className="relative h-10 w-10 overflow-hidden rounded-full border border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-white/5 backdrop-blur-sm transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:border-emerald-500/40 group-hover:bg-emerald-50 dark:group-hover:bg-emerald-500/10 group-hover:shadow-sm group-hover:shadow-emerald-500/10">
-            <img 
-              src="/logo.png" 
-              alt="Atlas Munich Logo" 
+            <Image
+              src="/logo.png"
+              alt="Atlas Munich Logo"
+              width={40}
+              height={40}
               className="h-full w-full object-cover"
             />
           </div>
@@ -106,10 +105,7 @@ export function Header({ locale, translations }: HeaderProps) {
         {/* Desktop Navigation */}
         <nav className="hidden items-center gap-1 md:flex">
           {navItems.map((item) => {
-            const isActive =
-              item.href === "/"
-                ? pathname === "/"
-                : pathname.startsWith(item.href);
+            const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
             return (
               <Link
                 key={item.href}
@@ -170,81 +166,71 @@ export function Header({ locale, translations }: HeaderProps) {
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
           >
-            {mobileMenuOpen ? (
-              <X className="h-5 w-5" />
-            ) : (
-              <Menu className="h-5 w-5" />
-            )}
+            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </Button>
         </div>
       </div>
 
       {/* Mobile Navigation - Rule 36: Motion to explain cause and effect */}
-      <div 
+      <div
         className={cn(
           "border-t border-zinc-200/80 dark:border-white/8 bg-white/98 dark:bg-zinc-950/98 backdrop-blur-2xl md:hidden overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]",
           mobileMenuOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
         )}
       >
-          <nav className="mx-auto max-w-7xl space-y-1 px-4 py-4">
-            {navItems.map((item) => {
-              const isActive =
-                item.href === "/"
-                  ? pathname === "/"
-                  : pathname.startsWith(item.href);
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  onClick={() => setMobileMenuOpen(false)}
-                  className={cn(
-                    "flex items-center gap-3 rounded-xl px-4 py-3.5 text-base font-medium transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98]",
-                    isActive
-                      ? "bg-emerald-100 dark:bg-emerald-500/15 text-emerald-700 dark:text-emerald-400"
-                      : "text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-white/5 hover:text-zinc-900 dark:hover:text-white"
-                  )}
-                >
-                  <item.icon className="h-5 w-5" />
-                  {item.label}
-                </Link>
-              );
-            })}
-            
-            {/* Mobile Search */}
-            <Link
-              href="/search"
-              onClick={() => setMobileMenuOpen(false)}
-              className="flex items-center gap-3 rounded-xl px-4 py-3 text-base font-medium text-zinc-600 dark:text-zinc-400 transition-all hover:bg-zinc-100 dark:hover:bg-white/5 hover:text-zinc-900 dark:hover:text-white"
-            >
-              <Search className="h-5 w-5" />
-              {translations.search}
-            </Link>
-
-            {/* Mobile Language Switcher */}
-            <div className="flex items-center gap-3 rounded-xl px-4 py-3 text-base font-medium text-zinc-600 dark:text-zinc-400">
-              <LanguageSwitcher currentLocale={locale} />
-            </div>
-
-            {/* Mobile Theme Toggle */}
-            <div className="flex items-center gap-3 rounded-xl px-4 py-3 text-base font-medium text-zinc-600 dark:text-zinc-400">
-              <ThemeToggle />
-              <span>{translations.toggleTheme}</span>
-            </div>
-
-            {/* Mobile CTA */}
-            <div className="pt-4">
-              <Button
-                asChild
-                className="w-full bg-emerald-600 text-white hover:bg-emerald-500"
+        <nav className="mx-auto max-w-7xl space-y-1 px-4 py-4">
+          {navItems.map((item) => {
+            const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setMobileMenuOpen(false)}
+                className={cn(
+                  "flex items-center gap-3 rounded-xl px-4 py-3.5 text-base font-medium transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98]",
+                  isActive
+                    ? "bg-emerald-100 dark:bg-emerald-500/15 text-emerald-700 dark:text-emerald-400"
+                    : "text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-white/5 hover:text-zinc-900 dark:hover:text-white"
+                )}
               >
-                <Link href="/guides" onClick={() => setMobileMenuOpen(false)}>
-                  <BookOpen className="mr-2 h-4 w-4" />
-                  {translations.exploreAll}
-                </Link>
-              </Button>
-            </div>
-          </nav>
-        </div>
+                <item.icon className="h-5 w-5" />
+                {item.label}
+              </Link>
+            );
+          })}
+
+          {/* Mobile Search */}
+          <Link
+            href="/search"
+            onClick={() => setMobileMenuOpen(false)}
+            className="flex items-center gap-3 rounded-xl px-4 py-3 text-base font-medium text-zinc-600 dark:text-zinc-400 transition-all hover:bg-zinc-100 dark:hover:bg-white/5 hover:text-zinc-900 dark:hover:text-white"
+          >
+            <Search className="h-5 w-5" />
+            {translations.search}
+          </Link>
+
+          {/* Mobile Language Switcher */}
+          <div className="flex items-center gap-3 rounded-xl px-4 py-3 text-base font-medium text-zinc-600 dark:text-zinc-400">
+            <LanguageSwitcher currentLocale={locale} />
+          </div>
+
+          {/* Mobile Theme Toggle */}
+          <div className="flex items-center gap-3 rounded-xl px-4 py-3 text-base font-medium text-zinc-600 dark:text-zinc-400">
+            <ThemeToggle />
+            <span>{translations.toggleTheme}</span>
+          </div>
+
+          {/* Mobile CTA */}
+          <div className="pt-4">
+            <Button asChild className="w-full bg-emerald-600 text-white hover:bg-emerald-500">
+              <Link href="/guides" onClick={() => setMobileMenuOpen(false)}>
+                <BookOpen className="mr-2 h-4 w-4" />
+                {translations.exploreAll}
+              </Link>
+            </Button>
+          </div>
+        </nav>
+      </div>
     </header>
   );
 }

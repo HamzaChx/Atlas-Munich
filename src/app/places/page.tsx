@@ -3,11 +3,10 @@
 import { useState, useMemo } from "react";
 import Link from "next/link";
 import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
 import { PlaceCard, EmptyState, PlacesMap, HeroBadge } from "@/components/shared";
 import { places } from "@/data/places";
 import { PlaceCategory } from "@/types";
-import { MapPin, Search, Utensils, Info, ArrowRight, Map, LayoutGrid } from "lucide-react";
+import { MapPin, Search, Utensils, ArrowRight, Map, LayoutGrid } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
 
@@ -45,9 +44,6 @@ export default function PlacesPage() {
 
     return result;
   }, [selectedCategory, searchQuery]);
-
-  // Get featured places (halal restaurants)
-  const featuredPlaces = places.filter(p => p.featured);
 
   return (
     <div className="min-h-screen bg-white dark:bg-zinc-950">
@@ -112,12 +108,27 @@ export default function PlacesPage() {
         {/* Results info & View Toggle */}
         <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-sm text-zinc-500 dark:text-zinc-400">
-            <span className="text-base font-bold text-zinc-900 dark:text-white">{filteredPlaces.length}</span>{" "}
+            <span className="text-base font-bold text-zinc-900 dark:text-white">
+              {filteredPlaces.length}
+            </span>{" "}
             {filteredPlaces.length === 1 ? t("results.place") : t("results.places")}
             {selectedCategory && (
-              <> {t("results.in")} <span className="font-medium text-orange-600 dark:text-orange-400">{categoryFilters.find((c) => c.key === selectedCategory)?.label}</span></>
+              <>
+                {" "}
+                {t("results.in")}{" "}
+                <span className="font-medium text-orange-600 dark:text-orange-400">
+                  {categoryFilters.find((c) => c.key === selectedCategory)?.label}
+                </span>
+              </>
             )}
-            {searchQuery && <> {t("results.matching")} &ldquo;<span className="font-medium text-zinc-900 dark:text-white">{searchQuery}</span>&rdquo;</>}
+            {searchQuery && (
+              <>
+                {" "}
+                {t("results.matching")} &ldquo;
+                <span className="font-medium text-zinc-900 dark:text-white">{searchQuery}</span>
+                &rdquo;
+              </>
+            )}
           </p>
           <div className="flex items-center gap-2">
             {(selectedCategory || searchQuery) && (
@@ -164,19 +175,14 @@ export default function PlacesPage() {
         {/* Map View */}
         {viewMode === "map" && (
           <div className="mb-10">
-            <PlacesMap 
-              places={filteredPlaces} 
-              className="h-[500px]"
-            />
-            <p className="mt-4 text-center text-sm text-zinc-500">
-              {t("mapNote")}
-            </p>
+            <PlacesMap places={filteredPlaces} className="h-[500px]" />
+            <p className="mt-4 text-center text-sm text-zinc-500">{t("mapNote")}</p>
           </div>
         )}
 
         {/* Places grid */}
-        {viewMode === "grid" && (
-          filteredPlaces.length > 0 ? (
+        {viewMode === "grid" &&
+          (filteredPlaces.length > 0 ? (
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {filteredPlaces.map((place) => (
                 <PlaceCard key={place.slug} place={place} />
@@ -188,8 +194,7 @@ export default function PlacesPage() {
               title={t("noResults")}
               description={t("noResultsDescription")}
             />
-          )
-        )}
+          ))}
 
         {/* Contribute CTA */}
         <div className="mt-20 rounded-3xl border border-zinc-200 dark:border-white/10 bg-gradient-to-br from-zinc-50 via-white to-zinc-50 dark:from-zinc-900 dark:via-zinc-900/80 dark:to-zinc-900 p-10 text-center shadow-sm dark:shadow-none backdrop-blur-sm">

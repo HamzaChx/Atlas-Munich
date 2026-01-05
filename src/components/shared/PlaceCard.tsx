@@ -55,14 +55,14 @@ export function PlaceCard({ place, className }: PlaceCardProps) {
   return (
     <div
       className={cn(
-        "group relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900/50 shadow-sm dark:shadow-none backdrop-blur-sm transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:border-zinc-300 dark:hover:border-white/20 hover:bg-zinc-50/80 dark:hover:bg-zinc-900/80 hover:shadow-lg hover:shadow-zinc-200/50 dark:hover:shadow-none",
+        "group relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900/50 shadow-sm dark:shadow-none backdrop-blur-sm transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:border-zinc-300 dark:hover:border-white/20 hover:bg-zinc-50/80 dark:hover:bg-zinc-900/80 hover:shadow-lg hover:shadow-zinc-200/50 dark:hover:shadow-none flex flex-col",
         className
       )}
     >
       {/* Category gradient bar */}
       <div className={cn("h-1 bg-gradient-to-r", categoryColors[place.category])} />
       
-      <div className="p-6">
+      <div className="p-6 flex flex-col flex-1">
         {/* Header */}
         <div className="mb-4 flex items-start justify-between gap-3">
           <div className="flex items-center gap-2">
@@ -138,7 +138,7 @@ export function PlaceCard({ place, className }: PlaceCardProps) {
         )}
 
         {/* Actions - Rule 33: Buttons must look clickable */}
-        <div className="mt-5 flex items-center gap-2">
+        <div className="mt-auto pt-5 flex items-center gap-2">
           {place.website && (
             <Link
               href={place.website}

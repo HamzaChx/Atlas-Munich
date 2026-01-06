@@ -4,6 +4,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getLocale } from "next-intl/server";
 import { Header, Footer } from "@/components/layout";
 import { ThemeProvider } from "@/components/shared";
+import { ChatbotWrapper } from "@/components/chatbot";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -41,8 +42,7 @@ export const metadata: Metadata = {
   ],
   openGraph: {
     title: "Atlas Munich | Your Guide to Thriving in Munich",
-    description:
-      "The complete starter guide for Moroccan students and professionals in Munich.",
+    description: "The complete starter guide for Moroccan students and professionals in Munich.",
     type: "website",
     locale: "en_US",
   },
@@ -55,7 +55,7 @@ export default async function RootLayout({
 }>) {
   const locale = await getLocale();
   const messages = await getMessages();
-  
+
   // Extract nav translations for the header
   const navTranslations = messages.nav as {
     home: string;
@@ -73,9 +73,7 @@ export default async function RootLayout({
     <html
       lang={locale}
       suppressHydrationWarning
-      className={[geistSans.variable, geistMono.variable, "antialiased"].join(
-        " "
-      )}
+      className={[geistSans.variable, geistMono.variable, "antialiased"].join(" ")}
     >
       <body className="min-h-screen bg-white transition-colors dark:bg-zinc-950">
         <NextIntlClientProvider messages={messages}>
@@ -88,6 +86,7 @@ export default async function RootLayout({
             <Header locale={locale as "en" | "fr"} translations={navTranslations} />
             <main>{children}</main>
             <Footer />
+            <ChatbotWrapper />
           </ThemeProvider>
         </NextIntlClientProvider>
       </body>

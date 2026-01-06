@@ -5,7 +5,7 @@
 // ============================================
 
 import { useState, useCallback, useRef, useEffect } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useLocale } from "next-intl";
 import {
   ChatMessage,
@@ -43,6 +43,7 @@ function generateId(): string {
 
 export function useChatbot(options: UseChatbotOptions = {}): UseChatbotReturn {
   const pathname = usePathname();
+  const router = useRouter();
   const locale = useLocale();
 
   // Determine chatbot based on current path
@@ -175,14 +176,11 @@ export function useChatbot(options: UseChatbotOptions = {}): UseChatbotReturn {
             setNotification(null);
           }, 5000);
 
-          // Switch chatbot after a brief delay
+          // Switch chatbot and navigate after a brief delay
           setTimeout(() => {
             setCurrentChatbot(toChatbot);
-            // Navigate to the new path
-            if (typeof window !== "undefined") {
-              window.history.pushState({}, "", data.navigation!.path);
-              window.dispatchEvent(new PopStateEvent("popstate"));
-            }
+            // Use Next.js router for proper navigation
+            router.push(data.navigation!.path);
           }, 1500);
         }
       } catch (err) {
@@ -195,7 +193,7 @@ export function useChatbot(options: UseChatbotOptions = {}): UseChatbotReturn {
         setIsLoading(false);
       }
     },
-    [messages, currentChatbot, locale, pathname, isLoading]
+    [messages, currentChatbot, locale, pathname, isLoading, router]
   );
 
   const switchChatbot = useCallback((chatbot: ChatbotType) => {

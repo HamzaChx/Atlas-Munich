@@ -3,6 +3,7 @@
     "home": "Home",
     "guides": "Guides",
     "places": "Places",
+    "community": "Community",
     "faq": "FAQ",
     "about": "About",
     "search": "Search",
@@ -290,6 +291,58 @@
       "explorePlaces": "Explore Places"
     },
     "loading": "Loading search..."
+  },
+  "community": {
+    "badge": "Join Us",
+    "title": "Join Our",
+    "titleHighlight": "WhatsApp Community",
+    "subtitle": "Connect with 100+ Moroccan students and professionals in Munich. Get real-time answers, share experiences, and build lasting friendships.",
+    "stats": {
+      "members": "Active Members",
+      "active": "Support Available",
+      "cultures": "Two Cultures, One Community"
+    },
+    "qrInstructions": "Scan with your phone camera or WhatsApp to join instantly",
+    "joinTitle": "Ready to Join?",
+    "joinDescription": "One scan connects you to a network of people who understand exactly what you're going through. Ask questions, share tips, and make friends.",
+    "joinButton": "Join WhatsApp Community",
+    "joinNote": "Free to join • No spam • Real people helping real people",
+    "verified": {
+      "title": "Official Community",
+      "description": "Verified and moderated by Atlas Munich team"
+    },
+    "benefitsTitle": "Why Join Our Community?",
+    "benefitsSubtitle": "More than just a group chat — it's your support network in Munich.",
+    "benefits": {
+      "support": {
+        "title": "Instant Support",
+        "description": "Get quick answers from people who've been through the same challenges — from Anmeldung to finding apartments."
+      },
+      "realtime": {
+        "title": "Real-Time Updates",
+        "description": "Be the first to know about apartment openings, job opportunities, community events, and urgent announcements."
+      },
+      "friendships": {
+        "title": "Build Friendships",
+        "description": "Connect with fellow Moroccans in Munich. Study together, grab coffee, celebrate Eid, or just chat in Darija."
+      },
+      "events": {
+        "title": "Community Events",
+        "description": "Get invited to meetups, career workshops, cultural events, and group activities organized by the community."
+      }
+    },
+    "guidelinesBadge": "Community Guidelines",
+    "guidelinesTitle": "Let's Keep It Great",
+    "guidelinesSubtitle": "A few simple rules to ensure our community stays helpful, respectful, and valuable for everyone.",
+    "guidelines": {
+      "respectful": "Be respectful and kind. We're all here to help each other succeed in Munich.",
+      "helpful": "Share knowledge generously. Your experience could save someone hours of frustration.",
+      "language": "Feel free to use English, French, Arabic, Darija, or German — we're multilingual!",
+      "spam": "No spam, advertising, or self-promotion without permission from moderators.",
+      "privacy": "Respect privacy. Don't share personal information or screenshots without consent."
+    },
+    "readyTitle": "Ready to Connect?",
+    "readySubtitle": "Join 100+ Moroccans who are navigating Munich together. Your community is waiting."
   },
   "common": {
     "loading": "Loading...",

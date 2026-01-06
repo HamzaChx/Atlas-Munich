@@ -32,6 +32,7 @@ interface NavTranslations {
   home: string;
   guides: string;
   places: string;
+  community: string;
   faq: string;
   about: string;
   search: string;
@@ -54,6 +55,7 @@ export function Header({ locale, translations }: HeaderProps) {
     { label: translations.home, href: "/", icon: Home },
     { label: translations.guides, href: "/guides", icon: BookOpen },
     { label: translations.places, href: "/places", icon: MapPin },
+    { label: translations.community, href: "/community", icon: Users },
     { label: translations.faq, href: "/faq", icon: HelpCircle },
     { label: translations.about, href: "/about", icon: Users },
   ];

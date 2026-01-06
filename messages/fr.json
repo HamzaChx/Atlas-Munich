@@ -3,6 +3,7 @@
     "home": "Accueil",
     "guides": "Guides",
     "places": "Lieux",
+    "community": "Communauté",
     "faq": "FAQ",
     "about": "À propos",
     "search": "Rechercher",
@@ -256,7 +257,8 @@
       "contribute": "Contribuer",
       "contact": "Contact"
     }
-  },  "search": {
+  },
+  "search": {
     "badge": "Tout rechercher",
     "title": "Trouvez ce dont vous",
     "titleHighlight": "avez besoin",
@@ -289,7 +291,60 @@
       "explorePlaces": "Explorer les lieux"
     },
     "loading": "Chargement de la recherche..."
-  },  "common": {
+  },
+  "community": {
+    "badge": "Rejoignez-nous",
+    "title": "Rejoignez notre",
+    "titleHighlight": "Communauté WhatsApp",
+    "subtitle": "Connectez-vous avec 100+ étudiants et professionnels marocains à Munich. Obtenez des réponses en temps réel, partagez des expériences et créez des amitiés durables.",
+    "stats": {
+      "members": "Membres actifs",
+      "active": "Support disponible",
+      "cultures": "Deux cultures, une communauté"
+    },
+    "qrInstructions": "Scannez avec l'appareil photo de votre téléphone ou WhatsApp pour rejoindre instantanément",
+    "joinTitle": "Prêt à rejoindre ?",
+    "joinDescription": "Un scan vous connecte à un réseau de personnes qui comprennent exactement ce que vous vivez. Posez des questions, partagez des conseils et faites-vous des amis.",
+    "joinButton": "Rejoindre la communauté WhatsApp",
+    "joinNote": "Gratuit • Pas de spam • De vraies personnes aidant de vraies personnes",
+    "verified": {
+      "title": "Communauté officielle",
+      "description": "Vérifiée et modérée par l'équipe Atlas Munich"
+    },
+    "benefitsTitle": "Pourquoi rejoindre notre communauté ?",
+    "benefitsSubtitle": "Plus qu'un simple groupe de discussion — c'est votre réseau de soutien à Munich.",
+    "benefits": {
+      "support": {
+        "title": "Support instantané",
+        "description": "Obtenez des réponses rapides de personnes qui ont vécu les mêmes défis — de l'Anmeldung à la recherche d'appartement."
+      },
+      "realtime": {
+        "title": "Mises à jour en temps réel",
+        "description": "Soyez le premier à connaître les offres d'appartements, les opportunités d'emploi, les événements communautaires et les annonces urgentes."
+      },
+      "friendships": {
+        "title": "Créer des amitiés",
+        "description": "Connectez-vous avec d'autres Marocains à Munich. Étudiez ensemble, prenez un café, célébrez l'Aïd ou chattez simplement en Darija."
+      },
+      "events": {
+        "title": "Événements communautaires",
+        "description": "Soyez invité aux rencontres, ateliers de carrière, événements culturels et activités de groupe organisés par la communauté."
+      }
+    },
+    "guidelinesBadge": "Règles de la communauté",
+    "guidelinesTitle": "Gardons ça génial",
+    "guidelinesSubtitle": "Quelques règles simples pour garantir que notre communauté reste utile, respectueuse et précieuse pour tous.",
+    "guidelines": {
+      "respectful": "Soyez respectueux et gentil. Nous sommes tous ici pour nous aider mutuellement à réussir à Munich.",
+      "helpful": "Partagez les connaissances généreusement. Votre expérience pourrait épargner des heures de frustration à quelqu'un.",
+      "language": "N'hésitez pas à utiliser l'anglais, le français, l'arabe, le Darija ou l'allemand — nous sommes multilingues !",
+      "spam": "Pas de spam, de publicité ou d'autopromotion sans la permission des modérateurs.",
+      "privacy": "Respectez la vie privée. Ne partagez pas d'informations personnelles ou de captures d'écran sans consentement."
+    },
+    "readyTitle": "Prêt à vous connecter ?",
+    "readySubtitle": "Rejoignez 100+ Marocains qui naviguent Munich ensemble. Votre communauté vous attend."
+  },
+  "common": {
     "loading": "Chargement...",
     "error": "Une erreur s'est produite",
     "retry": "Réessayer",

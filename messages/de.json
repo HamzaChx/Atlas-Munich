@@ -3,6 +3,7 @@
     "home": "Startseite",
     "guides": "Ratgeber",
     "places": "Orte",
+    "community": "Community",
     "faq": "FAQ",
     "about": "Über uns",
     "search": "Suche",
@@ -290,6 +291,58 @@
       "explorePlaces": "Orte erkunden"
     },
     "loading": "Suche wird geladen..."
+  },
+  "community": {
+    "badge": "Mach mit",
+    "title": "Tritt unserer",
+    "titleHighlight": "WhatsApp Community bei",
+    "subtitle": "Verbinde dich mit 100+ marokkanischen Studenten und Professionals in München. Erhalte Antworten in Echtzeit, teile Erfahrungen und schließe dauerhafte Freundschaften.",
+    "stats": {
+      "members": "Aktive Mitglieder",
+      "active": "Support verfügbar",
+      "cultures": "Zwei Kulturen, eine Community"
+    },
+    "qrInstructions": "Scanne mit deiner Handykamera oder WhatsApp, um sofort beizutreten",
+    "joinTitle": "Bereit beizutreten?",
+    "joinDescription": "Ein Scan verbindet dich mit einem Netzwerk von Menschen, die genau verstehen, was du durchmachst. Stelle Fragen, teile Tipps und schließe Freundschaften.",
+    "joinButton": "WhatsApp Community beitreten",
+    "joinNote": "Kostenlos • Kein Spam • Echte Menschen helfen echten Menschen",
+    "verified": {
+      "title": "Offizielle Community",
+      "description": "Verifiziert und moderiert vom Atlas München Team"
+    },
+    "benefitsTitle": "Warum unserer Community beitreten?",
+    "benefitsSubtitle": "Mehr als nur ein Gruppenchat — es ist dein Support-Netzwerk in München.",
+    "benefits": {
+      "support": {
+        "title": "Sofortiger Support",
+        "description": "Erhalte schnelle Antworten von Menschen, die die gleichen Herausforderungen durchgemacht haben — von Anmeldung bis Wohnungssuche."
+      },
+      "realtime": {
+        "title": "Echtzeit-Updates",
+        "description": "Sei der Erste, der von Wohnungsangeboten, Jobmöglichkeiten, Community-Events und wichtigen Ankündigungen erfährt."
+      },
+      "friendships": {
+        "title": "Freundschaften aufbauen",
+        "description": "Verbinde dich mit anderen Marokkanern in München. Lerne zusammen, trinke Kaffee, feiere Eid oder chatte einfach auf Darija."
+      },
+      "events": {
+        "title": "Community-Events",
+        "description": "Werde zu Treffen, Karriere-Workshops, kulturellen Veranstaltungen und Gruppenaktivitäten eingeladen, die von der Community organisiert werden."
+      }
+    },
+    "guidelinesBadge": "Community-Richtlinien",
+    "guidelinesTitle": "Lasst es großartig bleiben",
+    "guidelinesSubtitle": "Ein paar einfache Regeln, um sicherzustellen, dass unsere Community hilfreich, respektvoll und wertvoll für alle bleibt.",
+    "guidelines": {
+      "respectful": "Sei respektvoll und freundlich. Wir sind alle hier, um uns gegenseitig beim Erfolg in München zu helfen.",
+      "helpful": "Teile Wissen großzügig. Deine Erfahrung könnte jemandem Stunden der Frustration ersparen.",
+      "language": "Fühle dich frei, Englisch, Französisch, Arabisch, Darija oder Deutsch zu verwenden — wir sind mehrsprachig!",
+      "spam": "Kein Spam, Werbung oder Selbstpromotion ohne Erlaubnis der Moderatoren.",
+      "privacy": "Respektiere die Privatsphäre. Teile keine persönlichen Informationen oder Screenshots ohne Zustimmung."
+    },
+    "readyTitle": "Bereit dich zu verbinden?",
+    "readySubtitle": "Tritt 100+ Marokkanern bei, die München gemeinsam navigieren. Deine Community wartet."
   },
   "common": {
     "loading": "Lädt...",

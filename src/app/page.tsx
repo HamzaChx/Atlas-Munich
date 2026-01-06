@@ -46,7 +46,7 @@ export default async function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Section - Moroccan-Munich Fusion */}
-      <section className="relative min-h-[90vh] overflow-hidden bg-gradient-to-br from-red-50 via-white to-green-50 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950">
+      <section className="relative min-h-[85vh] sm:min-h-[90vh] overflow-hidden bg-gradient-to-br from-red-50 via-white to-green-50 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950">
         {/* Gradient Orbs - Morocco & Germany colors */}
         <div className="absolute -left-32 top-1/4 z-[5] h-[500px] w-[500px] rounded-full bg-gradient-to-br from-red-300/50 to-red-200/30 dark:from-red-600/25 dark:to-red-500/15 blur-[120px]" />
         <div className="absolute -right-32 bottom-1/4 z-[5] h-[500px] w-[500px] rounded-full bg-gradient-to-br from-green-300/50 to-emerald-200/30 dark:from-green-600/25 dark:to-emerald-500/15 blur-[120px]" />
@@ -204,7 +204,7 @@ export default async function Home() {
           </h1>
 
           {/* Subtitle */}
-          <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
+          <p className="mx-auto mt-6 sm:mt-8 max-w-2xl text-base sm:text-lg leading-relaxed text-zinc-600 dark:text-zinc-400 px-2">
             {t("heroSubtitle")}{" "}
             <span className="font-semibold text-amber-600 dark:text-amber-400">
               {t("heroCommunity")}
@@ -213,39 +213,39 @@ export default async function Home() {
           </p>
 
           {/* Search Bar */}
-          <div className="mx-auto mt-10 w-full max-w-2xl">
+          <div className="mx-auto mt-8 sm:mt-10 w-full max-w-2xl px-2">
             <div className="relative">
               <SearchBar placeholder={t("searchPlaceholder")} size="lg" showButton={false} />
             </div>
           </div>
 
           {/* Quick Links */}
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+          <div className="mt-6 sm:mt-8 flex flex-wrap items-center justify-center gap-2 sm:gap-3 px-2">
             {quickLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="group flex items-center gap-2 rounded-full border border-zinc-200 dark:border-white/10 bg-white/80 dark:bg-white/5 px-5 py-2.5 text-sm font-medium text-zinc-700 dark:text-zinc-300 shadow-sm dark:shadow-none backdrop-blur-sm transition-all hover:border-emerald-500/50 hover:bg-emerald-50 dark:hover:bg-emerald-500/10 hover:text-emerald-600 dark:hover:text-emerald-400"
+                className="group flex items-center gap-1.5 sm:gap-2 rounded-full border border-zinc-200 dark:border-white/10 bg-white/80 dark:bg-white/5 px-3 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-medium text-zinc-700 dark:text-zinc-300 shadow-sm dark:shadow-none backdrop-blur-sm transition-all hover:border-emerald-500/50 hover:bg-emerald-50 dark:hover:bg-emerald-500/10 hover:text-emerald-600 dark:hover:text-emerald-400"
               >
-                <link.icon className="h-4 w-4" />
-                {link.label}
+                <link.icon className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
+                <span className="whitespace-nowrap">{link.label}</span>
                 <ArrowRight className="h-3 w-3 opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100" />
               </Link>
             ))}
           </div>
 
           {/* Stats Bar */}
-          <div className="mt-14 grid w-full max-w-3xl grid-cols-2 gap-4 sm:grid-cols-4">
+          <div className="mt-10 sm:mt-14 grid w-full max-w-3xl grid-cols-2 gap-3 sm:gap-4 px-2">
             {stats.map((stat) => (
               <div
                 key={stat.label}
-                className="group rounded-xl border border-zinc-200 dark:border-white/5 bg-white/80 dark:bg-white/5 p-4 shadow-sm dark:shadow-none backdrop-blur-sm transition-all hover:border-emerald-200 dark:hover:border-white/10 hover:bg-white dark:hover:bg-white/10"
+                className="group rounded-xl border border-zinc-200 dark:border-white/5 bg-white/80 dark:bg-white/5 p-3 sm:p-4 shadow-sm dark:shadow-none backdrop-blur-sm transition-all hover:border-emerald-200 dark:hover:border-white/10 hover:bg-white dark:hover:bg-white/10"
               >
-                <div className="text-3xl font-bold text-zinc-900 dark:text-white">
+                <div className="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-white">
                   {stat.value}
                   <span className="text-emerald-600 dark:text-emerald-400">{stat.suffix}</span>
                 </div>
-                <div className="text-sm text-zinc-500">{stat.label}</div>
+                <div className="text-xs sm:text-sm text-zinc-500 leading-tight">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -253,13 +253,13 @@ export default async function Home() {
       </section>
 
       {/* Categories Section */}
-      <section className="relative overflow-hidden border-b border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-950 py-20">
+      <section className="relative overflow-hidden border-b border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-950 py-12 sm:py-20">
         {/* Decorative Elements */}
         <div className="absolute left-0 top-0 h-1 w-full bg-gradient-to-r from-red-500 via-amber-500 to-green-500" />
 
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8">
           {/* Section Header */}
-          <div className="mb-12 text-center">
+          <div className="mb-8 sm:mb-12 text-center px-2">
             <Badge className="mb-4 border-emerald-500/30 bg-emerald-100 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400">
               <Compass className="mr-1.5 h-3.5 w-3.5" />
               {t("categories.badge")}
@@ -319,13 +319,13 @@ export default async function Home() {
       </section>
 
       {/* Community Mission Section */}
-      <section className="relative overflow-hidden border-b border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-zinc-950 py-20">
+      <section className="relative overflow-hidden border-b border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-zinc-950 py-12 sm:py-20">
         {/* Gradient orbs */}
         <div className="absolute -left-32 top-1/4 h-[400px] w-[400px] rounded-full bg-gradient-to-br from-red-400/15 to-red-500/10 dark:from-red-600/10 dark:to-red-500/5 blur-[100px]" />
         <div className="absolute -right-32 bottom-1/4 h-[400px] w-[400px] rounded-full bg-gradient-to-br from-green-400/15 to-emerald-500/10 dark:from-green-600/10 dark:to-emerald-500/5 blur-[100px]" />
 
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid items-center gap-10 lg:grid-cols-2">
+        <div className="relative mx-auto max-w-7xl px-3 sm:px-6 lg:px-8">
+          <div className="grid items-center gap-8 sm:gap-10 lg:grid-cols-2">
             {/* Left - Visual */}
             <div className="relative">
               <div className="relative aspect-square max-w-md overflow-hidden rounded-2xl">
@@ -453,12 +453,12 @@ export default async function Home() {
       </section>
 
       {/* CTA Section - Contribute */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-red-50 via-white to-green-50 dark:from-zinc-950 dark:via-zinc-950 dark:to-zinc-950 py-20">
+      <section className="relative overflow-hidden bg-gradient-to-br from-red-50 via-white to-green-50 dark:from-zinc-950 dark:via-zinc-950 dark:to-zinc-950 py-12 sm:py-20">
         {/* Animated Gradient Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-red-100/40 via-transparent to-green-100/40 dark:from-red-950/30 dark:via-zinc-950 dark:to-green-950/30" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-200/20 dark:from-amber-500/10 via-transparent to-transparent" />
 
-        <div className="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
+        <div className="relative mx-auto max-w-4xl px-3 sm:px-6 lg:px-8 text-center">
           <Badge className="mb-5 border-emerald-500/30 bg-emerald-100 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400">
             <Sparkles className="mr-1.5 h-3.5 w-3.5" />
             {t("cta.badge")}

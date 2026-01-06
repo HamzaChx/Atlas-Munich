@@ -61,6 +61,7 @@ export default async function RootLayout({
     home: string;
     guides: string;
     places: string;
+    community: string;
     faq: string;
     about: string;
     search: string;
@@ -84,7 +85,7 @@ export default async function RootLayout({
             disableTransitionOnChange
           >
             <Header locale={locale as "en" | "fr"} translations={navTranslations} />
-            <main>{children}</main>
+            <main className="pt-14 sm:pt-16">{children}</main>
             <Footer />
             <ChatbotWrapper />
           </ThemeProvider>

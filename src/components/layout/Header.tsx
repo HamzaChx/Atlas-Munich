@@ -32,6 +32,7 @@ interface NavTranslations {
   home: string;
   guides: string;
   places: string;
+  community: string;
   faq: string;
   about: string;
   search: string;
@@ -54,6 +55,7 @@ export function Header({ locale, translations }: HeaderProps) {
     { label: translations.home, href: "/", icon: Home },
     { label: translations.guides, href: "/guides", icon: BookOpen },
     { label: translations.places, href: "/places", icon: MapPin },
+    { label: translations.community, href: "/community", icon: Users },
     { label: translations.faq, href: "/faq", icon: HelpCircle },
     { label: translations.about, href: "/about", icon: Users },
   ];
@@ -79,13 +81,13 @@ export function Header({ locale, translations }: HeaderProps) {
   return (
     <header className={cn("fixed top-0 z-50 w-full transition-all duration-300", headerBg)}>
       {/* Rule 12: Max content width 1100-1280px for readability */}
-      <div className="mx-auto flex h-16 max-w-[1280px] items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-14 sm:h-16 max-w-[1280px] items-center justify-between px-3 sm:px-6 lg:px-8">
         {/* Logo - Rule 34: Hover states required */}
         <Link
           href="/"
-          className="group flex items-center gap-3 outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-lg"
+          className="group flex items-center gap-2 sm:gap-3 outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-lg"
         >
-          <div className="relative h-10 w-10 overflow-hidden rounded-full border border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-white/5 backdrop-blur-sm transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:border-emerald-500/40 group-hover:bg-emerald-50 dark:group-hover:bg-emerald-500/10 group-hover:shadow-sm group-hover:shadow-emerald-500/10">
+          <div className="relative h-8 w-8 sm:h-10 sm:w-10 overflow-hidden rounded-full border border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-white/5 backdrop-blur-sm transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:border-emerald-500/40 group-hover:bg-emerald-50 dark:group-hover:bg-emerald-500/10 group-hover:shadow-sm group-hover:shadow-emerald-500/10">
             <Image
               src="/logo.png"
               alt="Atlas Munich Logo"
@@ -94,7 +96,7 @@ export function Header({ locale, translations }: HeaderProps) {
               className="h-full w-full object-cover"
             />
           </div>
-          <span className="text-xl font-bold tracking-tight">
+          <span className="text-lg sm:text-xl font-bold tracking-tight">
             <span className="bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-400 dark:to-teal-400 bg-clip-text text-transparent">
               Atlas
             </span>{" "}
@@ -125,7 +127,7 @@ export function Header({ locale, translations }: HeaderProps) {
         </nav>
 
         {/* Right Side Actions */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1 sm:gap-2">
           {/* Language Switcher */}
           <LanguageSwitcher currentLocale={locale} className="hidden sm:block" />
 
@@ -175,10 +177,10 @@ export function Header({ locale, translations }: HeaderProps) {
       <div
         className={cn(
           "border-t border-zinc-200/80 dark:border-white/8 bg-white/98 dark:bg-zinc-950/98 backdrop-blur-2xl md:hidden overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]",
-          mobileMenuOpen ? "max-h-[500px] opacity-100" : "max-h-0 opacity-0"
+          mobileMenuOpen ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
         )}
       >
-        <nav className="mx-auto max-w-7xl space-y-1 px-4 py-4">
+        <nav className="mx-auto max-w-7xl space-y-1 px-3 py-3">
           {navItems.map((item) => {
             const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
             return (
@@ -187,7 +189,7 @@ export function Header({ locale, translations }: HeaderProps) {
                 href={item.href}
                 onClick={() => setMobileMenuOpen(false)}
                 className={cn(
-                  "flex items-center gap-3 rounded-xl px-4 py-3.5 text-base font-medium transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98]",
+                  "flex items-center gap-3 rounded-xl px-4 py-3 text-base font-medium transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98]",
                   isActive
                     ? "bg-emerald-100 dark:bg-emerald-500/15 text-emerald-700 dark:text-emerald-400"
                     : "text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-white/5 hover:text-zinc-900 dark:hover:text-white"

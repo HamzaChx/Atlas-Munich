@@ -44,8 +44,8 @@ export function Footer() {
       <div className="h-px bg-gradient-to-r from-transparent via-emerald-500/40 to-transparent" />
 
       {/* Rule 11: 8-point spacing system - py-20 = 80px */}
-      <div className="relative mx-auto max-w-[1280px] px-4 py-20 sm:px-6 lg:px-8">
-        <div className="grid gap-12 lg:grid-cols-5">
+      <div className="relative mx-auto max-w-[1280px] px-3 sm:px-6 lg:px-8 py-12 sm:py-20">
+        <div className="grid gap-8 sm:gap-12 lg:grid-cols-5">
           {/* Brand Section - Larger */}
           <div className="lg:col-span-2">
             <Link
@@ -69,12 +69,12 @@ export function Footer() {
               </span>
             </Link>
 
-            <p className="mt-6 max-w-sm text-[15px] leading-relaxed text-zinc-600 dark:text-zinc-400">
+            <p className="mt-5 sm:mt-6 max-w-sm text-sm sm:text-[15px] leading-relaxed text-zinc-600 dark:text-zinc-400">
               {t("description")}
             </p>
 
             {/* Social Links - Rule 34: Hover states required */}
-            <div className="mt-8 flex items-center gap-3">
+            <div className="mt-6 sm:mt-8 flex items-center gap-2 sm:gap-3">
               <Link
                 href="https://github.com/HamzaChx/Atlas-Munich"
                 target="_blank"

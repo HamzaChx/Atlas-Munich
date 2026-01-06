@@ -73,9 +73,9 @@ export function PlaceCard({ place, className }: PlaceCardProps) {
       {/* Category gradient bar */}
       <div className={cn("h-1 bg-gradient-to-r", categoryColors[place.category])} />
 
-      <div className="p-6 flex flex-col flex-1">
+      <div className="p-4 sm:p-6 flex flex-col flex-1">
         {/* Header */}
-        <div className="mb-4 flex items-start justify-between gap-3">
+        <div className="mb-3 sm:mb-4 flex items-start justify-between gap-2 sm:gap-3">
           <div className="flex items-center gap-2">
             <span className="text-xl">{categoryIcons[place.category]}</span>
             <Badge
@@ -94,7 +94,7 @@ export function PlaceCard({ place, className }: PlaceCardProps) {
         </div>
 
         {/* Title - Rule 6: Visual hierarchy */}
-        <h3 className="text-lg font-semibold tracking-tight text-zinc-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-200">
+        <h3 className="text-base sm:text-lg font-semibold tracking-tight text-zinc-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors duration-200">
           {place.name}
         </h3>
 

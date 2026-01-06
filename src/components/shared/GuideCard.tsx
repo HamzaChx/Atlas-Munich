@@ -32,51 +32,48 @@ const tagColors: Record<ContentTag, string> = {
 
 export function GuideCard({ guide, className, showCategory = true }: GuideCardProps) {
   return (
-    <Link 
-      href={`/guides/${guide.slug}`} 
+    <Link
+      href={`/guides/${guide.slug}`}
       className={cn(
-        "group block outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-2xl", 
+        "group block outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-2xl",
         className
       )}
     >
-      <div className="relative h-full overflow-hidden rounded-2xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900/50 p-6 shadow-sm dark:shadow-none transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:border-emerald-200 dark:hover:border-emerald-500/30 hover:bg-zinc-50/80 dark:hover:bg-zinc-800/50 hover:shadow-lg hover:shadow-zinc-200/50 dark:hover:shadow-none">
+      <div className="relative h-full overflow-hidden rounded-2xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900/50 p-4 sm:p-6 shadow-sm dark:shadow-none transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:border-emerald-200 dark:hover:border-emerald-500/30 hover:bg-zinc-50/80 dark:hover:bg-zinc-800/50 hover:shadow-lg hover:shadow-zinc-200/50 dark:hover:shadow-none">
         {/* Subtle gradient glow on hover - Rule 44: Micro-interactions sparingly */}
         <div className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-emerald-500/0 blur-3xl transition-all duration-500 ease-out group-hover:bg-emerald-500/10" />
 
         {/* Content */}
         <div className="relative">
           {/* Tags - Rule 6: Visual hierarchy */}
-          <div className="mb-4 flex flex-wrap items-center gap-2">
+          <div className="mb-3 sm:mb-4 flex flex-wrap items-center gap-1.5 sm:gap-2">
             {showCategory && (
-              <Badge 
-                variant="secondary" 
+              <Badge
+                variant="secondary"
                 className="border-zinc-200 dark:border-white/10 bg-zinc-100 dark:bg-white/5 font-medium capitalize text-zinc-700 dark:text-zinc-300 text-xs"
               >
                 {guide.categoryKey.replace(/-/g, " ")}
               </Badge>
             )}
             {guide.tags.slice(0, 2).map((tag) => (
-              <Badge 
-                key={tag} 
-                className={cn("border text-xs font-medium", tagColors[tag])}
-              >
+              <Badge key={tag} className={cn("border text-xs font-medium", tagColors[tag])}>
                 {tag}
               </Badge>
             ))}
           </div>
 
           {/* Title - Rule 25: Headings communicate meaning */}
-          <h3 className="line-clamp-2 text-lg font-semibold leading-snug tracking-tight text-zinc-900 dark:text-white transition-colors duration-200 group-hover:text-emerald-600 dark:group-hover:text-emerald-400">
+          <h3 className="line-clamp-2 text-base sm:text-lg font-semibold leading-snug tracking-tight text-zinc-900 dark:text-white transition-colors duration-200 group-hover:text-emerald-600 dark:group-hover:text-emerald-400">
             {guide.title}
           </h3>
 
           {/* Summary - Rule 24: Break content every 2-3 lines */}
-          <p className="mt-3 line-clamp-2 text-[15px] leading-relaxed text-zinc-600 dark:text-zinc-400">
+          <p className="mt-2 sm:mt-3 line-clamp-2 text-sm sm:text-[15px] leading-relaxed text-zinc-600 dark:text-zinc-400">
             {guide.summary}
           </p>
 
           {/* Footer - Rule 16: Group related elements visually */}
-          <div className="mt-5 flex items-center justify-between border-t border-zinc-100 dark:border-white/5 pt-4 text-xs text-zinc-500">
+          <div className="mt-4 sm:mt-5 flex items-center justify-between border-t border-zinc-100 dark:border-white/5 pt-3 sm:pt-4 text-xs text-zinc-500">
             <div className="flex items-center gap-4">
               <span className="flex items-center gap-1.5">
                 <Clock className="h-3.5 w-3.5" />
@@ -111,19 +108,19 @@ export function GuideCardSkeleton({ className }: { className?: string }) {
             <div className="h-5 w-20 rounded-full skeleton" />
             <div className="h-5 w-16 rounded-full skeleton" />
           </div>
-          
+
           {/* Title skeleton */}
           <div className="space-y-2">
             <div className="h-5 w-full rounded skeleton" />
             <div className="h-5 w-3/4 rounded skeleton" />
           </div>
-          
+
           {/* Summary skeleton */}
           <div className="space-y-2">
             <div className="h-4 w-full rounded skeleton" />
             <div className="h-4 w-5/6 rounded skeleton" />
           </div>
-          
+
           {/* Footer skeleton */}
           <div className="mt-5 flex items-center justify-between border-t border-zinc-100 dark:border-white/5 pt-4">
             <div className="flex gap-4">

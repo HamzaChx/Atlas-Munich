@@ -20,12 +20,11 @@ import {
 
 export const metadata: Metadata = {
   title: "About Us",
-  description: "Learn about Atlas Munich - the community-driven guide for Moroccan students and professionals in Munich.",
+  description:
+    "Learn about Atlas Munich - the community-driven guide for Moroccan students and professionals in Munich.",
 };
 
-const contributors = [
-  { name: "Hamza Chaouki", role: "Founder & Developer", avatar: "👨‍💻" },
-];
+const contributors = [{ name: "Hamza Chaouki", role: "Founder & Developer", avatar: "👨‍💻" }];
 
 export default async function AboutPage() {
   const t = await getTranslations("about");
@@ -66,21 +65,34 @@ export default async function AboutPage() {
       title: t("contribute.spreadTheWord"),
       description: t("contribute.spreadTheWordDesc"),
       action: { label: t("contribute.share"), href: "#" },
-    }
+    },
   ];
 
   const manifestoItems = [
-    { icon: CheckCircle2, title: t("manifesto.items.practical"), desc: t("manifesto.items.practicalDesc") },
-    { icon: BookOpen, title: t("manifesto.items.studentAware"), desc: t("manifesto.items.studentAwareDesc") },
-    { icon: GithubIcon, title: t("manifesto.items.openSource"), desc: t("manifesto.items.openSourceDesc") },
+    {
+      icon: CheckCircle2,
+      title: t("manifesto.items.practical"),
+      desc: t("manifesto.items.practicalDesc"),
+    },
+    {
+      icon: BookOpen,
+      title: t("manifesto.items.studentAware"),
+      desc: t("manifesto.items.studentAwareDesc"),
+    },
+    {
+      icon: GithubIcon,
+      title: t("manifesto.items.openSource"),
+      desc: t("manifesto.items.openSourceDesc"),
+    },
   ];
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950">
       {/* Hero Section */}
-      <section className="relative overflow-hidden border-b border-zinc-200 dark:border-white/10 bg-gradient-to-br from-zinc-50 via-white to-zinc-50 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950">
-        {/* Gradient Orbs */}
-        <div className="absolute -left-32 top-0 z-[5] h-[400px] w-[400px] rounded-full bg-gradient-to-br from-emerald-400/30 dark:from-emerald-600/20 to-teal-400/30 dark:to-teal-600/20 blur-[100px]" />
-        <div className="absolute -right-32 bottom-0 z-[5] h-[400px] w-[400px] rounded-full bg-gradient-to-br from-rose-400/25 dark:from-rose-500/15 to-amber-400/25 dark:to-amber-500/15 blur-[100px]" />
+      <section className="relative overflow-hidden border-b border-zinc-200 dark:border-white/10 bg-gradient-to-br from-red-50 via-white to-green-50 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950">
+        {/* Gradient Orbs - Moroccan Colors */}
+        <div className="absolute -left-32 top-0 z-[5] h-[500px] w-[500px] rounded-full bg-gradient-to-br from-red-400/40 to-red-300/30 dark:from-red-600/25 dark:to-red-500/15 blur-[120px]" />
+        <div className="absolute -right-32 bottom-0 z-[5] h-[500px] w-[500px] rounded-full bg-gradient-to-br from-green-400/40 to-emerald-300/30 dark:from-green-600/25 dark:to-emerald-500/15 blur-[120px]" />
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[5] h-[400px] w-[400px] rounded-full bg-gradient-to-br from-amber-200/20 to-white/30 dark:from-amber-500/10 dark:to-white/5 blur-[100px]" />
 
         <div className="relative z-10 mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
           <div className="grid items-center gap-10 lg:grid-cols-2">
@@ -91,7 +103,7 @@ export default async function AboutPage() {
               </div>
 
               <h1 className="mt-6 text-5xl font-black tracking-tight text-zinc-900 dark:text-white sm:text-6xl lg:text-7xl">
-                {t("title")}
+                {t("title")}{" "}
                 <span className="bg-gradient-to-r from-emerald-600 via-teal-500 to-emerald-700 dark:from-emerald-400 dark:via-teal-400 dark:to-cyan-400 bg-clip-text text-transparent">
                   {t("titleHighlight")}
                 </span>
@@ -102,7 +114,10 @@ export default async function AboutPage() {
               </p>
 
               <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row lg:justify-start">
-                <Button asChild className="text-white bg-emerald-600 px-6 shadow-xl shadow-emerald-500/20 hover:bg-emerald-500">
+                <Button
+                  asChild
+                  className="text-white bg-emerald-600 px-6 shadow-xl shadow-emerald-500/20 hover:bg-emerald-500"
+                >
                   <Link href="#contribute">
                     <Sparkles className="mr-2 h-4 w-4" />
                     {t("howToContribute")}
@@ -150,8 +165,12 @@ export default async function AboutPage() {
                           <item.icon className="h-4 w-4 text-emerald-700 dark:text-emerald-300" />
                         </div>
                         <div className="min-w-0">
-                          <div className="text-sm font-bold text-zinc-900 dark:text-white">{item.title}</div>
-                          <div className="text-sm text-zinc-700 dark:text-zinc-400 mt-0.5">{item.desc}</div>
+                          <div className="text-sm font-bold text-zinc-900 dark:text-white">
+                            {item.title}
+                          </div>
+                          <div className="text-sm text-zinc-700 dark:text-zinc-400 mt-0.5">
+                            {item.desc}
+                          </div>
                         </div>
                       </div>
                     ))}
@@ -165,7 +184,6 @@ export default async function AboutPage() {
 
       {/* Main Content */}
       <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        
         {/* Our Story */}
         <section className="mb-20">
           <div className="mx-auto max-w-4xl">
@@ -173,21 +191,22 @@ export default async function AboutPage() {
               <div className="mx-auto max-w-3xl text-center">
                 <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-emerald-200 dark:border-emerald-500/30 bg-emerald-50 dark:bg-emerald-500/10 px-4 py-2 shadow-sm shadow-emerald-900/5 dark:shadow-none">
                   <span className="text-sm">📖</span>
-                  <span className="text-sm font-semibold text-emerald-700 dark:text-emerald-400">{t("story.badge")}</span>
+                  <span className="text-sm font-semibold text-emerald-700 dark:text-emerald-400">
+                    {t("story.badge")}
+                  </span>
                 </div>
                 <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-3xl">
                   {t("story.title")}
                 </h2>
                 <div className="mt-6 space-y-4 text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
+                  <p>{t("story.p1")}</p>
                   <p>
-                    {t("story.p1")}
+                    <span className="font-semibold text-zinc-900 dark:text-white">
+                      {t("story.p2Start")}
+                    </span>
+                    {t("story.p2End")}
                   </p>
-                  <p>
-                    <span className="font-semibold text-zinc-900 dark:text-white">{t("story.p2Start")}</span>{t("story.p2End")}
-                  </p>
-                  <p>
-                    {t("story.p3")}
-                  </p>
+                  <p>{t("story.p3")}</p>
                 </div>
               </div>
             </div>
@@ -199,21 +218,29 @@ export default async function AboutPage() {
           <div className="mb-10 text-center">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-rose-200 dark:border-rose-500/30 bg-rose-50 dark:bg-rose-500/10 px-4 py-2 shadow-sm shadow-rose-900/5 dark:shadow-none">
               <span className="text-sm">💡</span>
-              <span className="text-sm font-semibold text-rose-700 dark:text-rose-400">{t("values.badge")}</span>
+              <span className="text-sm font-semibold text-rose-700 dark:text-rose-400">
+                {t("values.badge")}
+              </span>
             </div>
-            <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-3xl">{t("values.title")}</h2>
+            <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-3xl">
+              {t("values.title")}
+            </h2>
           </div>
-          
+
           <div className="grid gap-4 sm:grid-cols-3">
             {values.map((value) => (
               <div
                 key={value.title}
                 className="group rounded-2xl border border-zinc-200/70 dark:border-white/10 bg-white dark:bg-zinc-900/50 p-6 text-center shadow-xl shadow-zinc-900/5 dark:shadow-none backdrop-blur-sm transition-all hover:border-zinc-300/80 dark:hover:border-white/20 hover:shadow-2xl hover:shadow-zinc-900/10 dark:hover:shadow-none hover:bg-zinc-50 dark:hover:bg-zinc-900/80"
               >
-                <div className={`mx-auto mb-4 inline-flex rounded-xl bg-gradient-to-br ${value.gradient} p-3`}>
+                <div
+                  className={`mx-auto mb-4 inline-flex rounded-xl bg-gradient-to-br ${value.gradient} p-3`}
+                >
                   <value.icon className={`h-6 w-6 ${value.iconColor}`} />
                 </div>
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">{value.title}</h3>
+                <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">
+                  {value.title}
+                </h3>
                 <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">{value.description}</p>
               </div>
             ))}
@@ -225,14 +252,18 @@ export default async function AboutPage() {
           <div className="mb-10 text-center">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-amber-200 dark:border-amber-500/30 bg-amber-50 dark:bg-amber-500/10 px-4 py-2 shadow-sm shadow-amber-900/5 dark:shadow-none">
               <span className="text-sm">🤝</span>
-              <span className="text-sm font-semibold text-amber-700 dark:text-amber-400">{t("contribute.badge")}</span>
+              <span className="text-sm font-semibold text-amber-700 dark:text-amber-400">
+                {t("contribute.badge")}
+              </span>
             </div>
-            <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-3xl">{t("contribute.title")}</h2>
+            <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-3xl">
+              {t("contribute.title")}
+            </h2>
             <p className="mx-auto mt-3 max-w-2xl text-sm text-zinc-600 dark:text-zinc-400">
               {t("contribute.description")}
             </p>
           </div>
-          
+
           <div className="grid gap-4 sm:grid-cols-2">
             {ways.map((way) => (
               <div
@@ -244,8 +275,12 @@ export default async function AboutPage() {
                     <way.icon className="h-4 w-4 text-zinc-600 dark:text-zinc-300" />
                   </div>
                   <div className="flex-1">
-                    <h3 className="text-base font-semibold text-zinc-900 dark:text-white">{way.title}</h3>
-                    <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">{way.description}</p>
+                    <h3 className="text-base font-semibold text-zinc-900 dark:text-white">
+                      {way.title}
+                    </h3>
+                    <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+                      {way.description}
+                    </p>
                     <Link
                       href={way.action.href}
                       target={way.action.href.startsWith("http") ? "_blank" : undefined}
@@ -270,11 +305,15 @@ export default async function AboutPage() {
           <div className="mb-10 text-center">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-purple-200 dark:border-purple-500/30 bg-purple-50 dark:bg-purple-500/10 px-4 py-2 shadow-sm shadow-purple-900/5 dark:shadow-none">
               <span className="text-sm">👥</span>
-              <span className="text-sm font-semibold text-purple-700 dark:text-purple-400">{t("contributors.badge")}</span>
+              <span className="text-sm font-semibold text-purple-700 dark:text-purple-400">
+                {t("contributors.badge")}
+              </span>
             </div>
-            <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-3xl">{t("contributors.title")}</h2>
+            <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-3xl">
+              {t("contributors.title")}
+            </h2>
           </div>
-          
+
           <div className="flex flex-wrap justify-center gap-4">
             {contributors.map((contributor) => (
               <div
@@ -282,16 +321,22 @@ export default async function AboutPage() {
                 className="w-56 rounded-2xl border border-zinc-200/70 dark:border-white/10 bg-white dark:bg-zinc-900/50 p-5 text-center shadow-xl shadow-zinc-900/5 dark:shadow-none backdrop-blur-sm"
               >
                 <div className="mx-auto mb-3 text-4xl">{contributor.avatar}</div>
-                <h3 className="text-sm font-semibold text-zinc-900 dark:text-white">{contributor.name}</h3>
+                <h3 className="text-sm font-semibold text-zinc-900 dark:text-white">
+                  {contributor.name}
+                </h3>
                 <p className="text-xs text-zinc-600 dark:text-zinc-400">{contributor.role}</p>
               </div>
             ))}
-            
+
             {/* Join CTA */}
             <div className="w-56 rounded-2xl border-2 border-dashed border-zinc-300/80 dark:border-white/10 bg-white dark:bg-zinc-900/30 p-5 text-center shadow-sm shadow-zinc-900/5 dark:shadow-none">
               <div className="mx-auto mb-3 text-4xl">🙋</div>
-              <h3 className="text-sm font-semibold text-zinc-900 dark:text-white">{t("contributors.you")}</h3>
-              <p className="text-xs text-zinc-600 dark:text-zinc-400">{t("contributors.joinTeam")}</p>
+              <h3 className="text-sm font-semibold text-zinc-900 dark:text-white">
+                {t("contributors.you")}
+              </h3>
+              <p className="text-xs text-zinc-600 dark:text-zinc-400">
+                {t("contributors.joinTeam")}
+              </p>
               <Link
                 href="https://github.com/HamzaChx/Atlas-Munich"
                 target="_blank"
@@ -310,12 +355,14 @@ export default async function AboutPage() {
             {/* Background decoration */}
             <div className="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-emerald-400/20 dark:bg-emerald-500/10 blur-3xl" />
             <div className="absolute -bottom-16 -left-16 h-48 w-48 rounded-full bg-teal-400/20 dark:bg-teal-500/10 blur-3xl" />
-            
+
             <div className="relative text-center">
               <div className="mb-4 inline-flex rounded-full bg-gradient-to-br from-emerald-200 dark:from-emerald-500/20 to-teal-200 dark:to-teal-500/20 p-3">
                 <Mail className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
               </div>
-              <h2 className="text-xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-2xl">{t("contact.title")}</h2>
+              <h2 className="text-xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-2xl">
+                {t("contact.title")}
+              </h2>
               <p className="mx-auto mt-3 max-w-xl text-sm text-zinc-600 dark:text-zinc-400">
                 {t("contact.description")}
               </p>

@@ -84,7 +84,7 @@ export default async function RootLayout({
             disableTransitionOnChange
           >
             <Header locale={locale as "en" | "fr"} translations={navTranslations} />
-            <main>{children}</main>
+            <main className="pt-14 sm:pt-16">{children}</main>
             <Footer />
           </ThemeProvider>
         </NextIntlClientProvider>

@@ -48,11 +48,7 @@ export function SearchBar({
       ? "pr-12"
       : "pr-10";
 
-  const clearRight = showButton
-    ? size === "lg"
-      ? "right-28"
-      : "right-20"
-    : "right-3";
+  const clearRight = showButton ? (size === "lg" ? "right-28" : "right-20") : "right-3";
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -79,7 +75,7 @@ export function SearchBar({
         <Search
           className={cn(
             "absolute top-1/2 -translate-y-1/2 text-zinc-400 dark:text-zinc-500 transition-colors duration-200 pointer-events-none",
-            size === "lg" ? "left-5 h-5 w-5" : "left-4 h-4 w-4"
+            size === "lg" ? "left-3 sm:left-5 h-4 w-4 sm:h-5 sm:w-5" : "left-4 h-4 w-4"
           )}
         />
         <Input
@@ -93,7 +89,7 @@ export function SearchBar({
             inputRightPadding,
             "border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 text-zinc-900 dark:text-white placeholder:text-zinc-400 dark:placeholder:text-zinc-500 shadow-sm dark:shadow-none transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] focus:border-emerald-500/50 focus:ring-2 focus:ring-emerald-500/20 focus:shadow-md focus:shadow-emerald-500/5 focus-visible:border-emerald-500/50 focus-visible:ring-2 focus-visible:ring-emerald-500/20 hover:border-zinc-300 dark:hover:border-white/15",
             size === "lg"
-              ? "h-14 pl-14 text-lg rounded-2xl"
+              ? "h-12 sm:h-14 pl-10 sm:pl-14 text-base sm:text-lg rounded-xl sm:rounded-2xl"
               : "h-11 pl-11 text-sm rounded-xl",
             "border"
           )}
@@ -117,15 +113,13 @@ export function SearchBar({
             disabled={isSearching || !query.trim()}
             className={cn(
               "absolute right-1.5 top-1/2 -translate-y-1/2 rounded-xl bg-emerald-600 shadow-md shadow-emerald-500/25 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-emerald-500 hover:shadow-lg hover:shadow-emerald-500/30 dark:shadow-emerald-500/15 focus-visible:ring-2 focus-visible:ring-emerald-500/50 focus-visible:ring-offset-2 disabled:opacity-50 disabled:shadow-none disabled:cursor-not-allowed active:scale-[0.98]",
-              size === "lg" ? "h-11 px-6" : "h-8 px-4"
+              size === "lg" ? "h-9 sm:h-11 px-4 sm:px-6" : "h-8 px-4"
             )}
           >
             {isSearching ? (
               <Loader2 className="h-4 w-4 animate-spin" />
             ) : (
-              <span className={size === "lg" ? "text-base" : "text-sm"}>
-                Search
-              </span>
+              <span className={size === "lg" ? "text-sm sm:text-base" : "text-sm"}>Search</span>
             )}
           </Button>
         )}

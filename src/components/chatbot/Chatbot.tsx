@@ -6,6 +6,7 @@
 // ============================================
 
 import { useState, useRef, useEffect, FormEvent, KeyboardEvent } from "react";
+import { createPortal } from "react-dom";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useChatbot } from "@/chatbot/use-chatbot";
@@ -230,6 +231,115 @@ function HandoffNotification({ message, onDismiss }: { message: string; onDismis
   );
 }
 
+// Countdown notification for redirect
+function RedirectCountdownNotification({
+  message,
+  secondsRemaining,
+  targetChatbot,
+  onCancel,
+}: {
+  message: string;
+  secondsRemaining: number;
+  targetChatbot: string;
+  onCancel: () => void;
+}) {
+  return (
+    <div
+      className="fixed top-4 right-4 animate-in fade-in-0 slide-in-from-right-4 duration-300"
+      style={{ zIndex: 2147483647 }}
+    >
+      <div className="flex items-center gap-4 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-500 px-6 py-4 text-white shadow-2xl shadow-emerald-500/30">
+        {/* Countdown circle */}
+        <div className="relative h-12 w-12 flex-shrink-0">
+          <svg className="h-12 w-12 -rotate-90 transform">
+            <circle
+              cx="24"
+              cy="24"
+              r="20"
+              stroke="rgba(255,255,255,0.3)"
+              strokeWidth="4"
+              fill="none"
+            />
+            <circle
+              cx="24"
+              cy="24"
+              r="20"
+              stroke="white"
+              strokeWidth="4"
+              fill="none"
+              strokeDasharray={125.6}
+              strokeDashoffset={125.6 * (1 - secondsRemaining / 15)}
+              className="transition-all duration-1000 ease-linear"
+            />
+          </svg>
+          <span className="absolute inset-0 flex items-center justify-center text-lg font-bold">
+            {secondsRemaining}
+          </span>
+        </div>
+
+        {/* Message */}
+        <div className="flex flex-col">
+          <p className="text-sm font-medium opacity-90">{message}</p>
+          <p className="text-lg font-bold">{targetChatbot}</p>
+        </div>
+
+        {/* Cancel button */}
+        <button
+          onClick={onCancel}
+          className="ml-4 rounded-xl bg-white/20 px-4 py-2 text-sm font-semibold hover:bg-white/30 transition-colors cursor-pointer"
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  );
+}
+
+// Success notification after redirect
+function SuccessNotification({
+  chatbotName,
+  onDismiss,
+}: {
+  chatbotName: string;
+  onDismiss: () => void;
+}) {
+  return (
+    <div
+      className="fixed top-4 right-4 animate-in fade-in-0 slide-in-from-right-4 duration-300"
+      style={{ zIndex: 2147483647 }}
+    >
+      <div className="flex items-center gap-3 rounded-2xl bg-gradient-to-r from-green-500 to-emerald-500 px-6 py-4 text-white shadow-2xl shadow-green-500/30">
+        {/* Success icon */}
+        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20">
+          <svg
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+            strokeWidth={3}
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+          </svg>
+        </div>
+
+        {/* Message */}
+        <div className="flex flex-col">
+          <p className="text-sm font-medium opacity-90">Successfully connected to</p>
+          <p className="text-lg font-bold">{chatbotName}</p>
+        </div>
+
+        {/* Dismiss button */}
+        <button
+          onClick={onDismiss}
+          className="ml-4 rounded-full p-1 hover:bg-white/20 transition-colors cursor-pointer"
+        >
+          <X className="h-5 w-5" />
+        </button>
+      </div>
+    </div>
+  );
+}
+
 // ============================================
 // Main Chatbot Component
 // ============================================
@@ -245,11 +355,15 @@ export function Chatbot() {
     chatbotConfig,
     notification,
     isOpen,
+    redirectCountdown,
+    showSuccessNotification,
     sendMessage,
     clearMessages,
     toggleOpen,
     setIsOpen,
     dismissNotification,
+    cancelRedirect,
+    dismissSuccessNotification,
   } = useChatbot();
 
   const [input, setInput] = useState("");
@@ -309,6 +423,30 @@ export function Chatbot() {
 
   return (
     <div className="chatbot-container">
+      {/* Countdown Notification - Rendered in portal for proper z-index */}
+      {redirectCountdown &&
+        typeof document !== "undefined" &&
+        createPortal(
+          <RedirectCountdownNotification
+            message="Redirecting you to"
+            secondsRemaining={redirectCountdown.secondsRemaining}
+            targetChatbot={redirectCountdown.targetChatbot}
+            onCancel={cancelRedirect}
+          />,
+          document.body
+        )}
+
+      {/* Success Notification - Rendered in portal for proper z-index */}
+      {showSuccessNotification &&
+        typeof document !== "undefined" &&
+        createPortal(
+          <SuccessNotification
+            chatbotName={currentChatbot}
+            onDismiss={dismissSuccessNotification}
+          />,
+          document.body
+        )}
+
       {/* Chat Window */}
       <div
         className={cn(
@@ -325,7 +463,7 @@ export function Chatbot() {
         }}
       >
         <div className="relative flex h-[480px] max-h-[calc(100vh-9rem)] flex-col overflow-hidden rounded-2xl border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-900 shadow-2xl shadow-zinc-900/20 dark:shadow-black/40 animate-in slide-in-from-bottom-4 duration-500">
-          {/* Notification */}
+          {/* Handoff Notification */}
           {notification && (
             <HandoffNotification message={notification.message} onDismiss={dismissNotification} />
           )}

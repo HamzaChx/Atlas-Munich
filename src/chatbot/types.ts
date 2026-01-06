@@ -47,6 +47,14 @@ export interface ChatbotNotification {
   duration: number; // milliseconds
 }
 
+export interface RedirectCountdown {
+  isActive: boolean;
+  secondsRemaining: number;
+  targetPath: string;
+  targetChatbot: ChatbotType;
+  message: string;
+}
+
 export interface ChatRequest {
   messages: Array<{
     role: "user" | "assistant";

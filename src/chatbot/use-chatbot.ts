@@ -14,6 +14,7 @@ import {
   getChatbotForPath,
   CHATBOT_CONFIG,
   ChatbotNotification,
+  RedirectCountdown,
 } from "./types";
 
 interface UseChatbotOptions {
@@ -28,18 +29,25 @@ interface UseChatbotReturn {
   chatbotConfig: (typeof CHATBOT_CONFIG)[ChatbotType];
   notification: ChatbotNotification | null;
   isOpen: boolean;
+  redirectCountdown: RedirectCountdown | null;
+  showSuccessNotification: boolean;
   sendMessage: (content: string) => Promise<void>;
   switchChatbot: (chatbot: ChatbotType) => void;
   clearMessages: () => void;
   toggleOpen: () => void;
   setIsOpen: (open: boolean) => void;
   dismissNotification: () => void;
+  cancelRedirect: () => void;
+  dismissSuccessNotification: () => void;
 }
 
 // Generate unique ID
 function generateId(): string {
   return `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
 }
+
+// Countdown duration in seconds
+const REDIRECT_COUNTDOWN_SECONDS = 15;
 
 export function useChatbot(options: UseChatbotOptions = {}): UseChatbotReturn {
   const pathname = usePathname();
@@ -58,12 +66,28 @@ export function useChatbot(options: UseChatbotOptions = {}): UseChatbotReturn {
   const [currentChatbot, setCurrentChatbot] = useState<ChatbotType>(getPageChatbot);
   const [notification, setNotification] = useState<ChatbotNotification | null>(null);
   const [isOpen, setIsOpen] = useState(false);
+  const [redirectCountdown, setRedirectCountdown] = useState<RedirectCountdown | null>(null);
+  const [showSuccessNotification, setShowSuccessNotification] = useState(false);
 
   // Track the previous path to detect navigation
   const previousPathRef = useRef<string>(pathname);
+  const countdownIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const wasRedirectedRef = useRef<boolean>(false);
 
   const abortControllerRef = useRef<AbortController | null>(null);
   const notificationTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Show success notification when landing after redirect
+  useEffect(() => {
+    if (wasRedirectedRef.current && previousPathRef.current !== pathname) {
+      wasRedirectedRef.current = false;
+      setShowSuccessNotification(true);
+      // Auto-hide after 4 seconds
+      setTimeout(() => {
+        setShowSuccessNotification(false);
+      }, 4000);
+    }
+  }, [pathname]);
 
   // When path changes, clear messages and switch to the new page's chatbot
   useEffect(() => {
@@ -155,33 +179,56 @@ export function useChatbot(options: UseChatbotOptions = {}): UseChatbotReturn {
 
         // Handle navigation/routing (Zellija feature)
         if (data.navigation) {
-          const fromChatbot = currentChatbot;
           const toChatbot = data.navigation.targetChatbot;
+          const targetPath = data.navigation.path;
+          const toConfig = CHATBOT_CONFIG[toChatbot];
 
-          // Show notification
-          const notificationMessage = getHandoffMessage(fromChatbot, toChatbot, locale);
-          setNotification({
-            id: generateId(),
-            message: notificationMessage,
-            fromChatbot,
-            toChatbot,
-            duration: 5000,
+          // Start countdown for redirect
+          setRedirectCountdown({
+            isActive: true,
+            secondsRemaining: REDIRECT_COUNTDOWN_SECONDS,
+            targetPath,
+            targetChatbot: toChatbot,
+            message: `Redirecting to ${toConfig.name} in`,
           });
 
-          // Clear notification after duration
-          if (notificationTimeoutRef.current) {
-            clearTimeout(notificationTimeoutRef.current);
+          // Clear any existing countdown
+          if (countdownIntervalRef.current) {
+            clearInterval(countdownIntervalRef.current);
           }
-          notificationTimeoutRef.current = setTimeout(() => {
-            setNotification(null);
-          }, 5000);
 
-          // Switch chatbot and navigate after a brief delay
-          setTimeout(() => {
-            setCurrentChatbot(toChatbot);
-            // Use Next.js router for proper navigation
-            router.push(data.navigation!.path);
-          }, 1500);
+          // Start countdown interval
+          let secondsLeft = REDIRECT_COUNTDOWN_SECONDS;
+          countdownIntervalRef.current = setInterval(() => {
+            secondsLeft -= 1;
+
+            if (secondsLeft <= 0) {
+              // Clear interval
+              if (countdownIntervalRef.current) {
+                clearInterval(countdownIntervalRef.current);
+              }
+
+              // Mark that we're being redirected (for success notification)
+              wasRedirectedRef.current = true;
+
+              // Clear countdown state
+              setRedirectCountdown(null);
+
+              // Switch chatbot and navigate
+              setCurrentChatbot(toChatbot);
+              router.push(targetPath);
+            } else {
+              // Update countdown
+              setRedirectCountdown((prev) =>
+                prev
+                  ? {
+                      ...prev,
+                      secondsRemaining: secondsLeft,
+                    }
+                  : null
+              );
+            }
+          }, 1000);
         }
       } catch (err) {
         if (err instanceof Error && err.name === "AbortError") {
@@ -195,6 +242,19 @@ export function useChatbot(options: UseChatbotOptions = {}): UseChatbotReturn {
     },
     [messages, currentChatbot, locale, pathname, isLoading, router]
   );
+
+  // Cancel redirect
+  const cancelRedirect = useCallback(() => {
+    if (countdownIntervalRef.current) {
+      clearInterval(countdownIntervalRef.current);
+    }
+    setRedirectCountdown(null);
+  }, []);
+
+  // Dismiss success notification
+  const dismissSuccessNotification = useCallback(() => {
+    setShowSuccessNotification(false);
+  }, []);
 
   const switchChatbot = useCallback((chatbot: ChatbotType) => {
     setCurrentChatbot(chatbot);
@@ -229,17 +289,21 @@ export function useChatbot(options: UseChatbotOptions = {}): UseChatbotReturn {
     chatbotConfig: CHATBOT_CONFIG[currentChatbot],
     notification,
     isOpen,
+    redirectCountdown,
+    showSuccessNotification,
     sendMessage,
     switchChatbot,
     clearMessages,
     toggleOpen,
     setIsOpen,
     dismissNotification,
+    cancelRedirect,
+    dismissSuccessNotification,
   };
 }
 
-// Generate handoff message based on chatbots
-function getHandoffMessage(from: ChatbotType, to: ChatbotType, locale: string): string {
+// Generate handoff message based on chatbots (keeping for future use)
+function _getHandoffMessage(from: ChatbotType, to: ChatbotType, locale: string): string {
   const toConfig = CHATBOT_CONFIG[to];
 
   const messages: Record<string, Record<ChatbotType, string>> = {

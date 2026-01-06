@@ -7,6 +7,7 @@
 
 import { useState, useRef, useEffect, FormEvent, KeyboardEvent } from "react";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { useChatbot } from "@/chatbot/use-chatbot";
 import { ChatbotType } from "@/chatbot/types";
 import { cn } from "@/lib/utils";
@@ -234,6 +235,8 @@ function HandoffNotification({ message, onDismiss }: { message: string; onDismis
 // ============================================
 
 export function Chatbot() {
+  const pathname = usePathname();
+
   const {
     messages,
     isLoading,
@@ -252,6 +255,9 @@ export function Chatbot() {
   const [input, setInput] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
+
+  // Don't render chatbot on FAQ page
+  const isFaqPage = pathname === "/faq" || pathname.startsWith("/faq/");
 
   // Scroll to bottom when messages change
   useEffect(() => {
@@ -291,6 +297,11 @@ export function Chatbot() {
       "Hey there! 🐪 I'm Jmila, and I know all the best spots in Munich. Looking for halal food or a nice café?",
     hamza: "Salam! 👨‍💻 I'm Hamza, the developer of Atlas Munich. Want to know about the project?",
   };
+
+  // Don't render on FAQ page
+  if (isFaqPage) {
+    return null;
+  }
 
   return (
     <div className="chatbot-container">

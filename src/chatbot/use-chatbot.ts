@@ -45,26 +45,39 @@ export function useChatbot(options: UseChatbotOptions = {}): UseChatbotReturn {
   const pathname = usePathname();
   const locale = useLocale();
 
-  // Determine initial chatbot based on current path
-  const initialChatbot = options.initialChatbot || getChatbotForPath(pathname);
+  // Determine chatbot based on current path
+  const getPageChatbot = useCallback((): ChatbotType => {
+    if (options.initialChatbot) return options.initialChatbot;
+    return getChatbotForPath(pathname);
+  }, [pathname, options.initialChatbot]);
 
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [currentChatbot, setCurrentChatbot] = useState<ChatbotType>(initialChatbot);
+  const [currentChatbot, setCurrentChatbot] = useState<ChatbotType>(getPageChatbot);
   const [notification, setNotification] = useState<ChatbotNotification | null>(null);
   const [isOpen, setIsOpen] = useState(false);
+
+  // Track the previous path to detect navigation
+  const previousPathRef = useRef<string>(pathname);
 
   const abortControllerRef = useRef<AbortController | null>(null);
   const notificationTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Update chatbot when path changes
+  // When path changes, clear messages and switch to the new page's chatbot
   useEffect(() => {
-    const newChatbot = getChatbotForPath(pathname);
-    if (newChatbot !== currentChatbot && messages.length === 0) {
+    const newChatbot = getPageChatbot();
+
+    // Only trigger if the path actually changed (not on initial mount)
+    if (previousPathRef.current !== pathname) {
+      previousPathRef.current = pathname;
+
+      // Clear messages and switch to new chatbot
+      setMessages([]);
       setCurrentChatbot(newChatbot);
+      setError(null);
     }
-  }, [pathname, currentChatbot, messages.length]);
+  }, [pathname, getPageChatbot]);
 
   // Cleanup on unmount
   useEffect(() => {
@@ -194,7 +207,10 @@ export function useChatbot(options: UseChatbotOptions = {}): UseChatbotReturn {
   const clearMessages = useCallback(() => {
     setMessages([]);
     setError(null);
-  }, []);
+    // Reset to current page's chatbot when clearing
+    const pageBot = getChatbotForPath(pathname);
+    setCurrentChatbot(pageBot);
+  }, [pathname]);
 
   const toggleOpen = useCallback(() => {
     setIsOpen((prev) => !prev);

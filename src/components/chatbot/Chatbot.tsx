@@ -256,8 +256,12 @@ export function Chatbot() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
-  // Don't render chatbot on FAQ page
-  const isFaqPage = pathname === "/faq" || pathname.startsWith("/faq/");
+  // Don't render chatbot on FAQ and Community pages
+  const shouldHideChatbot =
+    pathname === "/faq" ||
+    pathname.startsWith("/faq/") ||
+    pathname === "/community" ||
+    pathname.startsWith("/community/");
 
   // Scroll to bottom when messages change
   useEffect(() => {
@@ -298,8 +302,8 @@ export function Chatbot() {
     hamza: "Salam! 👨‍💻 I'm Hamza, the developer of Atlas Munich. Want to know about the project?",
   };
 
-  // Don't render on FAQ page
-  if (isFaqPage) {
+  // Don't render on FAQ and Community pages
+  if (shouldHideChatbot) {
     return null;
   }
 

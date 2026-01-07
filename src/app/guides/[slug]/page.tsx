@@ -252,7 +252,6 @@ export default async function GuidePage({ params }: PageProps) {
                 </div>
               </div>
 
-              {/* Mobile CTA - Rule 17: One primary action */}
               <div className="mt-8 flex flex-wrap items-center gap-3 lg:hidden">
                 {firstSectionId && (
                   <ShareButton
@@ -261,12 +260,6 @@ export default async function GuidePage({ params }: PageProps) {
                     className={`bg-gradient-to-r ${gradient.from} ${gradient.to} text-white font-semibold shadow-lg`}
                   />
                 )}
-                <ShareButton
-                  variant="default"
-                  size="lg"
-                  text="Share"
-                  className={`bg-gradient-to-r ${gradient.from} ${gradient.to} text-white font-semibold shadow-lg`}
-                />
               </div>
 
               {/* Author Info - Rule 16: Visual grouping */}

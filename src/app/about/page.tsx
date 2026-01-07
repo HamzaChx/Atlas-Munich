@@ -24,7 +24,10 @@ export const metadata: Metadata = {
     "Learn about Atlas Munich - the community-driven guide for Moroccan students and professionals in Munich.",
 };
 
-const contributors = [{ name: "Hamza Chaouki", role: "Founder & Developer", avatar: "👨‍💻" }];
+const contributors = [
+  { name: "Hamza Chaouki", role: "Founder & Developer", avatar: "👨‍💻" },
+  { name: "Mohamed Nejjar", role: "AI Engineer", avatar: "🤖" },
+];
 
 export default async function AboutPage() {
   const t = await getTranslations("about");

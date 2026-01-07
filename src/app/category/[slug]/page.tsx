@@ -193,7 +193,7 @@ export default async function CategoryPage({ params }: PageProps) {
               </div>
 
               {/* Title - Rule 19: Max 2 font families, Rule 23: Font weight for hierarchy */}
-              <h1 className="text-4xl font-black tracking-tight text-zinc-900 dark:text-white sm:text-5xl lg:text-6xl leading-[1.1]">
+              <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-white sm:text-5xl lg:text-6xl leading-[1.1]">
                 {category.title}
               </h1>
 
@@ -366,7 +366,7 @@ export default async function CategoryPage({ params }: PageProps) {
                   All Guides
                 </span>
               </div>
-              <h2 className="text-3xl font-black tracking-tight text-zinc-900 dark:text-white sm:text-4xl">
+              <h2 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-4xl">
                 Browse {categoryGuides.length} {categoryGuides.length === 1 ? "Guide" : "Guides"}
               </h2>
               <p className="mt-3 text-base text-zinc-600 dark:text-zinc-400">

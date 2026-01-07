@@ -200,7 +200,7 @@ export default async function GuidePage({ params }: PageProps) {
               </div>
 
               {/* Title - Consistent with category/detail headings */}
-              <h1 className="text-4xl font-black tracking-tight text-zinc-900 dark:text-white sm:text-5xl lg:text-6xl leading-tight">
+              <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-white sm:text-5xl lg:text-6xl leading-tight">
                 {guide.title}
               </h1>
 
@@ -407,11 +407,11 @@ export default async function GuidePage({ params }: PageProps) {
                     {/* Section Header */}
                     <div className="flex items-start gap-4 mb-6">
                       <div
-                        className={`hidden sm:flex shrink-0 h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${gradient.from} ${gradient.to} text-white font-black text-lg shadow-lg transition-transform duration-300 group-hover:scale-110`}
+                        className={`hidden sm:flex shrink-0 h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${gradient.from} ${gradient.to} text-white font-bold text-lg shadow-lg transition-transform duration-300 group-hover:scale-110`}
                       >
                         {index + 1}
                       </div>
-                      <h2 className="flex-1 text-2xl sm:text-3xl font-black tracking-tight text-zinc-900 dark:text-white sm:mt-2 leading-tight">
+                      <h2 className="flex-1 text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:mt-2 leading-tight">
                         {section.title}
                       </h2>
                     </div>
@@ -459,7 +459,7 @@ export default async function GuidePage({ params }: PageProps) {
                       <MessageCircle className="h-6 w-6 text-white" />
                     </div>
                     <div>
-                      <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-zinc-900 dark:text-white">
+                      <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900 dark:text-white">
                         Frequently Asked Questions
                       </h2>
                       <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">
@@ -481,7 +481,7 @@ export default async function GuidePage({ params }: PageProps) {
                       <Download className="h-6 w-6 text-white" />
                     </div>
                     <div>
-                      <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-zinc-900 dark:text-white">
+                      <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900 dark:text-white">
                         Helpful Resources
                       </h2>
                       <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">
@@ -532,7 +532,7 @@ export default async function GuidePage({ params }: PageProps) {
                       <TrendingUp className="h-6 w-6 text-white" />
                     </div>
                     <div>
-                      <h2 className="text-2xl sm:text-3xl font-black tracking-tight text-zinc-900 dark:text-white">
+                      <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900 dark:text-white">
                         Continue Learning
                       </h2>
                       <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">

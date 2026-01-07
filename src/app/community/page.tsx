@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { HeroBadge } from "@/components/shared";
 import { ArrowRight, MessageCircle, Users, Heart, Shield, Zap, Globe } from "lucide-react";
 import Image from "next/image";
 
@@ -56,13 +57,10 @@ export default async function CommunityPage() {
         <div className="relative mx-auto max-w-5xl px-3 sm:px-6 lg:px-8 py-16 sm:py-24">
           <div className="text-center">
             {/* Badge */}
-            <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-green-200 bg-green-50 px-4 py-1.5 text-sm font-medium text-green-700 dark:border-green-900 dark:bg-green-950 dark:text-green-300">
-              <MessageCircle className="h-4 w-4" />
-              {t("badge")}
-            </div>
+            <HeroBadge icon={MessageCircle} text={t("badge")} color="emerald" />
 
             {/* Main Heading - Following Rule 3 */}
-            <h1 className="mb-5 sm:mb-6 text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-zinc-900 dark:text-white leading-tight">
+            <h1 className="mb-5 sm:mb-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-zinc-900 dark:text-white leading-tight">
               {t("title")}{" "}
               <span className="bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent dark:from-green-400 dark:to-emerald-400">
                 {t("titleHighlight")}
@@ -130,7 +128,7 @@ export default async function CommunityPage() {
               {/* Right: CTA */}
               <div className="flex flex-col justify-center">
                 <div className="mb-8">
-                  <h2 className="mb-3 sm:mb-4 text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-white">
+                  <h2 className="mb-3 sm:mb-4 text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900 dark:text-white">
                     {t("joinTitle")}
                   </h2>
                   <p className="text-zinc-600 dark:text-zinc-400">{t("joinDescription")}</p>
@@ -177,7 +175,7 @@ export default async function CommunityPage() {
       <section className="px-3 sm:px-6 lg:px-8 py-16 sm:py-24">
         <div className="mx-auto max-w-6xl">
           <div className="mb-12 sm:mb-16 text-center px-2">
-            <h2 className="mb-3 sm:mb-4 text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-white">
+            <h2 className="mb-3 sm:mb-4 text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900 dark:text-white">
               {t("benefitsTitle")}
             </h2>
             <p className="mx-auto max-w-2xl text-zinc-600 dark:text-zinc-400">

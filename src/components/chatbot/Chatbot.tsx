@@ -607,7 +607,7 @@ export function Chatbot() {
           "group relative overflow-hidden rounded-full shadow-2xl transition-all duration-500 ease-out cursor-pointer",
           isOpen
             ? "h-14 w-14 bg-white dark:bg-zinc-800 shadow-zinc-900/10 dark:shadow-black/40 hover:shadow-zinc-900/20 dark:hover:shadow-black/60 rotate-90"
-            : "h-14 w-auto px-6 bg-gradient-to-br from-red-500 via-amber-500 to-green-600 shadow-amber-500/30 hover:shadow-amber-500/50 hover:scale-110 hover:rotate-2"
+            : "h-14 w-auto px-6 bg-gradient-to-br from-emerald-500 via-teal-500 to-emerald-600 shadow-emerald-500/25 hover:shadow-emerald-500/40 hover:scale-110 hover:rotate-2"
         )}
         style={{
           position: "fixed",

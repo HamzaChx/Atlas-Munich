@@ -59,7 +59,7 @@ export default function PlacesPage() {
             <HeroBadge icon={MapPin} text={`${places.length}+ ${t("badge")}`} color="orange" />
 
             {/* Title */}
-            <h1 className="text-5xl font-black tracking-tight text-zinc-900 dark:text-white sm:text-6xl lg:text-7xl">
+            <h1 className="mb-5 sm:mb-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-zinc-900 dark:text-white leading-tight">
               {t("title")}{" "}
               <span className="bg-gradient-to-r from-orange-500 via-red-500 to-rose-500 dark:from-orange-400 dark:via-red-400 dark:to-rose-400 bg-clip-text text-transparent">
                 {t("titleHighlight")}

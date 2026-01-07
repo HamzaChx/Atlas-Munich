@@ -82,7 +82,7 @@ export default function FAQPage() {
             <HeroBadge icon={HelpCircle} text={`${allFaqs.length}+ ${t("badge")}`} color="blue" />
 
             {/* Title */}
-            <h1 className="text-5xl font-black tracking-tight text-zinc-900 dark:text-white sm:text-6xl lg:text-7xl">
+            <h1 className="mb-5 sm:mb-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-zinc-900 dark:text-white leading-tight">
               {t("title")}{" "}
               <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 dark:from-blue-400 dark:via-indigo-400 dark:to-purple-400 bg-clip-text text-transparent">
                 {t("titleHighlight")}

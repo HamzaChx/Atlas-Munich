@@ -8,7 +8,17 @@ import { searchGuides } from "@/data/guides";
 import { places } from "@/data/places";
 import { searchFaqs } from "@/data/faqs";
 import { categories } from "@/data/categories";
-import { Search, FileText, MapPin, HelpCircle, Tag, Sparkles, ArrowRight, Compass, Loader2 } from "lucide-react";
+import {
+  Search,
+  FileText,
+  MapPin,
+  HelpCircle,
+  Tag,
+  Sparkles,
+  ArrowRight,
+  Compass,
+  Loader2,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
@@ -59,9 +69,7 @@ function SearchContent() {
   }, [searchQuery]);
 
   const totalResults =
-    searchResults.guides.length +
-    searchResults.places.length +
-    searchResults.faqs.length;
+    searchResults.guides.length + searchResults.places.length + searchResults.faqs.length;
 
   const tabs: { key: SearchTab; label: string; count: number; icon: React.ReactNode }[] = [
     {
@@ -116,7 +124,7 @@ function SearchContent() {
             <HeroBadge icon={Search} text={t("badge")} color="purple" />
 
             {/* Title */}
-            <h1 className="text-5xl font-black tracking-tight text-zinc-900 dark:text-white sm:text-6xl lg:text-7xl">
+            <h1 className="mb-5 sm:mb-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-zinc-900 dark:text-white leading-tight">
               {t("title")}{" "}
               <span className="mt-2 inline-block bg-gradient-to-r from-purple-600 via-indigo-600 to-pink-600 dark:from-purple-400 dark:via-indigo-400 dark:to-pink-400 bg-clip-text text-transparent">
                 {t("titleHighlight")}
@@ -147,7 +155,9 @@ function SearchContent() {
             {searchQuery.trim() && (
               <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-base">
                 <div className="flex items-center gap-2">
-                  <span className="text-xl font-bold text-purple-600 dark:text-purple-400">{totalResults}</span>
+                  <span className="text-xl font-bold text-purple-600 dark:text-purple-400">
+                    {totalResults}
+                  </span>
                   <span className="text-zinc-500">{t("resultsFound")}</span>
                 </div>
               </div>
@@ -195,7 +205,9 @@ function SearchContent() {
                 <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-purple-100 dark:bg-purple-500/10">
                   <Search className="h-8 w-8 text-purple-600 dark:text-purple-400" />
                 </div>
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">{t("noResults")}</h3>
+                <h3 className="text-lg font-semibold text-zinc-900 dark:text-white">
+                  {t("noResults")}
+                </h3>
                 <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
                   {t("noResultsDescription")} &ldquo;{searchQuery}&rdquo;. {t("tryDifferent")}
                 </p>
@@ -212,8 +224,12 @@ function SearchContent() {
                             <FileText className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
                           </div>
                           <div>
-                            <h2 className="text-xl font-bold text-zinc-900 dark:text-white">{t("tabs.guides")}</h2>
-                            <p className="text-sm text-zinc-500">{searchResults.guides.length} {t("sections.guidesFound")}</p>
+                            <h2 className="text-xl font-bold text-zinc-900 dark:text-white">
+                              {t("tabs.guides")}
+                            </h2>
+                            <p className="text-sm text-zinc-500">
+                              {searchResults.guides.length} {t("sections.guidesFound")}
+                            </p>
                           </div>
                         </div>
                         {activeTab === "all" && searchResults.guides.length > 3 && (
@@ -247,8 +263,12 @@ function SearchContent() {
                             <MapPin className="h-5 w-5 text-orange-600 dark:text-orange-400" />
                           </div>
                           <div>
-                            <h2 className="text-xl font-bold text-zinc-900 dark:text-white">{t("tabs.places")}</h2>
-                            <p className="text-sm text-zinc-500">{searchResults.places.length} {t("sections.placesFound")}</p>
+                            <h2 className="text-xl font-bold text-zinc-900 dark:text-white">
+                              {t("tabs.places")}
+                            </h2>
+                            <p className="text-sm text-zinc-500">
+                              {searchResults.places.length} {t("sections.placesFound")}
+                            </p>
                           </div>
                         </div>
                         {activeTab === "all" && searchResults.places.length > 3 && (
@@ -273,40 +293,41 @@ function SearchContent() {
                   )}
 
                 {/* FAQs Section */}
-                {(activeTab === "all" || activeTab === "faqs") &&
-                  searchResults.faqs.length > 0 && (
-                    <section>
-                      <div className="mb-6 flex items-center justify-between">
-                        <div className="flex items-center gap-3">
-                          <div className="rounded-xl bg-blue-100 dark:bg-blue-500/10 p-2.5">
-                            <HelpCircle className="h-5 w-5 text-blue-600 dark:text-blue-400" />
-                          </div>
-                          <div>
-                            <h2 className="text-xl font-bold text-zinc-900 dark:text-white">{t("tabs.faqs")}</h2>
-                            <p className="text-sm text-zinc-500">{searchResults.faqs.length} {t("sections.faqsFound")}</p>
-                          </div>
+                {(activeTab === "all" || activeTab === "faqs") && searchResults.faqs.length > 0 && (
+                  <section>
+                    <div className="mb-6 flex items-center justify-between">
+                      <div className="flex items-center gap-3">
+                        <div className="rounded-xl bg-blue-100 dark:bg-blue-500/10 p-2.5">
+                          <HelpCircle className="h-5 w-5 text-blue-600 dark:text-blue-400" />
                         </div>
-                        {activeTab === "all" && searchResults.faqs.length > 5 && (
-                          <button
-                            onClick={() => setActiveTab("faqs")}
-                            className="group flex items-center gap-1.5 text-sm font-medium text-blue-600 dark:text-blue-400 transition-colors duration-200 hover:text-blue-500"
-                          >
-                            {t("sections.viewAll")}
-                            <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
-                          </button>
-                        )}
+                        <div>
+                          <h2 className="text-xl font-bold text-zinc-900 dark:text-white">
+                            {t("tabs.faqs")}
+                          </h2>
+                          <p className="text-sm text-zinc-500">
+                            {searchResults.faqs.length} {t("sections.faqsFound")}
+                          </p>
+                        </div>
                       </div>
-                      <div className="mx-auto max-w-3xl">
-                        <FAQAccordion
-                          faqs={
-                            activeTab === "all"
-                              ? searchResults.faqs.slice(0, 5)
-                              : searchResults.faqs
-                          }
-                        />
-                      </div>
-                    </section>
-                  )}
+                      {activeTab === "all" && searchResults.faqs.length > 5 && (
+                        <button
+                          onClick={() => setActiveTab("faqs")}
+                          className="group flex items-center gap-1.5 text-sm font-medium text-blue-600 dark:text-blue-400 transition-colors duration-200 hover:text-blue-500"
+                        >
+                          {t("sections.viewAll")}
+                          <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" />
+                        </button>
+                      )}
+                    </div>
+                    <div className="mx-auto max-w-3xl">
+                      <FAQAccordion
+                        faqs={
+                          activeTab === "all" ? searchResults.faqs.slice(0, 5) : searchResults.faqs
+                        }
+                      />
+                    </div>
+                  </section>
+                )}
               </div>
             )}
           </div>
@@ -318,10 +339,10 @@ function SearchContent() {
               <div className="mx-auto mb-4 inline-flex rounded-2xl bg-gradient-to-br from-purple-100 to-indigo-100 dark:from-purple-500/10 dark:to-indigo-500/10 p-4">
                 <Compass className="h-12 w-12 text-purple-600 dark:text-purple-400" />
               </div>
-              <h2 className="text-2xl font-bold text-zinc-900 dark:text-white">{t("discover.title")}</h2>
-              <p className="mt-2 text-zinc-600 dark:text-zinc-400">
-                {t("discover.subtitle")}
-              </p>
+              <h2 className="text-2xl font-bold text-zinc-900 dark:text-white">
+                {t("discover.title")}
+              </h2>
+              <p className="mt-2 text-zinc-600 dark:text-zinc-400">{t("discover.subtitle")}</p>
             </div>
 
             {/* Categories */}
@@ -369,7 +390,9 @@ function SearchContent() {
                 <div className="mx-auto mb-4 inline-flex rounded-full bg-gradient-to-br from-purple-100 to-pink-100 dark:from-purple-500/20 dark:to-pink-500/20 p-3">
                   <Sparkles className="h-6 w-6 text-purple-600 dark:text-purple-400" />
                 </div>
-                <h3 className="text-lg font-bold text-zinc-900 dark:text-white">{t("discover.lookingFor")}</h3>
+                <h3 className="text-lg font-bold text-zinc-900 dark:text-white">
+                  {t("discover.lookingFor")}
+                </h3>
                 <p className="mx-auto mt-2 max-w-md text-sm text-zinc-600 dark:text-zinc-400">
                   {t("discover.lookingForDesc")}
                 </p>
@@ -399,14 +422,16 @@ function SearchContent() {
 
 export default function SearchPage() {
   return (
-    <Suspense fallback={
-      <div className="min-h-screen flex items-center justify-center bg-white dark:bg-zinc-950">
-        <div className="flex flex-col items-center gap-4">
-          <Loader2 className="h-8 w-8 animate-spin text-purple-500" />
-          <span className="text-sm text-zinc-500 dark:text-zinc-400">Loading search...</span>
+    <Suspense
+      fallback={
+        <div className="min-h-screen flex items-center justify-center bg-white dark:bg-zinc-950">
+          <div className="flex flex-col items-center gap-4">
+            <Loader2 className="h-8 w-8 animate-spin text-purple-500" />
+            <span className="text-sm text-zinc-500 dark:text-zinc-400">Loading search...</span>
+          </div>
         </div>
-      </div>
-    }>
+      }
+    >
       <SearchContent />
     </Suspense>
   );

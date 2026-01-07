@@ -39,7 +39,7 @@ export default async function GuidesPage() {
             <HeroBadge icon={BookOpen} text={`${guides.length}+ ${t("badge")}`} color="emerald" />
 
             {/* Title */}
-            <h1 className="text-5xl font-black tracking-tight text-zinc-900 dark:text-white sm:text-6xl lg:text-7xl">
+            <h1 className="mb-5 sm:mb-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-zinc-900 dark:text-white leading-tight">
               {t("title")}
               <span className="mt-2 block bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 dark:from-emerald-400 dark:via-teal-400 dark:to-cyan-400 bg-clip-text text-transparent">
                 {t("titleHighlight")}
@@ -86,7 +86,7 @@ export default async function GuidesPage() {
                   {t("categoriesSection.badge")}
                 </span>
               </div>
-              <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-3xl">
+              <h2 className="mb-3 sm:mb-4 text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900 dark:text-white">
                 {t("categoriesSection.title")}
               </h2>
             </div>

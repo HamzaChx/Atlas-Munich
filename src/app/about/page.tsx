@@ -26,7 +26,7 @@ export const metadata: Metadata = {
 
 const contributors = [
   { name: "Hamza Chaouki", role: "Founder & Developer", avatar: "👨‍💻" },
-  { name: "Mohamed Nejjar", role: "AI Engineer", avatar: "🤖" },
+  { name: "Mohamed Nejjar", role: "Our AI Specialist", avatar: "🤖" },
 ];
 
 export default async function AboutPage() {
@@ -105,7 +105,7 @@ export default async function AboutPage() {
                 <HeroBadge icon={Users} text={t("badge")} color="emerald" />
               </div>
 
-              <h1 className="mt-6 text-5xl font-black tracking-tight text-zinc-900 dark:text-white sm:text-6xl lg:text-7xl">
+              <h1 className="mt-6 mb-5 sm:mb-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-zinc-900 dark:text-white leading-tight">
                 {t("title")}{" "}
                 <span className="bg-gradient-to-r from-emerald-600 via-teal-500 to-emerald-700 dark:from-emerald-400 dark:via-teal-400 dark:to-cyan-400 bg-clip-text text-transparent">
                   {t("titleHighlight")}
@@ -198,7 +198,7 @@ export default async function AboutPage() {
                     {t("story.badge")}
                   </span>
                 </div>
-                <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-3xl">
+                <h2 className="mb-3 sm:mb-4 text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900 dark:text-white">
                   {t("story.title")}
                 </h2>
                 <div className="mt-6 space-y-4 text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
@@ -225,7 +225,7 @@ export default async function AboutPage() {
                 {t("values.badge")}
               </span>
             </div>
-            <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-3xl">
+            <h2 className="mb-3 sm:mb-4 text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900 dark:text-white">
               {t("values.title")}
             </h2>
           </div>
@@ -259,7 +259,7 @@ export default async function AboutPage() {
                 {t("contribute.badge")}
               </span>
             </div>
-            <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-3xl">
+            <h2 className="mb-3 sm:mb-4 text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900 dark:text-white">
               {t("contribute.title")}
             </h2>
             <p className="mx-auto mt-3 max-w-2xl text-sm text-zinc-600 dark:text-zinc-400">
@@ -312,7 +312,7 @@ export default async function AboutPage() {
                 {t("contributors.badge")}
               </span>
             </div>
-            <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-3xl">
+            <h2 className="mb-3 sm:mb-4 text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900 dark:text-white">
               {t("contributors.title")}
             </h2>
           </div>
@@ -363,7 +363,7 @@ export default async function AboutPage() {
               <div className="mb-4 inline-flex rounded-full bg-gradient-to-br from-emerald-200 dark:from-emerald-500/20 to-teal-200 dark:to-teal-500/20 p-3">
                 <Mail className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
               </div>
-              <h2 className="text-xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-2xl">
+              <h2 className="mb-3 sm:mb-4 text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900 dark:text-white">
                 {t("contact.title")}
               </h2>
               <p className="mx-auto mt-3 max-w-xl text-sm text-zinc-600 dark:text-zinc-400">

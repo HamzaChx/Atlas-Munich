@@ -19,6 +19,7 @@ export default function PlacesPage() {
   const categoryFilters: { key: PlaceCategory | null; label: string; icon: string }[] = [
     { key: null, label: t("filters.all"), icon: "🗺️" },
     { key: "restaurant", label: t("filters.restaurants"), icon: "🍽️" },
+    { key: "cafe", label: t("filters.cafes"), icon: "☕" },
     { key: "butcher", label: t("filters.butchers"), icon: "🥩" },
     { key: "mosque", label: t("filters.mosques"), icon: "🕌" },
     { key: "study-spot", label: t("filters.studySpots"), icon: "📚" },

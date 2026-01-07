@@ -59,6 +59,7 @@ const categoryIcons: Record<string, string> = {
 
 export function PlaceCard({ place, className }: PlaceCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [showAllTags, setShowAllTags] = useState(false);
 
   // Check if description needs truncation (roughly 100 characters = 2 lines)
   const needsTruncation = place.description && place.description.length > 100;
@@ -165,10 +166,31 @@ export function PlaceCard({ place, className }: PlaceCardProps) {
                 {tag.replace(/-/g, " ")}
               </span>
             ))}
+
             {place.tags.length > 4 && (
-              <span className="rounded-full border border-zinc-200 dark:border-white/10 bg-zinc-100 dark:bg-white/5 px-2.5 py-1 text-xs text-zinc-500">
-                +{place.tags.length - 4}
-              </span>
+              <>
+                <button
+                  onClick={() => setShowAllTags((s) => !s)}
+                  title={place.tags.join(", ")}
+                  aria-expanded={showAllTags}
+                  className="rounded-full border border-zinc-200 dark:border-white/10 bg-zinc-100 dark:bg-white/5 px-2.5 py-1 text-xs text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300 transition-colors"
+                >
+                  +{place.tags.length - 4}
+                </button>
+
+                {showAllTags && (
+                  <div className="flex flex-wrap items-center gap-1.5">
+                    {place.tags.slice(4).map((tag) => (
+                      <span
+                        key={tag}
+                        className="rounded-full border border-zinc-200 dark:border-white/10 bg-zinc-100 dark:bg-white/5 px-2.5 py-1 text-xs text-zinc-600 dark:text-zinc-400"
+                      >
+                        {tag.replace(/-/g, " ")}
+                      </span>
+                    ))}
+                  </div>
+                )}
+              </>
             )}
           </div>
         )}

@@ -12,11 +12,12 @@ export const places: Place[] = [
     lng: 11.5563,
     price: "€",
     tags: ["halal", "middle-eastern", "kebabs", "affordable", "takeaway"],
-    description: "Popular spot near the main station offering a variety of halal Middle Eastern dishes including kebabs and falafel at affordable prices.",
+    description:
+      "Popular spot near the main station offering a variety of halal Middle Eastern dishes including kebabs and falafel at affordable prices.",
     verified: true,
     rating: 4.4,
     reviewCount: 376,
-    website: "https://zaeem.de/"
+    website: "https://zaeem.de/",
   },
   {
     slug: "tacos-muenchner-freiheit",
@@ -28,11 +29,12 @@ export const places: Place[] = [
     lng: 11.5831,
     price: "€",
     tags: ["halal", "tacos", "wraps", "quick-bite", "student-friendly"],
-    description: "Located near Münchner Freiheit, this spot serves delicious tacos and wraps with halal-certified ingredients. Perfect for a quick bite or a casual lunch with friends.",
+    description:
+      "Located near Münchner Freiheit, this spot serves delicious tacos and wraps with halal-certified ingredients. Perfect for a quick bite or a casual lunch with friends.",
     verified: true,
     rating: 4.4,
     reviewCount: 156,
-    website: "https://www.savosfood.de/"
+    website: "https://www.savosfood.de/",
   },
   {
     slug: "anju-89",
@@ -44,11 +46,12 @@ export const places: Place[] = [
     lng: 11.5678,
     price: "€",
     tags: ["halal", "student-friendly", "tum", "asian", "affordable", "chicken wings"],
-    description: "A popular student-friendly restaurant close to the Technical University of Munich (TUM). Anju serves flavorful halal meals, making it a favorite among international students.",
+    description:
+      "A popular student-friendly restaurant close to the Technical University of Munich (TUM). Anju serves flavorful halal meals, making it a favorite among international students.",
     verified: true,
     rating: 4.5,
     reviewCount: 203,
-    website: "https://www.89anju.com/"
+    website: "https://www.89anju.com/",
   },
   {
     slug: "taste-my-burger",
@@ -60,11 +63,12 @@ export const places: Place[] = [
     lng: 11.5654,
     price: "€€",
     tags: ["halal", "burgers", "gourmet", "casual-dining"],
-    description: "Gourmet burger joint offering a variety of halal burger options with fresh ingredients and unique toppings. A great spot for casual dining with friends.",
+    description:
+      "Gourmet burger joint offering a variety of halal burger options with fresh ingredients and unique toppings. A great spot for casual dining with friends.",
     verified: true,
     rating: 4.6,
     reviewCount: 289,
-    website: "https://tastemyburger.com"
+    website: "https://tastemyburger.com",
   },
   {
     slug: "the-ash-muenchner-freiheit",
@@ -76,7 +80,8 @@ export const places: Place[] = [
     lng: 11.5858,
     price: "€€€",
     tags: ["halal-on-request", "grilled", "premium", "steakhouse", "dining"],
-    description: "A stylish restaurant offering premium grilled dishes. They provide halal meat options upon request, making it a great place for dining out with friends or family.",
+    description:
+      "A stylish restaurant offering premium grilled dishes. They provide halal meat options upon request, making it a great place for dining out with friends or family.",
     verified: true,
     rating: 4.3,
     reviewCount: 312,
@@ -92,7 +97,8 @@ export const places: Place[] = [
     lng: 11.5512,
     price: "€€",
     tags: ["moroccan", "halal", "tajine", "couscous", "pastilla", "authentic"],
-    description: "A newly opened Moroccan restaurant in Munich offering authentic Moroccan dishes such as tagines, couscous, and pastilla. Argana is fully halal and beautifully reflects the Moroccan culinary tradition in a cozy setting.",
+    description:
+      "A newly opened Moroccan restaurant in Munich offering authentic Moroccan dishes such as tagines, couscous, and pastilla. Argana is fully halal and beautifully reflects the Moroccan culinary tradition in a cozy setting.",
     verified: true,
     rating: 4.7,
     reviewCount: 67,
@@ -105,10 +111,11 @@ export const places: Place[] = [
     address: "Landwehrstraße 55, 80336 München",
     district: "Ludwigsvorstadt",
     lat: 48.1345,
-    lng: 11.5560,
+    lng: 11.556,
     price: "€€",
     tags: ["moroccan", "halal", "tagine", "couscous", "mint-tea", "authentic"],
-    description: "Casablanca offers a rich menu of authentic Moroccan cuisine, including flavorful tagines and couscous dishes. The restaurant is fully halal and provides a warm, inviting atmosphere reminiscent of Morocco.",
+    description:
+      "Casablanca offers a rich menu of authentic Moroccan cuisine, including flavorful tagines and couscous dishes. The restaurant is fully halal and provides a warm, inviting atmosphere reminiscent of Morocco.",
     verified: true,
     rating: 4.3,
     reviewCount: 184,
@@ -124,7 +131,8 @@ export const places: Place[] = [
     lng: 11.5934,
     price: "€€",
     tags: ["italian", "halal", "pasta", "pizza", "cozy"],
-    description: "Charming Italian restaurant serving a variety of halal pasta and pizza dishes. La Fantasia offers a cozy ambiance perfect for family dinners or romantic evenings.",
+    description:
+      "Charming Italian restaurant serving a variety of halal pasta and pizza dishes. La Fantasia offers a cozy ambiance perfect for family dinners or romantic evenings.",
     verified: true,
     rating: 4.7,
     reviewCount: 899,
@@ -137,11 +145,12 @@ export const places: Place[] = [
     category: "restaurant",
     address: "Herzog-Wilhelm-Straße 1, 80331 München",
     district: "Altstadt-Lehel",
-    lat: 48.1390,
+    lat: 48.139,
     lng: 11.5755,
     price: "€",
     tags: ["halal", "döner", "kebabs", "fast-food", "affordable"],
-    description: "Popular fast-food spot in the city center known for its delicious halal döner kebabs and affordable prices. Perfect for a quick and satisfying meal.",
+    description:
+      "Popular fast-food spot in the city center known for its delicious halal döner kebabs and affordable prices. Perfect for a quick and satisfying meal.",
     verified: true,
     rating: 4.8,
     reviewCount: 1575,
@@ -158,14 +167,15 @@ export const places: Place[] = [
     lng: 11.6034,
     price: "€€",
     tags: ["halal", "kebabs", "fast-food", "premium", "takeaway"],
-    description: "Premium kebab restaurant offering a variety of halal kebab options made with high-quality ingredients. A great choice for those looking for a more upscale fast-food experience.",
+    description:
+      "Premium kebab restaurant offering a variety of halal kebab options made with high-quality ingredients. A great choice for those looking for a more upscale fast-food experience.",
     verified: true,
     rating: 4.8,
     reviewCount: 922,
     website: "https://hanskebap.de/",
   },
   {
-    slug:"uncle-smash-burger",
+    slug: "uncle-smash-burger",
     name: "Uncle Smash Burger",
     category: "restaurant",
     address: "Belgradstraße 37, 80796 München",
@@ -174,10 +184,11 @@ export const places: Place[] = [
     lng: 11.5767,
     price: "€€",
     tags: ["halal", "burgers", "gourmet", "casual-dining"],
-    description: "Gourmet burger joint offering a variety of halal burger options with fresh ingredients and unique toppings. A great spot for casual dining with friends.",
+    description:
+      "Gourmet burger joint offering a variety of halal burger options with fresh ingredients and unique toppings. A great spot for casual dining with friends.",
     verified: true,
     rating: 4.5,
-    reviewCount: 1114
+    reviewCount: 1114,
   },
   {
     slug: "pars-restaurant",
@@ -186,14 +197,15 @@ export const places: Place[] = [
     address: "Dachauer Str. 19, 80335 München",
     district: "Hauptbahnhof",
     lat: 48.1405,
-    lng: 11.5550,
+    lng: 11.555,
     price: "€€",
     tags: ["persian", "halal", "kebabs", "grill", "authentic"],
-    description: "Authentic Persian restaurant offering a variety of halal dishes including kebabs and grilled specialties. A cozy spot for enjoying traditional flavors.",
+    description:
+      "Authentic Persian restaurant offering a variety of halal dishes including kebabs and grilled specialties. A cozy spot for enjoying traditional flavors.",
     verified: false,
     rating: 4.8,
     reviewCount: 935,
-    website: "https://pars-restaurant.de"
+    website: "https://pars-restaurant.de",
   },
   {
     slug: "kashgar-uyghur",
@@ -201,14 +213,15 @@ export const places: Place[] = [
     category: "restaurant",
     address: "Dachauer Str. 4, 80335 München",
     district: "Hauptbahnhof",
-    lat: 48.1410,
+    lat: 48.141,
     lng: 11.5542,
     price: "€€",
     tags: ["uyghur", "halal", "noodles", "grill", "authentic"],
-    description: "Specializing in Uyghur cuisine, this halal restaurant offers unique dishes such as hand-pulled noodles and grilled meats. A must-visit for those seeking authentic flavors.",
+    description:
+      "Specializing in Uyghur cuisine, this halal restaurant offers unique dishes such as hand-pulled noodles and grilled meats. A must-visit for those seeking authentic flavors.",
     verified: false,
     rating: 4.5,
-    reviewCount: 1247
+    reviewCount: 1247,
   },
   {
     slug: "etem-burger-steak",
@@ -220,10 +233,11 @@ export const places: Place[] = [
     lng: 11.5893,
     price: "€€",
     tags: ["halal", "burgers", "steak", "casual-dining"],
-    description: "Casual dining spot known for its halal burgers and steaks made from quality ingredients. A great place for a relaxed meal with friends or family.",
+    description:
+      "Casual dining spot known for its halal burgers and steaks made from quality ingredients. A great place for a relaxed meal with friends or family.",
     verified: false,
     rating: 4.4,
-    reviewCount: 678
+    reviewCount: 678,
   },
   {
     slug: "loco-chicken",
@@ -235,13 +249,14 @@ export const places: Place[] = [
     lng: 11.5345,
     price: "€",
     tags: ["halal", "chicken", "fast-food", "affordable"],
-    description: "Popular fast-food joint specializing in halal chicken dishes. Known for its crispy fried chicken and affordable prices, making it a favorite among locals.",
+    description:
+      "Popular fast-food joint specializing in halal chicken dishes. Known for its crispy fried chicken and affordable prices, making it a favorite among locals.",
     verified: true,
     rating: 4.8,
-    reviewCount: 39
+    reviewCount: 39,
   },
   {
-    slug:"hot-dog-station-muenchen",
+    slug: "hot-dog-station-muenchen",
     name: "Hot Dog Station",
     category: "restaurant",
     address: "Pelkovenstraße 149, 80992 München",
@@ -250,10 +265,11 @@ export const places: Place[] = [
     lng: 11.5348,
     price: "€",
     tags: ["halal", "hot-dogs", "fast-food", "affordable"],
-    description: "Casual eatery specializing in halal hot dogs with a variety of toppings. A great spot for a quick and tasty meal on the go.",
+    description:
+      "Casual eatery specializing in halal hot dogs with a variety of toppings. A great spot for a quick and tasty meal on the go.",
     verified: true,
     rating: 4.6,
-    reviewCount: 27
+    reviewCount: 27,
   },
   {
     slug: "wing-nation",
@@ -262,13 +278,14 @@ export const places: Place[] = [
     address: "Steinheilstraße 6A, 80333 München",
     district: "Maxvorstadt",
     lat: 48.1475,
-    lng: 11.5650,
+    lng: 11.565,
     price: "€",
     tags: ["halal", "chicken-wings", "fast-food", "affordable"],
-    description: "Casual dining spot specializing in halal chicken wings with a variety of sauces and sides. Perfect for a quick bite or casual meal with friends.",
+    description:
+      "Casual dining spot specializing in halal chicken wings with a variety of sauces and sides. Perfect for a quick bite or casual meal with friends.",
     verified: true,
     rating: 4.7,
-    reviewCount: 145
+    reviewCount: 145,
   },
   {
     slug: "han-muenchen",
@@ -276,15 +293,15 @@ export const places: Place[] = [
     category: "restaurant",
     address: "Leopoldstraße 31, 80802 München",
     district: "Schwabing",
-    lat: 48.1620,
-    lng: 11.5800,
+    lat: 48.162,
+    lng: 11.58,
     price: "€€",
     tags: ["halal", "turkish", "grill", "adana"],
-    description: "Turkish restaurant known for its halal grilled dishes, including the famous Adana kebab. A cozy spot for enjoying authentic Turkish flavors.",
+    description:
+      "Turkish restaurant known for its halal grilled dishes, including the famous Adana kebab. A cozy spot for enjoying authentic Turkish flavors.",
     verified: true,
     rating: 4.3,
-    reviewCount: 210
-
+    reviewCount: 210,
   },
   {
     slug: "delicious-burger",
@@ -292,14 +309,15 @@ export const places: Place[] = [
     category: "restaurant",
     address: " Augustenstraße 107, 80798 München",
     district: "Maxvorstadt",
-    lat: 48.1550,
-    lng: 11.5670,
+    lat: 48.155,
+    lng: 11.567,
     price: "€€",
     tags: ["halal", "burgers", "gourmet", "casual-dining"],
-    description: "Gourmet burger joint offering a variety of halal burger options with fresh ingredients and unique toppings. A great spot for casual dining with friends.",
+    description:
+      "Gourmet burger joint offering a variety of halal burger options with fresh ingredients and unique toppings. A great spot for casual dining with friends.",
     verified: true,
     rating: 4.6,
-    reviewCount: 704
+    reviewCount: 704,
   },
   {
     slug: "rasoi-restaurant",
@@ -311,11 +329,12 @@ export const places: Place[] = [
     lng: 11.5555,
     price: "€€",
     tags: ["indian", "halal", "curry", "tandoori", "authentic"],
-    description: "Authentic Indian restaurant offering a variety of halal dishes including flavorful curries and tandoori specialties. A cozy spot for enjoying traditional Indian cuisine.",
+    description:
+      "Authentic Indian restaurant offering a variety of halal dishes including flavorful curries and tandoori specialties. A cozy spot for enjoying traditional Indian cuisine.",
     verified: true,
     rating: 4.5,
     reviewCount: 512,
-    website: "https://rasoi-restaurant.de"
+    website: "https://rasoi-restaurant.de",
   },
   {
     slug: "samarkand-restaurant",
@@ -324,14 +343,15 @@ export const places: Place[] = [
     address: "Orleansstraße 45A, 81667 München",
     district: "Au-Haidhausen",
     lat: 48.1315,
-    lng: 11.6020,
+    lng: 11.602,
     price: "€€",
     tags: ["uzbek", "halal", "grill", "burgers", "authentic"],
-    description: "Uzbek restaurant offering a variety of halal grilled dishes and burgers. Samarkand provides an authentic taste of Central Asian cuisine in a welcoming atmosphere.",
+    description:
+      "Uzbek restaurant offering a variety of halal grilled dishes and burgers. Samarkand provides an authentic taste of Central Asian cuisine in a welcoming atmosphere.",
     verified: true,
     rating: 4.4,
     reviewCount: 298,
-    website: "https://samarkand-grill.de"
+    website: "https://samarkand-grill.de",
   },
   {
     slug: "moosacher-paradies",
@@ -339,15 +359,16 @@ export const places: Place[] = [
     category: "restaurant",
     address: "Franz-Mader-Straße 11, 80992 München",
     district: "Moosach",
-    lat: 48.1880,
+    lat: 48.188,
     lng: 11.5355,
     price: "€€",
     tags: ["halal", "balkan", "grill", "barbecue", "authentic"],
-    description: "Balkan restaurant specializing in halal grilled dishes and barbecue. Moosacher Paradies offers authentic flavors in a cozy setting, perfect for family dinners or group gatherings.",
+    description:
+      "Balkan restaurant specializing in halal grilled dishes and barbecue. Moosacher Paradies offers authentic flavors in a cozy setting, perfect for family dinners or group gatherings.",
     verified: true,
     rating: 4.8,
     reviewCount: 4302,
-    website: "https://moosacher-paradies.de"
+    website: "https://moosacher-paradies.de",
   },
 
   // === HALAL BUTCHERS ===
@@ -366,7 +387,7 @@ export const places: Place[] = [
     rating: 4.5,
     reviewCount: 38,
   },
-    {
+  {
     slug: "dolphin-market-moosach",
     name: "Dolphin Market",
     category: "butcher",
@@ -376,10 +397,11 @@ export const places: Place[] = [
     lng: 11.5062,
     price: "€",
     tags: ["halal", "fish-counter", "fresh-produce", "bakery", "turkish"],
-    description: "Located directly at the Moosach U-Bahn station. Known for 'controlled Halal meat from Bavarian breeding' and a separate fresh fish counter, which is rare for local supermarkets.",
+    description:
+      "Located directly at the Moosach U-Bahn station. Known for 'controlled Halal meat from Bavarian breeding' and a separate fresh fish counter, which is rare for local supermarkets.",
     verified: true,
     rating: 4.4,
-    reviewCount: 180
+    reviewCount: 180,
   },
   {
     slug: "metzgerei-etem",
@@ -391,10 +413,11 @@ export const places: Place[] = [
     lng: 11.5721,
     price: "€€",
     tags: ["halal", "dry-aged", "organic", "premium", "burgers"],
-    description: "Widely considered the best halal butcher in Munich. Famous for dry-aged steaks, homemade sucuk, and a strict no-pork policy. Located near the Olympiadorf student housing.",
+    description:
+      "Widely considered the best halal butcher in Munich. Famous for dry-aged steaks, homemade sucuk, and a strict no-pork policy. Located near the Olympiadorf student housing.",
     verified: true,
     rating: 4.9,
-    reviewCount: 450
+    reviewCount: 450,
   },
   {
     slug: "verdi-supermarkt-ludwigsvorstadt",
@@ -406,10 +429,11 @@ export const places: Place[] = [
     lng: 11.5602,
     price: "€",
     tags: ["halal", "central", "student-friendly", "groceries", "fresh-meat"],
-    description: "A staple for students living centrally. The butcher counter is massive, offering affordable lamb and beef cuts. Very busy, high turnover ensures freshness.",
+    description:
+      "A staple for students living centrally. The butcher counter is massive, offering affordable lamb and beef cuts. Very busy, high turnover ensures freshness.",
     verified: true,
     rating: 4.3,
-    reviewCount: 1200
+    reviewCount: 1200,
   },
   {
     slug: "hahn-fleischhandel",
@@ -421,10 +445,11 @@ export const places: Place[] = [
     lng: 11.5542,
     price: "€€",
     tags: ["halal", "wholesale", "bulk-buy", "lamb", "regional"],
-    description: "Located directly at the slaughterhouse district (Schlachthof). They sell to restaurants but also have an 'Abholmarkt' for individuals. Certified halal regional meat.",
+    description:
+      "Located directly at the slaughterhouse district (Schlachthof). They sell to restaurants but also have an 'Abholmarkt' for individuals. Certified halal regional meat.",
     verified: true,
     rating: 4.8,
-    reviewCount: 310
+    reviewCount: 310,
   },
 
   // === MOSQUES ===
@@ -437,11 +462,12 @@ export const places: Place[] = [
     lat: 48.2012,
     lng: 11.6125,
     tags: ["mosque", "friday-prayer", "islamic-education", "arabic-classes"],
-    description: "One of the largest mosques in Munich with regular prayers, community events, and educational programs.",
+    description:
+      "One of the largest mosques in Munich with regular prayers, community events, and educational programs.",
     website: "https://islamisches-zentrum-muenchen.de",
     verified: true,
   },
-  {    
+  {
     slug: "masjid-al-mohsinin",
     name: "Masjid Al-Mohsinin",
     category: "mosque",
@@ -450,11 +476,12 @@ export const places: Place[] = [
     lat: 48.2253,
     lng: 11.5578,
     tags: ["moroccan", "mosque", "community", "friday-prayer", "islamic-education"],
-    description: "Moroccan mosque serving the local community with regular prayers and educational activities.",
+    description:
+      "Moroccan mosque serving the local community with regular prayers and educational activities.",
     verified: true,
-    website: "https://www.mk-v.net/Moschee"
+    website: "https://www.mk-v.net/Moschee",
   },
-    {
+  {
     slug: "masjid-al-rahma",
     name: "Masjid Al-Rahma",
     category: "mosque",
@@ -475,7 +502,21 @@ export const places: Place[] = [
     lat: 48.1125,
     lng: 11.5463,
     tags: ["moroccan", "mosque", "community", "friday-prayer", "islamic-education"],
-    description: "Mosque located within the Marokko Haus, serving the Moroccan community in Munich.",
+    description:
+      "Mosque located within the Marokko Haus, serving the Moroccan community in Munich.",
+    verified: true,
+  },
+  {
+    slug: "alahibba-mosque",
+    name: "Alahibba Mosque (Muslimisches Kulturforum München e.V.)",
+    category: "mosque",
+    address: "Lerchenstraße 14, 80995 München",
+    district: "Feldmoching-Hasenbergl",
+    lat: 48.1958,
+    lng: 11.5515,
+    tags: ["mosque", "tunisian", "bilingual-sermon", "family-friendly", "arabic-classes"],
+    description:
+      "A vibrant community hub also known as the Muslim Cultural Forum. It places a strong emphasis on family and education, offering bilingual Friday sermons (German/Arabic), Quran classes for all ages, and regular community events.",
     verified: true,
   },
   {
@@ -511,9 +552,10 @@ export const places: Place[] = [
     address: "Boltzmannstraße 3, 85748 Garching bei München",
     district: "Garching",
     lat: 48.2625,
-    lng: 11.6680,
+    lng: 11.668,
     tags: ["university", "garching", "lively", "spacious", "slides"],
-    description: "The 'Magistrale' hall inside the Math/Informatics building. Famous for its giant parabolic slides, it offers open study tables and a lively atmosphere.",
+    description:
+      "The 'Magistrale' hall inside the Math/Informatics building. Famous for its giant parabolic slides, it offers open study tables and a lively atmosphere.",
     verified: true,
   },
   {
@@ -525,7 +567,8 @@ export const places: Place[] = [
     lat: 48.1472,
     lng: 11.5673,
     tags: ["students-only", "quiet", "lounge", "modern", "tum"],
-    description: "A dedicated study house exclusively for students. Features quiet rooms, lounge areas, and a roof terrace. Requires valid student ID for access.",
+    description:
+      "A dedicated study house exclusively for students. Features quiet rooms, lounge areas, and a roof terrace. Requires valid student ID for access.",
     verified: true,
   },
   {
@@ -561,7 +604,8 @@ export const places: Place[] = [
     lat: 48.1499,
     lng: 11.5776,
     tags: ["cafe", "vegan", "lively", "wifi", "student-hub"],
-    description: "The quintessential student cafe near LMU. 100% vegan, laptop-friendly during the day, and hosts events at night.",
+    description:
+      "The quintessential student cafe near LMU. 100% vegan, laptop-friendly during the day, and hosts events at night.",
     verified: true,
   },
   {
@@ -573,7 +617,8 @@ export const places: Place[] = [
     lat: 48.1304,
     lng: 11.5841,
     tags: ["library", "quiet", "strict", "resources", "historic"],
-    description: "One of the best reference libraries for science and technology. Extremely quiet atmosphere, perfect for deep focus.",
+    description:
+      "One of the best reference libraries for science and technology. Extremely quiet atmosphere, perfect for deep focus.",
     verified: true,
   },
   {
@@ -582,10 +627,11 @@ export const places: Place[] = [
     category: "study-spot",
     address: "Maria-Theresia-Straße 23, 81675 München",
     district: "Bogenhausen",
-    lat: 48.1420,
+    lat: 48.142,
     lng: 11.5995,
     tags: ["library", "hidden-gem", "garden", "historic", "literary"],
-    description: "A beautiful artist's villa turned literary archive. Offers a stunning reading room and a quiet garden accessible to the public.",
+    description:
+      "A beautiful artist's villa turned literary archive. Offers a stunning reading room and a quiet garden accessible to the public.",
     verified: true,
   },
   {
@@ -597,9 +643,75 @@ export const places: Place[] = [
     lat: 48.1488,
     lng: 11.5685,
     tags: ["cafe", "view", "rooftop", "tum", "bright"],
-    description: "Located on the TUM rooftop, this spot offers decent coffee, large tables, and one of the best views over Munich.",
+    description:
+      "Located on the TUM rooftop, this spot offers decent coffee, large tables, and one of the best views over Munich.",
     verified: true,
-  }
+  },
+  {
+    slug: "mueller-odeonsplatz",
+    name: "Müller Café & Bäckerei (Odeonsplatz)",
+    category: "cafe",
+    address: "Theatinerstraße 23, 80333 München",
+    district: "Altstadt-Lehel",
+    lat: 48.1412,
+    lng: 11.5772,
+    tags: ["bakery", "busy", "central", "breakfast", "traditional"],
+    description:
+      "Located directly at Odeonsplatz, this is a spacious bakery-cafe. While often busy with tourists and locals, its large upper seating area offers a solid spot for a quick breakfast or coffee between lectures.",
+    verified: true,
+  },
+  {
+    slug: "mackbear-leopoldstr",
+    name: "Mackbear Coffee Co.",
+    category: "cafe",
+    address: "Leopoldstraße 44, 80802 München",
+    district: "Schwabing",
+    lat: 48.161,
+    lng: 11.5862,
+    tags: ["laptop-friendly", "strong-coffee", "sockets", "modern", "outdoor-seating"],
+    description:
+      "Often affectionately called 'McBear', this is a top spot for deep work near Münchner Freiheit. Known for very strong coffee, modern interior, and being explicitly laptop-friendly with plenty of power outlets.",
+    verified: true,
+  },
+  {
+    slug: "cadu-cafe-an-der-uni",
+    name: "CADU (Café an der Uni)",
+    category: "cafe",
+    address: "Ludwigstraße 24, 80539 München",
+    district: "Maxvorstadt",
+    lat: 48.1495,
+    lng: 11.5815,
+    tags: ["student-institution", "lively", "terrace", "open-late", "alcohol"],
+    description:
+      "A legendary institution directly next to the LMU main building (U-Bahn Universität). It transitions from a breakfast spot to a lively bar in the evening. Great for meeting people, less so for silent study.",
+    verified: true,
+  },
+  {
+    slug: "cafe-zeitgeist",
+    name: "Café Zeitgeist",
+    category: "cafe",
+    address: "Türkenstraße 74, 80799 München",
+    district: "Maxvorstadt",
+    lat: 48.1518,
+    lng: 11.5768,
+    tags: ["student-vibe", "brunch", "lively", "cocktails", "popular"],
+    description:
+      "Similar to CADU but deep in the Türkenstraße student quarter. Extremely popular for its affordable student breakfast/brunch and lively atmosphere. A classic place to meet friends after class.",
+    verified: true,
+  },
+  {
+    slug: "benko-cafe",
+    name: "Benko Café",
+    category: "cafe",
+    address: "Luisenstraße 41, 80333 München",
+    district: "Maxvorstadt",
+    lat: 48.1472,
+    lng: 11.5645,
+    tags: ["tum", "spacious", "lunch", "coffee", "student-friendly"],
+    description:
+      "A favorite for Technical University (TUM) students due to its proximity to the main campus. It offers a spacious interior with large tables, making it good for groups or lunch breaks between seminars.",
+    verified: true,
+  },
 ];
 
 // Helper functions

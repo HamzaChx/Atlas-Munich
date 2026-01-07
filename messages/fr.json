@@ -75,6 +75,7 @@
     "filters": {
       "all": "Tous",
       "restaurants": "Restaurants",
+      "cafes": "Cafés",
       "butchers": "Boucheries",
       "mosques": "Mosquées",
       "studySpots": "Espaces d'étude"

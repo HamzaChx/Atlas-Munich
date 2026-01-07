@@ -36,19 +36,9 @@ export default async function CommunityPage() {
     },
   ];
 
-  const guidelines = [
-    t("guidelines.respectful"),
-    t("guidelines.helpful"),
-    t("guidelines.language"),
-    t("guidelines.spam"),
-    t("guidelines.privacy"),
-  ];
-
   return (
     <div className="min-h-screen">
-      {/* Hero Section - Premium Design */}
       <section className="relative overflow-hidden bg-gradient-to-br from-green-50 via-white to-emerald-50 dark:from-zinc-950 dark:via-zinc-900 dark:to-emerald-950/20">
-        {/* Decorative Elements - Subtle */}
         <div className="absolute inset-0 overflow-hidden opacity-40">
           <div className="absolute -top-40 -right-40 h-80 w-80 rounded-full bg-gradient-to-br from-green-400/20 to-emerald-500/20 blur-3xl" />
           <div className="absolute -bottom-40 -left-40 h-80 w-80 rounded-full bg-gradient-to-br from-emerald-400/20 to-green-500/20 blur-3xl" />

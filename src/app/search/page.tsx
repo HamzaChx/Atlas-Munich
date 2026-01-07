@@ -19,6 +19,7 @@ import {
   Compass,
   Loader2,
 } from "lucide-react";
+import * as Icons from "lucide-react";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
@@ -54,16 +55,24 @@ function SearchContent() {
     }
 
     const query = searchQuery.toLowerCase();
+    const queryWords = query.split(/\s+/).filter((w) => w.length > 0);
 
     return {
       guides: searchGuides(query),
-      places: places.filter(
-        (place) =>
-          place.name.toLowerCase().includes(query) ||
-          place.address.toLowerCase().includes(query) ||
-          place.tags.some((tag) => tag.toLowerCase().includes(query)) ||
-          place.description?.toLowerCase().includes(query)
-      ),
+      places: places.filter((place) => {
+        const searchableText = [
+          place.name,
+          place.address,
+          place.category,
+          ...place.tags,
+          place.description || "",
+        ]
+          .join(" ")
+          .toLowerCase();
+
+        // Match if all query words are present in the searchable text
+        return queryWords.every((word) => searchableText.includes(word));
+      }),
       faqs: searchFaqs(query),
     };
   }, [searchQuery]);
@@ -97,6 +106,8 @@ function SearchContent() {
       icon: <HelpCircle className="h-4 w-4" />,
     },
   ];
+
+  const iconMap = Icons as unknown as Record<string, React.ElementType>;
 
   // Popular search terms
   const popularSearches = [
@@ -352,16 +363,19 @@ function SearchContent() {
                 {t("discover.browseCategories")}
               </h3>
               <div className="flex flex-wrap justify-center gap-3">
-                {categories.map((category) => (
-                  <Link
-                    key={category.key}
-                    href={`/category/${category.key}`}
-                    className="group flex items-center gap-2.5 rounded-full border border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 px-5 py-3 text-sm font-medium text-zinc-700 dark:text-zinc-300 shadow-sm dark:shadow-none transition-all duration-200 hover:border-purple-300 dark:hover:border-purple-500/50 hover:bg-purple-50 dark:hover:bg-purple-500/10 hover:text-purple-700 dark:hover:text-purple-300"
-                  >
-                    <span className="text-base">{category.icon}</span>
-                    {tCat(`${category.key}.title`)}
-                  </Link>
-                ))}
+                {categories.map((category) => {
+                  const IconComponent = iconMap[category.icon] || Icons.Folder;
+                  return (
+                    <Link
+                      key={category.key}
+                      href={`/category/${category.key}`}
+                      className="group flex items-center gap-2.5 rounded-full border border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 px-5 py-3 text-sm font-medium text-zinc-700 dark:text-zinc-300 shadow-sm dark:shadow-none transition-all duration-200 hover:border-purple-300 dark:hover:border-purple-500/50 hover:bg-purple-50 dark:hover:bg-purple-500/10 hover:text-purple-700 dark:hover:text-purple-300"
+                    >
+                      <IconComponent className="h-4 w-4" />
+                      {tCat(`${category.key}.title`)}
+                    </Link>
+                  );
+                })}
               </div>
             </div>
 

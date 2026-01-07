@@ -234,12 +234,12 @@ export default async function Home() {
             ))}
           </div>
 
-          {/* Stats Bar */}
-          <div className="mt-10 sm:mt-14 grid w-full max-w-3xl grid-cols-2 gap-3 sm:gap-4 px-2">
+          {/* Stats Bar - aligned cards */}
+          <div className="mt-10 sm:mt-14 grid w-full max-w-5xl grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 px-2 items-stretch">
             {stats.map((stat) => (
               <div
                 key={stat.label}
-                className="group rounded-xl border border-zinc-200 dark:border-white/5 bg-white/80 dark:bg-white/5 p-3 sm:p-4 shadow-sm dark:shadow-none backdrop-blur-sm transition-all hover:border-emerald-200 dark:hover:border-white/10 hover:bg-white dark:hover:bg-white/10"
+                className="group rounded-xl border border-zinc-200 dark:border-white/5 bg-white/80 dark:bg-white/5 p-3 sm:p-4 shadow-sm dark:shadow-none backdrop-blur-sm transition-all hover:border-emerald-200 dark:hover:border-white/10 hover:bg-white dark:hover:bg-white/10 h-full flex flex-col justify-between"
               >
                 <div className="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-white">
                   {stat.value}

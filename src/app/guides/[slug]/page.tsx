@@ -45,6 +45,8 @@ import { ContentTag } from "@/types";
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const iconMap = Icons as any;
 
+import { getLocale } from "@/i18n";
+
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
@@ -104,6 +106,20 @@ export default async function GuidePage({ params }: PageProps) {
     notFound();
   }
 
+  const locale = await getLocale();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const messages: any = (await import(`../../../../messages/${locale}.json`)).default;
+  const getMessage = (path: string) => {
+    const parts = path.split(".");
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let res: any = messages;
+    for (const p of parts) {
+      res = res?.[p];
+      if (res == null) break;
+    }
+    return res ?? undefined;
+  };
+
   const category = getCategoryByKey(guide.categoryKey);
   const relatedGuides = getRelatedGuides(guide);
   const CategoryIcon = category ? iconMap[category.icon] || Icons.Folder : Icons.Folder;
@@ -138,9 +154,12 @@ export default async function GuidePage({ params }: PageProps) {
 
   const bgColor = bgColorMap[guide.categoryKey] || "bg-emerald-50/30 dark:bg-emerald-950/10";
 
+  const localizedCategoryTitle = category
+    ? (getMessage(`categories.${category.key}.title`) ?? category.title)
+    : guide.categoryKey;
   const breadcrumbs = [
-    { label: "Guides", href: "/guides" },
-    { label: category?.title || guide.categoryKey, href: `/category/${guide.categoryKey}` },
+    { label: getMessage("nav.guides") ?? "Guides", href: "/guides" },
+    { label: localizedCategoryTitle, href: `/category/${guide.categoryKey}` },
     { label: guide.title },
   ];
 
@@ -187,7 +206,7 @@ export default async function GuidePage({ params }: PageProps) {
                     <CategoryIcon className="h-4 w-4" />
                   </div>
                   <span className="text-sm font-bold text-zinc-700 dark:text-zinc-300 capitalize group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
-                    {guide.categoryKey.replace(/-/g, " ")}
+                    {localizedCategoryTitle}
                   </span>
                   <ChevronRight className="h-4 w-4 text-zinc-400 group-hover:text-emerald-500 transition-transform group-hover:translate-x-0.5" />
                 </Link>
@@ -217,7 +236,7 @@ export default async function GuidePage({ params }: PageProps) {
                   </div>
                   <div>
                     <p className="text-xs uppercase font-semibold tracking-wide text-zinc-500 dark:text-zinc-400">
-                      Reading
+                      {getMessage("guidePage.readingLabel") ?? "Reading"}
                     </p>
                     <p className="text-lg font-bold text-zinc-900 dark:text-white">
                       {guide.readingTime} min
@@ -230,7 +249,7 @@ export default async function GuidePage({ params }: PageProps) {
                   </div>
                   <div>
                     <p className="text-xs uppercase font-semibold tracking-wide text-zinc-500 dark:text-zinc-400">
-                      Updated
+                      {getMessage("guidePage.updatedLabel") ?? "Updated"}
                     </p>
                     <p className="text-lg font-bold text-zinc-900 dark:text-white">
                       {fmtUpdated(guide.lastUpdated)}
@@ -243,7 +262,7 @@ export default async function GuidePage({ params }: PageProps) {
                   </div>
                   <div>
                     <p className="text-xs uppercase font-semibold tracking-wide text-emerald-600/90 dark:text-emerald-400">
-                      Verified
+                      {getMessage("guidePage.verifiedLabel") ?? "Verified"}
                     </p>
                     <p className="text-lg font-bold text-emerald-800 dark:text-emerald-300">
                       Community
@@ -256,7 +275,7 @@ export default async function GuidePage({ params }: PageProps) {
                 {firstSectionId && (
                   <ShareButton
                     size="lg"
-                    text="Share guide"
+                    text={getMessage("guidePage.shareGuide") ?? "Share guide"}
                     className={`bg-gradient-to-r ${gradient.from} ${gradient.to} text-white font-semibold shadow-lg`}
                   />
                 )}
@@ -292,7 +311,7 @@ export default async function GuidePage({ params }: PageProps) {
                     <Sparkles className="h-4 w-4 text-white" />
                   </div>
                   <span className="text-xs font-bold uppercase tracking-widest text-zinc-600 dark:text-zinc-400">
-                    Quick Overview
+                    {getMessage("guidePage.quickOverview") ?? "Quick Overview"}
                   </span>
                 </div>
 
@@ -301,7 +320,7 @@ export default async function GuidePage({ params }: PageProps) {
                   <div className="flex items-center justify-between py-3 border-b border-zinc-100 dark:border-white/5">
                     <span className="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400">
                       <Layers className="h-4 w-4" />
-                      Sections
+                      {getMessage("guidePage.sections") ?? "Sections"}
                     </span>
                     <span className="text-sm font-bold text-zinc-900 dark:text-white">
                       {guide.sections.length}
@@ -310,7 +329,7 @@ export default async function GuidePage({ params }: PageProps) {
                   <div className="flex items-center justify-between py-3 border-b border-zinc-100 dark:border-white/5">
                     <span className="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400">
                       <Clock className="h-4 w-4" />
-                      Reading time
+                      {getMessage("guidePage.readingTime") ?? "Reading time"}
                     </span>
                     <span className="text-sm font-bold text-zinc-900 dark:text-white">
                       {guide.readingTime} min
@@ -320,10 +339,13 @@ export default async function GuidePage({ params }: PageProps) {
                     <div className="flex items-center justify-between py-3 border-b border-zinc-100 dark:border-white/5">
                       <span className="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400">
                         <LinkIcon className="h-4 w-4" />
-                        Resources
+                        {getMessage("guidePage.resources") ?? "Resources"}
                       </span>
                       <span className="text-sm font-bold text-zinc-900 dark:text-white">
-                        {resourceCount} links
+                        {(getMessage("guidePage.resourcesLinks") ?? "{count} links").replace(
+                          "{count}",
+                          String(resourceCount)
+                        )}
                       </span>
                     </div>
                   )}
@@ -331,17 +353,20 @@ export default async function GuidePage({ params }: PageProps) {
                     <div className="flex items-center justify-between py-3 border-b border-zinc-100 dark:border-white/5">
                       <span className="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400">
                         <MessageCircle className="h-4 w-4" />
-                        FAQs
+                        {getMessage("guidePage.faqs") ?? "FAQs"}
                       </span>
                       <span className="text-sm font-bold text-zinc-900 dark:text-white">
-                        {faqCount} answered
+                        {(getMessage("guidePage.faqsAnswered") ?? "{count} answered").replace(
+                          "{count}",
+                          String(faqCount)
+                        )}
                       </span>
                     </div>
                   )}
                   <div className="flex items-center justify-between py-3">
                     <span className="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400">
                       <Eye className="h-4 w-4" />
-                      Difficulty
+                      {getMessage("guidePage.difficulty") ?? "Difficulty"}
                     </span>
                     <Badge className="bg-emerald-100 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 border-emerald-300 dark:border-emerald-500/30 font-semibold">
                       Beginner
@@ -353,7 +378,7 @@ export default async function GuidePage({ params }: PageProps) {
                 {firstSectionId && (
                   <ShareButton
                     size="lg"
-                    text="Share guide"
+                    text={getMessage("guidePage.shareGuide") ?? "Share guide"}
                     className={`group mt-6 w-full border-2 border-zinc-300 dark:border-white/10 text-zinc-700 dark:text-zinc-300 font-semibold hover:border-emerald-300 dark:hover:border-emerald-500/30`}
                   />
                 )}
@@ -379,7 +404,7 @@ export default async function GuidePage({ params }: PageProps) {
                     <div className="flex items-center gap-2.5">
                       <Target className="h-5 w-5 text-amber-500" />
                       <h3 className="text-sm font-bold text-zinc-900 dark:text-white uppercase tracking-wider">
-                        Table of Contents
+                        {getMessage("guidePage.tableOfContents") ?? "Contents"}
                       </h3>
                     </div>
                   </div>
@@ -453,10 +478,13 @@ export default async function GuidePage({ params }: PageProps) {
                     </div>
                     <div>
                       <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900 dark:text-white">
-                        Frequently Asked Questions
+                        {getMessage("guidePage.frequentlyAsked") ?? "Frequently Asked Questions"}
                       </h2>
                       <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">
-                        {guide.faqs.length} common questions answered
+                        {(
+                          getMessage("guidePage.faqsAnswered") ??
+                          "{count} common questions answered"
+                        ).replace("{count}", String(guide.faqs.length))}
                       </p>
                     </div>
                   </div>
@@ -475,10 +503,12 @@ export default async function GuidePage({ params }: PageProps) {
                     </div>
                     <div>
                       <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900 dark:text-white">
-                        Helpful Resources
+                        {getMessage("guidePage.helpfulResources") ?? "Helpful Resources"}
                       </h2>
                       <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">
-                        {guide.resources.length} curated links
+                        {(
+                          getMessage("guidePage.resourcesCount") ?? "{count} curated links"
+                        ).replace("{count}", String(guide.resources.length))}
                       </p>
                     </div>
                   </div>
@@ -526,10 +556,11 @@ export default async function GuidePage({ params }: PageProps) {
                     </div>
                     <div>
                       <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900 dark:text-white">
-                        Continue Learning
+                        {getMessage("guidePage.continueLearning") ?? "Continue Learning"}
                       </h2>
                       <p className="text-sm text-zinc-500 dark:text-zinc-400 mt-1">
-                        Related guides you might find helpful
+                        {getMessage("guidePage.relatedGuidesDesc") ??
+                          "Related guides you might find helpful"}
                       </p>
                     </div>
                   </div>
@@ -554,14 +585,15 @@ export default async function GuidePage({ params }: PageProps) {
                     <div className="mb-2 inline-flex items-center gap-2">
                       <CheckCircle2 className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
                       <span className="text-xs font-bold uppercase tracking-widest text-zinc-500 dark:text-zinc-400">
-                        Helpful Resource?
+                        {getMessage("guidePage.helpfulResourceLabel") ?? "Helpful Resource?"}
                       </span>
                     </div>
                     <h3 className="text-2xl font-bold text-zinc-900 dark:text-white sm:text-3xl">
-                      Explore More Guides
+                      {getMessage("guidePage.bottomCTATitle") ?? "Explore More Guides"}
                     </h3>
                     <p className="mt-2 text-base text-zinc-600 dark:text-zinc-400">
-                      Discover more resources in this category or browse our full collection
+                      {getMessage("guidePage.bottomCTADesc") ??
+                        "Discover more resources in this category or browse our full collection"}
                     </p>
                   </div>
                   <div className="flex flex-wrap gap-3 justify-center sm:justify-end">
@@ -573,7 +605,10 @@ export default async function GuidePage({ params }: PageProps) {
                     >
                       <Link href={`/category/${guide.categoryKey}`}>
                         <ArrowLeft className="mr-2 h-4 w-4" />
-                        {category?.title || "Category"}
+                        {(getMessage("guidePage.bottomCTABrowseCategory") ?? "{category}").replace(
+                          "{category}",
+                          category?.title || "Category"
+                        )}
                       </Link>
                     </Button>
                     <Button
@@ -583,7 +618,7 @@ export default async function GuidePage({ params }: PageProps) {
                     >
                       <Link href="/guides" className="text-white inline-flex items-center">
                         <BookOpen className="mr-2 h-4 w-4" />
-                        All Guides
+                        {getMessage("guidePage.bottomCTAAllGuides") ?? "All Guides"}
                       </Link>
                     </Button>
                   </div>
@@ -600,7 +635,7 @@ export default async function GuidePage({ params }: PageProps) {
                     <div className="flex items-center gap-2.5">
                       <Target className="h-4 w-4 text-amber-500" />
                       <h3 className="text-sm font-bold text-zinc-900 dark:text-white uppercase tracking-wider">
-                        Contents
+                        {getMessage("guidePage.tableOfContents") ?? "Contents"}
                       </h3>
                     </div>
                   </div>
@@ -616,11 +651,13 @@ export default async function GuidePage({ params }: PageProps) {
                       <div className="flex items-center gap-2.5">
                         <Download className="h-4 w-4 text-emerald-500" />
                         <h3 className="text-sm font-bold text-zinc-900 dark:text-white uppercase tracking-wider">
-                          Resources
+                          {getMessage("guidePage.resources") ?? "Resources"}
                         </h3>
                       </div>
                       <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400">
-                        {guide.resources.length} helpful links
+                        {(
+                          getMessage("guidePage.resourcesCount") ?? "{count} helpful links"
+                        ).replace("{count}", String(guide.resources.length))}
                       </p>
                     </div>
                     <div className="p-4 space-y-2">
@@ -659,7 +696,7 @@ export default async function GuidePage({ params }: PageProps) {
                 <div className="rounded-2xl border-2 border-zinc-200/80 dark:border-white/10 bg-gradient-to-br from-white via-zinc-50/50 to-white dark:from-zinc-900/70 dark:via-zinc-900/50 dark:to-zinc-950/70 p-5 shadow-lg space-y-3 backdrop-blur-sm">
                   <ShareButton
                     className={`w-full bg-gradient-to-r ${gradient.from} ${gradient.to} text-white font-semibold justify-start shadow-lg`}
-                    text="Share this guide"
+                    text={getMessage("guidePage.shareThisGuide") ?? "Share this guide"}
                   />
                   <Button
                     variant="outline"
@@ -667,7 +704,7 @@ export default async function GuidePage({ params }: PageProps) {
                     size="lg"
                   >
                     <ThumbsUp className="mr-2 h-4 w-4" />
-                    Was this helpful?
+                    {getMessage("guidePage.wasHelpful") ?? "Was this helpful?"}
                   </Button>
                 </div>
               </div>

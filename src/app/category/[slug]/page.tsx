@@ -26,6 +26,8 @@ import {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const iconMap = Icons as any;
 
+import { getLocale } from "@/i18n";
+
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
@@ -44,9 +46,19 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return { title: "Category Not Found" };
   }
 
+  // Attempt to provide localized metadata using the default locale
+
+  const { defaultLocale } = await import("@/i18n");
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const messages: any = (await import(`../../../../messages/${defaultLocale}.json`)).default;
+
+  const localizedTitle = messages?.categories?.[category.key]?.title ?? category.title;
+  const localizedDescription =
+    messages?.categories?.[category.key]?.description ?? category.description;
+
   return {
-    title: category.title,
-    description: category.description,
+    title: localizedTitle,
+    description: localizedDescription,
   };
 }
 
@@ -58,10 +70,33 @@ export default async function CategoryPage({ params }: PageProps) {
     notFound();
   }
 
+  const locale = await getLocale();
+  // Load locale messages and fall back if missing
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const messages: any = (await import(`../../../../messages/${locale}.json`)).default;
+
+  const getMessage = (path: string) => {
+    const parts = path.split(".");
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let res: any = messages;
+    for (const p of parts) {
+      res = res?.[p];
+      if (res == null) break;
+    }
+    return res ?? undefined;
+  };
+
+  const localizedCategoryTitle = getMessage(`categories.${category.key}.title`) ?? category.title;
+  const localizedCategoryDescription =
+    getMessage(`categories.${category.key}.description`) ?? category.description;
+
   const categoryGuides = getGuidesByCategory(category.key as CategoryKey);
   const IconComponent = iconMap[category.icon] || Icons.Folder;
 
-  const breadcrumbs = [{ label: "Categories", href: "/guides" }, { label: category.title }];
+  const breadcrumbs = [
+    { label: getMessage("nav.guides") ?? "Categories", href: "/guides" },
+    { label: localizedCategoryTitle },
+  ];
 
   const allTags = Array.from(new Set(categoryGuides.flatMap((g) => g.tags)));
   const featuredGuide = categoryGuides[0];
@@ -184,22 +219,25 @@ export default async function CategoryPage({ params }: PageProps) {
                 </div>
                 <div className="flex flex-col gap-1">
                   <span className="text-xs font-bold uppercase tracking-widest text-zinc-500 dark:text-zinc-400">
-                    Category
+                    {getMessage("categoryPage.categoryLabel") ?? "Category"}
                   </span>
                   <Badge className={`w-fit px-3 py-1 ${theme.badge} font-semibold`}>
-                    {categoryGuides.length} {categoryGuides.length === 1 ? "Guide" : "Guides"}
+                    {categoryGuides.length}{" "}
+                    {categoryGuides.length === 1
+                      ? (getMessage("categoryPage.guidesSingular") ?? "Guide")
+                      : (getMessage("categoryPage.guidesPlural") ?? "Guides")}
                   </Badge>
                 </div>
               </div>
 
               {/* Title - Rule 19: Max 2 font families, Rule 23: Font weight for hierarchy */}
               <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-white sm:text-5xl lg:text-6xl leading-[1.1]">
-                {category.title}
+                {localizedCategoryTitle}
               </h1>
 
               {/* Description - Rule 21 & 22: 16-18px min, line-height 1.4-1.6 */}
               <p className="mt-6 max-w-2xl text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
-                {category.description}
+                {localizedCategoryDescription}
               </p>
 
               {/* Stats Grid - Rule 11: 8-point spacing, Rule 16: Group related elements */}
@@ -210,7 +248,7 @@ export default async function CategoryPage({ params }: PageProps) {
                   </div>
                   <div>
                     <p className="text-xs uppercase font-semibold tracking-wide text-zinc-500 dark:text-zinc-400">
-                      Guides
+                      {getMessage("categoryPage.guidesPlural") ?? "Guides"}
                     </p>
                     <p className="text-lg font-bold text-zinc-900 dark:text-white">
                       {categoryGuides.length}
@@ -223,7 +261,7 @@ export default async function CategoryPage({ params }: PageProps) {
                   </div>
                   <div>
                     <p className="text-xs uppercase font-semibold tracking-wide text-zinc-500 dark:text-zinc-400">
-                      Reading
+                      {getMessage("categoryPage.reading") ?? "Reading"}
                     </p>
                     <p className="text-lg font-bold text-zinc-900 dark:text-white">
                       {totalReadingTime} min
@@ -236,7 +274,7 @@ export default async function CategoryPage({ params }: PageProps) {
                   </div>
                   <div>
                     <p className="text-xs uppercase font-semibold tracking-wide text-zinc-500 dark:text-zinc-400">
-                      Status
+                      {getMessage("categoryPage.status") ?? "Status"}
                     </p>
                     <p className="text-lg font-bold text-zinc-900 dark:text-white">Verified</p>
                   </div>
@@ -245,7 +283,12 @@ export default async function CategoryPage({ params }: PageProps) {
 
               {/* Search Bar - Rule 4: Reduce cognitive load */}
               <div className="mt-8 max-w-lg">
-                <SearchBar placeholder={`Search in ${category.title}...`} showButton={false} />
+                <SearchBar
+                  placeholder={(
+                    getMessage("categoryPage.searchPlaceholder") ?? "Search in {category}..."
+                  ).replace("{category}", localizedCategoryTitle)}
+                  showButton={false}
+                />
               </div>
 
               {/* Popular Topics - Rule 16: Group related elements visually */}
@@ -253,7 +296,7 @@ export default async function CategoryPage({ params }: PageProps) {
                 <div className="mt-6 flex flex-wrap items-center gap-2">
                   <span className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-zinc-500 dark:text-zinc-400">
                     <Target className="h-3.5 w-3.5" />
-                    Popular Topics
+                    {getMessage("categoryPage.popularTopics") ?? "Popular Topics"}
                   </span>
                   {spotlightTags.map((tag) => (
                     <Badge
@@ -286,10 +329,12 @@ export default async function CategoryPage({ params }: PageProps) {
                       <div className="flex items-center gap-2">
                         <Star className="h-5 w-5 fill-amber-500 text-amber-500" />
                         <span className="text-xs font-bold uppercase tracking-widest text-zinc-600 dark:text-zinc-400">
-                          Featured Guide
+                          {getMessage("categoryPage.featuredGuide") ?? "Featured Guide"}
                         </span>
                       </div>
-                      <Badge className={`${theme.badge} px-3 py-1 font-semibold`}>Spotlight</Badge>
+                      <Badge className={`${theme.badge} px-3 py-1 font-semibold`}>
+                        {getMessage("categoryPage.spotlight") ?? "Spotlight"}
+                      </Badge>
                     </div>
 
                     {/* Title - Rule 25: Headings communicate meaning */}
@@ -319,11 +364,16 @@ export default async function CategoryPage({ params }: PageProps) {
                     <div className="mt-6 grid gap-3 sm:grid-cols-2">
                       <div className="flex items-center gap-2.5 rounded-xl border border-zinc-200/80 dark:border-white/10 bg-zinc-50/80 dark:bg-white/5 px-3.5 py-2.5 text-sm text-zinc-600 dark:text-zinc-400">
                         <Clock className="h-4 w-4 text-blue-500" />
-                        <span className="font-medium">{featuredGuide.readingTime} min read</span>
+                        <span className="font-medium">
+                          {featuredGuide.readingTime}{" "}
+                          {getMessage("categoryPage.readingSuffix") ?? "min read"}
+                        </span>
                       </div>
                       <div className="flex items-center gap-2.5 rounded-xl border border-zinc-200/80 dark:border-white/10 bg-zinc-50/80 dark:bg-white/5 px-3.5 py-2.5 text-sm text-zinc-600 dark:text-zinc-400">
                         <Users className="h-4 w-4 text-emerald-500" />
-                        <span className="font-medium">Verified</span>
+                        <span className="font-medium">
+                          {getMessage("places.card.verified") ?? "Verified"}
+                        </span>
                       </div>
                     </div>
 
@@ -337,7 +387,7 @@ export default async function CategoryPage({ params }: PageProps) {
                         href={`/guides/${featuredGuide.slug}`}
                         className=" inline-flex items-center"
                       >
-                        Start Reading
+                        {getMessage("categoryPage.startReading") ?? "Start Reading"}
                         <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
                       </Link>
                     </Button>
@@ -363,14 +413,20 @@ export default async function CategoryPage({ params }: PageProps) {
                   <Layers className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
                 </div>
                 <span className="text-xs font-bold uppercase tracking-widest text-zinc-500 dark:text-zinc-400">
-                  All Guides
+                  {getMessage("categoryPage.allGuides") ?? "All Guides"}
                 </span>
               </div>
               <h2 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-4xl">
-                Browse {categoryGuides.length} {categoryGuides.length === 1 ? "Guide" : "Guides"}
+                {(getMessage("categoryPage.browseGuides") ?? "Browse {count} Guides").replace(
+                  "{count}",
+                  String(categoryGuides.length)
+                )}
               </h2>
               <p className="mt-3 text-base text-zinc-600 dark:text-zinc-400">
-                Comprehensive resources to help you succeed in {category.title.toLowerCase()}
+                {(getMessage("categoryPage.sectionDescription") ?? "").replace(
+                  "{category}",
+                  localizedCategoryTitle.toLowerCase()
+                )}
               </p>
             </div>
 
@@ -424,9 +480,17 @@ export default async function CategoryPage({ params }: PageProps) {
           ) : (
             <EmptyState
               type="guides"
-              title={`No guides in ${category.title} yet`}
-              description="We're working on adding content to this category. Check back soon!"
-              action={{ label: "Browse all guides", href: "/guides" }}
+              title={(
+                getMessage("categoryPage.noGuidesTitle") ?? "No guides in {category} yet"
+              ).replace("{category}", localizedCategoryTitle)}
+              description={
+                getMessage("categoryPage.noGuidesDescription") ??
+                "We're working on adding content to this category. Check back soon!"
+              }
+              action={{
+                label: getMessage("categoryPage.allGuides") ?? "Browse all guides",
+                href: "/guides",
+              }}
             />
           )}
 
@@ -437,14 +501,15 @@ export default async function CategoryPage({ params }: PageProps) {
                 <div className="mb-2 inline-flex items-center gap-2">
                   <TrendingUp className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
                   <span className="text-xs font-bold uppercase tracking-widest text-zinc-500 dark:text-zinc-400">
-                    Explore More
+                    {getMessage("categoryPage.exploreMoreTitle") ?? "Explore More"}
                   </span>
                 </div>
                 <h3 className="text-2xl font-bold text-zinc-900 dark:text-white sm:text-3xl">
-                  Looking for something else?
+                  {getMessage("categoryPage.exploreMoreTitle") ?? "Looking for something else?"}
                 </h3>
                 <p className="mt-2 text-base text-zinc-600 dark:text-zinc-400">
-                  Explore other categories or browse our complete collection of guides
+                  {getMessage("categoryPage.exploreMoreDesc") ??
+                    "Explore other categories or browse our complete collection of guides"}
                 </p>
               </div>
               <div className="flex flex-wrap gap-3 justify-center sm:justify-end">
@@ -456,7 +521,7 @@ export default async function CategoryPage({ params }: PageProps) {
                 >
                   <Link href="/guides">
                     <ArrowLeft className="mr-2 h-4 w-4" />
-                    All Guides
+                    {getMessage("categoryPage.allGuides") ?? "All Guides"}
                   </Link>
                 </Button>
                 <Button
@@ -465,7 +530,7 @@ export default async function CategoryPage({ params }: PageProps) {
                   className={`bg-gradient-to-r ${theme.from} ${theme.to} text-white font-semibold shadow-lg hover:opacity-90 hover:shadow-xl transition-all`}
                 >
                   <Link href="/search" className="text-white inline-flex items-center">
-                    Search Everything
+                    {getMessage("categoryPage.searchEverything") ?? "Search Everything"}
                   </Link>
                 </Button>
               </div>

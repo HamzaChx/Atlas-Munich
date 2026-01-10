@@ -15,29 +15,9 @@ export function Footer() {
   const t = useTranslations("footer");
   return (
     <footer className="relative overflow-hidden bg-zinc-50/80 dark:bg-zinc-950/80 backdrop-blur-sm">
-      {/* Moroccan Pattern Background */}
-      <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.02]">
-        <svg className="h-full w-full" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern
-              id="footer-pattern"
-              x="0"
-              y="0"
-              width="60"
-              height="60"
-              patternUnits="userSpaceOnUse"
-            >
-              <path d="M30 0L60 30L30 60L0 30Z" fill="none" stroke="currentColor" strokeWidth="1" />
-              <circle cx="30" cy="30" r="8" fill="none" stroke="currentColor" strokeWidth="1" />
-            </pattern>
-          </defs>
-          <rect
-            width="100%"
-            height="100%"
-            fill="url(#footer-pattern)"
-            className="text-zinc-900 dark:text-white"
-          />
-        </svg>
+      {/* Simple subtle gradient background (replaces decorative SVG pattern) */}
+      <div className="absolute inset-0 pointer-events-none opacity-30 dark:opacity-20">
+        <div className="h-full w-full bg-gradient-to-t from-emerald-50/60 to-transparent dark:from-emerald-900/30" />
       </div>
 
       {/* Top gradient line - Moroccan colors */}

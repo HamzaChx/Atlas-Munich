@@ -6,6 +6,7 @@ import remarkGfm from "remark-gfm";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
+import { Callout } from "@/components/shared";
 import {
   Breadcrumbs,
   TableOfContents,
@@ -227,6 +228,13 @@ export default async function GuidePage({ params }: PageProps) {
               <p className="mt-6 max-w-2xl text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
                 {guide.summary}
               </p>
+
+              {/* Data freshness callout */}
+              <Callout variant="warning" title="Quick note about accuracy">
+                We regularly check and update these guides, but some details may change faster than
+                we can keep up. Treat this as friendly guidance — not official legal or
+                administrative advice. Spot an error? Please tell us and we’ll verify it ASAP.
+              </Callout>
 
               {/* Meta Stats Grid - Rule 11: 8-point spacing */}
               <div className="mt-8 grid gap-4 sm:grid-cols-3">

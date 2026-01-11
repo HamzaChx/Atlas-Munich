@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { SearchBar, CategoryCard, HeroBadge } from "@/components/shared";
+import { SearchBar, CategoryCard, HeroBadge, Callout } from "@/components/shared";
 import { categories } from "@/data/categories";
 import { guides } from "@/data/guides";
 import { getTranslations } from "next-intl/server";
@@ -73,6 +73,15 @@ export default async function GuidesPage() {
           </div>
         </div>
       </section>
+
+      {/* Data freshness callout */}
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <Callout variant="warning" title="Heads up — info may change">
+          We’re working hard to keep these guides fresh, but some details can get out of date. Use
+          this guide as a helpful starting point — and if you spot something that’s changed, please
+          let us know so we can update it. Thanks for helping us keep things accurate!
+        </Callout>
+      </div>
 
       {/* Categories Section */}
       <section className="relative border-b border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-950 py-16">

@@ -193,7 +193,7 @@ export default async function Home() {
         {/* Content */}
         <div className="relative z-20 mx-auto flex min-h-[90vh] max-w-7xl flex-col items-center justify-center px-4 py-20 text-center sm:px-6 lg:px-8">
           {/* Main Title */}
-          <h1 className="max-w-4xl text-5xl font-black tracking-tight text-zinc-900 dark:text-white sm:text-6xl lg:text-7xl mt-6">
+          <h1 className="max-w-4xl text-5xl font-bold tracking-tight text-zinc-800 dark:text-white sm:text-6xl lg:text-7xl mt-6">
             {t("heroTitle")}
             <span className="relative mt-2 block">
               <span className="relative z-10  bg-emerald-600 dark:bg-emerald-400 bg-clip-text text-transparent">

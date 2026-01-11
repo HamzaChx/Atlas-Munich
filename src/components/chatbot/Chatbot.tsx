@@ -9,8 +9,8 @@ import { useState, useRef, useEffect, FormEvent, KeyboardEvent } from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { useTranslations } from "next-intl";
 import { useChatbot } from "@/chatbot/use-chatbot";
-import { ChatbotType } from "@/chatbot/types";
 import { cn } from "@/lib/utils";
 import { X, Send, Loader2, ChevronDown, RefreshCcw, Sparkles } from "lucide-react";
 
@@ -366,6 +366,8 @@ export function Chatbot() {
     dismissSuccessNotification,
   } = useChatbot();
 
+  const t = useTranslations("chatbot");
+
   const [input, setInput] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
@@ -406,15 +408,7 @@ export function Chatbot() {
     }
   };
 
-  // Welcome message for empty state
-  const welcomeMessages: Record<ChatbotType, string> = {
-    zellija: "Salam! 👋 I'm Zellija, your guide to Atlas Munich. How can I help you today?",
-    hamid:
-      "Labas! 📚 I'm Hamid, your guides specialist. Ask me about housing, KVR, university, or anything Munich!",
-    jmila:
-      "Hey there! 🐪 I'm Jmila, and I know all the best spots in Munich. Looking for halal food or a nice café?",
-    hamza: "Salam! 👨‍💻 I'm Hamza, the developer of Atlas Munich. Want to know about the project?",
-  };
+  // Welcome message for empty state is provided by translations (messages/chatbot.*)
 
   // Don't render on FAQ and Community pages
   if (shouldHideChatbot) {
@@ -524,18 +518,30 @@ export function Chatbot() {
                   {chatbotConfig.name}
                 </h3>
                 <p className="text-sm text-zinc-600 dark:text-zinc-400 mb-4">
-                  {welcomeMessages[currentChatbot]}
+                  {t(`welcome.${currentChatbot}`)}
                 </p>
                 <div className="flex flex-wrap gap-2 justify-center">
-                  {getSuggestedQuestions(currentChatbot).map((q, i) => (
-                    <button
-                      key={i}
-                      onClick={() => sendMessage(q)}
-                      className="text-xs px-3 py-1.5 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-emerald-100 dark:hover:bg-emerald-900/30 hover:text-emerald-700 dark:hover:text-emerald-300 hover:border-emerald-300 dark:hover:border-emerald-700 border border-transparent transition-all duration-200 cursor-pointer hover:scale-105 active:scale-95"
-                    >
-                      {q}
-                    </button>
-                  ))}
+                  {(() => {
+                    const suggestions: string[] = [];
+                    // next-intl expects strings only; suggestions are stored as numeric keys
+                    for (let i = 0; i < 3; i++) {
+                      const key = `suggestions.${currentChatbot}.${i}`;
+                      const val = t(key);
+                      // When missing, useTranslations returns the key itself — stop on that
+                      if (!val || val === key) break;
+                      suggestions.push(val);
+                    }
+
+                    return suggestions.map((q: string, i: number) => (
+                      <button
+                        key={i}
+                        onClick={() => sendMessage(q)}
+                        className="text-xs px-3 py-1.5 rounded-full bg-zinc-100 dark:bg-zinc-800 text-zinc-700 dark:text-zinc-300 hover:bg-emerald-100 dark:hover:bg-emerald-900/30 hover:text-emerald-700 dark:hover:text-emerald-300 hover:border-emerald-300 dark:hover:border-emerald-700 border border-transparent transition-all duration-200 cursor-pointer hover:scale-105 active:scale-95"
+                      >
+                        {q}
+                      </button>
+                    ));
+                  })()}
                 </div>
               </div>
             )}
@@ -681,16 +687,6 @@ export function Chatbot() {
   );
 }
 
-// Suggested questions per chatbot
-function getSuggestedQuestions(chatbot: ChatbotType): string[] {
-  const questions: Record<ChatbotType, string[]> = {
-    zellija: ["What can you help me with?", "I need housing help", "Find halal food"],
-    hamid: ["How do I do Anmeldung?", "Tips for finding an apartment", "What apps do I need?"],
-    jmila: ["Best halal restaurants?", "Where can I study?", "Moroccan food spots"],
-    hamza: ["About this project", "How can I contribute?", "Tech stack used?"],
-  };
-
-  return questions[chatbot] || questions.zellija;
-}
+// Note: suggestions are loaded from translations (`messages/*.json` under `chatbot.suggestions`)
 
 export default Chatbot;

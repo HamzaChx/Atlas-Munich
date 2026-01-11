@@ -597,5 +597,48 @@
         "description": "A favorite for Technical University (TUM) students due to its proximity to the main campus. It offers a spacious interior with large tables, making it good for groups or lunch breaks between seminars."
       }
     }
+  },
+
+  "chatbot": {
+    "taglines": {
+      "zellija": "Your friendly guide to Atlas Munich",
+      "hamid": "Your witty guides specialist",
+      "jmila": "Your helpful camel guide to Munich places",
+      "hamza": "The developer behind Atlas Munich"
+    },
+    "welcome": {
+      "zellija": "Salam! 👋 I'm Zellija, your guide to Atlas Munich. How can I help you today?",
+      "hamid": "Labas! 📚 I'm Hamid, your guides specialist. Ask me about housing, KVR, university, or anything Munich!",
+      "jmila": "Hey there! 🐪 I'm Jmila, and I know all the best spots in Munich. Looking for halal food or a nice café?",
+      "hamza": "Salam! 👨‍💻 I'm Hamza, the developer of Atlas Munich. Want to know about the project?"
+    },
+    "suggestions": {
+      "zellija": {
+        "0": "What can you help me with?",
+        "1": "I need housing help",
+        "2": "Find halal food"
+      },
+      "hamid": {
+        "0": "How do I do Anmeldung?",
+        "1": "Tips for finding an apartment",
+        "2": "What apps do I need?"
+      },
+      "jmila": {
+        "0": "Best halal restaurants?",
+        "1": "Where can I study?",
+        "2": "Moroccan food spots"
+      },
+      "hamza": {
+        "0": "About this project",
+        "1": "How can I contribute?",
+        "2": "Tech stack used?"
+      }
+    },
+    "description": {
+      "zellija": "A warm, efficient connector who routes users to the right expert.",
+      "hamid": "A funny, knowledgeable guide specialist who explains bureaucracy with personality.",
+      "jmila": "A calm, foodie-focused guide who recommends the best places in Munich.",
+      "hamza": "A technical, community-minded developer who can explain the project and how to contribute."
+    }
   }
 }

@@ -55,6 +55,28 @@
       "description": "Chaque correction, chaque nouveau guide, chaque expérience partagée aide le prochain Marocain arrivant à Munich. Vos connaissances sont précieuses — partagez-les avec la communauté.",
       "contributeGithub": "Contribuer sur GitHub",
       "learnHow": "En savoir plus",
+      "suggestions": {
+        "zellija": {
+          "0": "En quoi pouvez-vous m'aider ?",
+          "1": "J'ai besoin d'aide pour le logement",
+          "2": "Trouver de la nourriture halal"
+        }
+      },
+      "hamid": {
+        "0": "Comment faire l'Anmeldung ?",
+        "1": "Des astuces pour trouver un appartement",
+        "2": "Quelles applis me faut-il ?"
+      },
+      "jmila": {
+        "0": "Meilleurs restaurants halal ?",
+        "1": "Où puis-je étudier ?",
+        "2": "Des endroits marocains pour manger"
+      },
+      "hamza": {
+        "0": "À propos de ce projet",
+        "1": "Comment contribuer ?",
+        "2": "Quel est le stack technique ?"
+      },
       "freeForever": "100% Gratuit pour toujours",
       "communityDriven": "Piloté par la communauté",
       "madeWithLove": "Fait avec amour"
@@ -596,6 +618,44 @@
         "name": "Benko Café",
         "description": "Un favori des étudiants de la Technical University (TUM) en raison de sa proximité avec le campus principal. Il propose un intérieur spacieux avec de grandes tables, idéal pour les groupes ou les pauses déjeuner entre séminaires."
       }
+    }
+  },
+  "chatbot": {
+    "taglines": {
+      "zellija": "Votre guide accueillant d'Atlas Munich",
+      "hamid": "Votre spécialiste des guides plein d'humour",
+      "jmila": "Votre guide sympathique des meilleurs lieux",
+      "hamza": "Le développeur derrière Atlas Munich"
+    },
+    "welcome": {
+      "zellija": "Salam! 👋 Je suis Zellija, votre guide pour Atlas Munich. Comment puis-je vous aider aujourd'hui ?",
+      "hamid": "Labas! 📚 Je suis Hamid, spécialiste des guides. Demandez-moi sur le logement, le KVR, l'université ou autre !",
+      "jmila": "Salut! 🐪 Je suis Jmila, je connais les meilleurs endroits à Munich. Vous cherchez de la nourriture halal ou un café ?",
+      "hamza": "Salam! 👨‍💻 Je suis Hamza, le développeur d'Atlas Munich. Voulez-vous en savoir plus sur le projet ?"
+    },
+    "suggestions": {
+      "zellija": [
+        "En quoi pouvez-vous m'aider ?",
+        "J'ai besoin d'aide pour le logement",
+        "Trouver de la nourriture halal"
+      ],
+      "hamid": [
+        "Comment faire l'Anmeldung ?",
+        "Des astuces pour trouver un appartement",
+        "Quelles applis me faut-il ?"
+      ],
+      "jmila": [
+        "Meilleurs restaurants halal ?",
+        "Où puis-je étudier ?",
+        "Des endroits marocains pour manger"
+      ],
+      "hamza": ["À propos de ce projet", "Comment contribuer ?", "Quel est le stack technique ?"]
+    },
+    "description": {
+      "zellija": "Un connecteur chaleureux et efficace qui oriente les utilisateurs vers le bon expert.",
+      "hamid": "Un spécialiste des guides drôle et compétent qui explique la bureaucratie avec personnalité.",
+      "jmila": "Un guide calme et gourmand qui recommande les meilleurs endroits à Munich.",
+      "hamza": "Un développeur technique et engagé dans la communauté qui peut expliquer le projet et comment contribuer."
     }
   }
 }

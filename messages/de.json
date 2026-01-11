@@ -28,13 +28,7 @@
       "guides": "Ratgeber",
       "places": "Orte",
       "faqsAnswered": "FAQs beantwortet",
-      "freeAndOpen": "Kostenlos & Offen"
-    },
-    "categories": {
-      "badge": "München navigieren",
-      "title": "Alles, was du brauchst,",
-      "titleHighlight": "An einem Ort",
-      "subtitle": "Umfassende Ratgeber organisiert nach dem, was dir am wichtigsten ist",
+      "freeAndOpen": "Kostenlos & Offen",
       "browseAll": "Alle Ratgeber durchsuchen"
     },
     "community": {
@@ -596,6 +590,48 @@
         "name": "Benko Café",
         "description": "Beliebt bei TUM-Studierenden wegen der Nähe zum Campus. Bietet geräumiges Interieur mit großen Tischen, ideal für Gruppen."
       }
+    }
+  },
+  "chatbot": {
+    "taglines": {
+      "zellija": "Dein freundlicher Guide von Atlas München",
+      "hamid": "Dein witziger Ratgeber-Spezialist",
+      "jmila": "Deine hilfreiche Guide zu Münchens Orten",
+      "hamza": "Der Entwickler hinter Atlas München"
+    },
+    "welcome": {
+      "zellija": "Salam! 👋 Ich bin Zellija, dein Guide für Atlas München. Wie kann ich dir heute helfen?",
+      "hamid": "Labas! 📚 Ich bin Hamid, dein Ratgeber-Spezialist. Frag mich zu Wohnung, KVR, Uni oder allem anderen!",
+      "jmila": "Hey! 🐪 Ich bin Jmila und kenne die besten Orte in München. Suchst du Halal-Essen oder ein Café?",
+      "hamza": "Salam! 👨‍💻 Ich bin Hamza, der Entwickler von Atlas München. Möchtest du mehr über das Projekt wissen?"
+    },
+    "suggestions": {
+      "zellija": {
+        "0": "Wobei kannst du mir helfen?",
+        "1": "Ich brauche Hilfe beim Wohnen",
+        "2": "Halal-Essen finden"
+      },
+      "hamid": {
+        "0": "Wie mache ich die Anmeldung?",
+        "1": "Tipps zur Wohnungssuche",
+        "2": "Welche Apps brauche ich?"
+      },
+      "jmila": {
+        "0": "Beste Halal-Restaurants?",
+        "1": "Wo kann ich lernen?",
+        "2": "Marokkanische Essensplätze"
+      },
+      "hamza": {
+        "0": "Über dieses Projekt",
+        "1": "Wie kann ich beitragen?",
+        "2": "Verwendeter Tech-Stack?"
+      }
+    },
+    "description": {
+      "zellija": "Eine warme, effiziente Verbindungsperson, die Nutzer an den richtigen Experten weiterleitet.",
+      "hamid": "Ein witziger, sachkundiger Ratgeber, der Bürokratie mit Persönlichkeit erklärt.",
+      "jmila": "Eine ruhige, essensbegeisterte Begleiterin, die die besten Orte in München empfiehlt.",
+      "hamza": "Ein technischer, community-orientierter Entwickler, der das Projekt und die Mitwirkung erklärt."
     }
   }
 }

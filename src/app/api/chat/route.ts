@@ -9,7 +9,7 @@ import { ChatbotType, ChatRequest, ChatResponse } from "@/chatbot/types";
 
 // Gemini API configuration
 const GEMINI_API_URL =
-  "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent";
+  "https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash:generateContent";
 
 interface GeminiMessage {
   role: "user" | "model";

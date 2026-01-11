@@ -654,7 +654,7 @@
       },
       "cookies": "Atlas Munich verwendet keine Tracking-Cookies. Analysen laufen soweit möglich serverseitig.",
       "lawfulBasis": "Die Verarbeitung erfolgt auf Grundlage berechtigten Interesses (Art. 6(1)(f) DSGVO).",
-      "thirdParties": "Wir nutzen Drittanbieter wie Vercel (Hosting + Analytics) und eine KI-Plattform.",
+      "thirdParties": "Wir nutzen Drittanbieter wie Vercel (Hosting + Analytics) und Google Gemini (KI-Antworten). Deren Datenschutzrichtlinien gelten zusätzlich.",
       "dataRetention": "Nicht-identifizierende Daten werden nur kurz gespeichert, soweit zur Funktion des Dienstes nötig.",
       "rights": "Sie haben Rechte auf Auskunft, Einschränkung oder Löschung gemäß DSGVO.",
       "updates": "Diese Datenschutzerklärung kann aktualisiert werden. Die neueste Version steht auf dieser Seite."

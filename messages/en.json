@@ -654,7 +654,7 @@
       },
       "cookies": "Atlas Munich does not intentionally use tracking cookies. Analytics operate server-side where possible.",
       "lawfulBasis": "Processing is based on legitimate interest (Art. 6(1)(f) GDPR) to improve and maintain the site.",
-      "thirdParties": "We rely on external providers such as Vercel (hosting + analytics) and an AI model platform. These services follow their own privacy policies.",
+      "thirdParties": "We rely on external providers such as Vercel (hosting + analytics) and Google Gemini (AI model platform). These services follow their own privacy policies.",
       "dataRetention": "Only non-identifying usage data is stored for limited periods needed to operate the site.",
       "rights": "You may request information, objection, or deletion where applicable under GDPR.",
       "updates": "This Privacy Policy may change over time. The latest version is available on this page."

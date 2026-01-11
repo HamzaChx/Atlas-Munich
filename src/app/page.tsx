@@ -258,8 +258,15 @@ export default async function Home() {
               className="h-10 w-10 rounded-full object-cover border border-zinc-200 dark:border-white/10"
             />
             <p className="text-sm text-zinc-600 dark:text-zinc-400">
-              Created by{" "}
-              <span className="font-semibold text-zinc-900 dark:text-white">Hamza Chaouki</span>
+              Created by
+              <a
+                href="https://hamzachaouki.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="ml-2 font-semibold text-zinc-900 dark:text-white hover:underline"
+              >
+                Hamza Chaouki
+              </a>
             </p>
           </div>
         </div>

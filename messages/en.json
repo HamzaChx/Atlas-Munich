@@ -640,5 +640,35 @@
       "jmila": "A calm, foodie-focused guide who recommends the best places in Munich.",
       "hamza": "A technical, community-minded developer who can explain the project and how to contribute."
     }
+  },
+  "legal": {
+    "privacy": {
+      "title": "Privacy Policy",
+      "intro": "Atlas Munich is a non-commercial, open-source project created for personal learning and experimentation. This Privacy Policy explains what limited information is processed when you use the site.",
+      "controller": "Atlas Munich, Munich, Germany",
+      "contact": "For privacy-related questions, contact us at: [your email]",
+      "dataCollected": {
+        "title": "Data We Process",
+        "analytics": "We use Vercel Analytics to understand site usage (device type, pages visited, approximate region). No identifiable user profiles are created.",
+        "prompts": "Input text submitted to the AI interface is sent to a model provider to generate answers and may be retained temporarily for system improvement. No attempt is made to identify individuals."
+      },
+      "cookies": "Atlas Munich does not intentionally use tracking cookies. Analytics operate server-side where possible.",
+      "lawfulBasis": "Processing is based on legitimate interest (Art. 6(1)(f) GDPR) to improve and maintain the site.",
+      "thirdParties": "We rely on external providers such as Vercel (hosting + analytics) and an AI model platform. These services follow their own privacy policies.",
+      "dataRetention": "Only non-identifying usage data is stored for limited periods needed to operate the site.",
+      "rights": "You may request information, objection, or deletion where applicable under GDPR.",
+      "updates": "This Privacy Policy may change over time. The latest version is available on this page."
+    },
+    "terms": {
+      "title": "Terms & Conditions",
+      "intro": "Atlas Munich is an open-source, non-commercial project. By using the service, you agree to the Terms below.",
+      "use": "Do not abuse the service, overload the system, or submit harmful or illegal content.",
+      "aiDisclaimer": "AI-generated content may be inaccurate, incomplete, or misleading. Do not rely on it for important personal, academic, legal, or medical decisions.",
+      "noWarranty": "The service is provided 'as-is' without guarantees, uptime promises, or accuracy warranties.",
+      "liability": "We cannot be held responsible for any damages arising from the use or inability to use this project.",
+      "ip": "Code and design belong to the project author unless otherwise stated. Check the GitHub repo for open-source licensing.",
+      "law": "These Terms are governed by the laws of Germany. Disputes fall under the jurisdiction of Munich.",
+      "contact": "Questions? Contact: [your email]"
+    }
   }
 }

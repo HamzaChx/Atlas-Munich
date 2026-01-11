@@ -201,6 +201,16 @@ export function Footer() {
           </div>
         </div>
 
+        <div className="flex gap-4 text-sm mt-4">
+          <Link href="/privacy" className="text-zinc-600 dark:text-zinc-400 hover:text-emerald-600">
+            Privacy Policy
+          </Link>
+          <span className="text-zinc-300 dark:text-zinc-700">•</span>
+          <Link href="/terms" className="text-zinc-600 dark:text-zinc-400 hover:text-emerald-600">
+            Terms & Conditions
+          </Link>
+        </div>
+
         {/* Bottom Section - Rule 14: Align everything */}
         <div className="mt-20 flex flex-col items-center justify-between gap-6 border-t border-zinc-200/80 dark:border-white/8 pt-10 sm:flex-row">
           <div className="flex flex-col items-center gap-3 sm:flex-row sm:gap-6">

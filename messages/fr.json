@@ -657,5 +657,35 @@
       "jmila": "Un guide calme et gourmand qui recommande les meilleurs endroits à Munich.",
       "hamza": "Un développeur technique et engagé dans la communauté qui peut expliquer le projet et comment contribuer."
     }
+  },
+  "legal": {
+    "privacy": {
+      "title": "Politique de Confidentialité",
+      "intro": "Atlas Munich est un projet open source et non commercial créé pour l’apprentissage personnel. Cette Politique de Confidentialité explique quelles informations limitées sont traitées lorsque vous utilisez le site.",
+      "controller": "Atlas Munich, Munich, Allemagne",
+      "contact": "Pour toute question concernant la confidentialité : [votre email]",
+      "dataCollected": {
+        "title": "Données Traitées",
+        "analytics": "Nous utilisons Vercel Analytics pour comprendre l’usage du site (type d’appareil, pages consultées, région approximative). Aucun profil utilisateur identifiable n’est créé.",
+        "prompts": "Le texte que vous saisissez est envoyé à un fournisseur de modèles d’IA pour générer des réponses et peut être conservé temporairement. Nous ne cherchons pas à identifier les utilisateurs."
+      },
+      "cookies": "Atlas Munich n’utilise pas intentionnellement de cookies de suivi. Les analyses fonctionnent côté serveur autant que possible.",
+      "lawfulBasis": "Le traitement repose sur l’intérêt légitime (Art. 6(1)(f) RGPD) pour améliorer et maintenir le site.",
+      "thirdParties": "Nous utilisons des services externes tels que Vercel (hébergement + analyse) et une plateforme IA.",
+      "dataRetention": "Seules des données non identifiantes sont conservées pendant des périodes limitées.",
+      "rights": "Vous pouvez demander l'accès, la limitation ou la suppression de vos données conformément au RGPD.",
+      "updates": "Cette Politique pourra être mise à jour. La version la plus récente reste disponible sur cette page."
+    },
+    "terms": {
+      "title": "Conditions d’Utilisation",
+      "intro": "Atlas Munich est un projet open source non commercial. En utilisant le service, vous acceptez les Conditions ci-dessous.",
+      "use": "Ne pas abuser du service, le surcharger ou soumettre du contenu illégal ou nuisible.",
+      "aiDisclaimer": "Les réponses générées par IA peuvent être incorrectes ou incomplètes. Ne vous fiez pas à celles-ci pour des décisions importantes.",
+      "noWarranty": "Le service est fourni « tel quel » sans garantie d’exactitude ou de disponibilité.",
+      "liability": "Nous ne sommes pas responsables des dommages résultant de l’utilisation ou de l’impossibilité d’utiliser ce projet.",
+      "ip": "Le code appartient à l’auteur du projet. Consultez GitHub pour la licence open source.",
+      "law": "Les Conditions sont régies par le droit allemand. Tout litige relève des tribunaux de Munich.",
+      "contact": "Questions ? Contactez : [votre email]"
+    }
   }
 }

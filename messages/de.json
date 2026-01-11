@@ -640,5 +640,35 @@
       "jmila": "Eine ruhige, essensbegeisterte Begleiterin, die die besten Orte in München empfiehlt.",
       "hamza": "Ein technischer, community-orientierter Entwickler, der das Projekt und die Mitwirkung erklärt."
     }
+  },
+  "legal": {
+    "privacy": {
+      "title": "Datenschutzerklärung",
+      "intro": "Atlas Munich ist ein nicht-kommerzielles Open-Source-Projekt zur persönlichen Weiterbildung. Diese Datenschutzerklärung beschreibt, welche begrenzten Daten verarbeitet werden.",
+      "controller": "Atlas Munich, München, Deutschland",
+      "contact": "Für Datenschutzanfragen: [Ihre E-Mail]",
+      "dataCollected": {
+        "title": "Verarbeitete Daten",
+        "analytics": "Wir verwenden Vercel Analytics, um die Nutzung der Website zu verstehen (Gerätetyp, besuchte Seiten, ungefähre Region). Es werden keine identifizierbaren Nutzungsprofile erstellt.",
+        "prompts": "Eingetippter Text wird an einen KI-Anbieter gesendet, um Antworten zu erzeugen, und kann kurzzeitig gespeichert werden. Es findet keine Identifizierung von Personen statt."
+      },
+      "cookies": "Atlas Munich verwendet keine Tracking-Cookies. Analysen laufen soweit möglich serverseitig.",
+      "lawfulBasis": "Die Verarbeitung erfolgt auf Grundlage berechtigten Interesses (Art. 6(1)(f) DSGVO).",
+      "thirdParties": "Wir nutzen Drittanbieter wie Vercel (Hosting + Analytics) und eine KI-Plattform.",
+      "dataRetention": "Nicht-identifizierende Daten werden nur kurz gespeichert, soweit zur Funktion des Dienstes nötig.",
+      "rights": "Sie haben Rechte auf Auskunft, Einschränkung oder Löschung gemäß DSGVO.",
+      "updates": "Diese Datenschutzerklärung kann aktualisiert werden. Die neueste Version steht auf dieser Seite."
+    },
+    "terms": {
+      "title": "Nutzungsbedingungen",
+      "intro": "Atlas Munich ist ein nicht-kommerzielles Open-Source-Projekt. Durch die Nutzung stimmen Sie diesen Bedingungen zu.",
+      "use": "Bitte missbrauchen Sie den Dienst nicht, überlasten Sie ihn nicht und senden Sie keinen rechtswidrigen Inhalt.",
+      "aiDisclaimer": "Von KI erzeugte Inhalte können falsch sein. Verlassen Sie sich nicht darauf für wichtige Entscheidungen.",
+      "noWarranty": "Der Dienst wird ohne Gewähr und ohne Anspruch auf Verfügbarkeit bereitgestellt.",
+      "liability": "Für Schäden, die durch Nutzung oder Nichtverfügbarkeit entstehen, übernehmen wir keine Haftung.",
+      "ip": "Code und Design gehören dem Projektersteller. Die Lizenz finden Sie im GitHub-Repository.",
+      "law": "Rechtliche Grundlage ist das deutsche Recht. Gerichtsstand ist München.",
+      "contact": "Kontakt: [Ihre E-Mail]"
+    }
   }
 }

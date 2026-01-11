@@ -37,23 +37,6 @@ export const places: Place[] = [
     website: "https://www.savosfood.de/",
   },
   {
-    slug: "anju-89",
-    name: "Anju 89",
-    category: "restaurant",
-    address: "Arcisstraße 17, 80333 München",
-    district: "Maxvorstadt",
-    lat: 48.1492,
-    lng: 11.5678,
-    price: "€",
-    tags: ["halal", "student-friendly", "tum", "asian", "affordable", "chicken wings"],
-    description:
-      "A popular student-friendly restaurant close to the Technical University of Munich (TUM). Anju serves flavorful halal meals, making it a favorite among international students.",
-    verified: true,
-    rating: 4.5,
-    reviewCount: 203,
-    website: "https://www.89anju.com/",
-  },
-  {
     slug: "taste-my-burger",
     name: "Taste My Burger",
     category: "restaurant",

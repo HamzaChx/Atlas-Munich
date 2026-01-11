@@ -48,7 +48,12 @@ export function PlacesMap({ places, className }: PlacesMapProps) {
 
   if (!isClient || !Map) {
     return (
-      <div className={cn("relative h-[500px] w-full rounded-2xl border border-zinc-200 dark:border-white/10 bg-zinc-100 dark:bg-zinc-900/50 flex items-center justify-center", className)}>
+      <div
+        className={cn(
+          "relative h-[500px] w-full rounded-2xl border border-zinc-200 dark:border-white/10 bg-zinc-100 dark:bg-zinc-900/50 flex items-center justify-center",
+          className
+        )}
+      >
         <div className="flex flex-col items-center gap-3">
           <div className="h-8 w-8 animate-spin rounded-full border-2 border-emerald-500 dark:border-emerald-400 border-t-transparent" />
           <span className="text-sm text-zinc-500 dark:text-zinc-400">Loading map...</span>
@@ -58,30 +63,34 @@ export function PlacesMap({ places, className }: PlacesMapProps) {
   }
 
   // Filter places with valid coordinates
-  const placesWithCoords = places.filter(p => p.lat && p.lng);
-  
+  const placesWithCoords = places.filter((p) => p.lat && p.lng);
+
   // Munich city center coordinates
-  const center: [number, number] = [48.1351, 11.5820];
+  const center: [number, number] = [48.1351, 11.582];
 
   return (
-    <div className={cn("relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-white/10 shadow-lg dark:shadow-none", className)}>
-      <MapWrapper 
-        places={placesWithCoords} 
-        center={center}
-      />
-      
+    <div
+      className={cn(
+        "relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-white/10 shadow-lg dark:shadow-none",
+        className
+      )}
+    >
+      <MapWrapper places={placesWithCoords} center={center} />
+
       {/* Legend */}
       <div className="absolute bottom-4 left-4 z-[1000] rounded-lg border border-zinc-200 dark:border-white/10 bg-white/95 dark:bg-zinc-900/90 p-3 backdrop-blur-sm shadow-lg dark:shadow-none">
         <p className="mb-2 text-xs font-medium text-zinc-600 dark:text-zinc-400">Legend</p>
         <div className="grid grid-cols-2 gap-x-4 gap-y-1">
-          {Object.entries(categoryIcons).slice(0, 6).map(([key, icon]) => (
-            <div key={key} className="flex items-center gap-1.5">
-              <span className="text-sm">{icon}</span>
-              <span className="text-xs capitalize text-zinc-600 dark:text-zinc-400">
-                {key.replace("-", " ")}
-              </span>
-            </div>
-          ))}
+          {Object.entries(categoryIcons)
+            .slice(0, 6)
+            .map(([key, icon]) => (
+              <div key={key} className="flex items-center gap-1.5">
+                <span className="text-sm">{icon}</span>
+                <span className="text-xs capitalize text-zinc-600 dark:text-zinc-400">
+                  {key.replace("-", " ")}
+                </span>
+              </div>
+            ))}
         </div>
       </div>
     </div>
@@ -89,13 +98,7 @@ export function PlacesMap({ places, className }: PlacesMapProps) {
 }
 
 // Separate component to handle the actual map rendering
-function MapWrapper({ 
-  places, 
-  center, 
-}: { 
-  places: Place[]; 
-  center: [number, number]; 
-}) {
+function MapWrapper({ places, center }: { places: Place[]; center: [number, number] }) {
   const { resolvedTheme } = useTheme();
   const [leaflet, setLeaflet] = useState<{
     MapContainer: React.ComponentType<Record<string, unknown>>;
@@ -104,18 +107,19 @@ function MapWrapper({
     Popup: React.ComponentType<Record<string, unknown>>;
   } | null>(null);
   const [L, setL] = useState<typeof import("leaflet") | null>(null);
-  
+
   const isDark = resolvedTheme === "dark";
 
   useEffect(() => {
     // Import Leaflet and react-leaflet on client side
-    Promise.all([
-      import("react-leaflet"),
-      import("leaflet"),
-    ]).then(([reactLeaflet, leafletLib]) => {
+    Promise.all([import("react-leaflet"), import("leaflet")]).then(([reactLeaflet, leafletLib]) => {
       setLeaflet({
-        MapContainer: reactLeaflet.MapContainer as unknown as React.ComponentType<Record<string, unknown>>,
-        TileLayer: reactLeaflet.TileLayer as unknown as React.ComponentType<Record<string, unknown>>,
+        MapContainer: reactLeaflet.MapContainer as unknown as React.ComponentType<
+          Record<string, unknown>
+        >,
+        TileLayer: reactLeaflet.TileLayer as unknown as React.ComponentType<
+          Record<string, unknown>
+        >,
         Marker: reactLeaflet.Marker as unknown as React.ComponentType<Record<string, unknown>>,
         Popup: reactLeaflet.Popup as unknown as React.ComponentType<Record<string, unknown>>,
       });
@@ -140,7 +144,6 @@ function MapWrapper({
   const createIcon = (category: string) => {
     const color = categoryColors[category] || "#10b981";
     const emoji = categoryIcons[category] || "📍";
-    
     return L.divIcon({
       className: "custom-marker",
       html: `
@@ -148,20 +151,20 @@ function MapWrapper({
           display: flex;
           align-items: center;
           justify-content: center;
-          width: 40px;
-          height: 40px;
-          background: linear-gradient(135deg, ${color} 0%, ${color}dd 100%);
+          width: 30px;
+          height: 30px;
+          background: linear-gradient(135deg, ${color} 0%, ${color}cc 100%);
           border-radius: 50% 50% 50% 0;
           transform: rotate(-45deg);
-          border: 3px solid white;
-          box-shadow: 0 4px 12px -2px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.2);
+          border: 2px solid white;
+          box-shadow: 0 3px 8px -2px rgba(0, 0, 0, 0.45);
         ">
-          <span style="transform: rotate(45deg); font-size: 18px; filter: drop-shadow(0 1px 1px rgba(0,0,0,0.3));">${emoji}</span>
+          <span style="transform: rotate(45deg); font-size: 14px; line-height:1; filter: drop-shadow(0 1px 1px rgba(0,0,0,0.25));">${emoji}</span>
         </div>
       `,
-      iconSize: [40, 40],
-      iconAnchor: [20, 40],
-      popupAnchor: [0, -40],
+      iconSize: [30, 30],
+      iconAnchor: [15, 30],
+      popupAnchor: [0, -28],
     });
   };
 
@@ -175,14 +178,20 @@ function MapWrapper({
       className="z-0"
     >
       <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
-        url={isDark 
-          ? "https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png"
-          : "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+        attribution={
+          isDark
+            ? '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://stadiamaps.com/">Stadia Maps</a>'
+            : '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
         }
-        opacity={isDark ? 0.90 : 1}
+        url={
+          isDark
+            ? "https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png"
+            : "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
+        }
+        opacity={1}
       />
       {isDark && (
+        // Add a subtle colorful overlay (labels) to improve contrast in dark mode
         <TileLayer
           url="https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.png"
           opacity={0.95}
@@ -211,15 +220,30 @@ function MapWrapper({
               )}
               {(place.website || (place.lat && place.lng)) && (
                 <div className="flex gap-2 mt-2">
-                  {place.lat && place.lng && (
-                    <a
-                      href={`https://www.google.com/maps/search/?api=1&query=${place.lat},${place.lng}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-xs text-blue-600 hover:underline"
-                    >
-                      Directions →
-                    </a>
+                  {((place.address && place.address.length > 0) || (place.lat && place.lng)) && (
+                    <div className="flex gap-2 mt-2">
+                      {place.address ? (
+                        <a
+                          href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+                            place.address
+                          )}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-xs text-blue-600 hover:underline"
+                        >
+                          Directions →
+                        </a>
+                      ) : (
+                        <a
+                          href={`https://www.google.com/maps/search/?api=1&query=${place.lat},${place.lng}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-xs text-blue-600 hover:underline"
+                        >
+                          Directions →
+                        </a>
+                      )}
+                    </div>
                   )}
                 </div>
               )}

@@ -205,7 +205,7 @@ export function Footer() {
         <div className="mt-20 flex flex-col items-center justify-between gap-6 border-t border-zinc-200/80 dark:border-white/8 pt-10 sm:flex-row">
           <div className="flex flex-col items-center gap-3 sm:flex-row sm:gap-6">
             <p className="text-sm text-zinc-500">
-              © {new Date().getFullYear()} Atlas Munich. {t("rights")}
+              © {new Date().getFullYear()} Atlas Munich. {t("rights")} Hamza Chaouki
             </p>
           </div>
         </div>

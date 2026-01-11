@@ -144,20 +144,6 @@ export default async function GuidePage({ params }: PageProps) {
     accent: "emerald",
   };
 
-  // Accent classes for numbered section/subsection prefixes (matches theme accent)
-  const accentNumberClasses: Record<string, string> = {
-    blue: "bg-blue-50 dark:bg-blue-500/20 text-blue-700 dark:text-blue-300 border-blue-300",
-    emerald:
-      "bg-emerald-50 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 border-emerald-300",
-    purple:
-      "bg-purple-50 dark:bg-purple-500/20 text-purple-700 dark:text-purple-300 border-purple-300",
-    orange:
-      "bg-orange-50 dark:bg-orange-500/20 text-orange-700 dark:text-orange-300 border-orange-300",
-    rose: "bg-rose-50 dark:bg-rose-500/20 text-rose-700 dark:text-rose-300 border-rose-300",
-    indigo:
-      "bg-indigo-50 dark:bg-indigo-500/20 text-indigo-700 dark:text-indigo-300 border-indigo-300",
-  };
-
   const bgColorMap: Record<string, string> = {
     "rent-housing": "bg-blue-50/30 dark:bg-blue-950/10",
     "kvr-residence": "bg-emerald-50/30 dark:bg-emerald-950/10",
@@ -508,7 +494,11 @@ export default async function GuidePage({ params }: PageProps) {
 
                         {/* Subsections – still inside article canvas but visually nested */}
                         {section.subsections?.map((sub) => (
-                          <div key={sub.id} id={sub.id} className="mt-6 sm:mt-7 scroll-mt-28 space-y-4">
+                          <div
+                            key={sub.id}
+                            id={sub.id}
+                            className="mt-6 sm:mt-7 scroll-mt-28 space-y-4"
+                          >
                             <h3 className="text-lg sm:text-xl font-semibold text-zinc-900 dark:text-white tracking-tight">
                               {sub.title}
                             </h3>

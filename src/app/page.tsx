@@ -249,6 +249,19 @@ export default async function Home() {
               </div>
             ))}
           </div>
+
+          {/* Creator credit */}
+          <div className="mt-6 flex items-center gap-3 justify-center">
+            <img
+              src="/hamza.jpeg"
+              alt="Hamza Chaouki"
+              className="h-10 w-10 rounded-full object-cover border border-zinc-200 dark:border-white/10"
+            />
+            <p className="text-sm text-zinc-600 dark:text-zinc-400">
+              Created by{" "}
+              <span className="font-semibold text-zinc-900 dark:text-white">Hamza Chaouki</span>
+            </p>
+          </div>
         </div>
       </section>
 

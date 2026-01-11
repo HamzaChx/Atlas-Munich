@@ -44,7 +44,7 @@ export function GuideCard({ guide, className, showCategory = true }: GuideCardPr
         <div className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-emerald-500/0 blur-3xl transition-all duration-500 ease-out group-hover:bg-emerald-500/10" />
 
         {/* Content */}
-          <div className="relative">
+        <div className="relative">
           {/* Tags - Rule 6: Visual hierarchy */}
           <div className="mb-3 sm:mb-4 flex flex-wrap items-center gap-1.5 sm:gap-2">
             {showCategory && (

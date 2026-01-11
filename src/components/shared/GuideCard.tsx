@@ -39,12 +39,12 @@ export function GuideCard({ guide, className, showCategory = true }: GuideCardPr
         className
       )}
     >
-      <div className="relative h-full overflow-hidden rounded-2xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900/50 p-4 sm:p-6 shadow-sm dark:shadow-none transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:border-emerald-200 dark:hover:border-emerald-500/30 hover:bg-zinc-50/80 dark:hover:bg-zinc-800/50 hover:shadow-lg hover:shadow-zinc-200/50 dark:hover:shadow-none">
+      <div className="relative h-56 sm:h-60 overflow-hidden rounded-2xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900/50 p-4 sm:p-6 shadow-sm dark:shadow-none transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:border-emerald-200 dark:hover:border-emerald-500/30 hover:bg-zinc-50/80 dark:hover:bg-zinc-800/50 hover:shadow-lg hover:shadow-zinc-200/50 dark:hover:shadow-none flex flex-col justify-between">
         {/* Subtle gradient glow on hover - Rule 44: Micro-interactions sparingly */}
         <div className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-emerald-500/0 blur-3xl transition-all duration-500 ease-out group-hover:bg-emerald-500/10" />
 
         {/* Content */}
-        <div className="relative">
+          <div className="relative">
           {/* Tags - Rule 6: Visual hierarchy */}
           <div className="mb-3 sm:mb-4 flex flex-wrap items-center gap-1.5 sm:gap-2">
             {showCategory && (

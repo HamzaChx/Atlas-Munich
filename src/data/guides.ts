@@ -110,6 +110,117 @@ export const guides: Guide[] = [
     ],
     relatedSlugs: ["anmeldung-guide", "first-weeks-munich"],
   },
+   {
+    slug: "munich-student-housing-basics-2025",
+    title: "Munich Student Housing Basics",
+    summary:
+      "Short overview of what students can realistically expect to pay for housing in Munich, plus key options and budgeting tips.",
+    categoryKey: "rent-housing",
+    tags: ["newcomer", "tips", "budget-friendly"],
+    lastUpdated: "2025-12-20",
+    readingTime: 6,
+    featured: false,
+    sections: [
+      {
+        id: "market-reality",
+        title: "Munich Rental Reality in 2025-2026",
+        content:
+          "Munich is one of the tightest rental markets in Europe. Vacancy is usually **below 1%**, which basically means everything is always taken. New contracts for normal apartments average around **€23/m² (cold)**, and small student-friendly studios are even more expensive per square meter.\n\nThe result: competition is high, good listings disappear quickly, and students often pay more than friends in other German cities. Planning and realistic budgeting are essential.",
+      },
+      {
+        id: "student-housing-options",
+        title: "Main Student Housing Options",
+        content:
+          "**Public dorms (Studierendenwerk)**\n- Average rent: around **€360/month** (by far the cheapest option)\n- Very long waiting times: **1–7 semesters**\n- You must **re-confirm your application every semester** with your enrollment certificate\n\n**Private student residences** (e.g. The FIZZ, Unity Alpha, Youniq)\n- Modern, furnished micro-apartments (~20 m²)\n- Typical range: **€620–800+ warm** per month\n- Often include utilities and internet\n- Easy to book from abroad, but **expensive** for students\n\n**WG rooms (shared flats)**\n- Usual price range: **€400–800 warm**, depending on district\n- You apply to join an existing WG and attend a **“WG-Casting”** (informal interview)\n- Great for social life and language practice\n\n**Own studio / small flat**\n- Small studios (20–35 m²) on the open market often cost **€900–1,300 cold**\n- On top of that, you pay Nebenkosten, electricity, internet, and the broadcasting fee",
+      },
+      {
+        id: "warm-rent-and-costs",
+        title: "Warm Rent, Nebenkosten & Hidden Costs",
+        content:
+          "In Germany, you will often see two terms:\n\n- **Kaltmiete (cold rent):** base rent for the apartment only\n- **Warmmiete (warm rent):** cold rent **plus** most building-related costs\n\n**Nebenkosten (operating costs)**\n- Typically **€2.50–4.00/m² per month**\n- Includes things like heating, water, trash, cleaning, and some building services\n- Example: 30 m² flat → about **€75–120** Nebenkosten per month\n\n**Usually *not* included in Nebenkosten**\n- **Electricity (Strom):** often **€50–80/month** for 1–2 people\n- **Internet/phone:** around **€30–50/month**\n- **Rundfunkbeitrag (broadcasting fee):** about **€18.36/month per flat**, no matter if you watch TV or not\n\nWhen you calculate your budget, always check if the price in the ad is **cold** or **warm** and then add electricity, internet, and the broadcasting fee.",
+      },
+      {
+        id: "affordability-and-deposit",
+        title: "How Much Can I Afford?",
+        content:
+          "German landlords usually follow a simple rule: your **warm rent should be around 30–40% of your net monthly income**.\n\n**Example:**\n- Warm rent: **€1,200/month**\n- Required net income: roughly **€3,000–4,000/month** for the household\n\nStudents often do not reach this on their own, so a **parental guarantee or sponsor** is common.\n\n**Deposit (Kaution)**\n- Legal maximum: **3× cold rent**\n- Can be paid in up to **three monthly installments** starting with the first rent\n- The landlord must keep it in a **separate, safe account** (Mietkautionskonto)",
+      },
+      {
+        id: "location-strategy",
+        title: "Location & S-Bahn Strategy",
+        content:
+          "Central districts (Schwabing, Maxvorstadt, Glockenbach, Lehel, etc.) are very attractive but also among the **most expensive** in Munich.\n\nTo save money, many students use the **“S-Bahn Strategy”**:\n\n- Look in **outer districts** like Riem, Allach, Untermenzing, Aubing, Neuaubing, or Lochhausen\n- Accept a **20–30 minute S-Bahn commute** to university\n- In return, you can often reduce your rent by **15–20%** compared to the city center\n\nAlways compare the **rental savings** with the **extra time and cost** of commuting.",
+      },
+      {
+        id: "search-and-safety",
+        title: "Search Strategy & Scam Warnings",
+        content:
+          "**When to start**\n- Begin your search **3–6 months before** you want to move in\n\n**Where to search**\n- **ImmobilienScout24:** main platform for full apartments\n- **WG-Gesucht:** best for WG rooms and temporary sublets\n- **Kleinanzeigen:** private listings (can be cheaper, but watch out for scams)\n\n**Prepare a Bewerbungsmappe (application portfolio)**\n- Short cover letter in German (who you are, what you study, non-smoker, etc.)\n- **SCHUFA** or another credit report\n- Proof of income or parental sponsorship\n- Self-disclosure form (Mieterselbstauskunft)\n- If possible: letter from previous landlord confirming you always paid on time\n\n**Scam red flags**\n- Landlord claims to be abroad and asks for money **before** any viewing\n- Keys will supposedly be sent by a platform (Airbnb, TripAdvisor, etc.) after payment\n- You are asked to send **passport/ID scans** before even visiting the flat\n\nNever transfer money or send high-quality ID scans to people you have not met in person. When sending a copy, always **watermark it** (e.g. “Copy for rental application only”).",
+      },
+    ],
+    faqs: [
+      {
+        id: "faq-1",
+        question: "How much should I realistically budget for a room or small flat?",
+        answer:
+          "For a WG room, expect **€400–800 warm** depending on location. For a small private studio, **€900–1,300 cold** plus Nebenkosten and other costs is common. Many students end up paying **€700–1,000+ warm** in total.",
+      },
+      {
+        id: "faq-2",
+        question: "Is it worth applying for Studierendenwerk dorms?",
+        answer:
+          "Yes, because the rent is much lower (~€360/month). But waiting times are long (1–7 semesters), so you should **also** look for WGs or private options in parallel.",
+      },
+      {
+        id: "faq-3",
+        question: "Can I get a place before I arrive in Munich?",
+        answer:
+          "It is possible, especially with private student residences or some WGs that do online interviews. However, it is **riskier**. Avoid any landlord who asks for large transfers before you or someone you trust has seen the flat in person.",
+      },
+    ],
+    resources: [
+      {
+        id: "r-msh-1",
+        title: "Studierendenwerk München Oberbayern – Housing",
+        url: "https://www.studentenwerk-muenchen.de/en/accommodation/",
+        type: "official",
+        description:
+          "Official public student dorms with detailed information on prices and waiting times.",
+      },
+      {
+        id: "r-msh-2",
+        title: "WG-Gesucht",
+        url: "https://www.wg-gesucht.de",
+        type: "tool",
+        description: "Main platform for shared flats (WGs) and temporary rooms.",
+      },
+      {
+        id: "r-msh-3",
+        title: "ImmobilienScout24",
+        url: "https://www.immobilienscout24.de",
+        type: "tool",
+        description: "Largest platform for apartments and studios in Munich.",
+      },
+      {
+        id: "r-msh-4",
+        title: "The FIZZ Munich",
+        url: "https://www.the-fizz.com/en",
+        type: "tool",
+        description: "Example of private, furnished student residence with all-in pricing.",
+      },
+      {
+        id: "r-msh-5",
+        title: "Youniq Student Apartments",
+        url: "https://www.youniq.de/en/",
+        type: "tool",
+        description: "Another private student housing provider in Germany.",
+      },
+    ],
+    relatedSlugs: ["finding-apartment-munich", "first-weeks-munich", "essential-apps-munich"],
+  },
+  // ============================================
+  // KVR & RESIDENCE PERMIT
+  // ============================================
   {
     slug: "anmeldung-guide",
     title: "Anmeldung (City Registration) at KVR",
@@ -394,8 +505,7 @@ export const guides: Guide[] = [
   {
     slug: "university-enrollment",
     title: "University Enrollment & Registration",
-    summary:
-      "How to complete enrollment at TUM, LMU, and other Munich universities.",
+    summary: "How to complete enrollment at TUM, LMU, and other Munich universities.",
     categoryKey: "university-life",
     tags: ["newcomer", "documents"],
     lastUpdated: "2025-10-15",
@@ -431,8 +541,7 @@ export const guides: Guide[] = [
   {
     slug: "semester-ticket-guide",
     title: "MVV Semester Ticket Guide",
-    summary:
-      "Everything about the student semester ticket - coverage, activation, and tips.",
+    summary: "Everything about the student semester ticket - coverage, activation, and tips.",
     categoryKey: "university-life",
     tags: ["tips", "budget-friendly"],
     lastUpdated: "2025-10-01",
@@ -666,8 +775,7 @@ export const guides: Guide[] = [
   {
     slug: "essential-apps-munich",
     title: "Essential Apps for Life in Munich",
-    summary:
-      "Must-have apps for transport, banking, food, and daily life in Munich.",
+    summary: "Must-have apps for transport, banking, food, and daily life in Munich.",
     categoryKey: "useful-apps",
     tags: ["newcomer", "tips"],
     lastUpdated: "2025-12-01",

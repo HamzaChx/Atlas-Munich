@@ -3,7 +3,6 @@
 import * as React from "react";
 import { useRouter } from "next/navigation";
 import { useTransition } from "react";
-import { createPortal } from "react-dom";
 import { cn } from "@/lib/utils";
 import { setLocale, type Locale } from "@/i18n";
 import { Check } from "lucide-react";
@@ -24,8 +23,6 @@ export function LanguageSwitcher({ currentLocale, className }: LanguageSwitcherP
   const [isPending, startTransition] = useTransition();
   const [isOpen, setIsOpen] = React.useState(false);
   const dropdownRef = React.useRef<HTMLDivElement>(null);
-  const buttonRef = React.useRef<HTMLButtonElement>(null);
-  const [triggerRect, setTriggerRect] = React.useState<DOMRect | null>(null);
 
   const currentLanguage = languages.find((l) => l.code === currentLocale) || languages[0];
 
@@ -66,18 +63,10 @@ export function LanguageSwitcher({ currentLocale, className }: LanguageSwitcherP
     return () => document.removeEventListener("keydown", handleEscape);
   }, []);
 
-  // Compute trigger position when opening so portal dropdown can be positioned
-  React.useEffect(() => {
-    if (isOpen && buttonRef.current) {
-      setTriggerRect(buttonRef.current.getBoundingClientRect());
-    }
-  }, [isOpen]);
-
   return (
     <div ref={dropdownRef} className={cn("relative", className)}>
       {/* Trigger Button - Shows current language flag */}
       <button
-        ref={buttonRef}
         onClick={() => setIsOpen(!isOpen)}
         disabled={isPending}
         className={cn(
@@ -96,59 +85,45 @@ export function LanguageSwitcher({ currentLocale, className }: LanguageSwitcherP
         )}
       </button>
 
-      {/* Dropdown Menu (rendered in portal to avoid clipping on mobile) */}
-      {typeof document !== "undefined" && triggerRect
-        ? createPortal(
-            <div
-              style={{
-                position: "absolute",
-                top: triggerRect.bottom + window.scrollY,
-                left: triggerRect.left + window.scrollX,
-                minWidth: 160,
-                zIndex: 9999,
-              }}
-            >
-              <div
+      {/* Dropdown Menu */}
+      <div
+        className={cn(
+          // Mobile: fixed panel near top with horizontal padding
+          // Desktop (sm and up): absolute dropdown positioned to the right
+          "fixed left-3 right-3 top-14 z-50 overflow-hidden rounded-xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900 shadow-lg shadow-zinc-200/50 dark:shadow-none transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)]",
+          "sm:left-auto sm:right-0 sm:top-full sm:mt-2 sm:min-w-[160px] sm:fixed-none sm:absolute",
+          isOpen
+            ? "opacity-100 translate-y-0 pointer-events-auto"
+            : "opacity-0 -translate-y-2 pointer-events-none"
+        )}
+        role="listbox"
+        aria-label="Select language"
+      >
+        <div className="p-1">
+          {languages.map((language) => {
+            const isSelected = language.code === currentLocale;
+            return (
+              <button
+                key={language.code}
+                onClick={() => handleLanguageChange(language.code)}
+                disabled={isPending}
+                role="option"
+                aria-selected={isSelected}
                 className={cn(
-                  "overflow-hidden rounded-xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900 shadow-lg shadow-zinc-200/50 dark:shadow-none transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)]",
-                  isOpen
-                    ? "opacity-100 translate-y-0 pointer-events-auto"
-                    : "opacity-0 -translate-y-2 pointer-events-none"
+                  "flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-150",
+                  isSelected
+                    ? "bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400"
+                    : "text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-white/5 hover:text-zinc-900 dark:hover:text-white"
                 )}
-                role="listbox"
-                aria-label="Select language"
               >
-                <div className="p-1">
-                  {languages.map((language) => {
-                    const isSelected = language.code === currentLocale;
-                    return (
-                      <button
-                        key={language.code}
-                        onClick={() => handleLanguageChange(language.code)}
-                        disabled={isPending}
-                        role="option"
-                        aria-selected={isSelected}
-                        className={cn(
-                          "flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-150",
-                          isSelected
-                            ? "bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400"
-                            : "text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-white/5 hover:text-zinc-900 dark:hover:text-white"
-                        )}
-                      >
-                        <span className="text-base">{language.flag}</span>
-                        <span className="flex-1 text-left">{language.label}</span>
-                        {isSelected && (
-                          <Check className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
-                        )}
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>,
-            document.body
-          )
-        : null}
+                <span className="text-base">{language.flag}</span>
+                <span className="flex-1 text-left">{language.label}</span>
+                {isSelected && <Check className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />}
+              </button>
+            );
+          })}
+        </div>
+      </div>
     </div>
   );
 }

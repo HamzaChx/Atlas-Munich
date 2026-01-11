@@ -415,6 +415,14 @@ export function Chatbot() {
     return null;
   }
 
+  // Tagline: prefer translated tagline, fallback to configured tagline
+  const _taglineKey = `taglines.${currentChatbot}`;
+  const _translatedTagline = t(_taglineKey);
+  const tagline =
+    _translatedTagline && _translatedTagline !== _taglineKey
+      ? _translatedTagline
+      : chatbotConfig.tagline;
+
   return (
     <div className="chatbot-container">
       {/* Countdown Notification - Rendered in portal for proper z-index */}
@@ -478,7 +486,7 @@ export function Chatbot() {
                 <h3 className="font-semibold text-zinc-900 dark:text-white">
                   {chatbotConfig.name}
                 </h3>
-                <p className="text-xs text-zinc-500 dark:text-zinc-400">{chatbotConfig.tagline}</p>
+                <p className="text-xs text-zinc-500 dark:text-zinc-400">{tagline}</p>
               </div>
             </div>
 

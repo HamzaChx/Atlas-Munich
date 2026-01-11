@@ -58,7 +58,14 @@
     "moroccanRoots": "Marokkanische Wurzeln",
     "authenticGuidance": "Authentische Anleitung",
     "munichLife": "München Leben",
-    "localExpertise": "Lokales Fachwissen"
+    "localExpertise": "Lokales Fachwissen",
+    "categories": {
+      "badge": "München entdecken",
+      "title": "Alles, was du brauchst,",
+      "titleHighlight": "an einem Ort",
+      "subtitle": "Umfassende Ratgeber, organisiert nach dem, was für dich am wichtigsten ist",
+      "browseAll": "Alle Ratgeber durchsuchen"
+    }
   },
   "places": {
     "badge": "Verifizierte Orte",

@@ -25,6 +25,8 @@ export default function PlacesPage() {
     { key: "study-spot", label: t("filters.studySpots"), icon: "📚" },
   ];
 
+  const placesData = useTranslations("placesData");
+
   const filteredPlaces = useMemo(() => {
     let result = places;
 
@@ -45,6 +47,27 @@ export default function PlacesPage() {
 
     return result;
   }, [selectedCategory, searchQuery]);
+
+  // Localize place names/descriptions using messages under the `placesData` namespace.
+  const localizedPlaces = useMemo(() => {
+    return filteredPlaces.map((p) => {
+      const nameKey = `places.${p.slug}.name`;
+      const descKey = `places.${p.slug}.description`;
+
+      // useTranslations returns the key itself when missing, so fallback to original
+      const translatedName = placesData(nameKey);
+      const translatedDescription = p.description ? placesData(descKey) : undefined;
+
+      return {
+        ...p,
+        name: translatedName === nameKey ? p.name : translatedName,
+        description:
+          translatedDescription && translatedDescription === descKey
+            ? p.description
+            : (translatedDescription ?? p.description),
+      };
+    });
+  }, [filteredPlaces, placesData]);
 
   return (
     <div className="min-h-screen bg-white dark:bg-zinc-950">
@@ -185,7 +208,7 @@ export default function PlacesPage() {
         {viewMode === "grid" &&
           (filteredPlaces.length > 0 ? (
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {filteredPlaces.map((place) => (
+              {localizedPlaces.map((place) => (
                 <PlaceCard key={place.slug} place={place} />
               ))}
             </div>

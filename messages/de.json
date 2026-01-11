@@ -405,5 +405,197 @@
     "close": "Schließen",
     "open": "Öffnen",
     "language": "Sprache"
+  },
+  "placesData": {
+    "places": {
+      "al-zaeem": {
+        "name": "Al Zaeem",
+        "description": "Beliebter Ort nahe dem Hauptbahnhof mit einer Auswahl an halal-orientalischen Gerichten wie Kebabs und Falafel zu günstigen Preisen."
+      },
+      "tacos-muenchner-freiheit": {
+        "name": "SAVOS (French Tacos)",
+        "description": "Nahe Münchner Freiheit gelegen, serviert dieses Lokal leckere Tacos und Wraps mit halal-zertifizierten Zutaten. Perfekt für einen schnellen Happen oder ein lockeres Mittagessen."
+      },
+      "anju-89": {
+        "name": "Anju 89",
+        "description": "Beliebtes, studentfreundliches Restaurant in der Nähe der Technischen Universität München (TUM). Anju bietet geschmackvolle halal-Gerichte und ist bei internationalen Studierenden sehr beliebt."
+      },
+      "taste-my-burger": {
+        "name": "Taste My Burger",
+        "description": "Gourmet-Burger-Restaurant mit verschiedenen halal-Optionen, frischen Zutaten und ungewöhnlichen Toppings. Gut für ein entspanntes Essen mit Freunden."
+      },
+      "the-ash-muenchner-freiheit": {
+        "name": "The Ash",
+        "description": "Stilvolles Restaurant mit hochwertigen Grillgerichten. Auf Anfrage werden halal-Fleischoptionen angeboten — ideal für ein Abendessen mit Freunden oder Familie."
+      },
+      "argana-moroccan-restaurant": {
+        "name": "Argana - Moroccan Restaurant",
+        "description": "Neues marokkanisches Restaurant in München mit authentischen Gerichten wie Tajine, Couscous und Pastilla. Argana ist vollständig halal und gemütlich."
+      },
+      "casablanca-moroccan-restaurant": {
+        "name": "Casablanca - Moroccan Restaurant",
+        "description": "Casablanca bietet ein reichhaltiges Menü marokkanischer Küche, inklusive aromatischer Tajines und Couscous-Gerichte. Vollständig halal und einladend."
+      },
+      "la-fantasia": {
+        "name": "La Fantasia",
+        "description": "Charmantes italienisches Restaurant mit einer Auswahl an halal-Pasta- und Pizzagerichten. Gemütliche Atmosphäre, ideal für Familienessen oder romantische Abende."
+      },
+      "bln-doener": {
+        "name": "BLN Döner",
+        "description": "Beliebter Fast-Food-Spot im Stadtzentrum, bekannt für leckere halal Döner Kebab und günstige Preise. Perfekt für eine schnelle Mahlzeit."
+      },
+      "hans-kebap-muenchen": {
+        "name": "Hans Kebap",
+        "description": "Premium-Kebab-Restaurant mit verschiedenen halal-Optionen, hergestellt aus hochwertigen Zutaten. Gut für eine gehobenere Fast-Food-Erfahrung."
+      },
+      "uncle-smash-burger": {
+        "name": "Uncle Smash Burger",
+        "description": "Gourmet-Burger-Lokal mit mehreren halal-Optionen und einzigartigen Toppings. Gut für zwanglose Treffen mit Freunden."
+      },
+      "pars-restaurant": {
+        "name": "Pars Restaurant",
+        "description": "Authentisches persisches Restaurant mit verschiedenen halal-Gerichten wie Kebabs und gegrillten Spezialitäten. Gemütlich und traditionell."
+      },
+      "kashgar-uyghur": {
+        "name": "Kashgar Uyghur Restaurant",
+        "description": "Spezialisiert auf uigurische Küche; bietet einzigartige Gerichte wie handgezogene Nudeln und gegrilltes Fleisch. Ein Muss für Liebhaber authentischer Aromen."
+      },
+      "etem-burger-steak": {
+        "name": "Etem Burger & Steak",
+        "description": "Casual Dining mit halal-Burgern und Steaks aus qualitativ hochwertigen Zutaten. Gut für ein entspanntes Essen."
+      },
+      "loco-chicken": {
+        "name": "Loco Chicken",
+        "description": "Beliebter Fast-Food-Laden, spezialisiert auf halal-Hühnchengerichte. Bekannt für knuspriges, frittiertes Hühnchen zu günstigen Preisen."
+      },
+      "hot-dog-station-muenchen": {
+        "name": "Hot Dog Station",
+        "description": "Casual Eatery mit halal-Hotdogs und verschiedenen Toppings — praktisch und lecker für unterwegs."
+      },
+      "wing-nation": {
+        "name": "Wing Nation",
+        "description": "Lockerer Ort, spezialisiert auf halal-Chickenwings mit verschiedenen Soßen. Perfekt für einen schnellen Snack."
+      },
+      "han-muenchen": {
+        "name": "Han Restaurant",
+        "description": "Türkisches Restaurant, bekannt für halal-Grillgerichte wie Adana Kebab. Gemütlich und authentisch."
+      },
+      "delicious-burger": {
+        "name": "Delicious Burger",
+        "description": "Gourmet-Burger mit mehreren halal-Optionen, frischen Zutaten und kreativen Toppings. Empfehlenswert für Burger-Fans."
+      },
+      "rasoi-restaurant": {
+        "name": "Rasoi Restaurant",
+        "description": "Authentisches indisches Restaurant mit einer Auswahl an halal-Gerichten, darunter aromatische Currys und Tandoori-Spezialitäten."
+      },
+      "samarkand-restaurant": {
+        "name": "Samarkand Grill & Burgerhaus",
+        "description": "Usbekisches Restaurant mit gegrillten halal-Gerichten und Burgern. Authentischer Geschmack Zentralasiens in freundlicher Atmosphäre."
+      },
+      "moosacher-paradies": {
+        "name": "Moosacher Paradies",
+        "description": "Balkan-Restaurant, spezialisiert auf halal-Grillgerichte und Barbecue. Authentische Aromen in gemütlichem Ambiente."
+      },
+      "halal-metzger-giesing": {
+        "name": "Halal Metzger Giesing",
+        "description": "Qualitativ hochwertiges halal-Fleisch zu fairen Preisen. Vertrauen der Community."
+      },
+      "dolphin-market-moosach": {
+        "name": "Dolphin Market",
+        "description": "Direkt am U-Bahn-Bahnhof Moosach gelegen; bekannt für kontrolliertes Halal-Fleisch aus bayerischer Tierhaltung und einen separaten Fisch-Counter."
+      },
+      "metzgerei-etem": {
+        "name": "Metzgerei Etem",
+        "description": "Weitgehend als beste halal-Metzgerei in München angesehen. Berühmt für Dry-Aged-Steaks, hausgemachte Sucuk und strikte No-Pork-Politik."
+      },
+      "verdi-supermarkt-ludwigsvorstadt": {
+        "name": "Verdi Supermarkt & Metzgerei",
+        "description": "Ein Grundnahrungsmittel für zentral wohnende Studierende. Großer Metzgerei-Counter mit preiswertem Lamm- und Rindfleisch. Hoher Umsatz sorgt für Frische."
+      },
+      "hahn-fleischhandel": {
+        "name": "Hahn Fleischhandel",
+        "description": "Im Schlachthofviertel gelegen; beliefert Restaurants und hat einen Abholmarkt für Privatkunden. Zertifiziertes regionales halal-Fleisch."
+      },
+      "islamisches-zentrum-muenchen": {
+        "name": "Islamisches Zentrum München (IZM)",
+        "description": "Eine der größten Moscheen in München mit regelmäßigen Gebeten, Community-Events und Bildungsprogrammen."
+      },
+      "masjid-al-mohsinin": {
+        "name": "Masjid Al-Mohsinin",
+        "description": "Marokkanische Moschee, die der lokalen Community regelmäßige Gebete und Bildungsangebote bietet."
+      },
+      "masjid-al-rahma": {
+        "name": "Masjid Al-Rahma",
+        "description": "Aktive Moschee mit Koranunterricht und Community-Veranstaltungen."
+      },
+      "marokko-haus": {
+        "name": "Marokko Haus Moschee",
+        "description": "Moschee im Marokko Haus, die der marokkanischen Community in München dient."
+      },
+      "alahibba-mosque": {
+        "name": "Alahibba Moschee (Muslimisches Kulturforum München e.V.)",
+        "description": "Lebendiges Community-Zentrum, auch als Muslim Cultural Forum bekannt. Bietet zweisprachige Freitagspredigten und Bildungsangebote."
+      },
+      "ditib-sendling": {
+        "name": "DITIB Moschee Sendling",
+        "description": "Türkische Moschee mit aktiven Community-Programmen und wöchentlichen Zusammenkünften."
+      },
+      "tum-library-stammgelaende": {
+        "name": "TUM Hauptbibliothek",
+        "description": "Große Bibliothek mit vielen Sitzplätzen, gutem WLAN und Steckdosen an den meisten Plätzen."
+      },
+      "tum-campus-garching-mi": {
+        "name": "TUM Garching (MI-Gebäude)",
+        "description": "Die 'Magistrale' im Math/Informatics-Gebäude, bekannt für große Rutschen und offene Lernbereiche. Lebhafte Atmosphäre."
+      },
+      "studitum-muenchen": {
+        "name": "StudiTUM München",
+        "description": "Ein reines Studierenden-Lernhaus mit ruhigen Räumen, Lounges und Dachterrasse. Zugang nur mit gültigem Studentenausweis."
+      },
+      "bayerische-staatsbibliothek": {
+        "name": "Bayerische Staatsbibliothek",
+        "description": "Prächtige Staatsbibliothek mit umfangreicher Sammlung und schönen Lernräumen."
+      },
+      "lmu-philologicum": {
+        "name": "LMU Philologicum",
+        "description": "Moderne LMU-Bibliothek mit exzellenten Lernbedingungen und viel Tageslicht."
+      },
+      "lost-weekend": {
+        "name": "Lost Weekend",
+        "description": "Kult-Café der Studierenden nahe der LMU. 100% vegan, laptopfreundlich tagsüber und Veranstaltungsort am Abend."
+      },
+      "bibliothek-deutsches-museum": {
+        "name": "Bibliothek des Deutschen Museums",
+        "description": "Eine der besten Fachbibliotheken für Wissenschaft und Technik. Sehr ruhige Atmosphäre, ideal für tiefes Arbeiten."
+      },
+      "monacensia-hildebrandhaus": {
+        "name": "Monacensia im Hildebrandhaus",
+        "description": "Schöne Künstler-Villa, jetzt Literaturarchiv. Bietet einen beeindruckenden Lesesaal und einen ruhigen Garten."
+      },
+      "vorhoelzer-forum": {
+        "name": "Vorhoelzer Forum",
+        "description": "Auf dem Dach der TUM gelegen; bietet guten Kaffee, große Tische und eine der besten Aussichten über München."
+      },
+      "mueller-odeonsplatz": {
+        "name": "Müller Café & Bäckerei (Odeonsplatz)",
+        "description": "Direkt am Odeonsplatz gelegen. Großes Obergeschoss bietet viel Platz für einen schnellen Frühstücks- oder Kaffeestopp zwischen Vorlesungen."
+      },
+      "mackbear-leopoldstr": {
+        "name": "Mackbear Coffee Co.",
+        "description": "Oft 'McBear' genannt; beliebter Ort für konzentriertes Arbeiten nahe Münchner Freiheit. Bekannt für sehr starken Kaffee und moderne Einrichtung."
+      },
+      "cadu-cafe-an-der-uni": {
+        "name": "CADU (Café an der Uni)",
+        "description": "Legendäres Café direkt neben dem LMU-Hauptgebäude. Tagsüber Frühstücksort, abends lebendiger Treffpunkt. Gut zum Kontakte knüpfen, weniger für leises Lernen."
+      },
+      "cafe-zeitgeist": {
+        "name": "Café Zeitgeist",
+        "description": "Ähnlich wie CADU, aber im Türkenstraße-Studentenviertel. Sehr beliebt für günstiges Studentenfrühstück/Brunch und lebhafte Atmosphäre."
+      },
+      "benko-cafe": {
+        "name": "Benko Café",
+        "description": "Beliebt bei TUM-Studierenden wegen der Nähe zum Campus. Bietet geräumiges Interieur mit großen Tischen, ideal für Gruppen."
+      }
+    }
   }
 }

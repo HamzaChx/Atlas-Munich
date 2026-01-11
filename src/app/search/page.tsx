@@ -77,6 +77,26 @@ function SearchContent() {
     };
   }, [searchQuery]);
 
+  const placesData = useTranslations("placesData");
+
+  // Localize places in search results
+  const localizedSearchPlaces = useMemo(() => {
+    return searchResults.places.map((p) => {
+      const nameKey = `places.${p.slug}.name`;
+      const descKey = `places.${p.slug}.description`;
+      const translatedName = placesData(nameKey);
+      const translatedDescription = p.description ? placesData(descKey) : undefined;
+      return {
+        ...p,
+        name: translatedName === nameKey ? p.name : translatedName,
+        description:
+          translatedDescription && translatedDescription === descKey
+            ? p.description
+            : (translatedDescription ?? p.description),
+      };
+    });
+  }, [searchResults.places, placesData]);
+
   const totalResults =
     searchResults.guides.length + searchResults.places.length + searchResults.faqs.length;
 
@@ -294,8 +314,8 @@ function SearchContent() {
                       </div>
                       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                         {(activeTab === "all"
-                          ? searchResults.places.slice(0, 3)
-                          : searchResults.places
+                          ? localizedSearchPlaces.slice(0, 3)
+                          : localizedSearchPlaces
                         ).map((place) => (
                           <PlaceCard key={place.slug} place={place} />
                         ))}

@@ -405,5 +405,197 @@
     "close": "Fermer",
     "open": "Ouvrir",
     "language": "Langue"
+  },
+  "placesData": {
+    "places": {
+      "al-zaeem": {
+        "name": "Al Zaeem",
+        "description": "Endroit populaire près de la gare centrale proposant une variété de plats moyen-orientaux halal, y compris kebabs et falafel à des prix abordables."
+      },
+      "anju-89": {
+        "name": "Anju 89",
+        "description": "Restaurant apprécié des étudiants près de la Technical University of Munich (TUM). Anju propose des plats halal savoureux, très populaire parmi les étudiants internationaux."
+      },
+      "taste-my-burger": {
+        "name": "Taste My Burger",
+        "description": "Burger gourmet proposant plusieurs options halal avec des ingrédients frais et des garnitures uniques. Un excellent choix pour un repas décontracté entre amis."
+      },
+      "tacos-muenchner-freiheit": {
+        "name": "SAVOS (French Tacos)",
+        "description": "Situé près de Münchner Freiheit, cet endroit sert de délicieux tacos et wraps avec des ingrédients halal certifiés. Parfait pour une bouchée rapide ou un déjeuner décontracté entre amis."
+      },
+      "the-ash-muenchner-freiheit": {
+        "name": "The Ash",
+        "description": "Restaurant élégant proposant des plats grillés de qualité. Ils offrent des options halal sur demande, idéal pour un dîner entre amis ou en famille."
+      },
+      "argana-moroccan-restaurant": {
+        "name": "Argana - Moroccan Restaurant",
+        "description": "Nouveau restaurant marocain à Munich proposant des plats traditionnels authentiques comme les tagines, le couscous et la pastilla. Argana est entièrement halal et offre une atmosphère chaleureuse."
+      },
+      "casablanca-moroccan-restaurant": {
+        "name": "Casablanca - Moroccan Restaurant",
+        "description": "Casablanca propose un riche menu de cuisine marocaine authentique, y compris des tagines savoureux et des plats de couscous. Le restaurant est entièrement halal et offre une atmosphère accueillante."
+      },
+      "la-fantasia": {
+        "name": "La Fantasia",
+        "description": "Charmant restaurant italien servant une variété de pâtes et de pizzas halal. La Fantasia offre une ambiance cosy parfaite pour les dîners en famille ou romantiques."
+      },
+      "bln-doener": {
+        "name": "BLN Döner",
+        "description": "Fast-food populaire au centre-ville, connu pour ses délicieux döner halal et ses prix abordables. Parfait pour un repas rapide et satisfaisant."
+      },
+      "hans-kebap-muenchen": {
+        "name": "Hans Kebap",
+        "description": "Kebab premium proposant diverses options halal préparées avec des ingrédients de haute qualité. Un excellent choix pour une expérience de fast-food plus sophistiquée."
+      },
+      "uncle-smash-burger": {
+        "name": "Uncle Smash Burger",
+        "description": "Burger gourmet proposant diverses options halal avec des ingrédients frais et des garnitures uniques. Un endroit idéal pour un repas décontracté entre amis."
+      },
+      "pars-restaurant": {
+        "name": "Pars Restaurant",
+        "description": "Restaurant persan authentique proposant une variété de plats halal, y compris des kebabs et des spécialités grillées. Un endroit chaleureux pour déguster des saveurs traditionnelles."
+      },
+      "kashgar-uyghur": {
+        "name": "Kashgar Uyghur Restaurant",
+        "description": "Spécialisé dans la cuisine ouïghoure, ce restaurant halal propose des plats uniques tels que des nouilles tirées à la main et des viandes grillées. À visiter pour les saveurs authentiques."
+      },
+      "etem-burger-steak": {
+        "name": "Etem Burger & Steak",
+        "description": "Restaurant de restauration décontractée connu pour ses burgers et steaks halal préparés avec des ingrédients de qualité. Parfait pour un repas détendu entre amis ou en famille."
+      },
+      "loco-chicken": {
+        "name": "Loco Chicken",
+        "description": "Fast-food populaire spécialisé dans les plats de poulet halal. Réputé pour son poulet frit croustillant et ses prix abordables."
+      },
+      "hot-dog-station-muenchen": {
+        "name": "Hot Dog Station",
+        "description": "Restauration décontractée spécialisée dans les hot-dogs halal avec une variété de garnitures. Idéal pour un repas rapide et savoureux."
+      },
+      "wing-nation": {
+        "name": "Wing Nation",
+        "description": "Endroit décontracté spécialisé dans les ailes de poulet halal avec une variété de sauces et d'accompagnements. Parfait pour une bouchée rapide."
+      },
+      "han-muenchen": {
+        "name": "Han Restaurant",
+        "description": "Restaurant turc connu pour ses plats grillés halal, y compris le célèbre adana kebab. Un lieu chaleureux pour des saveurs turques authentiques."
+      },
+      "delicious-burger": {
+        "name": "Delicious Burger",
+        "description": "Burger gourmet proposant diverses options halal avec des ingrédients frais et des garnitures uniques. Un excellent spot pour manger entre amis."
+      },
+      "rasoi-restaurant": {
+        "name": "Rasoi Restaurant",
+        "description": "Restaurant indien authentique proposant une variété de plats halal, y compris des currys savoureux et des spécialités tandoori. Un endroit cosy pour déguster une cuisine traditionnelle."
+      },
+      "samarkand-restaurant": {
+        "name": "Samarkand Grill & Burgerhaus",
+        "description": "Restaurant ouzbek proposant une variété de plats grillés halal et de burgers. Samarkand offre un goût authentique de la cuisine d'Asie centrale dans une atmosphère conviviale."
+      },
+      "moosacher-paradies": {
+        "name": "Moosacher Paradies",
+        "description": "Restaurant balkanique spécialisé dans les plats grillés halal et le barbecue. Moosacher Paradies propose des saveurs authentiques dans un cadre chaleureux."
+      },
+      "halal-metzger-giesing": {
+        "name": "Halal Metzger Giesing",
+        "description": "Viande halal de qualité à des prix raisonnables. Apprécié par la communauté."
+      },
+      "dolphin-market-moosach": {
+        "name": "Dolphin Market",
+        "description": "Situé directement à la station U-Bahn Moosach. Connu pour la viande halal contrôlée d'élevage bavarois et un comptoir de poissons frais séparé, rare pour les supermarchés locaux."
+      },
+      "metzgerei-etem": {
+        "name": "Metzgerei Etem",
+        "description": "Considérée comme la meilleure boucherie halal de Munich. Connue pour ses steaks maturés, sucuk maison et sa politique sans porc. Située près des logements étudiants Olympiadorf."
+      },
+      "verdi-supermarkt-ludwigsvorstadt": {
+        "name": "Verdi Supermarkt & Metzgerei",
+        "description": "Un incontournable pour les étudiants vivant au centre. Le comptoir de boucherie est énorme, offrant des coupes d'agneau et de boeuf abordables. Très fréquenté, le turnover élevé garantit la fraîcheur."
+      },
+      "hahn-fleischhandel": {
+        "name": "Hahn Fleischhandel",
+        "description": "Situé directement dans le quartier des abattoirs (Schlachthof). Ils vendent aux restaurants mais ont aussi un 'Abholmarkt' pour les particuliers. Viande régionale halal certifiée."
+      },
+      "islamisches-zentrum-muenchen": {
+        "name": "Islamisches Zentrum München (IZM)",
+        "description": "L'une des plus grandes mosquées de Munich avec des prières régulières, des événements communautaires et des programmes éducatifs."
+      },
+      "masjid-al-mohsinin": {
+        "name": "Masjid Al-Mohsinin",
+        "description": "Mosquée marocaine au service de la communauté locale avec des prières régulières et des activités éducatives."
+      },
+      "masjid-al-rahma": {
+        "name": "Masjid Al-Rahma",
+        "description": "Mosquée active avec des cours de Coran et des événements communautaires."
+      },
+      "marokko-haus": {
+        "name": "Marokko Haus Mosque",
+        "description": "Mosquée située dans le Marokko Haus, au service de la communauté marocaine à Munich."
+      },
+      "alahibba-mosque": {
+        "name": "Alahibba Mosque (Muslimisches Kulturforum München e.V.)",
+        "description": "Un centre communautaire dynamique également connu sous le nom de Muslim Cultural Forum, offrant sermons bilingues et activités éducatives."
+      },
+      "ditib-sendling": {
+        "name": "DITIB Moschee Sendling",
+        "description": "Mosquée turque avec des programmes communautaires actifs et des rassemblements hebdomadaires."
+      },
+      "tum-library-stammgelaende": {
+        "name": "TUM Main Library",
+        "description": "Grande bibliothèque d'étude avec de nombreuses places, un bon WiFi et des prises électriques à la plupart des bureaux."
+      },
+      "tum-campus-garching-mi": {
+        "name": "TUM Garching (MI Building)",
+        "description": "La hall 'Magistrale' à l'intérieur du bâtiment Math/Informatics. Célèbre pour ses grands toboggans paraboliques, il offre des tables d'étude ouvertes et une atmosphère animée."
+      },
+      "studitum-muenchen": {
+        "name": "StudiTUM München",
+        "description": "Maison d'étude dédiée exclusivement aux étudiants. Comprend des salles calmes, des espaces lounge et une terrasse sur le toit. Accès sur présentation d'une carte étudiante valide."
+      },
+      "bayerische-staatsbibliothek": {
+        "name": "Bayerische Staatsbibliothek",
+        "description": "Magnifique bibliothèque d'État avec une vaste collection et de beaux espaces d'étude."
+      },
+      "lmu-philologicum": {
+        "name": "LMU Philologicum",
+        "description": "Bibliothèque moderne de la LMU offrant un excellent environnement d'étude et une lumière naturelle."
+      },
+      "lost-weekend": {
+        "name": "Lost Weekend",
+        "description": "Le café étudiant par excellence près de la LMU. 100% végan, adapté aux ordinateurs portables pendant la journée et accueille des événements le soir."
+      },
+      "bibliothek-deutsches-museum": {
+        "name": "Bibliothek des Deutschen Museums",
+        "description": "L'une des meilleures bibliothèques de référence pour la science et la technologie. Atmosphère extrêmement calme, parfaite pour la concentration profonde."
+      },
+      "monacensia-hildebrandhaus": {
+        "name": "Monacensia im Hildebrandhaus",
+        "description": "Une belle villa d'artiste transformée en archive littéraire. Offre une salle de lecture magnifique et un jardin calme accessible au public."
+      },
+      "vorhoelzer-forum": {
+        "name": "Vorhoelzer Forum",
+        "description": "Situé sur le toit de la TUM, cet endroit offre un bon café, de grandes tables et l'une des meilleures vues sur Munich."
+      },
+      "mueller-odeonsplatz": {
+        "name": "Müller Café & Bäckerei (Odeonsplatz)",
+        "description": "Situé directement à Odeonsplatz, c'est une boulangerie-café spacieuse. Souvent fréquenté par les touristes et les locaux, son grand espace supérieur est un bon endroit pour un petit-déjeuner rapide ou un café entre les cours."
+      },
+      "mackbear-leopoldstr": {
+        "name": "Mackbear Coffee Co.",
+        "description": "Souvent affectueusement appelé 'McBear', c'est un lieu idéal pour travailler près de Münchner Freiheit. Connu pour son café très fort, son intérieur moderne et son bon nombre de prises électriques."
+      },
+      "cadu-cafe-an-der-uni": {
+        "name": "CADU (Café an der Uni)",
+        "description": "Institution légendaire directement à côté du bâtiment principal de la LMU (U-Bahn Universität). Il passe d'un lieu de petit-déjeuner à un bar animé le soir. Idéal pour rencontrer du monde, moins pour l'étude silencieuse."
+      },
+      "cafe-zeitgeist": {
+        "name": "Café Zeitgeist",
+        "description": "Similaire à CADU mais dans le quartier étudiant Türkenstraße. Extrêmement populaire pour son petit-déjeuner/brunch étudiant abordable et son ambiance animée. Un lieu classique pour retrouver des amis après les cours."
+      },
+      "benko-cafe": {
+        "name": "Benko Café",
+        "description": "Un favori des étudiants de la Technical University (TUM) en raison de sa proximité avec le campus principal. Il propose un intérieur spacieux avec de grandes tables, idéal pour les groupes ou les pauses déjeuner entre séminaires."
+      }
+    }
   }
 }

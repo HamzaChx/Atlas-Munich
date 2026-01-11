@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { Badge } from "@/components/ui/badge";
 import { MapPin, Star, ExternalLink, CheckCircle2, ChevronDown, ChevronUp } from "lucide-react";
 import { Place } from "@/types";
+import { useTranslations } from "next-intl";
 
 /**
  * PlaceCard component following premium UI principles:
@@ -61,6 +62,8 @@ export function PlaceCard({ place, className }: PlaceCardProps) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [showAllTags, setShowAllTags] = useState(false);
 
+  const tPlaces = useTranslations("places");
+
   // Check if description needs truncation (roughly 100 characters = 2 lines)
   const needsTruncation = place.description && place.description.length > 100;
 
@@ -89,7 +92,7 @@ export function PlaceCard({ place, className }: PlaceCardProps) {
           {place.verified && (
             <div className="flex items-center gap-1 rounded-full bg-emerald-100 dark:bg-emerald-500/10 px-2.5 py-1 text-xs font-medium text-emerald-600 dark:text-emerald-400">
               <CheckCircle2 className="h-3 w-3" />
-              <span>Verified</span>
+              <span>{tPlaces("card.verified") ?? "Verified"}</span>
             </div>
           )}
         </div>
@@ -117,12 +120,12 @@ export function PlaceCard({ place, className }: PlaceCardProps) {
               >
                 {isExpanded ? (
                   <>
-                    Show less
+                    {tPlaces("card.showLess") ?? "Show less"}
                     <ChevronUp className="h-3 w-3" />
                   </>
                 ) : (
                   <>
-                    Read more
+                    {tPlaces("card.readMore") ?? "Read more"}
                     <ChevronDown className="h-3 w-3" />
                   </>
                 )}
@@ -205,7 +208,7 @@ export function PlaceCard({ place, className }: PlaceCardProps) {
               className="flex flex-1 items-center justify-center gap-1.5 rounded-xl border border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-white/5 px-4 py-2.5 text-sm font-medium text-zinc-700 dark:text-zinc-300 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:border-emerald-500 dark:hover:border-emerald-500/50 hover:bg-emerald-50 dark:hover:bg-emerald-500/10 hover:text-emerald-600 dark:hover:text-emerald-400 active:scale-[0.98] outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/50 focus-visible:ring-offset-2"
             >
               <ExternalLink className="h-3.5 w-3.5" />
-              Website
+              {tPlaces("card.website") ?? "Website"}
             </Link>
           )}
           <Link
@@ -215,7 +218,7 @@ export function PlaceCard({ place, className }: PlaceCardProps) {
             className="flex flex-1 items-center justify-center gap-1.5 rounded-xl border border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-white/5 px-4 py-2.5 text-sm font-medium text-zinc-700 dark:text-zinc-300 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:border-emerald-500 dark:hover:border-emerald-500/50 hover:bg-emerald-50 dark:hover:bg-emerald-500/10 hover:text-emerald-600 dark:hover:text-emerald-400 active:scale-[0.98] outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/50 focus-visible:ring-offset-2"
           >
             <MapPin className="h-3.5 w-3.5" />
-            Directions
+            {tPlaces("card.directions") ?? "Directions"}
           </Link>
         </div>
       </div>

@@ -79,7 +79,9 @@ export function Header({ locale, translations }: HeaderProps) {
       : "bg-white dark:bg-zinc-950 border-b border-zinc-200/80 dark:border-white/8";
 
   return (
-    <header className={cn("fixed top-0 z-50 w-full transition-all duration-300", headerBg)}>
+    <header
+      className={cn("fixed top-0 z-50 w-full transition-all duration-300 safe-area-top", headerBg)}
+    >
       {/* Rule 12: Max content width 1100-1280px for readability */}
       <div className="mx-auto flex h-14 sm:h-16 max-w-[1280px] items-center justify-between px-3 sm:px-6 lg:px-8">
         {/* Logo - Rule 34: Hover states required */}
@@ -160,11 +162,11 @@ export function Header({ locale, translations }: HeaderProps) {
             </Link>
           </Button>
 
-          {/* Mobile menu button */}
+          {/* Mobile menu button - larger touch target */}
           <Button
             variant="ghost"
             size="icon"
-            className="text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-white/5 hover:text-zinc-900 dark:hover:text-white md:hidden"
+            className="h-10 w-10 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-white/5 hover:text-zinc-900 dark:hover:text-white md:hidden"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
           >
@@ -176,11 +178,11 @@ export function Header({ locale, translations }: HeaderProps) {
       {/* Mobile Navigation - Rule 36: Motion to explain cause and effect */}
       <div
         className={cn(
-          "border-t border-zinc-200/80 dark:border-white/8 bg-white/98 dark:bg-zinc-950/98 backdrop-blur-2xl md:hidden overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]",
+          "border-t border-zinc-200/80 dark:border-white/8 bg-white/98 dark:bg-zinc-950/98 backdrop-blur-2xl md:hidden overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] safe-area-x",
           mobileMenuOpen ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
         )}
       >
-        <nav className="mx-auto max-w-7xl space-y-1 px-3 py-3">
+        <nav className="mx-auto max-w-7xl space-y-1 px-4 py-4">
           {navItems.map((item) => {
             const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
             return (
@@ -189,7 +191,7 @@ export function Header({ locale, translations }: HeaderProps) {
                 href={item.href}
                 onClick={() => setMobileMenuOpen(false)}
                 className={cn(
-                  "flex items-center gap-3 rounded-xl px-4 py-3 text-base font-medium transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98]",
+                  "flex items-center gap-3 rounded-xl px-4 py-3.5 text-base font-medium transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98] min-h-[48px]",
                   isActive
                     ? "bg-emerald-100 dark:bg-emerald-500/15 text-emerald-700 dark:text-emerald-400"
                     : "text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-white/5 hover:text-zinc-900 dark:hover:text-white"
@@ -205,26 +207,29 @@ export function Header({ locale, translations }: HeaderProps) {
           <Link
             href="/search"
             onClick={() => setMobileMenuOpen(false)}
-            className="flex items-center gap-3 rounded-xl px-4 py-3 text-base font-medium text-zinc-600 dark:text-zinc-400 transition-all hover:bg-zinc-100 dark:hover:bg-white/5 hover:text-zinc-900 dark:hover:text-white"
+            className="flex items-center gap-3 rounded-xl px-4 py-3.5 text-base font-medium text-zinc-600 dark:text-zinc-400 transition-all hover:bg-zinc-100 dark:hover:bg-white/5 hover:text-zinc-900 dark:hover:text-white min-h-[48px]"
           >
             <Search className="h-5 w-5" />
             {translations.search}
           </Link>
 
           {/* Mobile Language Switcher */}
-          <div className="flex items-center gap-3 rounded-xl px-4 py-3 text-base font-medium text-zinc-600 dark:text-zinc-400">
+          <div className="flex items-center gap-3 rounded-xl px-4 py-3 text-base font-medium text-zinc-600 dark:text-zinc-400 min-h-[48px]">
             <LanguageSwitcher currentLocale={locale} />
           </div>
 
           {/* Mobile Theme Toggle */}
-          <div className="flex items-center gap-3 rounded-xl px-4 py-3 text-base font-medium text-zinc-600 dark:text-zinc-400">
+          <div className="flex items-center gap-3 rounded-xl px-4 py-3 text-base font-medium text-zinc-600 dark:text-zinc-400 min-h-[48px]">
             <ThemeToggle />
             <span>{translations.toggleTheme}</span>
           </div>
 
           {/* Mobile CTA */}
-          <div className="pt-4">
-            <Button asChild className="w-full bg-emerald-600 text-white hover:bg-emerald-500">
+          <div className="pt-4 pb-2">
+            <Button
+              asChild
+              className="w-full bg-emerald-600 text-white hover:bg-emerald-500 min-h-[48px]"
+            >
               <Link href="/guides" onClick={() => setMobileMenuOpen(false)}>
                 <BookOpen className="mr-2 h-4 w-4" />
                 {translations.exploreAll}

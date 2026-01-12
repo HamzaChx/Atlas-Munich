@@ -23,11 +23,11 @@ export function Footer() {
       {/* Top gradient line - Moroccan colors */}
       <div className="h-px bg-gradient-to-r from-transparent via-emerald-500/40 to-transparent" />
 
-      {/* Rule 11: 8-point spacing system - py-20 = 80px */}
-      <div className="relative mx-auto max-w-[1280px] px-3 sm:px-6 lg:px-8 py-12 sm:py-20">
-        <div className="grid gap-8 sm:gap-12 lg:grid-cols-5">
+      {/* Rule 11: 8-point spacing system - py-20 = 80px, reduced on mobile */}
+      <div className="relative mx-auto max-w-[1280px] px-4 sm:px-6 lg:px-8 py-10 sm:py-16 lg:py-20 safe-area-bottom">
+        <div className="grid gap-8 sm:gap-10 lg:gap-12 grid-cols-1 sm:grid-cols-2 lg:grid-cols-5">
           {/* Brand Section - Larger */}
-          <div className="lg:col-span-2">
+          <div className="sm:col-span-2 lg:col-span-2">
             <Link
               href="/"
               className="group inline-flex items-center gap-2.5 outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-lg"
@@ -79,7 +79,7 @@ export function Footer() {
             <h3 className="text-sm font-semibold uppercase tracking-wider text-zinc-900 dark:text-white">
               {t("guides")}
             </h3>
-            <ul className="mt-6 space-y-4">
+            <ul className="mt-4 sm:mt-6 space-y-3 sm:space-y-4">
               <li>
                 <Link
                   href="/category/rent-housing"
@@ -124,7 +124,7 @@ export function Footer() {
             <h3 className="text-sm font-semibold uppercase tracking-wider text-zinc-900 dark:text-white">
               {t("resources")}
             </h3>
-            <ul className="mt-6 space-y-4">
+            <ul className="mt-4 sm:mt-6 space-y-3 sm:space-y-4">
               <li>
                 <Link
                   href="/places"
@@ -169,7 +169,7 @@ export function Footer() {
             <h3 className="text-sm font-semibold uppercase tracking-wider text-zinc-900 dark:text-white">
               {t("community")}
             </h3>
-            <ul className="mt-6 space-y-4">
+            <ul className="mt-4 sm:mt-6 space-y-3 sm:space-y-4">
               <li>
                 <Link
                   href="/about"
@@ -212,7 +212,7 @@ export function Footer() {
         </div>
 
         {/* Bottom Section - Rule 14: Align everything */}
-        <div className="mt-20 flex flex-col items-center justify-between gap-6 border-t border-zinc-200/80 dark:border-white/8 pt-10 sm:flex-row">
+        <div className="mt-12 sm:mt-16 lg:mt-20 flex flex-col items-center justify-between gap-4 sm:gap-6 border-t border-zinc-200/80 dark:border-white/8 pt-6 sm:pt-10 sm:flex-row">
           <div className="flex flex-col items-center gap-3 sm:flex-row sm:gap-6">
             <p className="text-sm text-zinc-500">
               © {new Date().getFullYear()} Atlas Munich. {t("rights")} Hamza Chaouki

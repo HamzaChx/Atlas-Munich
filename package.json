@@ -55,11 +55,10 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "eslint --fix",
-      "prettier --write"
+      "npm run lint -- --max-warnings=10"
     ],
     "*.{json,md,mdx,css}": [
-      "prettier --write"
+      "npm run format:check"
     ]
   }
 }

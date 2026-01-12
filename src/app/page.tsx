@@ -11,7 +11,6 @@ import {
   BookOpen,
   ChevronRight,
   Sparkles,
-  MapPin,
   HelpCircle,
   Users,
   CheckCircle2,
@@ -26,38 +25,23 @@ import {
 export default async function Home() {
   const t = await getTranslations("home");
 
-  // Quick links for the hero
-  const quickLinks = [
-    { label: t("quickLinks.findHousing"), href: "/category/rent-housing", icon: HomeIcon },
-    { label: t("quickLinks.kvrRegistration"), href: "/category/kvr-residence", icon: FileText },
-    { label: t("quickLinks.halalFood"), href: "/places", icon: Coffee },
-    { label: t("quickLinks.allGuides"), href: "/guides", icon: Compass },
-  ];
-
-  // Stats
-  const stats = [
-    { value: guides.length, suffix: "+", label: t("stats.guides"), icon: BookOpen },
-    { value: places.length, suffix: "+", label: t("stats.places"), icon: MapPin },
-    { value: faqs.length, suffix: "+", label: t("stats.faqsAnswered"), icon: HelpCircle },
-    { value: "100", suffix: "%", label: t("stats.freeAndOpen"), icon: Heart },
-  ];
   const guideCountByCategory = (key: string) => guides.filter((g) => g.categoryKey === key).length;
 
   return (
     <div className="min-h-screen">
       {/* Hero Section - Moroccan-Munich Fusion */}
-      <section className="relative min-h-[85vh] sm:min-h-[90vh] overflow-hidden bg-gradient-to-br from-red-50 via-white to-green-50 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950">
-        {/* Gradient Orbs - Morocco & Germany colors */}
-        <div className="absolute -left-32 top-1/4 z-[5] h-[500px] w-[500px] rounded-full bg-gradient-to-br from-red-300/50 to-red-200/30 dark:from-red-600/25 dark:to-red-500/15 blur-[120px]" />
-        <div className="absolute -right-32 bottom-1/4 z-[5] h-[500px] w-[500px] rounded-full bg-gradient-to-br from-green-300/50 to-emerald-200/30 dark:from-green-600/25 dark:to-emerald-500/15 blur-[120px]" />
-        <div className="absolute left-1/2 top-1/2 z-[5] h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br from-amber-200/20 to-white/30 dark:from-amber-500/10 dark:to-white/5 blur-[100px]" />
+      <section className="relative min-h-[70vh] sm:min-h-[85vh] lg:min-h-[90vh] overflow-hidden bg-gradient-to-br from-red-50 via-white to-green-50 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950">
+        {/* Gradient Orbs - Morocco & Germany colors - smaller on mobile */}
+        <div className="absolute -left-16 sm:-left-32 top-1/4 z-[5] h-[250px] w-[250px] sm:h-[500px] sm:w-[500px] rounded-full bg-gradient-to-br from-red-300/50 to-red-200/30 dark:from-red-600/25 dark:to-red-500/15 blur-[80px] sm:blur-[120px]" />
+        <div className="absolute -right-16 sm:-right-32 bottom-1/4 z-[5] h-[250px] w-[250px] sm:h-[500px] sm:w-[500px] rounded-full bg-gradient-to-br from-green-300/50 to-emerald-200/30 dark:from-green-600/25 dark:to-emerald-500/15 blur-[80px] sm:blur-[120px]" />
+        <div className="absolute left-1/2 top-1/2 z-[5] h-[200px] w-[200px] sm:h-[400px] sm:w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br from-amber-200/20 to-white/30 dark:from-amber-500/10 dark:to-white/5 blur-[60px] sm:blur-[100px]" />
 
-        {/* Munich Skyline Silhouette - Bottom */}
-        <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-10 h-52 opacity-[0.12] dark:opacity-[0.15]">
+        {/* Munich Skyline Silhouette - Responsive, gray and transparent, fills container width */}
+        <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-10 h-16 sm:h-24 md:h-32 lg:h-44 opacity-[0.06] sm:opacity-[0.08] md:opacity-[0.10] lg:opacity-[0.12]">
           <svg viewBox="0 0 1440 200" className="h-full w-full" preserveAspectRatio="none">
-            {/* Main Munich skyline base */}
+            {/* Main Munich skyline base - using gray colors */}
             <path
-              className="fill-zinc-900 dark:fill-white"
+              className="fill-zinc-400 dark:fill-zinc-500"
               d="M0,200 L0,175
                 L40,175 L40,165 L55,165 L55,175
                 
@@ -109,7 +93,7 @@ export default async function Home() {
                 y="20"
                 width="40"
                 height="140"
-                className="fill-zinc-900 dark:fill-white"
+                className="fill-zinc-400 dark:fill-zinc-500"
               />
             </g>
 
@@ -117,37 +101,49 @@ export default async function Home() {
             {/* Four connected cylindrical towers in a 2x2 cluster */}
             <g transform="translate(1220, 85)">
               {/* Tower 1 - front left */}
-              <ellipse cx="0" cy="0" rx="14" ry="6" className="fill-zinc-900 dark:fill-white" />
+              <ellipse cx="0" cy="0" rx="14" ry="6" className="fill-zinc-400 dark:fill-zinc-500" />
               <rect
                 x="-14"
                 y="0"
                 width="28"
                 height="90"
-                className="fill-zinc-900 dark:fill-white"
+                className="fill-zinc-400 dark:fill-zinc-500"
               />
 
               {/* Tower 2 - front right */}
-              <ellipse cx="30" cy="5" rx="14" ry="6" className="fill-zinc-900 dark:fill-white" />
-              <rect x="16" y="5" width="28" height="85" className="fill-zinc-900 dark:fill-white" />
+              <ellipse cx="30" cy="5" rx="14" ry="6" className="fill-zinc-400 dark:fill-zinc-500" />
+              <rect
+                x="16"
+                y="5"
+                width="28"
+                height="85"
+                className="fill-zinc-400 dark:fill-zinc-500"
+              />
 
               {/* Tower 3 - back left */}
-              <ellipse cx="8" cy="-8" rx="14" ry="6" className="fill-zinc-900 dark:fill-white" />
+              <ellipse cx="8" cy="-8" rx="14" ry="6" className="fill-zinc-400 dark:fill-zinc-500" />
               <rect
                 x="-6"
                 y="-8"
                 width="28"
                 height="98"
-                className="fill-zinc-900 dark:fill-white"
+                className="fill-zinc-400 dark:fill-zinc-500"
               />
 
               {/* Tower 4 - back right */}
-              <ellipse cx="38" cy="-3" rx="14" ry="6" className="fill-zinc-900 dark:fill-white" />
+              <ellipse
+                cx="38"
+                cy="-3"
+                rx="14"
+                ry="6"
+                className="fill-zinc-400 dark:fill-zinc-500"
+              />
               <rect
                 x="24"
                 y="-3"
                 width="28"
                 height="93"
-                className="fill-zinc-900 dark:fill-white"
+                className="fill-zinc-400 dark:fill-zinc-500"
               />
             </g>
 
@@ -158,42 +154,114 @@ export default async function Home() {
               y="55"
               width="10"
               height="120"
-              className="fill-zinc-900 dark:fill-white"
+              className="fill-zinc-400 dark:fill-zinc-500"
             />
 
             {/* Observation deck / restaurant pod - distinctive bulge */}
-            <ellipse cx="1375" cy="55" rx="25" ry="18" className="fill-zinc-900 dark:fill-white" />
-            <ellipse cx="1375" cy="45" rx="20" ry="12" className="fill-zinc-900 dark:fill-white" />
+            <ellipse
+              cx="1375"
+              cy="55"
+              rx="25"
+              ry="18"
+              className="fill-zinc-400 dark:fill-zinc-500"
+            />
+            <ellipse
+              cx="1375"
+              cy="45"
+              rx="20"
+              ry="12"
+              className="fill-zinc-400 dark:fill-zinc-500"
+            />
 
             {/* Lower observation deck */}
-            <ellipse cx="1375" cy="85" rx="15" ry="8" className="fill-zinc-900 dark:fill-white" />
+            <ellipse
+              cx="1375"
+              cy="85"
+              rx="15"
+              ry="8"
+              className="fill-zinc-400 dark:fill-zinc-500"
+            />
 
             {/* Antenna mast */}
-            <rect x="1373" y="5" width="4" height="40" className="fill-zinc-900 dark:fill-white" />
+            <rect
+              x="1373"
+              y="5"
+              width="4"
+              height="40"
+              className="fill-zinc-400 dark:fill-zinc-500"
+            />
 
             {/* Antenna top */}
-            <polygon points="1375,0 1371,8 1379,8" className="fill-zinc-900 dark:fill-white" />
+            <polygon points="1375,0 1371,8 1379,8" className="fill-zinc-400 dark:fill-zinc-500" />
 
             {/* Frauenkirche dome crosses */}
-            <rect x="99" y="28" width="2" height="12" className="fill-zinc-900 dark:fill-white" />
-            <rect x="95" y="32" width="10" height="2" className="fill-zinc-900 dark:fill-white" />
-            <rect x="129" y="28" width="2" height="12" className="fill-zinc-900 dark:fill-white" />
-            <rect x="125" y="32" width="10" height="2" className="fill-zinc-900 dark:fill-white" />
+            <rect
+              x="99"
+              y="28"
+              width="2"
+              height="12"
+              className="fill-zinc-400 dark:fill-zinc-500"
+            />
+            <rect
+              x="95"
+              y="32"
+              width="10"
+              height="2"
+              className="fill-zinc-400 dark:fill-zinc-500"
+            />
+            <rect
+              x="129"
+              y="28"
+              width="2"
+              height="12"
+              className="fill-zinc-400 dark:fill-zinc-500"
+            />
+            <rect
+              x="125"
+              y="32"
+              width="10"
+              height="2"
+              className="fill-zinc-400 dark:fill-zinc-500"
+            />
 
             {/* Rathaus spire cross */}
-            <rect x="429" y="25" width="2" height="18" className="fill-zinc-900 dark:fill-white" />
-            <rect x="425" y="30" width="10" height="2" className="fill-zinc-900 dark:fill-white" />
+            <rect
+              x="429"
+              y="25"
+              width="2"
+              height="18"
+              className="fill-zinc-400 dark:fill-zinc-500"
+            />
+            <rect
+              x="425"
+              y="30"
+              width="10"
+              height="2"
+              className="fill-zinc-400 dark:fill-zinc-500"
+            />
 
             {/* St. Peter's spire cross */}
-            <rect x="199" y="90" width="2" height="14" className="fill-zinc-900 dark:fill-white" />
-            <rect x="195" y="95" width="10" height="2" className="fill-zinc-900 dark:fill-white" />
+            <rect
+              x="199"
+              y="90"
+              width="2"
+              height="14"
+              className="fill-zinc-400 dark:fill-zinc-500"
+            />
+            <rect
+              x="195"
+              y="95"
+              width="10"
+              height="2"
+              className="fill-zinc-400 dark:fill-zinc-500"
+            />
           </svg>
         </div>
 
         {/* Content */}
-        <div className="relative z-20 mx-auto flex min-h-[90vh] max-w-7xl flex-col items-center justify-center px-4 py-20 text-center sm:px-6 lg:px-8">
+        <div className="relative z-20 mx-auto flex min-h-[70vh] sm:min-h-[85vh] lg:min-h-[90vh] max-w-7xl flex-col items-center justify-center px-4 py-12 sm:py-16 lg:py-20 text-center sm:px-6 lg:px-8">
           {/* Main Title */}
-          <h1 className="max-w-4xl text-5xl font-bold tracking-tight text-zinc-800 dark:text-white sm:text-6xl lg:text-7xl mt-6">
+          <h1 className="max-w-4xl text-3xl font-bold tracking-tight text-zinc-800 dark:text-white sm:text-5xl lg:text-7xl mt-4 sm:mt-6">
             {t("heroTitle")}
             <span className="relative mt-2 block">
               <span className="relative z-10  bg-emerald-600 dark:bg-emerald-400 bg-clip-text text-transparent">
@@ -219,35 +287,82 @@ export default async function Home() {
             </div>
           </div>
 
-          {/* Quick Links */}
-          <div className="mt-6 sm:mt-8 flex flex-wrap items-center justify-center gap-2 sm:gap-3 px-2">
-            {quickLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="group flex items-center gap-1.5 sm:gap-2 rounded-full border border-zinc-200 dark:border-white/10 bg-white/80 dark:bg-white/5 px-3 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-medium text-zinc-700 dark:text-zinc-300 shadow-sm dark:shadow-none backdrop-blur-sm transition-all hover:border-emerald-500/50 hover:bg-emerald-50 dark:hover:bg-emerald-500/10 hover:text-emerald-600 dark:hover:text-emerald-400"
-              >
-                <link.icon className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
-                <span className="whitespace-nowrap">{link.label}</span>
-                <ArrowRight className="h-3 w-3 opacity-0 transition-all group-hover:translate-x-1 group-hover:opacity-100" />
-              </Link>
-            ))}
+          {/* Quick Links - Centered grid with color-coded navigation */}
+          <div className="mt-6 sm:mt-8 w-full max-w-2xl px-4">
+            <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
+              {[
+                {
+                  label: t("quickLinks.findHousing"),
+                  href: "/category/rent-housing",
+                  icon: HomeIcon,
+                  color: "text-blue-600 dark:text-blue-400",
+                  bg: "bg-blue-100 dark:bg-blue-500/20",
+                  border: "border-blue-200 dark:border-blue-500/30 hover:border-blue-400",
+                },
+                {
+                  label: t("quickLinks.kvrRegistration"),
+                  href: "/category/kvr-residence",
+                  icon: FileText,
+                  color: "text-amber-600 dark:text-amber-400",
+                  bg: "bg-amber-100 dark:bg-amber-500/20",
+                  border: "border-amber-200 dark:border-amber-500/30 hover:border-amber-400",
+                },
+                {
+                  label: t("quickLinks.halalFood"),
+                  href: "/places",
+                  icon: Coffee,
+                  color: "text-emerald-600 dark:text-emerald-400",
+                  bg: "bg-emerald-100 dark:bg-emerald-500/20",
+                  border: "border-emerald-200 dark:border-emerald-500/30 hover:border-emerald-400",
+                },
+                {
+                  label: t("quickLinks.allGuides"),
+                  href: "/guides",
+                  icon: Compass,
+                  color: "text-purple-600 dark:text-purple-400",
+                  bg: "bg-purple-100 dark:bg-purple-500/20",
+                  border: "border-purple-200 dark:border-purple-500/30 hover:border-purple-400",
+                },
+              ].map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`group flex items-center gap-2 rounded-xl border ${link.border} bg-white/90 dark:bg-white/5 px-3 py-2.5 text-sm font-medium text-zinc-700 dark:text-zinc-200 shadow-sm backdrop-blur-sm transition-all hover:shadow-md hover:-translate-y-0.5 active:scale-[0.98]`}
+                >
+                  <span
+                    className={`flex h-8 w-8 items-center justify-center rounded-lg ${link.bg}`}
+                  >
+                    <link.icon className={`h-4 w-4 ${link.color}`} />
+                  </span>
+                  <span className="flex-1 text-left leading-tight">{link.label}</span>
+                  <ArrowRight
+                    className={`h-4 w-4 ${link.color} opacity-50 transition-all group-hover:opacity-100 group-hover:translate-x-0.5`}
+                  />
+                </Link>
+              ))}
+            </div>
           </div>
 
-          {/* Stats Bar - aligned cards */}
-          <div className="mt-10 sm:mt-14 grid w-full max-w-5xl grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 px-2 items-stretch">
-            {stats.map((stat) => (
-              <div
-                key={stat.label}
-                className="group rounded-xl border border-zinc-200 dark:border-white/5 bg-white/80 dark:bg-white/5 p-3 sm:p-4 shadow-sm dark:shadow-none backdrop-blur-sm transition-all hover:border-emerald-200 dark:hover:border-white/10 hover:bg-white dark:hover:bg-white/10 h-full flex flex-col justify-between"
-              >
-                <div className="text-2xl sm:text-3xl font-bold text-zinc-900 dark:text-white">
-                  {stat.value}
-                  <span className="text-emerald-600 dark:text-emerald-400">{stat.suffix}</span>
-                </div>
-                <div className="text-xs sm:text-sm text-zinc-500 leading-tight">{stat.label}</div>
-              </div>
-            ))}
+          {/* Stats - Elegant text-only inline format */}
+          <div className="mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-x-4 sm:gap-x-6 lg:gap-x-8 gap-y-2 text-sm sm:text-base text-zinc-500 dark:text-zinc-400">
+            <span>
+              <span className="font-semibold text-zinc-800 dark:text-white">{guides.length}+</span>{" "}
+              Guides
+            </span>
+            <span className="text-zinc-300 dark:text-zinc-600">•</span>
+            <span>
+              <span className="font-semibold text-zinc-800 dark:text-white">{places.length}+</span>{" "}
+              Places
+            </span>
+            <span className="text-zinc-300 dark:text-zinc-600">•</span>
+            <span>
+              <span className="font-semibold text-zinc-800 dark:text-white">{faqs.length}+</span>{" "}
+              FAQs
+            </span>
+            <span className="text-zinc-300 dark:text-zinc-600 hidden sm:inline">•</span>
+            <span>
+              <span className="font-semibold text-zinc-800 dark:text-white">100%</span> Free
+            </span>
           </div>
 
           {/* Creator credit */}
@@ -339,16 +454,17 @@ export default async function Home() {
       </section>
 
       {/* Community Mission Section */}
-      <section className="relative overflow-hidden border-b border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-zinc-950 py-12 sm:py-20">
-        {/* Gradient orbs */}
-        <div className="absolute -left-32 top-1/4 h-[400px] w-[400px] rounded-full bg-gradient-to-br from-red-400/15 to-red-500/10 dark:from-red-600/10 dark:to-red-500/5 blur-[100px]" />
-        <div className="absolute -right-32 bottom-1/4 h-[400px] w-[400px] rounded-full bg-gradient-to-br from-green-400/15 to-emerald-500/10 dark:from-green-600/10 dark:to-emerald-500/5 blur-[100px]" />
+      <section className="relative overflow-hidden border-b border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-zinc-950 py-10 sm:py-16 lg:py-20">
+        {/* Gradient orbs - smaller on mobile */}
+        <div className="absolute -left-16 sm:-left-32 top-1/4 h-[200px] w-[200px] sm:h-[400px] sm:w-[400px] rounded-full bg-gradient-to-br from-red-400/15 to-red-500/10 dark:from-red-600/10 dark:to-red-500/5 blur-[60px] sm:blur-[100px]" />
+        <div className="absolute -right-16 sm:-right-32 bottom-1/4 h-[200px] w-[200px] sm:h-[400px] sm:w-[400px] rounded-full bg-gradient-to-br from-green-400/15 to-emerald-500/10 dark:from-green-600/10 dark:to-emerald-500/5 blur-[60px] sm:blur-[100px]" />
 
-        <div className="relative mx-auto max-w-7xl px-3 sm:px-6 lg:px-8">
-          <div className="grid items-center gap-8 sm:gap-10 lg:grid-cols-2">
-            {/* Left - Visual */}
-            <div className="relative">
-              <div className="relative aspect-square max-w-md overflow-hidden rounded-2xl">
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          {/* Reversed order on mobile - content first */}
+          <div className="grid items-center gap-8 lg:grid-cols-2">
+            {/* Visual - Hidden on mobile, shown on lg+ OR shown below content on mobile */}
+            <div className="relative order-2 lg:order-1 mx-auto max-w-xs sm:max-w-sm lg:max-w-md">
+              <div className="relative aspect-square overflow-hidden rounded-2xl">
                 {/* Main gradient background with Moroccan colors */}
                 <div className="absolute inset-0 bg-gradient-to-br from-red-600/20 via-amber-500/20 to-green-600/20" />
 
@@ -393,10 +509,10 @@ export default async function Home() {
                 </div>
               </div>
 
-              {/* Floating Elements */}
-              <div className="absolute -right-3 -top-3 rounded-xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900 p-3 shadow-lg dark:shadow-xl">
+              {/* Floating Elements - Hidden on mobile for cleaner look */}
+              <div className="hidden sm:block absolute -right-3 -top-3 rounded-xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900 p-3 shadow-lg dark:shadow-xl animate-[float_3s_ease-in-out_infinite] hover:scale-105 hover:shadow-xl hover:shadow-red-500/20 dark:hover:shadow-red-500/30 transition-all duration-300 cursor-pointer">
                 <div className="flex items-center gap-2">
-                  <div className="rounded-lg bg-red-100 dark:bg-red-500/20 p-1.5">
+                  <div className="rounded-lg bg-red-100 dark:bg-red-500/20 p-1.5 transition-transform duration-300 group-hover:scale-110">
                     <span className="text-xl">🇲🇦</span>
                   </div>
                   <div>
@@ -408,9 +524,12 @@ export default async function Home() {
                 </div>
               </div>
 
-              <div className="absolute -bottom-3 -left-3 rounded-xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900 p-3 shadow-lg dark:shadow-xl">
+              <div
+                className="hidden sm:block absolute -bottom-3 -left-3 rounded-xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900 p-3 shadow-lg dark:shadow-xl animate-[float_3s_ease-in-out_infinite] hover:scale-105 hover:shadow-xl hover:shadow-amber-500/20 dark:hover:shadow-amber-500/30 transition-all duration-300 cursor-pointer"
+                style={{ animationDelay: "1.5s" }}
+              >
                 <div className="flex items-center gap-2">
-                  <div className="rounded-lg bg-amber-100 dark:bg-amber-500/20 p-1.5">
+                  <div className="rounded-lg bg-amber-100 dark:bg-amber-500/20 p-1.5 transition-transform duration-300 group-hover:scale-110">
                     <span className="text-xl">🏰</span>
                   </div>
                   <div>
@@ -423,13 +542,13 @@ export default async function Home() {
               </div>
             </div>
 
-            {/* Right - Content */}
-            <div>
+            {/* Content - First on mobile */}
+            <div className="order-1 lg:order-2">
               <Badge className="mb-3 border-amber-500/30 bg-amber-100 dark:bg-amber-500/10 text-amber-700 dark:text-amber-400">
                 <Heart className="mr-1.5 h-3.5 w-3.5" />
                 {t("community.badge")}
               </Badge>
-              <h2 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-4xl">
+              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-zinc-900 dark:text-white">
                 {t("community.title")}
                 <span className="text-emerald-600 dark:text-emerald-400">
                   {t("community.titleHighlight")}
@@ -446,7 +565,7 @@ export default async function Home() {
                 {t("community.description3")}
               </p>
 
-              <div className="mt-6 flex flex-wrap gap-3">
+              <div className="mt-6 flex flex-col sm:flex-row gap-3">
                 <Button
                   asChild
                   className="text-white bg-emerald-600 shadow-lg hover:bg-emerald-500"
@@ -473,7 +592,7 @@ export default async function Home() {
       </section>
 
       {/* CTA Section - Contribute */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-red-50 via-white to-green-50 dark:from-zinc-950 dark:via-zinc-950 dark:to-zinc-950 py-12 sm:py-20">
+      <section className="relative overflow-hidden bg-gradient-to-br from-red-50 via-white to-green-50 dark:from-zinc-950 dark:via-zinc-950 dark:to-zinc-950 py-10 sm:py-16 lg:py-20">
         {/* Animated Gradient Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-red-100/40 via-transparent to-green-100/40 dark:from-red-950/30 dark:via-zinc-950 dark:to-green-950/30" />
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-200/20 dark:from-amber-500/10 via-transparent to-transparent" />
@@ -484,7 +603,7 @@ export default async function Home() {
             {t("cta.badge")}
           </Badge>
 
-          <h2 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-4xl">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-zinc-900 dark:text-white">
             {t("cta.title")}
             <span className="block bg-gradient-to-r from-red-600 via-amber-500 to-green-600 dark:from-red-500 dark:via-amber-400 dark:to-green-500 bg-clip-text text-transparent">
               {t("cta.titleHighlight")}
@@ -495,10 +614,10 @@ export default async function Home() {
             {t("cta.description")}
           </p>
 
-          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <div className="mt-6 sm:mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Button
               asChild
-              className="text-white bg-emerald-600 px-6 shadow-xl shadow-emerald-500/25 hover:bg-emerald-500"
+              className="w-full sm:w-auto text-white bg-emerald-600 px-6 shadow-xl shadow-emerald-500/25 hover:bg-emerald-500"
             >
               <Link
                 href="https://github.com/HamzaChx/Atlas-Munich"
@@ -512,7 +631,7 @@ export default async function Home() {
             <Button
               asChild
               variant="outline"
-              className="border-2 border-zinc-200 dark:border-zinc-700 px-6 text-zinc-900 dark:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800"
+              className="w-full sm:w-auto border-2 border-zinc-200 dark:border-zinc-700 px-6 text-zinc-900 dark:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800"
             >
               <Link href="/about">
                 {t("cta.learnHow")}
@@ -522,7 +641,7 @@ export default async function Home() {
           </div>
 
           {/* Trust Badges */}
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-6 text-sm text-zinc-500">
+          <div className="mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-sm text-zinc-500">
             {[
               { icon: CheckCircle2, text: t("cta.freeForever") },
               { icon: Users, text: t("cta.communityDriven") },

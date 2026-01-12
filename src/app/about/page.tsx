@@ -92,12 +92,12 @@ export default async function AboutPage() {
     <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950">
       {/* Hero Section */}
       <section className="relative overflow-hidden border-b border-zinc-200 dark:border-white/10 bg-gradient-to-br from-red-50 via-white to-green-50 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950">
-        {/* Gradient Orbs - Moroccan Colors */}
-        <div className="absolute -left-32 top-0 z-[5] h-[500px] w-[500px] rounded-full bg-gradient-to-br from-red-400/40 to-red-300/30 dark:from-red-600/25 dark:to-red-500/15 blur-[120px]" />
-        <div className="absolute -right-32 bottom-0 z-[5] h-[500px] w-[500px] rounded-full bg-gradient-to-br from-green-400/40 to-emerald-300/30 dark:from-green-600/25 dark:to-emerald-500/15 blur-[120px]" />
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[5] h-[400px] w-[400px] rounded-full bg-gradient-to-br from-amber-200/20 to-white/30 dark:from-amber-500/10 dark:to-white/5 blur-[100px]" />
+        {/* Gradient Orbs - Moroccan Colors - smaller on mobile */}
+        <div className="absolute -left-16 sm:-left-32 top-0 z-[5] h-[250px] w-[250px] sm:h-[500px] sm:w-[500px] rounded-full bg-gradient-to-br from-red-400/40 to-red-300/30 dark:from-red-600/25 dark:to-red-500/15 blur-[80px] sm:blur-[120px]" />
+        <div className="absolute -right-16 sm:-right-32 bottom-0 z-[5] h-[250px] w-[250px] sm:h-[500px] sm:w-[500px] rounded-full bg-gradient-to-br from-green-400/40 to-emerald-300/30 dark:from-green-600/25 dark:to-emerald-500/15 blur-[80px] sm:blur-[120px]" />
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-[5] h-[200px] w-[200px] sm:h-[400px] sm:w-[400px] rounded-full bg-gradient-to-br from-amber-200/20 to-white/30 dark:from-amber-500/10 dark:to-white/5 blur-[60px] sm:blur-[100px]" />
 
-        <div className="relative z-10 mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
+        <div className="relative z-10 mx-auto max-w-7xl px-4 py-12 sm:py-16 lg:py-20 sm:px-6 lg:px-8">
           <div className="grid items-center gap-10 lg:grid-cols-2">
             {/* Left: story-driven intro */}
             <div className="text-center lg:text-left">
@@ -141,7 +141,7 @@ export default async function AboutPage() {
 
             {/* Right: manifesto card (distinct from homepage stats) */}
             <div className="mx-auto w-full max-w-xl mt-8">
-              <div className="relative overflow-hidden rounded-3xl border-2 border-emerald-200/80 dark:border-white/10 bg-gradient-to-br from-white via-emerald-50/30 to-teal-50/40 dark:from-white/5 dark:via-white/5 dark:to-white/5 p-8 shadow-2xl shadow-emerald-900/10 dark:shadow-none ring-1 ring-emerald-900/5 dark:ring-0 backdrop-blur-sm">
+              <div className="relative overflow-hidden rounded-3xl border-2 border-emerald-200/80 dark:border-white/10 bg-gradient-to-br from-white via-emerald-50/30 to-teal-50/40 dark:from-white/5 dark:via-white/5 dark:to-white/5 p-5 sm:p-8 shadow-2xl shadow-emerald-900/10 dark:shadow-none ring-1 ring-emerald-900/5 dark:ring-0 backdrop-blur-sm">
                 <div className="absolute -right-20 -top-20 h-64 w-64 rounded-full bg-gradient-to-br from-emerald-400/20 to-teal-400/20 dark:from-emerald-500/10 dark:to-teal-500/10 blur-3xl" />
                 <div className="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-gradient-to-br from-teal-400/15 to-cyan-400/15 dark:from-amber-500/10 dark:to-amber-500/10 blur-3xl" />
 
@@ -188,7 +188,7 @@ export default async function AboutPage() {
       {/* Main Content */}
       <div className="relative mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         {/* Our Story */}
-        <section className="mb-20">
+        <section className="mb-10 sm:mb-16 lg:mb-20">
           <div className="mx-auto max-w-4xl">
             <div className="rounded-3xl border border-zinc-200/70 dark:border-white/10 bg-white dark:bg-zinc-900/30 p-8 sm:p-10 shadow-xl shadow-zinc-900/5 dark:shadow-none">
               <div className="mx-auto max-w-3xl text-center">
@@ -217,7 +217,7 @@ export default async function AboutPage() {
         </section>
 
         {/* Values */}
-        <section className="mb-20">
+        <section className="mb-10 sm:mb-16 lg:mb-20">
           <div className="mb-10 text-center">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-rose-200 dark:border-rose-500/30 bg-rose-50 dark:bg-rose-500/10 px-4 py-2 shadow-sm shadow-rose-900/5 dark:shadow-none">
               <span className="text-sm">💡</span>
@@ -251,7 +251,7 @@ export default async function AboutPage() {
         </section>
 
         {/* How to Contribute */}
-        <section id="contribute" className="mb-20 scroll-mt-24">
+        <section id="contribute" className="mb-10 sm:mb-16 lg:mb-20 scroll-mt-24">
           <div className="mb-10 text-center">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-amber-200 dark:border-amber-500/30 bg-amber-50 dark:bg-amber-500/10 px-4 py-2 shadow-sm shadow-amber-900/5 dark:shadow-none">
               <span className="text-sm">🤝</span>
@@ -304,7 +304,7 @@ export default async function AboutPage() {
         </section>
 
         {/* Contributors */}
-        <section className="mb-20">
+        <section className="mb-10 sm:mb-16 lg:mb-20">
           <div className="mb-10 text-center">
             <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-purple-200 dark:border-purple-500/30 bg-purple-50 dark:bg-purple-500/10 px-4 py-2 shadow-sm shadow-purple-900/5 dark:shadow-none">
               <span className="text-sm">👥</span>

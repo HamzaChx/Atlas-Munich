@@ -29,11 +29,11 @@ export default async function GuidesPage() {
     <div className="min-h-screen bg-white dark:bg-zinc-950">
       {/* Hero Section - Matching Home Page Style */}
       <section className="relative overflow-hidden border-b border-zinc-200 dark:border-white/10 bg-gradient-to-br from-emerald-50 via-white to-teal-50 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950">
-        {/* Gradient Orbs */}
-        <div className="absolute -left-32 top-1/4 z-[5] h-[400px] w-[400px] rounded-full bg-gradient-to-br from-emerald-200/50 to-teal-200/50 dark:from-emerald-600/20 dark:to-teal-600/20 blur-[100px]" />
-        <div className="absolute -right-32 bottom-0 z-[5] h-[400px] w-[400px] rounded-full bg-gradient-to-br from-cyan-200/40 to-blue-200/40 dark:from-cyan-500/15 dark:to-blue-600/15 blur-[100px]" />
+        {/* Gradient Orbs - smaller on mobile */}
+        <div className="absolute -left-16 sm:-left-32 top-1/4 z-[5] h-[200px] w-[200px] sm:h-[400px] sm:w-[400px] rounded-full bg-gradient-to-br from-emerald-200/50 to-teal-200/50 dark:from-emerald-600/20 dark:to-teal-600/20 blur-[60px] sm:blur-[100px]" />
+        <div className="absolute -right-16 sm:-right-32 bottom-0 z-[5] h-[200px] w-[200px] sm:h-[400px] sm:w-[400px] rounded-full bg-gradient-to-br from-cyan-200/40 to-blue-200/40 dark:from-cyan-500/15 dark:to-blue-600/15 blur-[60px] sm:blur-[100px]" />
 
-        <div className="relative z-10 mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+        <div className="relative z-10 mx-auto max-w-7xl px-4 py-12 sm:py-16 lg:py-24 sm:px-6 lg:px-8">
           <div className="text-center">
             {/* Badge */}
             <HeroBadge icon={BookOpen} text={`${guides.length}+ ${t("badge")}`} color="emerald" />
@@ -84,7 +84,7 @@ export default async function GuidesPage() {
       </div>
 
       {/* Categories Section */}
-      <section className="relative border-b border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-950 py-16">
+      <section className="relative border-b border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-950 py-10 sm:py-16">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
           <div className="mb-10 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
@@ -137,7 +137,7 @@ export default async function GuidesPage() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-16">
+      <section className="py-10 sm:py-16">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <div className="rounded-2xl border border-zinc-200 dark:border-white/10 bg-gradient-to-br from-zinc-50 via-white to-zinc-50 dark:from-zinc-900 dark:via-zinc-900/80 dark:to-zinc-900 p-8 text-center shadow-sm dark:shadow-none backdrop-blur-sm">
             <div className="mb-5 inline-flex rounded-full bg-gradient-to-br from-amber-100 to-orange-100 dark:from-amber-500/20 dark:to-orange-500/20 p-3">

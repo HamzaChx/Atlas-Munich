@@ -184,10 +184,10 @@ export default async function CategoryPage({ params }: PageProps) {
         {/* Animated Gradient Orbs - Rule 44: Micro-interactions */}
         <div className="absolute inset-0 opacity-30 dark:opacity-20">
           <div
-            className={`absolute -left-[20%] top-0 h-[520px] w-[520px] animate-pulse rounded-full bg-gradient-to-br ${theme.from}/30 ${theme.to}/30 blur-[120px]`}
+            className={`absolute -left-[15%] sm:-left-[20%] top-0 h-[280px] w-[280px] sm:h-[520px] sm:w-[520px] animate-pulse rounded-full bg-gradient-to-br ${theme.from}/30 ${theme.to}/30 blur-[80px] sm:blur-[120px]`}
           />
           <div
-            className={`absolute -right-[10%] bottom-0 h-[420px] w-[420px] animate-pulse rounded-full bg-gradient-to-br ${theme.to}/25 ${theme.from}/25 blur-[110px]`}
+            className={`absolute -right-[8%] sm:-right-[10%] bottom-0 h-[220px] w-[220px] sm:h-[420px] sm:w-[420px] animate-pulse rounded-full bg-gradient-to-br ${theme.to}/25 ${theme.from}/25 blur-[70px] sm:blur-[110px]`}
             style={{ animationDelay: "1s" }}
           />
         </div>

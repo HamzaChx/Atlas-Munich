@@ -72,11 +72,11 @@ export default function FAQPage() {
     <div className="min-h-screen bg-white dark:bg-zinc-950">
       {/* Hero Section */}
       <section className="relative overflow-hidden border-b border-zinc-200 dark:border-white/10 bg-gradient-to-br from-blue-50 via-white to-indigo-50 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950">
-        {/* Gradient Orbs */}
-        <div className="absolute -left-32 top-0 z-[5] h-[400px] w-[400px] rounded-full bg-gradient-to-br from-blue-200/50 to-indigo-200/50 dark:from-blue-600/20 dark:to-indigo-600/20 blur-[100px]" />
-        <div className="absolute -right-32 bottom-0 z-[5] h-[400px] w-[400px] rounded-full bg-gradient-to-br from-emerald-200/40 to-teal-200/40 dark:from-emerald-500/15 dark:to-teal-500/15 blur-[100px]" />
+        {/* Gradient Orbs - smaller on mobile */}
+        <div className="absolute -left-16 sm:-left-32 top-0 z-[5] h-[200px] w-[200px] sm:h-[400px] sm:w-[400px] rounded-full bg-gradient-to-br from-blue-200/50 to-indigo-200/50 dark:from-blue-600/20 dark:to-indigo-600/20 blur-[60px] sm:blur-[100px]" />
+        <div className="absolute -right-16 sm:-right-32 bottom-0 z-[5] h-[200px] w-[200px] sm:h-[400px] sm:w-[400px] rounded-full bg-gradient-to-br from-emerald-200/40 to-teal-200/40 dark:from-emerald-500/15 dark:to-teal-500/15 blur-[60px] sm:blur-[100px]" />
 
-        <div className="relative z-10 mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+        <div className="relative z-10 mx-auto max-w-7xl px-4 py-12 sm:py-16 lg:py-24 sm:px-6 lg:px-8">
           <div className="text-center">
             {/* Badge */}
             <HeroBadge icon={HelpCircle} text={`${allFaqs.length}+ ${t("badge")}`} color="blue" />
@@ -104,30 +104,32 @@ export default function FAQPage() {
               />
             </div>
 
-            {/* Category filters */}
-            <div className="mx-auto mt-10 flex max-w-4xl flex-wrap items-center justify-center gap-3">
-              {categoryFilters.map((filter) => (
-                <button
-                  key={filter.key || "all"}
-                  onClick={() => setSelectedCategory(filter.key)}
-                  className={cn(
-                    "flex items-center gap-2 rounded-full px-5 py-2.5 text-base font-medium transition-all",
-                    selectedCategory === filter.key
-                      ? "bg-gradient-to-r from-blue-500 to-indigo-500 text-white shadow-lg shadow-blue-500/25"
-                      : "border border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 text-zinc-600 dark:text-zinc-400 shadow-sm dark:shadow-none hover:border-zinc-300 dark:hover:border-white/20 hover:bg-zinc-50 dark:hover:bg-white/10 hover:text-zinc-900 dark:hover:text-white"
-                  )}
-                >
-                  <span>{filter.icon}</span>
-                  {filter.label}
-                </button>
-              ))}
+            {/* Category filters - horizontal scroll on mobile */}
+            <div className="mt-8 sm:mt-10 max-w-4xl overflow-x-auto pb-2 -mx-4 px-4 sm:mx-auto sm:px-0 sm:overflow-visible">
+              <div className="flex items-center gap-2 sm:gap-3 sm:flex-wrap sm:justify-center min-w-max sm:min-w-0">
+                {categoryFilters.map((filter) => (
+                  <button
+                    key={filter.key || "all"}
+                    onClick={() => setSelectedCategory(filter.key)}
+                    className={cn(
+                      "flex items-center gap-2 rounded-full px-5 py-2.5 text-base font-medium transition-all",
+                      selectedCategory === filter.key
+                        ? "bg-gradient-to-r from-blue-500 to-indigo-500 text-white shadow-lg shadow-blue-500/25"
+                        : "border border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 text-zinc-600 dark:text-zinc-400 shadow-sm dark:shadow-none hover:border-zinc-300 dark:hover:border-white/20 hover:bg-zinc-50 dark:hover:bg-white/10 hover:text-zinc-900 dark:hover:text-white"
+                    )}
+                  >
+                    <span>{filter.icon}</span>
+                    {filter.label}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </section>
 
       {/* Content */}
-      <div className="relative mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8">
+      <div className="relative mx-auto max-w-4xl px-4 py-10 sm:py-16 sm:px-6 lg:px-8">
         {filteredFaqs.length > 0 ? (
           <>
             {/* Filtered/Searched view */}
@@ -194,7 +196,7 @@ export default function FAQPage() {
         )}
 
         {/* CTA */}
-        <div className="mt-16 rounded-2xl border border-zinc-200 dark:border-white/10 bg-gradient-to-br from-zinc-50 via-white to-zinc-50 dark:from-zinc-900 dark:via-zinc-900/80 dark:to-zinc-900 p-8 text-center shadow-sm dark:shadow-none backdrop-blur-sm">
+        <div className="mt-10 sm:mt-16 rounded-2xl border border-zinc-200 dark:border-white/10 bg-gradient-to-br from-zinc-50 via-white to-zinc-50 dark:from-zinc-900 dark:via-zinc-900/80 dark:to-zinc-900 p-5 sm:p-8 text-center shadow-sm dark:shadow-none backdrop-blur-sm">
           <div className="mb-5 inline-flex rounded-full bg-gradient-to-br from-emerald-100 to-teal-100 dark:from-emerald-500/20 dark:to-teal-500/20 p-3">
             <Sparkles className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
           </div>

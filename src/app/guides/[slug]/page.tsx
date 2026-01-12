@@ -173,13 +173,13 @@ export default async function GuidePage({ params }: PageProps) {
           className={`absolute inset-0 bg-gradient-to-br ${gradient.from}/5 via-transparent ${gradient.to}/5 dark:${gradient.from}/10 dark:via-transparent dark:${gradient.to}/10`}
         />
 
-        {/* Animated Orbs - Rule 35: Animations 150-300ms */}
+        {/* Animated Orbs - Rule 35: Animations 150-300ms - smaller on mobile */}
         <div className="absolute inset-0 opacity-40 dark:opacity-30">
           <div
-            className={`absolute -left-[15%] top-0 h-[420px] w-[420px] animate-pulse rounded-full bg-gradient-to-br ${gradient.from}/40 ${gradient.to}/40 blur-[110px]`}
+            className={`absolute -left-[12%] sm:-left-[15%] top-0 h-[220px] w-[220px] sm:h-[420px] sm:w-[420px] animate-pulse rounded-full bg-gradient-to-br ${gradient.from}/40 ${gradient.to}/40 blur-[70px] sm:blur-[110px]`}
           />
           <div
-            className={`absolute -right-[10%] bottom-0 h-[360px] w-[360px] animate-pulse rounded-full bg-gradient-to-br ${gradient.to}/30 ${gradient.from}/30 blur-[90px]`}
+            className={`absolute -right-[8%] sm:-right-[10%] bottom-0 h-[180px] w-[180px] sm:h-[360px] sm:w-[360px] animate-pulse rounded-full bg-gradient-to-br ${gradient.to}/30 ${gradient.from}/30 blur-[60px] sm:blur-[90px]`}
             style={{ animationDelay: "1s" }}
           />
         </div>

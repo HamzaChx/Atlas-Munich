@@ -226,6 +226,17 @@
     }
   }
 
+  /* Floating animation for cards */
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-8px);
+    }
+  }
+
   /* Premium gradient text */
   .gradient-text {
     @apply bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-400 dark:to-teal-400 bg-clip-text text-transparent;

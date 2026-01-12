@@ -510,9 +510,9 @@ export default async function Home() {
               </div>
 
               {/* Floating Elements - Hidden on mobile for cleaner look */}
-              <div className="hidden sm:block absolute -right-3 -top-3 rounded-xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900 p-3 shadow-lg dark:shadow-xl">
+              <div className="hidden sm:block absolute -right-3 -top-3 rounded-xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900 p-3 shadow-lg dark:shadow-xl animate-[float_3s_ease-in-out_infinite] hover:scale-105 hover:shadow-xl hover:shadow-red-500/20 dark:hover:shadow-red-500/30 transition-all duration-300 cursor-pointer">
                 <div className="flex items-center gap-2">
-                  <div className="rounded-lg bg-red-100 dark:bg-red-500/20 p-1.5">
+                  <div className="rounded-lg bg-red-100 dark:bg-red-500/20 p-1.5 transition-transform duration-300 group-hover:scale-110">
                     <span className="text-xl">🇲🇦</span>
                   </div>
                   <div>
@@ -524,9 +524,12 @@ export default async function Home() {
                 </div>
               </div>
 
-              <div className="hidden sm:block absolute -bottom-3 -left-3 rounded-xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900 p-3 shadow-lg dark:shadow-xl">
+              <div
+                className="hidden sm:block absolute -bottom-3 -left-3 rounded-xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900 p-3 shadow-lg dark:shadow-xl animate-[float_3s_ease-in-out_infinite] hover:scale-105 hover:shadow-xl hover:shadow-amber-500/20 dark:hover:shadow-amber-500/30 transition-all duration-300 cursor-pointer"
+                style={{ animationDelay: "1.5s" }}
+              >
                 <div className="flex items-center gap-2">
-                  <div className="rounded-lg bg-amber-100 dark:bg-amber-500/20 p-1.5">
+                  <div className="rounded-lg bg-amber-100 dark:bg-amber-500/20 p-1.5 transition-transform duration-300 group-hover:scale-110">
                     <span className="text-xl">🏰</span>
                   </div>
                   <div>

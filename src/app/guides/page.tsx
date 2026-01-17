@@ -5,7 +5,7 @@ import { SearchBar, CategoryCard, HeroBadge, Callout } from "@/components/shared
 import { categories } from "@/data/categories";
 import { guides } from "@/data/guides";
 import { getTranslations } from "next-intl/server";
-import { BookOpen, Compass, Sparkles, ArrowRight, Filter } from "lucide-react";
+import { BookOpen, Compass, Sparkles, ArrowRight, Filter, CheckCircle2 } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "All Guides",
@@ -18,57 +18,61 @@ export default async function GuidesPage() {
 
   const guideCountByCategory = (key: string) => guides.filter((g) => g.categoryKey === key).length;
 
-  // Stats
-  const stats = [
-    { label: t("stats.categories"), value: categories.length },
-    { label: t("stats.totalGuides"), value: guides.length },
-    { label: t("stats.communityVerified"), value: "100%" },
-  ];
-
   return (
     <div className="min-h-screen bg-white dark:bg-zinc-950">
-      {/* Hero Section - Matching Home Page Style */}
-      <section className="relative overflow-hidden border-b border-zinc-200 dark:border-white/10 bg-gradient-to-br from-emerald-50 via-white to-teal-50 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950">
-        {/* Gradient Orbs - smaller on mobile */}
-        <div className="absolute -left-16 sm:-left-32 top-1/4 z-[5] h-[200px] w-[200px] sm:h-[400px] sm:w-[400px] rounded-full bg-gradient-to-br from-emerald-200/50 to-teal-200/50 dark:from-emerald-600/20 dark:to-teal-600/20 blur-[60px] sm:blur-[100px]" />
-        <div className="absolute -right-16 sm:-right-32 bottom-0 z-[5] h-[200px] w-[200px] sm:h-[400px] sm:w-[400px] rounded-full bg-gradient-to-br from-cyan-200/40 to-blue-200/40 dark:from-cyan-500/15 dark:to-blue-600/15 blur-[60px] sm:blur-[100px]" />
+      {/* Hero Section - Mobile-First Optimized */}
+      <section className="relative overflow-hidden border-b border-zinc-200 dark:border-white/10 bg-gradient-to-br from-emerald-50/80 via-white to-teal-50/80 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950">
+        {/* Gradient Orbs - hidden on mobile for cleaner look */}
+        <div className="hidden sm:block absolute -left-32 top-1/4 z-[5] h-[400px] w-[400px] rounded-full bg-gradient-to-br from-emerald-200/50 to-teal-200/50 dark:from-emerald-600/20 dark:to-teal-600/20 blur-[100px]" />
+        <div className="hidden sm:block absolute -right-32 bottom-0 z-[5] h-[400px] w-[400px] rounded-full bg-gradient-to-br from-cyan-200/40 to-blue-200/40 dark:from-cyan-500/15 dark:to-blue-600/15 blur-[100px]" />
 
-        <div className="relative z-10 mx-auto max-w-7xl px-4 py-12 sm:py-16 lg:py-24 sm:px-6 lg:px-8">
+        <div className="relative z-10 mx-auto max-w-7xl px-4 py-8 sm:py-12 lg:py-20 sm:px-6 lg:px-8">
           <div className="text-center">
-            {/* Badge */}
+            {/* Badge - smaller on mobile */}
             <HeroBadge icon={BookOpen} text={`${guides.length}+ ${t("badge")}`} color="emerald" />
 
-            {/* Title */}
-            <h1 className="mb-5 sm:mb-6 text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight text-zinc-900 dark:text-white leading-tight">
+            {/* Title - scaled for mobile */}
+            <h1 className="mb-3 sm:mb-5 text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-zinc-900 dark:text-white leading-tight">
               {t("title")}
-              <span className="mt-2 block bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 dark:from-emerald-400 dark:via-teal-400 dark:to-cyan-400 bg-clip-text text-transparent">
+              <span className="mt-1 sm:mt-2 block bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 dark:from-emerald-400 dark:via-teal-400 dark:to-cyan-400 bg-clip-text text-transparent">
                 {t("titleHighlight")}
               </span>
             </h1>
 
-            {/* Subtitle */}
-            <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
+            {/* Subtitle - 2 lines max on mobile */}
+            <p className="mx-auto max-w-xl text-sm sm:text-base lg:text-lg leading-relaxed text-zinc-600 dark:text-zinc-400 line-clamp-2 sm:line-clamp-none">
               {t("subtitle")}
-              <span className="font-semibold text-amber-600 dark:text-amber-400">
+              <span className="hidden sm:inline font-semibold text-amber-600 dark:text-amber-400">
+                {" "}
                 {t("subtitleHighlight")}
               </span>
             </p>
 
-            {/* Search */}
-            <div className="mx-auto mt-10 max-w-2xl">
+            {/* Search - full width on mobile */}
+            <div className="mx-auto mt-6 sm:mt-8 max-w-xl">
               <SearchBar placeholder={t("searchPlaceholder")} size="lg" showButton={false} />
             </div>
 
-            {/* Quick Stats */}
-            <div className="mt-10 flex flex-wrap items-center justify-center gap-8 text-base">
-              {stats.map((stat) => (
-                <div key={stat.label} className="flex items-center gap-2">
-                  <span className="text-xl font-bold text-emerald-600 dark:text-emerald-400">
-                    {stat.value}
-                  </span>
-                  <span className="text-zinc-500">{stat.label}</span>
-                </div>
-              ))}
+            {/* Stats - inline text format on mobile */}
+            <div className="mt-6 sm:mt-8 flex flex-wrap items-center justify-center gap-2 sm:gap-6 text-sm sm:text-base">
+              <span className="inline-flex items-center gap-1.5 text-zinc-600 dark:text-zinc-400">
+                <span className="font-bold text-emerald-600 dark:text-emerald-400">
+                  {categories.length}
+                </span>
+                <span>{t("stats.categories")}</span>
+              </span>
+              <span className="text-zinc-300 dark:text-zinc-600">•</span>
+              <span className="inline-flex items-center gap-1.5 text-zinc-600 dark:text-zinc-400">
+                <span className="font-bold text-emerald-600 dark:text-emerald-400">
+                  {guides.length}
+                </span>
+                <span>{t("stats.totalGuides")}</span>
+              </span>
+              <span className="text-zinc-300 dark:text-zinc-600">•</span>
+              <span className="inline-flex items-center gap-1.5 text-zinc-600 dark:text-zinc-400">
+                <CheckCircle2 className="h-4 w-4 text-emerald-500" />
+                <span>{t("stats.communityVerified")}</span>
+              </span>
             </div>
           </div>
         </div>
@@ -111,8 +115,29 @@ export default async function GuidesPage() {
             </Button>
           </div>
 
-          {/* Categories Grid */}
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
+          {/* Categories - Horizontal scroll on mobile, grid on desktop */}
+          <div className="lg:hidden overflow-x-auto -mx-4 px-4 pb-2">
+            <div className="flex gap-3 min-w-max">
+              {categories.map((category) => (
+                <Link
+                  key={category.key}
+                  href={`/category/${category.key}`}
+                  className="group flex items-center gap-2.5 rounded-full border border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900/80 px-4 py-2.5 shadow-sm transition-all hover:shadow-md hover:border-emerald-300 dark:hover:border-emerald-500/30"
+                >
+                  <span className="text-lg">{category.icon}</span>
+                  <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 whitespace-nowrap">
+                    {category.title}
+                  </span>
+                  <span className="rounded-full bg-zinc-100 dark:bg-zinc-800 px-2 py-0.5 text-xs font-medium text-zinc-600 dark:text-zinc-400">
+                    {guideCountByCategory(category.key) || "New"}
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          {/* Desktop Grid */}
+          <div className="hidden lg:grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
             {categories.map((category, index) => (
               <CategoryCard
                 key={category.key}

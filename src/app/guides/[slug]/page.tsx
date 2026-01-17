@@ -6,7 +6,6 @@ import remarkGfm from "remark-gfm";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
-import { Callout } from "@/components/shared";
 import {
   Breadcrumbs,
   TableOfContents,
@@ -25,19 +24,14 @@ import {
   FileText,
   Video,
   Link as LinkIcon,
-  ChevronRight,
   BookOpen,
-  Sparkles,
   Users,
   Calendar,
   ThumbsUp,
   MessageCircle,
   TrendingUp,
-  Star,
-  Eye,
   Award,
   Target,
-  Layers,
   Download,
 } from "lucide-react";
 import { fmtUpdated } from "@/lib/date";
@@ -124,9 +118,7 @@ export default async function GuidePage({ params }: PageProps) {
   const category = getCategoryByKey(guide.categoryKey);
   const relatedGuides = getRelatedGuides(guide);
   const CategoryIcon = category ? iconMap[category.icon] || Icons.Folder : Icons.Folder;
-  const firstSectionId = guide.sections[0]?.id;
   const resourceCount = guide.resources?.length ?? 0;
-  const faqCount = guide.faqs?.length ?? 0;
 
   // Rule 26: Neutral base + accent color
   const gradientMap: Record<string, { from: string; to: string; accent: string }> = {
@@ -166,233 +158,112 @@ export default async function GuidePage({ params }: PageProps) {
 
   return (
     <div className={`min-h-screen ${bgColor} transition-colors duration-300`}>
-      {/* Enhanced Hero Section - Rule 6: Visual hierarchy in 1 second */}
+      {/* Hero Section - Mobile-First Optimized (Rule 7) */}
       <section className="relative overflow-hidden border-b border-zinc-200/80 dark:border-white/5">
-        {/* Ambient Background - Rule 31: Subtle gradients */}
+        {/* Ambient Background - simplified on mobile */}
         <div
           className={`absolute inset-0 bg-gradient-to-br ${gradient.from}/5 via-transparent ${gradient.to}/5 dark:${gradient.from}/10 dark:via-transparent dark:${gradient.to}/10`}
         />
 
-        {/* Animated Orbs - Rule 35: Animations 150-300ms - smaller on mobile */}
-        <div className="absolute inset-0 opacity-40 dark:opacity-30">
+        {/* Animated Orbs - hidden on mobile for cleaner look */}
+        <div className="hidden sm:block absolute inset-0 opacity-40 dark:opacity-30">
           <div
-            className={`absolute -left-[12%] sm:-left-[15%] top-0 h-[220px] w-[220px] sm:h-[420px] sm:w-[420px] animate-pulse rounded-full bg-gradient-to-br ${gradient.from}/40 ${gradient.to}/40 blur-[70px] sm:blur-[110px]`}
+            className={`absolute -left-[15%] top-0 h-[420px] w-[420px] animate-pulse rounded-full bg-gradient-to-br ${gradient.from}/40 ${gradient.to}/40 blur-[110px]`}
           />
           <div
-            className={`absolute -right-[8%] sm:-right-[10%] bottom-0 h-[180px] w-[180px] sm:h-[360px] sm:w-[360px] animate-pulse rounded-full bg-gradient-to-br ${gradient.to}/30 ${gradient.from}/30 blur-[60px] sm:blur-[90px]`}
+            className={`absolute -right-[10%] bottom-0 h-[360px] w-[360px] animate-pulse rounded-full bg-gradient-to-br ${gradient.to}/30 ${gradient.from}/30 blur-[90px]`}
             style={{ animationDelay: "1s" }}
           />
         </div>
 
-        {/* Pattern removed: simple clean hero background */}
-
-        <div className="relative z-10 mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8 lg:py-16">
-          {/* Breadcrumbs - Rule 15: Left alignment */}
-          <div className="mb-8">
+        <div className="relative z-10 mx-auto max-w-7xl px-4 py-6 sm:py-10 lg:py-14 sm:px-6 lg:px-8">
+          {/* Breadcrumbs - compact on mobile */}
+          <div className="mb-4 sm:mb-6">
             <Breadcrumbs items={breadcrumbs} />
           </div>
 
-          <div className="grid gap-10 lg:grid-cols-[1.3fr_0.7fr] lg:items-start">
-            {/* Left Column - Main Content */}
-            <div>
-              {/* Category Badge & Tags - Rule 16: Group related elements */}
-              <div className="mb-6 flex flex-wrap items-center gap-3">
-                <Link
-                  href={`/category/${guide.categoryKey}`}
-                  className="group inline-flex items-center gap-2.5 rounded-full border-2 border-zinc-200/80 dark:border-white/10 bg-white/90 dark:bg-zinc-900/90 backdrop-blur-sm px-4 py-2.5 shadow-sm transition-all duration-200 hover:border-emerald-300 dark:hover:border-emerald-500/40 hover:shadow-md hover:scale-105"
-                >
-                  <div
-                    className={`rounded-lg bg-gradient-to-br ${gradient.from} ${gradient.to} p-2 text-white`}
-                  >
-                    <CategoryIcon className="h-4 w-4" />
-                  </div>
-                  <span className="text-sm font-bold text-zinc-700 dark:text-zinc-300 capitalize group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
-                    {localizedCategoryTitle}
+          {/* Category + Tags - inline on mobile */}
+          <div className="mb-3 sm:mb-5 flex flex-wrap items-center gap-2">
+            <Link
+              href={`/category/${guide.categoryKey}`}
+              className="inline-flex items-center gap-1.5 rounded-full border border-zinc-200 dark:border-white/10 bg-white/90 dark:bg-zinc-900/90 px-3 py-1.5 text-xs sm:text-sm font-medium text-zinc-700 dark:text-zinc-300 transition-colors hover:border-emerald-300 dark:hover:border-emerald-500/40"
+            >
+              <span
+                className={`rounded-md bg-gradient-to-br ${gradient.from} ${gradient.to} p-1 text-white`}
+              >
+                <CategoryIcon className="h-3 w-3" />
+              </span>
+              <span className="capitalize">{localizedCategoryTitle}</span>
+            </Link>
+
+            {guide.tags.slice(0, 2).map((tag) => (
+              <Badge key={tag} className={`${tagColors[tag]} border text-xs px-2 py-0.5`}>
+                {tag}
+              </Badge>
+            ))}
+          </div>
+
+          {/* Title - scaled for mobile (Rule 6: hierarchy in 1 second) */}
+          <h1 className="text-xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-zinc-800 dark:text-white leading-tight mb-3 sm:mb-4">
+            {guide.title}
+          </h1>
+
+          {/* Summary - concise on mobile */}
+          <p className="text-sm sm:text-base leading-relaxed text-zinc-600 dark:text-zinc-400 line-clamp-2 sm:line-clamp-none max-w-2xl">
+            {guide.summary}
+          </p>
+
+          {/* Meta Stats - Horizontal scroll chips on mobile */}
+          <div className="mt-4 sm:mt-6 -mx-4 px-4 sm:mx-0 sm:px-0 overflow-x-auto">
+            <div className="flex items-center gap-2 sm:gap-3 min-w-max">
+              <div className="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-zinc-900/80 border border-zinc-200 dark:border-white/10 px-3 py-1.5 text-xs sm:text-sm">
+                <Clock className="h-3.5 w-3.5 text-blue-500" />
+                <span className="font-medium text-zinc-700 dark:text-zinc-300">
+                  {guide.readingTime} min
+                </span>
+              </div>
+              <div className="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-zinc-900/80 border border-zinc-200 dark:border-white/10 px-3 py-1.5 text-xs sm:text-sm">
+                <Calendar className="h-3.5 w-3.5 text-amber-500" />
+                <span className="font-medium text-zinc-700 dark:text-zinc-300">
+                  {fmtUpdated(guide.lastUpdated)}
+                </span>
+              </div>
+              <div className="inline-flex items-center gap-1.5 rounded-full bg-emerald-50 dark:bg-emerald-500/10 border border-emerald-200 dark:border-emerald-500/20 px-3 py-1.5 text-xs sm:text-sm">
+                <Award className="h-3.5 w-3.5 text-emerald-600 dark:text-emerald-400" />
+                <span className="font-medium text-emerald-700 dark:text-emerald-300">Verified</span>
+              </div>
+              {resourceCount > 0 && (
+                <div className="inline-flex items-center gap-1.5 rounded-full bg-white dark:bg-zinc-900/80 border border-zinc-200 dark:border-white/10 px-3 py-1.5 text-xs sm:text-sm">
+                  <LinkIcon className="h-3.5 w-3.5 text-purple-500" />
+                  <span className="font-medium text-zinc-700 dark:text-zinc-300">
+                    {resourceCount} links
                   </span>
-                  <ChevronRight className="h-4 w-4 text-zinc-400 group-hover:text-emerald-500 transition-transform group-hover:translate-x-0.5" />
-                </Link>
-
-                {guide.tags.slice(0, 3).map((tag) => (
-                  <Badge key={tag} className={`${tagColors[tag]} border font-semibold px-3 py-1`}>
-                    {tag}
-                  </Badge>
-                ))}
-              </div>
-
-              {/* Title - Consistent with category/detail headings */}
-              <h1 className="text-4xl font-bold tracking-tight text-zinc-800 dark:text-white sm:text-5xl lg:text-6xl leading-tight">
-                {guide.title}
-              </h1>
-
-              {/* Summary - Rule 21 & 22: 16-18px, line-height 1.4-1.6 */}
-              <p className="mt-6 max-w-2xl text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
-                {guide.summary}
-              </p>
-
-              {/* Data freshness callout */}
-              <Callout variant="warning" title="Quick note about accuracy">
-                We regularly check and update these guides, but some details may change faster than
-                we can keep up. Treat this as friendly guidance — not official legal or
-                administrative advice. Spot an error? Please tell us and we’ll verify it ASAP.
-              </Callout>
-
-              {/* Meta Stats Grid - Rule 11: 8-point spacing */}
-              <div className="mt-8 grid gap-4 sm:grid-cols-3">
-                <div className="group flex items-center gap-3 rounded-2xl border border-zinc-200/80 dark:border-white/10 bg-white/90 dark:bg-zinc-900/70 px-5 py-4 shadow-sm backdrop-blur-sm transition-all duration-200 hover:shadow-md hover:border-blue-300 dark:hover:border-blue-500/30">
-                  <div className="rounded-xl bg-blue-100 dark:bg-blue-500/20 p-2.5">
-                    <Clock className="h-5 w-5 text-blue-600 dark:text-blue-400" />
-                  </div>
-                  <div>
-                    <p className="text-xs uppercase font-semibold tracking-wide text-zinc-500 dark:text-zinc-400">
-                      {getMessage("guidePage.readingLabel") ?? "Reading"}
-                    </p>
-                    <p className="text-lg font-bold text-zinc-900 dark:text-white">
-                      {guide.readingTime} min
-                    </p>
-                  </div>
-                </div>
-                <div className="group flex items-center gap-3 rounded-2xl border border-zinc-200/80 dark:border-white/10 bg-white/90 dark:bg-zinc-900/70 px-5 py-4 shadow-sm backdrop-blur-sm transition-all duration-200 hover:shadow-md hover:border-amber-300 dark:hover:border-amber-500/30">
-                  <div className="rounded-xl bg-amber-100 dark:bg-amber-500/20 p-2.5">
-                    <Calendar className="h-5 w-5 text-amber-600 dark:text-amber-400" />
-                  </div>
-                  <div>
-                    <p className="text-xs uppercase font-semibold tracking-wide text-zinc-500 dark:text-zinc-400">
-                      {getMessage("guidePage.updatedLabel") ?? "Updated"}
-                    </p>
-                    <p className="text-lg font-bold text-zinc-900 dark:text-white">
-                      {fmtUpdated(guide.lastUpdated)}
-                    </p>
-                  </div>
-                </div>
-                <div className="group flex items-center gap-3 rounded-2xl border-2 border-emerald-200/80 dark:border-emerald-500/30 bg-emerald-50/90 dark:bg-emerald-500/10 px-5 py-4 shadow-sm backdrop-blur-sm transition-all duration-200 hover:shadow-md">
-                  <div className="rounded-xl bg-emerald-200 dark:bg-emerald-500/30 p-2.5">
-                    <Award className="h-5 w-5 text-emerald-700 dark:text-emerald-400" />
-                  </div>
-                  <div>
-                    <p className="text-xs uppercase font-semibold tracking-wide text-emerald-600/90 dark:text-emerald-400">
-                      {getMessage("guidePage.verifiedLabel") ?? "Verified"}
-                    </p>
-                    <p className="text-lg font-bold text-emerald-800 dark:text-emerald-300">
-                      Community
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-8 flex flex-wrap items-center gap-3 lg:hidden">
-                {firstSectionId && (
-                  <ShareButton
-                    size="lg"
-                    text={getMessage("guidePage.shareGuide") ?? "Share guide"}
-                    className={`bg-gradient-to-r ${gradient.from} ${gradient.to} text-white font-semibold shadow-lg`}
-                  />
-                )}
-              </div>
-
-              {/* Author Info - Rule 16: Visual grouping */}
-              {guide.author && (
-                <div className="mt-8 flex items-center gap-4 rounded-2xl border border-zinc-200/80 dark:border-white/10 bg-white/80 dark:bg-zinc-900/60 p-4 backdrop-blur-sm">
-                  <div className="h-12 w-12 rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center shadow-lg">
-                    <Users className="h-6 w-6 text-white" />
-                  </div>
-                  <div>
-                    <p className="text-sm font-bold text-zinc-900 dark:text-white">
-                      Written by {guide.author}
-                    </p>
-                    <p className="text-xs text-zinc-500 dark:text-zinc-400 flex items-center gap-1.5 mt-0.5">
-                      <Star className="h-3 w-3 fill-amber-500 text-amber-500" />
-                      Atlas Munich Contributor
-                    </p>
-                  </div>
                 </div>
               )}
             </div>
-
-            {/* Right Column - Guide Snapshot Card - Rule 33: Buttons look clickable */}
-            <Card className="hidden lg:block relative overflow-hidden border-2 border-zinc-200/80 dark:border-white/10 bg-white/95 dark:bg-zinc-900/95 backdrop-blur-md shadow-2xl">
-              <div className={`h-2 bg-gradient-to-r ${gradient.from} ${gradient.to}`} />
-
-              <div className="p-6">
-                {/* Header */}
-                <div className="flex items-center gap-2.5 mb-6">
-                  <div className="rounded-lg bg-gradient-to-br from-amber-400 to-orange-500 p-2">
-                    <Sparkles className="h-4 w-4 text-white" />
-                  </div>
-                  <span className="text-xs font-bold uppercase tracking-widest text-zinc-600 dark:text-zinc-400">
-                    {getMessage("guidePage.quickOverview") ?? "Quick Overview"}
-                  </span>
-                </div>
-
-                {/* Stats List */}
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between py-3 border-b border-zinc-100 dark:border-white/5">
-                    <span className="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400">
-                      <Layers className="h-4 w-4" />
-                      {getMessage("guidePage.sections") ?? "Sections"}
-                    </span>
-                    <span className="text-sm font-bold text-zinc-900 dark:text-white">
-                      {guide.sections.length}
-                    </span>
-                  </div>
-                  <div className="flex items-center justify-between py-3 border-b border-zinc-100 dark:border-white/5">
-                    <span className="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400">
-                      <Clock className="h-4 w-4" />
-                      {getMessage("guidePage.readingTime") ?? "Reading time"}
-                    </span>
-                    <span className="text-sm font-bold text-zinc-900 dark:text-white">
-                      {guide.readingTime} min
-                    </span>
-                  </div>
-                  {resourceCount > 0 && (
-                    <div className="flex items-center justify-between py-3 border-b border-zinc-100 dark:border-white/5">
-                      <span className="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400">
-                        <LinkIcon className="h-4 w-4" />
-                        {getMessage("guidePage.resources") ?? "Resources"}
-                      </span>
-                      <span className="text-sm font-bold text-zinc-900 dark:text-white">
-                        {(getMessage("guidePage.resourcesLinks") ?? "{count} links").replace(
-                          "{count}",
-                          String(resourceCount)
-                        )}
-                      </span>
-                    </div>
-                  )}
-                  {faqCount > 0 && (
-                    <div className="flex items-center justify-between py-3 border-b border-zinc-100 dark:border-white/5">
-                      <span className="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400">
-                        <MessageCircle className="h-4 w-4" />
-                        {getMessage("guidePage.faqs") ?? "FAQs"}
-                      </span>
-                      <span className="text-sm font-bold text-zinc-900 dark:text-white">
-                        {(getMessage("guidePage.faqsAnswered") ?? "{count} answered").replace(
-                          "{count}",
-                          String(faqCount)
-                        )}
-                      </span>
-                    </div>
-                  )}
-                  <div className="flex items-center justify-between py-3">
-                    <span className="flex items-center gap-2 text-sm text-zinc-600 dark:text-zinc-400">
-                      <Eye className="h-4 w-4" />
-                      {getMessage("guidePage.difficulty") ?? "Difficulty"}
-                    </span>
-                    <Badge className="bg-emerald-100 dark:bg-emerald-500/20 text-emerald-700 dark:text-emerald-300 border-emerald-300 dark:border-emerald-500/30 font-semibold">
-                      Beginner
-                    </Badge>
-                  </div>
-                </div>
-
-                {/* CTA Button */}
-                {firstSectionId && (
-                  <ShareButton
-                    size="lg"
-                    text={getMessage("guidePage.shareGuide") ?? "Share guide"}
-                    className={`group mt-6 w-full border-2 border-zinc-300 dark:border-white/10 text-zinc-700 dark:text-zinc-300 font-semibold hover:border-emerald-300 dark:hover:border-emerald-500/30`}
-                  />
-                )}
-              </div>
-            </Card>
           </div>
+
+          {/* Share button - mobile only, inline */}
+          <div className="mt-4 flex items-center gap-3 lg:hidden">
+            <ShareButton
+              size="sm"
+              text={getMessage("guidePage.shareGuide") ?? "Share"}
+              className={`bg-gradient-to-r ${gradient.from} ${gradient.to} text-white text-xs`}
+            />
+          </div>
+
+          {/* Author Info - compact on mobile */}
+          {guide.author && (
+            <div className="mt-4 sm:mt-6 inline-flex items-center gap-2 rounded-full bg-white/80 dark:bg-zinc-900/60 border border-zinc-200 dark:border-white/10 px-3 py-1.5 text-xs sm:text-sm">
+              <div className="h-6 w-6 rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center">
+                <Users className="h-3 w-3 text-white" />
+              </div>
+              <span className="text-zinc-600 dark:text-zinc-400">
+                By{" "}
+                <span className="font-medium text-zinc-800 dark:text-zinc-200">{guide.author}</span>
+              </span>
+            </div>
+          )}
         </div>
       </section>
 
@@ -405,23 +276,19 @@ export default async function GuidePage({ params }: PageProps) {
           <div className="grid gap-12 lg:gap-14 lg:grid-cols-[minmax(0,1.6fr)_minmax(260px,0.7fr)]">
             {/* Main Article Column */}
             <article className="min-w-0">
-              {/* Mobile TOC - outside the article canvas (Rule 7 & 18) */}
+              {/* Mobile TOC - compact accordion style */}
               {guide.sections.length > 0 && (
-                <div className="lg:hidden mb-8 rounded-2xl border-2 border-zinc-200/80 dark:border-white/10 bg-gradient-to-br from-white via-zinc-50/50 to-white dark:from-zinc-900/70 dark:via-zinc-900/50 dark:to-zinc-950/70 overflow-hidden shadow-lg backdrop-blur-sm">
-                  <div className="border-b border-zinc-200 dark:border-white/10 px-6 py-4 bg-white/60 dark:bg-zinc-900/60">
-                    <div className="flex items-center gap-2.5">
-                      <Target className="h-5 w-5 text-amber-500" />
-                      <div>
-                        <h3 className="text-xs font-bold uppercase tracking-[0.18em] text-zinc-900 dark:text-white">
-                          {getMessage("guidePage.tableOfContents") ?? "On this page"}
-                        </h3>
-                        <p className="mt-0.5 text-[11px] text-zinc-500 dark:text-zinc-400">
-                          {getMessage("guidePage.tocHint") ?? "Scan and jump to what you need"}
-                        </p>
-                      </div>
-                    </div>
+                <div className="lg:hidden mb-6 rounded-xl border border-zinc-200/80 dark:border-white/10 bg-white/90 dark:bg-zinc-900/80 overflow-hidden shadow-sm">
+                  <div className="flex items-center gap-2 px-4 py-3 border-b border-zinc-100 dark:border-white/5">
+                    <Target className="h-4 w-4 text-amber-500" />
+                    <h3 className="text-xs font-bold uppercase tracking-wider text-zinc-700 dark:text-zinc-300">
+                      {getMessage("guidePage.tableOfContents") ?? "On this page"}
+                    </h3>
+                    <span className="ml-auto text-[10px] text-zinc-400">
+                      {guide.sections.length} sections
+                    </span>
                   </div>
-                  <div className="p-5">
+                  <div className="p-3">
                     <TableOfContents sections={guide.sections} />
                   </div>
                 </div>
@@ -432,7 +299,7 @@ export default async function GuidePage({ params }: PageProps) {
                 {/* Accent bar to tie with hero (Rule 26 & 31) */}
                 <div className={`h-1.5 w-full bg-gradient-to-r ${gradient.from} ${gradient.to}`} />
 
-                <div className="px-5 py-8 sm:px-8 sm:py-10 lg:px-10 lg:py-12">
+                <div className="px-4 py-5 sm:px-6 sm:py-8 lg:px-8 lg:py-10">
                   {/* Intro hint for context */}
                   <div className="mb-6 sm:mb-8">
                     <p className="text-xs font-semibold uppercase tracking-[0.18em] text-zinc-500 dark:text-zinc-400">
@@ -599,32 +466,32 @@ export default async function GuidePage({ params }: PageProps) {
                 </section>
               )}
 
-              {/* Related Guides – OUTSIDE article canvas */}
+              {/* Related Guides – Horizontal scroll on mobile */}
               {relatedGuides.length > 0 && (
-                <section className="mt-16">
-                  <div className="flex items-center gap-4 mb-8">
-                    <div className="h-10 w-10 sm:h-11 sm:w-11 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center shadow-lg">
-                      <TrendingUp className="h-5 w-5 text-white" />
+                <section className="mt-10 sm:mt-14">
+                  <div className="flex items-center gap-3 mb-4 sm:mb-6">
+                    <div className="h-8 w-8 sm:h-10 sm:w-10 rounded-lg bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center shadow">
+                      <TrendingUp className="h-4 w-4 sm:h-5 sm:w-5 text-white" />
                     </div>
                     <div>
-                      <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-zinc-900 dark:text-white">
+                      <h2 className="text-base sm:text-xl font-bold text-zinc-900 dark:text-white">
                         {getMessage("guidePage.continueLearning") ?? "Continue Learning"}
                       </h2>
-                      <p className="text-xs sm:text-sm text-zinc-500 dark:text-zinc-400 mt-1">
-                        {getMessage("guidePage.relatedGuidesDesc") ??
-                          "Related guides you might find helpful"}
-                      </p>
                     </div>
                   </div>
-                  <div className="grid gap-5 sm:grid-cols-2">
-                    {relatedGuides.slice(0, 4).map((related, idx) => (
-                      <div
-                        key={related.slug}
-                        className="transform transition-all duration-300 hover:scale-[1.02]"
-                        style={{ animationDelay: `${idx * 80}ms` }}
-                      >
-                        <GuideCard guide={related} />
-                      </div>
+                  {/* Horizontal scroll on mobile, grid on desktop */}
+                  <div className="sm:hidden -mx-4 px-4 overflow-x-auto pb-2">
+                    <div className="flex gap-4 min-w-max">
+                      {relatedGuides.slice(0, 4).map((related) => (
+                        <div key={related.slug} className="w-[280px] shrink-0">
+                          <GuideCard guide={related} />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="hidden sm:grid gap-4 sm:grid-cols-2">
+                    {relatedGuides.slice(0, 4).map((related) => (
+                      <GuideCard key={related.slug} guide={related} />
                     ))}
                   </div>
                 </section>

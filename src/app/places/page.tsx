@@ -73,11 +73,11 @@ export default function PlacesPage() {
     <div className="min-h-screen bg-white dark:bg-zinc-950">
       {/* Hero Section */}
       <section className="relative overflow-hidden border-b border-zinc-200 dark:border-white/10 bg-gradient-to-br from-orange-50 via-white to-rose-50 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950">
-        {/* Gradient Orbs */}
-        <div className="absolute -left-32 top-0 z-[5] h-[400px] w-[400px] rounded-full bg-gradient-to-br from-orange-200/50 to-red-200/50 dark:from-orange-600/20 dark:to-red-600/20 blur-[100px]" />
-        <div className="absolute -right-32 bottom-0 z-[5] h-[400px] w-[400px] rounded-full bg-gradient-to-br from-emerald-200/40 to-teal-200/40 dark:from-emerald-500/15 dark:to-teal-500/15 blur-[100px]" />
+        {/* Gradient Orbs - smaller on mobile */}
+        <div className="absolute -left-16 sm:-left-32 top-0 z-[5] h-[200px] w-[200px] sm:h-[400px] sm:w-[400px] rounded-full bg-gradient-to-br from-orange-200/50 to-red-200/50 dark:from-orange-600/20 dark:to-red-600/20 blur-[60px] sm:blur-[100px]" />
+        <div className="absolute -right-16 sm:-right-32 bottom-0 z-[5] h-[200px] w-[200px] sm:h-[400px] sm:w-[400px] rounded-full bg-gradient-to-br from-emerald-200/40 to-teal-200/40 dark:from-emerald-500/15 dark:to-teal-500/15 blur-[60px] sm:blur-[100px]" />
 
-        <div className="relative z-10 mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+        <div className="relative z-10 mx-auto max-w-7xl px-4 py-12 sm:py-16 lg:py-24 sm:px-6 lg:px-8">
           <div className="text-center">
             {/* Badge */}
             <HeroBadge icon={MapPin} text={`${places.length}+ ${t("badge")}`} color="orange" />
@@ -105,23 +105,25 @@ export default function PlacesPage() {
               />
             </div>
 
-            {/* Category filters */}
-            <div className="mx-auto mt-10 flex max-w-4xl flex-wrap items-center justify-center gap-3">
-              {categoryFilters.map((filter) => (
-                <button
-                  key={filter.key || "all"}
-                  onClick={() => setSelectedCategory(filter.key)}
-                  className={cn(
-                    "flex items-center gap-2 rounded-full px-5 py-2.5 text-base font-medium transition-all",
-                    selectedCategory === filter.key
-                      ? "bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-lg shadow-orange-500/25"
-                      : "border border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 text-zinc-600 dark:text-zinc-400 shadow-sm dark:shadow-none hover:border-zinc-300 dark:hover:border-white/20 hover:bg-zinc-50 dark:hover:bg-white/10 hover:text-zinc-900 dark:hover:text-white"
-                  )}
-                >
-                  <span>{filter.icon}</span>
-                  {filter.label}
-                </button>
-              ))}
+            {/* Category filters - horizontal scroll on mobile */}
+            <div className="mt-8 sm:mt-10 max-w-4xl overflow-x-auto pb-2 -mx-4 px-4 sm:mx-auto sm:px-0 sm:overflow-visible">
+              <div className="flex items-center gap-2 sm:gap-3 sm:flex-wrap sm:justify-center min-w-max sm:min-w-0">
+                {categoryFilters.map((filter) => (
+                  <button
+                    key={filter.key || "all"}
+                    onClick={() => setSelectedCategory(filter.key)}
+                    className={cn(
+                      "flex items-center gap-2 rounded-full px-5 py-2.5 text-base font-medium transition-all",
+                      selectedCategory === filter.key
+                        ? "bg-gradient-to-r from-orange-500 to-red-500 text-white shadow-lg shadow-orange-500/25"
+                        : "border border-zinc-200 dark:border-white/10 bg-white dark:bg-white/5 text-zinc-600 dark:text-zinc-400 shadow-sm dark:shadow-none hover:border-zinc-300 dark:hover:border-white/20 hover:bg-zinc-50 dark:hover:bg-white/10 hover:text-zinc-900 dark:hover:text-white"
+                    )}
+                  >
+                    <span>{filter.icon}</span>
+                    {filter.label}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -221,7 +223,7 @@ export default function PlacesPage() {
           ))}
 
         {/* Contribute CTA */}
-        <div className="mt-20 rounded-3xl border border-zinc-200 dark:border-white/10 bg-gradient-to-br from-zinc-50 via-white to-zinc-50 dark:from-zinc-900 dark:via-zinc-900/80 dark:to-zinc-900 p-10 text-center shadow-sm dark:shadow-none backdrop-blur-sm">
+        <div className="mt-12 sm:mt-20 rounded-3xl border border-zinc-200 dark:border-white/10 bg-gradient-to-br from-zinc-50 via-white to-zinc-50 dark:from-zinc-900 dark:via-zinc-900/80 dark:to-zinc-900 p-6 sm:p-10 text-center shadow-sm dark:shadow-none backdrop-blur-sm">
           <div className="mb-6 inline-flex rounded-full bg-gradient-to-br from-orange-100 to-red-100 dark:from-orange-500/20 dark:to-red-500/20 p-4">
             <Utensils className="h-8 w-8 text-orange-600 dark:text-orange-400" />
           </div>

@@ -52,11 +52,11 @@ export default async function PrivacyPage() {
     <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950">
       {/* Hero Section */}
       <section className="relative overflow-hidden border-b border-zinc-200 dark:border-white/10 bg-gradient-to-br from-blue-50 via-white to-indigo-50 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950">
-        {/* Gradient Orbs */}
-        <div className="absolute -left-32 top-0 z-[5] h-[500px] w-[500px] rounded-full bg-gradient-to-br from-blue-400/40 to-indigo-300/30 dark:from-blue-600/25 dark:to-indigo-500/15 blur-[120px]" />
-        <div className="absolute -right-32 bottom-0 z-[5] h-[500px] w-[500px] rounded-full bg-gradient-to-br from-purple-400/40 to-blue-300/30 dark:from-purple-600/25 dark:to-blue-500/15 blur-[120px]" />
+        {/* Gradient Orbs - smaller on mobile */}
+        <div className="absolute -left-16 sm:-left-32 top-0 z-[5] h-[250px] w-[250px] sm:h-[500px] sm:w-[500px] rounded-full bg-gradient-to-br from-blue-400/40 to-indigo-300/30 dark:from-blue-600/25 dark:to-indigo-500/15 blur-[80px] sm:blur-[120px]" />
+        <div className="absolute -right-16 sm:-right-32 bottom-0 z-[5] h-[250px] w-[250px] sm:h-[500px] sm:w-[500px] rounded-full bg-gradient-to-br from-purple-400/40 to-blue-300/30 dark:from-purple-600/25 dark:to-blue-500/15 blur-[80px] sm:blur-[120px]" />
 
-        <div className="relative z-10 mx-auto max-w-4xl px-4 py-16 sm:px-6 lg:px-8 text-center">
+        <div className="relative z-10 mx-auto max-w-4xl px-4 py-10 sm:py-16 sm:px-6 lg:px-8 text-center">
           <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-200 dark:border-blue-500/30 bg-blue-50 dark:bg-blue-500/10 px-4 py-2 shadow-sm shadow-blue-900/5 dark:shadow-none">
             <Shield className="h-4 w-4 text-blue-600 dark:text-blue-400" />
             <span className="text-sm font-semibold text-blue-700 dark:text-blue-400">
@@ -85,7 +85,7 @@ export default async function PrivacyPage() {
       </section>
 
       {/* Main Content */}
-      <div className="relative mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
+      <div className="relative mx-auto max-w-5xl px-4 py-10 sm:py-16 sm:px-6 lg:px-8">
         {/* Legal Basis */}
         <section className="mb-12">
           <div className="rounded-3xl border border-zinc-200/70 dark:border-white/10 bg-white dark:bg-zinc-900/30 p-6 sm:p-8 shadow-xl shadow-zinc-900/5 dark:shadow-none">
@@ -151,9 +151,7 @@ export default async function PrivacyPage() {
                 <h3 className="text-base font-semibold text-zinc-900 dark:text-white mb-1">
                   Policy Updates
                 </h3>
-                <p className="text-sm text-zinc-600 dark:text-zinc-400">
-                  {t("updates")}
-                </p>
+                <p className="text-sm text-zinc-600 dark:text-zinc-400">{t("updates")}</p>
               </div>
             </div>
           </div>

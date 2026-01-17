@@ -145,11 +145,11 @@ function SearchContent() {
     <div className="min-h-screen bg-white dark:bg-zinc-950">
       {/* Hero Section - Purple/Indigo Theme */}
       <section className="relative overflow-hidden border-b border-zinc-200 dark:border-white/10 bg-gradient-to-br from-purple-50 via-white to-indigo-50 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950">
-        {/* Gradient Orbs - Matching other pages style */}
-        <div className="absolute -left-32 top-0 z-[5] h-[400px] w-[400px] rounded-full bg-gradient-to-br from-purple-200/50 to-indigo-200/50 dark:from-purple-600/20 dark:to-indigo-600/20 blur-[100px]" />
-        <div className="absolute -right-32 bottom-0 z-[5] h-[400px] w-[400px] rounded-full bg-gradient-to-br from-pink-200/40 to-rose-200/40 dark:from-pink-500/15 dark:to-rose-500/15 blur-[100px]" />
+        {/* Gradient Orbs - Matching other pages style - smaller on mobile */}
+        <div className="absolute -left-16 sm:-left-32 top-0 z-[5] h-[200px] w-[200px] sm:h-[400px] sm:w-[400px] rounded-full bg-gradient-to-br from-purple-200/50 to-indigo-200/50 dark:from-purple-600/20 dark:to-indigo-600/20 blur-[60px] sm:blur-[100px]" />
+        <div className="absolute -right-16 sm:-right-32 bottom-0 z-[5] h-[200px] w-[200px] sm:h-[400px] sm:w-[400px] rounded-full bg-gradient-to-br from-pink-200/40 to-rose-200/40 dark:from-pink-500/15 dark:to-rose-500/15 blur-[60px] sm:blur-[100px]" />
 
-        <div className="relative z-10 mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
+        <div className="relative z-10 mx-auto max-w-7xl px-4 py-12 sm:py-16 lg:py-24 sm:px-6 lg:px-8">
           <div className="text-center">
             {/* Badge */}
             <HeroBadge icon={Search} text={t("badge")} color="purple" />
@@ -364,7 +364,7 @@ function SearchContent() {
           </div>
         ) : (
           // Discovery Section
-          <div className="py-8">
+          <div className="py-6 sm:py-8">
             {/* Header */}
             <div className="mb-12 text-center">
               <div className="mx-auto mb-4 inline-flex rounded-2xl bg-gradient-to-br from-purple-100 to-indigo-100 dark:from-purple-500/10 dark:to-indigo-500/10 p-4">
@@ -419,8 +419,8 @@ function SearchContent() {
             </div>
 
             {/* CTA Card */}
-            <div className="mx-auto mt-16 max-w-4xl">
-              <div className="rounded-2xl border border-zinc-200 dark:border-white/10 bg-gradient-to-br from-zinc-50 to-white dark:from-zinc-900/80 dark:to-zinc-900/50 p-8 text-center shadow-sm dark:shadow-none backdrop-blur-sm">
+            <div className="mx-auto mt-12 sm:mt-16 max-w-4xl">
+              <div className="rounded-2xl border border-zinc-200 dark:border-white/10 bg-gradient-to-br from-zinc-50 to-white dark:from-zinc-900/80 dark:to-zinc-900/50 p-5 sm:p-8 text-center shadow-sm dark:shadow-none backdrop-blur-sm">
                 <div className="mx-auto mb-4 inline-flex rounded-full bg-gradient-to-br from-purple-100 to-pink-100 dark:from-purple-500/20 dark:to-pink-500/20 p-3">
                   <Sparkles className="h-6 w-6 text-purple-600 dark:text-purple-400" />
                 </div>

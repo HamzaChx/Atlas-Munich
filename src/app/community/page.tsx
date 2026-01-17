@@ -40,8 +40,8 @@ export default async function CommunityPage() {
     <div className="min-h-screen">
       <section className="relative overflow-hidden bg-gradient-to-br from-green-50 via-white to-emerald-50 dark:from-zinc-950 dark:via-zinc-900 dark:to-emerald-950/20">
         <div className="absolute inset-0 overflow-hidden opacity-40">
-          <div className="absolute -top-40 -right-40 h-80 w-80 rounded-full bg-gradient-to-br from-green-400/20 to-emerald-500/20 blur-3xl" />
-          <div className="absolute -bottom-40 -left-40 h-80 w-80 rounded-full bg-gradient-to-br from-emerald-400/20 to-green-500/20 blur-3xl" />
+          <div className="absolute -top-20 sm:-top-40 -right-20 sm:-right-40 h-48 w-48 sm:h-80 sm:w-80 rounded-full bg-gradient-to-br from-green-400/20 to-emerald-500/20 blur-2xl sm:blur-3xl" />
+          <div className="absolute -bottom-20 sm:-bottom-40 -left-20 sm:-left-40 h-48 w-48 sm:h-80 sm:w-80 rounded-full bg-gradient-to-br from-emerald-400/20 to-green-500/20 blur-2xl sm:blur-3xl" />
         </div>
 
         <div className="relative mx-auto max-w-5xl px-3 sm:px-6 lg:px-8 py-16 sm:py-24">
@@ -162,7 +162,7 @@ export default async function CommunityPage() {
       </section>
 
       {/* Benefits Section */}
-      <section className="px-3 sm:px-6 lg:px-8 py-16 sm:py-24">
+      <section className="px-3 sm:px-6 lg:px-8 py-10 sm:py-16 lg:py-24">
         <div className="mx-auto max-w-6xl">
           <div className="mb-12 sm:mb-16 text-center px-2">
             <h2 className="mb-3 sm:mb-4 text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900 dark:text-white">

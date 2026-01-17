@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { SearchBar, CategoryCard } from "@/components/shared";
@@ -347,29 +348,31 @@ export default async function Home() {
           <div className="mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-x-4 sm:gap-x-6 lg:gap-x-8 gap-y-2 text-sm sm:text-base text-zinc-500 dark:text-zinc-400">
             <span>
               <span className="font-semibold text-zinc-800 dark:text-white">{guides.length}+</span>{" "}
-              Guides
+              {t("stats.guides")}
             </span>
-            <span className="text-zinc-300 dark:text-zinc-600">•</span>
+
             <span>
               <span className="font-semibold text-zinc-800 dark:text-white">{places.length}+</span>{" "}
-              Places
+              {t("stats.places")}
             </span>
-            <span className="text-zinc-300 dark:text-zinc-600">•</span>
+
             <span>
               <span className="font-semibold text-zinc-800 dark:text-white">{faqs.length}+</span>{" "}
-              FAQs
+              {t("stats.faqsAnswered")}
             </span>
-            <span className="text-zinc-300 dark:text-zinc-600 hidden sm:inline">•</span>
             <span>
-              <span className="font-semibold text-zinc-800 dark:text-white">100%</span> Free
+              <span className="font-semibold text-zinc-800 dark:text-white">100%</span>{" "}
+              {t("stats.free")}
             </span>
           </div>
 
           {/* Creator credit */}
           <div className="mt-6 flex items-center gap-3 justify-center">
-            <img
+            <Image
               src="/hamza.jpeg"
               alt="Hamza Chaouki"
+              width={40}
+              height={40}
               className="h-10 w-10 rounded-full object-cover border border-zinc-200 dark:border-white/10"
             />
             <p className="text-sm text-zinc-600 dark:text-zinc-400">

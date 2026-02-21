@@ -9,7 +9,8 @@
     "search": "Rechercher",
     "explore": "Explorer",
     "exploreAll": "Explorer tous les guides",
-    "toggleTheme": "Changer de thème"
+    "toggleTheme": "Changer de thème",
+    "tools": "Outils"
   },
   "home": {
     "heroTitle": "Votre guide complet pour",
@@ -22,7 +23,8 @@
       "findHousing": "Trouver un logement",
       "kvrRegistration": "Inscription KVR",
       "halalFood": "Nourriture Halal",
-      "allGuides": "Tous les guides"
+      "allGuides": "Tous les guides",
+      "aiTools": "Outils IA"
     },
     "stats": {
       "guides": "Guides",
@@ -36,6 +38,21 @@
       "titleHighlight": "Au même endroit",
       "subtitle": "Des guides complets organisés selon ce qui compte le plus pour vous",
       "browseAll": "Parcourir tous les guides"
+    },
+    "toolsSpotlight": {
+      "badge": "Outils IA",
+      "title": "Outils intelligents pour Munich",
+      "subtitle": "Rédigez des candidatures de location gagnantes, créez des CV allemands, planifiez des événements, et plus encore — pour les nouveaux arrivants.",
+      "cta": "Explorer tous les outils",
+      "housingTool": "Rédacteur de candidature logement",
+      "housingToolDesc": "Collez une annonce, obtenez un message WG qui obtient des réponses",
+      "housingToolStatus": "Disponible",
+      "cvTool": "Créateur de CV & Lettre de motivation",
+      "cvToolDesc": "Adapté au marché de l'emploi munichois",
+      "cvToolStatus": "Disponible",
+      "eventTool": "Planificateur d'événements",
+      "eventToolDesc": "Planifiez des sorties et événements avec des amis",
+      "eventToolStatus": "Bientôt"
     },
     "community": {
       "badge": "Notre histoire",
@@ -625,13 +642,15 @@
       "zellija": "Votre guide accueillant d'Atlas Munich",
       "hamid": "Votre spécialiste des guides plein d'humour",
       "jmila": "Votre guide sympathique des meilleurs lieux",
-      "hamza": "Le développeur derrière Atlas Munich"
+      "hamza": "Le développeur derrière Atlas Munich",
+      "riad": "Votre expert en candidatures locatives à Munich"
     },
     "welcome": {
       "zellija": "Salam! 👋 Je suis Zellija, votre guide pour Atlas Munich. Comment puis-je vous aider aujourd'hui ?",
       "hamid": "Labas! 📚 Je suis Hamid, spécialiste des guides. Demandez-moi sur le logement, le KVR, l'université ou autre !",
       "jmila": "Salut! 🐪 Je suis Jmila, je connais les meilleurs endroits à Munich. Vous cherchez de la nourriture halal ou un café ?",
-      "hamza": "Salam! 👨‍💻 Je suis Hamza, le développeur d'Atlas Munich. Voulez-vous en savoir plus sur le projet ?"
+      "hamza": "Salam! 👨‍💻 Je suis Hamza, le développeur d'Atlas Munich. Voulez-vous en savoir plus sur le projet ?",
+      "riad": "Hey! 🏠 Je suis Riad. Collez une annonce WG ou appartement et je vous rédigerai une candidature prête à envoyer qui obtient vraiment des réponses à Munich."
     },
     "suggestions": {
       "zellija": [
@@ -649,13 +668,19 @@
         "Où puis-je étudier ?",
         "Des endroits marocains pour manger"
       ],
-      "hamza": ["À propos de ce projet", "Comment contribuer ?", "Quel est le stack technique ?"]
+      "hamza": ["À propos de ce projet", "Comment contribuer ?", "Quel est le stack technique ?"],
+      "riad": [
+        "Rédige une candidature WG pour moi",
+        "Rédige une candidature formelle",
+        "Comment me démarquer à Munich ?"
+      ]
     },
     "description": {
       "zellija": "Un connecteur chaleureux et efficace qui oriente les utilisateurs vers le bon expert.",
       "hamid": "Un spécialiste des guides drôle et compétent qui explique la bureaucratie avec personnalité.",
       "jmila": "Un guide calme et gourmand qui recommande les meilleurs endroits à Munich.",
-      "hamza": "Un développeur technique et engagé dans la communauté qui peut expliquer le projet et comment contribuer."
+      "hamza": "Un développeur technique et engagé dans la communauté qui peut expliquer le projet et comment contribuer.",
+      "riad": "Un spécialiste des candidatures locatives qui rédige des messages à fort taux de conversion pour le marché locatif compétitif de Munich."
     }
   },
   "legal": {
@@ -686,6 +711,70 @@
       "ip": "Le code appartient à l’auteur du projet. Consultez GitHub pour la licence open source.",
       "law": "Les Conditions sont régies par le droit allemand. Tout litige relève des tribunaux de Munich.",
       "contact": "Questions ? Contactez : [votre email]"
+    }
+  },
+  "tools": {
+    "badge": "Outils Munich",
+    "title": "Outils intelligents pour",
+    "titleHighlight": "la vie à Munich",
+    "subtitle": "Des outils propulsés par l'IA pour les nouveaux arrivants marocains à Munich — rédigez des candidatures de location gagnantes, créez des CV professionnels, planifiez des événements, et plus encore.",
+    "tools": {
+      "housing": {
+        "title": "Rédacteur de candidature logement",
+        "description": "Collez une annonce WG ou appartement et Riad rédigera un message de candidature prêt à envoyer qui obtient des réponses sur le marché locatif compétitif de Munich.",
+        "status": "Disponible",
+        "cta": "Lancer l'outil",
+        "poweredBy": "Propulsé par IA via Riad",
+        "tags": ["Candidatures WG", "Annonces appartement", "Allemand parfait"]
+      },
+      "cv": {
+        "title": "Créateur de CV & Lettre de motivation",
+        "description": "Adapté au marché de l'emploi allemand. Chargez vos informations et Hiro créera un CV au format allemand et une lettre de motivation convaincante pour les employeurs munichois.",
+        "status": "Disponible",
+        "cta": "Lancer Hiro",
+        "poweredBy": "Propulsé par Hiro",
+        "tags": ["Format CV allemand", "Lettres de motivation", "Adapté à Munich"]
+      },
+      "events": {
+        "title": "Planificateur d'événements",
+        "description": "Planifiez des sorties, des sessions d'étude et des événements communautaires avec vos amis à Munich. Partagez des plans, votez pour des lieux et coordonnez sans effort.",
+        "status": "Bientôt disponible",
+        "cta": "Bientôt disponible",
+        "comingSoonNote": "Nous construisons cet outil — restez connecté !",
+        "tags": ["Planifier des événements", "Inviter des amis", "Lieux à Munich"]
+      }
+    },
+    "moreComing": "D'autres outils arrivent bientôt. Une idée ? Contribuez sur"
+  },
+  "housing": {
+    "badge": "Logement Munich",
+    "title": "Assistant Candidature",
+    "titleHighlight": "Logement Munich",
+    "subtitle": "Collez une annonce WG ou appartement et Riad rédigera un message de candidature prêt à envoyer qui obtient des réponses sur le marché locatif compétitif de Munich.",
+    "cta": "Commencer à rédiger",
+    "features": {
+      "title": "Comment ça marche",
+      "step1Title": "Collez l'annonce",
+      "step1Desc": "Copiez une annonce WG ou appartement depuis ImmobilienScout24, WG-Gesucht ou d'autres plateformes.",
+      "step2Title": "Riad rédige votre message",
+      "step2Desc": "Notre IA crée un message personnalisé et percutant en allemand parfait, adapté à l'annonce.",
+      "step3Title": "Envoyez & recevez des réponses",
+      "step3Desc": "Copiez le message prêt à envoyer et collez-le directement sur la plateforme. Démarquez-vous parmi des centaines de candidats."
+    },
+    "tips": {
+      "title": "Conseils logement Munich",
+      "tip1Title": "Postulez vite",
+      "tip1Desc": "À Munich, les bonnes annonces reçoivent 200+ candidatures en quelques heures. Configurez des alertes sur ImmobilienScout24 et WG-Gesucht.",
+      "tip2Title": "Préparez vos documents",
+      "tip2Desc": "Ayez votre SCHUFA, Selbstauskunft, preuve de revenus et copies de pièce d'identité prêts dans un seul PDF.",
+      "tip3Title": "Personnalisez chaque message",
+      "tip3Desc": "Les propriétaires repèrent les candidatures copier-coller instantanément. Riad adapte chaque message à l'annonce spécifique.",
+      "tip4Title": "Évitez les arnaques",
+      "tip4Desc": "Ne payez jamais avant de visiter. Si c'est trop beau pour être vrai, c'est probablement une arnaque. Utilisez uniquement les virements bancaires."
+    },
+    "platforms": {
+      "title": "Où chercher",
+      "subtitle": "Meilleures plateformes pour la recherche de logement à Munich"
     }
   }
 }

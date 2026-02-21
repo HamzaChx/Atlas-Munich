@@ -18,6 +18,7 @@ import {
   Users,
   MapPin,
   ChevronRight,
+  Info,
 } from "lucide-react";
 
 /**
@@ -39,6 +40,7 @@ interface NavTranslations {
   explore: string;
   exploreAll: string;
   toggleTheme: string;
+  tools: string;
 }
 
 interface HeaderProps {
@@ -57,7 +59,7 @@ export function Header({ locale, translations }: HeaderProps) {
     { label: translations.places, href: "/places", icon: MapPin },
     { label: translations.community, href: "/community", icon: Users },
     { label: translations.faq, href: "/faq", icon: HelpCircle },
-    { label: translations.about, href: "/about", icon: Users },
+    { label: translations.about, href: "/about", icon: Info },
   ];
 
   // Check if we're on the home page (dark hero)

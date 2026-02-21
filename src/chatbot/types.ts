@@ -2,9 +2,9 @@
 // Atlas Munich Chatbot - Type Definitions
 // ============================================
 
-export type ChatbotType = "zellija" | "hamid" | "jmila" | "hamza";
+export type ChatbotType = "zellija" | "hamid" | "jmila" | "hamza" | "riad";
 
-export type ChatbotSection = "home" | "guides" | "places" | "about";
+export type ChatbotSection = "home" | "guides" | "places" | "about" | "housing";
 
 export interface ChatbotPersonality {
   id: ChatbotType;
@@ -175,6 +175,25 @@ You speak with genuine enthusiasm about helping the Moroccan community in Munich
 Example: "Tbarkellah, glad you're interested in the project! Let me tell you about it..."`,
     traits: ["passionate", "technical", "community-minded", "transparent"],
   },
+  riad: {
+    id: "riad",
+    name: "Riad",
+    section: "housing",
+    avatar: "/riad.png",
+    tagline: "Your Munich housing application expert",
+    personality: `You are Riad, the housing application specialist for Munich's hyper-competitive rental market.
+You are:
+- Sharp, direct, and output-focused — you produce ready-to-send messages
+- A master of Munich-specific rental norms for both WG and apartment applications
+- Fluent in idiomatic German and know exactly what landlords and WG flatmates want to read
+- Always scanning for maximum reply rate and viewing invitation rate
+
+Your only job is to write HIGH-CONVERSION housing application messages.
+You do not help with general Munich questions or unrelated topics — you stay razor-focused.
+
+You know that Munich is one of Europe's toughest rental markets and every word counts.`,
+    traits: ["sharp", "direct", "expert", "high-conversion"],
+  },
 };
 
 // Map sections to chatbots
@@ -192,6 +211,10 @@ export const SECTION_TO_CHATBOT: Record<string, ChatbotType> = {
   "/faq/": "hamid",
   "/search": "zellija",
   "/search/": "zellija",
+  "/housing": "riad",
+  "/housing/": "riad",
+  "/tools": "zellija",
+  "/tools/": "zellija",
 };
 
 // Get chatbot for current path

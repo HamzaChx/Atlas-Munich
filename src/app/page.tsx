@@ -21,6 +21,8 @@ import {
   Home as HomeIcon,
   FileText,
   ArrowRight,
+  Wrench,
+  CalendarDays,
 } from "lucide-react";
 
 export default async function Home() {
@@ -341,6 +343,20 @@ export default async function Home() {
                   />
                 </Link>
               ))}
+              {/* AI Tools — full-width spanning both columns */}
+              <Link
+                href="/tools"
+                className="col-span-2 group flex items-center gap-2 rounded-xl border border-violet-200 dark:border-violet-500/30 hover:border-violet-400 bg-white/90 dark:bg-white/5 px-3 py-2.5 text-sm font-medium text-zinc-700 dark:text-zinc-200 shadow-sm backdrop-blur-sm transition-all hover:shadow-md hover:-translate-y-0.5 active:scale-[0.98]"
+              >
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-violet-100 dark:bg-violet-500/20">
+                  <Wrench className="h-4 w-4 text-violet-600 dark:text-violet-400" />
+                </span>
+                <span className="flex-1 text-left leading-tight">{t("quickLinks.aiTools")}</span>
+                <span className="rounded-full bg-violet-100 dark:bg-violet-500/20 px-2 py-0.5 text-xs font-semibold text-violet-700 dark:text-violet-300">
+                  AI
+                </span>
+                <ArrowRight className="h-4 w-4 text-violet-600 dark:text-violet-400 opacity-50 transition-all group-hover:opacity-100 group-hover:translate-x-0.5" />
+              </Link>
             </div>
           </div>
 
@@ -452,6 +468,95 @@ export default async function Home() {
                 <ChevronRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
             </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* AI Tools Spotlight Section */}
+      <section className="relative overflow-hidden border-b border-zinc-200 dark:border-white/10 bg-gradient-to-r from-violet-50/60 via-white to-blue-50/60 dark:from-violet-950/30 dark:via-zinc-950 dark:to-blue-950/30 py-10 sm:py-14">
+        <div className="absolute -right-20 top-0 h-[300px] w-[300px] rounded-full bg-gradient-to-br from-violet-300/20 to-blue-300/20 dark:from-violet-600/10 dark:to-blue-600/10 blur-[80px]" />
+        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col lg:flex-row items-start lg:items-center gap-6 lg:gap-10 justify-between">
+            {/* Text */}
+            <div className="max-w-xl">
+              <Badge className="mb-3 border-violet-500/30 bg-violet-100 dark:bg-violet-500/10 text-violet-700 dark:text-violet-400">
+                <Sparkles className="mr-1.5 h-3.5 w-3.5" />
+                {t("toolsSpotlight.badge")}
+              </Badge>
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900 dark:text-white">
+                {t("toolsSpotlight.title")}
+              </h2>
+              <p className="mt-2 text-sm sm:text-base text-zinc-600 dark:text-zinc-400">
+                {t("toolsSpotlight.subtitle")}
+              </p>
+              <Link
+                href="/tools"
+                className="mt-4 inline-flex items-center gap-2 rounded-xl bg-violet-600 hover:bg-violet-700 px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-violet-500/25 transition-all hover:shadow-violet-500/40 hover:-translate-y-0.5"
+              >
+                <Wrench className="h-4 w-4" />
+                {t("toolsSpotlight.cta")}
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </div>
+
+            {/* Mini tool cards */}
+            <div className="w-full lg:w-auto grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3 gap-3 lg:min-w-[540px]">
+              {/* Housing Application Writer */}
+              <Link
+                href="/housing"
+                className="group flex items-center gap-3 rounded-xl border border-blue-200 dark:border-blue-500/20 bg-white dark:bg-zinc-900 p-3.5 shadow-sm hover:shadow-md hover:border-blue-400 dark:hover:border-blue-400/50 transition-all hover:-translate-y-0.5"
+              >
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 to-cyan-600 shadow-sm">
+                  <HomeIcon className="h-4.5 w-4.5 text-white" />
+                </div>
+                <div className="min-w-0">
+                  <div className="truncate text-sm font-semibold text-zinc-900 dark:text-white">
+                    {t("toolsSpotlight.housingTool")}
+                  </div>
+                  <div className="truncate text-xs text-zinc-500 dark:text-zinc-400">
+                    {t("toolsSpotlight.housingToolDesc")}
+                  </div>
+                </div>
+              </Link>
+
+              {/* CV Drafter - Live */}
+              <a
+                href="https://hiro-easier-hiring.vercel.app/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-3 rounded-xl border border-purple-200 dark:border-purple-500/20 bg-white dark:bg-zinc-900 p-3.5 shadow-sm hover:shadow-md hover:border-purple-400 dark:hover:border-purple-400/50 transition-all hover:-translate-y-0.5"
+              >
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-purple-500 to-pink-600 shadow-sm">
+                  <FileText className="h-4.5 w-4.5 text-white" />
+                </div>
+                <div className="min-w-0">
+                  <div className="truncate text-sm font-semibold text-zinc-900 dark:text-white">
+                    {t("toolsSpotlight.cvTool")}
+                  </div>
+                  <div className="truncate text-xs text-zinc-500 dark:text-zinc-400">
+                    {t("toolsSpotlight.cvToolDesc")}
+                  </div>
+                </div>
+              </a>
+
+              {/* Event Planner - Coming Soon */}
+              <div className="flex items-center gap-3 rounded-xl border border-dashed border-amber-200 dark:border-amber-500/20 bg-white/60 dark:bg-zinc-900/60 p-3.5 opacity-70 cursor-default">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-amber-500 to-orange-600 shadow-sm">
+                  <CalendarDays className="h-4.5 w-4.5 text-white" />
+                </div>
+                <div className="min-w-0">
+                  <div className="truncate text-sm font-semibold text-zinc-900 dark:text-white">
+                    {t("toolsSpotlight.eventTool")}
+                  </div>
+                  <div className="truncate text-xs text-zinc-500 dark:text-zinc-400">
+                    {t("toolsSpotlight.eventToolDesc")}
+                  </div>
+                </div>
+                <Badge className="ml-auto shrink-0 text-xs border-amber-500/30 bg-amber-100 dark:bg-amber-500/10 text-amber-700 dark:text-amber-400">
+                  {t("toolsSpotlight.eventToolStatus")}
+                </Badge>
+              </div>
+            </div>
           </div>
         </div>
       </section>

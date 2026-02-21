@@ -69,6 +69,7 @@ export default async function RootLayout({
     explore: string;
     exploreAll: string;
     toggleTheme: string;
+    tools: string;
   };
 
   return (

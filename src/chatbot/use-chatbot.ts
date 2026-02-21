@@ -312,18 +312,21 @@ function _getHandoffMessage(from: ChatbotType, to: ChatbotType, locale: string):
       hamid: `I'll let Hamid help you with the guides! He's our expert 📚`,
       jmila: `Jmila will take it from here! She knows all the best spots 🐪`,
       hamza: `Let me connect you with Hamza, our developer 👨‍💻`,
+      riad: `Passing you to Riad — he'll write you a winning Munich rental application! 🏠`,
     },
     fr: {
       zellija: `Je passe le relais à ${toConfig.name}...`,
       hamid: `Je laisse Hamid t'aider avec les guides! C'est notre expert 📚`,
       jmila: `Jmila prend le relais! Elle connaît tous les bons endroits 🐪`,
       hamza: `Je te mets en contact avec Hamza, notre développeur 👨‍💻`,
+      riad: `Je te passe à Riad — il t'écrira une candidature gagnante pour Munich! 🏠`,
     },
     de: {
       zellija: `Ich übergebe an ${toConfig.name}...`,
       hamid: `Hamid wird dir bei den Guides helfen! Er ist unser Experte 📚`,
       jmila: `Jmila übernimmt! Sie kennt alle besten Orte 🐪`,
       hamza: `Ich verbinde dich mit Hamza, unserem Entwickler 👨‍💻`,
+      riad: `Ich übergebe dich an Riad — er schreibt dir eine überzeugende Münchner Mietbewerbung! 🏠`,
     },
   };
 

@@ -9,7 +9,8 @@
     "search": "Suche",
     "explore": "Entdecken",
     "exploreAll": "Alle Ratgeber erkunden",
-    "toggleTheme": "Theme wechseln"
+    "toggleTheme": "Theme wechseln",
+    "tools": "Tools"
   },
   "home": {
     "heroTitle": "Dein vollständiger Handbuch zum",
@@ -22,7 +23,8 @@
       "findHousing": "Wohnung finden",
       "kvrRegistration": "KVR-Anmeldung",
       "halalFood": "Halal-Essen",
-      "allGuides": "Alle Ratgeber"
+      "allGuides": "Alle Ratgeber",
+      "aiTools": "KI-Tools"
     },
     "stats": {
       "guides": "Ratgeber",
@@ -65,6 +67,21 @@
       "titleHighlight": "an einem Ort",
       "subtitle": "Umfassende Ratgeber, organisiert nach dem, was für dich am wichtigsten ist",
       "browseAll": "Alle Ratgeber durchsuchen"
+    },
+    "toolsSpotlight": {
+      "badge": "KI-gestützte Tools",
+      "title": "Smarte Tools für München",
+      "subtitle": "Schreibe gewinnende Mietbewerbungen, erstelle deutsche Lebensläufe, plane Events und mehr — speziell für Newcomer.",
+      "cta": "Alle Tools entdecken",
+      "housingTool": "Wohnungsbewerbungs-Assistent",
+      "housingToolDesc": "Füge ein Inserat ein, erhalte eine WG-Nachricht, die Antworten bekommt",
+      "housingToolStatus": "Aktiv",
+      "cvTool": "Lebenslauf & Anschreiben-Ersteller",
+      "cvToolDesc": "Für den Münchner Jobmarkt optimiert",
+      "cvToolStatus": "Aktiv",
+      "eventTool": "Event-Planer",
+      "eventToolDesc": "Plane Treffen und Events mit Freunden",
+      "eventToolStatus": "Bald"
     }
   },
   "places": {
@@ -604,13 +621,15 @@
       "zellija": "Dein freundlicher Guide von Atlas München",
       "hamid": "Dein witziger Ratgeber-Spezialist",
       "jmila": "Deine hilfreiche Guide zu Münchens Orten",
-      "hamza": "Der Entwickler hinter Atlas München"
+      "hamza": "Der Entwickler hinter Atlas München",
+      "riad": "Dein Experte für Münchner Wohnungsbewerbungen"
     },
     "welcome": {
       "zellija": "Salam! 👋 Ich bin Zellija, dein Guide für Atlas München. Wie kann ich dir heute helfen?",
       "hamid": "Labas! 📚 Ich bin Hamid, dein Ratgeber-Spezialist. Frag mich zu Wohnung, KVR, Uni oder allem anderen!",
       "jmila": "Hey! 🐪 Ich bin Jmila und kenne die besten Orte in München. Suchst du Halal-Essen oder ein Café?",
-      "hamza": "Salam! 👨‍💻 Ich bin Hamza, der Entwickler von Atlas München. Möchtest du mehr über das Projekt wissen?"
+      "hamza": "Salam! 👨‍💻 Ich bin Hamza, der Entwickler von Atlas München. Möchtest du mehr über das Projekt wissen?",
+      "riad": "Hey! 🏠 Ich bin Riad. Füg eine WG- oder Wohnungsanzeige ein und ich schreibe dir eine versandbereite Bewerbung, die in München wirklich Antworten bekommt."
     },
     "suggestions": {
       "zellija": {
@@ -632,13 +651,19 @@
         "0": "Über dieses Projekt",
         "1": "Wie kann ich beitragen?",
         "2": "Verwendeter Tech-Stack?"
+      },
+      "riad": {
+        "0": "Schreib eine WG-Bewerbung für mich",
+        "1": "Schreib eine formelle Wohnungsbewerbung",
+        "2": "Wie falle ich in München auf?"
       }
     },
     "description": {
       "zellija": "Eine warme, effiziente Verbindungsperson, die Nutzer an den richtigen Experten weiterleitet.",
       "hamid": "Ein witziger, sachkundiger Ratgeber, der Bürokratie mit Persönlichkeit erklärt.",
       "jmila": "Eine ruhige, essensbegeisterte Begleiterin, die die besten Orte in München empfiehlt.",
-      "hamza": "Ein technischer, community-orientierter Entwickler, der das Projekt und die Mitwirkung erklärt."
+      "hamza": "Ein technischer, community-orientierter Entwickler, der das Projekt und die Mitwirkung erklärt.",
+      "riad": "Ein scharfsinniger Wohnungsbewerbungsspezialist, der hochkonvertierte WG- und Apartmentnachrichten für Münchens kompetitiven Mietmarkt schreibt."
     }
   },
   "legal": {
@@ -669,6 +694,70 @@
       "ip": "Code und Design gehören dem Projektersteller. Die Lizenz finden Sie im GitHub-Repository.",
       "law": "Rechtliche Grundlage ist das deutsche Recht. Gerichtsstand ist München.",
       "contact": "Kontakt: [Ihre E-Mail]"
+    }
+  },
+  "tools": {
+    "badge": "München Tools",
+    "title": "Smarte Tools für",
+    "titleHighlight": "das Leben in München",
+    "subtitle": "KI-gestützte Tools für marokkanische Newcomer in München — schreibe gewinnende Mietbewerbungen, erstelle Lebensläufe, plane Events und mehr.",
+    "tools": {
+      "housing": {
+        "title": "Wohnungsbewerbungs-Assistent",
+        "description": "Füge ein WG- oder Wohnungsinserat ein und Riad schreibt dir eine versandfertige Bewerbung, die Antworten auf Münchens wettbewerbsintensivem Markt bekommt.",
+        "status": "Aktiv",
+        "cta": "Tool starten",
+        "poweredBy": "KI-gestützt von Riad",
+        "tags": ["WG-Bewerbungen", "Wohnungsinserate", "Perfektes Deutsch"]
+      },
+      "cv": {
+        "title": "Lebenslauf & Anschreiben-Ersteller",
+        "description": "Für den deutschen Jobmarkt optimiert. Lade deine Daten hoch und Hiro erstellt dir einen deutschen Lebenslauf und ein überzeugendes Anschreiben für Münchner Arbeitgeber.",
+        "status": "Aktiv",
+        "cta": "Hiro starten",
+        "poweredBy": "Powered by Hiro",
+        "tags": ["Deutsches Lebenslauf-Format", "Anschreiben", "Für München optimiert"]
+      },
+      "events": {
+        "title": "Event-Planer",
+        "description": "Plane Treffen, Lernsessions und Community-Events mit Freunden in München. Teile Pläne, stimme über Orte ab und koordiniere mühelos.",
+        "status": "Demnächst",
+        "cta": "Demnächst",
+        "comingSoonNote": "Wir bauen dieses Tool — bleib dran!",
+        "tags": ["Events planen", "Freunde einladen", "Münchner Orte"]
+      }
+    },
+    "moreComing": "Weitere Tools kommen bald. Hast du eine Idee? Trage auf"
+  },
+  "housing": {
+    "badge": "München Wohnen",
+    "title": "Münchner Wohnungs-",
+    "titleHighlight": "Bewerbungsassistent",
+    "subtitle": "Füge ein WG- oder Wohnungsinserat ein und Riad schreibt dir eine versandfertige Bewerbung, die auf Münchens wettbewerbsintensivem Mietmarkt Antworten bekommt.",
+    "cta": "Bewerbung schreiben",
+    "features": {
+      "title": "So funktioniert's",
+      "step1Title": "Inserat einfügen",
+      "step1Desc": "Kopiere ein WG- oder Wohnungsinserat von ImmobilienScout24, WG-Gesucht oder anderen Plattformen.",
+      "step2Title": "Riad schreibt deine Nachricht",
+      "step2Desc": "Unsere KI erstellt eine personalisierte, überzeugende Bewerbung in perfektem Deutsch, die auf das Inserat abgestimmt ist.",
+      "step3Title": "Absenden & Antworten erhalten",
+      "step3Desc": "Kopiere die fertige Nachricht und füge sie direkt auf der Plattform ein. Hebe dich von Hunderten von Bewerbern ab."
+    },
+    "tips": {
+      "title": "Münchner Wohnungstipps",
+      "tip1Title": "Schnell bewerben",
+      "tip1Desc": "In München erhalten gute Inserate 200+ Bewerbungen innerhalb von Stunden. Richte Alerts auf ImmobilienScout24 und WG-Gesucht ein.",
+      "tip2Title": "Dokumente vorbereiten",
+      "tip2Desc": "Halte SCHUFA, Selbstauskunft, Einkommensnachweis und Ausweiskopien in einer PDF bereit.",
+      "tip3Title": "Jede Nachricht personalisieren",
+      "tip3Desc": "Vermieter erkennen copy-paste Bewerbungen sofort. Riad passt jede Nachricht an das spezifische Inserat an.",
+      "tip4Title": "Betrug vermeiden",
+      "tip4Desc": "Nie zahlen vor der Besichtigung. Wenn es zu gut klingt, ist es wahrscheinlich Betrug. Nur Banküberweisung nutzen."
+    },
+    "platforms": {
+      "title": "Wo suchen",
+      "subtitle": "Top-Plattformen für die Wohnungssuche in München"
     }
   }
 }

@@ -9,7 +9,8 @@
     "search": "Search",
     "explore": "Explore",
     "exploreAll": "Explore All Guides",
-    "toggleTheme": "Toggle Theme"
+    "toggleTheme": "Toggle Theme",
+    "tools": "Tools"
   },
   "home": {
     "heroTitle": "Your Complete Guide to",
@@ -22,7 +23,8 @@
       "findHousing": "Find Housing",
       "kvrRegistration": "KVR Registration",
       "halalFood": "Halal Food",
-      "allGuides": "All Guides"
+      "allGuides": "All Guides",
+      "aiTools": "AI Tools"
     },
     "stats": {
       "guides": "Guides",
@@ -36,6 +38,21 @@
       "titleHighlight": "One Place",
       "subtitle": "Comprehensive guides organized by what matters most to you",
       "browseAll": "Browse All Guides"
+    },
+    "toolsSpotlight": {
+      "badge": "AI-Powered Tools",
+      "title": "Smart Tools for Munich Life",
+      "subtitle": "Write winning rental applications, draft German CVs, plan events, and more — built for newcomers.",
+      "cta": "Explore All Tools",
+      "housingTool": "Housing Application Writer",
+      "housingToolDesc": "Paste a listing, get a WG message that gets replies",
+      "housingToolStatus": "Live",
+      "cvTool": "CV & Cover Letter Drafter",
+      "cvToolDesc": "Tailored for Germany's job market",
+      "cvToolStatus": "Live",
+      "eventTool": "Event Planner",
+      "eventToolDesc": "Plan hangouts and events with friends",
+      "eventToolStatus": "Soon"
     },
     "community": {
       "badge": "Our Story",
@@ -604,13 +621,15 @@
       "zellija": "Your friendly guide to Atlas Munich",
       "hamid": "Your witty guides specialist",
       "jmila": "Your helpful camel guide to Munich places",
-      "hamza": "The developer behind Atlas Munich"
+      "hamza": "The developer behind Atlas Munich",
+      "riad": "Your Munich housing application expert"
     },
     "welcome": {
       "zellija": "Salam! 👋 I'm Zellija, your guide to Atlas Munich. How can I help you today?",
       "hamid": "Labas! 📚 I'm Hamid, your guides specialist. Ask me about housing, KVR, university, or anything Munich!",
       "jmila": "Hey there! 🐪 I'm Jmila, and I know all the best spots in Munich. Looking for halal food or a nice café?",
-      "hamza": "Salam! 👨‍💻 I'm Hamza, the developer of Atlas Munich. Want to know about the project?"
+      "hamza": "Salam! 👨‍💻 I'm Hamza, the developer of Atlas Munich. Want to know about the project?",
+      "riad": "Hey! 🏠 I'm Riad. Paste a WG or apartment listing and I'll write you a ready-to-send application that actually gets replies in Munich."
     },
     "suggestions": {
       "zellija": {
@@ -632,13 +651,19 @@
         "0": "About this project",
         "1": "How can I contribute?",
         "2": "Tech stack used?"
+      },
+      "riad": {
+        "0": "Write a WG application for me",
+        "1": "Write a formal apartment application",
+        "2": "How do I stand out in Munich?"
       }
     },
     "description": {
       "zellija": "A warm, efficient connector who routes users to the right expert.",
       "hamid": "A funny, knowledgeable guide specialist who explains bureaucracy with personality.",
       "jmila": "A calm, foodie-focused guide who recommends the best places in Munich.",
-      "hamza": "A technical, community-minded developer who can explain the project and how to contribute."
+      "hamza": "A technical, community-minded developer who can explain the project and how to contribute.",
+      "riad": "A sharp housing application specialist who writes high-conversion WG and apartment messages for Munich's competitive rental market."
     }
   },
   "legal": {
@@ -669,6 +694,70 @@
       "ip": "Code and design belong to the project author unless otherwise stated. Check the GitHub repo for open-source licensing.",
       "law": "These Terms are governed by the laws of Germany. Disputes fall under the jurisdiction of Munich.",
       "contact": "Questions? Contact: [your email]"
+    }
+  },
+  "tools": {
+    "badge": "Munich Tools",
+    "title": "Smart Tools for",
+    "titleHighlight": "Munich Life",
+    "subtitle": "AI-powered tools built for Moroccan newcomers in Munich — write winning rental applications, draft professional CVs, plan events, and more.",
+    "tools": {
+      "housing": {
+        "title": "Housing Application Writer",
+        "description": "Paste a WG or apartment listing and Riad will craft a ready-to-send application that gets replies in Munich's competitive rental market.",
+        "status": "Live",
+        "cta": "Launch Tool",
+        "poweredBy": "AI-powered by Riad",
+        "tags": ["WG Applications", "Apartment Listings", "Flawless German"]
+      },
+      "cv": {
+        "title": "CV & Cover Letter Drafter",
+        "description": "Tailored for Germany's job market. Upload your info and Hiro will build a German-format CV and a compelling cover letter crafted for Munich employers and internships.",
+        "status": "Live",
+        "cta": "Launch Hiro",
+        "poweredBy": "Powered by Hiro",
+        "tags": ["German CV Format", "Cover Letters", "Tailored to Munich"]
+      },
+      "events": {
+        "title": "Event Planner",
+        "description": "Plan hangouts, study sessions, and community events with friends in Munich. Share plans, vote on spots, and coordinate effortlessly.",
+        "status": "Coming Soon",
+        "cta": "Coming Soon",
+        "comingSoonNote": "We're building this tool — stay tuned!",
+        "tags": ["Plan Events", "Invite Friends", "Munich Spots"]
+      }
+    },
+    "moreComing": "More tools coming soon. Have an idea? Contribute on"
+  },
+  "housing": {
+    "badge": "Munich Housing",
+    "title": "Munich Housing",
+    "titleHighlight": "Application Assistant",
+    "subtitle": "Paste a WG or apartment listing and Riad will write you a ready-to-send application message that actually gets replies in Munich's competitive rental market.",
+    "cta": "Start Writing Application",
+    "features": {
+      "title": "How It Works",
+      "step1Title": "Paste the Listing",
+      "step1Desc": "Copy any WG or apartment listing from ImmobilienScout24, WG-Gesucht, or other platforms.",
+      "step2Title": "Riad Writes Your Message",
+      "step2Desc": "Our AI crafts a personalized, high-conversion application in flawless German tailored to the listing.",
+      "step3Title": "Send & Get Replies",
+      "step3Desc": "Copy the ready-to-send message and paste it directly into the platform. Stand out from hundreds of applicants."
+    },
+    "tips": {
+      "title": "Munich Housing Tips",
+      "tip1Title": "Apply Fast",
+      "tip1Desc": "In Munich, good listings get 200+ applications within hours. Set up alerts on ImmobilienScout24 and WG-Gesucht.",
+      "tip2Title": "Prepare Documents",
+      "tip2Desc": "Have your SCHUFA, Selbstauskunft, proof of income, and ID copies ready in one PDF before you start.",
+      "tip3Title": "Personalize Every Message",
+      "tip3Desc": "Landlords spot copy-paste applications instantly. Riad tailors each message to the specific listing.",
+      "tip4Title": "Avoid Scams",
+      "tip4Desc": "Never pay before viewing. If it sounds too good to be true, it probably is. Only use bank transfers."
+    },
+    "platforms": {
+      "title": "Where to Search",
+      "subtitle": "Top platforms for apartment hunting in Munich"
     }
   }
 }

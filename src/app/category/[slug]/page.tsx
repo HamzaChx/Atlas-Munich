@@ -174,24 +174,6 @@ export default async function CategoryPage({ params }: PageProps) {
 
   return (
     <div className={`min-h-screen ${bgColor} transition-colors duration-300`}>
-      {/* Housing Assistant CTA for rent-housing */}
-      {category.key === "rent-housing" && (
-        <div className="relative z-20 mx-auto max-w-2xl px-4 pt-8 pb-4 text-center">
-          <Link
-            href="/housing"
-            className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-blue-600 text-white font-semibold shadow-lg hover:bg-blue-700 transition-all text-lg"
-          >
-            <span role="img" aria-label="house">
-              🏠
-            </span>
-            Munich Housing Application Assistant
-            <span className="ml-2">→</span>
-          </Link>
-          <p className="mt-2 text-sm text-blue-700 dark:text-blue-300">
-            Paste a WG or apartment listing and get a ready-to-send application message for Munich.
-          </p>
-        </div>
-      )}
       {/* Enhanced Hero Section - Rule 6: Visual hierarchy obvious in 1 second */}
       <section className="relative overflow-hidden border-b border-zinc-200/80 dark:border-white/5">
         {/* Ambient Background Layers - Rule 31: Subtle gradients */}

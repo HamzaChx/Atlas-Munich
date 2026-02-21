@@ -3,6 +3,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { SearchBar, CategoryCard } from "@/components/shared";
+import { MunichSkyline, MoroccanCorner, ZelligeBorder, MashrabiyaPattern } from "@/components/home";
 import { categories } from "@/data/categories";
 import { guides } from "@/data/guides";
 import { places } from "@/data/places";
@@ -32,350 +33,118 @@ export default async function Home() {
 
   return (
     <div className="min-h-screen">
-      {/* Hero Section - Moroccan-Munich Fusion */}
-      <section className="relative min-h-[70vh] sm:min-h-[85vh] lg:min-h-[90vh] overflow-hidden bg-gradient-to-br from-red-50 via-white to-green-50 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950">
-        {/* Gradient Orbs - Morocco & Germany colors - smaller on mobile */}
-        <div className="absolute -left-16 sm:-left-32 top-1/4 z-[5] h-[250px] w-[250px] sm:h-[500px] sm:w-[500px] rounded-full bg-gradient-to-br from-red-300/50 to-red-200/30 dark:from-red-600/25 dark:to-red-500/15 blur-[80px] sm:blur-[120px]" />
-        <div className="absolute -right-16 sm:-right-32 bottom-1/4 z-[5] h-[250px] w-[250px] sm:h-[500px] sm:w-[500px] rounded-full bg-gradient-to-br from-green-300/50 to-emerald-200/30 dark:from-green-600/25 dark:to-emerald-500/15 blur-[80px] sm:blur-[120px]" />
-        <div className="absolute left-1/2 top-1/2 z-[5] h-[200px] w-[200px] sm:h-[400px] sm:w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gradient-to-br from-amber-200/20 to-white/30 dark:from-amber-500/10 dark:to-white/5 blur-[60px] sm:blur-[100px]" />
+      {/* ========== HERO ========== */}
+      <section className="relative min-h-[60vh] sm:min-h-[70vh] overflow-hidden bg-gradient-to-b from-zinc-50 via-white to-zinc-50 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950">
+        {/* Moroccan-flag gradient orbs */}
+        <div className="pointer-events-none absolute -left-20 top-1/4 h-[280px] w-[280px] sm:h-[420px] sm:w-[420px] rounded-full bg-gradient-to-br from-red-200/30 to-red-100/10 dark:from-red-700/15 dark:to-red-600/5 blur-[100px]" />
+        <div className="pointer-events-none absolute -right-20 bottom-1/4 h-[280px] w-[280px] sm:h-[420px] sm:w-[420px] rounded-full bg-gradient-to-br from-green-200/30 to-emerald-100/10 dark:from-green-700/15 dark:to-emerald-600/5 blur-[100px]" />
 
-        {/* Munich Skyline Silhouette - Responsive, gray and transparent, fills container width */}
-        <div className="pointer-events-none absolute bottom-0 left-0 right-0 z-10 h-16 sm:h-24 md:h-32 lg:h-44 opacity-[0.06] sm:opacity-[0.08] md:opacity-[0.10] lg:opacity-[0.12]">
-          <svg viewBox="0 0 1440 200" className="h-full w-full" preserveAspectRatio="none">
-            {/* Main Munich skyline base - using gray colors */}
-            <path
-              className="fill-zinc-400 dark:fill-zinc-500"
-              d="M0,200 L0,175
-                L40,175 L40,165 L55,165 L55,175
-                
-                L80,175 L80,140
-                L90,140 L90,70 L95,70 L95,52 Q100,35 105,52 L105,70 L110,70 L110,140
-                L120,140 L120,70 L125,70 L125,52 Q130,35 135,52 L135,70 L140,70 L140,140
-                L150,140 L150,175
-                
-                L200,175 L200,160 L220,160 L220,175
-                L260,175 L260,155 L280,155 L280,175
-                
-                L320,175 L320,145 L330,145 L330,130 L340,130 L340,145 L350,145 L350,175
-                
-                L400,175 L400,140
-                L415,140 L415,95 L420,95 L420,75 L425,75 L425,55 L430,40 L435,55 L435,75 L440,75 L440,95 L445,95 L445,140
-                L460,140 L460,175
-                
-                L510,175 L510,160 L530,160 L530,175
-                
-                L170,175 L170,150 L180,150 L180,135 L190,135 L190,120 L200,100 L210,120 L210,135 L220,135 L220,150 L230,150 L230,175
-                
-                L680,175 L680,160 L700,160 L700,175
-                L740,175 L740,155 L760,155 L760,175
-                
-                L800,175 L800,145 L815,145 L815,160 L830,160 L830,145 L845,145 L845,175
-                
-                L890,175 L890,160 L910,160 L910,175
-                
-                L950,175 L950,160 L970,160 L970,175
-                
-                L1010,175 L1010,155 L1030,155 L1030,175
-                
-                L1070,175 L1070,160 L1090,160 L1090,175
-                L1130,175 L1130,150 L1150,150 L1150,175
-                
-                L1200,175 L1200,160 L1220,160 L1220,175
-                L1260,175 L1260,150 L1280,150 L1280,175
-                
-                L1320,175 L1320,165 L1340,165 L1340,175
-                
-                L1440,175 L1440,200 Z"
-            />
+        {/* Moroccan corner ornaments — desktop only */}
+        <MoroccanCorner
+          position="top-left"
+          className="pointer-events-none absolute left-0 top-0 h-24 w-24 sm:h-32 sm:w-32 lg:h-40 lg:w-40 opacity-60"
+        />
+        <MoroccanCorner
+          position="top-right"
+          className="pointer-events-none absolute right-0 top-0 h-24 w-24 sm:h-32 sm:w-32 lg:h-40 lg:w-40 opacity-60"
+        />
 
-            {/* === Hochhaus Uptown München (O2 Tower) - rectangular skyscraper === */}
-            <g transform="translate(1060, 35)">
-              {/* Main rectangular tower body */}
-              <rect
-                x="0"
-                y="20"
-                width="40"
-                height="140"
-                className="fill-zinc-400 dark:fill-zinc-500"
-              />
-            </g>
-
-            {/* === BMW Vier-Zylinder (4 Cylinders) - accurate representation === */}
-            {/* Four connected cylindrical towers in a 2x2 cluster */}
-            <g transform="translate(1220, 85)">
-              {/* Tower 1 - front left */}
-              <ellipse cx="0" cy="0" rx="14" ry="6" className="fill-zinc-400 dark:fill-zinc-500" />
-              <rect
-                x="-14"
-                y="0"
-                width="28"
-                height="90"
-                className="fill-zinc-400 dark:fill-zinc-500"
-              />
-
-              {/* Tower 2 - front right */}
-              <ellipse cx="30" cy="5" rx="14" ry="6" className="fill-zinc-400 dark:fill-zinc-500" />
-              <rect
-                x="16"
-                y="5"
-                width="28"
-                height="85"
-                className="fill-zinc-400 dark:fill-zinc-500"
-              />
-
-              {/* Tower 3 - back left */}
-              <ellipse cx="8" cy="-8" rx="14" ry="6" className="fill-zinc-400 dark:fill-zinc-500" />
-              <rect
-                x="-6"
-                y="-8"
-                width="28"
-                height="98"
-                className="fill-zinc-400 dark:fill-zinc-500"
-              />
-
-              {/* Tower 4 - back right */}
-              <ellipse
-                cx="38"
-                cy="-3"
-                rx="14"
-                ry="6"
-                className="fill-zinc-400 dark:fill-zinc-500"
-              />
-              <rect
-                x="24"
-                y="-3"
-                width="28"
-                height="93"
-                className="fill-zinc-400 dark:fill-zinc-500"
-              />
-            </g>
-
-            {/* === Olympiaturm (Olympic Tower) - accurate representation === */}
-            {/* Main tower shaft */}
-            <rect
-              x="1370"
-              y="55"
-              width="10"
-              height="120"
-              className="fill-zinc-400 dark:fill-zinc-500"
-            />
-
-            {/* Observation deck / restaurant pod - distinctive bulge */}
-            <ellipse
-              cx="1375"
-              cy="55"
-              rx="25"
-              ry="18"
-              className="fill-zinc-400 dark:fill-zinc-500"
-            />
-            <ellipse
-              cx="1375"
-              cy="45"
-              rx="20"
-              ry="12"
-              className="fill-zinc-400 dark:fill-zinc-500"
-            />
-
-            {/* Lower observation deck */}
-            <ellipse
-              cx="1375"
-              cy="85"
-              rx="15"
-              ry="8"
-              className="fill-zinc-400 dark:fill-zinc-500"
-            />
-
-            {/* Antenna mast */}
-            <rect
-              x="1373"
-              y="5"
-              width="4"
-              height="40"
-              className="fill-zinc-400 dark:fill-zinc-500"
-            />
-
-            {/* Antenna top */}
-            <polygon points="1375,0 1371,8 1379,8" className="fill-zinc-400 dark:fill-zinc-500" />
-
-            {/* Frauenkirche dome crosses */}
-            <rect
-              x="99"
-              y="28"
-              width="2"
-              height="12"
-              className="fill-zinc-400 dark:fill-zinc-500"
-            />
-            <rect
-              x="95"
-              y="32"
-              width="10"
-              height="2"
-              className="fill-zinc-400 dark:fill-zinc-500"
-            />
-            <rect
-              x="129"
-              y="28"
-              width="2"
-              height="12"
-              className="fill-zinc-400 dark:fill-zinc-500"
-            />
-            <rect
-              x="125"
-              y="32"
-              width="10"
-              height="2"
-              className="fill-zinc-400 dark:fill-zinc-500"
-            />
-
-            {/* Rathaus spire cross */}
-            <rect
-              x="429"
-              y="25"
-              width="2"
-              height="18"
-              className="fill-zinc-400 dark:fill-zinc-500"
-            />
-            <rect
-              x="425"
-              y="30"
-              width="10"
-              height="2"
-              className="fill-zinc-400 dark:fill-zinc-500"
-            />
-
-            {/* St. Peter's spire cross */}
-            <rect
-              x="199"
-              y="90"
-              width="2"
-              height="14"
-              className="fill-zinc-400 dark:fill-zinc-500"
-            />
-            <rect
-              x="195"
-              y="95"
-              width="10"
-              height="2"
-              className="fill-zinc-400 dark:fill-zinc-500"
-            />
-          </svg>
-        </div>
+        {/* Munich Skyline at bottom */}
+        <MunichSkyline className="pointer-events-none absolute bottom-0 left-0 right-0 z-10 h-14 sm:h-20 md:h-28 lg:h-36 opacity-[0.06] sm:opacity-[0.09] lg:opacity-[0.12]" />
 
         {/* Content */}
-        <div className="relative z-20 mx-auto flex min-h-[70vh] sm:min-h-[85vh] lg:min-h-[90vh] max-w-7xl flex-col items-center justify-center px-4 py-12 sm:py-16 lg:py-20 text-center sm:px-6 lg:px-8">
-          {/* Main Title */}
-          <h1 className="max-w-4xl text-3xl font-bold tracking-tight text-zinc-800 dark:text-white sm:text-5xl lg:text-7xl mt-4 sm:mt-6">
+        <div className="relative z-20 mx-auto flex max-w-3xl flex-col items-center px-5 pb-16 pt-14 sm:pb-20 sm:pt-18 lg:pb-24 lg:pt-22 text-center">
+          {/* Flag-colored accent line */}
+          <div className="mb-6 flex items-center gap-1">
+            <span className="h-1 w-6 rounded-full bg-red-500/60" />
+            <span className="h-1 w-6 rounded-full bg-amber-500/60" />
+            <span className="h-1 w-6 rounded-full bg-green-500/60" />
+          </div>
+
+          {/* Title */}
+          <h1 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-4xl lg:text-5xl">
             {t("heroTitle")}
-            <span className="relative mt-2 block">
-              <span className="relative z-10  bg-emerald-600 dark:bg-emerald-400 bg-clip-text text-transparent">
-                {t("heroTitleHighlight")}
-              </span>
-              <span className="absolute -bottom-2 left-0 right-0 h-3 bg-gradient-to-r from-red-500/30 via-amber-500/30 to-green-500/30 blur-xl" />
+            <span className="mt-1 block bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-400 dark:to-teal-400 bg-clip-text text-transparent">
+              {t("heroTitleHighlight")}
             </span>
           </h1>
 
           {/* Subtitle */}
-          <p className="mx-auto mt-6 sm:mt-8 max-w-2xl text-base sm:text-lg leading-relaxed text-zinc-600 dark:text-zinc-400 px-2">
+          <p className="mt-5 max-w-xl text-base leading-relaxed text-zinc-600 dark:text-zinc-400 sm:text-lg">
             {t("heroSubtitle")}{" "}
-            <span className="font-semibold text-amber-600 dark:text-amber-400">
+            <span className="font-medium text-amber-600 dark:text-amber-400">
               {t("heroCommunity")}
             </span>
             {t("heroSubtitle2")}
           </p>
 
           {/* Search Bar */}
-          <div className="mx-auto mt-8 sm:mt-10 w-full max-w-2xl px-2">
-            <div className="relative">
-              <SearchBar placeholder={t("searchPlaceholder")} size="lg" showButton={false} />
-            </div>
+          <div className="mt-7 w-full max-w-lg sm:mt-8">
+            <SearchBar placeholder={t("searchPlaceholder")} size="lg" showButton={false} />
           </div>
 
-          {/* Quick Links - Centered grid with color-coded navigation */}
-          <div className="mt-6 sm:mt-8 w-full max-w-2xl px-4">
-            <div className="grid grid-cols-2 gap-2.5 sm:gap-3">
+          {/* Quick Links — horizontal scroll on mobile, grid on sm+ */}
+          <div className="mt-5 w-full max-w-lg sm:mt-6">
+            <div className="flex gap-2 overflow-x-auto pb-1 sm:grid sm:grid-cols-4 sm:overflow-visible hide-scrollbar-mobile">
               {[
                 {
                   label: t("quickLinks.findHousing"),
-                  href: "/category/rent-housing",
+                  href: "/housing",
                   icon: HomeIcon,
                   color: "text-blue-600 dark:text-blue-400",
-                  bg: "bg-blue-100 dark:bg-blue-500/20",
-                  border: "border-blue-200 dark:border-blue-500/30 hover:border-blue-400",
-                },
-                {
-                  label: t("quickLinks.kvrRegistration"),
-                  href: "/category/kvr-residence",
-                  icon: FileText,
-                  color: "text-amber-600 dark:text-amber-400",
-                  bg: "bg-amber-100 dark:bg-amber-500/20",
-                  border: "border-amber-200 dark:border-amber-500/30 hover:border-amber-400",
+                  bg: "bg-blue-50 dark:bg-blue-500/10",
                 },
                 {
                   label: t("quickLinks.halalFood"),
                   href: "/places",
                   icon: Coffee,
                   color: "text-emerald-600 dark:text-emerald-400",
-                  bg: "bg-emerald-100 dark:bg-emerald-500/20",
-                  border: "border-emerald-200 dark:border-emerald-500/30 hover:border-emerald-400",
+                  bg: "bg-emerald-50 dark:bg-emerald-500/10",
                 },
                 {
                   label: t("quickLinks.allGuides"),
                   href: "/guides",
                   icon: Compass,
                   color: "text-purple-600 dark:text-purple-400",
-                  bg: "bg-purple-100 dark:bg-purple-500/20",
-                  border: "border-purple-200 dark:border-purple-500/30 hover:border-purple-400",
+                  bg: "bg-purple-50 dark:bg-purple-500/10",
+                },
+                {
+                  label: t("quickLinks.aiTools"),
+                  href: "/tools",
+                  icon: Wrench,
+                  color: "text-violet-600 dark:text-violet-400",
+                  bg: "bg-violet-50 dark:bg-violet-500/10",
                 },
               ].map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
-                  className={`group flex items-center gap-2 rounded-xl border ${link.border} bg-white/90 dark:bg-white/5 px-3 py-2.5 text-sm font-medium text-zinc-700 dark:text-zinc-200 shadow-sm backdrop-blur-sm transition-all hover:shadow-md hover:-translate-y-0.5 active:scale-[0.98]`}
+                  className={`group flex shrink-0 items-center gap-2 rounded-full ${link.bg} px-3.5 py-2 text-sm font-medium text-zinc-700 dark:text-zinc-200 transition-all hover:shadow-sm active:scale-[0.97]`}
                 >
-                  <span
-                    className={`flex h-8 w-8 items-center justify-center rounded-lg ${link.bg}`}
-                  >
-                    <link.icon className={`h-4 w-4 ${link.color}`} />
-                  </span>
-                  <span className="flex-1 text-left leading-tight">{link.label}</span>
-                  <ArrowRight
-                    className={`h-4 w-4 ${link.color} opacity-50 transition-all group-hover:opacity-100 group-hover:translate-x-0.5`}
-                  />
+                  <link.icon className={`h-4 w-4 ${link.color}`} />
+                  <span className="whitespace-nowrap">{link.label}</span>
                 </Link>
               ))}
-              {/* AI Tools — full-width spanning both columns */}
-              <Link
-                href="/tools"
-                className="col-span-2 group flex items-center gap-2 rounded-xl border border-violet-200 dark:border-violet-500/30 hover:border-violet-400 bg-white/90 dark:bg-white/5 px-3 py-2.5 text-sm font-medium text-zinc-700 dark:text-zinc-200 shadow-sm backdrop-blur-sm transition-all hover:shadow-md hover:-translate-y-0.5 active:scale-[0.98]"
-              >
-                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-violet-100 dark:bg-violet-500/20">
-                  <Wrench className="h-4 w-4 text-violet-600 dark:text-violet-400" />
-                </span>
-                <span className="flex-1 text-left leading-tight">{t("quickLinks.aiTools")}</span>
-                <span className="rounded-full bg-violet-100 dark:bg-violet-500/20 px-2 py-0.5 text-xs font-semibold text-violet-700 dark:text-violet-300">
-                  AI
-                </span>
-                <ArrowRight className="h-4 w-4 text-violet-600 dark:text-violet-400 opacity-50 transition-all group-hover:opacity-100 group-hover:translate-x-0.5" />
-              </Link>
             </div>
           </div>
 
-          {/* Stats - Elegant text-only inline format */}
-          <div className="mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-x-4 sm:gap-x-6 lg:gap-x-8 gap-y-2 text-sm sm:text-base text-zinc-500 dark:text-zinc-400">
+          {/* Stats */}
+          <div className="mt-7 flex flex-wrap items-center justify-center gap-x-5 gap-y-1 text-sm text-zinc-500 dark:text-zinc-400 sm:mt-8">
             <span>
               <span className="font-semibold text-zinc-800 dark:text-white">{guides.length}+</span>{" "}
               {t("stats.guides")}
             </span>
-
+            <span className="text-zinc-300 dark:text-zinc-700">·</span>
             <span>
               <span className="font-semibold text-zinc-800 dark:text-white">{places.length}+</span>{" "}
               {t("stats.places")}
             </span>
-
+            <span className="text-zinc-300 dark:text-zinc-700">·</span>
             <span>
               <span className="font-semibold text-zinc-800 dark:text-white">{faqs.length}+</span>{" "}
               {t("stats.faqsAnswered")}
             </span>
+            <span className="text-zinc-300 dark:text-zinc-700">·</span>
             <span>
               <span className="font-semibold text-zinc-800 dark:text-white">100%</span>{" "}
               {t("stats.free")}
@@ -383,21 +152,21 @@ export default async function Home() {
           </div>
 
           {/* Creator credit */}
-          <div className="mt-6 flex items-center gap-3 justify-center">
+          <div className="mt-5 flex items-center gap-2.5 justify-center">
             <Image
               src="/hamza.jpeg"
               alt="Hamza Chaouki"
-              width={40}
-              height={40}
-              className="h-10 w-10 rounded-full object-cover border border-zinc-200 dark:border-white/10"
+              width={32}
+              height={32}
+              className="h-8 w-8 rounded-full object-cover border border-zinc-200 dark:border-white/10"
             />
-            <p className="text-sm text-zinc-600 dark:text-zinc-400">
+            <p className="text-xs text-zinc-500 dark:text-zinc-400">
               Created by
               <a
                 href="https://hamzachaouki.vercel.app/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="ml-2 font-semibold text-zinc-900 dark:text-white hover:underline"
+                className="ml-1 font-semibold text-zinc-900 dark:text-white hover:underline"
               >
                 Hamza Chaouki
               </a>
@@ -406,31 +175,31 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Categories Section */}
-      <section className="relative overflow-hidden border-b border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-950 py-12 sm:py-20">
-        {/* Decorative Elements */}
-        <div className="absolute left-0 top-0 h-1 w-full bg-gradient-to-r from-red-500 via-amber-500 to-green-500" />
+      {/* ========== CATEGORIES ========== */}
+      <section className="relative border-b border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-950 py-10 sm:py-16">
+        {/* Zellige-inspired top border — Moroccan flag colors */}
+        <div className="absolute left-0 top-0 h-1 w-full bg-gradient-to-r from-red-500 via-amber-500 to-green-500 opacity-80" />
 
-        <div className="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
-          <div className="mb-8 sm:mb-12 text-center px-2">
-            <Badge className="mb-4 border-emerald-500/30 bg-emerald-100 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400">
+          <div className="mb-6 sm:mb-10 text-center">
+            <Badge className="mb-3 border-emerald-500/30 bg-emerald-100 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400">
               <Compass className="mr-1.5 h-3.5 w-3.5" />
               {t("categories.badge")}
             </Badge>
-            <h2 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-4xl">
-              {t("categories.title")}
-              <span className="block text-emerald-600 dark:text-emerald-400">
+            <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-3xl">
+              {t("categories.title")}{" "}
+              <span className="text-emerald-600 dark:text-emerald-400">
                 {t("categories.titleHighlight")}
               </span>
             </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-base text-zinc-600 dark:text-zinc-400">
+            <p className="mx-auto mt-3 max-w-xl text-sm text-zinc-600 dark:text-zinc-400 sm:text-base">
               {t("categories.subtitle")}
             </p>
           </div>
 
-          {/* Categories Grid - Bento Style */}
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
+          {/* Categories Grid */}
+          <div className="grid gap-3 grid-cols-2 sm:grid-cols-2 lg:grid-cols-6">
             {categories.map((category, index) => (
               <CategoryCard
                 key={category.key}
@@ -443,24 +212,24 @@ export default async function Home() {
                 count={guideCountByCategory(category.key) || "New"}
                 className={
                   index === 0
-                    ? "sm:col-span-2 lg:col-span-2"
+                    ? "col-span-2 lg:col-span-2"
                     : index <= 2
                       ? "lg:col-span-2"
                       : index === 3
-                        ? "sm:col-span-2 lg:col-span-2 lg:col-start-2"
+                        ? "col-span-2 lg:col-span-2 lg:col-start-2"
                         : "lg:col-span-2"
                 }
               />
             ))}
           </div>
 
-          {/* View All Button */}
-          <div className="mt-10 text-center">
+          {/* View All */}
+          <div className="mt-8 text-center">
             <Button
               asChild
               size="lg"
               variant="outline"
-              className="group border-2 border-zinc-200 dark:border-white/10 text-zinc-900 dark:text-white hover:border-emerald-500/50 hover:bg-emerald-50 dark:hover:bg-emerald-500/10"
+              className="group border border-zinc-200 dark:border-white/10 text-zinc-900 dark:text-white hover:border-emerald-500/50 hover:bg-emerald-50 dark:hover:bg-emerald-500/10"
             >
               <Link href="/guides">
                 <BookOpen className="mr-2 h-4 w-4" />
@@ -472,42 +241,43 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* AI Tools Spotlight Section */}
-      <section className="relative overflow-hidden border-b border-zinc-200 dark:border-white/10 bg-gradient-to-r from-violet-50/60 via-white to-blue-50/60 dark:from-violet-950/30 dark:via-zinc-950 dark:to-blue-950/30 py-10 sm:py-14">
-        <div className="absolute -right-20 top-0 h-[300px] w-[300px] rounded-full bg-gradient-to-br from-violet-300/20 to-blue-300/20 dark:from-violet-600/10 dark:to-blue-600/10 blur-[80px]" />
+      {/* ========== AI TOOLS ========== */}
+      <section className="relative border-b border-zinc-200 dark:border-white/10 bg-zinc-50/80 dark:bg-zinc-900/50 py-10 sm:py-14 overflow-hidden">
+        {/* Subtle mashrabiya lattice background */}
+        <MashrabiyaPattern className="pointer-events-none absolute inset-0 text-zinc-400/[0.04] dark:text-white/[0.03]" />
+
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row items-start lg:items-center gap-6 lg:gap-10 justify-between">
+          <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
             {/* Text */}
-            <div className="max-w-xl">
+            <div className="max-w-md shrink-0">
               <Badge className="mb-3 border-violet-500/30 bg-violet-100 dark:bg-violet-500/10 text-violet-700 dark:text-violet-400">
                 <Sparkles className="mr-1.5 h-3.5 w-3.5" />
                 {t("toolsSpotlight.badge")}
               </Badge>
-              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900 dark:text-white">
+              <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-3xl">
                 {t("toolsSpotlight.title")}
               </h2>
-              <p className="mt-2 text-sm sm:text-base text-zinc-600 dark:text-zinc-400">
+              <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400 sm:text-base">
                 {t("toolsSpotlight.subtitle")}
               </p>
               <Link
                 href="/tools"
-                className="mt-4 inline-flex items-center gap-2 rounded-xl bg-violet-600 hover:bg-violet-700 px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-violet-500/25 transition-all hover:shadow-violet-500/40 hover:-translate-y-0.5"
+                className="mt-4 inline-flex items-center gap-2 rounded-lg bg-violet-600 hover:bg-violet-700 px-4 py-2 text-sm font-medium text-white transition-colors"
               >
                 <Wrench className="h-4 w-4" />
                 {t("toolsSpotlight.cta")}
-                <ArrowRight className="h-4 w-4" />
+                <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </div>
 
-            {/* Mini tool cards */}
-            <div className="w-full lg:w-auto grid grid-cols-1 sm:grid-cols-3 lg:grid-cols-1 xl:grid-cols-3 gap-3 lg:min-w-[540px]">
-              {/* Housing Application Writer */}
+            {/* Tool cards */}
+            <div className="grid gap-3 sm:grid-cols-3 lg:min-w-[480px]">
               <Link
                 href="/housing"
-                className="group flex items-center gap-3 rounded-xl border border-blue-200 dark:border-blue-500/20 bg-white dark:bg-zinc-900 p-3.5 shadow-sm hover:shadow-md hover:border-blue-400 dark:hover:border-blue-400/50 transition-all hover:-translate-y-0.5"
+                className="group flex items-center gap-3 rounded-xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900 p-3.5 transition-all hover:border-blue-300 dark:hover:border-blue-500/30 hover:shadow-sm"
               >
-                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 to-cyan-600 shadow-sm">
-                  <HomeIcon className="h-4.5 w-4.5 text-white" />
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 to-cyan-600">
+                  <HomeIcon className="h-4 w-4 text-white" />
                 </div>
                 <div className="min-w-0">
                   <div className="truncate text-sm font-semibold text-zinc-900 dark:text-white">
@@ -519,15 +289,14 @@ export default async function Home() {
                 </div>
               </Link>
 
-              {/* CV Drafter - Live */}
               <a
                 href="https://hiro-easier-hiring.vercel.app/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center gap-3 rounded-xl border border-purple-200 dark:border-purple-500/20 bg-white dark:bg-zinc-900 p-3.5 shadow-sm hover:shadow-md hover:border-purple-400 dark:hover:border-purple-400/50 transition-all hover:-translate-y-0.5"
+                className="group flex items-center gap-3 rounded-xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900 p-3.5 transition-all hover:border-purple-300 dark:hover:border-purple-500/30 hover:shadow-sm"
               >
-                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-purple-500 to-pink-600 shadow-sm">
-                  <FileText className="h-4.5 w-4.5 text-white" />
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-purple-500 to-pink-600">
+                  <FileText className="h-4 w-4 text-white" />
                 </div>
                 <div className="min-w-0">
                   <div className="truncate text-sm font-semibold text-zinc-900 dark:text-white">
@@ -539,12 +308,11 @@ export default async function Home() {
                 </div>
               </a>
 
-              {/* Event Planner - Coming Soon */}
-              <div className="flex items-center gap-3 rounded-xl border border-dashed border-amber-200 dark:border-amber-500/20 bg-white/60 dark:bg-zinc-900/60 p-3.5 opacity-70 cursor-default">
-                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-amber-500 to-orange-600 shadow-sm">
-                  <CalendarDays className="h-4.5 w-4.5 text-white" />
+              <div className="flex items-center gap-3 rounded-xl border border-dashed border-zinc-200 dark:border-white/10 bg-white/60 dark:bg-zinc-900/60 p-3.5 opacity-60">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-amber-500 to-orange-600">
+                  <CalendarDays className="h-4 w-4 text-white" />
                 </div>
-                <div className="min-w-0">
+                <div className="min-w-0 flex-1">
                   <div className="truncate text-sm font-semibold text-zinc-900 dark:text-white">
                     {t("toolsSpotlight.eventTool")}
                   </div>
@@ -552,7 +320,7 @@ export default async function Home() {
                     {t("toolsSpotlight.eventToolDesc")}
                   </div>
                 </div>
-                <Badge className="ml-auto shrink-0 text-xs border-amber-500/30 bg-amber-100 dark:bg-amber-500/10 text-amber-700 dark:text-amber-400">
+                <Badge className="shrink-0 text-[10px] border-amber-500/30 bg-amber-100 dark:bg-amber-500/10 text-amber-700 dark:text-amber-400">
                   {t("toolsSpotlight.eventToolStatus")}
                 </Badge>
               </div>
@@ -561,111 +329,32 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Community Mission Section */}
-      <section className="relative overflow-hidden border-b border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-zinc-950 py-10 sm:py-16 lg:py-20">
-        {/* Gradient orbs - smaller on mobile */}
-        <div className="absolute -left-16 sm:-left-32 top-1/4 h-[200px] w-[200px] sm:h-[400px] sm:w-[400px] rounded-full bg-gradient-to-br from-red-400/15 to-red-500/10 dark:from-red-600/10 dark:to-red-500/5 blur-[60px] sm:blur-[100px]" />
-        <div className="absolute -right-16 sm:-right-32 bottom-1/4 h-[200px] w-[200px] sm:h-[400px] sm:w-[400px] rounded-full bg-gradient-to-br from-green-400/15 to-emerald-500/10 dark:from-green-600/10 dark:to-emerald-500/5 blur-[60px] sm:blur-[100px]" />
+      {/* ========== COMMUNITY ========== */}
+      <section className="relative border-b border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-950 py-10 sm:py-16 overflow-hidden">
+        {/* Moroccan corner ornaments */}
+        <MoroccanCorner
+          position="bottom-right"
+          className="pointer-events-none absolute right-0 bottom-0 h-28 w-28 sm:h-36 sm:w-36 opacity-40"
+        />
 
         <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          {/* Reversed order on mobile - content first */}
-          <div className="grid items-center gap-8 lg:grid-cols-2">
-            {/* Visual - Hidden on mobile, shown on lg+ OR shown below content on mobile */}
-            <div className="relative order-2 lg:order-1 mx-auto max-w-xs sm:max-w-sm lg:max-w-md">
-              <div className="relative aspect-square overflow-hidden rounded-2xl">
-                {/* Main gradient background with Moroccan colors */}
-                <div className="absolute inset-0 bg-gradient-to-br from-red-600/20 via-amber-500/20 to-green-600/20" />
-
-                {/* Content - Central gathering metaphor */}
-                <div className="absolute inset-0 flex flex-col items-center justify-center p-6">
-                  <div className="relative mb-5">
-                    {/* Community circle - people gathering */}
-                    <div className="relative">
-                      <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 shadow-2xl shadow-emerald-500/50">
-                        <span className="text-3xl">🤝</span>
-                      </div>
-                      {/* Orbiting community members */}
-                      <div className="absolute -right-2 -top-2 h-10 w-10 animate-pulse rounded-full bg-gradient-to-br from-amber-500 to-red-600 p-1.5 shadow-lg">
-                        <span className="flex h-full w-full items-center justify-center text-lg">
-                          🇲🇦
-                        </span>
-                      </div>
-                      <div
-                        className="absolute -bottom-2 -left-2 h-10 w-10 animate-pulse rounded-full bg-gradient-to-br from-green-600 to-emerald-600 p-1.5 shadow-lg"
-                        style={{ animationDelay: "0.5s" }}
-                      >
-                        <span className="flex h-full w-full items-center justify-center text-lg">
-                          🏰
-                        </span>
-                      </div>
-                      <div
-                        className="absolute -bottom-1 -right-2 h-8 w-8 animate-pulse rounded-full bg-gradient-to-br from-teal-500 to-cyan-600 p-1.5 shadow-lg"
-                        style={{ animationDelay: "1s" }}
-                      >
-                        <span className="flex h-full w-full items-center justify-center text-sm">
-                          💚
-                        </span>
-                      </div>
-                    </div>
-                  </div>
-                  <h3 className="text-center text-2xl font-bold text-zinc-900 dark:text-white">
-                    {t("builtTogether")}
-                  </h3>
-                  <p className="mt-1 text-center text-base text-zinc-600 dark:text-white/80">
-                    {t("byTheCommunity")}
-                  </p>
-                </div>
-              </div>
-
-              {/* Floating Elements - Hidden on mobile for cleaner look */}
-              <div className="hidden sm:block absolute -right-3 -top-3 rounded-xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900 p-3 shadow-lg dark:shadow-xl animate-[float_3s_ease-in-out_infinite] hover:scale-105 hover:shadow-xl hover:shadow-red-500/20 dark:hover:shadow-red-500/30 transition-all duration-300 cursor-pointer">
-                <div className="flex items-center gap-2">
-                  <div className="rounded-lg bg-red-100 dark:bg-red-500/20 p-1.5 transition-transform duration-300 group-hover:scale-110">
-                    <span className="text-xl">🇲🇦</span>
-                  </div>
-                  <div>
-                    <div className="text-xs font-semibold text-zinc-900 dark:text-white">
-                      {t("moroccanRoots")}
-                    </div>
-                    <div className="text-xs text-zinc-500">{t("authenticGuidance")}</div>
-                  </div>
-                </div>
-              </div>
-
-              <div
-                className="hidden sm:block absolute -bottom-3 -left-3 rounded-xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900 p-3 shadow-lg dark:shadow-xl animate-[float_3s_ease-in-out_infinite] hover:scale-105 hover:shadow-xl hover:shadow-amber-500/20 dark:hover:shadow-amber-500/30 transition-all duration-300 cursor-pointer"
-                style={{ animationDelay: "1.5s" }}
-              >
-                <div className="flex items-center gap-2">
-                  <div className="rounded-lg bg-amber-100 dark:bg-amber-500/20 p-1.5 transition-transform duration-300 group-hover:scale-110">
-                    <span className="text-xl">🏰</span>
-                  </div>
-                  <div>
-                    <div className="text-xs font-semibold text-zinc-900 dark:text-white">
-                      {t("munichLife")}
-                    </div>
-                    <div className="text-xs text-zinc-500">{t("localExpertise")}</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Content - First on mobile */}
-            <div className="order-1 lg:order-2">
+          <div className="grid items-center gap-8 lg:grid-cols-5">
+            {/* Content */}
+            <div className="lg:col-span-3">
               <Badge className="mb-3 border-amber-500/30 bg-amber-100 dark:bg-amber-500/10 text-amber-700 dark:text-amber-400">
                 <Heart className="mr-1.5 h-3.5 w-3.5" />
                 {t("community.badge")}
               </Badge>
-              <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-zinc-900 dark:text-white">
+              <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-3xl">
                 {t("community.title")}
                 <span className="text-emerald-600 dark:text-emerald-400">
                   {t("community.titleHighlight")}
                 </span>
               </h2>
-              <p className="mt-5 text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
+              <p className="mt-4 text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
                 {t("community.description1")}
               </p>
-              <p className="mt-3 text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
+              <p className="mt-2 text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
                 {t("community.description2")}{" "}
                 <span className="font-semibold text-zinc-900 dark:text-white">
                   {t("community.atlasName")}
@@ -673,11 +362,8 @@ export default async function Home() {
                 {t("community.description3")}
               </p>
 
-              <div className="mt-6 flex flex-col sm:flex-row gap-3">
-                <Button
-                  asChild
-                  className="text-white bg-emerald-600 shadow-lg hover:bg-emerald-500"
-                >
+              <div className="mt-5 flex flex-col gap-2.5 sm:flex-row sm:gap-3">
+                <Button asChild className="text-white bg-emerald-600 hover:bg-emerald-500">
                   <Link href="/about">
                     <Users className="mr-2 h-4 w-4" />
                     {t("community.aboutCommunity")}
@@ -686,7 +372,7 @@ export default async function Home() {
                 <Button
                   asChild
                   variant="outline"
-                  className="border-2 border-zinc-200 dark:border-white/10 text-zinc-900 dark:text-white hover:border-emerald-500/50 hover:bg-emerald-50 dark:hover:bg-emerald-500/10"
+                  className="border border-zinc-200 dark:border-white/10 text-zinc-900 dark:text-white hover:border-emerald-500/50 hover:bg-emerald-50 dark:hover:bg-emerald-500/10"
                 >
                   <Link href="/faq">
                     <HelpCircle className="mr-2 h-4 w-4" />
@@ -695,37 +381,77 @@ export default async function Home() {
                 </Button>
               </div>
             </div>
+
+            {/* Visual card — desktop only */}
+            <div className="hidden lg:flex lg:col-span-2 items-center justify-center">
+              <div className="relative flex flex-col items-center rounded-2xl border border-zinc-200/80 dark:border-white/10 bg-gradient-to-br from-zinc-50 to-white dark:from-zinc-900 dark:to-zinc-800/80 p-10 shadow-sm">
+                {/* Moroccan-inspired 8-pointed star as background watermark */}
+                <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-[0.04] dark:opacity-[0.06]">
+                  <svg viewBox="0 0 100 100" className="h-48 w-48">
+                    <g transform="translate(50, 50)">
+                      <rect x="-25" y="-25" width="50" height="50" className="fill-emerald-600" />
+                      <rect
+                        x="-25"
+                        y="-25"
+                        width="50"
+                        height="50"
+                        transform="rotate(45)"
+                        className="fill-emerald-600"
+                      />
+                    </g>
+                  </svg>
+                </div>
+
+                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 shadow-lg shadow-emerald-500/25">
+                  <span className="text-3xl">🤝</span>
+                </div>
+                <h3 className="mt-4 text-xl font-bold text-zinc-900 dark:text-white">
+                  {t("builtTogether")}
+                </h3>
+                <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
+                  {t("byTheCommunity")}
+                </p>
+                {/* Moroccan flag accent */}
+                <div className="mt-4 flex gap-1.5">
+                  <span className="h-1.5 w-5 rounded-full bg-red-500/70" />
+                  <span className="h-1.5 w-5 rounded-full bg-amber-500/70" />
+                  <span className="h-1.5 w-5 rounded-full bg-green-500/70" />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* CTA Section - Contribute */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-red-50 via-white to-green-50 dark:from-zinc-950 dark:via-zinc-950 dark:to-zinc-950 py-10 sm:py-16 lg:py-20">
-        {/* Animated Gradient Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-red-100/40 via-transparent to-green-100/40 dark:from-red-950/30 dark:via-zinc-950 dark:to-green-950/30" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-amber-200/20 dark:from-amber-500/10 via-transparent to-transparent" />
+      {/* ========== CTA ========== */}
+      <section className="relative overflow-hidden bg-gradient-to-b from-zinc-50 to-white dark:from-zinc-900 dark:to-zinc-950 py-10 sm:py-14">
+        {/* Zellige border at top */}
+        <ZelligeBorder className="absolute left-0 top-0 h-3 w-full text-emerald-600/10 dark:text-emerald-400/10" />
 
-        <div className="relative mx-auto max-w-4xl px-3 sm:px-6 lg:px-8 text-center">
-          <Badge className="mb-5 border-emerald-500/30 bg-emerald-100 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400">
+        {/* Subtle background orb */}
+        <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[300px] w-[300px] rounded-full bg-gradient-to-br from-amber-200/15 to-green-200/10 dark:from-amber-800/10 dark:to-green-800/5 blur-[80px]" />
+
+        <div className="relative mx-auto max-w-3xl px-4 sm:px-6 text-center">
+          <Badge className="mb-4 border-emerald-500/30 bg-emerald-100 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400">
             <Sparkles className="mr-1.5 h-3.5 w-3.5" />
             {t("cta.badge")}
           </Badge>
 
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-zinc-900 dark:text-white">
+          <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-3xl">
             {t("cta.title")}
-            <span className="block bg-gradient-to-r from-red-600 via-amber-500 to-green-600 dark:from-red-500 dark:via-amber-400 dark:to-green-500 bg-clip-text text-transparent">
+            <span className="block bg-gradient-to-r from-red-600 via-amber-500 to-green-600 dark:from-red-400 dark:via-amber-400 dark:to-green-400 bg-clip-text text-transparent">
               {t("cta.titleHighlight")}
             </span>
           </h2>
 
-          <p className="mx-auto mt-5 max-w-2xl text-base text-zinc-600 dark:text-zinc-400">
+          <p className="mx-auto mt-4 max-w-xl text-sm text-zinc-600 dark:text-zinc-400 sm:text-base">
             {t("cta.description")}
           </p>
 
-          <div className="mt-6 sm:mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+          <div className="mt-6 flex flex-col items-center justify-center gap-2.5 sm:flex-row sm:gap-3">
             <Button
               asChild
-              className="w-full sm:w-auto text-white bg-emerald-600 px-6 shadow-xl shadow-emerald-500/25 hover:bg-emerald-500"
+              className="w-full sm:w-auto text-white bg-emerald-600 px-5 hover:bg-emerald-500"
             >
               <Link
                 href="https://github.com/HamzaChx/Atlas-Munich"
@@ -739,7 +465,7 @@ export default async function Home() {
             <Button
               asChild
               variant="outline"
-              className="w-full sm:w-auto border-2 border-zinc-200 dark:border-zinc-700 px-6 text-zinc-900 dark:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800"
+              className="w-full sm:w-auto border border-zinc-200 dark:border-zinc-700 px-5 text-zinc-900 dark:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800"
             >
               <Link href="/about">
                 {t("cta.learnHow")}
@@ -749,14 +475,14 @@ export default async function Home() {
           </div>
 
           {/* Trust Badges */}
-          <div className="mt-8 sm:mt-10 flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-sm text-zinc-500">
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-4 text-xs text-zinc-500 sm:text-sm">
             {[
               { icon: CheckCircle2, text: t("cta.freeForever") },
               { icon: Users, text: t("cta.communityDriven") },
               { icon: Heart, text: t("cta.madeWithLove") },
             ].map((item) => (
-              <div key={item.text} className="flex items-center gap-2">
-                <item.icon className="h-4 w-4 text-emerald-500" />
+              <div key={item.text} className="flex items-center gap-1.5">
+                <item.icon className="h-3.5 w-3.5 text-emerald-500" />
                 <span>{item.text}</span>
               </div>
             ))}

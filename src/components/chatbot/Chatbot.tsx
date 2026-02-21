@@ -94,7 +94,7 @@ function ChatBubble({
     const lines = text.split("\n");
     const elements: React.ReactNode[] = [];
     let inList = false;
-    let listItems: string[] = [];
+    let listItems: React.ReactNode[] = [];
 
     const flushList = () => {
       if (listItems.length > 0) {
@@ -102,7 +102,7 @@ function ChatBubble({
           <ul key={`list-${elements.length}`} className="my-2 ml-4 list-disc space-y-1">
             {listItems.map((item, i) => (
               <li key={i} className="text-sm">
-                {parseInlineFormatting(item)}
+                {item}
               </li>
             ))}
           </ul>
@@ -113,63 +113,70 @@ function ChatBubble({
     };
 
     lines.forEach((line, idx) => {
-      // Headers
-      if (line.startsWith("### ")) {
+      const trimmed = line.trimStart();
+      const isIndented = line !== trimmed && trimmed.length > 0;
+
+      // Headers (check trimmed so indented headers still work)
+      if (trimmed.startsWith("### ")) {
         flushList();
         elements.push(
           <h3 key={idx} className="text-base font-bold mt-3 mb-1">
-            {parseInlineFormatting(line.replace("### ", ""))}
+            {parseInlineFormatting(trimmed.replace("### ", ""))}
           </h3>
         );
-      } else if (line.startsWith("## ")) {
+      } else if (trimmed.startsWith("## ")) {
         flushList();
         elements.push(
           <h2 key={idx} className="text-lg font-bold mt-3 mb-1">
-            {parseInlineFormatting(line.replace("## ", ""))}
+            {parseInlineFormatting(trimmed.replace("## ", ""))}
           </h2>
         );
-      } else if (line.startsWith("# ")) {
+      } else if (trimmed.startsWith("# ")) {
         flushList();
         elements.push(
           <h1 key={idx} className="text-xl font-bold mt-3 mb-1">
-            {parseInlineFormatting(line.replace("# ", ""))}
+            {parseInlineFormatting(trimmed.replace("# ", ""))}
           </h1>
         );
       }
-      // List items
-      else if (line.match(/^[\-\*\•]\s/)) {
+      // List items — match regardless of leading indentation
+      else if (trimmed.match(/^[-*•]\s/)) {
         inList = true;
-        listItems.push(line.replace(/^[\-\*\•]\s/, ""));
+        listItems.push(parseInlineFormatting(trimmed.replace(/^[-*•]\s/, "")));
       }
-      // Numbered lists
-      else if (line.match(/^\d+\.\s/)) {
+      // Numbered list items
+      else if (trimmed.match(/^\d+\.\s/)) {
         flushList();
-        const content = line.replace(/^\d+\.\s/, "");
+        const content = trimmed.replace(/^\d+\.\s/, "");
         elements.push(
           <p key={idx} className="my-1 text-sm">
-            <span className="font-semibold">{line.match(/^\d+\./)?.[0]}</span>{" "}
+            <span className="font-semibold">{trimmed.match(/^\d+\./)?.[0]}</span>{" "}
             {parseInlineFormatting(content)}
           </p>
         );
       }
+      // Indented non-bullet lines (e.g. "    Argana - Moroccan Restaurant") → bold sub-heading
+      else if (isIndented) {
+        flushList();
+        elements.push(
+          <p key={idx} className="mt-2.5 mb-0.5 text-sm font-semibold">
+            {parseInlineFormatting(trimmed)}
+          </p>
+        );
+      }
       // Empty line
-      else if (line.trim() === "") {
+      else if (trimmed === "") {
         flushList();
         elements.push(<div key={idx} className="h-2" />);
       }
-      // Regular paragraph (with potential inline formatting)
+      // Regular paragraph
       else {
-        if (!inList) {
-          flushList();
-          elements.push(
-            <p key={idx} className="my-1 text-sm">
-              {parseInlineFormatting(line)}
-            </p>
-          );
-        } else {
-          // Continue adding to list if we were in one
-          listItems.push(line);
-        }
+        flushList();
+        elements.push(
+          <p key={idx} className="my-1 text-sm">
+            {parseInlineFormatting(line)}
+          </p>
+        );
       }
     });
 

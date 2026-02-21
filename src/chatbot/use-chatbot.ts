@@ -10,7 +10,6 @@ import { useLocale } from "next-intl";
 import {
   ChatMessage,
   ChatbotType,
-  ChatResponse,
   getChatbotForPath,
   CHATBOT_CONFIG,
   ChatbotNotification,
@@ -164,26 +163,60 @@ export function useChatbot(options: UseChatbotOptions = {}): UseChatbotReturn {
           throw new Error("Failed to get response");
         }
 
-        const data: ChatResponse = await response.json();
-
-        // Add assistant message
+        // Add placeholder assistant message and stream chunks into it
+        const assistantId = generateId();
         const assistantMessage: ChatMessage = {
-          id: generateId(),
+          id: assistantId,
           role: "assistant",
-          content: data.message,
+          content: "",
           timestamp: new Date(),
           chatbot: currentChatbot,
         };
-
         setMessages((prev) => [...prev, assistantMessage]);
 
-        // Handle navigation/routing (Zellija feature)
-        if (data.navigation) {
-          const toChatbot = data.navigation.targetChatbot;
-          const targetPath = data.navigation.path;
+        const reader = response.body!.getReader();
+        const decoder = new TextDecoder();
+        let fullText = "";
+        let firstChunk = true;
+
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          const chunk = decoder.decode(value, { stream: true });
+          fullText += chunk;
+
+          // Hide loading spinner after first bytes arrive
+          if (firstChunk) {
+            firstChunk = false;
+            setIsLoading(false);
+          }
+
+          // Render incrementally, stripping any route markers from display
+          const displayText = fullText.replace(/\[ROUTE:[^\]]+\]/g, "").trim();
+          setMessages((prev) =>
+            prev.map((msg) =>
+              msg.id === assistantId ? { ...msg, content: displayText } : msg
+            )
+          );
+        }
+
+        // After stream ends, parse for routing instructions (Zellija feature)
+        const routeMatch = fullText.match(/\[ROUTE:([^\]:]+):([^\]]+)\]/);
+        const cleanResponse = fullText.replace(/\[ROUTE:[^\]]+\]/g, "").trim();
+
+        // Ensure final clean content is set
+        setMessages((prev) =>
+          prev.map((msg) =>
+            msg.id === assistantId ? { ...msg, content: cleanResponse } : msg
+          )
+        );
+
+        // Handle navigation/routing if present
+        if (routeMatch) {
+          const targetPath = routeMatch[1];
+          const toChatbot = routeMatch[2] as ChatbotType;
           const toConfig = CHATBOT_CONFIG[toChatbot];
 
-          // Start countdown for redirect
           setRedirectCountdown({
             isActive: true,
             secondsRemaining: REDIRECT_COUNTDOWN_SECONDS,
@@ -192,40 +225,25 @@ export function useChatbot(options: UseChatbotOptions = {}): UseChatbotReturn {
             message: `Redirecting to ${toConfig.name} in`,
           });
 
-          // Clear any existing countdown
           if (countdownIntervalRef.current) {
             clearInterval(countdownIntervalRef.current);
           }
 
-          // Start countdown interval
           let secondsLeft = REDIRECT_COUNTDOWN_SECONDS;
           countdownIntervalRef.current = setInterval(() => {
             secondsLeft -= 1;
 
             if (secondsLeft <= 0) {
-              // Clear interval
               if (countdownIntervalRef.current) {
                 clearInterval(countdownIntervalRef.current);
               }
-
-              // Mark that we're being redirected (for success notification)
               wasRedirectedRef.current = true;
-
-              // Clear countdown state
               setRedirectCountdown(null);
-
-              // Switch chatbot and navigate
               setCurrentChatbot(toChatbot);
               router.push(targetPath);
             } else {
-              // Update countdown
               setRedirectCountdown((prev) =>
-                prev
-                  ? {
-                      ...prev,
-                      secondsRemaining: secondsLeft,
-                    }
-                  : null
+                prev ? { ...prev, secondsRemaining: secondsLeft } : null
               );
             }
           }, 1000);

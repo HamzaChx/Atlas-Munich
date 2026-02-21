@@ -1,9 +1,8 @@
 import Link from "next/link";
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { SearchBar, CategoryCard } from "@/components/shared";
-import { MunichSkyline, MoroccanCorner, ZelligeBorder, MashrabiyaPattern } from "@/components/home";
+import { MunichSkyline, MoroccanCorner, MashrabiyaPattern } from "@/components/home";
 import { categories } from "@/data/categories";
 import { guides } from "@/data/guides";
 import { places } from "@/data/places";
@@ -15,7 +14,6 @@ import {
   Sparkles,
   HelpCircle,
   Users,
-  CheckCircle2,
   Heart,
   Compass,
   Coffee,
@@ -53,7 +51,7 @@ export default async function Home() {
         <MunichSkyline className="pointer-events-none absolute bottom-0 left-0 right-0 z-10 h-14 sm:h-20 md:h-28 lg:h-36 opacity-[0.06] sm:opacity-[0.09] lg:opacity-[0.12]" />
 
         {/* Content */}
-        <div className="relative z-20 mx-auto flex max-w-3xl flex-col items-center px-5 pb-16 pt-14 sm:pb-20 sm:pt-18 lg:pb-24 lg:pt-22 text-center">
+        <div className="relative z-20 mx-auto flex max-w-2xl flex-col items-center px-5 pb-16 pt-14 sm:pb-20 sm:pt-18 lg:pb-24 lg:pt-22 text-center">
           {/* Flag-colored accent line */}
           <div className="mb-6 flex items-center gap-1">
             <span className="h-1 w-6 rounded-full bg-red-500/60" />
@@ -70,7 +68,7 @@ export default async function Home() {
           </h1>
 
           {/* Subtitle */}
-          <p className="mt-5 max-w-xl text-base leading-relaxed text-zinc-600 dark:text-zinc-400 sm:text-lg">
+          <p className="mt-5 text-base leading-relaxed text-zinc-600 dark:text-zinc-400 sm:text-lg">
             {t("heroSubtitle")}{" "}
             <span className="font-medium text-amber-600 dark:text-amber-400">
               {t("heroCommunity")}
@@ -79,12 +77,12 @@ export default async function Home() {
           </p>
 
           {/* Search Bar */}
-          <div className="mt-7 w-full max-w-lg sm:mt-8">
+          <div className="mt-7 w-full sm:mt-8">
             <SearchBar placeholder={t("searchPlaceholder")} size="lg" showButton={false} />
           </div>
 
           {/* Quick Links — horizontal scroll on mobile, grid on sm+ */}
-          <div className="mt-5 w-full max-w-lg sm:mt-6">
+          <div className="mt-5 w-full sm:mt-6">
             <div className="flex gap-2 overflow-x-auto pb-1 sm:grid sm:grid-cols-4 sm:overflow-visible hide-scrollbar-mobile">
               {[
                 {
@@ -121,7 +119,7 @@ export default async function Home() {
                   href={link.href}
                   className={`group flex shrink-0 items-center gap-2 rounded-full ${link.bg} px-3.5 py-2 text-sm font-medium text-zinc-700 dark:text-zinc-200 transition-all hover:shadow-sm active:scale-[0.97]`}
                 >
-                  <link.icon className={`h-4 w-4 ${link.color}`} />
+                  <link.icon className={`h-4 w-4 shrink-0 ${link.color}`} />
                   <span className="whitespace-nowrap">{link.label}</span>
                 </Link>
               ))}
@@ -150,28 +148,6 @@ export default async function Home() {
               {t("stats.free")}
             </span>
           </div>
-
-          {/* Creator credit */}
-          <div className="mt-5 flex items-center gap-2.5 justify-center">
-            <Image
-              src="/hamza.jpeg"
-              alt="Hamza Chaouki"
-              width={32}
-              height={32}
-              className="h-8 w-8 rounded-full object-cover border border-zinc-200 dark:border-white/10"
-            />
-            <p className="text-xs text-zinc-500 dark:text-zinc-400">
-              Created by
-              <a
-                href="https://hamzachaouki.vercel.app/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="ml-1 font-semibold text-zinc-900 dark:text-white hover:underline"
-              >
-                Hamza Chaouki
-              </a>
-            </p>
-          </div>
         </div>
       </section>
 
@@ -183,10 +159,6 @@ export default async function Home() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
           <div className="mb-6 sm:mb-10 text-center">
-            <Badge className="mb-3 border-emerald-500/30 bg-emerald-100 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400">
-              <Compass className="mr-1.5 h-3.5 w-3.5" />
-              {t("categories.badge")}
-            </Badge>
             <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-3xl">
               {t("categories.title")}{" "}
               <span className="text-emerald-600 dark:text-emerald-400">
@@ -289,12 +261,14 @@ export default async function Home() {
                 </div>
               </Link>
 
-              <a
-                href="https://hiro-easier-hiring.vercel.app/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-center gap-3 rounded-xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900 p-3.5 transition-all hover:border-purple-300 dark:hover:border-purple-500/30 hover:shadow-sm"
-              >
+              <div className="group relative flex items-center gap-3 rounded-xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900 p-3.5 transition-all hover:border-purple-300 dark:hover:border-purple-500/30 hover:shadow-sm">
+                <a
+                  href="https://hiro-easier-hiring.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="absolute inset-0 rounded-xl"
+                  aria-label="Open Hiro CV Drafter"
+                />
                 <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-purple-500 to-pink-600">
                   <FileText className="h-4 w-4 text-white" />
                 </div>
@@ -305,8 +279,19 @@ export default async function Home() {
                   <div className="truncate text-xs text-zinc-500 dark:text-zinc-400">
                     {t("toolsSpotlight.cvToolDesc")}
                   </div>
+                  <div className="mt-1 flex items-center gap-1">
+                    <span className="text-[10px] text-zinc-400 dark:text-zinc-500">by</span>
+                    <a
+                      href="https://mohamed-nejjar.vercel.app/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="relative z-10 text-[10px] font-medium text-purple-600 dark:text-purple-400 hover:underline"
+                    >
+                      Mohamed Nejjar
+                    </a>
+                  </div>
                 </div>
-              </a>
+              </div>
 
               <div className="flex items-center gap-3 rounded-xl border border-dashed border-zinc-200 dark:border-white/10 bg-white/60 dark:bg-zinc-900/60 p-3.5 opacity-60">
                 <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-amber-500 to-orange-600">
@@ -419,73 +404,6 @@ export default async function Home() {
                 </div>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* ========== CTA ========== */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-zinc-50 to-white dark:from-zinc-900 dark:to-zinc-950 py-10 sm:py-14">
-        {/* Zellige border at top */}
-        <ZelligeBorder className="absolute left-0 top-0 h-3 w-full text-emerald-600/10 dark:text-emerald-400/10" />
-
-        {/* Subtle background orb */}
-        <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-[300px] w-[300px] rounded-full bg-gradient-to-br from-amber-200/15 to-green-200/10 dark:from-amber-800/10 dark:to-green-800/5 blur-[80px]" />
-
-        <div className="relative mx-auto max-w-3xl px-4 sm:px-6 text-center">
-          <Badge className="mb-4 border-emerald-500/30 bg-emerald-100 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400">
-            <Sparkles className="mr-1.5 h-3.5 w-3.5" />
-            {t("cta.badge")}
-          </Badge>
-
-          <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-3xl">
-            {t("cta.title")}
-            <span className="block bg-gradient-to-r from-red-600 via-amber-500 to-green-600 dark:from-red-400 dark:via-amber-400 dark:to-green-400 bg-clip-text text-transparent">
-              {t("cta.titleHighlight")}
-            </span>
-          </h2>
-
-          <p className="mx-auto mt-4 max-w-xl text-sm text-zinc-600 dark:text-zinc-400 sm:text-base">
-            {t("cta.description")}
-          </p>
-
-          <div className="mt-6 flex flex-col items-center justify-center gap-2.5 sm:flex-row sm:gap-3">
-            <Button
-              asChild
-              className="w-full sm:w-auto text-white bg-emerald-600 px-5 hover:bg-emerald-500"
-            >
-              <Link
-                href="https://github.com/HamzaChx/Atlas-Munich"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Sparkles className="mr-2 h-4 w-4" />
-                {t("cta.contributeGithub")}
-              </Link>
-            </Button>
-            <Button
-              asChild
-              variant="outline"
-              className="w-full sm:w-auto border border-zinc-200 dark:border-zinc-700 px-5 text-zinc-900 dark:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800"
-            >
-              <Link href="/about">
-                {t("cta.learnHow")}
-                <ChevronRight className="ml-2 h-4 w-4" />
-              </Link>
-            </Button>
-          </div>
-
-          {/* Trust Badges */}
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-4 text-xs text-zinc-500 sm:text-sm">
-            {[
-              { icon: CheckCircle2, text: t("cta.freeForever") },
-              { icon: Users, text: t("cta.communityDriven") },
-              { icon: Heart, text: t("cta.madeWithLove") },
-            ].map((item) => (
-              <div key={item.text} className="flex items-center gap-1.5">
-                <item.icon className="h-3.5 w-3.5 text-emerald-500" />
-                <span>{item.text}</span>
-              </div>
-            ))}
           </div>
         </div>
       </section>

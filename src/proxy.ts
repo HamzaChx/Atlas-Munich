@@ -4,7 +4,7 @@ const locales = ["en", "fr", "de"] as const;
 const defaultLocale = "en";
 const COOKIE_NAME = "NEXT_LOCALE";
 
-export function middleware(request: NextRequest) {
+export function proxy(request: NextRequest) {
   // Get locale from cookie or use default
   const localeCookie = request.cookies.get(COOKIE_NAME)?.value;
   const locale = locales.includes(localeCookie as typeof locales[number])

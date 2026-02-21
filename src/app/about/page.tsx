@@ -25,8 +25,18 @@ export const metadata: Metadata = {
 };
 
 const contributors = [
-  { name: "Hamza Chaouki", role: "Founder & Developer", avatar: "👨‍💻" },
-  { name: "Mohamed Nejjar", role: "Our AI Specialist", avatar: "🤖" },
+  {
+    name: "Hamza Chaouki",
+    role: "Founder & Developer",
+    avatar: "👨‍💻",
+    url: "https://hamzachaouki.vercel.app/",
+  },
+  {
+    name: "Mohamed Nejjar",
+    role: "Our AI Specialist",
+    avatar: "🤖",
+    url: "https://mohamed-nejjar.vercel.app/",
+  },
 ];
 
 export default async function AboutPage() {
@@ -319,16 +329,23 @@ export default async function AboutPage() {
 
           <div className="flex flex-wrap justify-center gap-4">
             {contributors.map((contributor) => (
-              <div
+              <a
                 key={contributor.name}
-                className="w-56 rounded-2xl border border-zinc-200/70 dark:border-white/10 bg-white dark:bg-zinc-900/50 p-5 text-center shadow-xl shadow-zinc-900/5 dark:shadow-none backdrop-blur-sm"
+                href={contributor.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group w-56 rounded-2xl border border-zinc-200/70 dark:border-white/10 bg-white dark:bg-zinc-900/50 p-5 text-center shadow-xl shadow-zinc-900/5 dark:shadow-none backdrop-blur-sm transition-all hover:border-emerald-300 dark:hover:border-emerald-500/30 hover:shadow-2xl hover:shadow-zinc-900/10 dark:hover:shadow-none"
               >
                 <div className="mx-auto mb-3 text-4xl">{contributor.avatar}</div>
-                <h3 className="text-sm font-semibold text-zinc-900 dark:text-white">
+                <h3 className="text-sm font-semibold text-zinc-900 dark:text-white group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
                   {contributor.name}
                 </h3>
                 <p className="text-xs text-zinc-600 dark:text-zinc-400">{contributor.role}</p>
-              </div>
+                <div className="mt-2 inline-flex items-center gap-1 text-xs font-medium text-emerald-600 dark:text-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <ExternalLink className="h-3 w-3" />
+                  <span>View portfolio</span>
+                </div>
+              </a>
             ))}
 
             {/* Join CTA */}

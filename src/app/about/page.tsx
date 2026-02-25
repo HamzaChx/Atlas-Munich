@@ -23,7 +23,21 @@ import {
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Learn about Atlas Munich - the community-driven guide for Moroccan students and professionals in Munich.",
+    "Atlas Munich is a community-driven guide built by Moroccan students and professionals for newcomers navigating life in Munich, Germany.",
+  keywords: [
+    "Atlas Munich team",
+    "Moroccan community Munich",
+    "about Atlas Munich",
+    "Munich community guide",
+    "Moroccan students Germany",
+  ],
+  openGraph: {
+    title: "About Atlas Munich | Community Guide for Moroccan Newcomers",
+    description:
+      "Atlas Munich is a community-driven guide built by Moroccan students and professionals for newcomers navigating life in Munich, Germany.",
+    type: "website",
+    url: "https://atlas-munich.de/about",
+  },
 };
 
 const contributors = [
@@ -141,7 +155,10 @@ export default async function AboutPage() {
       </section>
 
       {/* Community / WhatsApp */}
-      <section id="community" className="relative border-b border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-950 py-10 sm:py-16 scroll-mt-24">
+      <section
+        id="community"
+        className="relative border-b border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-950 py-10 sm:py-16 scroll-mt-24"
+      >
         <div className="absolute left-0 top-0 h-1 w-full bg-gradient-to-r from-green-500 via-emerald-500 to-teal-500 opacity-80" />
 
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
@@ -228,9 +245,7 @@ export default async function AboutPage() {
                   </div>
                 </div>
 
-                <p className="mt-4 text-xs text-zinc-400 dark:text-zinc-500">
-                  {c("joinNote")}
-                </p>
+                <p className="mt-4 text-xs text-zinc-400 dark:text-zinc-500">{c("joinNote")}</p>
               </div>
             </div>
           </div>

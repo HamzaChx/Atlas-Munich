@@ -5,7 +5,9 @@ import { Shield, Lock, Database, Users, FileText } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
-  description: "Privacy Policy for Atlas Munich - Learn how we handle your data.",
+  description:
+    "Privacy Policy for Atlas Munich - Learn how we collect, use, and protect your data.",
+  robots: { index: false, follow: false },
 };
 
 export default async function PrivacyPage() {

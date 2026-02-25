@@ -43,6 +43,25 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return {
     title: localizedTitle,
     description: localizedDescription,
+    keywords: [
+      localizedTitle,
+      `${localizedTitle} Munich`,
+      `${localizedTitle} guide`,
+      "Munich guide",
+      "Atlas Munich",
+      "Moroccan students Munich",
+    ],
+    openGraph: {
+      title: `${localizedTitle} | Atlas Munich`,
+      description: localizedDescription,
+      type: "website",
+      url: `https://atlas-munich.de/category/${slug}`,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${localizedTitle} | Atlas Munich`,
+      description: localizedDescription,
+    },
   };
 }
 
@@ -100,12 +119,32 @@ export default async function CategoryPage({ params }: PageProps) {
   ];
 
   const themeMap: Record<string, { from: string; to: string; text: string }> = {
-    "rent-housing": { from: "from-blue-500", to: "to-cyan-500", text: "text-blue-600 dark:text-blue-400" },
-    "kvr-residence": { from: "from-emerald-500", to: "to-teal-500", text: "text-emerald-600 dark:text-emerald-400" },
-    "university-life": { from: "from-purple-500", to: "to-pink-500", text: "text-purple-600 dark:text-purple-400" },
-    "halal-food": { from: "from-orange-500", to: "to-red-500", text: "text-orange-600 dark:text-orange-400" },
+    "rent-housing": {
+      from: "from-blue-500",
+      to: "to-cyan-500",
+      text: "text-blue-600 dark:text-blue-400",
+    },
+    "kvr-residence": {
+      from: "from-emerald-500",
+      to: "to-teal-500",
+      text: "text-emerald-600 dark:text-emerald-400",
+    },
+    "university-life": {
+      from: "from-purple-500",
+      to: "to-pink-500",
+      text: "text-purple-600 dark:text-purple-400",
+    },
+    "halal-food": {
+      from: "from-orange-500",
+      to: "to-red-500",
+      text: "text-orange-600 dark:text-orange-400",
+    },
     career: { from: "from-rose-500", to: "to-pink-500", text: "text-rose-600 dark:text-rose-400" },
-    "useful-apps": { from: "from-indigo-500", to: "to-violet-500", text: "text-indigo-600 dark:text-indigo-400" },
+    "useful-apps": {
+      from: "from-indigo-500",
+      to: "to-violet-500",
+      text: "text-indigo-600 dark:text-indigo-400",
+    },
   };
 
   const theme = themeMap[category.key] || {
@@ -178,7 +217,9 @@ export default async function CategoryPage({ params }: PageProps) {
       {/* ========== GUIDES GRID ========== */}
       <section className="relative border-b border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-950 py-12 sm:py-16 lg:py-20">
         {/* Category-themed separator line */}
-        <div className={`absolute left-0 top-0 h-1 w-full bg-gradient-to-r ${theme.from} ${theme.to} opacity-80`} />
+        <div
+          className={`absolute left-0 top-0 h-1 w-full bg-gradient-to-r ${theme.from} ${theme.to} opacity-80`}
+        />
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Section header */}

@@ -10,7 +10,31 @@ import { BookOpen, Compass, Sparkles, ArrowRight, CheckCircle2 } from "lucide-re
 export const metadata: Metadata = {
   title: "All Guides",
   description:
-    "Comprehensive guides to help you navigate life in Munich as a Moroccan student or professional.",
+    "60+ comprehensive guides to help you navigate life in Munich as a Moroccan student or professional. Housing, KVR, university life, career, and useful apps.",
+  keywords: [
+    "Munich guides",
+    "Munich student guide",
+    "how to live in Munich",
+    "Moroccan Munich guides",
+    "KVR guide Munich",
+    "housing guide Munich",
+    "university guide Munich TUM LMU",
+    "career guide Munich",
+    "useful apps Munich",
+  ],
+  openGraph: {
+    title: "All Guides | Atlas Munich",
+    description:
+      "60+ comprehensive guides to help you navigate life in Munich as a Moroccan student or professional.",
+    type: "website",
+    url: "https://atlas-munich.de/guides",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "All Guides | Atlas Munich",
+    description:
+      "60+ comprehensive guides to help you navigate life in Munich as a Moroccan student or professional.",
+  },
 };
 
 export default async function GuidesPage() {

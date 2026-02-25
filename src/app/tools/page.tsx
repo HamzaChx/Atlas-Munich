@@ -18,9 +18,25 @@ import Image from "next/image";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Munich Tools",
+  title: "AI Tools for Munich",
   description:
-    "AI-powered tools to help you navigate life in Munich: write winning rental applications, draft professional CVs, plan events, and more.",
+    "Free AI-powered tools for Munich newcomers: write winning WG rental applications in German, draft professional CVs, and more.",
+  keywords: [
+    "Munich AI tools",
+    "WG application generator",
+    "apartment application Munich",
+    "German rental application AI",
+    "CV tool Munich",
+    "tools for Moroccan students Munich",
+    "free tools Munich expats",
+  ],
+  openGraph: {
+    title: "Free AI Tools for Munich Newcomers | Atlas Munich",
+    description:
+      "Free AI-powered tools for Munich newcomers: write winning WG rental applications in German, draft professional CVs, and more.",
+    type: "website",
+    url: "https://atlas-munich.de/tools",
+  },
 };
 
 export default async function ToolsPage() {

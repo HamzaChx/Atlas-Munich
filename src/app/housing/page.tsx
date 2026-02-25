@@ -15,9 +15,25 @@ import {
 import { OpenChatButton } from "./open-chat-button";
 
 export const metadata: Metadata = {
-  title: "Munich Housing Application Assistant",
+  title: "Housing Application Assistant for Munich",
   description:
-    "Riad writes high-conversion WG and apartment application messages for Munich's rental market. Paste a listing and get a ready-to-send message in flawless German!",
+    "Generate a high-conversion WG or apartment application message in German for Munich's rental market. Paste a listing and Riad writes a ready-to-send message for you.",
+  keywords: [
+    "Munich WG application",
+    "apartment application Munich German",
+    "Bewerbung WG Munich",
+    "WG-Gesucht application generator",
+    "ImmobilienScout24 Munich application",
+    "rental application AI Munich",
+    "housing tool Munich students",
+  ],
+  openGraph: {
+    title: "Munich Housing Application Assistant | Atlas Munich",
+    description:
+      "Generate a high-conversion WG or apartment application message in German. Paste a listing and get a ready-to-send message instantly.",
+    type: "website",
+    url: "https://atlas-munich.de/housing",
+  },
 };
 
 const PLATFORMS = [

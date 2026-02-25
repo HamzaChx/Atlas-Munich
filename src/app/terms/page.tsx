@@ -5,7 +5,9 @@ import { FileText, AlertTriangle, Shield, Scale, Code } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Terms & Conditions",
-  description: "Terms & Conditions for Atlas Munich - Rules and guidelines for using our service.",
+  description:
+    "Terms & Conditions for using Atlas Munich - the community guide for Moroccan students and professionals in Munich.",
+  robots: { index: false, follow: false },
 };
 
 export default async function TermsPage() {

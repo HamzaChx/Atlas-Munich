@@ -52,9 +52,32 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     return { title: "Guide Not Found" };
   }
 
+  const category = getCategoryByKey(guide.categoryKey);
+
   return {
     title: guide.title,
     description: guide.summary,
+    keywords: [
+      ...guide.tags,
+      guide.categoryKey.replace(/-/g, " "),
+      "Munich guide",
+      "Atlas Munich",
+      ...(category ? [category.title] : []),
+    ],
+    openGraph: {
+      title: `${guide.title} | Atlas Munich`,
+      description: guide.summary,
+      type: "article",
+      url: `https://atlas-munich.de/guides/${guide.slug}`,
+      publishedTime: guide.lastUpdated,
+      authors: guide.author ? [guide.author] : ["Atlas Munich Team"],
+      tags: guide.tags,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${guide.title} | Atlas Munich`,
+      description: guide.summary,
+    },
   };
 }
 
@@ -159,7 +182,8 @@ export default async function GuidePage({ params }: PageProps) {
       hoverBg: "hover:bg-blue-50 dark:hover:bg-blue-500/10",
       iconHoverBg: "group-hover:bg-blue-100 dark:group-hover:bg-blue-500/20",
       solidBtn: "bg-blue-600 hover:bg-blue-500",
-      outlineHover: "hover:border-blue-400/50 hover:bg-blue-50 dark:hover:bg-blue-500/10 hover:text-blue-700 dark:hover:text-blue-300",
+      outlineHover:
+        "hover:border-blue-400/50 hover:bg-blue-50 dark:hover:bg-blue-500/10 hover:text-blue-700 dark:hover:text-blue-300",
     },
     "kvr-residence": {
       from: "from-emerald-500",
@@ -173,7 +197,8 @@ export default async function GuidePage({ params }: PageProps) {
       hoverBg: "hover:bg-emerald-50 dark:hover:bg-emerald-500/10",
       iconHoverBg: "group-hover:bg-emerald-100 dark:group-hover:bg-emerald-500/20",
       solidBtn: "bg-emerald-600 hover:bg-emerald-500",
-      outlineHover: "hover:border-emerald-400/50 hover:bg-emerald-50 dark:hover:bg-emerald-500/10 hover:text-emerald-700 dark:hover:text-emerald-300",
+      outlineHover:
+        "hover:border-emerald-400/50 hover:bg-emerald-50 dark:hover:bg-emerald-500/10 hover:text-emerald-700 dark:hover:text-emerald-300",
     },
     "university-life": {
       from: "from-purple-500",
@@ -187,7 +212,8 @@ export default async function GuidePage({ params }: PageProps) {
       hoverBg: "hover:bg-purple-50 dark:hover:bg-purple-500/10",
       iconHoverBg: "group-hover:bg-purple-100 dark:group-hover:bg-purple-500/20",
       solidBtn: "bg-purple-600 hover:bg-purple-500",
-      outlineHover: "hover:border-purple-400/50 hover:bg-purple-50 dark:hover:bg-purple-500/10 hover:text-purple-700 dark:hover:text-purple-300",
+      outlineHover:
+        "hover:border-purple-400/50 hover:bg-purple-50 dark:hover:bg-purple-500/10 hover:text-purple-700 dark:hover:text-purple-300",
     },
     "halal-food": {
       from: "from-orange-500",
@@ -201,7 +227,8 @@ export default async function GuidePage({ params }: PageProps) {
       hoverBg: "hover:bg-orange-50 dark:hover:bg-orange-500/10",
       iconHoverBg: "group-hover:bg-orange-100 dark:group-hover:bg-orange-500/20",
       solidBtn: "bg-orange-600 hover:bg-orange-500",
-      outlineHover: "hover:border-orange-400/50 hover:bg-orange-50 dark:hover:bg-orange-500/10 hover:text-orange-700 dark:hover:text-orange-300",
+      outlineHover:
+        "hover:border-orange-400/50 hover:bg-orange-50 dark:hover:bg-orange-500/10 hover:text-orange-700 dark:hover:text-orange-300",
     },
     career: {
       from: "from-rose-500",
@@ -215,7 +242,8 @@ export default async function GuidePage({ params }: PageProps) {
       hoverBg: "hover:bg-rose-50 dark:hover:bg-rose-500/10",
       iconHoverBg: "group-hover:bg-rose-100 dark:group-hover:bg-rose-500/20",
       solidBtn: "bg-rose-600 hover:bg-rose-500",
-      outlineHover: "hover:border-rose-400/50 hover:bg-rose-50 dark:hover:bg-rose-500/10 hover:text-rose-700 dark:hover:text-rose-300",
+      outlineHover:
+        "hover:border-rose-400/50 hover:bg-rose-50 dark:hover:bg-rose-500/10 hover:text-rose-700 dark:hover:text-rose-300",
     },
     "useful-apps": {
       from: "from-indigo-500",
@@ -229,7 +257,8 @@ export default async function GuidePage({ params }: PageProps) {
       hoverBg: "hover:bg-indigo-50 dark:hover:bg-indigo-500/10",
       iconHoverBg: "group-hover:bg-indigo-100 dark:group-hover:bg-indigo-500/20",
       solidBtn: "bg-indigo-600 hover:bg-indigo-500",
-      outlineHover: "hover:border-indigo-400/50 hover:bg-indigo-50 dark:hover:bg-indigo-500/10 hover:text-indigo-700 dark:hover:text-indigo-300",
+      outlineHover:
+        "hover:border-indigo-400/50 hover:bg-indigo-50 dark:hover:bg-indigo-500/10 hover:text-indigo-700 dark:hover:text-indigo-300",
     },
   };
 
@@ -312,7 +341,6 @@ export default async function GuidePage({ params }: PageProps) {
                 </>
               )}
             </div>
-
           </div>
         </div>
       </section>
@@ -350,7 +378,9 @@ export default async function GuidePage({ params }: PageProps) {
 
                     {/* Section header */}
                     <div className="flex items-center gap-3 mb-6">
-                      <div className={`h-6 w-1 rounded-full bg-gradient-to-b ${theme.from} ${theme.to}`} />
+                      <div
+                        className={`h-6 w-1 rounded-full bg-gradient-to-b ${theme.from} ${theme.to}`}
+                      />
                       <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-zinc-900 dark:text-white leading-tight">
                         {section.title}
                       </h2>
@@ -436,11 +466,17 @@ export default async function GuidePage({ params }: PageProps) {
                             rel="noopener noreferrer"
                             className="group flex items-center gap-3 rounded-xl p-3 text-sm transition-all hover:bg-white dark:hover:bg-zinc-800"
                           >
-                            <div className={`h-9 w-9 shrink-0 rounded-xl bg-zinc-100 dark:bg-white/5 flex items-center justify-center ${theme.iconHoverBg} transition-colors`}>
-                              <Icon className={`h-4 w-4 text-zinc-500 ${theme.hoverText} transition-colors`} />
+                            <div
+                              className={`h-9 w-9 shrink-0 rounded-xl bg-zinc-100 dark:bg-white/5 flex items-center justify-center ${theme.iconHoverBg} transition-colors`}
+                            >
+                              <Icon
+                                className={`h-4 w-4 text-zinc-500 ${theme.hoverText} transition-colors`}
+                              />
                             </div>
                             <div className="min-w-0 flex-1">
-                              <div className={`flex items-center gap-1.5 font-medium text-zinc-700 dark:text-zinc-300 ${theme.hoverText} transition-colors`}>
+                              <div
+                                className={`flex items-center gap-1.5 font-medium text-zinc-700 dark:text-zinc-300 ${theme.hoverText} transition-colors`}
+                              >
                                 <span className="truncate">{resource.title}</span>
                                 <ExternalLink className="h-3 w-3 shrink-0 text-zinc-400" />
                               </div>
@@ -495,10 +531,7 @@ export default async function GuidePage({ params }: PageProps) {
                         {category?.title || "Category"}
                       </Link>
                     </Button>
-                    <Button
-                      asChild
-                      className={`${theme.solidBtn} text-white shadow-sm`}
-                    >
+                    <Button asChild className={`${theme.solidBtn} text-white shadow-sm`}>
                       <Link href="/guides">
                         <BookOpen className="mr-2 h-4 w-4" />
                         {getMessage("guidePage.bottomCTAAllGuides") ?? "All Guides"}
@@ -545,11 +578,17 @@ export default async function GuidePage({ params }: PageProps) {
                             rel="noopener noreferrer"
                             className="group flex items-center gap-2.5 rounded-xl p-2.5 text-sm transition-all hover:bg-white dark:hover:bg-zinc-800"
                           >
-                            <div className={`h-8 w-8 shrink-0 rounded-xl bg-zinc-100 dark:bg-white/5 flex items-center justify-center ${theme.iconHoverBg} transition-colors`}>
-                              <Icon className={`h-3.5 w-3.5 text-zinc-500 ${theme.hoverText} transition-colors`} />
+                            <div
+                              className={`h-8 w-8 shrink-0 rounded-xl bg-zinc-100 dark:bg-white/5 flex items-center justify-center ${theme.iconHoverBg} transition-colors`}
+                            >
+                              <Icon
+                                className={`h-3.5 w-3.5 text-zinc-500 ${theme.hoverText} transition-colors`}
+                              />
                             </div>
                             <div className="min-w-0 flex-1">
-                              <div className={`flex items-center gap-1 font-medium text-zinc-700 dark:text-zinc-300 ${theme.hoverText} transition-colors text-xs leading-snug`}>
+                              <div
+                                className={`flex items-center gap-1 font-medium text-zinc-700 dark:text-zinc-300 ${theme.hoverText} transition-colors text-xs leading-snug`}
+                              >
                                 <span className="truncate">{resource.title}</span>
                                 <ExternalLink className="h-3 w-3 shrink-0 text-zinc-400" />
                               </div>

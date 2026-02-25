@@ -94,7 +94,6 @@ export default async function ToolsPage() {
                     <HomeIcon className="h-6 w-6 text-white" />
                   </div>
                   <Badge className="border-emerald-500/30 bg-emerald-100 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400">
-                    <Sparkles className="mr-1 h-3 w-3" />
                     {t("tools.housing.status")}
                   </Badge>
                 </div>

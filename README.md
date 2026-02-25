@@ -9,7 +9,7 @@
 
 ![Atlas Munich Screenshot](./public/atlas.png)
 
-Built by the Moroccan community, for the Moroccan community. Everything you need to navigate life in Munich — from your first Anmeldung to finding the best tajine in town.
+Built by Hamza Chaouki, for the Moroccan community. Everything you need to navigate life in Munich — from your first Anmeldung to finding the best tajine in town.
 
 [![Next.js](https://img.shields.io/badge/Next.js-15.5-black?style=flat&logo=next.js)](https://nextjs.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=flat&logo=typescript)](https://www.typescriptlang.org/)

@@ -14,3 +14,4 @@ export { ThemeToggle } from "./ThemeToggle";
 export { ShareButton } from "./ShareButton";
 export { PageTransition, StaggerChildren, RevealSection } from "./PageTransition";
 export { LanguageSwitcher } from "./LanguageSwitcher";
+export { ReadingProgress } from "./ReadingProgress";

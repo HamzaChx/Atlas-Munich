@@ -106,29 +106,8 @@ export default async function GuidesPage() {
             </h2>
           </div>
 
-          {/* Categories - Horizontal scroll on mobile, grid on desktop */}
-          <div className="lg:hidden overflow-x-auto -mx-4 px-4 pb-2">
-            <div className="flex gap-3 min-w-max">
-              {categories.map((category) => (
-                <Link
-                  key={category.key}
-                  href={`/category/${category.key}`}
-                  className="group flex items-center gap-2.5 rounded-full border border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900/80 px-4 py-2.5 shadow-sm transition-all hover:shadow-md hover:border-emerald-300 dark:hover:border-emerald-500/30"
-                >
-                  <span className="text-lg">{category.icon}</span>
-                  <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300 group-hover:text-emerald-600 dark:group-hover:text-emerald-400 whitespace-nowrap">
-                    {category.title}
-                  </span>
-                  <span className="rounded-full bg-zinc-100 dark:bg-zinc-800 px-2 py-0.5 text-xs font-medium text-zinc-600 dark:text-zinc-400">
-                    {guideCountByCategory(category.key) || "New"}
-                  </span>
-                </Link>
-              ))}
-            </div>
-          </div>
-
-          {/* Desktop Grid */}
-          <div className="hidden lg:grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
+          {/* Categories Grid — unified across all breakpoints */}
+          <div className="grid gap-3 grid-cols-2 lg:grid-cols-6">
             {categories.map((category, index) => (
               <CategoryCard
                 key={category.key}
@@ -143,8 +122,8 @@ export default async function GuidesPage() {
                   index <= 2
                     ? "lg:col-span-2"
                     : index === 3
-                      ? "sm:col-span-2 lg:col-span-2 lg:col-start-2"
-                      : "lg:col-span-2"
+                      ? "lg:col-span-2 lg:col-start-2"
+                      : "col-span-2 lg:col-span-2"
                 }
               />
             ))}

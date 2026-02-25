@@ -92,6 +92,44 @@ export default async function GuidePage({ params }: PageProps) {
   const relatedGuides = getRelatedGuides(guide);
   const CategoryIcon = category ? iconMap[category.icon] || Icons.Folder : Icons.Folder;
 
+  // Apply locale translation overlay
+  let localizedGuide = guide;
+  if (locale !== "en") {
+    try {
+      const mod = await import(`@/data/guides.${locale}`);
+      const t = mod.guideTranslations?.[guide.slug];
+      if (t) {
+        localizedGuide = {
+          ...guide,
+          title: t.title,
+          summary: t.summary,
+          sections: localizedGuide.sections.map((s, i) => ({
+            ...s,
+            title: t.sections[i]?.title ?? s.title,
+            content: t.sections[i]?.content ?? s.content,
+            subsections: s.subsections?.map((sub, j) => ({
+              ...sub,
+              title: t.sections[i]?.subsections?.[j]?.title ?? sub.title,
+              content: t.sections[i]?.subsections?.[j]?.content ?? sub.content,
+            })),
+          })),
+          faqs: localizedGuide.faqs?.map((faq, i) => ({
+            ...faq,
+            question: t.faqs?.[i]?.question ?? faq.question,
+            answer: t.faqs?.[i]?.answer ?? faq.answer,
+          })),
+          resources: localizedGuide.resources?.map((res, i) => ({
+            ...res,
+            title: t.resources?.[i]?.title ?? res.title,
+            description: t.resources?.[i]?.description ?? res.description,
+          })),
+        };
+      }
+    } catch {
+      // fallback to English if translation file not found
+    }
+  }
+
   const themeMap: Record<
     string,
     {
@@ -204,7 +242,7 @@ export default async function GuidePage({ params }: PageProps) {
   const breadcrumbs = [
     { label: getMessage("nav.guides") ?? "Guides", href: "/guides" },
     { label: localizedCategoryTitle, href: `/category/${guide.categoryKey}` },
-    { label: guide.title },
+    { label: localizedGuide.title },
   ];
 
   return (
@@ -245,12 +283,12 @@ export default async function GuidePage({ params }: PageProps) {
 
             {/* Title */}
             <h1 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-3xl lg:text-[2.25rem] leading-tight">
-              {guide.title}
+              {localizedGuide.title}
             </h1>
 
             {/* Summary */}
             <p className="mt-4 text-base leading-relaxed text-zinc-600 dark:text-zinc-400 sm:text-lg max-w-2xl">
-              {guide.summary}
+              {localizedGuide.summary}
             </p>
 
             {/* Meta row */}
@@ -286,7 +324,7 @@ export default async function GuidePage({ params }: PageProps) {
             {/* Main article */}
             <article className="min-w-0">
               {/* Mobile TOC */}
-              {guide.sections.length > 0 && (
+              {localizedGuide.sections.length > 0 && (
                 <div className="lg:hidden mb-8 rounded-2xl border border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-zinc-900/80 overflow-hidden">
                   <div className="px-4 py-3 border-b border-zinc-200 dark:border-white/5">
                     <h3 className="text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
@@ -294,14 +332,14 @@ export default async function GuidePage({ params }: PageProps) {
                     </h3>
                   </div>
                   <div className="p-3">
-                    <TableOfContents sections={guide.sections} />
+                    <TableOfContents sections={localizedGuide.sections} />
                   </div>
                 </div>
               )}
 
               {/* Sections rendered as blog-style editorial content */}
               <div className="space-y-0">
-                {guide.sections.map((section, index) => (
+                {localizedGuide.sections.map((section, index) => (
                   <section key={section.id} id={section.id} className="scroll-mt-28">
                     {/* Divider between sections (not first) */}
                     {index !== 0 && (
@@ -369,26 +407,26 @@ export default async function GuidePage({ params }: PageProps) {
               </div>
 
               {/* FAQ */}
-              {guide.faqs && guide.faqs.length > 0 && (
+              {localizedGuide.faqs && localizedGuide.faqs.length > 0 && (
                 <section className="mt-14">
                   <h2 className="text-xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-2xl mb-6">
                     {getMessage("guidePage.frequentlyAsked") ?? "Frequently Asked Questions"}
                   </h2>
                   <div className="rounded-2xl border border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-zinc-900/80 p-4 sm:p-5">
-                    <FAQAccordion faqs={guide.faqs} />
+                    <FAQAccordion faqs={localizedGuide.faqs} />
                   </div>
                 </section>
               )}
 
               {/* Mobile Resources */}
-              {guide.resources && guide.resources.length > 0 && (
+              {localizedGuide.resources && localizedGuide.resources.length > 0 && (
                 <section className="mt-12 lg:hidden">
                   <h2 className="text-xl font-bold tracking-tight text-zinc-900 dark:text-white mb-5">
                     {getMessage("guidePage.helpfulResources") ?? "Helpful Resources"}
                   </h2>
                   <div className="rounded-2xl border border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-zinc-900/80 overflow-hidden">
                     <div className="p-3 space-y-1">
-                      {guide.resources.map((resource) => {
+                      {localizedGuide.resources.map((resource) => {
                         const Icon = resourceIcons[resource.type] || LinkIcon;
                         return (
                           <a
@@ -475,7 +513,7 @@ export default async function GuidePage({ params }: PageProps) {
             <aside className="hidden lg:block">
               <div className="sticky top-24 space-y-5">
                 {/* TOC */}
-                {guide.sections.length > 0 && (
+                {localizedGuide.sections.length > 0 && (
                   <div className="rounded-2xl border border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-zinc-900/80 overflow-hidden">
                     <div className="border-b border-zinc-200 dark:border-white/5 px-5 py-3.5">
                       <h3 className="text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
@@ -483,13 +521,13 @@ export default async function GuidePage({ params }: PageProps) {
                       </h3>
                     </div>
                     <div className="p-4">
-                      <TableOfContents sections={guide.sections} />
+                      <TableOfContents sections={localizedGuide.sections} />
                     </div>
                   </div>
                 )}
 
                 {/* Resources */}
-                {guide.resources && guide.resources.length > 0 && (
+                {localizedGuide.resources && localizedGuide.resources.length > 0 && (
                   <div className="rounded-2xl border border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-zinc-900/80 overflow-hidden">
                     <div className="border-b border-zinc-200 dark:border-white/5 px-5 py-3.5">
                       <h3 className="text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
@@ -497,7 +535,7 @@ export default async function GuidePage({ params }: PageProps) {
                       </h3>
                     </div>
                     <div className="p-3 space-y-1">
-                      {guide.resources.map((resource) => {
+                      {localizedGuide.resources.map((resource) => {
                         const Icon = resourceIcons[resource.type] || LinkIcon;
                         return (
                           <a

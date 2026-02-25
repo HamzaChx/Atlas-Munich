@@ -162,6 +162,32 @@ export interface AppRecommendation {
 }
 
 // ============================================
+// Guide Translation (locale overlay)
+// ============================================
+export interface GuideSectionTranslation {
+  title: string;
+  content: string;
+  subsections?: {
+    title: string;
+    content: string;
+  }[];
+}
+
+export interface GuideTranslation {
+  title: string;
+  summary: string;
+  sections: GuideSectionTranslation[];
+  faqs?: {
+    question: string;
+    answer: string;
+  }[];
+  resources?: {
+    title: string;
+    description?: string;
+  }[];
+}
+
+// ============================================
 // Search Result
 // ============================================
 export interface SearchResult {

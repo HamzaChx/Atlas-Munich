@@ -79,7 +79,7 @@ export function GuideCard({ guide, className, showCategory = true }: GuideCardPr
                 <Clock className="h-3.5 w-3.5" />
                 {guide.readingTime} min
               </span>
-              <span className="flex items-center gap-1.5">
+              <span className="hidden sm:flex items-center gap-1.5">
                 <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500" />
                 {fmtUpdated(guide.lastUpdated)}
               </span>

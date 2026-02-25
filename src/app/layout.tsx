@@ -86,8 +86,7 @@ export default async function RootLayout({
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider
             attribute="class"
-            defaultTheme="dark"
-            enableSystem
+            defaultTheme="light"
             disableTransitionOnChange
           >
             <Header locale={locale as "en" | "fr"} translations={navTranslations} />

@@ -73,26 +73,45 @@ export default async function CategoryPage({ params }: PageProps) {
   const localizedCategoryDescription =
     getMessage(`categories.${category.key}.description`) ?? category.description;
 
-  const categoryGuides = getGuidesByCategory(category.key as CategoryKey);
+  const rawCategoryGuides = getGuidesByCategory(category.key as CategoryKey);
   const IconComponent = iconMap[category.icon] || Icons.Folder;
+
+  // Apply locale translation overlay to guide cards
+  let categoryGuides = rawCategoryGuides;
+  if (locale !== "en") {
+    try {
+      const mod = await import(`@/data/guides.${locale}`);
+      const translations = mod.guideTranslations;
+      if (translations) {
+        categoryGuides = rawCategoryGuides.map((guide) => {
+          const t = translations[guide.slug];
+          if (!t) return guide;
+          return { ...guide, title: t.title ?? guide.title, summary: t.summary ?? guide.summary };
+        });
+      }
+    } catch {
+      // fallback to English
+    }
+  }
 
   const breadcrumbs = [
     { label: getMessage("nav.guides") ?? "Guides", href: "/guides" },
     { label: localizedCategoryTitle },
   ];
 
-  const themeMap: Record<string, { from: string; to: string }> = {
-    "rent-housing": { from: "from-blue-500", to: "to-cyan-500" },
-    "kvr-residence": { from: "from-emerald-500", to: "to-teal-500" },
-    "university-life": { from: "from-purple-500", to: "to-pink-500" },
-    "halal-food": { from: "from-orange-500", to: "to-red-500" },
-    career: { from: "from-rose-500", to: "to-pink-500" },
-    "useful-apps": { from: "from-indigo-500", to: "to-violet-500" },
+  const themeMap: Record<string, { from: string; to: string; text: string }> = {
+    "rent-housing": { from: "from-blue-500", to: "to-cyan-500", text: "text-blue-600 dark:text-blue-400" },
+    "kvr-residence": { from: "from-emerald-500", to: "to-teal-500", text: "text-emerald-600 dark:text-emerald-400" },
+    "university-life": { from: "from-purple-500", to: "to-pink-500", text: "text-purple-600 dark:text-purple-400" },
+    "halal-food": { from: "from-orange-500", to: "to-red-500", text: "text-orange-600 dark:text-orange-400" },
+    career: { from: "from-rose-500", to: "to-pink-500", text: "text-rose-600 dark:text-rose-400" },
+    "useful-apps": { from: "from-indigo-500", to: "to-violet-500", text: "text-indigo-600 dark:text-indigo-400" },
   };
 
   const theme = themeMap[category.key] || {
     from: "from-emerald-500",
     to: "to-teal-500",
+    text: "text-emerald-600 dark:text-emerald-400",
   };
 
   return (
@@ -157,10 +176,19 @@ export default async function CategoryPage({ params }: PageProps) {
       </section>
 
       {/* ========== GUIDES GRID ========== */}
-      <section className="relative bg-white dark:bg-zinc-950 py-12 sm:py-16 lg:py-20">
+      <section className="relative border-b border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-950 py-12 sm:py-16 lg:py-20">
+        {/* Category-themed separator line */}
+        <div className={`absolute left-0 top-0 h-1 w-full bg-gradient-to-r ${theme.from} ${theme.to} opacity-80`} />
+
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Section header */}
           <div className="mb-8 sm:mb-10">
+            <div className="mb-2 flex items-center gap-2">
+              <BookOpen className={`h-4 w-4 ${theme.text}`} />
+              <span className="text-xs font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
+                {localizedCategoryTitle}
+              </span>
+            </div>
             <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-3xl">
               {(getMessage("categoryPage.browseGuides") ?? "Browse {count} Guides").replace(
                 "{count}",
@@ -202,19 +230,17 @@ export default async function CategoryPage({ params }: PageProps) {
       </section>
 
       {/* ========== BOTTOM CTA ========== */}
-      <section className="border-t border-zinc-200 dark:border-white/10 bg-zinc-50/80 dark:bg-zinc-900/50 py-12 sm:py-16">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
-            <div className="text-center sm:text-left">
-              <h3 className="text-xl font-bold text-zinc-900 dark:text-white sm:text-2xl">
-                {getMessage("categoryPage.exploreMoreTitle") ?? "Looking for something else?"}
-              </h3>
-              <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400 sm:text-base">
-                {getMessage("categoryPage.exploreMoreDesc") ??
-                  "Explore other categories or browse our complete collection of guides."}
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-3 justify-center sm:justify-end">
+      <section className="py-12 sm:py-16">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+          <div className="rounded-2xl border border-zinc-200/60 dark:border-white/10 bg-gradient-to-br from-zinc-50/80 via-white to-zinc-50/50 dark:from-zinc-900 dark:via-zinc-900/80 dark:to-zinc-900 p-6 sm:p-8 text-center shadow-sm dark:shadow-none">
+            <h3 className="text-xl font-bold text-zinc-900 dark:text-white sm:text-2xl">
+              {getMessage("categoryPage.exploreMoreTitle") ?? "Looking for something else?"}
+            </h3>
+            <p className="mx-auto mt-2 max-w-md text-sm text-zinc-600 dark:text-zinc-400 sm:text-base">
+              {getMessage("categoryPage.exploreMoreDesc") ??
+                "Explore other categories or browse our complete collection of guides."}
+            </p>
+            <div className="mt-6 flex flex-wrap gap-3 justify-center">
               <Button
                 asChild
                 variant="outline"

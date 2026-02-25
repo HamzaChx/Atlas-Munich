@@ -209,8 +209,6 @@ export const SECTION_TO_CHATBOT: Record<string, ChatbotType> = {
   "/about/": "hamza",
   "/faq": "hamid",
   "/faq/": "hamid",
-  "/search": "zellija",
-  "/search/": "zellija",
   "/housing": "riad",
   "/housing/": "riad",
   "/tools": "zellija",

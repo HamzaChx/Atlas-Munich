@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { HeroBadge } from "@/components/shared";
+import { MoroccanCorner } from "@/components/home";
 import { getTranslations } from "next-intl/server";
 import {
   Wrench,
@@ -28,27 +29,54 @@ export default async function ToolsPage() {
   return (
     <div className="min-h-screen bg-white dark:bg-zinc-950">
       {/* Hero Section */}
-      <section className="relative overflow-hidden border-b border-zinc-200 dark:border-white/10 bg-gradient-to-br from-violet-50/80 via-white to-blue-50/80 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950">
-        <div className="hidden sm:block absolute -left-32 top-1/4 z-[5] h-[400px] w-[400px] rounded-full bg-gradient-to-br from-violet-200/50 to-blue-200/50 dark:from-violet-600/20 dark:to-blue-600/20 blur-[100px]" />
-        <div className="hidden sm:block absolute -right-32 bottom-0 z-[5] h-[400px] w-[400px] rounded-full bg-gradient-to-br from-cyan-200/40 to-indigo-200/40 dark:from-cyan-500/15 dark:to-indigo-600/15 blur-[100px]" />
+      <section className="relative overflow-hidden bg-gradient-to-b from-zinc-50 via-white to-zinc-50 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950">
+        {/* Subtle violet gradient orbs */}
+        <div className="pointer-events-none absolute -left-20 top-1/4 h-[280px] w-[280px] sm:h-[420px] sm:w-[420px] rounded-full bg-gradient-to-br from-violet-200/30 to-blue-100/10 dark:from-violet-700/15 dark:to-blue-600/5 blur-[100px]" />
+        <div className="pointer-events-none absolute -right-20 bottom-1/4 h-[280px] w-[280px] sm:h-[420px] sm:w-[420px] rounded-full bg-gradient-to-br from-cyan-200/30 to-indigo-100/10 dark:from-cyan-700/15 dark:to-indigo-600/5 blur-[100px]" />
 
-        <div className="relative z-10 mx-auto max-w-3xl px-4 py-8 sm:py-12 lg:py-20 sm:px-6 lg:px-8 text-center">
+        {/* Moroccan corner ornaments */}
+        <MoroccanCorner
+          position="top-left"
+          className="pointer-events-none absolute left-0 top-0 h-20 w-20 sm:h-28 sm:w-28 lg:h-36 lg:w-36 opacity-50"
+        />
+        <MoroccanCorner
+          position="top-right"
+          className="pointer-events-none absolute right-0 top-0 h-20 w-20 sm:h-28 sm:w-28 lg:h-36 lg:w-36 opacity-50"
+        />
+
+        <div className="relative z-20 mx-auto flex max-w-2xl flex-col items-center px-5 pb-16 pt-14 sm:pb-20 sm:pt-18 lg:pb-24 lg:pt-22 text-center">
           <HeroBadge icon={Wrench} text={t("badge")} color="purple" />
-          <h1 className="mb-3 sm:mb-5 text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight text-zinc-900 dark:text-white leading-tight">
+
+          <h1 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-4xl lg:text-5xl">
             {t("title")}
-            <span className="mt-1 sm:mt-2 block bg-gradient-to-r from-violet-600 via-blue-600 to-cyan-600 dark:from-violet-400 dark:via-blue-400 dark:to-cyan-400 bg-clip-text text-transparent">
+            <span className="mt-1 block bg-gradient-to-r from-violet-600 via-blue-600 to-cyan-600 dark:from-violet-400 dark:via-blue-400 dark:to-cyan-400 bg-clip-text text-transparent">
               {t("titleHighlight")}
             </span>
           </h1>
-          <p className="mx-auto max-w-xl text-sm sm:text-base lg:text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
+
+          <p className="mt-5 text-base leading-relaxed text-zinc-600 dark:text-zinc-400 sm:text-lg">
             {t("subtitle")}
           </p>
         </div>
       </section>
 
       {/* Tools Grid */}
-      <section className="mx-auto max-w-5xl px-4 py-12 sm:py-16 sm:px-6 lg:px-8">
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      <section className="relative border-b border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-950 py-12 sm:py-16">
+        {/* Violet separator line */}
+        <div className="absolute left-0 top-0 h-1 w-full bg-gradient-to-r from-violet-500 via-blue-500 to-cyan-500 opacity-80" />
+
+        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+          {/* Section Header */}
+          <div className="mb-10 text-center">
+            <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-violet-200 dark:border-violet-500/30 bg-violet-50 dark:bg-violet-500/10 px-4 py-2">
+              <Sparkles className="h-4 w-4 text-violet-600 dark:text-violet-400" />
+              <span className="text-sm font-semibold text-violet-700 dark:text-violet-400">
+                {t("badge")}
+              </span>
+            </div>
+          </div>
+
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {/* Housing Application Assistant — Live */}
           <div className="group relative flex flex-col overflow-hidden rounded-2xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
             <div className="h-1.5 bg-gradient-to-r from-blue-500 via-cyan-500 to-emerald-500" />
@@ -230,9 +258,9 @@ export default async function ToolsPage() {
         </div>
 
         {/* More Coming */}
-        <div className="mt-12 rounded-2xl border border-dashed border-zinc-200 dark:border-white/10 p-6 text-center">
-          <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-zinc-100 dark:bg-white/5">
-            <Zap className="h-5 w-5 text-zinc-400 dark:text-zinc-500" />
+        <div className="mt-12 rounded-2xl border border-dashed border-violet-200/60 dark:border-white/10 bg-violet-50/30 dark:bg-violet-500/5 p-6 text-center">
+          <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-violet-100 dark:bg-violet-500/15">
+            <Zap className="h-5 w-5 text-violet-500 dark:text-violet-400" />
           </div>
           <p className="text-sm text-zinc-500 dark:text-zinc-400">
             {t("moreComing")}{" "}
@@ -246,6 +274,7 @@ export default async function ToolsPage() {
             </a>
             .
           </p>
+        </div>
         </div>
       </section>
     </div>

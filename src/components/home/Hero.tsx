@@ -17,9 +17,13 @@ export function Hero() {
             <Star className="h-4 w-4 fill-amber-400 text-amber-400" />
           </div>
           <div className="mb-4 flex items-center justify-center gap-3">
-            <span className="text-6xl" role="img" aria-label="Morocco flag">🇲🇦</span>
+            <span className="text-6xl" role="img" aria-label="Morocco flag">
+              🇲🇦
+            </span>
             <Sparkles className="h-8 w-8 text-amber-500" aria-hidden="true" />
-            <span className="text-6xl" role="img" aria-label="Germany flag">🇩🇪</span>
+            <span className="text-6xl" role="img" aria-label="Germany flag">
+              🇩🇪
+            </span>
           </div>
           <h1 className="text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-6xl lg:text-7xl">
             Welcome to
@@ -28,10 +32,15 @@ export function Hero() {
             </span>
           </h1>
           <p className="mx-auto mt-8 max-w-3xl text-xl leading-relaxed text-gray-600 dark:text-gray-300 sm:text-2xl">
-            The complete starter guide for <span className="font-semibold text-emerald-600 dark:text-emerald-400">Moroccan students and professionals</span> in Munich
+            The complete starter guide for{" "}
+            <span className="font-semibold text-emerald-600 dark:text-emerald-400">
+              Moroccan students and professionals
+            </span>{" "}
+            in Munich
           </p>
           <p className="mx-auto mt-4 max-w-2xl text-base text-gray-500 dark:text-gray-400">
-            From finding housing to landing your dream job — everything you need to thrive in Munich, curated by our community
+            From finding housing to landing your dream job — everything you need to thrive in
+            Munich, curated by our community
           </p>
           <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button asChild size="lg" className="group h-14 px-10 text-lg shadow-lg">
@@ -42,7 +51,7 @@ export function Hero() {
               </Link>
             </Button>
             <Button asChild size="lg" variant="outline" className="h-14 border-2 px-10 text-lg">
-              <Link href="/search">
+              <Link href="/guides">
                 <Search className="mr-2 h-5 w-5" />
                 Search Everything
               </Link>

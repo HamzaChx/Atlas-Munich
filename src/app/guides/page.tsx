@@ -1,11 +1,11 @@
 import { Metadata } from "next";
 import Link from "next/link";
-import { Button } from "@/components/ui/button";
 import { SearchBar, CategoryCard, HeroBadge, Callout } from "@/components/shared";
+import { MoroccanCorner } from "@/components/home";
 import { categories } from "@/data/categories";
 import { guides } from "@/data/guides";
 import { getTranslations } from "next-intl/server";
-import { BookOpen, Compass, Sparkles, ArrowRight, Filter, CheckCircle2 } from "lucide-react";
+import { BookOpen, Compass, Sparkles, ArrowRight, CheckCircle2 } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "All Guides",
@@ -20,99 +20,90 @@ export default async function GuidesPage() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-zinc-950">
-      {/* Hero Section - Mobile-First Optimized */}
-      <section className="relative overflow-hidden border-b border-zinc-200 dark:border-white/10 bg-gradient-to-br from-emerald-50/80 via-white to-teal-50/80 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950">
-        {/* Gradient Orbs - hidden on mobile for cleaner look */}
-        <div className="hidden sm:block absolute -left-32 top-1/4 z-[5] h-[400px] w-[400px] rounded-full bg-gradient-to-br from-emerald-200/50 to-teal-200/50 dark:from-emerald-600/20 dark:to-teal-600/20 blur-[100px]" />
-        <div className="hidden sm:block absolute -right-32 bottom-0 z-[5] h-[400px] w-[400px] rounded-full bg-gradient-to-br from-cyan-200/40 to-blue-200/40 dark:from-cyan-500/15 dark:to-blue-600/15 blur-[100px]" />
+      {/* Hero Section */}
+      <section className="relative overflow-hidden bg-gradient-to-b from-zinc-50 via-white to-zinc-50 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950">
+        {/* Subtle emerald gradient orbs */}
+        <div className="pointer-events-none absolute -left-20 top-1/4 h-[280px] w-[280px] sm:h-[420px] sm:w-[420px] rounded-full bg-gradient-to-br from-emerald-200/30 to-teal-100/10 dark:from-emerald-700/15 dark:to-teal-600/5 blur-[100px]" />
+        <div className="pointer-events-none absolute -right-20 bottom-1/4 h-[280px] w-[280px] sm:h-[420px] sm:w-[420px] rounded-full bg-gradient-to-br from-cyan-200/30 to-blue-100/10 dark:from-cyan-700/15 dark:to-blue-600/5 blur-[100px]" />
 
-        <div className="relative z-10 mx-auto max-w-7xl px-4 py-8 sm:py-12 lg:py-20 sm:px-6 lg:px-8">
-          <div className="text-center">
-            {/* Badge - smaller on mobile */}
-            <HeroBadge icon={BookOpen} text={`${guides.length}+ ${t("badge")}`} color="emerald" />
+        {/* Moroccan corner ornaments */}
+        <MoroccanCorner
+          position="top-left"
+          className="pointer-events-none absolute left-0 top-0 h-20 w-20 sm:h-28 sm:w-28 lg:h-36 lg:w-36 opacity-50"
+        />
+        <MoroccanCorner
+          position="top-right"
+          className="pointer-events-none absolute right-0 top-0 h-20 w-20 sm:h-28 sm:w-28 lg:h-36 lg:w-36 opacity-50"
+        />
 
-            {/* Title - scaled for mobile */}
-            <h1 className="mb-3 sm:mb-5 text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-zinc-900 dark:text-white leading-tight">
-              {t("title")}
-              <span className="mt-1 sm:mt-2 block bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 dark:from-emerald-400 dark:via-teal-400 dark:to-cyan-400 bg-clip-text text-transparent">
-                {t("titleHighlight")}
-              </span>
-            </h1>
+        <div className="relative z-20 mx-auto flex max-w-2xl flex-col items-center px-5 pb-16 pt-14 sm:pb-20 sm:pt-18 lg:pb-24 lg:pt-22 text-center">
+          <HeroBadge icon={BookOpen} text={`${guides.length}+ ${t("badge")}`} color="emerald" />
 
-            {/* Subtitle - 2 lines max on mobile */}
-            <p className="mx-auto max-w-xl text-sm sm:text-base lg:text-lg leading-relaxed text-zinc-600 dark:text-zinc-400 line-clamp-2 sm:line-clamp-none">
-              {t("subtitle")}
-              <span className="hidden sm:inline font-semibold text-amber-600 dark:text-amber-400">
-                {" "}
-                {t("subtitleHighlight")}
-              </span>
-            </p>
+          <h1 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-4xl lg:text-5xl">
+            {t("title")}
+            <span className="mt-1 block bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-400 dark:to-teal-400 bg-clip-text text-transparent">
+              {t("titleHighlight")}
+            </span>
+          </h1>
 
-            {/* Search - full width on mobile */}
-            <div className="mx-auto mt-6 sm:mt-8 max-w-xl">
-              <SearchBar placeholder={t("searchPlaceholder")} size="lg" showButton={false} />
-            </div>
+          <p className="mt-5 text-base leading-relaxed text-zinc-600 dark:text-zinc-400 sm:text-lg">
+            {t("subtitle")}{" "}
+            <span className="font-medium text-amber-600 dark:text-amber-400">
+              {t("subtitleHighlight")}
+            </span>
+          </p>
 
-            {/* Stats - inline text format on mobile */}
-            <div className="mt-6 sm:mt-8 flex flex-wrap items-center justify-center gap-2 sm:gap-6 text-sm sm:text-base">
-              <span className="inline-flex items-center gap-1.5 text-zinc-600 dark:text-zinc-400">
-                <span className="font-bold text-emerald-600 dark:text-emerald-400">
-                  {categories.length}
-                </span>
-                <span>{t("stats.categories")}</span>
-              </span>
-              <span className="text-zinc-300 dark:text-zinc-600">•</span>
-              <span className="inline-flex items-center gap-1.5 text-zinc-600 dark:text-zinc-400">
-                <span className="font-bold text-emerald-600 dark:text-emerald-400">
-                  {guides.length}
-                </span>
-                <span>{t("stats.totalGuides")}</span>
-              </span>
-              <span className="text-zinc-300 dark:text-zinc-600">•</span>
-              <span className="inline-flex items-center gap-1.5 text-zinc-600 dark:text-zinc-400">
-                <CheckCircle2 className="h-4 w-4 text-emerald-500" />
-                <span>{t("stats.communityVerified")}</span>
-              </span>
-            </div>
+          <div className="mt-7 w-full sm:mt-8">
+            <SearchBar placeholder={t("searchPlaceholder")} size="lg" showButton={false} />
+          </div>
+
+          <div className="mt-7 flex flex-wrap items-center justify-center gap-x-5 gap-y-1 text-sm text-zinc-500 dark:text-zinc-400 sm:mt-8">
+            <span>
+              <span className="font-semibold text-zinc-800 dark:text-white">
+                {categories.length}
+              </span>{" "}
+              {t("stats.categories")}
+            </span>
+            <span className="text-zinc-300 dark:text-zinc-700">·</span>
+            <span>
+              <span className="font-semibold text-zinc-800 dark:text-white">{guides.length}</span>{" "}
+              {t("stats.totalGuides")}
+            </span>
+            <span className="text-zinc-300 dark:text-zinc-700">·</span>
+            <span className="inline-flex items-center gap-1.5">
+              <CheckCircle2 className="h-3.5 w-3.5 text-emerald-500" />
+              {t("stats.communityVerified")}
+            </span>
           </div>
         </div>
       </section>
 
-      {/* Data freshness callout */}
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <Callout variant="warning" title="Heads up — info may change">
-          We’re working hard to keep these guides fresh, but some details can get out of date. Use
-          this guide as a helpful starting point — and if you spot something that’s changed, please
-          let us know so we can update it. Thanks for helping us keep things accurate!
-        </Callout>
-      </div>
-
-      {/* Categories Section */}
+      {/* Heads Up callout + Categories Section */}
       <section className="relative border-b border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-950 py-10 sm:py-16">
+        {/* Emerald separator line */}
+        <div className="absolute left-0 top-0 h-1 w-full bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 opacity-80" />
+
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          {/* Data freshness callout */}
+          <div className="mb-10">
+            <Callout variant="warning" title="Heads up — info may change">
+              We're working hard to keep these guides fresh, but some details can get out of date. Use
+              this guide as a helpful starting point — and if you spot something that's changed, please
+              let us know so we can update it. Thanks for helping us keep things accurate!
+            </Callout>
+          </div>
+
           {/* Section Header */}
-          <div className="mb-10 flex flex-col items-start justify-between gap-4 sm:flex-row sm:items-center">
-            <div>
-              <div className="mb-2 flex items-center gap-2">
-                <Compass className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
-                <span className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
-                  {t("categoriesSection.badge")}
-                </span>
-              </div>
-              <h2 className="mb-3 sm:mb-4 text-2xl sm:text-3xl md:text-4xl font-bold text-zinc-900 dark:text-white">
-                {t("categoriesSection.title")}
-              </h2>
+          <div className="mb-10">
+            <div className="mb-2 flex items-center gap-2">
+              <Compass className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+              <span className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
+                {t("categoriesSection.badge")}
+              </span>
             </div>
-            <Button
-              asChild
-              variant="outline"
-              className="border-zinc-200 dark:border-white/10 text-zinc-700 dark:text-zinc-300 hover:bg-zinc-100 dark:hover:bg-white/5 hover:text-zinc-900 dark:hover:text-white"
-            >
-              <Link href="/search">
-                <Filter className="mr-2 h-4 w-4" />
-                {t("categoriesSection.advancedSearch")}
-              </Link>
-            </Button>
+            <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-3xl">
+              {t("categoriesSection.title")}
+            </h2>
           </div>
 
           {/* Categories - Horizontal scroll on mobile, grid on desktop */}
@@ -164,9 +155,9 @@ export default async function GuidesPage() {
       {/* CTA Section */}
       <section className="py-10 sm:py-16">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <div className="rounded-2xl border border-zinc-200 dark:border-white/10 bg-gradient-to-br from-zinc-50 via-white to-zinc-50 dark:from-zinc-900 dark:via-zinc-900/80 dark:to-zinc-900 p-8 text-center shadow-sm dark:shadow-none backdrop-blur-sm">
-            <div className="mb-5 inline-flex rounded-full bg-gradient-to-br from-amber-100 to-orange-100 dark:from-amber-500/20 dark:to-orange-500/20 p-3">
-              <Sparkles className="h-6 w-6 text-amber-600 dark:text-amber-400" />
+          <div className="rounded-2xl border border-emerald-200/40 dark:border-white/10 bg-gradient-to-br from-emerald-50/50 via-white to-teal-50/30 dark:from-zinc-900 dark:via-zinc-900/80 dark:to-zinc-900 p-8 text-center shadow-sm dark:shadow-none backdrop-blur-sm">
+            <div className="mb-5 inline-flex rounded-full bg-gradient-to-br from-emerald-100 to-teal-100 dark:from-emerald-500/20 dark:to-teal-500/20 p-3">
+              <Sparkles className="h-6 w-6 text-emerald-600 dark:text-emerald-400" />
             </div>
             <h2 className="text-xl font-bold text-zinc-900 dark:text-white">{t("cta.title")}</h2>
             <p className="mx-auto mt-2 max-w-md text-base text-zinc-600 dark:text-zinc-400">

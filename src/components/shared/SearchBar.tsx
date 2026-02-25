@@ -60,7 +60,7 @@ export function SearchBar({
       onSearch(query.trim());
       setIsSearching(false);
     } else {
-      router.push(`/search?q=${encodeURIComponent(query.trim())}`);
+      router.push(`/guides`);
     }
   };
 

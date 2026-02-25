@@ -305,7 +305,7 @@ export default async function CategoryPage({ params }: PageProps) {
                       asChild
                       className="border-zinc-300 dark:border-white/10 bg-white dark:bg-zinc-900/60 text-zinc-600 dark:text-zinc-400 capitalize cursor-pointer hover:border-emerald-400 dark:hover:border-emerald-500/40 hover:bg-emerald-50 dark:hover:bg-emerald-500/15 hover:text-emerald-700 dark:hover:text-emerald-300 transition-all duration-200 hover:scale-105"
                     >
-                      <Link href={`/search?q=${encodeURIComponent(tag)}`}>{tag}</Link>
+                      <Link href="/guides">{tag}</Link>
                     </Badge>
                   ))}
                 </div>
@@ -445,7 +445,7 @@ export default async function CategoryPage({ params }: PageProps) {
                       asChild
                       className="border-zinc-300 dark:border-white/10 bg-white dark:bg-zinc-900/50 text-zinc-600 dark:text-zinc-400 cursor-pointer hover:border-emerald-400 dark:hover:border-emerald-500/40 hover:bg-emerald-50 dark:hover:bg-emerald-500/15 hover:text-emerald-700 dark:hover:text-emerald-300 capitalize transition-all duration-200 hover:scale-105"
                     >
-                      <Link href={`/search?q=${encodeURIComponent(tag)}`}>{tag}</Link>
+                      <Link href="/guides">{tag}</Link>
                     </Badge>
                   ))}
                   {allTags.length > 6 && (
@@ -529,8 +529,8 @@ export default async function CategoryPage({ params }: PageProps) {
                   size="lg"
                   className={`bg-gradient-to-r ${theme.from} ${theme.to} text-white font-semibold shadow-lg hover:opacity-90 hover:shadow-xl transition-all`}
                 >
-                  <Link href="/search" className="text-white inline-flex items-center">
-                    {getMessage("categoryPage.searchEverything") ?? "Search Everything"}
+                  <Link href="/guides" className="text-white inline-flex items-center">
+                    {getMessage("categoryPage.searchEverything") ?? "Browse All Guides"}
                   </Link>
                 </Button>
               </div>

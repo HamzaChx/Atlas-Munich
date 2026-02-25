@@ -154,7 +154,7 @@ export function Footer() {
               </li>
               <li>
                 <Link
-                  href="/search"
+                  href="/tools"
                   className="group inline-flex items-center gap-1 text-[15px] text-zinc-600 dark:text-zinc-400 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:text-emerald-600 dark:hover:text-emerald-400 outline-none focus-visible:text-emerald-600 dark:focus-visible:text-emerald-400"
                 >
                   {t("links.search")}

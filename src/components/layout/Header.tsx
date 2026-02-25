@@ -11,11 +11,10 @@ import { Locale } from "@/i18n";
 import {
   Menu,
   X,
-  Search,
   Home,
   BookOpen,
   HelpCircle,
-  Users,
+  Wrench,
   MapPin,
   ChevronRight,
   Info,
@@ -57,7 +56,7 @@ export function Header({ locale, translations }: HeaderProps) {
     { label: translations.home, href: "/", icon: Home },
     { label: translations.guides, href: "/guides", icon: BookOpen },
     { label: translations.places, href: "/places", icon: MapPin },
-    { label: translations.community, href: "/community", icon: Users },
+    { label: translations.tools, href: "/tools", icon: Wrench },
     { label: translations.faq, href: "/faq", icon: HelpCircle },
     { label: translations.about, href: "/about", icon: Info },
   ];
@@ -138,19 +137,6 @@ export function Header({ locale, translations }: HeaderProps) {
           {/* Theme Toggle */}
           <ThemeToggle className="hidden sm:flex" />
 
-          {/* Search Button */}
-          <Button
-            variant="ghost"
-            size="icon"
-            className="hidden text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-white/5 hover:text-zinc-900 dark:hover:text-white sm:flex"
-            asChild
-          >
-            <Link href="/search">
-              <Search className="h-5 w-5" />
-              <span className="sr-only">{translations.search}</span>
-            </Link>
-          </Button>
-
           {/* CTA Button - Rule 17: One primary action per screen */}
           <Button
             asChild
@@ -204,16 +190,6 @@ export function Header({ locale, translations }: HeaderProps) {
               </Link>
             );
           })}
-
-          {/* Mobile Search */}
-          <Link
-            href="/search"
-            onClick={() => setMobileMenuOpen(false)}
-            className="flex items-center gap-3 rounded-xl px-4 py-3.5 text-base font-medium text-zinc-600 dark:text-zinc-400 transition-all hover:bg-zinc-100 dark:hover:bg-white/5 hover:text-zinc-900 dark:hover:text-white min-h-[48px]"
-          >
-            <Search className="h-5 w-5" />
-            {translations.search}
-          </Link>
 
           {/* Mobile Language Switcher */}
           <div className="flex items-center gap-3 rounded-xl px-4 py-3 text-base font-medium text-zinc-600 dark:text-zinc-400 min-h-[48px]">

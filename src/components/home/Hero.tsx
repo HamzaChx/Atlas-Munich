@@ -39,8 +39,8 @@ export function Hero() {
             in Munich
           </p>
           <p className="mx-auto mt-4 max-w-2xl text-base text-gray-500 dark:text-gray-400">
-            From finding housing to landing your dream job — everything you need to thrive in
-            Munich, curated by our community
+            From finding housing to landing your dream job, everything you need to thrive in Munich,
+            curated by our community
           </p>
           <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button asChild size="lg" className="group h-14 px-10 text-lg shadow-lg">

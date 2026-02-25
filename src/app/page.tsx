@@ -183,13 +183,11 @@ export default async function Home() {
                 color={category.color}
                 count={guideCountByCategory(category.key) || "New"}
                 className={
-                  index === 0
-                    ? "col-span-2 lg:col-span-2"
-                    : index <= 2
-                      ? "lg:col-span-2"
-                      : index === 3
-                        ? "col-span-2 lg:col-span-2 lg:col-start-2"
-                        : "lg:col-span-2"
+                  index <= 2
+                    ? "lg:col-span-2"
+                    : index === 3
+                      ? "lg:col-span-2 lg:col-start-2"
+                      : "col-span-2 lg:col-span-2"
                 }
               />
             ))}

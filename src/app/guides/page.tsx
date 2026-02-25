@@ -86,10 +86,10 @@ export default async function GuidesPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Data freshness callout */}
           <div className="mb-10">
-            <Callout variant="warning" title="Heads up — info may change">
-              We're working hard to keep these guides fresh, but some details can get out of date. Use
-              this guide as a helpful starting point — and if you spot something that's changed, please
-              let us know so we can update it. Thanks for helping us keep things accurate!
+            <Callout variant="warning" title="Heads up: info may change">
+              We're working hard to keep these guides fresh, but some details can get out of date.
+              Use this guide as a helpful starting point. If you spot something that's changed,
+              please let us know so we can update it. Thanks for helping us keep things accurate!
             </Callout>
           </div>
 

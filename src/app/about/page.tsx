@@ -188,10 +188,10 @@ export default async function AboutPage() {
 
             <div className="relative flex flex-col items-center gap-10 sm:flex-row sm:items-center sm:gap-12">
               {/* Floating QR Code */}
-              <div className="flex flex-col items-center gap-2 mx-auto sm:mx-0 sm:flex-shrink-0">
+              <div className="flex-shrink-0">
                 <div className="relative group">
                   <div className="absolute -inset-4 rounded-2xl bg-gradient-to-br from-green-500/20 to-emerald-500/20 blur-xl opacity-50 group-hover:opacity-70 transition-opacity" />
-                  <div className="relative rotate-2 group-hover:rotate-0 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] rounded-2xl border border-green-200 dark:border-white/10 bg-white dark:bg-zinc-800 p-2 shadow-lg shadow-green-500/10 group-hover:shadow-xl group-hover:shadow-green-500/20">
+                  <div className="relative rotate-2 group-hover:rotate-0 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] rounded-2xl border border-green-200 dark:border-white/10 bg-white dark:bg-zinc-800 p-4 shadow-lg shadow-green-500/10 group-hover:shadow-xl group-hover:shadow-green-500/20">
                     <Image
                       src={`https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=${encodeURIComponent("https://chat.whatsapp.com/BjITbXHnM9Q6xapvC1Q3rX")}&bgcolor=ffffff&color=000000&margin=16`}
                       alt="WhatsApp Community QR Code"
@@ -199,11 +199,11 @@ export default async function AboutPage() {
                       height={180}
                       className="h-40 w-40 sm:h-44 sm:w-44 rounded-lg"
                     />
+                    <p className="mt-2.5 text-center text-[11px] text-zinc-500 dark:text-zinc-400">
+                      {c("qrInstructions")}
+                    </p>
                   </div>
                 </div>
-                <p className="text-center text-xs text-zinc-500 dark:text-zinc-400">
-                  {c("qrInstructions")}
-                </p>
               </div>
 
               {/* Community Info */}

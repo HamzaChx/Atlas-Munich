@@ -643,14 +643,18 @@
       "hamid": "Votre spécialiste des guides plein d'humour",
       "jmila": "Votre guide sympathique des meilleurs lieux",
       "hamza": "Le développeur derrière Atlas Munich",
-      "riad": "Votre expert en candidatures locatives à Munich"
+      "riad": "Votre expert en candidatures locatives à Munich",
+      "dalilah": "Votre navigatrice de la bureaucratie allemande",
+      "ilham": "Votre compagnon de recherche académique"
     },
     "welcome": {
       "zellija": "Salam! 👋 Je suis Zellija, votre guide pour Atlas Munich. Comment puis-je vous aider aujourd'hui ?",
       "hamid": "Labas! 📚 Je suis Hamid, spécialiste des guides. Demandez-moi sur le logement, le KVR, l'université ou autre !",
       "jmila": "Salut! 🐪 Je suis Jmila, je connais les meilleurs endroits à Munich. Vous cherchez de la nourriture halal ou un café ?",
       "hamza": "Salam! 👨‍💻 Je suis Hamza, le développeur d'Atlas Munich. Voulez-vous en savoir plus sur le projet ?",
-      "riad": "Hey! 🏠 Je suis Riad. Collez une annonce WG ou appartement et je vous rédigerai une candidature prête à envoyer qui obtient vraiment des réponses à Munich."
+      "riad": "Hey! 🏠 Je suis Riad. Collez une annonce WG ou appartement et je vous rédigerai une candidature prête à envoyer qui obtient vraiment des réponses à Munich.",
+      "dalilah": "Salam! 📋 Je suis Dalilah. Posez-moi toutes vos questions sur la bureaucratie allemande et je vous guide pas à pas.",
+      "ilham": "Marhba! 📚 Je suis Ilham. Partagez votre recherche, article ou défi de thèse et je vous aide à passer au niveau supérieur."
     },
     "suggestions": {
       "zellija": [
@@ -673,6 +677,16 @@
         "Rédige une candidature WG pour moi",
         "Rédige une candidature formelle",
         "Comment me démarquer à Munich ?"
+      ],
+      "dalilah": [
+        "Comment faire l'Anmeldung ?",
+        "Quand ai-je besoin d'un titre de séjour ?",
+        "Quels documents pour le KVR ?"
+      ],
+      "ilham": [
+        "Aide-moi à structurer ma thèse",
+        "Révise mon paragraphe d'introduction",
+        "Comment trouver un gap de recherche ?"
       ]
     },
     "description": {
@@ -680,7 +694,9 @@
       "hamid": "Un spécialiste des guides drôle et compétent qui explique la bureaucratie avec personnalité.",
       "jmila": "Un guide calme et gourmand qui recommande les meilleurs endroits à Munich.",
       "hamza": "Un développeur technique et engagé dans la communauté qui peut expliquer le projet et comment contribuer.",
-      "riad": "Un spécialiste des candidatures locatives qui rédige des messages à fort taux de conversion pour le marché locatif compétitif de Munich."
+      "riad": "Un spécialiste des candidatures locatives qui rédige des messages à fort taux de conversion pour le marché locatif compétitif de Munich.",
+      "dalilah": "Une navigatrice bureaucratique précise et empathique qui guide les nouveaux arrivants marocains à travers chaque démarche administrative — Anmeldung, titres de séjour, KVR, assurance maladie et plus encore.",
+      "ilham": "Une compagnon de recherche académique d'élite qui aide les étudiants de Munich à développer des questions de recherche, structurer des articles, affiner l'écriture et préparer leurs thèses avec intégrité académique."
     }
   },
   "legal": {
@@ -742,9 +758,87 @@
         "cta": "Bientôt disponible",
         "comingSoonNote": "Nous construisons cet outil — restez connecté !",
         "tags": ["Planifier des événements", "Inviter des amis", "Lieux à Munich"]
+      },
+      "dalilah": {
+        "title": "Navigateur Bureaucratie Allemande",
+        "description": "Anmeldung, permis de séjour, KVR, assurance maladie et formulaires allemands — Dalilah vous guide à travers chaque étape sans délai manqué.",
+        "status": "Disponible",
+        "cta": "Lancer l'outil",
+        "poweredBy": "Optimisé par IA via Dalilah",
+        "tags": ["Anmeldung", "Permis de séjour", "KVR & Délais"]
+      },
+      "ilham": {
+        "title": "Compagnon de Recherche Académique",
+        "description": "Ilham vous aide à développer des questions de recherche, structurer des articles, affiner l'écriture scientifique et préparer votre thèse à la TUM ou LMU, avec intégrité académique.",
+        "status": "Disponible",
+        "cta": "Lancer l'outil",
+        "poweredBy": "Optimisé par IA via Ilham",
+        "tags": ["Recherche & Littérature", "Écriture scientifique", "Thèse & LaTeX"]
       }
     },
     "moreComing": "D'autres outils arrivent bientôt. Une idée ? Contribuez sur"
+  },
+  "academic": {
+    "badge": "Compagnon Académique",
+    "title": "Compagnon de Recherche",
+    "titleHighlight": "Académique",
+    "subtitle": "Ilham vous aide à rechercher, rédiger et structurer vos travaux académiques à la TUM ou LMU, étape par étape.",
+    "cta": "Demander à Ilham",
+    "features": {
+      "title": "Comment ça marche",
+      "step1Title": "Partagez votre recherche",
+      "step1Desc": "Parlez à Ilham de votre article, thèse ou question de recherche. Collez du texte ou décrivez où vous êtes bloqué.",
+      "step2Title": "Ilham élève votre travail",
+      "step2Desc": "Elle aide au brainstorming, à la structuration, à l'amélioration de l'écriture, à l'analyse de littérature et à la planification des jalons.",
+      "step3Title": "Publiez en toute confiance",
+      "step3Desc": "Soumettez un travail soigné et bien structuré qui respecte les normes académiques, avec votre analyse originale préservée."
+    },
+    "tips": {
+      "title": "Conseils pour la réussite académique",
+      "tip1Title": "Commencez par une question claire",
+      "tip1Desc": "Une question de recherche ciblée est le fondement de tout bon article ou thèse. Demandez à Ilham de vous aider à l'affiner.",
+      "tip2Title": "Respectez l'intégrité académique",
+      "tip2Desc": "Ilham soutient votre réflexion mais ne la remplace pas. Vérifiez les sources, ajoutez votre propre analyse et citez correctement.",
+      "tip3Title": "Planifiez les jalons tôt",
+      "tip3Desc": "Les délais de thèse à la TUM et à la LMU sont stricts. Décomposez votre projet en jalons mensuels dès le premier jour.",
+      "tip4Title": "Utilisez Zotero pour les citations",
+      "tip4Desc": "Zotero est le gestionnaire de citations incontournable pour les étudiants de Munich. Il s'intègre avec Word, LaTeX et la plupart des bases de données."
+    },
+    "resources": {
+      "title": "Ressources académiques",
+      "subtitle": "Outils essentiels que tout étudiant à Munich devrait mettre en favoris"
+    }
+  },
+  "bureaucracy": {
+    "badge": "Bureaucratie Munich",
+    "title": "Navigateur",
+    "titleHighlight": "Bureaucratie Allemande",
+    "subtitle": "Dalilah vous guide à travers l'Anmeldung, les titres de séjour, le KVR et plus encore, étape par étape.",
+    "cta": "Demander à Dalilah",
+    "features": {
+      "title": "Comment ça marche",
+      "step1Title": "Décrivez votre situation",
+      "step1Desc": "Dites à Dalilah où vous en êtes dans votre parcours à Munich. Nouvel arrivé, prolongation de titre ou formulaire incompris.",
+      "step2Title": "Dalilah crée votre plan",
+      "step2Desc": "Elle génère une checklist personnalisée avec les documents exacts, les délais et les instructions de rendez-vous.",
+      "step3Title": "Terminez en confiance",
+      "step3Desc": "Suivez le plan, célébrez chaque étape et ne ratez plus jamais une échéance administrative allemande."
+    },
+    "tips": {
+      "title": "Conseils Bureaucratie Munich",
+      "tip1Title": "Délai Anmeldung de 14 jours",
+      "tip1Desc": "Vous devez enregistrer votre adresse (Anmeldung) dans les 14 jours suivant l'emménagement. Un retard peut entraîner des amendes au KVR.",
+      "tip2Title": "Réservez les rendez-vous tôt",
+      "tip2Desc": "Les rendez-vous au KVR et à l'Ausländerbehörde sont bloqués 3 à 6 semaines à l'avance. Réservez immédiatement, même si l'échéance semble lointaine.",
+      "tip3Title": "Originaux et copies toujours",
+      "tip3Desc": "Les offices allemands exigent les documents originaux et des photocopies de tout. Préparez un dossier complet avant tout rendez-vous.",
+      "tip4Title": "Prolongez le titre 6 semaines avant",
+      "tip4Desc": "Commencez la prolongation de votre titre de séjour au moins 6 semaines avant l'expiration. Le traitement prend 4 à 8 semaines."
+    },
+    "authorities": {
+      "title": "Autorités Officielles de Munich",
+      "subtitle": "Liens directs vers les organismes les plus importants"
+    }
   },
   "housing": {
     "badge": "Logement Munich",

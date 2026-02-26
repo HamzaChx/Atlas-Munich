@@ -622,14 +622,18 @@
       "hamid": "Your witty guides specialist",
       "jmila": "Your helpful camel guide to Munich places",
       "hamza": "The developer behind Atlas Munich",
-      "riad": "Your Munich housing application expert"
+      "riad": "Your Munich housing application expert",
+      "dalilah": "Your German Bureaucracy Navigator",
+      "ilham": "Your Academic Research Companion"
     },
     "welcome": {
       "zellija": "Salam! 👋 I'm Zellija, your guide to Atlas Munich. How can I help you today?",
       "hamid": "Labas! 📚 I'm Hamid, your guides specialist. Ask me about housing, KVR, university, or anything Munich!",
       "jmila": "Hey there! 🐪 I'm Jmila, and I know all the best spots in Munich. Looking for halal food or a nice café?",
       "hamza": "Salam! 👨‍💻 I'm Hamza, the developer of Atlas Munich. Want to know about the project?",
-      "riad": "Hey! 🏠 I'm Riad. Paste a WG or apartment listing and I'll write you a ready-to-send application that actually gets replies in Munich."
+      "riad": "Hey! 🏠 I'm Riad. Paste a WG or apartment listing and I'll write you a ready-to-send application that actually gets replies in Munich.",
+      "dalilah": "Salam! 📋 I'm Dalilah. Ask me anything about German bureaucracy and I'll break it down for you.",
+      "ilham": "Marhba! 📚 I'm Ilham. Share your research, paper, or thesis challenge and I'll help you take it to the next level."
     },
     "suggestions": {
       "zellija": {
@@ -656,6 +660,16 @@
         "0": "Write a WG application for me",
         "1": "Write a formal apartment application",
         "2": "How do I stand out in Munich?"
+      },
+      "dalilah": {
+        "0": "How do I do Anmeldung?",
+        "1": "When do I need a residence permit?",
+        "2": "What documents for KVR?"
+      },
+      "ilham": {
+        "0": "Help me structure my thesis",
+        "1": "Review my introduction paragraph",
+        "2": "How do I find a research gap?"
       }
     },
     "description": {
@@ -663,7 +677,9 @@
       "hamid": "A funny, knowledgeable guide specialist who explains bureaucracy with personality.",
       "jmila": "A calm, foodie-focused guide who recommends the best places in Munich.",
       "hamza": "A technical, community-minded developer who can explain the project and how to contribute.",
-      "riad": "A sharp housing application specialist who writes high-conversion WG and apartment messages for Munich's competitive rental market."
+      "riad": "A sharp housing application specialist who writes high-conversion WG and apartment messages for Munich's competitive rental market.",
+      "dalilah": "A precise, empathetic bureaucracy navigator who guides Moroccan newcomers through every German administrative process — Anmeldung, residence permits, KVR, health insurance, and more.",
+      "ilham": "An elite academic research and scientific writing companion who helps Munich students develop research questions, structure papers, refine writing, and prepare thesis work with full academic integrity."
     }
   },
   "legal": {
@@ -725,9 +741,87 @@
         "cta": "Coming Soon",
         "comingSoonNote": "We're building this tool — stay tuned!",
         "tags": ["Plan Events", "Invite Friends", "Munich Spots"]
+      },
+      "dalilah": {
+        "title": "German Bureaucracy Navigator",
+        "description": "Navigating Anmeldung, residence permits, KVR, health insurance, and German paperwork doesn't have to be scary. Let Dalilah guide you through every step with zero missed deadlines.",
+        "status": "Live",
+        "cta": "Launch Tool",
+        "poweredBy": "AI-powered by Dalilah",
+        "tags": ["Anmeldung", "Residence Permits", "KVR & Deadlines"]
+      },
+      "ilham": {
+        "title": "Academic Research Companion",
+        "description": "Ilham helps you develop research questions, structure papers, refine scientific writing, and prepare thesis work at TUM or LMU — with full academic integrity.",
+        "status": "Live",
+        "cta": "Launch Tool",
+        "poweredBy": "AI-powered by Ilham",
+        "tags": ["Research & Literature", "Academic Writing", "Thesis & LaTeX"]
       }
     },
     "moreComing": "More tools coming soon. Have an idea? Contribute on"
+  },
+  "academic": {
+    "badge": "Academic Companion",
+    "title": "Academic Research",
+    "titleHighlight": "Companion",
+    "subtitle": "Ilham helps you research, write, and structure academic work at TUM or LMU, step by step.",
+    "cta": "Ask Ilham Now",
+    "features": {
+      "title": "How It Works",
+      "step1Title": "Share Your Research",
+      "step1Desc": "Tell Ilham about your paper, thesis, or research question. Paste text, share context, or describe where you're stuck.",
+      "step2Title": "Ilham Elevates Your Work",
+      "step2Desc": "She helps you brainstorm, structure, refine writing, analyze literature, and plan your milestones.",
+      "step3Title": "Publish with Confidence",
+      "step3Desc": "Submit polished, well-structured work that meets academic standards, with your original insight intact."
+    },
+    "tips": {
+      "title": "Academic Success Tips",
+      "tip1Title": "Start with a Clear Research Question",
+      "tip1Desc": "A focused research question is the foundation of any strong paper or thesis. Ask Ilham to help you narrow and sharpen yours.",
+      "tip2Title": "Maintain Academic Integrity",
+      "tip2Desc": "Ilham assists your thinking but never replaces it. Always verify sources, add your own insight, and cite correctly.",
+      "tip3Title": "Plan Milestones Early",
+      "tip3Desc": "Thesis deadlines at TUM and LMU are strict. Break your project into monthly milestones from day one.",
+      "tip4Title": "Use Zotero for Citations",
+      "tip4Desc": "Zotero is the go-to citation manager for Munich students. It integrates with Word, LaTeX, and most academic databases."
+    },
+    "resources": {
+      "title": "Academic Resources",
+      "subtitle": "Key tools every Munich student should bookmark"
+    }
+  },
+  "bureaucracy": {
+    "badge": "Munich Bureaucracy",
+    "title": "German Bureaucracy",
+    "titleHighlight": "Navigator",
+    "subtitle": "Dalilah guides you through Anmeldung, residence permits, KVR and more, step by step.",
+    "cta": "Ask Dalilah Now",
+    "features": {
+      "title": "How It Works",
+      "step1Title": "Describe Your Situation",
+      "step1Desc": "Tell Dalilah where you are in your Munich journey. Just arrived, need a permit extension, or confused by a form.",
+      "step2Title": "Dalilah Builds Your Plan",
+      "step2Desc": "She creates a personalized checklist with exact documents, deadlines, and appointment instructions.",
+      "step3Title": "Complete with Confidence",
+      "step3Desc": "Follow the plan, celebrate each milestone, and never miss a German deadline again."
+    },
+    "tips": {
+      "title": "Munich Bureaucracy Tips",
+      "tip1Title": "14-Day Anmeldung Deadline",
+      "tip1Desc": "Register your address (Anmeldung) within 14 days of moving in. Late registration can result in fines at KVR.",
+      "tip2Title": "Book Appointments Early",
+      "tip2Desc": "KVR and Ausländerbehörde appointments book out 3 to 6 weeks in advance. Book immediately, even if your deadline feels far away.",
+      "tip3Title": "Always Bring Originals and Copies",
+      "tip3Desc": "German offices require original documents and photocopies of everything. Prepare a complete document folder before any appointment.",
+      "tip4Title": "Extend Permits 6 Weeks Early",
+      "tip4Desc": "Start your residence permit extension at least 6 weeks before expiry. Processing takes 4 to 8 weeks and you cannot let it lapse."
+    },
+    "authorities": {
+      "title": "Official Munich Authorities",
+      "subtitle": "Direct links to the offices you'll deal with most"
+    }
   },
   "housing": {
     "badge": "Munich Housing",

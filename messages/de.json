@@ -622,14 +622,18 @@
       "hamid": "Dein witziger Ratgeber-Spezialist",
       "jmila": "Deine hilfreiche Guide zu Münchens Orten",
       "hamza": "Der Entwickler hinter Atlas München",
-      "riad": "Dein Experte für Münchner Wohnungsbewerbungen"
+      "riad": "Dein Experte für Münchner Wohnungsbewerbungen",
+      "dalilah": "Dein Behörden-Navigator für München",
+      "ilham": "Dein akademischer Forschungsbegleiter"
     },
     "welcome": {
       "zellija": "Salam! 👋 Ich bin Zellija, dein Guide für Atlas München. Wie kann ich dir heute helfen?",
       "hamid": "Labas! 📚 Ich bin Hamid, dein Ratgeber-Spezialist. Frag mich zu Wohnung, KVR, Uni oder allem anderen!",
       "jmila": "Hey! 🐪 Ich bin Jmila und kenne die besten Orte in München. Suchst du Halal-Essen oder ein Café?",
       "hamza": "Salam! 👨‍💻 Ich bin Hamza, der Entwickler von Atlas München. Möchtest du mehr über das Projekt wissen?",
-      "riad": "Hey! 🏠 Ich bin Riad. Füg eine WG- oder Wohnungsanzeige ein und ich schreibe dir eine versandbereite Bewerbung, die in München wirklich Antworten bekommt."
+      "riad": "Hey! 🏠 Ich bin Riad. Füg eine WG- oder Wohnungsanzeige ein und ich schreibe dir eine versandbereite Bewerbung, die in München wirklich Antworten bekommt.",
+      "dalilah": "Salam! 📋 Ich bin Dalilah. Frag mich alles rund um deutsche Behörden und ich erkläre es dir Schritt für Schritt.",
+      "ilham": "Marhba! 📚 Ich bin Ilham. Teile deine Forschung, Paper oder Thesis-Herausforderung und ich helfe dir, das Nächste zu erreichen."
     },
     "suggestions": {
       "zellija": {
@@ -656,6 +660,16 @@
         "0": "Schreib eine WG-Bewerbung für mich",
         "1": "Schreib eine formelle Wohnungsbewerbung",
         "2": "Wie falle ich in München auf?"
+      },
+      "dalilah": {
+        "0": "Wie mache ich die Anmeldung?",
+        "1": "Wann brauche ich einen Aufenthaltstitel?",
+        "2": "Welche Dokumente für den KVR?"
+      },
+      "ilham": {
+        "0": "Hilf mir meine Thesis zu strukturieren",
+        "1": "Bitte prüfe meine Einleitung",
+        "2": "Wie finde ich eine Forschungslücke?"
       }
     },
     "description": {
@@ -663,7 +677,9 @@
       "hamid": "Ein witziger, sachkundiger Ratgeber, der Bürokratie mit Persönlichkeit erklärt.",
       "jmila": "Eine ruhige, essensbegeisterte Begleiterin, die die besten Orte in München empfiehlt.",
       "hamza": "Ein technischer, community-orientierter Entwickler, der das Projekt und die Mitwirkung erklärt.",
-      "riad": "Ein scharfsinniger Wohnungsbewerbungsspezialist, der hochkonvertierte WG- und Apartmentnachrichten für Münchens kompetitiven Mietmarkt schreibt."
+      "riad": "Ein scharfsinniger Wohnungsbewerbungsspezialist, der hochkonvertierte WG- und Apartmentnachrichten für Münchens kompetitiven Mietmarkt schreibt.",
+      "dalilah": "Eine präzise, einfühlsame Behörden-Navigatorin, die marokkanische Newcomer durch jeden deutschen Verwaltungsprozess führt — Anmeldung, Aufenthaltstitel, KVR, Krankenversicherung und mehr.",
+      "ilham": "Eine erstklassige akademische Begleiterin, die Münchner Studierenden hilft, Forschungsfragen zu entwickeln, Paper zu strukturieren, Texte zu verfeinern und Thesis-Arbeiten mit vollständiger akademischer Integrität vorzubereiten."
     }
   },
   "legal": {
@@ -725,9 +741,87 @@
         "cta": "Demnächst",
         "comingSoonNote": "Wir bauen dieses Tool — bleib dran!",
         "tags": ["Events planen", "Freunde einladen", "Münchner Orte"]
+      },
+      "dalilah": {
+        "title": "Behörden-Navigator",
+        "description": "Anmeldung, Aufenthaltserlaubnis, KVR, Krankenversicherung und deutsche Formulare — Dalilah führt dich durch jeden Schritt ohne verpasste Fristen.",
+        "status": "Aktiv",
+        "cta": "Tool starten",
+        "poweredBy": "KI-gestützt von Dalilah",
+        "tags": ["Anmeldung", "Aufenthaltstitel", "KVR & Fristen"]
+      },
+      "ilham": {
+        "title": "Akademischer Forschungsbegleiter",
+        "description": "Ilham hilft dir bei Forschungsfragen, Papiergliederung, wissenschaftlichem Schreiben und Thesis-Vorbereitung an TUM oder LMU — mit vollständiger akademischer Integrität.",
+        "status": "Aktiv",
+        "cta": "Tool starten",
+        "poweredBy": "KI-gestützt von Ilham",
+        "tags": ["Forschung & Literatur", "Wissenschaftliches Schreiben", "Thesis & LaTeX"]
       }
     },
     "moreComing": "Weitere Tools kommen bald. Hast du eine Idee? Trage auf"
+  },
+  "academic": {
+    "badge": "Akademischer Begleiter",
+    "title": "Akademischer",
+    "titleHighlight": "Forschungsbegleiter",
+    "subtitle": "Ilham hilft dir beim Forschen, Schreiben und Strukturieren akademischer Arbeiten an TUM oder LMU, Schritt für Schritt.",
+    "cta": "Ilham fragen",
+    "features": {
+      "title": "So funktioniert's",
+      "step1Title": "Deine Forschung teilen",
+      "step1Desc": "Erzähl Ilham von deiner Arbeit, Thesis oder Forschungsfrage. Teile Text oder beschreibe, wo du nicht weiterkommst.",
+      "step2Title": "Ilham verbessert deine Arbeit",
+      "step2Desc": "Sie hilft beim Brainstorming, Strukturieren, Verfeinern von Texten, Literaturanalyse und Meilensteinplanung.",
+      "step3Title": "Sicher veröffentlichen",
+      "step3Desc": "Reiche ausgefeilte, gut strukturierte Arbeiten ein, die akademischen Standards entsprechen, mit deinen eigenen Gedanken."
+    },
+    "tips": {
+      "title": "Tipps für akademischen Erfolg",
+      "tip1Title": "Klare Forschungsfrage zuerst",
+      "tip1Desc": "Eine fokussierte Forschungsfrage ist das Fundament jeder guten Arbeit. Bitte Ilham dir zu helfen, sie zu schärfen.",
+      "tip2Title": "Akademische Integrität wahren",
+      "tip2Desc": "Ilham unterstützt dein Denken, ersetzt es aber nicht. Überprüf Quellen, füg eigene Einsichten hinzu und zitiere korrekt.",
+      "tip3Title": "Meilensteine frühzeitig planen",
+      "tip3Desc": "Thesis-Fristen an TUM und LMU sind streng. Teile dein Projekt vom ersten Tag an in monatliche Meilensteine.",
+      "tip4Title": "Zotero für Zitationen nutzen",
+      "tip4Desc": "Zotero ist das gängigste Literaturverwaltungsprogramm für Münchner Studierende. Es integriert sich mit Word, LaTeX und den meisten Datenbanken."
+    },
+    "resources": {
+      "title": "Akademische Ressourcen",
+      "subtitle": "Wichtige Tools, die jeder Münchner Studierende kennen sollte"
+    }
+  },
+  "bureaucracy": {
+    "badge": "Münchner Behörden",
+    "title": "Behörden-",
+    "titleHighlight": "Navigator München",
+    "subtitle": "Dalilah führt dich durch Anmeldung, Aufenthaltstitel, KVR und mehr, Schritt für Schritt.",
+    "cta": "Dalilah fragen",
+    "features": {
+      "title": "So funktioniert's",
+      "step1Title": "Situation beschreiben",
+      "step1Desc": "Erzähl Dalilah, wo du in deiner Münchner Reise stehst. Gerade angekommen, Verlängerung nötig oder Formulare unklar.",
+      "step2Title": "Dalilah erstellt deinen Plan",
+      "step2Desc": "Sie erstellt eine persönliche Checkliste mit genauen Dokumenten, Fristen und Terminanweisungen.",
+      "step3Title": "Sicher abschließen",
+      "step3Desc": "Folge dem Plan, feiere jeden Meilenstein und verpasse nie wieder eine behördliche Frist."
+    },
+    "tips": {
+      "title": "Tipps für Münchner Behördengänge",
+      "tip1Title": "14-Tage-Frist für Anmeldung",
+      "tip1Desc": "Melde deine Adresse (Anmeldung) innerhalb von 14 Tagen nach dem Einzug an. Späte Anmeldung kann Bußen nach sich ziehen.",
+      "tip2Title": "Termine frühzeitig buchen",
+      "tip2Desc": "KVR- und Ausländerbehörde-Termine sind 3 bis 6 Wochen im Voraus ausgebucht. Direkt buchen, auch wenn die Frist noch weit entfernt scheint.",
+      "tip3Title": "Originale und Kopien mitbringen",
+      "tip3Desc": "Deutsche Ämter benötigen Originaldokumente und Fotokopien von allem. Eine vollständige Dokumentenmappe vorbereiten.",
+      "tip4Title": "Aufenthaltstitel 6 Wochen früher verlängern",
+      "tip4Desc": "Starte die Verlängerung deines Aufenthaltstitels mindestens 6 Wochen vor Ablauf. Die Bearbeitung dauert 4 bis 8 Wochen."
+    },
+    "authorities": {
+      "title": "Offizielle Münchner Behörden",
+      "subtitle": "Direkte Links zu den wichtigsten Ämtern"
+    }
   },
   "housing": {
     "badge": "München Wohnen",

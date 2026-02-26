@@ -209,9 +209,6 @@ export default function FAQPage() {
 
         {/* CTA */}
         <div className="mt-10 sm:mt-16 rounded-2xl border border-blue-200/40 dark:border-white/10 bg-gradient-to-br from-blue-50/50 via-white to-indigo-50/30 dark:from-zinc-900 dark:via-zinc-900/80 dark:to-zinc-900 p-5 sm:p-8 text-center shadow-sm dark:shadow-none backdrop-blur-sm">
-          <div className="mb-5 inline-flex rounded-full bg-gradient-to-br from-blue-100 to-indigo-100 dark:from-blue-500/20 dark:to-indigo-500/20 p-3">
-            <Sparkles className="h-6 w-6 text-blue-600 dark:text-blue-400" />
-          </div>
           <h3 className="text-xl font-bold text-zinc-900 dark:text-white">{t("cta.title")}</h3>
           <p className="mx-auto mt-2 max-w-md text-base text-zinc-600 dark:text-zinc-400">
             {t("cta.description")}

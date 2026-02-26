@@ -6,6 +6,8 @@ import {
   Wrench,
   HomeIcon,
   FileText,
+  Building2,
+  GraduationCap,
   Sparkles,
   ArrowRight,
   Clock,
@@ -154,7 +156,6 @@ export default async function ToolsPage() {
                     <FileText className="h-6 w-6 text-white" />
                   </div>
                   <Badge className="border-emerald-500/30 bg-emerald-100 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400">
-                    <Sparkles className="mr-1 h-3 w-3" />
                     {t("tools.cv.status")}
                   </Badge>
                 </div>
@@ -204,6 +205,127 @@ export default async function ToolsPage() {
                     {t("tools.cv.cta")}
                     <ExternalLink className="h-3.5 w-3.5" />
                   </a>
+                </div>
+              </div>
+            </div>
+
+            {/* German Bureaucracy Navigator — Live (Dalilah) */}
+            <div className="group relative flex flex-col overflow-hidden rounded-2xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+              <div className="h-1.5 bg-gradient-to-r from-emerald-500 via-teal-500 to-blue-500" />
+              <div className="flex flex-1 flex-col p-6">
+                <div className="mb-4 flex items-start justify-between">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 shadow-lg shadow-emerald-500/30">
+                    <Building2 className="h-6 w-6 text-white" />
+                  </div>
+                  <Badge className="border-emerald-500/30 bg-emerald-100 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400">
+                    {t("tools.dalilah.status")}
+                  </Badge>
+                </div>
+
+                <h2 className="mb-2 text-lg sm:text-xl font-bold text-zinc-900 dark:text-white">
+                  {t("tools.dalilah.title")}
+                </h2>
+                <p className="mb-4 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed line-clamp-3">
+                  {t("tools.dalilah.description")}
+                </p>
+
+                <div className="mb-5 flex flex-wrap gap-1.5">
+                  {(t.raw("tools.dalilah.tags") as string[]).map((tag: string) => (
+                    <span
+                      key={tag}
+                      className="rounded-full border border-emerald-200 dark:border-emerald-500/30 bg-emerald-50 dark:bg-emerald-500/10 px-2.5 py-0.5 text-xs font-medium text-emerald-700 dark:text-emerald-300"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="mt-auto flex items-center gap-3 pt-4 border-t border-zinc-100 dark:border-zinc-800">
+                  <div className="flex items-center gap-2">
+                    <Image
+                      src="/dalilah.jpeg"
+                      alt="Dalilah"
+                      width={32}
+                      height={32}
+                      className="h-8 w-8 rounded-full object-cover border border-zinc-200 dark:border-white/10"
+                    />
+                    <div>
+                      <div className="text-xs font-semibold text-zinc-900 dark:text-white">
+                        Dalilah
+                      </div>
+                      <div className="text-[10px] text-zinc-500 dark:text-zinc-400">
+                        {t("tools.dalilah.poweredBy")}
+                      </div>
+                    </div>
+                  </div>
+                  <Link
+                    href="/bureaucracy"
+                    className="ml-auto inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white text-sm font-semibold transition-all shadow-md shadow-emerald-500/25 hover:shadow-emerald-500/40 hover:scale-[1.02]"
+                  >
+                    {t("tools.dalilah.cta")}
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </Link>
+                </div>
+              </div>
+            </div>
+
+            {/* Academic Research Companion — Live (Ilham) */}
+            <div className="group relative flex flex-col overflow-hidden rounded-2xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+              <div className="h-1.5 bg-gradient-to-r from-indigo-500 via-violet-500 to-purple-500" />
+              <div className="flex flex-1 flex-col p-6">
+                <div className="mb-4 flex items-start justify-between">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-indigo-500 to-violet-600 shadow-lg shadow-indigo-500/30">
+                    <GraduationCap className="h-6 w-6 text-white" />
+                  </div>
+                  <Badge className="border-emerald-500/30 bg-emerald-100 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400">
+                    <Sparkles className="mr-1 h-3 w-3" />
+                    {t("tools.ilham.status")}
+                  </Badge>
+                </div>
+
+                <h2 className="mb-2 text-lg sm:text-xl font-bold text-zinc-900 dark:text-white">
+                  {t("tools.ilham.title")}
+                </h2>
+                <p className="mb-4 text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed line-clamp-3">
+                  {t("tools.ilham.description")}
+                </p>
+
+                <div className="mb-5 flex flex-wrap gap-1.5">
+                  {(t.raw("tools.ilham.tags") as string[]).map((tag: string) => (
+                    <span
+                      key={tag}
+                      className="rounded-full border border-indigo-200 dark:border-indigo-500/30 bg-indigo-50 dark:bg-indigo-500/10 px-2.5 py-0.5 text-xs font-medium text-indigo-700 dark:text-indigo-300"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+
+                <div className="mt-auto flex items-center gap-3 pt-4 border-t border-zinc-100 dark:border-zinc-800">
+                  <div className="flex items-center gap-2">
+                    <Image
+                      src="/ilham.jpeg"
+                      alt="Ilham"
+                      width={32}
+                      height={32}
+                      className="h-8 w-8 rounded-full object-cover border border-zinc-200 dark:border-white/10"
+                    />
+                    <div>
+                      <div className="text-xs font-semibold text-zinc-900 dark:text-white">
+                        Ilham
+                      </div>
+                      <div className="text-[10px] text-zinc-500 dark:text-zinc-400">
+                        {t("tools.ilham.poweredBy")}
+                      </div>
+                    </div>
+                  </div>
+                  <Link
+                    href="/academic"
+                    className="ml-auto inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white text-sm font-semibold transition-all shadow-md shadow-indigo-500/25 hover:shadow-indigo-500/40 hover:scale-[1.02]"
+                  >
+                    {t("tools.ilham.cta")}
+                    <ArrowRight className="h-3.5 w-3.5" />
+                  </Link>
                 </div>
               </div>
             </div>

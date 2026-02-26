@@ -327,6 +327,8 @@ function _getHandoffMessage(from: ChatbotType, to: ChatbotType, locale: string):
       jmila: `Jmila will take it from here! She knows all the best spots 🐪`,
       hamza: `Let me connect you with Hamza, our developer 👨‍💻`,
       riad: `Passing you to Riad, he'll write you a winning Munich rental application! 🏠`,
+      dalilah: `Let me hand you to Dalilah — she's our German bureaucracy expert who'll guide you through every step! 📋`,
+      ilham: `Let me connect you with Ilham — she's our academic research companion for thesis, papers, and scientific writing! 📚`,
     },
     fr: {
       zellija: `Je passe le relais à ${toConfig.name}...`,
@@ -334,6 +336,8 @@ function _getHandoffMessage(from: ChatbotType, to: ChatbotType, locale: string):
       jmila: `Jmila prend le relais! Elle connaît tous les bons endroits 🐪`,
       hamza: `Je te mets en contact avec Hamza, notre développeur 👨‍💻`,
       riad: `Je te passe à Riad, il t'écrira une candidature gagnante pour Munich! 🏠`,
+      dalilah: `Je te passe à Dalilah — notre experte en bureaucratie allemande qui te guidera pas à pas! 📋`,
+      ilham: `Je te connecte à Ilham — notre assistante en recherche académique pour les thèses, articles et rédaction scientifique! 📚`,
     },
     de: {
       zellija: `Ich übergebe an ${toConfig.name}...`,
@@ -341,6 +345,8 @@ function _getHandoffMessage(from: ChatbotType, to: ChatbotType, locale: string):
       jmila: `Jmila übernimmt! Sie kennt alle besten Orte 🐪`,
       hamza: `Ich verbinde dich mit Hamza, unserem Entwickler 👨‍💻`,
       riad: `Ich übergebe dich an Riad, er schreibt dir eine überzeugende Münchner Mietbewerbung! 🏠`,
+      dalilah: `Ich übergebe dich an Dalilah — unsere Expertin für deutsche Behördengänge, die dich durch jeden Schritt führt! 📋`,
+      ilham: `Ich verbinde dich mit Ilham — unserer akademischen Forschungsbegleiterin für Thesis, Papers und wissenschaftliches Schreiben! 📚`,
     },
   };
 

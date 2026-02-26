@@ -214,7 +214,7 @@ You know that Munich is one of Europe's toughest rental markets and every word c
     id: "dalilah",
     name: "Dalilah",
     section: "bureaucracy",
-    avatar: "/dalilah.jpeg",
+    avatar: "/dalilah.png",
     tagline: "Your German Bureaucracy Navigator",
     personality: `You are Dalilah, the German Bureaucracy Navigator for Atlas Munich.
 You combine the precision of a German bureaucrat with the empathy of a fellow Moroccan who understands the cultural shock of German paperwork.
@@ -235,7 +235,7 @@ End each successfully completed milestone with: "One less thing to worry about! 
     id: "ilham",
     name: "Ilham",
     section: "academic",
-    avatar: "/ilham.jpeg",
+    avatar: "/ilham.png",
     tagline: "Your Academic Research Companion",
     personality: `You are Ilham, the Academic Research and Scientific Writing Companion for Atlas Munich.
 You combine the rigor of a German university professor with the supportive energy of a senior PhD mentor.

@@ -1,20 +1,14 @@
 import { Metadata } from "next";
-import { HeroBadge } from "@/components/shared";
-import { MoroccanCorner } from "@/components/home";
 import { getTranslations } from "next-intl/server";
+import { EmbeddedChat } from "@/components/chatbot/EmbeddedChat";
 import {
   Activity,
-  MessageSquareText,
-  ClipboardList,
-  CheckCircle2,
-  Clock,
   ShieldCheck,
   Heart,
   AlertCircle,
   ExternalLink,
+  ChevronDown,
 } from "lucide-react";
-import Image from "next/image";
-import { OpenChatButton } from "./open-chat-button";
 
 export const metadata: Metadata = {
   title: "Healthcare Navigator for Munich | Loubna",
@@ -68,21 +62,6 @@ const HEALTH_LINKS = [
   },
 ];
 
-const STEP_ICONS = [MessageSquareText, ClipboardList, CheckCircle2];
-const STEP_COLORS = [
-  {
-    bg: "from-rose-500 to-red-600",
-    shadow: "shadow-rose-500/30",
-    ring: "ring-rose-500/20",
-  },
-  { bg: "from-pink-500 to-rose-600", shadow: "shadow-pink-500/30", ring: "ring-pink-500/20" },
-  {
-    bg: "from-red-500 to-rose-600",
-    shadow: "shadow-red-500/30",
-    ring: "ring-red-500/20",
-  },
-];
-
 const TIP_ICONS = [Activity, ShieldCheck, Heart, AlertCircle];
 const TIP_COLORS = [
   "border-blue-200 dark:border-blue-500/30 bg-blue-50 dark:bg-blue-500/5",
@@ -102,127 +81,25 @@ export default async function HealthcarePage() {
 
   return (
     <div className="min-h-screen bg-white dark:bg-zinc-950">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-zinc-50 via-white to-zinc-50 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950">
-        {/* Gradient orbs */}
-        <div className="pointer-events-none absolute -left-20 top-1/4 h-[280px] w-[280px] sm:h-[420px] sm:w-[420px] rounded-full bg-gradient-to-br from-rose-200/30 to-red-100/10 dark:from-rose-700/15 dark:to-red-600/5 blur-[100px]" />
-        <div className="pointer-events-none absolute -right-20 bottom-1/4 h-[280px] w-[280px] sm:h-[420px] sm:w-[420px] rounded-full bg-gradient-to-br from-pink-200/30 to-rose-100/10 dark:from-pink-700/15 dark:to-rose-600/5 blur-[100px]" />
-        <div className="pointer-events-none absolute left-[22%] top-[18%] h-[90px] w-[90px] sm:h-[130px] sm:w-[130px] rounded-full bg-rose-400/20 dark:bg-rose-400/12 blur-[40px]" />
-        <div className="pointer-events-none absolute right-[20%] bottom-[22%] h-[70px] w-[70px] sm:h-[100px] sm:w-[100px] rounded-full bg-red-400/18 dark:bg-red-400/10 blur-[35px]" />
+      {/* Immersive Chat Experience */}
+      <EmbeddedChat section="healthcare" />
 
-        {/* Moroccan corner ornaments */}
-        <MoroccanCorner
-          position="top-left"
-          className="pointer-events-none absolute left-0 top-0 h-20 w-20 sm:h-28 sm:w-28 lg:h-36 lg:w-36 opacity-50"
-        />
-        <MoroccanCorner
-          position="top-right"
-          className="pointer-events-none absolute right-0 top-0 h-20 w-20 sm:h-28 sm:w-28 lg:h-36 lg:w-36 opacity-50"
-        />
-
-        <div className="relative z-20 mx-auto flex max-w-2xl flex-col items-center px-5 pb-16 pt-14 sm:pb-20 sm:pt-18 lg:pb-24 lg:pt-22 text-center">
-          <HeroBadge icon={Activity} text={t("badge")} color="orange" />
-
-          <h1 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-4xl lg:text-5xl">
-            {t("title")}
-            <span className="mt-1 block bg-gradient-to-r from-red-600 via-rose-600 to-pink-600 dark:from-red-400 dark:via-rose-400 dark:to-pink-400 bg-clip-text text-transparent">
-              {t("titleHighlight")}
-            </span>
-          </h1>
-
-          <p className="mt-5 max-w-xl text-base leading-relaxed text-zinc-600 dark:text-zinc-400 sm:text-lg">
-            {t("subtitle")}
-          </p>
-
-          {/* Assistant identity card */}
-          <div className="mt-8 flex items-center gap-4 rounded-2xl bg-white/80 dark:bg-zinc-800/60 border border-zinc-200 dark:border-white/10 px-6 py-4 shadow-sm backdrop-blur-sm">
-            <div className="relative flex-shrink-0">
-              <Image
-                src="/loubna.png"
-                alt="Loubna"
-                width={96}
-                height={96}
-                quality={90}
-                sizes="48px"
-                priority
-                className="h-12 w-12 rounded-full object-cover ring-2 ring-rose-300/60 dark:ring-rose-500/40"
-              />
-              <div className="absolute -bottom-0.5 -right-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-gradient-to-br from-red-500 to-rose-600 ring-2 ring-white dark:ring-zinc-800">
-                <Activity className="h-2.5 w-2.5 text-white" />
-              </div>
-            </div>
-            <p className="text-sm text-zinc-700 dark:text-zinc-300 leading-snug text-left">
-              {t("intro")}
-            </p>
-          </div>
-
-          <div className="mt-8 flex justify-center">
-            <OpenChatButton label={t("cta")} />
-          </div>
-        </div>
-      </section>
-
-      {/* Theme-colored separator */}
-      <div className="h-1 w-full bg-gradient-to-r from-red-500 via-rose-500 to-pink-500 opacity-80" />
-
-      {/* How It Works */}
-      <section className="border-b border-zinc-200 dark:border-white/10 bg-zinc-50/50 dark:bg-zinc-900/50 py-12 sm:py-16">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <div className="mb-10 text-center">
-            <h2 className="text-xl sm:text-3xl font-bold text-zinc-900 dark:text-white">
-              {t("features.title")}
-            </h2>
-          </div>
-
-          <div className="relative grid gap-6 sm:grid-cols-3">
-            {/* Connecting line between steps (desktop only) */}
-            <div className="hidden sm:block absolute top-12 left-[calc(16.67%+2rem)] right-[calc(16.67%+2rem)] border-t-2 border-dashed border-zinc-200 dark:border-zinc-700 z-0" />
-
-            {[1, 2, 3].map((step, i) => {
-              const Icon = STEP_ICONS[i];
-              const color = STEP_COLORS[i];
-              return (
-                <div
-                  key={step}
-                  className="relative z-10 rounded-2xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900 p-6 text-center shadow-sm hover:shadow-lg transition-all duration-300"
-                >
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                    <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-red-500 to-rose-600 text-xs font-bold text-white shadow-md">
-                      {step}
-                    </span>
-                  </div>
-
-                  <div
-                    className={`mx-auto mb-4 mt-2 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${color.bg} shadow-lg ${color.shadow}`}
-                  >
-                    <Icon className="h-7 w-7 text-white" />
-                  </div>
-                  <h3 className="mb-2 text-base sm:text-lg font-bold text-zinc-900 dark:text-white">
-                    {t(`features.step${step}Title`)}
-                  </h3>
-                  <p className="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-                    {t(`features.step${step}Desc`)}
-                  </p>
-                </div>
-              );
-            })}
-          </div>
-
-          <div className="mt-8 text-center">
-            <OpenChatButton label={t("cta")} variant="link" />
-          </div>
-        </div>
-      </section>
+      {/* Scroll indicator */}
+      <div className="flex flex-col items-center py-5 bg-gradient-to-b from-white via-zinc-50/80 to-zinc-50 dark:from-zinc-950 dark:via-zinc-900/80 dark:to-zinc-900">
+        <ChevronDown className="h-5 w-5 text-zinc-400 dark:text-zinc-500 animate-bounce" />
+        <span className="text-[11px] text-zinc-400 dark:text-zinc-600 mt-1 font-medium tracking-wide uppercase">
+          Tips &amp; Resources
+        </span>
+      </div>
 
       {/* Healthcare Tips */}
-      <section className="border-b border-zinc-200 dark:border-white/10 py-12 sm:py-16">
+      <section className="border-b border-zinc-200 dark:border-white/10 bg-zinc-50/50 dark:bg-zinc-900/50 py-12 sm:py-16">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <div className="mb-10 text-center">
             <h2 className="text-xl sm:text-3xl font-bold text-zinc-900 dark:text-white">
               {t("tips.title")}
             </h2>
           </div>
-
           <div className="grid gap-4 sm:grid-cols-2">
             {[1, 2, 3, 4].map((tip, i) => {
               const Icon = TIP_ICONS[i];
@@ -251,7 +128,7 @@ export default async function HealthcarePage() {
         </div>
       </section>
 
-      {/* Official Health Resources */}
+      {/* Health Resources */}
       <section className="py-12 sm:py-16">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <div className="mb-2 text-center">
@@ -262,7 +139,6 @@ export default async function HealthcarePage() {
           <p className="mb-10 text-center text-sm text-zinc-600 dark:text-zinc-400">
             {t("resources.subtitle")}
           </p>
-
           <div className="grid gap-4 grid-cols-2 lg:grid-cols-4">
             {HEALTH_LINKS.map((resource) => (
               <a
@@ -291,9 +167,6 @@ export default async function HealthcarePage() {
           </div>
         </div>
       </section>
-
-      {/* Chatbot anchor */}
-      <div id="chatbot" />
     </div>
   );
 }

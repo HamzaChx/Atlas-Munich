@@ -395,12 +395,17 @@ export function Chatbot() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
-  // Don't render chatbot on FAQ and Community pages
+  // Don't render chatbot on FAQ, Community, and assistant pages
+  // (assistant pages now use the embedded inline chat experience)
   const shouldHideChatbot =
     pathname === "/faq" ||
     pathname.startsWith("/faq/") ||
     pathname === "/community" ||
-    pathname.startsWith("/community/");
+    pathname.startsWith("/community/") ||
+    pathname === "/healthcare" ||
+    pathname === "/housing" ||
+    pathname === "/bureaucracy" ||
+    pathname === "/academic";
 
   // Listen for custom "open-chatbot" events (e.g. from housing page CTA)
   useEffect(() => {

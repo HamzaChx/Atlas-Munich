@@ -218,8 +218,11 @@ export default async function ToolsPage() {
                         <Image
                           src={assistant.avatar}
                           alt={assistant.name}
-                          width={64}
-                          height={64}
+                          width={128}
+                          height={128}
+                          quality={90}
+                          sizes="64px"
+                          priority
                           className={`h-16 w-16 rounded-full object-cover ${assistant.colors.ring}`}
                         />
                         <div

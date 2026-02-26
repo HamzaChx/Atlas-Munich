@@ -135,8 +135,11 @@ export default async function AcademicPage() {
               <Image
                 src="/ilham.png"
                 alt="Ilham"
-                width={48}
-                height={48}
+                width={96}
+                height={96}
+                quality={90}
+                sizes="48px"
+                priority
                 className="h-12 w-12 rounded-full object-cover ring-2 ring-indigo-300/60 dark:ring-indigo-500/40"
               />
               <div className="absolute -bottom-0.5 -right-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 to-violet-600 ring-2 ring-white dark:ring-zinc-800">

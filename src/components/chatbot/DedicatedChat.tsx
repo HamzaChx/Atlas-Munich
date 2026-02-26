@@ -324,6 +324,7 @@ export function DedicatedChat({ theme, backPath }: DedicatedChatProps) {
 
   const [input, setInput] = useState("");
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const messagesContainerRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
   // Tagline: prefer translated, fall back to config
@@ -334,9 +335,12 @@ export function DedicatedChat({ theme, backPath }: DedicatedChatProps) {
       ? translatedTagline
       : chatbotConfig.tagline;
 
-  // Scroll to bottom on new messages
+  // Scroll to bottom on new messages (scroll container directly to avoid scrolling the page)
   useEffect(() => {
-    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    const container = messagesContainerRef.current;
+    if (container) {
+      container.scrollTop = container.scrollHeight;
+    }
   }, [messages, isLoading]);
 
   // Ensure input stays visible when virtual keyboard opens
@@ -376,7 +380,7 @@ export function DedicatedChat({ theme, backPath }: DedicatedChatProps) {
 
   // Suggestion chips from translations
   const suggestions: string[] = [];
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < 3; i++) {
     const key = `suggestions.${currentChatbot}.${i}`;
     const val = t(key);
     if (!val || val === key) break;
@@ -490,6 +494,7 @@ export function DedicatedChat({ theme, backPath }: DedicatedChatProps) {
 
         {/* ---- Messages area ---- */}
         <div
+          ref={messagesContainerRef}
           className="flex-1 min-h-0 overflow-y-auto bg-zinc-50 dark:bg-zinc-950"
           role="log"
           aria-live="polite"

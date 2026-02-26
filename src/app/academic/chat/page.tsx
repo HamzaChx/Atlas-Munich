@@ -1,0 +1,12 @@
+import { type Metadata } from "next";
+import { DedicatedChat, CHAT_THEMES } from "@/components/chatbot/DedicatedChat";
+
+export const metadata: Metadata = {
+  title: "Chat with Ilham – Academic Research Companion",
+  description:
+    "Ask Ilham to help you research, structure, and refine academic work at TUM or LMU – from thesis outlines to citations.",
+};
+
+export default function AcademicChatPage() {
+  return <DedicatedChat theme={CHAT_THEMES.academic} backPath="/academic" />;
+}

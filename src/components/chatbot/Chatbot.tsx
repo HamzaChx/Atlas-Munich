@@ -395,12 +395,17 @@ export function Chatbot() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
-  // Don't render chatbot on FAQ and Community pages
+  // Don't render chatbot on FAQ, Community, or dedicated chat pages
+  // (the /*/chat pages have their own full-screen DedicatedChat component)
   const shouldHideChatbot =
     pathname === "/faq" ||
     pathname.startsWith("/faq/") ||
     pathname === "/community" ||
-    pathname.startsWith("/community/");
+    pathname.startsWith("/community/") ||
+    pathname === "/healthcare/chat" ||
+    pathname === "/housing/chat" ||
+    pathname === "/bureaucracy/chat" ||
+    pathname === "/academic/chat";
 
   // Listen for custom "open-chatbot" events (e.g. from housing page CTA)
   useEffect(() => {

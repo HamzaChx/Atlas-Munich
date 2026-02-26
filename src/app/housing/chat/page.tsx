@@ -1,5 +1,6 @@
 import { type Metadata } from "next";
-import { DedicatedChat, CHAT_THEMES } from "@/components/chatbot/DedicatedChat";
+import { DedicatedChat } from "@/components/chatbot/DedicatedChat";
+import { CHAT_THEMES } from "@/components/chatbot/chat-themes";
 
 export const metadata: Metadata = {
   title: "Chat with Riad – Housing Application Assistant",

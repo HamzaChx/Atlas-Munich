@@ -395,17 +395,20 @@ export function Chatbot() {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
 
-  // Don't render chatbot on FAQ, Community, or dedicated chat pages
-  // (the /*/chat pages have their own full-screen DedicatedChat component)
+  // Hide the floating chatbot on:
+  // 1. FAQ / Community pages
+  // 2. Tool detail pages (/housing, /bureaucracy, /academic, /healthcare) where
+  //    the page already has a dedicated CTA that links to the full-screen chat
+  // 3. The dedicated /*/chat sub-pages themselves (they embed DedicatedChat)
   const shouldHideChatbot =
     pathname === "/faq" ||
     pathname.startsWith("/faq/") ||
     pathname === "/community" ||
     pathname.startsWith("/community/") ||
-    pathname === "/healthcare/chat" ||
-    pathname === "/housing/chat" ||
-    pathname === "/bureaucracy/chat" ||
-    pathname === "/academic/chat";
+    pathname.startsWith("/housing") ||
+    pathname.startsWith("/bureaucracy") ||
+    pathname.startsWith("/academic") ||
+    pathname.startsWith("/healthcare");
 
   // Listen for custom "open-chatbot" events (e.g. from housing page CTA)
   useEffect(() => {

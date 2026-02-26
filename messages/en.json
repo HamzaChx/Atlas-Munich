@@ -7,8 +7,7 @@
     "faq": "FAQ",
     "about": "About",
     "search": "Search",
-    "explore": "Explore",
-    "exploreAll": "Explore All Guides",
+
     "toggleTheme": "Toggle Theme",
     "tools": "Tools"
   },
@@ -624,7 +623,8 @@
       "hamza": "The developer behind Atlas Munich",
       "riad": "Your Munich housing application expert",
       "dalilah": "Your German Bureaucracy Navigator",
-      "ilham": "Your Academic Research Companion"
+      "ilham": "Your Academic Research Companion",
+      "loubna": "Your Healthcare Navigator & Medical Translator"
     },
     "welcome": {
       "zellija": "Salam! 👋 I'm Zellija, your guide to Atlas Munich. How can I help you today?",
@@ -633,7 +633,8 @@
       "hamza": "Salam! 👨‍💻 I'm Hamza, the developer of Atlas Munich. Want to know about the project?",
       "riad": "Hey! 🏠 I'm Riad. Paste a WG or apartment listing and I'll write you a ready-to-send application that actually gets replies in Munich.",
       "dalilah": "Salam! 📋 I'm Dalilah. Ask me anything about German bureaucracy and I'll break it down for you.",
-      "ilham": "Marhba! 📚 I'm Ilham. Share your research, paper, or thesis challenge and I'll help you take it to the next level."
+      "ilham": "Marhba! 📚 I'm Ilham. Share your research, paper, or thesis challenge and I'll help you take it to the next level.",
+      "loubna": "Salam! 🏥 I'm Loubna. Tell me about your health insurance, symptoms, or medical question and I'll guide you through the German system."
     },
     "suggestions": {
       "zellija": {
@@ -670,6 +671,11 @@
         "0": "Help me structure my thesis",
         "1": "Review my introduction paragraph",
         "2": "How do I find a research gap?"
+      },
+      "loubna": {
+        "0": "How do I get health insurance?",
+        "1": "Find an English-speaking doctor",
+        "2": "Translate my symptoms to German"
       }
     },
     "description": {
@@ -679,7 +685,8 @@
       "hamza": "A technical, community-minded developer who can explain the project and how to contribute.",
       "riad": "A sharp housing application specialist who writes high-conversion WG and apartment messages for Munich's competitive rental market.",
       "dalilah": "A precise, empathetic bureaucracy navigator who guides Moroccan newcomers through every German administrative process — Anmeldung, residence permits, KVR, health insurance, and more.",
-      "ilham": "An elite academic research and scientific writing companion who helps Munich students develop research questions, structure papers, refine writing, and prepare thesis work with full academic integrity."
+      "ilham": "An elite academic research and scientific writing companion who helps Munich students develop research questions, structure papers, refine writing, and prepare thesis work with full academic integrity.",
+      "loubna": "A reassuring, culturally-sensitive healthcare navigator who helps Moroccan students in Munich understand German health insurance, find doctors, translate symptoms, and access mental health support."
     }
   },
   "legal": {
@@ -713,10 +720,10 @@
     }
   },
   "tools": {
-    "badge": "Munich Tools",
-    "title": "Smart Tools for",
-    "titleHighlight": "Munich Life",
-    "subtitle": "AI-powered tools built for Moroccan newcomers in Munich — write winning rental applications, draft professional CVs, plan events, and more.",
+    "badge": "AI Assistants",
+    "title": "Meet Your",
+    "titleHighlight": "AI Assistants",
+    "subtitle": "Personal AI assistants built for your Munich journey. Each one specializes in a different part of life in Germany.",
     "tools": {
       "housing": {
         "title": "Housing Application Writer",
@@ -757,15 +764,25 @@
         "cta": "Launch Tool",
         "poweredBy": "AI-powered by Ilham",
         "tags": ["Research & Literature", "Academic Writing", "Thesis & LaTeX"]
+      },
+      "loubna": {
+        "title": "Healthcare Navigator & Medical Translator",
+        "description": "Loubna helps you navigate German health insurance, find English-speaking doctors, translate symptoms, and understand prescriptions — so nothing gets lost in translation.",
+        "status": "Live",
+        "cta": "Launch Tool",
+        "poweredBy": "AI-powered by Loubna",
+        "tags": ["Health Insurance", "Doctor Search", "Medical Translation"]
       }
     },
-    "moreComing": "More tools coming soon. Have an idea? Contribute on"
+    "moreComing": "More assistants coming soon. Have an idea? Contribute on",
+    "designedBy": "Designed and created by"
   },
   "academic": {
     "badge": "Academic Companion",
     "title": "Academic Research",
     "titleHighlight": "Companion",
     "subtitle": "Ilham helps you research, write, and structure academic work at TUM or LMU, step by step.",
+    "intro": "Marhba! I'm Ilham. Share your research challenge and I'll help you structure and elevate your work.",
     "cta": "Ask Ilham Now",
     "features": {
       "title": "How It Works",
@@ -797,6 +814,7 @@
     "title": "German Bureaucracy",
     "titleHighlight": "Navigator",
     "subtitle": "Dalilah guides you through Anmeldung, residence permits, KVR and more, step by step.",
+    "intro": "Salam! I'm Dalilah. Tell me about your paperwork situation and I'll guide you through every step.",
     "cta": "Ask Dalilah Now",
     "features": {
       "title": "How It Works",
@@ -828,6 +846,7 @@
     "title": "Munich Housing",
     "titleHighlight": "Application Assistant",
     "subtitle": "Paste a WG or apartment listing and Riad will write you a ready-to-send application message that actually gets replies in Munich's competitive rental market.",
+    "intro": "Hey! I'm Riad. Paste any listing and I'll write you an application that stands out from the crowd.",
     "cta": "Start Writing Application",
     "features": {
       "title": "How It Works",
@@ -852,6 +871,38 @@
     "platforms": {
       "title": "Where to Search",
       "subtitle": "Top platforms for apartment hunting in Munich"
+    }
+  },
+  "healthcare": {
+    "badge": "Healthcare Navigator",
+    "title": "German Healthcare",
+    "titleHighlight": "Made Simple",
+    "subtitle": "Loubna guides you through health insurance, finding doctors, and understanding medical processes in Munich — in your language.",
+    "intro": "Salam! I'm Loubna. Tell me your healthcare question and I'll guide you through the German medical system step by step.",
+    "cta": "Ask Loubna Now",
+    "features": {
+      "title": "How It Works",
+      "step1Title": "Describe Your Situation",
+      "step1Desc": "Tell Loubna about your symptoms, insurance question, or medical situation. She speaks English, French, and Darija.",
+      "step2Title": "Loubna Navigates for You",
+      "step2Desc": "She explains your insurance coverage, translates medical terms, and tells you exactly which doctor to see and how to book.",
+      "step3Title": "See Your Doctor with Confidence",
+      "step3Desc": "Walk into your appointment with a prepared script, translated symptoms, and the right questions to ask."
+    },
+    "tips": {
+      "title": "Munich Healthcare Tips",
+      "tip1Title": "Register with TK for English Support",
+      "tip1Desc": "Techniker Krankenkasse (TK) is the top choice for international students — English hotline, digital app, and fast registration at tk.de.",
+      "tip2Title": "Always Start with a Hausarzt (GP)",
+      "tip2Desc": "Your GP is your first stop for all non-emergency issues. They issue referrals to specialists and are your main contact for prescriptions.",
+      "tip3Title": "Submit Insurance Card to Your University",
+      "tip3Desc": "After enrolling in health insurance, submit your Versicherungsnachweis to the Immatrikulationsamt promptly to avoid enrollment issues.",
+      "tip4Title": "Mental Health Support is Available",
+      "tip4Desc": "Feeling overwhelmed is normal. TK covers psychotherapy after an initial assessment — ask Loubna how to access it without stigma."
+    },
+    "resources": {
+      "title": "Health Resources",
+      "subtitle": "Official health services and insurers for Munich students"
     }
   }
 }

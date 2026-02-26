@@ -16,7 +16,6 @@ import {
   HelpCircle,
   Wrench,
   MapPin,
-  ChevronRight,
   Info,
 } from "lucide-react";
 
@@ -36,8 +35,6 @@ interface NavTranslations {
   faq: string;
   about: string;
   search: string;
-  explore: string;
-  exploreAll: string;
   toggleTheme: string;
   tools: string;
 }
@@ -137,19 +134,6 @@ export function Header({ locale, translations }: HeaderProps) {
           {/* Theme Toggle */}
           <ThemeToggle className="hidden sm:flex" />
 
-          {/* CTA Button - Rule 17: One primary action per screen */}
-          <Button
-            asChild
-            size="sm"
-            className="hidden bg-emerald-600 text-white shadow-sm shadow-emerald-600/25 hover:bg-emerald-500 hover:shadow-md hover:shadow-emerald-500/30 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] sm:flex"
-          >
-            <Link href="/guides">
-              <BookOpen className="mr-1.5 h-4 w-4" />
-              {translations.explore}
-              <ChevronRight className="ml-0.5 h-3.5 w-3.5 opacity-60" />
-            </Link>
-          </Button>
-
           {/* Mobile menu button - larger touch target */}
           <Button
             variant="ghost"
@@ -202,18 +186,6 @@ export function Header({ locale, translations }: HeaderProps) {
             <span>{translations.toggleTheme}</span>
           </div>
 
-          {/* Mobile CTA */}
-          <div className="pt-4 pb-2">
-            <Button
-              asChild
-              className="w-full bg-emerald-600 text-white hover:bg-emerald-500 min-h-[48px]"
-            >
-              <Link href="/guides" onClick={() => setMobileMenuOpen(false)}>
-                <BookOpen className="mr-2 h-4 w-4" />
-                {translations.exploreAll}
-              </Link>
-            </Button>
-          </div>
         </nav>
       </div>
     </header>

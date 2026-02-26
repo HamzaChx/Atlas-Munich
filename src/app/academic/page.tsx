@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import { HeroBadge } from "@/components/shared";
+import { MoroccanCorner } from "@/components/home";
 import { getTranslations } from "next-intl/server";
 import {
   GraduationCap,
@@ -12,6 +13,7 @@ import {
   BookMarked,
   ExternalLink,
 } from "lucide-react";
+import Image from "next/image";
 import { OpenChatButton } from "./open-chat-button";
 
 export const metadata: Metadata = {
@@ -95,26 +97,65 @@ export default async function AcademicPage() {
   return (
     <div className="min-h-screen bg-white dark:bg-zinc-950">
       {/* Hero Section */}
-      <section className="relative overflow-hidden border-b border-zinc-200 dark:border-white/10 bg-gradient-to-br from-indigo-50/80 via-white to-violet-50/80 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950">
-        <div className="hidden sm:block absolute -left-32 top-1/4 z-[5] h-[400px] w-[400px] rounded-full bg-gradient-to-br from-indigo-200/50 to-blue-200/50 dark:from-indigo-600/20 dark:to-blue-600/20 blur-[100px]" />
-        <div className="hidden sm:block absolute -right-32 bottom-0 z-[5] h-[400px] w-[400px] rounded-full bg-gradient-to-br from-violet-200/40 to-indigo-200/40 dark:from-violet-500/15 dark:to-indigo-600/15 blur-[100px]" />
+      <section className="relative overflow-hidden bg-gradient-to-b from-zinc-50 via-white to-zinc-50 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950">
+        {/* Gradient orbs */}
+        <div className="pointer-events-none absolute -left-20 top-1/4 h-[280px] w-[280px] sm:h-[420px] sm:w-[420px] rounded-full bg-gradient-to-br from-indigo-200/30 to-violet-100/10 dark:from-indigo-700/15 dark:to-violet-600/5 blur-[100px]" />
+        <div className="pointer-events-none absolute -right-20 bottom-1/4 h-[280px] w-[280px] sm:h-[420px] sm:w-[420px] rounded-full bg-gradient-to-br from-violet-200/30 to-purple-100/10 dark:from-violet-700/15 dark:to-purple-600/5 blur-[100px]" />
+        {/* Smaller theme bubbles */}
+        <div className="pointer-events-none absolute left-[22%] top-[18%] h-[90px] w-[90px] sm:h-[130px] sm:w-[130px] rounded-full bg-indigo-400/20 dark:bg-indigo-400/12 blur-[40px]" />
+        <div className="pointer-events-none absolute right-[20%] bottom-[22%] h-[70px] w-[70px] sm:h-[100px] sm:w-[100px] rounded-full bg-violet-400/18 dark:bg-violet-400/10 blur-[35px]" />
 
-        <div className="relative z-10 mx-auto max-w-3xl px-4 py-8 sm:py-12 lg:py-20 sm:px-6 lg:px-8 text-center">
+        {/* Moroccan corner ornaments */}
+        <MoroccanCorner
+          position="top-left"
+          className="pointer-events-none absolute left-0 top-0 h-20 w-20 sm:h-28 sm:w-28 lg:h-36 lg:w-36 opacity-50"
+        />
+        <MoroccanCorner
+          position="top-right"
+          className="pointer-events-none absolute right-0 top-0 h-20 w-20 sm:h-28 sm:w-28 lg:h-36 lg:w-36 opacity-50"
+        />
+
+        <div className="relative z-20 mx-auto flex max-w-2xl flex-col items-center px-5 pb-16 pt-14 sm:pb-20 sm:pt-18 lg:pb-24 lg:pt-22 text-center">
           <HeroBadge icon={GraduationCap} text={t("badge")} color="purple" />
-          <h1 className="mb-3 sm:mb-5 text-2xl sm:text-4xl md:text-5xl font-bold tracking-tight text-zinc-900 dark:text-white leading-tight">
+
+          <h1 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-4xl lg:text-5xl">
             {t("title")}
-            <span className="mt-1 sm:mt-2 block bg-gradient-to-r from-indigo-600 via-violet-600 to-purple-600 dark:from-indigo-400 dark:via-violet-400 dark:to-purple-400 bg-clip-text text-transparent">
+            <span className="mt-1 block bg-gradient-to-r from-indigo-600 via-violet-600 to-purple-600 dark:from-indigo-400 dark:via-violet-400 dark:to-purple-400 bg-clip-text text-transparent">
               {t("titleHighlight")}
             </span>
           </h1>
-          <p className="mx-auto max-w-xl text-sm sm:text-base lg:text-lg leading-relaxed text-zinc-600 dark:text-zinc-400 mb-6">
+
+          <p className="mt-5 max-w-xl text-base leading-relaxed text-zinc-600 dark:text-zinc-400 sm:text-lg">
             {t("subtitle")}
           </p>
-          <div className="flex justify-center mt-6">
+
+          {/* Assistant identity card */}
+          <div className="mt-8 flex items-center gap-4 rounded-2xl bg-white/80 dark:bg-zinc-800/60 border border-zinc-200 dark:border-white/10 px-6 py-4 shadow-sm backdrop-blur-sm">
+            <div className="relative flex-shrink-0">
+              <Image
+                src="/ilham.png"
+                alt="Ilham"
+                width={48}
+                height={48}
+                className="h-12 w-12 rounded-full object-cover ring-2 ring-indigo-300/60 dark:ring-indigo-500/40"
+              />
+              <div className="absolute -bottom-0.5 -right-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 to-violet-600 ring-2 ring-white dark:ring-zinc-800">
+                <GraduationCap className="h-2.5 w-2.5 text-white" />
+              </div>
+            </div>
+            <p className="text-sm text-zinc-700 dark:text-zinc-300 leading-snug text-left">
+              {t("intro")}
+            </p>
+          </div>
+
+          <div className="mt-8 flex justify-center">
             <OpenChatButton label={t("cta")} />
           </div>
         </div>
       </section>
+
+      {/* Theme-colored separator */}
+      <div className="h-1 w-full bg-gradient-to-r from-indigo-500 via-violet-500 to-purple-500 opacity-80" />
 
       {/* How It Works */}
       <section className="border-b border-zinc-200 dark:border-white/10 bg-zinc-50/50 dark:bg-zinc-900/50 py-12 sm:py-16">
@@ -125,14 +166,17 @@ export default async function AcademicPage() {
             </h2>
           </div>
 
-          <div className="grid gap-6 sm:grid-cols-3">
+          <div className="relative grid gap-6 sm:grid-cols-3">
+            {/* Connecting line between steps (desktop only) */}
+            <div className="hidden sm:block absolute top-12 left-[calc(16.67%+2rem)] right-[calc(16.67%+2rem)] border-t-2 border-dashed border-zinc-200 dark:border-zinc-700 z-0" />
+
             {[1, 2, 3].map((step, i) => {
               const Icon = STEP_ICONS[i];
               const color = STEP_COLORS[i];
               return (
                 <div
                   key={step}
-                  className="relative rounded-2xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900 p-6 text-center shadow-sm hover:shadow-lg transition-all duration-300"
+                  className="relative z-10 rounded-2xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900 p-6 text-center shadow-sm hover:shadow-lg transition-all duration-300"
                 >
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2">
                     <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 to-violet-600 text-xs font-bold text-white shadow-md">

@@ -7,8 +7,7 @@
     "faq": "FAQ",
     "about": "Über uns",
     "search": "Suche",
-    "explore": "Entdecken",
-    "exploreAll": "Alle Ratgeber erkunden",
+
     "toggleTheme": "Theme wechseln",
     "tools": "Tools"
   },
@@ -624,7 +623,8 @@
       "hamza": "Der Entwickler hinter Atlas München",
       "riad": "Dein Experte für Münchner Wohnungsbewerbungen",
       "dalilah": "Dein Behörden-Navigator für München",
-      "ilham": "Dein akademischer Forschungsbegleiter"
+      "ilham": "Dein akademischer Forschungsbegleiter",
+      "loubna": "Deine Gesundheitsnavigatorin & Medizinische Übersetzerin"
     },
     "welcome": {
       "zellija": "Salam! 👋 Ich bin Zellija, dein Guide für Atlas München. Wie kann ich dir heute helfen?",
@@ -633,7 +633,8 @@
       "hamza": "Salam! 👨‍💻 Ich bin Hamza, der Entwickler von Atlas München. Möchtest du mehr über das Projekt wissen?",
       "riad": "Hey! 🏠 Ich bin Riad. Füg eine WG- oder Wohnungsanzeige ein und ich schreibe dir eine versandbereite Bewerbung, die in München wirklich Antworten bekommt.",
       "dalilah": "Salam! 📋 Ich bin Dalilah. Frag mich alles rund um deutsche Behörden und ich erkläre es dir Schritt für Schritt.",
-      "ilham": "Marhba! 📚 Ich bin Ilham. Teile deine Forschung, Paper oder Thesis-Herausforderung und ich helfe dir, das Nächste zu erreichen."
+      "ilham": "Marhba! 📚 Ich bin Ilham. Teile deine Forschung, Paper oder Thesis-Herausforderung und ich helfe dir, das Nächste zu erreichen.",
+      "loubna": "Salam! 🏥 Ich bin Loubna. Erzähl mir von deiner Krankenversicherung, deinen Symptomen oder medizinischen Fragen und ich führe dich durch das deutsche System."
     },
     "suggestions": {
       "zellija": {
@@ -670,6 +671,11 @@
         "0": "Hilf mir meine Thesis zu strukturieren",
         "1": "Bitte prüfe meine Einleitung",
         "2": "Wie finde ich eine Forschungslücke?"
+      },
+      "loubna": {
+        "0": "Wie bekomme ich Krankenversicherung?",
+        "1": "Englischsprachigen Arzt finden",
+        "2": "Meine Symptome auf Deutsch übersetzen"
       }
     },
     "description": {
@@ -679,7 +685,8 @@
       "hamza": "Ein technischer, community-orientierter Entwickler, der das Projekt und die Mitwirkung erklärt.",
       "riad": "Ein scharfsinniger Wohnungsbewerbungsspezialist, der hochkonvertierte WG- und Apartmentnachrichten für Münchens kompetitiven Mietmarkt schreibt.",
       "dalilah": "Eine präzise, einfühlsame Behörden-Navigatorin, die marokkanische Newcomer durch jeden deutschen Verwaltungsprozess führt — Anmeldung, Aufenthaltstitel, KVR, Krankenversicherung und mehr.",
-      "ilham": "Eine erstklassige akademische Begleiterin, die Münchner Studierenden hilft, Forschungsfragen zu entwickeln, Paper zu strukturieren, Texte zu verfeinern und Thesis-Arbeiten mit vollständiger akademischer Integrität vorzubereiten."
+      "ilham": "Eine erstklassige akademische Begleiterin, die Münchner Studierenden hilft, Forschungsfragen zu entwickeln, Paper zu strukturieren, Texte zu verfeinern und Thesis-Arbeiten mit vollständiger akademischer Integrität vorzubereiten.",
+      "loubna": "Eine beruhigende, kultursensible Gesundheitsnavigatorin, die marokkanischen Studierenden in München hilft, die deutsche Krankenversicherung zu verstehen, Ärzte zu finden, Symptome zu übersetzen und psychologische Unterstützung zu finden."
     }
   },
   "legal": {
@@ -713,10 +720,10 @@
     }
   },
   "tools": {
-    "badge": "München Tools",
-    "title": "Smarte Tools für",
-    "titleHighlight": "das Leben in München",
-    "subtitle": "KI-gestützte Tools für marokkanische Newcomer in München — schreibe gewinnende Mietbewerbungen, erstelle Lebensläufe, plane Events und mehr.",
+    "badge": "KI-Assistenten",
+    "title": "Deine",
+    "titleHighlight": "KI-Assistenten",
+    "subtitle": "Persönliche KI-Assistenten für dein Leben in München. Jeder ist auf einen anderen Teil deiner Reise in Deutschland spezialisiert.",
     "tools": {
       "housing": {
         "title": "Wohnungsbewerbungs-Assistent",
@@ -757,15 +764,25 @@
         "cta": "Tool starten",
         "poweredBy": "KI-gestützt von Ilham",
         "tags": ["Forschung & Literatur", "Wissenschaftliches Schreiben", "Thesis & LaTeX"]
+      },
+      "loubna": {
+        "title": "Gesundheitsnavigatorin & Medizinische Übersetzerin",
+        "description": "Loubna hilft dir beim Verständnis der deutschen Krankenversicherung, bei der Arztsuche, der Symptomübersetzung und dem Verständnis von Rezepten — damit nichts verloren geht.",
+        "status": "Aktiv",
+        "cta": "Tool starten",
+        "poweredBy": "KI-gestützt von Loubna",
+        "tags": ["Krankenversicherung", "Arztsuche", "Medizinische Übersetzung"]
       }
     },
-    "moreComing": "Weitere Tools kommen bald. Hast du eine Idee? Trage auf"
+    "moreComing": "Weitere Assistenten kommen bald. Hast du eine Idee? Trage auf",
+    "designedBy": "Entworfen und erstellt von"
   },
   "academic": {
     "badge": "Akademischer Begleiter",
     "title": "Akademischer",
     "titleHighlight": "Forschungsbegleiter",
     "subtitle": "Ilham hilft dir beim Forschen, Schreiben und Strukturieren akademischer Arbeiten an TUM oder LMU, Schritt für Schritt.",
+    "intro": "Marhba! Ich bin Ilham. Teile deine Forschungs-Herausforderung und ich helfe dir, deine Arbeit auf das nächste Level zu bringen.",
     "cta": "Ilham fragen",
     "features": {
       "title": "So funktioniert's",
@@ -797,6 +814,7 @@
     "title": "Behörden-",
     "titleHighlight": "Navigator München",
     "subtitle": "Dalilah führt dich durch Anmeldung, Aufenthaltstitel, KVR und mehr, Schritt für Schritt.",
+    "intro": "Salam! Ich bin Dalilah. Erzähl mir von deiner Situation und ich führe dich durch jeden Schritt.",
     "cta": "Dalilah fragen",
     "features": {
       "title": "So funktioniert's",
@@ -828,6 +846,7 @@
     "title": "Münchner Wohnungs-",
     "titleHighlight": "Bewerbungsassistent",
     "subtitle": "Füge ein WG- oder Wohnungsinserat ein und Riad schreibt dir eine versandfertige Bewerbung, die auf Münchens wettbewerbsintensivem Mietmarkt Antworten bekommt.",
+    "intro": "Salam! Ich bin Riad. Füg ein Inserat ein und ich schreibe dir eine Bewerbung, die auffällt.",
     "cta": "Bewerbung schreiben",
     "features": {
       "title": "So funktioniert's",
@@ -852,6 +871,38 @@
     "platforms": {
       "title": "Wo suchen",
       "subtitle": "Top-Plattformen für die Wohnungssuche in München"
+    }
+  },
+  "healthcare": {
+    "badge": "Gesundheitsnavigatorin",
+    "title": "Deutsches Gesundheitswesen",
+    "titleHighlight": "Einfach Erklärt",
+    "subtitle": "Loubna führt dich durch Krankenversicherung, Arztsuche und medizinische Prozesse in München — in deiner Sprache.",
+    "intro": "Salam! Ich bin Loubna. Stell mir deine Gesundheitsfrage und ich führe dich Schritt für Schritt durch das deutsche Medizinsystem.",
+    "cta": "Loubna fragen",
+    "features": {
+      "title": "So funktioniert's",
+      "step1Title": "Deine Situation beschreiben",
+      "step1Desc": "Erzähl Loubna von deinen Symptomen, deiner Versicherungsfrage oder medizinischen Situation. Sie spricht Englisch, Französisch und Darija.",
+      "step2Title": "Loubna navigiert für dich",
+      "step2Desc": "Sie erklärt deinen Versicherungsschutz, übersetzt Fachbegriffe und sagt dir genau, welchen Arzt du aufsuchen sollst.",
+      "step3Title": "Sicher zum Arzt gehen",
+      "step3Desc": "Geh mit einem vorbereiteten Skript, übersetzten Symptomen und den richtigen Fragen zu deinem Termin."
+    },
+    "tips": {
+      "title": "Gesundheitstipps für München",
+      "tip1Title": "Bei TK für englischen Support anmelden",
+      "tip1Desc": "Die Techniker Krankenkasse (TK) ist die erste Wahl für internationale Studierende — englische Hotline, digitale App und schnelle Anmeldung auf tk.de.",
+      "tip2Title": "Immer beim Hausarzt beginnen",
+      "tip2Desc": "Der Hausarzt ist dein erster Anlaufpunkt für alle nicht-notfallmäßigen Beschwerden. Er stellt Überweisungen aus und ist dein Hauptansprechpartner.",
+      "tip3Title": "Versicherungsnachweis an die Uni",
+      "tip3Desc": "Nach der Krankenversicherungsanmeldung reiche deinen Versicherungsnachweis zeitnah beim Immatrikulationsamt ein.",
+      "tip4Title": "Psychische Gesundheitshilfe vorhanden",
+      "tip4Desc": "Überwältigt zu sein ist normal. TK übernimmt Psychotherapie nach einer Erstbeurteilung — frag Loubna, wie du darauf zugreifen kannst."
+    },
+    "resources": {
+      "title": "Gesundheitsressourcen",
+      "subtitle": "Offizielle Gesundheitsdienste und Versicherungen für Münchner Studierende"
     }
   }
 }

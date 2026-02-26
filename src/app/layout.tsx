@@ -121,8 +121,6 @@ export default async function RootLayout({
     faq: string;
     about: string;
     search: string;
-    explore: string;
-    exploreAll: string;
     toggleTheme: string;
     tools: string;
   };

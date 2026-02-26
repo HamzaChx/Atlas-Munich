@@ -215,7 +215,15 @@ export function Footer() {
         <div className="mt-12 sm:mt-16 lg:mt-20 flex flex-col items-center justify-between gap-4 sm:gap-6 border-t border-zinc-200/80 dark:border-white/8 pt-6 sm:pt-10 sm:flex-row">
           <div className="flex flex-col items-center gap-3 sm:flex-row sm:gap-6">
             <p className="text-sm text-zinc-500">
-              © {new Date().getFullYear()} Atlas Munich. {t("rights")} Hamza Chaouki
+              © {new Date().getFullYear()} Atlas Munich. {t("rights")}{" "}
+              <Link
+                href="https://hamzachaouki.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-zinc-500 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:text-emerald-600 dark:hover:text-emerald-400 outline-none focus-visible:text-emerald-600 dark:focus-visible:text-emerald-400"
+              >
+                Hamza Chaouki
+              </Link>
             </p>
           </div>
         </div>

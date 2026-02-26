@@ -70,9 +70,14 @@ export default async function Home() {
           {/* Subtitle */}
           <p className="mt-5 text-base leading-relaxed text-zinc-600 dark:text-zinc-400 sm:text-lg">
             {t("heroSubtitle")}{" "}
-            <span className="font-medium text-amber-600 dark:text-amber-400">
+            <Link
+              href="https://hamzachaouki.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-amber-600 dark:text-amber-400 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:text-amber-700 dark:hover:text-amber-300 outline-none focus-visible:text-amber-700 dark:focus-visible:text-amber-300"
+            >
               {t("heroCommunity")}
-            </span>
+            </Link>
             {t("heroSubtitle2")}
           </p>
 

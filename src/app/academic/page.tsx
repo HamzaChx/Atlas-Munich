@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     description:
       "Ilham helps Munich students with research, scientific writing, thesis work and LaTeX. Elevate your academic performance with integrity.",
     type: "website",
-    url: "https://atlas-munich.de/academic",
+    url: "https://atlasmunich.de/academic",
   },
 };
 

@@ -17,7 +17,7 @@ export default function robots(): MetadataRoute.Robots {
         ],
       },
     ],
-    sitemap: "https://atlas-munich.de/sitemap.xml",
-    host: "https://atlas-munich.de",
+    sitemap: "https://atlasmunich.de/sitemap.xml",
+    host: "https://atlasmunich.de",
   };
 }

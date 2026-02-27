@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     description:
       "60+ comprehensive guides to help you navigate life in Munich as a Moroccan student or professional.",
     type: "website",
-    url: "https://atlas-munich.de/guides",
+    url: "https://atlasmunich.de/guides",
   },
   twitter: {
     card: "summary_large_image",

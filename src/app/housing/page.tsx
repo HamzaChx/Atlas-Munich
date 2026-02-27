@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     description:
       "Generate a high-conversion WG or apartment application message in German. Paste a listing and get a ready-to-send message instantly.",
     type: "website",
-    url: "https://atlas-munich.de/housing",
+    url: "https://atlasmunich.de/housing",
   },
 };
 

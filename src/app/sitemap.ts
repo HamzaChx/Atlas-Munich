@@ -2,7 +2,7 @@ import { MetadataRoute } from "next";
 import { guides } from "@/data/guides";
 import { categories } from "@/data/categories";
 
-const BASE_URL = "https://atlas-munich.de";
+const BASE_URL = "https://atlasmunich.de";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   // Core pages — highest priority, change frequently

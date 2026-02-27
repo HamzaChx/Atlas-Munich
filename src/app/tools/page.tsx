@@ -38,7 +38,7 @@ export const metadata: Metadata = {
     description:
       "Personal AI assistants built for your Munich journey — housing, careers, bureaucracy, research. Each one specializes in getting you ahead.",
     type: "website",
-    url: "https://atlas-munich.de/tools",
+    url: "https://atlasmunich.de/tools",
   },
 };
 

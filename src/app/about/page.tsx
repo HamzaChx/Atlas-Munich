@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     description:
       "Atlas Munich is a community-driven guide built by Moroccan students and professionals for newcomers navigating life in Munich, Germany.",
     type: "website",
-    url: "https://atlas-munich.de/about",
+    url: "https://atlasmunich.de/about",
   },
 };
 
@@ -88,7 +88,7 @@ export default async function AboutPage() {
       icon: MessageCircle,
       title: t("contribute.suggestUpdates"),
       description: t("contribute.suggestUpdatesDesc"),
-      action: { label: t("contribute.contactUs"), href: "mailto:hello@atlas-munich.de" },
+      action: { label: t("contribute.contactUs"), href: "mailto:hello@atlasmunich.de" },
     },
     {
       icon: Star,
@@ -452,7 +452,7 @@ export default async function AboutPage() {
                   {t("contact.github")}
                 </Link>
                 <Link
-                  href="mailto:hello@atlas-munich.de"
+                  href="mailto:hello@atlasmunich.de"
                   className="inline-flex items-center gap-2 rounded-full border border-zinc-300 dark:border-white/10 bg-white dark:bg-white/5 px-6 py-3 text-sm font-medium text-zinc-700 dark:text-zinc-300 transition-all hover:border-emerald-500 dark:hover:border-emerald-500/50 hover:bg-emerald-50 dark:hover:bg-emerald-500/10 hover:text-emerald-600 dark:hover:text-emerald-400"
                 >
                   <Mail className="h-4 w-4" />

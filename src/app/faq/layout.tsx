@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     description:
       "Answers to the most common questions about living in Munich as a Moroccan student or professional.",
     type: "website",
-    url: "https://atlas-munich.de/faq",
+    url: "https://atlasmunich.de/faq",
   },
   twitter: {
     card: "summary_large_image",

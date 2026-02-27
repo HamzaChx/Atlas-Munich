@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     description:
       "Discover halal restaurants, mosques, Moroccan butchers, cafés, and study spots in Munich. Community-verified places with interactive map.",
     type: "website",
-    url: "https://atlas-munich.de/places",
+    url: "https://atlasmunich.de/places",
   },
   twitter: {
     card: "summary_large_image",

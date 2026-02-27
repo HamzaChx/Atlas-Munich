@@ -55,7 +55,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: `${localizedTitle} | Atlas Munich`,
       description: localizedDescription,
       type: "website",
-      url: `https://atlas-munich.de/category/${slug}`,
+      url: `https://atlasmunich.de/category/${slug}`,
     },
     twitter: {
       card: "summary_large_image",

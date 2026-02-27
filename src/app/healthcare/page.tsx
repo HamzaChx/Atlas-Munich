@@ -33,7 +33,7 @@ export const metadata: Metadata = {
     description:
       "Navigate German health insurance, find doctors, and understand medical processes step by step with Loubna — your AI healthcare guide for Munich.",
     type: "website",
-    url: "https://atlas-munich.de/healthcare",
+    url: "https://atlasmunich.de/healthcare",
   },
 };
 

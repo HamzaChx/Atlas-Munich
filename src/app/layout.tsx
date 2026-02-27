@@ -14,7 +14,7 @@ const geistSans = Geist({
   subsets: ["latin"],
 });
 
-const BASE_URL = "https://atlas-munich.de";
+const BASE_URL = "https://atlasmunich.de";
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
@@ -151,7 +151,7 @@ export default async function RootLayout({
         },
         contactPoint: {
           "@type": "ContactPoint",
-          email: "hello@atlas-munich.de",
+          email: "hello@atlasmunich.de",
           contactType: "customer support",
         },
         sameAs: ["https://github.com/HamzaChx/Atlas-Munich"],

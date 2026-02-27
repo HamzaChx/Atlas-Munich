@@ -78,7 +78,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       title: `${guide.title} | Atlas Munich`,
       description: guide.summary,
       type: "article",
-      url: `https://atlas-munich.de/guides/${guide.slug}`,
+      url: `https://atlasmunich.de/guides/${guide.slug}`,
       publishedTime: guide.lastUpdated,
       authors: guide.author ? [guide.author] : ["Atlas Munich Team"],
       tags: guide.tags,

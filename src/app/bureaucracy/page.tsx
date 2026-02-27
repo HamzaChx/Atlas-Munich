@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     description:
       "Navigate Anmeldung, residence permits, KVR, and German bureaucracy step by step with Dalilah — your AI guide for Munich admin.",
     type: "website",
-    url: "https://atlas-munich.de/bureaucracy",
+    url: "https://atlasmunich.de/bureaucracy",
   },
 };
 

@@ -199,11 +199,11 @@ export default async function AboutPage() {
                       height={180}
                       className="h-40 w-40 sm:h-44 sm:w-44 rounded-lg"
                     />
-                    <p className="mt-2.5 text-center text-[11px] text-zinc-500 dark:text-zinc-400">
-                      {c("qrInstructions")}
-                    </p>
                   </div>
                 </div>
+                <p className="mt-3 text-center text-[11px] text-zinc-500 dark:text-zinc-400">
+                  {c("qrInstructions")}
+                </p>
               </div>
 
               {/* Community Info */}

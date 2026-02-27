@@ -329,3 +329,177 @@
     -webkit-tap-highlight-color: transparent;
   }
 }
+
+/* ===== PREMIUM CHAT ANIMATIONS ===== */
+
+/* Smooth dot typing animation */
+@keyframes chat-dot {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.4;
+  }
+  30% {
+    transform: translateY(-4px);
+    opacity: 1;
+  }
+}
+
+/* FAB pulse glow */
+@keyframes fab-pulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.15);
+    opacity: 0.3;
+  }
+}
+
+/* Chat message entrance */
+.chat-message-enter {
+  animation: chat-msg-in 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes chat-msg-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Chat scrollbar — thinner, unobtrusive */
+.chatbot-container ::-webkit-scrollbar,
+[role="log"]::-webkit-scrollbar {
+  width: 4px;
+}
+.chatbot-container ::-webkit-scrollbar-track,
+[role="log"]::-webkit-scrollbar-track {
+  background: transparent;
+}
+.chatbot-container ::-webkit-scrollbar-thumb,
+[role="log"]::-webkit-scrollbar-thumb {
+  @apply bg-zinc-200 dark:bg-zinc-700/50 rounded-full;
+}
+.chatbot-container ::-webkit-scrollbar-thumb:hover,
+[role="log"]::-webkit-scrollbar-thumb:hover {
+  @apply bg-zinc-300 dark:bg-zinc-600;
+}
+
+/* ===== DEDICATED CHAT – PREMIUM ANIMATIONS ===== */
+
+/* Message entrance with spring-like easing */
+.dc-message-enter {
+  animation: dc-msg-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes dc-msg-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.96);
+    filter: blur(2px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+/* Typing indicator dots – smooth elastic bounce */
+.dc-typing-dot {
+  animation: dc-dot-bounce 1.4s ease-in-out infinite;
+}
+@keyframes dc-dot-bounce {
+  0%,
+  60%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.35;
+  }
+  30% {
+    transform: translateY(-5px);
+    opacity: 1;
+  }
+}
+
+/* Welcome screen entrance */
+.dc-welcome-enter {
+  animation: dc-welcome-in 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes dc-welcome-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Suggestion chip staggered entrance */
+.dc-chip-stagger {
+  animation: dc-chip-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes dc-chip-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.92);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Glow pulse behind avatar on welcome screen */
+.dc-glow-pulse {
+  animation: dc-glow 3s ease-in-out infinite;
+}
+@keyframes dc-glow {
+  0%,
+  100% {
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.08);
+  }
+}
+
+/* Online dot soft pulse */
+.dc-online-pulse {
+  animation: dc-online 2s ease-in-out infinite;
+}
+@keyframes dc-online {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+/* Scroll-to-bottom FAB entrance */
+.dc-scroll-fab-enter {
+  animation: dc-fab-in 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@keyframes dc-fab-in {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 8px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+}

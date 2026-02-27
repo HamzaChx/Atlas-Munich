@@ -102,11 +102,11 @@ export default async function HousingPage() {
       {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-b from-zinc-50 via-white to-zinc-50 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950">
         {/* Gradient orbs */}
-        <div className="pointer-events-none absolute -left-20 top-1/4 h-[280px] w-[280px] sm:h-[420px] sm:w-[420px] rounded-full bg-gradient-to-br from-sky-200/30 to-blue-100/10 dark:from-sky-700/15 dark:to-blue-600/5 blur-[100px]" />
-        <div className="pointer-events-none absolute -right-20 bottom-1/4 h-[280px] w-[280px] sm:h-[420px] sm:w-[420px] rounded-full bg-gradient-to-br from-cyan-200/30 to-indigo-100/10 dark:from-cyan-700/15 dark:to-indigo-600/5 blur-[100px]" />
+        <div className="pointer-events-none absolute -left-20 top-1/4 h-[280px] w-[280px] sm:h-[420px] sm:w-[420px] rounded-full bg-gradient-to-br from-amber-200/30 to-orange-100/10 dark:from-amber-700/15 dark:to-orange-600/5 blur-[100px]" />
+        <div className="pointer-events-none absolute -right-20 bottom-1/4 h-[280px] w-[280px] sm:h-[420px] sm:w-[420px] rounded-full bg-gradient-to-br from-yellow-200/30 to-amber-100/10 dark:from-yellow-700/15 dark:to-amber-600/5 blur-[100px]" />
         {/* Smaller theme bubbles */}
-        <div className="pointer-events-none absolute left-[22%] top-[18%] h-[90px] w-[90px] sm:h-[130px] sm:w-[130px] rounded-full bg-sky-400/20 dark:bg-sky-400/12 blur-[40px]" />
-        <div className="pointer-events-none absolute right-[20%] bottom-[22%] h-[70px] w-[70px] sm:h-[100px] sm:w-[100px] rounded-full bg-indigo-400/18 dark:bg-indigo-400/10 blur-[35px]" />
+        <div className="pointer-events-none absolute left-[22%] top-[18%] h-[90px] w-[90px] sm:h-[130px] sm:w-[130px] rounded-full bg-amber-400/20 dark:bg-amber-400/12 blur-[40px]" />
+        <div className="pointer-events-none absolute right-[20%] bottom-[22%] h-[70px] w-[70px] sm:h-[100px] sm:w-[100px] rounded-full bg-orange-400/18 dark:bg-orange-400/10 blur-[35px]" />
 
         {/* Moroccan corner ornaments */}
         <MoroccanCorner
@@ -119,11 +119,11 @@ export default async function HousingPage() {
         />
 
         <div className="relative z-20 mx-auto flex max-w-2xl flex-col items-center px-5 pb-16 pt-14 sm:pb-20 sm:pt-18 lg:pb-24 lg:pt-22 text-center">
-          <HeroBadge icon={HomeIcon} text={t("badge")} color="blue" />
+          <HeroBadge icon={HomeIcon} text={t("badge")} color="amber" />
 
           <h1 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-4xl lg:text-5xl">
             {t("title")}
-            <span className="mt-1 block bg-gradient-to-r from-sky-600 via-blue-600 to-indigo-600 dark:from-sky-400 dark:via-blue-400 dark:to-indigo-400 bg-clip-text text-transparent">
+            <span className="mt-1 block bg-gradient-to-r from-amber-600 via-orange-600 to-amber-700 dark:from-amber-400 dark:via-orange-400 dark:to-yellow-400 bg-clip-text text-transparent">
               {t("titleHighlight")}
             </span>
           </h1>
@@ -143,9 +143,9 @@ export default async function HousingPage() {
                 quality={90}
                 sizes="48px"
                 priority
-                className="h-12 w-12 rounded-full object-cover ring-2 ring-sky-300/60 dark:ring-sky-500/40"
+                className="h-12 w-12 rounded-full object-cover ring-2 ring-amber-300/60 dark:ring-amber-500/40"
               />
-              <div className="absolute -bottom-0.5 -right-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-gradient-to-br from-sky-500 to-blue-600 ring-2 ring-white dark:ring-zinc-800">
+              <div className="absolute -bottom-0.5 -right-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-gradient-to-br from-amber-500 to-orange-600 ring-2 ring-white dark:ring-zinc-800">
                 <HomeIcon className="h-2.5 w-2.5 text-white" />
               </div>
             </div>
@@ -161,7 +161,7 @@ export default async function HousingPage() {
       </section>
 
       {/* Theme-colored separator */}
-      <div className="h-1 w-full bg-gradient-to-r from-sky-500 via-blue-500 to-indigo-500 opacity-80" />
+      <div className="h-1 w-full bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 opacity-80" />
 
       {/* How It Works */}
       <section className="border-b border-zinc-200 dark:border-white/10 bg-zinc-50/50 dark:bg-zinc-900/50 py-12 sm:py-16">
@@ -186,7 +186,7 @@ export default async function HousingPage() {
                 >
                   {/* Step number */}
                   <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                    <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-blue-500 to-cyan-600 text-xs font-bold text-white shadow-md">
+                    <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-gradient-to-br from-amber-500 to-orange-600 text-xs font-bold text-white shadow-md">
                       {step}
                     </span>
                   </div>

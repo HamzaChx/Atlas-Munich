@@ -11,7 +11,7 @@ export function OpenChatButton({ label, variant = "primary" }: OpenChatButtonPro
     return (
       <Link
         href="/academic/chat"
-        className="inline-flex items-center gap-2 text-sm font-semibold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors"
+        className="inline-flex items-center gap-2 text-sm font-semibold text-violet-700 dark:text-violet-400 hover:text-violet-800 dark:hover:text-violet-300 transition-colors"
       >
         {label}
         <ArrowRight className="h-4 w-4" />
@@ -22,7 +22,7 @@ export function OpenChatButton({ label, variant = "primary" }: OpenChatButtonPro
   return (
     <Link
       href="/academic/chat"
-      className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-indigo-600 text-white font-semibold shadow-lg hover:bg-indigo-700 transition-all"
+      className="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-violet-700 text-white font-semibold shadow-lg hover:bg-violet-800 transition-all"
     >
       <Sparkles className="h-5 w-5" />
       {label}

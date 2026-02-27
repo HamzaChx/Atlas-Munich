@@ -1,7 +1,6 @@
 // ============================================
 // Atlas Munich – Dedicated Chat Themes
-// Plain module (no "use client") so both server
-// components and client components can import safely.
+// Premium design tokens for themed chat UIs
 // ============================================
 
 import type { ChatbotType } from "@/chatbot/types";
@@ -26,67 +25,113 @@ export interface DedicatedChatTheme {
   onlineDot: string;
   /** Gradient bg behind welcome avatar */
   welcomeGlow: string;
+  /** Accent CSS color for dynamic styles (hex) */
+  accentColor: string;
+  /** Subtle BG mesh / gradient for the message area */
+  meshGradient: string;
+  /** Typing indicator dot colour */
+  typingDot: string;
+  /** Suggestion chip icon/accent classes */
+  suggestionAccent: string;
+  /** Scrollbar thumb color class */
+  scrollThumb: string;
 }
 
 export const CHAT_THEMES = {
   healthcare: {
     chatbotType: "loubna" as const,
     headerGradient:
-      "from-rose-600 via-red-500 to-rose-700 dark:from-rose-700 dark:via-red-600 dark:to-rose-800",
-    userBubble: "from-rose-500 to-red-500",
-    sendButton: "from-rose-500 to-red-600 shadow-lg shadow-rose-500/30 hover:shadow-rose-500/40",
-    inputRing: "focus:border-rose-400 focus:ring-2 focus:ring-rose-500/20",
+      "from-rose-600 via-pink-600 to-rose-700 dark:from-rose-700 dark:via-pink-700 dark:to-rose-800",
+    userBubble: "from-rose-500 to-pink-600",
+    sendButton:
+      "from-rose-500 to-pink-600 shadow-lg shadow-rose-500/25 hover:shadow-xl hover:shadow-rose-500/35",
+    inputRing:
+      "focus:border-rose-400/70 focus:ring-2 focus:ring-rose-500/15 dark:focus:border-rose-500/50 dark:focus:ring-rose-500/10",
     suggestionHover:
-      "hover:bg-rose-50 dark:hover:bg-rose-900/20 hover:text-rose-700 dark:hover:text-rose-300 hover:border-rose-300 dark:hover:border-rose-700",
-    linkColor: "text-rose-600 dark:text-rose-400 hover:text-rose-700 dark:hover:text-rose-300",
-    avatarRing: "ring-2 ring-rose-200 dark:ring-rose-800/60",
-    onlineDot: "bg-rose-300",
-    welcomeGlow: "from-rose-100 to-red-100 dark:from-rose-900/30 dark:to-red-900/30",
+      "hover:bg-rose-50 dark:hover:bg-rose-500/10 hover:text-rose-700 dark:hover:text-rose-300 hover:border-rose-300/60 dark:hover:border-rose-500/20",
+    linkColor:
+      "text-rose-600 dark:text-rose-400 hover:text-rose-700 dark:hover:text-rose-300",
+    avatarRing: "ring-2 ring-white/30",
+    onlineDot: "bg-rose-400",
+    welcomeGlow:
+      "from-rose-100 to-pink-100 dark:from-rose-900/30 dark:to-pink-900/30",
+    accentColor: "#e11d48",
+    meshGradient:
+      "bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(251,113,133,0.08),transparent)] dark:bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(251,113,133,0.04),transparent)]",
+    typingDot: "bg-rose-400 dark:bg-rose-500",
+    suggestionAccent: "text-rose-500 dark:text-rose-400",
+    scrollThumb: "bg-rose-200 dark:bg-rose-800/50",
   },
   housing: {
     chatbotType: "riad" as const,
     headerGradient:
-      "from-sky-600 via-blue-600 to-sky-700 dark:from-sky-700 dark:via-blue-700 dark:to-sky-800",
-    userBubble: "from-sky-500 to-blue-500",
-    sendButton: "from-sky-500 to-blue-600 shadow-lg shadow-sky-500/30 hover:shadow-sky-500/40",
-    inputRing: "focus:border-sky-400 focus:ring-2 focus:ring-sky-500/20",
+      "from-amber-500 via-orange-600 to-amber-600 dark:from-amber-600 dark:via-orange-700 dark:to-amber-700",
+    userBubble: "from-amber-500 to-orange-600",
+    sendButton:
+      "from-amber-500 to-orange-600 shadow-lg shadow-amber-500/25 hover:shadow-xl hover:shadow-amber-500/35",
+    inputRing:
+      "focus:border-amber-400/70 focus:ring-2 focus:ring-amber-500/15 dark:focus:border-amber-500/50 dark:focus:ring-amber-500/10",
     suggestionHover:
-      "hover:bg-sky-50 dark:hover:bg-sky-900/20 hover:text-sky-700 dark:hover:text-sky-300 hover:border-sky-300 dark:hover:border-sky-700",
-    linkColor: "text-sky-600 dark:text-sky-400 hover:text-sky-700 dark:hover:text-sky-300",
-    avatarRing: "ring-2 ring-sky-200 dark:ring-sky-800/60",
-    onlineDot: "bg-sky-300",
-    welcomeGlow: "from-sky-100 to-blue-100 dark:from-sky-900/30 dark:to-blue-900/30",
+      "hover:bg-amber-50 dark:hover:bg-amber-500/10 hover:text-amber-700 dark:hover:text-amber-300 hover:border-amber-300/60 dark:hover:border-amber-500/20",
+    linkColor:
+      "text-amber-600 dark:text-amber-400 hover:text-amber-700 dark:hover:text-amber-300",
+    avatarRing: "ring-2 ring-white/30",
+    onlineDot: "bg-amber-400",
+    welcomeGlow:
+      "from-amber-100 to-orange-100 dark:from-amber-900/30 dark:to-orange-900/30",
+    accentColor: "#d97706",
+    meshGradient:
+      "bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(251,191,36,0.08),transparent)] dark:bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(251,191,36,0.04),transparent)]",
+    typingDot: "bg-amber-400 dark:bg-amber-500",
+    suggestionAccent: "text-amber-500 dark:text-amber-400",
+    scrollThumb: "bg-amber-200 dark:bg-amber-800/50",
   },
   bureaucracy: {
     chatbotType: "dalilah" as const,
     headerGradient:
-      "from-emerald-600 via-teal-600 to-emerald-700 dark:from-emerald-700 dark:via-teal-700 dark:to-emerald-800",
-    userBubble: "from-emerald-500 to-teal-500",
+      "from-teal-600 via-cyan-600 to-teal-700 dark:from-teal-700 dark:via-cyan-700 dark:to-teal-800",
+    userBubble: "from-teal-500 to-cyan-600",
     sendButton:
-      "from-emerald-500 to-teal-600 shadow-lg shadow-emerald-500/30 hover:shadow-emerald-500/40",
-    inputRing: "focus:border-emerald-400 focus:ring-2 focus:ring-emerald-500/20",
+      "from-teal-500 to-cyan-600 shadow-lg shadow-teal-500/25 hover:shadow-xl hover:shadow-teal-500/35",
+    inputRing:
+      "focus:border-teal-400/70 focus:ring-2 focus:ring-teal-500/15 dark:focus:border-teal-500/50 dark:focus:ring-teal-500/10",
     suggestionHover:
-      "hover:bg-emerald-50 dark:hover:bg-emerald-900/20 hover:text-emerald-700 dark:hover:text-emerald-300 hover:border-emerald-300 dark:hover:border-emerald-700",
+      "hover:bg-teal-50 dark:hover:bg-teal-500/10 hover:text-teal-700 dark:hover:text-teal-300 hover:border-teal-300/60 dark:hover:border-teal-500/20",
     linkColor:
-      "text-emerald-600 dark:text-emerald-400 hover:text-emerald-700 dark:hover:text-emerald-300",
-    avatarRing: "ring-2 ring-emerald-200 dark:ring-emerald-800/60",
-    onlineDot: "bg-emerald-300",
-    welcomeGlow: "from-emerald-100 to-teal-100 dark:from-emerald-900/30 dark:to-teal-900/30",
+      "text-teal-600 dark:text-teal-400 hover:text-teal-700 dark:hover:text-teal-300",
+    avatarRing: "ring-2 ring-white/30",
+    onlineDot: "bg-teal-400",
+    welcomeGlow:
+      "from-teal-100 to-cyan-100 dark:from-teal-900/30 dark:to-cyan-900/30",
+    accentColor: "#0d9488",
+    meshGradient:
+      "bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(20,184,166,0.08),transparent)] dark:bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(20,184,166,0.04),transparent)]",
+    typingDot: "bg-teal-400 dark:bg-teal-500",
+    suggestionAccent: "text-teal-500 dark:text-teal-400",
+    scrollThumb: "bg-teal-200 dark:bg-teal-800/50",
   },
   academic: {
     chatbotType: "ilham" as const,
     headerGradient:
-      "from-indigo-600 via-violet-600 to-indigo-700 dark:from-indigo-700 dark:via-violet-700 dark:to-indigo-800",
-    userBubble: "from-indigo-500 to-violet-500",
+      "from-violet-600 via-violet-700 to-purple-700 dark:from-violet-700 dark:via-violet-800 dark:to-purple-800",
+    userBubble: "from-violet-600 to-purple-700",
     sendButton:
-      "from-indigo-500 to-violet-600 shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/40",
-    inputRing: "focus:border-indigo-400 focus:ring-2 focus:ring-indigo-500/20",
+      "from-violet-600 to-purple-700 shadow-lg shadow-violet-600/25 hover:shadow-xl hover:shadow-violet-600/35",
+    inputRing:
+      "focus:border-violet-400/70 focus:ring-2 focus:ring-violet-500/15 dark:focus:border-violet-500/50 dark:focus:ring-violet-500/10",
     suggestionHover:
-      "hover:bg-indigo-50 dark:hover:bg-indigo-900/20 hover:text-indigo-700 dark:hover:text-indigo-300 hover:border-indigo-300 dark:hover:border-indigo-700",
+      "hover:bg-violet-50 dark:hover:bg-violet-500/10 hover:text-violet-700 dark:hover:text-violet-300 hover:border-violet-300/60 dark:hover:border-violet-500/20",
     linkColor:
-      "text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300",
-    avatarRing: "ring-2 ring-indigo-200 dark:ring-indigo-800/60",
-    onlineDot: "bg-indigo-300",
-    welcomeGlow: "from-indigo-100 to-violet-100 dark:from-indigo-900/30 dark:to-violet-900/30",
+      "text-violet-700 dark:text-violet-400 hover:text-violet-800 dark:hover:text-violet-300",
+    avatarRing: "ring-2 ring-white/30",
+    onlineDot: "bg-violet-400",
+    welcomeGlow:
+      "from-violet-100 to-purple-100 dark:from-violet-900/30 dark:to-purple-900/30",
+    accentColor: "#7c3aed",
+    meshGradient:
+      "bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(167,139,250,0.08),transparent)] dark:bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(167,139,250,0.04),transparent)]",
+    typingDot: "bg-violet-400 dark:bg-violet-500",
+    suggestionAccent: "text-violet-500 dark:text-violet-400",
+    scrollThumb: "bg-violet-200 dark:bg-violet-800/50",
   },
 } satisfies Record<string, DedicatedChatTheme>;

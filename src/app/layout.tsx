@@ -4,7 +4,7 @@ import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getLocale } from "next-intl/server";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { Header, Footer } from "@/components/layout";
+import { Header, ConditionalFooter } from "@/components/layout";
 import { ThemeProvider } from "@/components/shared";
 import { ChatbotWrapper } from "@/components/chatbot";
 import "./globals.css";
@@ -181,7 +181,7 @@ export default async function RootLayout({
           <ThemeProvider attribute="class" defaultTheme="light" disableTransitionOnChange>
             <Header locale={locale as "en" | "fr"} translations={navTranslations} />
             <main className="pt-14 sm:pt-16">{children}</main>
-            <Footer />
+            <ConditionalFooter />
             <ChatbotWrapper />
           </ThemeProvider>
         </NextIntlClientProvider>

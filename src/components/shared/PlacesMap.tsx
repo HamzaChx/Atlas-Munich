@@ -1,5 +1,6 @@
 "use client";
 
+import "leaflet/dist/leaflet.css";
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
 import { Place } from "@/types";

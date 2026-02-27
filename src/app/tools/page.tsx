@@ -196,7 +196,7 @@ export default async function ToolsPage() {
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           {/* Assistants grid — 2-column, 3 rows (5 live + 1 coming soon) */}
           <div className="grid gap-6 sm:grid-cols-2">
-            {ASSISTANTS.map((assistant) => {
+            {ASSISTANTS.map((assistant, index) => {
               const Icon = assistant.icon;
               const tags = t.raw(`tools.${assistant.key}.tags`) as string[];
 
@@ -222,7 +222,7 @@ export default async function ToolsPage() {
                           height={128}
                           quality={90}
                           sizes="64px"
-                          priority
+                          priority={index < 2}
                           className={`h-16 w-16 rounded-full object-cover ${assistant.colors.ring}`}
                         />
                         <div

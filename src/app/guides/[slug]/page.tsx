@@ -14,7 +14,6 @@ import {
 } from "@/components/shared";
 import { guides, getGuideBySlug, getRelatedGuides } from "@/data/guides";
 import { getCategoryByKey } from "@/data/categories";
-import * as Icons from "lucide-react";
 import {
   Clock,
   ArrowLeft,
@@ -26,13 +25,24 @@ import {
   Users,
   Calendar,
   ArrowUpRight,
+  Home,
+  GraduationCap,
+  Briefcase,
+  Smartphone,
+  Folder,
+  type LucideIcon,
 } from "lucide-react";
 import { fmtUpdated } from "@/lib/date";
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const iconMap = Icons as any;
-
 import { getLocale } from "@/i18n";
+
+const iconMap: Record<string, LucideIcon> = {
+  Home,
+  FileText,
+  GraduationCap,
+  Briefcase,
+  Smartphone,
+  Folder,
+};
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -113,7 +123,7 @@ export default async function GuidePage({ params }: PageProps) {
 
   const category = getCategoryByKey(guide.categoryKey);
   const relatedGuides = getRelatedGuides(guide);
-  const CategoryIcon = category ? iconMap[category.icon] || Icons.Folder : Icons.Folder;
+  const CategoryIcon = category ? (iconMap[category.icon] ?? Folder) : Folder;
 
   // Apply locale translation overlay
   let localizedGuide = guide;

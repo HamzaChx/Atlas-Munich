@@ -5,8 +5,8 @@ import { categories } from "@/data/categories";
 const BASE_URL = "https://atlas-munich.de";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  // Static pages
-  const staticPages: MetadataRoute.Sitemap = [
+  // Core pages — highest priority, change frequently
+  const corePages: MetadataRoute.Sitemap = [
     {
       url: BASE_URL,
       lastModified: new Date(),
@@ -17,7 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${BASE_URL}/guides`,
       lastModified: new Date(),
       changeFrequency: "weekly",
-      priority: 0.9,
+      priority: 0.95,
     },
     {
       url: `${BASE_URL}/places`,
@@ -29,7 +29,35 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${BASE_URL}/faq`,
       lastModified: new Date(),
       changeFrequency: "weekly",
-      priority: 0.8,
+      priority: 0.9,
+    },
+  ];
+
+  // Topic hub pages — high-intent landing pages per domain
+  const topicPages: MetadataRoute.Sitemap = [
+    {
+      url: `${BASE_URL}/housing`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.88,
+    },
+    {
+      url: `${BASE_URL}/bureaucracy`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.88,
+    },
+    {
+      url: `${BASE_URL}/academic`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.88,
+    },
+    {
+      url: `${BASE_URL}/healthcare`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.85,
     },
     {
       url: `${BASE_URL}/tools`,
@@ -37,47 +65,45 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
-    {
-      url: `${BASE_URL}/housing`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-    },
+  ];
+
+  // Secondary / informational pages
+  const secondaryPages: MetadataRoute.Sitemap = [
     {
       url: `${BASE_URL}/about`,
       lastModified: new Date(),
       changeFrequency: "monthly",
-      priority: 0.6,
+      priority: 0.55,
     },
     {
       url: `${BASE_URL}/privacy`,
       lastModified: new Date(),
       changeFrequency: "yearly",
-      priority: 0.3,
+      priority: 0.2,
     },
     {
       url: `${BASE_URL}/terms`,
       lastModified: new Date(),
       changeFrequency: "yearly",
-      priority: 0.3,
+      priority: 0.2,
     },
   ];
 
-  // Category pages
+  // Category pages — grouped topic indexes
   const categoryPages: MetadataRoute.Sitemap = categories.map((category) => ({
     url: `${BASE_URL}/category/${category.key}`,
     lastModified: new Date(),
     changeFrequency: "weekly",
-    priority: 0.85,
+    priority: 0.82,
   }));
 
-  // Individual guide pages
+  // Individual guide pages — most valuable content pieces
   const guidePages: MetadataRoute.Sitemap = guides.map((guide) => ({
     url: `${BASE_URL}/guides/${guide.slug}`,
     lastModified: new Date(guide.lastUpdated),
     changeFrequency: "monthly",
-    priority: guide.featured ? 0.9 : 0.75,
+    priority: guide.featured ? 0.92 : 0.78,
   }));
 
-  return [...staticPages, ...categoryPages, ...guidePages];
+  return [...corePages, ...topicPages, ...categoryPages, ...guidePages, ...secondaryPages];
 }

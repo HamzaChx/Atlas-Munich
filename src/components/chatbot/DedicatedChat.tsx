@@ -204,7 +204,7 @@ function ChatBubble({
         <div className="relative h-8 w-8 flex-shrink-0 mt-0.5">
           <div className="absolute inset-0 rounded-full bg-gradient-to-br from-amber-200/40 to-orange-200/40 dark:from-amber-500/10 dark:to-orange-500/10 blur-[6px]" />
           <div className="relative h-8 w-8 overflow-hidden rounded-full ring-1 ring-white/60 dark:ring-white/10 shadow-sm">
-            <Image src={chatbotAvatar} alt="Assistant" fill className="object-cover" />
+            <Image src={chatbotAvatar} alt="Assistant" fill sizes="32px" className="object-cover" />
           </div>
         </div>
       )}
@@ -266,7 +266,7 @@ function TypingIndicator({
       <div className="relative h-8 w-8 flex-shrink-0 mt-0.5">
         <div className="absolute inset-0 rounded-full bg-gradient-to-br from-amber-200/40 to-orange-200/40 dark:from-amber-500/10 dark:to-orange-500/10 blur-[6px]" />
         <div className="relative h-8 w-8 overflow-hidden rounded-full ring-1 ring-white/60 dark:ring-white/10 shadow-sm">
-          <Image src={avatar} alt="Assistant" fill className="object-cover" />
+          <Image src={avatar} alt="Assistant" fill sizes="32px" className="object-cover" />
         </div>
       </div>
       <div className="flex items-center gap-1.5 rounded-2xl rounded-bl-md bg-white/90 dark:bg-white/[0.06] backdrop-blur-sm px-5 py-3.5 shadow-sm border border-zinc-200/60 dark:border-white/[0.06]">
@@ -433,7 +433,7 @@ function WelcomeScreen({
           )}
         >
           <div className="absolute inset-1.5 overflow-hidden rounded-full">
-            <Image src={avatar} alt={name} fill className="object-cover" priority />
+            <Image src={avatar} alt={name} fill sizes="(max-width: 640px) 112px, 128px" className="object-cover" priority />
           </div>
         </div>
         {/* Online badge */}
@@ -695,6 +695,7 @@ export function DedicatedChat({ theme, backPath }: DedicatedChatProps) {
                 src={chatbotConfig.avatar}
                 alt={chatbotConfig.name}
                 fill
+                sizes="40px"
                 className="object-cover"
                 priority
               />

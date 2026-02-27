@@ -136,7 +136,7 @@ export default async function HousingPage() {
           <div className="mt-8 flex items-center gap-4 rounded-2xl bg-white/80 dark:bg-zinc-800/60 border border-zinc-200 dark:border-white/10 px-6 py-4 shadow-sm backdrop-blur-sm">
             <div className="relative flex-shrink-0">
               <Image
-                src="/riad.png"
+                src="/riad.webp"
                 alt="Riad"
                 width={96}
                 height={96}

@@ -69,7 +69,7 @@ const ASSISTANTS: AssistantConfig[] = [
   {
     key: "housing",
     name: "Riad",
-    avatar: "/riad.png",
+    avatar: "/riad.webp",
     icon: HomeIcon,
     href: "/housing",
     external: false,
@@ -85,7 +85,7 @@ const ASSISTANTS: AssistantConfig[] = [
   {
     key: "cv",
     name: "Hiro",
-    avatar: "/hiro.png",
+    avatar: "/hiro.webp",
     icon: FileText,
     href: "https://hiro-easier-hiring.vercel.app/",
     external: true,
@@ -101,7 +101,7 @@ const ASSISTANTS: AssistantConfig[] = [
   {
     key: "dalilah",
     name: "Dalilah",
-    avatar: "/dalilah.png",
+    avatar: "/dalilah.webp",
     icon: Building2,
     href: "/bureaucracy",
     external: false,
@@ -117,7 +117,7 @@ const ASSISTANTS: AssistantConfig[] = [
   {
     key: "ilham",
     name: "Ilham",
-    avatar: "/ilham.png",
+    avatar: "/ilham.webp",
     icon: GraduationCap,
     href: "/academic",
     external: false,
@@ -133,7 +133,7 @@ const ASSISTANTS: AssistantConfig[] = [
   {
     key: "loubna",
     name: "Loubna",
-    avatar: "/loubna.png",
+    avatar: "/loubna.webp",
     icon: Activity,
     href: "/healthcare",
     external: false,

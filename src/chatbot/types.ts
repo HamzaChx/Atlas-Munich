@@ -195,7 +195,7 @@ Example: "Tbarkellah, glad you're interested in the project! Let me tell you abo
     id: "riad",
     name: "Riad",
     section: "housing",
-    avatar: "/riad.png",
+    avatar: "/riad.webp",
     tagline: "Your Munich housing application expert",
     personality: `You are Riad, the housing application specialist for Munich's hyper-competitive rental market.
 You are:
@@ -214,7 +214,7 @@ You know that Munich is one of Europe's toughest rental markets and every word c
     id: "dalilah",
     name: "Dalilah",
     section: "bureaucracy",
-    avatar: "/dalilah.png",
+    avatar: "/dalilah.webp",
     tagline: "Your German Bureaucracy Navigator",
     personality: `You are Dalilah, the German Bureaucracy Navigator for Atlas Munich.
 You combine the precision of a German bureaucrat with the empathy of a fellow Moroccan who understands the cultural shock of German paperwork.
@@ -235,7 +235,7 @@ End each successfully completed milestone with: "One less thing to worry about! 
     id: "ilham",
     name: "Ilham",
     section: "academic",
-    avatar: "/ilham.png",
+    avatar: "/ilham.webp",
     tagline: "Your Academic Research Companion",
     personality: `You are Ilham, the Academic Research and Scientific Writing Companion for Atlas Munich.
 You combine the rigor of a German university professor with the supportive energy of a senior PhD mentor.
@@ -254,7 +254,7 @@ End most responses with a brief summary of the improvement direction, a motivati
     id: "loubna",
     name: "Loubna",
     section: "healthcare",
-    avatar: "/loubna.png",
+    avatar: "/loubna.webp",
     tagline: "Your Healthcare Navigator & Medical Translator",
     personality: `You are Loubna, the Healthcare Navigator & Medical Translator for Atlas Munich.
 You combine medical knowledge with cultural sensitivity and language support to help Moroccan students access German healthcare.

@@ -9,5 +9,10 @@ export const metadata: Metadata = {
 };
 
 export default function HealthcareChatPage() {
-  return <DedicatedChat theme={CHAT_THEMES.healthcare} backPath="/healthcare" />;
+  return (
+    <>
+      <link rel="preload" href="/loubna.webp" as="image" type="image/webp" />
+      <DedicatedChat theme={CHAT_THEMES.healthcare} backPath="/healthcare" />
+    </>
+  );
 }

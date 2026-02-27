@@ -138,7 +138,7 @@ export default async function HealthcarePage() {
           <div className="mt-8 flex items-center gap-4 rounded-2xl bg-white/80 dark:bg-zinc-800/60 border border-zinc-200 dark:border-white/10 px-6 py-4 shadow-sm backdrop-blur-sm">
             <div className="relative flex-shrink-0">
               <Image
-                src="/loubna.png"
+                src="/loubna.webp"
                 alt="Loubna"
                 width={96}
                 height={96}

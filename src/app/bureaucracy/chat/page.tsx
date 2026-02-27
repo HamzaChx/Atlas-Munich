@@ -9,5 +9,10 @@ export const metadata: Metadata = {
 };
 
 export default function BureaucracyChatPage() {
-  return <DedicatedChat theme={CHAT_THEMES.bureaucracy} backPath="/bureaucracy" />;
+  return (
+    <>
+      <link rel="preload" href="/dalilah.webp" as="image" type="image/webp" />
+      <DedicatedChat theme={CHAT_THEMES.bureaucracy} backPath="/bureaucracy" />
+    </>
+  );
 }

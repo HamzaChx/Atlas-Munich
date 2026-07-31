@@ -327,7 +327,7 @@ export default async function GuidePage({ params }: PageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
       {/* Reading progress bar */}
-      <ReadingProgress fromColor={theme.from} toColor={theme.to} />
+      <ReadingProgress fromColor={theme.from} toColor={theme.to} guideSlug={guide.slug} />
 
       {/* ========== HERO ========== */}
       <section className="relative overflow-hidden bg-gradient-to-b from-zinc-50 via-white to-white dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950 border-b border-zinc-200 dark:border-white/10">

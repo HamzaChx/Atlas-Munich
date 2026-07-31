@@ -14,6 +14,7 @@ import * as React from "react";
 import Link from "next/link";
 import { BadgeCheck, Globe, Instagram, MapPin, Navigation, Phone, Star } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { track } from "@vercel/analytics";
 
 import { Place, PlaceCategory } from "@/types";
 import { cn } from "@/lib/utils";
@@ -169,6 +170,7 @@ function Spotlight({ place, className }: { place: Place; className?: string }) {
             )}`}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => track("place_directions_click", { place: place.slug, category: place.category })}
             className="flex flex-1 items-center justify-center gap-2 rounded-full bg-zinc-900 px-6 py-3 text-sm font-semibold text-white outline-none transition-colors hover:bg-zinc-700 focus-visible:ring-2 focus-visible:ring-zellige/50 sm:flex-none dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-200"
           >
             <Navigation className="h-4 w-4" />

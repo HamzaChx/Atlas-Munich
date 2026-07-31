@@ -7,6 +7,7 @@
 import { useState, useCallback, useRef, useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { useLocale } from "next-intl";
+import { track } from "@vercel/analytics";
 import {
   ChatMessage,
   ChatbotType,
@@ -221,6 +222,8 @@ export function useChatbot(options: UseChatbotOptions = {}): UseChatbotReturn {
           const toChatbot = routeMatch[2] as ChatbotType;
           const toConfig = CHATBOT_CONFIG[toChatbot];
 
+          track("chat_handoff", { from: currentChatbot, to: toChatbot });
+
           setRedirectCountdown({
             isActive: true,
             secondsRemaining: REDIRECT_COUNTDOWN_SECONDS,
@@ -304,8 +307,20 @@ export function useChatbot(options: UseChatbotOptions = {}): UseChatbotReturn {
   }, [pathname]);
 
   const toggleOpen = useCallback(() => {
-    setIsOpen((prev) => !prev);
-  }, []);
+    setIsOpen((prev) => {
+      const next = !prev;
+      if (next) track("chat_open", { chatbot: currentChatbot });
+      return next;
+    });
+  }, [currentChatbot]);
+
+  const trackedSetIsOpen = useCallback(
+    (open: boolean) => {
+      if (open) track("chat_open", { chatbot: currentChatbot });
+      setIsOpen(open);
+    },
+    [currentChatbot]
+  );
 
   const dismissNotification = useCallback(() => {
     setNotification(null);
@@ -328,7 +343,7 @@ export function useChatbot(options: UseChatbotOptions = {}): UseChatbotReturn {
     switchChatbot,
     clearMessages,
     toggleOpen,
-    setIsOpen,
+    setIsOpen: trackedSetIsOpen,
     dismissNotification,
     cancelRedirect,
     dismissSuccessNotification,

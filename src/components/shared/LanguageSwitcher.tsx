@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { setLocale, type Locale } from "@/i18n";
 import { Check, Languages } from "lucide-react";
 import { useTranslations } from "next-intl";
+import { track } from "@vercel/analytics";
 
 const languages: { code: Locale; label: string }[] = [
   { code: "en", label: "English" },
@@ -40,6 +41,7 @@ export function LanguageSwitcher({
       return;
     }
 
+    track("language_switch", { from: currentLocale, to: locale });
     await setLocale(locale);
     setIsOpen(false);
     startTransition(() => {

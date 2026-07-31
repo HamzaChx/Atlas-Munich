@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { useRouter } from "next/navigation";
+import { track } from "@vercel/analytics";
 import { cn } from "@/lib/utils";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -47,6 +48,8 @@ export function SearchBar({
     e.preventDefault();
     const trimmed = query.trim();
     if (!trimmed) return;
+
+    track("search", { query: trimmed.slice(0, 100) });
 
     if (onSearch) {
       setIsSearching(true);

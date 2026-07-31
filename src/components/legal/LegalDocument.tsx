@@ -1,16 +1,14 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 import {
-  ArrowLeft,
   ArrowRight,
   Building2,
   Landmark,
   Mail,
   Printer,
-  Rows3,
   SquareStack,
   type LucideIcon,
 } from "lucide-react";
@@ -52,7 +50,7 @@ const FALLBACK_ACCENTS: Omit<LegalAccent, "icon">[] = [
 /* ------------------------------------------------------------ small parts */
 
 /** Provider identification card, driven by legal-config rather than i18n. */
-function ControllerCard({ labels }: { labels: Record<string, string> }) {
+function ControllerCard() {
   return (
     <div className="mt-4 rounded-2xl bg-card p-5 shadow-[0_1px_8px_rgb(0_0_0/0.05)] dark:bg-foreground/[0.075] dark:shadow-none dark:ring-1 dark:ring-border">
       <div className="flex items-start gap-3.5">
@@ -234,7 +232,7 @@ function Blocks({
             );
 
           case "controller":
-            return <ControllerCard key={i} labels={labels} />;
+            return <ControllerCard key={i} />;
 
           case "authority":
             return <AuthorityCard key={i} labels={labels} />;
@@ -267,9 +265,6 @@ export function LegalDocument({
   const t = useTranslations(namespace);
   const sections = t.raw("sections") as LegalSection[];
 
-  const [selected, setSelected] = useState(sections[0]?.id ?? "");
-  const [showAll, setShowAll] = useState(false);
-
   const labels = useMemo(
     () => ({
       contents: t("ui.contents"),
@@ -295,19 +290,6 @@ export function LegalDocument({
     if (explicit) return explicit;
     const fallback = FALLBACK_ACCENTS[index % FALLBACK_ACCENTS.length];
     return { icon: SquareStack, ...fallback };
-  };
-
-  const activeIndex = Math.max(
-    0,
-    sections.findIndex((section) => section.id === selected)
-  );
-
-  const goTo = (id: string) => {
-    setSelected(id);
-    setShowAll(false);
-    if (typeof window !== "undefined" && window.scrollY > 420) {
-      document.getElementById("legal-body")?.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
   };
 
   const effectiveDate = new Intl.DateTimeFormat(undefined, {
@@ -363,146 +345,24 @@ export function LegalDocument({
         </div>
       </section>
 
-      {/* ========== MOBILE SECTION PILLS ========== */}
-      <div className="no-print sticky top-14 z-30 bg-background py-3 shadow-[0_12px_16px_-12px_rgb(0_0_0/0.06)] sm:top-16 lg:hidden">
-        <div className="hide-scrollbar-mobile overflow-x-auto px-4 sm:px-6">
-          <div className="flex min-w-max items-center gap-1.5">
-            {sections.map((section, index) => {
-              const accent = accentFor(section.id, index);
-              const active = !showAll && selected === section.id;
-              return (
-                <button
-                  key={section.id}
-                  onClick={() => goTo(section.id)}
-                  aria-pressed={active}
-                  className={cn(
-                    "flex shrink-0 items-center gap-1.5 rounded-full px-3.5 py-2 text-[13px] font-semibold transition-all duration-200",
-                    active
-                      ? cn(accent.tint, accent.text, "dark:ring-1 dark:ring-border")
-                      : "bg-card text-zinc-600 shadow-sm dark:bg-foreground/[0.075] dark:text-zinc-400 dark:shadow-none"
-                  )}
-                >
-                  <span className="text-xs tabular-nums opacity-60">{index + 1}</span>
-                  {section.title}
-                </button>
-              );
-            })}
-          </div>
-        </div>
-      </div>
-
       {/* ========== DOCUMENT ========== */}
       <section
         id="legal-body"
-        className="mx-auto max-w-6xl scroll-mt-24 px-4 pb-16 pt-6 sm:px-6 sm:pb-24 lg:px-8 lg:pt-4 2xl:max-w-[96rem] 2xl:px-12"
+        className="mx-auto max-w-4xl scroll-mt-24 px-4 pb-16 pt-6 sm:px-6 sm:pb-24 lg:px-8 lg:pt-4 2xl:max-w-5xl 2xl:px-12"
       >
-        <div className="lg:grid lg:grid-cols-12 lg:gap-8 2xl:gap-12">
-          {/* Contents rail: filters the document down to one section at a time */}
-          <aside className="no-print hidden lg:col-span-4 lg:block">
-            <nav className="sticky top-24" aria-label={labels.contents}>
-              <div className="mb-3 flex items-baseline justify-between gap-3">
-                <p className="eyebrow">{labels.contents}</p>
-                <button
-                  type="button"
-                  onClick={() => setShowAll((value) => !value)}
-                  aria-pressed={showAll}
-                  className={cn(
-                    "inline-flex shrink-0 items-center gap-1.5 text-[13px] font-semibold transition-colors",
-                    showAll
-                      ? "text-zellige"
-                      : "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
-                  )}
-                >
-                  <Rows3 className="h-3.5 w-3.5" aria-hidden="true" />
-                  {showAll ? labels.readOne : labels.readAll}
-                </button>
-              </div>
-
-              <div className="max-h-[calc(100vh-10rem)] space-y-1 overflow-y-auto pr-1">
-                {sections.map((section, index) => {
-                  const accent = accentFor(section.id, index);
-                  const active = !showAll && selected === section.id;
-                  return (
-                    <button
-                      key={section.id}
-                      onClick={() => goTo(section.id)}
-                      aria-pressed={active}
-                      className={cn(
-                        "flex w-full items-center gap-3 rounded-2xl p-2.5 text-left transition-all duration-200",
-                        active
-                          ? cn(accent.tint, "dark:ring-1 dark:ring-border")
-                          : "bg-card shadow-[0_1px_8px_rgb(0_0_0/0.05)] hover:-translate-y-0.5 hover:shadow-md dark:bg-foreground/[0.075] dark:shadow-none dark:hover:bg-foreground/10"
-                      )}
-                    >
-                      <span
-                        className={cn(
-                          "flex h-8 w-8 shrink-0 items-center justify-center rounded-lg transition-colors duration-200",
-                          active ? "bg-card shadow-sm" : accent.tint
-                        )}
-                      >
-                        <accent.icon className={cn("h-4 w-4", accent.text)} aria-hidden="true" />
-                      </span>
-                      <span
-                        className={cn(
-                          "min-w-0 flex-1 text-sm font-semibold leading-snug",
-                          active ? accent.text : "text-zinc-800 dark:text-zinc-100"
-                        )}
-                      >
-                        {section.title}
-                      </span>
-                      <span
-                        className={cn(
-                          "text-xs font-medium tabular-nums",
-                          active ? accent.text : "text-zinc-400 dark:text-zinc-500"
-                        )}
-                      >
-                        {index + 1}
-                      </span>
-                    </button>
-                  );
-                })}
-              </div>
-            </nav>
-          </aside>
-
+        <div>
           {/* The document itself */}
-          <div className="mt-6 lg:col-span-8 lg:mt-0">
-            {/* Mobile mirror of the read-all toggle */}
-            <div className="no-print mb-4 flex items-center justify-between gap-4 lg:hidden">
-              <p className="text-sm text-zinc-500 dark:text-zinc-400">
-                {labels.section}{" "}
-                <span className="font-semibold text-zinc-900 dark:text-zinc-50">
-                  {activeIndex + 1}
-                </span>{" "}
-                {labels.of} {sections.length}
-              </p>
-              <button
-                type="button"
-                onClick={() => setShowAll((value) => !value)}
-                aria-pressed={showAll}
-                className="shrink-0 text-sm font-semibold text-zellige hover:underline"
-              >
-                {showAll ? labels.readOne : labels.readAll}
-              </button>
-            </div>
-
-            {/*
-              Every section stays in the DOM. Inactive ones are hidden on screen
-              but printed, so a saved PDF is always the complete document, which
-              is what a legal text has to be.
-            */}
+          <div className="mt-6 lg:mt-0">
             {sections.map((section, index) => {
               const accent = accentFor(section.id, index);
-              const visible = showAll || selected === section.id;
 
               return (
                 <article
                   key={section.id}
                   id={section.id}
                   className={cn(
-                    "scroll-mt-32 print:mb-8 print:block",
-                    visible ? "block" : "hidden",
-                    showAll && index > 0 && "mt-10 border-t border-zinc-100 pt-10 dark:border-border"
+                    "scroll-mt-32 print:mb-8",
+                    index > 0 && "mt-10 border-t border-zinc-100 pt-10 dark:border-border"
                   )}
                 >
                   <header className="mb-5 flex items-start gap-3.5">
@@ -531,36 +391,6 @@ export function LegalDocument({
                   </header>
 
                   <Blocks blocks={section.blocks} accent={accent} labels={labels} />
-
-                  {/* Sequential reading for anyone who wants the whole text */}
-                  {!showAll && (
-                    <nav className="no-print mt-8 flex items-center justify-between gap-3 border-t border-zinc-100 pt-5 dark:border-border">
-                      {index > 0 ? (
-                        <button
-                          type="button"
-                          onClick={() => goTo(sections[index - 1].id)}
-                          aria-label={`${labels.previous}: ${sections[index - 1].title}`}
-                          className="group inline-flex min-w-0 items-center gap-2 text-sm font-semibold text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
-                        >
-                          <ArrowLeft className="h-4 w-4 shrink-0 transition-transform group-hover:-translate-x-1" />
-                          <span className="truncate">{sections[index - 1].title}</span>
-                        </button>
-                      ) : (
-                        <span />
-                      )}
-                      {index < sections.length - 1 && (
-                        <button
-                          type="button"
-                          onClick={() => goTo(sections[index + 1].id)}
-                          aria-label={`${labels.next}: ${sections[index + 1].title}`}
-                          className="group inline-flex min-w-0 items-center gap-2 text-right text-sm font-semibold text-zinc-600 transition-colors hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
-                        >
-                          <span className="truncate">{sections[index + 1].title}</span>
-                          <ArrowRight className="h-4 w-4 shrink-0 transition-transform group-hover:translate-x-1" />
-                        </button>
-                      )}
-                    </nav>
-                  )}
                 </article>
               );
             })}

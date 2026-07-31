@@ -16,7 +16,6 @@ import {
   Globe,
   ExternalLink,
   ArrowRight,
-  Shield,
   Plus,
   ListChecks,
   GraduationCap,
@@ -206,14 +205,6 @@ export default async function AboutPage() {
                     <span className="font-semibold text-zinc-800 dark:text-zinc-50">100+</span>{" "}
                     {c("stats.members")}
                   </span>
-                  <span
-                    className="h-1 w-1 rounded-full bg-zinc-300 dark:bg-zinc-600"
-                    aria-hidden="true"
-                  />
-                  <span>
-                    <span className="font-semibold text-zinc-800 dark:text-zinc-50">24/7</span>{" "}
-                    {c("stats.active")}
-                  </span>
                 </div>
 
                 <div className="mt-7 flex flex-col items-center gap-3 lg:items-start">
@@ -226,11 +217,7 @@ export default async function AboutPage() {
                     <MessageCircle className="h-4 w-4" />
                     {c("joinButton")}
                   </a>
-                  <div className="flex items-center gap-1.5 text-xs text-zinc-500 dark:text-zinc-400">
-                    <Shield className="h-3.5 w-3.5 text-zellige" />
-                    {c("verified.description")}
-                  </div>
-                  <p className="text-xs text-zinc-400 dark:text-zinc-500">{c("joinNote")}</p>
+                  
                 </div>
               </div>
 

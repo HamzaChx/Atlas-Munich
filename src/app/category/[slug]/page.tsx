@@ -1,16 +1,12 @@
 import { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Button } from "@/components/ui/button";
 import { Breadcrumbs, GuideCard, EmptyState } from "@/components/shared";
 import { categories, getCategoryByKey } from "@/data/categories";
 import { getGuidesByCategory } from "@/data/guides";
 import { CategoryKey } from "@/types";
-import * as Icons from "lucide-react";
-import { ArrowLeft, BookOpen, ChevronRight } from "lucide-react";
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-const iconMap = Icons as any;
+import { ArrowLeft, ArrowRight } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 import { getLocale } from "@/i18n";
 
@@ -67,6 +63,22 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
+const categoryNumerals: Record<string, string> = {
+  "rent-housing": "01",
+  "kvr-residence": "02",
+  "university-life": "03",
+  career: "04",
+  "useful-apps": "05",
+};
+
+const categoryStyles: Record<string, string> = {
+  "rent-housing": "text-amber-700 dark:text-amber-500",
+  "kvr-residence": "text-blue-600 dark:text-blue-400",
+  "university-life": "text-emerald-600 dark:text-emerald-400",
+  career: "text-purple-600 dark:text-purple-400",
+  "useful-apps": "text-rose-600 dark:text-rose-400",
+};
+
 export default async function CategoryPage({ params }: PageProps) {
   const { slug } = await params;
   const category = getCategoryByKey(slug);
@@ -95,7 +107,6 @@ export default async function CategoryPage({ params }: PageProps) {
     getMessage(`categories.${category.key}.description`) ?? category.description;
 
   const rawCategoryGuides = getGuidesByCategory(category.key as CategoryKey);
-  const IconComponent = iconMap[category.icon] || Icons.Folder;
 
   // Apply locale translation overlay to guide cards
   let categoryGuides = rawCategoryGuides;
@@ -132,88 +143,67 @@ export default async function CategoryPage({ params }: PageProps) {
     })),
   };
 
-  const tint = "bg-zellige-soft text-zellige";
+  const numeral = categoryNumerals[category.key] || "00";
+  const textColor = categoryStyles[category.key] || "text-zinc-900 dark:text-zinc-50";
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-background">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
-      {/* ========== HERO ========== */}
-      <section className="relative overflow-hidden bg-background border-b border-zinc-200 dark:border-border">
-        <div className="relative z-10 mx-auto max-w-7xl 2xl:max-w-[96rem] px-4 py-10 sm:px-6 sm:py-14 lg:px-8 lg:py-18 2xl:px-12">
+      {/* ========== EDITORIAL HERO ========== */}
+      <section className="relative overflow-hidden pt-20 pb-16 lg:pt-32 lg:pb-24">
+        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Breadcrumbs */}
-          <div className="mb-8">
+          <div className="mb-12 flex justify-center">
             <Breadcrumbs items={breadcrumbs} />
           </div>
 
-          {/* Content */}
-          <div className="max-w-2xl 2xl:max-w-3xl">
-            {/* Category icon */}
-            <div className="mb-6">
-              <div className={`inline-flex items-center justify-center rounded-2xl p-3.5 ${tint}`}>
-                <IconComponent className="h-7 w-7" />
-              </div>
+          <div className="max-w-4xl mx-auto text-center">
+            {/* Numeral & Title */}
+            <div className="flex flex-col items-center justify-center mb-6">
+              <span
+                className={cn(
+                  "font-display text-4xl sm:text-5xl lg:text-6xl font-black leading-none tracking-tighter mb-4 opacity-50",
+                  textColor
+                )}
+              >
+                {numeral}
+              </span>
+              <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
+                {localizedCategoryTitle}
+              </h1>
             </div>
 
-            {/* Title */}
-            <h1 className="font-display text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-4xl lg:text-5xl 2xl:text-6xl">
-              {localizedCategoryTitle}
-            </h1>
-
             {/* Description */}
-            <p className="mt-4 text-base leading-relaxed text-zinc-600 dark:text-zinc-400 sm:text-lg 2xl:text-xl">
+            <p className="mx-auto mt-8 text-lg leading-relaxed text-zinc-500 dark:text-zinc-400 sm:text-xl lg:text-2xl max-w-3xl">
               {localizedCategoryDescription}
             </p>
 
-            {/* Minimal inline stats */}
-            <div className="mt-6 flex items-center gap-4 text-sm text-zinc-500 dark:text-zinc-400">
+            {/* Minimal Typographic Stats */}
+            <div className="mt-12 flex items-center justify-center gap-4 text-xs font-bold uppercase tracking-[0.2em] text-zinc-400">
               <span>
-                <span className="font-semibold text-zinc-800 dark:text-zinc-50">
-                  {categoryGuides.length}
-                </span>{" "}
+                {categoryGuides.length}{" "}
                 {categoryGuides.length === 1
-                  ? (getMessage("categoryPage.guidesSingular") ?? "guide")
-                  : (getMessage("categoryPage.guidesPlural") ?? "guides")}
+                  ? (getMessage("categoryPage.guidesSingular") ?? "GUIDE")
+                  : (getMessage("categoryPage.guidesPlural") ?? "GUIDES")}
               </span>
-              <span className="text-zinc-300 dark:text-zinc-700">·</span>
+              <span className="h-1 w-1 rounded-full bg-zinc-300 dark:bg-zinc-700" />
               <span>
-                <span className="font-semibold text-zinc-800 dark:text-zinc-50">
-                  {categoryGuides.reduce((acc, g) => acc + g.readingTime, 0)}
-                </span>{" "}
-                {getMessage("categoryPage.readingSuffix") ?? "min read"}
+                {categoryGuides.reduce((acc, g) => acc + g.readingTime, 0)}{" "}
+                MIN READ TOTAL
               </span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* ========== GUIDES GRID ========== */}
-      <section className="relative border-b border-zinc-200 dark:border-border bg-background py-12 sm:py-16 lg:py-20">
-        <div className="absolute left-0 top-0 h-1 w-full bg-zellige/60" />
-
-        <div className="mx-auto max-w-7xl 2xl:max-w-[96rem] px-4 sm:px-6 lg:px-8 2xl:px-12">
-          {/* Section header */}
-          <div className="mb-8 sm:mb-10">
-            <span className="eyebrow mb-2">{localizedCategoryTitle}</span>
-            <h2 className="font-display text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-3xl 2xl:text-4xl">
-              {(getMessage("categoryPage.browseGuides") ?? "Browse {count} Guides").replace(
-                "{count}",
-                String(categoryGuides.length)
-              )}
-            </h2>
-            <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400 sm:text-base">
-              {(getMessage("categoryPage.sectionDescription") ?? "").replace(
-                "{category}",
-                localizedCategoryTitle.toLowerCase()
-              )}
-            </p>
-          </div>
-
-          {/* Grid */}
+      {/* ========== GUIDES LIST ========== */}
+      <section className="relative pb-24 lg:pb-32">
+        <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           {categoryGuides.length > 0 ? (
-            <div className="grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-3 2xl:grid-cols-4">
+            <div className="grid grid-cols-1 gap-x-12 gap-y-8 sm:grid-cols-2">
               {categoryGuides.map((guide) => (
                 <GuideCard key={guide.slug} guide={guide} showCategory={false} />
               ))}
@@ -238,35 +228,34 @@ export default async function CategoryPage({ params }: PageProps) {
       </section>
 
       {/* ========== BOTTOM CTA ========== */}
-      <section className="py-12 sm:py-16">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <div className="rounded-2xl border border-zinc-200/60 dark:border-border bg-gradient-to-br from-zinc-50/80 via-white to-zinc-50/50 dark:from-zinc-900 dark:via-zinc-900/80 dark:to-zinc-900 p-6 sm:p-8 text-center shadow-sm dark:shadow-none">
-            <h3 className="text-xl font-bold text-zinc-900 dark:text-zinc-50 sm:text-2xl">
-              {getMessage("categoryPage.exploreMoreTitle") ?? "Looking for something else?"}
-            </h3>
-            <p className="mx-auto mt-2 max-w-md text-sm text-zinc-600 dark:text-zinc-400 sm:text-base">
-              {getMessage("categoryPage.exploreMoreDesc") ??
-                "Explore other categories or browse our complete collection of guides."}
-            </p>
-            <div className="mt-6 flex flex-wrap gap-3 justify-center">
-              <Button
-                asChild
-                variant="outline"
-                className="border border-zinc-200 dark:border-border text-zinc-900 dark:text-zinc-50 hover:border-emerald-500/50 hover:bg-emerald-50 dark:hover:bg-emerald-500/10"
-              >
-                <Link href="/guides">
-                  <ArrowLeft className="mr-2 h-4 w-4" />
-                  {getMessage("categoryPage.allGuides") ?? "All Guides"}
-                </Link>
-              </Button>
-              <Button asChild className="bg-emerald-600 hover:bg-emerald-500 text-white">
-                <Link href="/guides">
-                  <BookOpen className="mr-2 h-4 w-4" />
-                  {getMessage("categoryPage.searchEverything") ?? "Browse All Guides"}
-                  <ChevronRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
+      <section className="pb-24 lg:pb-32">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
+          <h3 className="font-display text-2xl font-bold text-zinc-900 dark:text-zinc-50 sm:text-3xl">
+            {getMessage("categoryPage.exploreMoreTitle") ?? "Looking for something else?"}
+          </h3>
+          <p className="mx-auto mt-4 text-base text-zinc-500 dark:text-zinc-400 max-w-md">
+            {getMessage("categoryPage.exploreMoreDesc") ??
+              "Explore other categories or browse our complete collection of guides."}
+          </p>
+          <div className="mt-8 flex flex-wrap justify-center gap-4">
+            <Link
+              href="/guides"
+              className={cn(
+                "group inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest transition-colors",
+                textColor
+              )}
+            >
+              <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
+              {getMessage("categoryPage.allGuides") ?? "All Guides"}
+            </Link>
+            <span className="text-zinc-300 dark:text-zinc-700">|</span>
+            <Link
+              href="/"
+              className="group inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-zinc-900 dark:text-zinc-100 transition-colors hover:opacity-70"
+            >
+              Go to Home
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </Link>
           </div>
         </div>
       </section>

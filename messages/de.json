@@ -13,9 +13,7 @@
   "home": {
     "heroTitle": "Neu in München?",
     "heroTitleHighlight": "Wir sind für dich da.",
-    "heroSubtitle": "Guides, Orte und KI-Helfer für Marokkanerinnen und Marokkaner, die in München ankommen. Gestartet von",
-    "heroCommunity": "Hamza Chaouki",
-    "heroSubtitle2": ", getragen von der Community.",
+    "heroSubtitle": "Guides, Orte und KI-Helfer für Marokkanerinnen und Marokkaner, die in München ankommen.",
     "searchPlaceholder": "Such nach „Anmeldung“, „WG-Zimmer“ oder „Halal-Metzger“ …",
     "quickLinks": {
       "findHousing": "Wohnung finden",
@@ -1388,32 +1386,867 @@
   },
   "legal": {
     "privacy": {
-      "title": "Datenschutzerklärung",
-      "intro": "Atlas Munich ist ein nicht-kommerzielles Open-Source-Projekt zur persönlichen Weiterbildung. Diese Datenschutzerklärung beschreibt, welche begrenzten Daten verarbeitet werden.",
-      "controller": "Atlas Munich, München, Deutschland",
-      "contact": "Für Datenschutzanfragen: [Ihre E-Mail]",
-      "dataCollected": {
-        "title": "Verarbeitete Daten",
-        "analytics": "Wir verwenden Vercel Analytics, um die Nutzung der Website zu verstehen (Gerätetyp, besuchte Seiten, ungefähre Region). Es werden keine identifizierbaren Nutzungsprofile erstellt.",
-        "prompts": "Eingetippter Text wird an einen KI-Anbieter gesendet, um Antworten zu erzeugen, und kann kurzzeitig gespeichert werden. Es findet keine Identifizierung von Personen statt."
+      "title": "Unsere",
+      "titleHighlight": "Datenschutzerklärung",
+      "subtitle": "Was Atlas Munich mit Daten macht, zuerst verständlich und danach verbindlich im Detail. Erstellt nach DSGVO, Bundesdatenschutzgesetz und TDDDG.",
+      "ui": {
+        "contents": "Inhalt",
+        "section": "Abschnitt",
+        "of": "von",
+        "readAll": "Ganzes Dokument lesen",
+        "readOne": "Abschnittsweise lesen",
+        "print": "Drucken oder als PDF sichern",
+        "previous": "Zurück",
+        "next": "Weiter",
+        "version": "Fassung",
+        "effective": "Gültig seit",
+        "authority": "Aufsichtsbehörde",
+        "addressMissing": "Hier muss noch eine ladungsfähige Anschrift veröffentlicht werden, wie es § 5 DDG und § 18 Abs. 2 MStV verlangen. Bitte postalAddress in src/lib/legal-config.ts setzen.",
+        "questionsTitle": "Eine Frage zu Ihren Daten?",
+        "questionsBody": "Auskunft, Berichtigung, Löschung, Widerspruch oder alles andere aus dieser Erklärung: Schreiben Sie uns, wir antworten innerhalb eines Monats, kostenlos, auf Deutsch, Englisch oder Französisch.",
+        "writeUs": "Schreiben Sie uns"
       },
-      "cookies": "Atlas Munich verwendet keine Tracking-Cookies. Analysen laufen soweit möglich serverseitig.",
-      "lawfulBasis": "Die Verarbeitung erfolgt auf Grundlage berechtigten Interesses (Art. 6(1)(f) DSGVO).",
-      "thirdParties": "Wir nutzen Drittanbieter wie Vercel (Hosting + Analytics) und Google Gemini (KI-Antworten). Deren Datenschutzrichtlinien gelten zusätzlich.",
-      "dataRetention": "Nicht-identifizierende Daten werden nur kurz gespeichert, soweit zur Funktion des Dienstes nötig.",
-      "rights": "Sie haben Rechte auf Auskunft, Einschränkung oder Löschung gemäß DSGVO.",
-      "updates": "Diese Datenschutzerklärung kann aktualisiert werden. Die neueste Version steht auf dieser Seite."
+      "sections": [
+        {
+          "id": "overview",
+          "title": "Auf einen Blick",
+          "summary": "Die kurze Fassung in einfacher Sprache. Verbindlich sind die folgenden Abschnitte.",
+          "blocks": [
+            {
+              "t": "p",
+              "x": "{entity} ist eine kostenlose, nicht kommerzielle Open-Source-Informationsseite für Neuankömmlinge in München. Sie wurde so gebaut, dass sie nützlich ist, ohne mehr über Sie zu erheben, als für die Auslieferung einer Seite nötig ist."
+            },
+            {
+              "t": "list",
+              "x": [
+                "Keine Nutzerkonten, keine Registrierung, kein Newsletter und kein Werbenetzwerk.",
+                "Keine Tracking-Cookies, kein seitenübergreifendes Profiling und kein Verkauf oder Austausch personenbezogener Daten mit Datenhändlern.",
+                "Die Statistik ist aggregiert und cookielos, wir zählen Seitenaufrufe, ohne Sie wiederzuerkennen.",
+                "Die KI-Assistenten übermitteln Ihre Eingaben an einen KI-Auftragsverarbeiter, damit eine Antwort erzeugt werden kann. Bitte geben Sie dort keine persönlichen oder sensiblen Angaben ein.",
+                "Ihre Rechte nach der DSGVO gelten vollständig, sind für Sie kostenlos und stehen in Abschnitt 10."
+              ]
+            },
+            {
+              "t": "note",
+              "x": "Diese Übersicht dient nur der Orientierung. Wo sie von einem der folgenden Abschnitte abweicht, gilt der jeweilige Abschnitt."
+            }
+          ]
+        },
+        {
+          "id": "controller",
+          "title": "Wer verantwortlich ist",
+          "summary": "Verantwortliche Stelle, Anbieterkennzeichnung und der Weg zu einem Menschen.",
+          "blocks": [
+            {
+              "t": "p",
+              "x": "Verantwortlicher im Sinne des Art. 4 Nr. 7 DSGVO für die in dieser Erklärung beschriebenen Verarbeitungen ist der unten genannte Betreiber von {entity}. Dieselben Angaben dienen als Anbieterkennzeichnung nach § 5 des Digitale-Dienste-Gesetzes (DDG) und § 18 Abs. 2 des Medienstaatsvertrags (MStV)."
+            },
+            {
+              "t": "controller"
+            },
+            {
+              "t": "p",
+              "x": "{entity} wird ehrenamtlich und nicht kommerziell betrieben. Da wir weder besondere Kategorien personenbezogener Daten in großem Umfang verarbeiten noch eine regelmäßige und systematische umfangreiche Überwachung durchführen, sind wir nicht verpflichtet, einen Datenschutzbeauftragten nach Art. 37 DSGVO zu benennen. Anfragen zum Datenschutz gehen an die oben genannte Adresse und werden vom Betreiber persönlich bearbeitet."
+            },
+            {
+              "t": "p",
+              "x": "Wir sind in Deutschland niedergelassen und richten uns an den deutschen und europäischen Markt. Für diesen Dienst gelten daher die DSGVO, das Bundesdatenschutzgesetz (BDSG) und das Telekommunikation-Digitale-Dienste-Datenschutz-Gesetz (TDDDG)."
+            }
+          ]
+        },
+        {
+          "id": "data",
+          "title": "Was wir verarbeiten",
+          "summary": "Alle Datenkategorien, die der Dienst berührt, mit Zweck, Rechtsgrundlage und Speicherdauer.",
+          "blocks": [
+            {
+              "t": "p",
+              "x": "Sie können jeden Ratgeber, jede Antwort und jeden Ortseintrag auf {entity} lesen, ohne uns etwas über sich mitzuteilen. Die folgenden Kategorien sind die vollständige Aufstellung der Daten, die der Dienst verarbeitet."
+            },
+            {
+              "t": "h",
+              "x": "Zugriffs- und Server-Logdaten"
+            },
+            {
+              "t": "p",
+              "x": "Bei jedem Abruf einer Seite oder Datei verarbeitet unser Hosting-Anbieter technische Verbindungsdaten: die IP-Adresse des anfragenden Geräts, Datum und Uhrzeit, die angeforderte Ressource, den HTTP-Status und die übertragene Datenmenge, die verweisende Seite sowie die von Ihrem Gerät übermittelten Browser- und Betriebssystemkennungen. Diese Verarbeitung ist technisch erforderlich, um die Seite auszuliefern und den Dienst stabil und sicher zu halten. Die Daten werden nicht mit anderen Quellen zusammengeführt und nicht zu Ihrer Identifizierung genutzt."
+            },
+            {
+              "t": "h",
+              "x": "Nutzungsstatistik"
+            },
+            {
+              "t": "p",
+              "x": "Wir verwenden Vercel Web Analytics und Vercel Speed Insights. Beide arbeiten cookielos und setzen oder lesen keine Kennungen auf Ihrem Gerät. Ausgewertet werden aggregierte Kennzahlen wie Seitenaufrufe, Herkunftskategorie, Region auf Länderebene, Gerätetyp und Ladezeiten. Ein kurzlebiger, nicht umkehrbarer Hash aus Anfrageeigenschaften dient allein dazu, einen Besuch von einem anderen zu unterscheiden, und ist für uns keiner Person zuzuordnen."
+            },
+            {
+              "t": "h",
+              "x": "Gespräche mit den KI-Assistenten"
+            },
+            {
+              "t": "p",
+              "x": "Wenn Sie einen Assistenten öffnen, werden Ihre Nachrichten, der gewählte Assistent, Ihre Oberflächensprache und der Pfad der Seite, auf der Sie sich befanden, an unseren KI-Auftragsverarbeiter übermittelt, damit eine Antwort erzeugt werden kann. Gespräche werden von uns in keiner Datenbank gespeichert und mit keinem Profil verknüpft. Die technischen Einzelheiten stehen in Abschnitt 6."
+            },
+            {
+              "t": "h",
+              "x": "Missbrauchsvermeidung"
+            },
+            {
+              "t": "p",
+              "x": "Damit ein einzelner Client den Assistenten-Endpunkt nicht überlastet, wird die von unserem Hosting-Proxy übermittelte IP-Adresse zusammen mit einem Anfragezähler für ein gleitendes Zeitfenster von zehn Minuten im flüchtigen Arbeitsspeicher gehalten und danach verworfen. Diese Zähler werden nicht auf Datenträger geschrieben."
+            },
+            {
+              "t": "h",
+              "x": "Kontakt per E-Mail"
+            },
+            {
+              "t": "p",
+              "x": "Wenn Sie uns schreiben, verarbeiten wir Ihre Adresse und den Inhalt Ihrer Nachricht, um Ihnen zu antworten, und bewahren die Korrespondenz auf, soweit eine gesetzliche Aufbewahrungspflicht besteht. Für andere Zwecke wird nichts davon verwendet."
+            },
+            {
+              "t": "table",
+              "head": [
+                "Daten",
+                "Zweck",
+                "Rechtsgrundlage",
+                "Speicherdauer"
+              ],
+              "rows": [
+                [
+                  "Zugriffs- und Server-Logs",
+                  "Auslieferung der Seite, Stabilität, IT-Sicherheit",
+                  "Art. 6 Abs. 1 lit. f DSGVO, berechtigtes Interesse an einem funktionierenden und sicheren Dienst",
+                  "Beim Hosting-Anbieter für einen kurzen Betriebszeitraum, in der Regel nicht länger als 30 Tage"
+                ],
+                [
+                  "Cookielose Statistik",
+                  "Verstehen, welche Inhalte nützlich sind und wie schnell Seiten laden",
+                  "Art. 6 Abs. 1 lit. f DSGVO, berechtigtes Interesse an der Verbesserung der Inhalte",
+                  "Nur aggregierte Kennzahlen, keine Rohkennung über den Besuch hinaus"
+                ],
+                [
+                  "Nachrichten an die KI-Assistenten",
+                  "Erzeugung der von Ihnen angefragten Antwort",
+                  "Art. 6 Abs. 1 lit. b und f DSGVO, Erbringung der von Ihnen angeforderten Leistung",
+                  "Von uns nicht gespeichert. Beim KI-Auftragsverarbeiter bis zu 30 Tage zur Missbrauchskontrolle, danach gelöscht"
+                ],
+                [
+                  "Zähler zur Ratenbegrenzung (IP)",
+                  "Abwehr von Missbrauch und Überlastung",
+                  "Art. 6 Abs. 1 lit. f und Art. 32 DSGVO, Sicherheit der Verarbeitung",
+                  "Nur flüchtiger Speicher, höchstens 10 Minuten"
+                ],
+                [
+                  "Lokaler Speicher auf Ihrem Gerät",
+                  "Merken der gewählten Darstellung und ob der Assistent bereits geöffnet wurde",
+                  "§ 25 Abs. 2 Nr. 2 TDDDG, unbedingt erforderlich, und Art. 6 Abs. 1 lit. f DSGVO",
+                  "Bis Sie den Browserspeicher leeren"
+                ],
+                [
+                  "E-Mail-Korrespondenz",
+                  "Beantwortung Ihrer Anfrage",
+                  "Art. 6 Abs. 1 lit. b oder f DSGVO",
+                  "Gelöscht, sobald der Vorgang abgeschlossen ist und keine Aufbewahrungspflicht besteht"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "legalBasis",
+          "title": "Rechtsgrundlagen",
+          "summary": "Welcher Artikel der DSGVO welche Verarbeitung erlaubt, samt Abwägung zu unseren berechtigten Interessen.",
+          "blocks": [
+            {
+              "t": "defs",
+              "x": [
+                {
+                  "k": "Art. 6 Abs. 1 lit. a, Einwilligung",
+                  "v": "Sollten wir jemals um eine Einwilligung bitten, etwa bei Einführung eines optionalen eingebetteten Dienstes, erfolgt die Verarbeitung erst nach Ihrer Zustimmung, und Sie können sie jederzeit mit Wirkung für die Zukunft widerrufen."
+                },
+                {
+                  "k": "Art. 6 Abs. 1 lit. b, Leistung auf Ihre Anfrage",
+                  "v": "Die Antwort eines von Ihnen geöffneten Assistenten ist eine Verarbeitung, die zur Erbringung der von Ihnen angeforderten Leistung erforderlich ist."
+                },
+                {
+                  "k": "Art. 6 Abs. 1 lit. c, rechtliche Verpflichtung",
+                  "v": "Soweit gesetzliche Pflichten uns zur Aufbewahrung oder Herausgabe verpflichten, etwa aufgrund einer rechtmäßigen behördlichen Anordnung."
+                },
+                {
+                  "k": "Art. 6 Abs. 1 lit. f, berechtigte Interessen",
+                  "v": "Betrieb, Absicherung und Verbesserung eines kostenlosen Informationsangebots, wie in der folgenden Abwägung dargestellt."
+                }
+              ]
+            },
+            {
+              "t": "h",
+              "x": "Unsere Abwägung zu den berechtigten Interessen"
+            },
+            {
+              "t": "p",
+              "x": "Unser Interesse besteht darin, eine Seite zu betreiben, die lädt, erreichbar bleibt, Missbrauch standhält und besser wird. Die Verarbeitung beschränkt sich auf das, was ein Webserver zwangsläufig sieht, zuzüglich aggregierter Statistik. Wir bilden keine Profile, verfolgen Sie nicht über Seiten hinweg und reichern die Daten aus keiner weiteren Quelle an. Da der Eingriff minimal ist und keine verständige Besucherin und kein verständiger Besucher erwartet, dass eine Website ohne dies funktioniert, überwiegen Ihre Interessen und Grundrechte unseres Erachtens nicht. Sie können jederzeit aus Gründen, die sich aus Ihrer besonderen Situation ergeben, nach Art. 21 Abs. 1 DSGVO widersprechen."
+            },
+            {
+              "t": "note",
+              "x": "Die Bereitstellung von Daten ist weder gesetzlich noch vertraglich vorgeschrieben. Sie können die Seite lesen, ohne die Assistenten zu nutzen oder uns zu schreiben, und es werden Ihnen dadurch keine Inhalte vorenthalten."
+            }
+          ]
+        },
+        {
+          "id": "storage",
+          "title": "Cookies und lokaler Speicher",
+          "summary": "Was auf Ihrem Gerät gespeichert wird, warum es einwilligungsfrei ist und wie Sie es entfernen.",
+          "blocks": [
+            {
+              "t": "p",
+              "x": "{entity} verwendet keine Tracking-Cookies, keine Werbepixel, keine Social-Media-Plugins und kein Fingerprinting. Es gibt kein Einwilligungsbanner, weil wir keine Verarbeitung durchführen, die nach § 25 Abs. 1 TDDDG einwilligungspflichtig wäre."
+            },
+            {
+              "t": "p",
+              "x": "Zwei Einträge werden im lokalen Speicher Ihres Browsers abgelegt. Beide sind unbedingt erforderlich, um den von Ihnen ausdrücklich gewünschten Dienst bereitzustellen, und daher nach § 25 Abs. 2 Nr. 2 TDDDG einwilligungsfrei. Sie verbleiben auf Ihrem Gerät, sind nur für diese Seite lesbar und werden nie an uns übertragen."
+            },
+            {
+              "t": "table",
+              "head": [
+                "Name",
+                "Art",
+                "Zweck",
+                "Dauer"
+              ],
+              "rows": [
+                [
+                  "theme",
+                  "Lokaler Speicher",
+                  "Merkt, ob Sie helle, dunkle oder systemabhängige Darstellung gewählt haben",
+                  "Bis Sie ihn löschen"
+                ],
+                [
+                  "atlas-chatbot-interacted",
+                  "Lokaler Speicher",
+                  "Verhindert, dass der Assistent seine Einführung wiederholt, nachdem Sie ihn genutzt haben",
+                  "Bis Sie ihn löschen"
+                ]
+              ]
+            },
+            {
+              "t": "p",
+              "x": "Sie können beide jederzeit über die Browsereinstellungen für Websitedaten löschen, danach funktioniert die Seite unverändert weiter. Ihr Browser erlaubt Ihnen gegebenenfalls auch, die Speicherung für diese Seite vollständig zu blockieren."
+            },
+            {
+              "t": "p",
+              "x": "Die Kartenkacheln auf der Orte-Seite werden von einem Dritten geladen, wobei Ihre IP-Adresse übermittelt wird. Das ist in Abschnitt 7 beschrieben."
+            }
+          ]
+        },
+        {
+          "id": "ai",
+          "title": "Die KI-Assistenten",
+          "summary": "Was mit Ihren Eingaben geschieht, wer sie verarbeitet und welche Grenzen Sie annehmen sollten.",
+          "blocks": [
+            {
+              "t": "note",
+              "x": "Sie interagieren mit einem System künstlicher Intelligenz und nicht mit einem Menschen. Darauf wird in der Oberfläche hingewiesen, wie es Art. 50 der KI-Verordnung der EU verlangt. Antworten können falsch sein. Geben Sie niemals Passwörter, Ausweis- oder Aufenthaltstitelnummern, Gesundheitsangaben, Finanzdaten oder personenbezogene Daten anderer Personen in einen Chat ein."
+            },
+            {
+              "t": "p",
+              "x": "Die Assistenten laufen auf einem großen Sprachmodell, das OpenAI als unser Auftragsverarbeiter betreibt. Beim Senden einer Nachricht werden übermittelt: der Text Ihrer Nachricht, bis zu die letzten zwanzig Beiträge des laufenden Gesprächs als Kontext, der gewählte Assistent, Ihre Oberflächensprache und der Pfad der Seite, auf der Sie sich befanden. Mehr wird nicht mitgesendet: kein Name, kein Konto, kein Cookie und keine Statistikkennung."
+            },
+            {
+              "t": "p",
+              "x": "Wir speichern Ihre Gespräche nicht. Sie bestehen nur, solange der Browser-Tab geöffnet bleibt, und sind nach dem Schließen oder Neuladen verschwunden. Nach den geltenden API-Bedingungen werden Ein- und Ausgaben nicht zum Training der Modelle des Anbieters verwendet und ausschließlich zur Missbrauchserkennung bis zu dreißig Tage vorgehalten und danach gelöscht, sofern nicht gesetzlich eine längere Frist gilt."
+            },
+            {
+              "t": "p",
+              "x": "Nachrichtenlänge, Gesprächslänge und Anfragehäufigkeit sind begrenzt, sowohl zum Schutz des Dienstes als auch, um die übermittelte Datenmenge von vornherein klein zu halten."
+            },
+            {
+              "t": "h",
+              "x": "Keine automatisierte Entscheidungsfindung"
+            },
+            {
+              "t": "p",
+              "x": "Die Assistenten liefern Informationen, mehr nicht. Es ergeht keine automatisierte Entscheidung, die Ihnen gegenüber rechtliche Wirkung entfaltet oder Sie in ähnlicher Weise erheblich beeinträchtigt, weshalb Art. 22 DSGVO nicht einschlägig ist. Ob Sie einer Antwort folgen, entscheiden allein Sie, und wir empfehlen, Wichtiges bei der amtlichen Quelle zu prüfen."
+            },
+            {
+              "t": "h",
+              "x": "Richtigkeit und menschliche Aufsicht"
+            },
+            {
+              "t": "p",
+              "x": "KI-Ausgaben können veraltet, unvollständig oder mit großer Überzeugung falsch sein, besonders bei Aufenthalts-, Steuer-, Gesundheits- und Rechtsfragen, deren Regeln sich häufig ändern. Behandeln Sie jede Antwort als Ausgangspunkt eigener Recherche. Melden Sie uns eine falsche oder schädliche Antwort, und wir prüfen die zugrunde liegenden Anweisungen."
+            }
+          ]
+        },
+        {
+          "id": "recipients",
+          "title": "Empfänger und Auftragsverarbeiter",
+          "summary": "Die beteiligten Dritten, was sie jeweils erhalten und in welcher Rolle.",
+          "blocks": [
+            {
+              "t": "p",
+              "x": "Wir halten die Zahl der Dritten so klein, wie es bei einer modernen Website möglich ist. Wo ein Anbieter personenbezogene Daten in unserem Auftrag verarbeitet, besteht ein Auftragsverarbeitungsvertrag nach Art. 28 DSGVO. Wir verkaufen keine personenbezogenen Daten, geben sie nicht an Datenhändler weiter und nutzen sie nicht für Werbung."
+            },
+            {
+              "t": "table",
+              "head": [
+                "Anbieter",
+                "Rolle",
+                "Was übermittelt wird",
+                "Wo"
+              ],
+              "rows": [
+                [
+                  "Vercel Inc. und Vercel GmbH",
+                  "Auftragsverarbeiter: Hosting, Auslieferung, cookielose Statistik",
+                  "Verbindungsdaten einschließlich IP-Adresse, angeforderter Ressource und technischer Header",
+                  "Europäische Union und Vereinigte Staaten"
+                ],
+                [
+                  "OpenAI Ireland Ltd. und OpenAI, L.L.C.",
+                  "Auftragsverarbeiter: Inferenz des KI-Modells",
+                  "Der Inhalt Ihrer Assistenten-Nachrichten und die Systemanweisungen",
+                  "Europäische Union und Vereinigte Staaten"
+                ],
+                [
+                  "CARTO (Kartenkacheln)",
+                  "Eigenständig Verantwortlicher für den Kachelabruf",
+                  "Ihre IP-Adresse und die von Ihrem Browser angeforderten Kacheln, nur auf der Orte-Seite und nur solange eine Karte angezeigt wird",
+                  "Europäische Union und Vereinigte Staaten"
+                ],
+                [
+                  "E-Mail-Anbieter",
+                  "Auftragsverarbeiter für Korrespondenz",
+                  "Was immer Sie uns schreiben",
+                  "Europäische Union"
+                ]
+              ]
+            },
+            {
+              "t": "h",
+              "x": "Links auf andere Websites"
+            },
+            {
+              "t": "p",
+              "x": "Unsere Ratgeber verweisen auf Behörden, Hochschulen, Wohnungsportale und ähnliche Angebote. Sobald Sie einem solchen Link folgen, befinden Sie sich auf einer fremden Seite mit eigener Datenschutzerklärung, auf die wir keinen Einfluss haben und für die wir keine Verantwortung übernehmen. Der QR-Code auf der Über-uns-Seite wird von unserem Server abgerufen, nicht von Ihrem Browser, sodass Ihre Adresse jenem Dienst nicht offengelegt wird."
+            },
+            {
+              "t": "p",
+              "x": "Über die Tabelle hinaus werden personenbezogene Daten nur offengelegt, soweit wir gesetzlich dazu verpflichtet sind, etwa aufgrund einer rechtmäßigen Anordnung einer zuständigen Behörde oder eines Gerichts."
+            }
+          ]
+        },
+        {
+          "id": "transfers",
+          "title": "Übermittlung in Drittländer",
+          "summary": "Wann Daten den EWR verlassen und welche Garantien sie begleiten.",
+          "blocks": [
+            {
+              "t": "p",
+              "x": "Einige der oben genannten Anbieter sind in den Vereinigten Staaten niedergelassen oder verarbeiten dort Daten, sodass eine Übermittlung in ein Drittland im Sinne des Kapitels V der DSGVO stattfindet."
+            },
+            {
+              "t": "list",
+              "x": [
+                "Ist der Empfänger nach dem EU-US Data Privacy Framework zertifiziert, stützt sich die Übermittlung auf den Angemessenheitsbeschluss der Europäischen Kommission vom 10. Juli 2023 nach Art. 45 DSGVO.",
+                "Andernfalls stützt sich die Übermittlung auf die von der Europäischen Kommission erlassenen Standardvertragsklauseln nach Art. 46 Abs. 2 lit. c DSGVO, ergänzt, soweit erforderlich, um eine Folgenabschätzung der Übermittlung und technische Maßnahmen wie Transportverschlüsselung.",
+                "Bietet ein Anbieter die Verarbeitung innerhalb der Europäischen Union an, wählen wir diese Option."
+              ]
+            },
+            {
+              "t": "p",
+              "x": "Bitte beachten Sie, dass Behörden in den Vereinigten Staaten grundsätzlich Zugriff auf Daten verlangen können, die bei ihrer Jurisdiktion unterliegenden Anbietern liegen, und dass die dortigen Rechtsbehelfe nicht denen des EU-Rechts entsprechen müssen. Eine Kopie der bestehenden Garantien können Sie über die Kontaktangaben in Abschnitt 2 anfordern."
+            }
+          ]
+        },
+        {
+          "id": "retention",
+          "title": "Speicherdauer und Löschung",
+          "summary": "Wie lange jede Kategorie aufbewahrt wird und was danach geschieht.",
+          "blocks": [
+            {
+              "t": "p",
+              "x": "Wir speichern personenbezogene Daten nur so lange, wie der Zweck ihrer Erhebung es erfordert. Danach werden sie gelöscht oder, wenn eine überwiegende Aufbewahrungspflicht besteht, in der weiteren Verarbeitung eingeschränkt."
+            },
+            {
+              "t": "list",
+              "x": [
+                "Server-Logs: beim Hosting-Anbieter für einen kurzen Betriebszeitraum, in der Regel nicht länger als dreißig Tage, sofern nicht ein konkreter Sicherheitsvorfall eine längere Prüfung erfordert.",
+                "Statistik: über den Besuch hinaus bestehen nur aggregierte Kennzahlen, denen sich niemand mehr zuordnen lässt.",
+                "Assistenten-Gespräche: von uns gar nicht gespeichert, beim KI-Auftragsverarbeiter bis zu dreißig Tage zur Missbrauchserkennung.",
+                "Zähler zur Ratenbegrenzung: nur im flüchtigen Speicher, höchstens zehn Minuten, und bei jeder Bereitstellung oder jedem Neustart verloren.",
+                "Lokaler Speicher: vollständig in Ihrer Hand und jederzeit entfernbar.",
+                "E-Mail: gelöscht, sobald der Vorgang erledigt ist, sofern nicht handels- oder steuerrechtliche Pflichten die Aufbewahrung verlangen, in welchem Fall die Verarbeitung bis zum Fristablauf eingeschränkt wird."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "rights",
+          "title": "Ihre Rechte",
+          "summary": "Alles, was die DSGVO Ihnen gewährt, wie Sie es nutzen und wo Sie sich beschweren können.",
+          "blocks": [
+            {
+              "t": "p",
+              "x": "Ihnen stehen hinsichtlich der Sie betreffenden personenbezogenen Daten die folgenden Rechte zu. Die Ausübung ist kostenlos, und wir antworten innerhalb eines Monats nach Eingang Ihres Antrags. Bei komplexen Anträgen kann diese Frist um zwei weitere Monate verlängert werden, worüber wir Sie dann innerhalb des ersten Monats unter Angabe der Gründe unterrichten."
+            },
+            {
+              "t": "defs",
+              "x": [
+                {
+                  "k": "Auskunft, Art. 15",
+                  "v": "Bestätigung, ob wir Sie betreffende Daten verarbeiten, und gegebenenfalls eine Kopie davon nebst Zwecken, Empfängern, Speicherdauer und Herkunft."
+                },
+                {
+                  "k": "Berichtigung, Art. 16",
+                  "v": "Korrektur unrichtiger und Vervollständigung unvollständiger Daten."
+                },
+                {
+                  "k": "Löschung, Art. 17",
+                  "v": "Löschung, wenn die Daten nicht mehr erforderlich sind, Sie eine Einwilligung widerrufen haben, Sie erfolgreich widersprochen haben oder die Verarbeitung unrechtmäßig war."
+                },
+                {
+                  "k": "Einschränkung, Art. 18",
+                  "v": "Kennzeichnung von Daten, sodass sie nur noch gespeichert werden, etwa während ein Streit über ihre Richtigkeit geklärt wird."
+                },
+                {
+                  "k": "Datenübertragbarkeit, Art. 20",
+                  "v": "Erhalt der von Ihnen bereitgestellten Daten in einem strukturierten, gängigen und maschinenlesbaren Format sowie deren Übermittlung an einen anderen Verantwortlichen, soweit technisch machbar."
+                },
+                {
+                  "k": "Widerspruch, Art. 21",
+                  "v": "Widerspruch gegen eine auf berechtigten Interessen beruhende Verarbeitung aus Gründen, die sich aus Ihrer besonderen Situation ergeben."
+                },
+                {
+                  "k": "Widerruf der Einwilligung, Art. 7 Abs. 3",
+                  "v": "Beruht eine Verarbeitung auf Einwilligung, können Sie diese jederzeit mit Wirkung für die Zukunft widerrufen, ohne dass die Rechtmäßigkeit der vorherigen Verarbeitung berührt wird."
+                },
+                {
+                  "k": "Beschwerde, Art. 77",
+                  "v": "Beschwerde bei einer Aufsichtsbehörde, insbesondere im Land Ihres gewöhnlichen Aufenthalts, Ihres Arbeitsplatzes oder des Orts des mutmaßlichen Verstoßes."
+                }
+              ]
+            },
+            {
+              "t": "note",
+              "x": "Widerspruchsrecht nach Art. 21 DSGVO: Sie haben das Recht, jederzeit aus Gründen, die sich aus Ihrer besonderen Situation ergeben, gegen die Verarbeitung Sie betreffender personenbezogener Daten Widerspruch einzulegen, die auf Art. 6 Abs. 1 lit. f DSGVO beruht. Im Fall des Widerspruchs verarbeiten wir die betreffenden Daten nicht mehr, es sei denn, wir können zwingende schutzwürdige Gründe nachweisen, die Ihre Interessen, Rechte und Freiheiten überwiegen, oder die Verarbeitung dient der Geltendmachung, Ausübung oder Verteidigung von Rechtsansprüchen. Der Widerspruch kann formlos an {email} gesendet werden."
+            },
+            {
+              "t": "p",
+              "x": "Damit wir antworten können, teilen Sie uns bitte mit, welche Verarbeitung Sie meinen, und bei Anfragen zu Daten, die wir nur technisch erkennen könnten, alles, was uns beim Auffinden hilft. Wir dürfen Angaben zur Bestätigung Ihrer Identität verlangen, jedoch nur bei begründeten Zweifeln und nie mehr als erforderlich."
+            },
+            {
+              "t": "p",
+              "x": "Sie können sich bei jeder Aufsichtsbehörde beschweren. Die für den Verantwortlichen zuständige Behörde ist:"
+            },
+            {
+              "t": "authority"
+            }
+          ]
+        },
+        {
+          "id": "security",
+          "title": "Wie wir den Dienst schützen",
+          "summary": "Die technischen und organisatorischen Maßnahmen nach Art. 32 DSGVO und wie Sie eine Schwachstelle melden.",
+          "blocks": [
+            {
+              "t": "p",
+              "x": "Wir treffen die folgenden Maßnahmen, um personenbezogene Daten vor unbefugtem Zugriff, Veränderung, Verlust und Offenlegung zu schützen. Sie sind dem Risiko einer Seite angemessen, die keine Konten, keine Passwörter und keine Kundendatenbank vorhält, und folgen dem in Art. 32 DSGVO genannten Stand der Technik. Unser Vorgehen orientiert sich an anerkannten Rahmenwerken, darunter ISO/IEC 27001 Anhang A, der OWASP Application Security Verification Standard und die OWASP Top Ten, ohne dass das Projekt eine Zertifizierung nach einem davon beansprucht."
+            },
+            {
+              "t": "list",
+              "x": [
+                "Transportverschlüsselung: die gesamte Seite wird ausschließlich über HTTPS mit aktuellem TLS ausgeliefert, unverschlüsselte Anfragen werden umgeleitet.",
+                "Eine strikte Content Security Policy, die Skripte, Stile, Bilder, Schriften und Netzwerkverbindungen auf bekannte Quellen beschränkt und Einbettung in Frames, Plugins sowie Formularversand an fremde Ziele unterbindet.",
+                "Sicherheits-Header auf jeder Route: X-Content-Type-Options, X-Frame-Options, eine strikte Referrer-Policy und eine Permissions-Policy, die Kamera, Mikrofon, Standort und Interest-Cohort-Schnittstellen abschaltet.",
+                "Härtung der Eingaben am Assistenten-Endpunkt: Begrenzung der Nutzlast, der Nachrichtenzahl und der Nachrichtenlänge, strikte Rollentrennung zwischen Nutzer- und Assistentenbeiträgen, sodass Anweisungen nicht vorgetäuscht werden können, sowie eine Ratenbegrenzung je Client.",
+                "Datenminimierung von Anfang an: keine Konten, keine gespeicherten Passwörter, keine Zahlungsdaten, keine Werbekennungen und keine Besucherdatenbank, die kompromittiert werden könnte.",
+                "Geheimnisse wie API-Schlüssel liegen in der verschlüsselten Umgebungskonfiguration der Hosting-Plattform, nie im Quellcode-Repository, und sind jederzeit austauschbar.",
+                "Abhängigkeiten sind festgeschrieben und werden regelmäßig aktualisiert, der Quellcode ist öffentlich, sodass Schwachstellen offen gefunden und gemeldet werden können.",
+                "Der Zugang zur Deployment-Plattform ist auf die Maintainer beschränkt und durch Mehrfaktor-Authentifizierung geschützt."
+              ]
+            },
+            {
+              "t": "h",
+              "x": "Meldung von Schwachstellen"
+            },
+            {
+              "t": "p",
+              "x": "Wenn Sie eine Sicherheits- oder Datenschutzschwachstelle finden, melden Sie sie bitte an {email}, bevor Sie sie veröffentlichen, und geben Sie uns angemessene Zeit zur Behebung. Gutgläubige Sicherheitsforschung, die die Privatsphäre der Nutzenden achtet, den Betrieb nicht stört und nicht mehr Daten berührt, als zum Nachweis nötig ist, verfolgen wir nicht."
+            },
+            {
+              "t": "h",
+              "x": "Verletzungen des Schutzes personenbezogener Daten"
+            },
+            {
+              "t": "p",
+              "x": "Kommt es zu einer Verletzung, die voraussichtlich zu einem Risiko für Ihre Rechte und Freiheiten führt, melden wir sie der zuständigen Aufsichtsbehörde unverzüglich und nach Möglichkeit binnen zweiundsiebzig Stunden nach Bekanntwerden, entsprechend Art. 33 DSGVO. Besteht voraussichtlich ein hohes Risiko für Sie, benachrichtigen wir die Betroffenen zusätzlich unmittelbar, wie es Art. 34 DSGVO verlangt."
+            },
+            {
+              "t": "p",
+              "x": "Kein Onlinedienst kann absolute Sicherheit zusagen. Die Übertragung über das Internet birgt stets ein Restrisiko, was ein weiterer Grund ist, keine sensiblen Angaben in ein Chatfenster zu tippen."
+            }
+          ]
+        },
+        {
+          "id": "minors",
+          "title": "Kinder und Jugendliche",
+          "summary": "An wen sich der Dienst richtet und wie wir mit Daten Minderjähriger umgehen.",
+          "blocks": [
+            {
+              "t": "p",
+              "x": "{entity} richtet sich an Studierende, Berufstätige und Familien, die nach München kommen, und nicht an Kinder. Wir verarbeiten wissentlich keine personenbezogenen Daten von Personen unter sechzehn Jahren. In Deutschland setzt Art. 8 DSGVO in Verbindung mit der nationalen Altersgrenze das sechzehnte Lebensjahr als Alter fest, ab dem ein Kind bei Diensten der Informationsgesellschaft selbst einwilligen kann."
+            },
+            {
+              "t": "p",
+              "x": "Wenn Sie Elternteil oder sorgeberechtigt sind und vermuten, dass ein Kind uns personenbezogene Daten übermittelt hat, insbesondere über ein Assistentengespräch, wenden Sie sich an {email}, und wir löschen unverzüglich, was wir zuordnen können."
+            }
+          ]
+        },
+        {
+          "id": "contact",
+          "title": "Aktualisierungen, Kontakt und Beschwerden",
+          "summary": "Die Fassung dieser Erklärung, der Weg zu uns und der Weg zur Aufsicht.",
+          "blocks": [
+            {
+              "t": "p",
+              "x": "Wir überprüfen diese Erklärung bei jeder Änderung des Dienstes, bei jedem Anbieterwechsel und mindestens einmal jährlich. Fassung und Datum am Kopf dieser Seite bezeichnen stets den geltenden Text. Wesentliche Änderungen kündigen wir vor ihrem Wirksamwerden auf der Seite an, soweit das praktikabel ist, und für Ihren Besuch gilt die zu diesem Zeitpunkt geltende Fassung. Frühere Fassungen bleiben in der Historie des öffentlichen Quellcode-Repositorys unter {repo} einsehbar."
+            },
+            {
+              "t": "p",
+              "x": "Für jede Frage, jeden Antrag und jede Beschwerde zum Datenschutz schreiben Sie an {email} und sagen Sie bitte deutlich, worum es Ihnen geht. Wir antworten auf Deutsch, Englisch oder Französisch."
+            },
+            {
+              "t": "p",
+              "x": "Ihnen bleibt stets das Recht, sich bei einer Aufsichtsbehörde zu beschweren, sei es bei der für uns zuständigen oder bei der an Ihrem Wohn- oder Arbeitsort."
+            }
+          ]
+        }
+      ]
     },
     "terms": {
-      "title": "Nutzungsbedingungen",
-      "intro": "Atlas Munich ist ein nicht-kommerzielles Open-Source-Projekt. Durch die Nutzung stimmen Sie diesen Bedingungen zu.",
-      "use": "Bitte missbrauchen Sie den Dienst nicht, überlasten Sie ihn nicht und senden Sie keinen rechtswidrigen Inhalt.",
-      "aiDisclaimer": "Von KI erzeugte Inhalte können falsch sein. Verlassen Sie sich nicht darauf für wichtige Entscheidungen.",
-      "noWarranty": "Der Dienst wird ohne Gewähr und ohne Anspruch auf Verfügbarkeit bereitgestellt.",
-      "liability": "Für Schäden, die durch Nutzung oder Nichtverfügbarkeit entstehen, übernehmen wir keine Haftung.",
-      "ip": "Code und Design gehören dem Projektersteller. Die Lizenz finden Sie im GitHub-Repository.",
-      "law": "Rechtliche Grundlage ist das deutsche Recht. Gerichtsstand ist München.",
-      "contact": "Kontakt: [Ihre E-Mail]"
+      "title": "Unsere",
+      "titleHighlight": "Nutzungsbedingungen",
+      "subtitle": "Die Regeln für die Nutzung von Atlas Munich, die Grenzen dessen, was ein kostenloses Gemeinschaftsprojekt zusagen kann, und die Rechte, die Ihnen als Verbraucherin oder Verbraucher nach deutschem und europäischem Recht bleiben.",
+      "ui": {
+        "contents": "Inhalt",
+        "section": "Abschnitt",
+        "of": "von",
+        "readAll": "Ganzes Dokument lesen",
+        "readOne": "Abschnittsweise lesen",
+        "print": "Drucken oder als PDF sichern",
+        "previous": "Zurück",
+        "next": "Weiter",
+        "version": "Fassung",
+        "effective": "Gültig seit",
+        "authority": "Aufsichtsbehörde",
+        "addressMissing": "Hier muss noch eine ladungsfähige Anschrift veröffentlicht werden, wie es § 5 DDG und § 18 Abs. 2 MStV verlangen. Bitte postalAddress in src/lib/legal-config.ts setzen.",
+        "questionsTitle": "Etwas unklar?",
+        "questionsBody": "Wir erklären eine Klausel lieber vorher, als später über sie zu streiten. Schreiben Sie uns, wir antworten auf Deutsch, Englisch oder Französisch.",
+        "writeUs": "Schreiben Sie uns"
+      },
+      "sections": [
+        {
+          "id": "overview",
+          "title": "Auf einen Blick",
+          "summary": "Die kurze Fassung in einfacher Sprache. Verbindlich sind die nummerierten Abschnitte.",
+          "blocks": [
+            {
+              "t": "p",
+              "x": "{entity} ist eine kostenlose, nicht kommerzielle Open-Source-Informationsseite. Diese Bedingungen regeln, was Sie erwarten dürfen, was Sie nicht tun dürfen und wie die Haftung verteilt ist. Sie bilden ab dem Moment Ihrer Nutzung eine verbindliche Vereinbarung zwischen Ihnen und dem Betreiber."
+            },
+            {
+              "t": "list",
+              "x": [
+                "Alles hier ist kostenlos. Es gibt kein Konto, kein Abonnement, keine Zahlung und keine Werbung.",
+                "Die Inhalte werden von der Gemeinschaft gepflegt und können falsch oder veraltet sein. Sie sind keine Rechts-, Aufenthalts-, Steuer-, Gesundheits- oder Finanzberatung.",
+                "Die Assistenten sind KI-Systeme. Ihre Antworten müssen überprüft werden, bevor Sie sich darauf verlassen.",
+                "Nutzen Sie den Dienst rechtmäßig, greifen Sie ihn nicht an, scrapen Sie ihn nicht aggressiv und überlasten Sie ihn nicht.",
+                "Nichts in diesen Bedingungen beschränkt Ihre zwingenden Verbraucherrechte, und nichts schließt die Haftung für Verletzungen von Leben, Körper oder Gesundheit sowie für Vorsatz und grobe Fahrlässigkeit aus."
+              ]
+            },
+            {
+              "t": "note",
+              "x": "Diese Zusammenfassung dient nur der Orientierung. Wo sie von einem der folgenden Abschnitte abweicht, gilt der jeweilige Abschnitt."
+            }
+          ]
+        },
+        {
+          "id": "scope",
+          "title": "Geltungsbereich und Zustandekommen",
+          "summary": "Wer die Parteien sind, wann die Vereinbarung beginnt und was sie erfasst.",
+          "blocks": [
+            {
+              "t": "p",
+              "x": "Diese Bedingungen regeln Ihre Nutzung der Website unter {site} samt aller Unterseiten, Inhalte, Downloads und KI-Assistenten, hier zusammen der Dienst genannt. Anbieter ist der unten genannte Betreiber, bezeichnet als wir oder uns. Sie werden als Sie oder Nutzer bezeichnet."
+            },
+            {
+              "t": "controller"
+            },
+            {
+              "t": "p",
+              "x": "Mit dem Zugriff auf den Dienst oder seiner Nutzung akzeptieren Sie diese Bedingungen und die Datenschutzerklärung. Wenn Sie sie nicht akzeptieren, nutzen Sie den Dienst bitte nicht. Es wird kein Konto angelegt, kein Entgelt erhoben und keine gesonderte Erklärung verlangt: die Nutzung selbst ist die Zustimmung."
+            },
+            {
+              "t": "p",
+              "x": "Eigene Bedingungen von Ihnen werden nicht Vertragsbestandteil, auch wenn wir ihnen nicht ausdrücklich widersprechen."
+            },
+            {
+              "t": "p",
+              "x": "Nutzen Sie den Dienst als Verbraucherin oder Verbraucher im Sinne des § 13 BGB, gelten die zwingenden verbraucherschützenden Vorschriften zu Ihren Gunsten und gehen allem vor, was hier für Sie ungünstiger wäre."
+            },
+            {
+              "t": "p",
+              "x": "Diese Bedingungen werden zur Bequemlichkeit in mehreren Sprachen bereitgestellt. Bei Widersprüchen ist die englische Fassung maßgeblich, unbeschadet zwingender Vorschriften, die zu Ihren Gunsten eine andere Sprache verlangen."
+            }
+          ]
+        },
+        {
+          "id": "service",
+          "title": "Der Dienst und seine Verfügbarkeit",
+          "summary": "Was Atlas Munich bietet, was es nicht ist und was wir zur Erreichbarkeit zusagen können.",
+          "blocks": [
+            {
+              "t": "p",
+              "x": "{entity} sammelt praktische Informationen zum Ankommen und Leben in München: Ratgeber, häufige Fragen, ein Verzeichnis von Orten und KI-Assistenten, die Fragen zu diesem Material beantworten. Es handelt sich um ein Informationsangebot. Es ist keine Agentur, kein Vermittler, keine Behörde, keine Rechts- oder Steuerberatung, kein Wohnungsportal und keine amtliche Quelle, und es entsteht zwischen uns kein Beratungs-, Auftrags- oder Vertretungsverhältnis."
+            },
+            {
+              "t": "p",
+              "x": "Der Dienst wird unentgeltlich und freiwillig bereitgestellt. Wir dürfen Funktionen, Inhalte oder den gesamten Dienst jederzeit ändern, erweitern, beschränken oder einstellen, und wir sind nicht verpflichtet, einen bestimmten Ratgeber, Eintrag oder Assistenten verfügbar zu halten."
+            },
+            {
+              "t": "p",
+              "x": "Wir schulden keine bestimmte Verfügbarkeit. Wartung, Bereitstellungen, Ausfälle bei Anbietern, Angriffe und höhere Gewalt können den Dienst unterbrechen. Wir streben angemessene Kontinuität an, geben jedoch keine Verfügbarkeitsgarantie und keine Service-Level-Zusage."
+            },
+            {
+              "t": "p",
+              "x": "Der Dienst führt keine Nutzerkonten und speichert keine von Nutzenden erstellten Inhalte, es kann hier also nichts von Ihnen verloren gehen. Was Sie behalten möchten, bewahren Sie bitte selbst auf."
+            }
+          ]
+        },
+        {
+          "id": "acceptableUse",
+          "title": "Zulässige Nutzung",
+          "summary": "Was Sie mit dem Dienst tun dürfen und welches Verhalten zur Sperrung führt.",
+          "blocks": [
+            {
+              "t": "p",
+              "x": "Sie dürfen den Dienst zu persönlichen Informationszwecken nutzen und anderen dabei helfen. Sie dürfen ihn mit Quellenangabe zitieren und frei auf ihn verlinken. Darüber hinaus verpflichten Sie sich, Folgendes zu unterlassen."
+            },
+            {
+              "t": "list",
+              "x": [
+                "Gegen Gesetze verstoßen, Rechte anderer verletzen oder den Dienst zur Vorbereitung oder Begehung rechtswidriger Handlungen nutzen.",
+                "Inhalte übermitteln, die rechtswidrig, ehrverletzend, hasserfüllt, diskriminierend, belästigend, sexuell ausbeuterisch oder gewaltverherrlichend sind oder solche Taten fördern.",
+                "Unbefugten Zugang zu Teilen des Dienstes, seiner Hosting-Umgebung, seinen Konten oder verbundenen Systemen versuchen oder seine Sicherheit ohne unsere vorherige schriftliche Erlaubnis untersuchen, scannen oder testen.",
+                "Den Dienst stören oder überlasten, einschließlich Überlastungsangriffen, automatisierter Anfrageflut, Umgehung der Ratenbegrenzung oder Aushebelung technischer Beschränkungen.",
+                "Inhalte in großem Umfang auslesen, sammeln oder systematisch extrahieren oder dafür automatisierte Agenten einsetzen, ausgenommen angemessene und rücksichtsvolle Indexierung durch öffentliche Suchmaschinen.",
+                "Die Assistenten nutzen, um rechtswidrige Inhalte zu erzeugen, die Systemanweisungen auszulesen, Schutzmaßnahmen zu umgehen oder den Endpunkt in ein eigenes Produkt umzuleiten.",
+                "Schadsoftware oder Code einbringen, der den Dienst beschädigen, außer Funktion setzen oder beeinträchtigen soll.",
+                "Den Dienst oder seine Ausgaben als eigene amtliche, berufliche oder verbindliche Beratung darstellen oder unseren Namen, unser Logo oder unsere Marke so verwenden, dass eine Billigung oder Verbindung suggeriert wird.",
+                "Personenbezogene Daten anderer Personen ohne Rechtsgrundlage in einen Assistenten eingeben."
+              ]
+            },
+            {
+              "t": "p",
+              "x": "Anfragen an den Assistenten-Endpunkt sind in ihrer Häufigkeit begrenzt. Ist Ihre Nutzung missbräuchlich, für andere schädlich oder eine Gefahr für Stabilität oder Sicherheit des Dienstes, können wir den Zugang technisch oder auf andere Weise vorübergehend oder dauerhaft und ohne Vorankündigung sperren. Legt das Verhalten eine Straftat nahe, können wir es den zuständigen Behörden anzeigen."
+            },
+            {
+              "t": "p",
+              "x": "Erscheint Ihnen ein Inhalt auf dem Dienst rechtswidrig, melden Sie ihn bitte an {email} unter Angabe der Fundstelle und der Gründe. Wir prüfen solche Meldungen und entfernen oder sperren Inhalte, die wir für rechtswidrig halten, und teilen Ihnen das Ergebnis mit, sofern Sie uns eine Antwortmöglichkeit gegeben haben."
+            }
+          ]
+        },
+        {
+          "id": "ai",
+          "title": "Nutzung der KI-Assistenten",
+          "summary": "Transparenz, Grenzen und Ihre Pflichten bei der Nutzung eines KI-Systems.",
+          "blocks": [
+            {
+              "t": "note",
+              "x": "Sie kommunizieren mit einem System künstlicher Intelligenz und nicht mit einem Menschen. Dieser Hinweis erfolgt gemäß Art. 50 der Verordnung (EU) 2024/1689, der KI-Verordnung. Die Ausgaben werden automatisiert erzeugt und vor der Anzeige nicht von einer Person geprüft."
+            },
+            {
+              "t": "p",
+              "x": "Die Assistenten erzeugen Text statistisch. Sie können falsch, unvollständig, veraltet oder in sich widersprüchlich sein und eine flüssige Antwort geben, die schlicht unzutreffend ist. Sie haben keinen Zugriff auf Ihre Akte, Ihren Vorgang, ein Behördensystem oder eine Live-Datenbank und können Ihnen nicht sagen, wie eine Behörde entscheiden wird."
+            },
+            {
+              "t": "list",
+              "x": [
+                "Prüfen Sie alles Wichtige vor dem Handeln bei der amtlichen Quelle, insbesondere alles zu Visum, Aufenthalt, Anmeldung, Krankenversicherung, Steuern, Arbeit, Miete oder Geld.",
+                "Geben Sie keine Passwörter, Ausweis- oder Aufenthaltstitelnummern, Bankdaten, Gesundheitsdaten oder personenbezogene Daten anderer Personen ein.",
+                "Verwenden Sie die Ausgaben nicht als Rechts-, Gesundheits-, Steuer- oder Finanzberatung und geben Sie sie Dritten gegenüber nicht als solche aus.",
+                "Nutzen Sie die Assistenten nicht auf eine Weise, die die Nutzungsrichtlinien des zugrunde liegenden KI-Anbieters verbieten, da diese Beschränkungen an Sie durchgereicht werden."
+              ]
+            },
+            {
+              "t": "p",
+              "x": "An den für Sie erzeugten Antworten beanspruchen wir kein Eigentum. Ähnliche oder identische Ausgaben können auch für andere Nutzende erzeugt werden, Antworten sind also nicht exklusiv und möglicherweise nicht schutzfähig. Für die Verwendung der Ausgaben sind Sie verantwortlich, einschließlich der Prüfung von Rechten Dritter vor einer Weiterveröffentlichung."
+            },
+            {
+              "t": "p",
+              "x": "Der Assistent ist kein Notdienst. Wählen Sie im medizinischen Notfall die 112, bei der Polizei die 110. Für Krisenhilfe nutzen Sie bitte die in unseren Ratgebern genannten örtlichen Stellen."
+            }
+          ]
+        },
+        {
+          "id": "content",
+          "title": "Inhalte, Richtigkeit und Dritte",
+          "summary": "Was die Informationen wert sind, woher sie stammen und wofür wir nicht einstehen.",
+          "blocks": [
+            {
+              "t": "p",
+              "x": "Die Inhalte werden von Freiwilligen sorgfältig aus öffentlichen Quellen und eigener Erfahrung zusammengetragen. Regeln, Gebühren, Fristen, Öffnungszeiten und Ansprechstellen ändern sich dennoch häufig und ohne Ankündigung. Wir gewährleisten nicht, dass Inhalte richtig, aktuell oder vollständig sind, und übernehmen keine Pflicht zur Aktualisierung."
+            },
+            {
+              "t": "p",
+              "x": "Nichts auf dem Dienst ist Rechtsberatung im Sinne des Rechtsdienstleistungsgesetzes und ebenso wenig Steuer-, Aufenthalts-, Gesundheits- oder Finanzberatung, und es kommt kein Beratungsvertrag zustande. Ziehen Sie in wichtigen Angelegenheiten eine qualifizierte Fachperson oder die zuständige Behörde hinzu."
+            },
+            {
+              "t": "p",
+              "x": "Das Verzeichnis von Orten, Betrieben und Dienstleistungen ist rein informativ. Ein Eintrag bedeutet keine Empfehlung, keine Zertifizierung und keine Aussage über Halal-Eigenschaft, Qualität, Preis, Zulassung oder Eignung, und wir stehen mit den Betreibern in keiner Beziehung, sofern nicht ausdrücklich angegeben. Bitte prüfen Sie alles, was Ihnen wichtig ist, unmittelbar dort."
+            },
+            {
+              "t": "p",
+              "x": "Der Dienst enthält Links auf externe Websites. Diese liegen außerhalb unseres Einflusses, und wir machen uns ihre Inhalte nicht zu eigen. Zum Zeitpunkt der Verlinkung waren keine rechtswidrigen Inhalte erkennbar, und wir entfernen Links unverzüglich, sobald wir von einer Rechtsverletzung Kenntnis erlangen. Für verlinkte Inhalte haftet deren Anbieter nach den §§ 7 bis 10 DDG."
+            },
+            {
+              "t": "p",
+              "x": "Wenn Sie uns Korrekturen, Vorschläge oder sonstiges Feedback senden, räumen Sie uns ein unentgeltliches, einfaches, übertragbares, weltweites und zeitlich unbegrenztes Recht ein, dieses als Teil des Dienstes zu nutzen, zu bearbeiten und zu veröffentlichen, und Sie versichern, zur Einräumung dieses Rechts befugt zu sein. Eine Vergütung oder Namensnennung schulden wir für Feedback nicht, nennen Sie aber in der Regel gern."
+            }
+          ]
+        },
+        {
+          "id": "ip",
+          "title": "Geistiges Eigentum und Lizenzen",
+          "summary": "Was uns gehört, was Open Source ist und was Sie weiterverwenden dürfen.",
+          "blocks": [
+            {
+              "t": "p",
+              "x": "Der Quellcode von {entity} ist unter der MIT-Lizenz in unserem öffentlichen Repository unter {repo} veröffentlicht. Ihre Rechte am Code ergeben sich aus dieser Lizenz, und der Lizenztext geht diesem Abschnitt insoweit vor."
+            },
+            {
+              "t": "p",
+              "x": "Redaktionelle Inhalte, Layout, Grafiken, der Markenname, das Logo und die übrigen Gestaltungselemente sind urheber- und leistungsschutzrechtlich geschützt und von der Code-Lizenz nicht erfasst. Sie dürfen Auszüge mit deutlicher Quellenangabe und Link zitieren und Links frei teilen. Systematische Vervielfältigung, die Weiterveröffentlichung wesentlicher Teile und jede kommerzielle Weiterverwendung bedürfen unserer vorherigen schriftlichen Zustimmung."
+            },
+            {
+              "t": "p",
+              "x": "Komponenten Dritter behalten ihre eigenen Lizenzen und Namensnennungen, darunter der Icon-Satz, die Schriften, die Kartenbibliothek, die Kartenkacheln und die zugrunde liegenden Kartendaten. Die Kartendaten stammen von den OpenStreetMap-Mitwirkenden und stehen unter der Open Database License, die Gestaltung der Grundkarte stammt von CARTO. Wo eine Lizenz eine Namensnennung verlangt, wird sie in der Oberfläche angezeigt und darf nicht entfernt werden."
+            },
+            {
+              "t": "p",
+              "x": "Namen, Marken und Logos Dritter, die auf dem Dienst erscheinen, gehören ihren jeweiligen Inhabern und werden beschreibend verwendet, ohne dass eine Verbindung oder Billigung behauptet wird."
+            },
+            {
+              "t": "p",
+              "x": "Wenn Sie der Auffassung sind, dass ein Inhalt auf dem Dienst Ihre Rechte verletzt, schreiben Sie an {email} unter Angabe des betroffenen Materials, des von Ihnen gehaltenen Rechts und eines Nachweises Ihrer Inhaberschaft. Wir prüfen zügig und entfernen rechtsverletzendes Material."
+            }
+          ]
+        },
+        {
+          "id": "liability",
+          "title": "Gewährleistung und Haftung",
+          "summary": "Die Grenzen unserer Verantwortung und die gesetzlichen Grenzen dieser Grenzen.",
+          "blocks": [
+            {
+              "t": "p",
+              "x": "Der Dienst wird unentgeltlich, wie besehen und nach Verfügbarkeit bereitgestellt. Soweit gesetzlich zulässig und im Einklang mit der Haftungsprivilegierung des unentgeltlich Leistenden nach den §§ 521 und 599 BGB übernehmen wir keine Gewähr für Richtigkeit, Vollständigkeit, Eignung für einen bestimmten Zweck, ununterbrochene Verfügbarkeit oder Freiheit von Fehlern oder Schadcode."
+            },
+            {
+              "t": "p",
+              "x": "Unbeschränkt haften wir für Schäden aus der Verletzung des Lebens, des Körpers oder der Gesundheit, bei Vorsatz und grober Fahrlässigkeit, nach dem Produkthaftungsgesetz sowie bei Übernahme einer Garantie oder arglistigem Verschweigen eines Mangels."
+            },
+            {
+              "t": "p",
+              "x": "Bei leichter Fahrlässigkeit haften wir nur für die Verletzung einer wesentlichen Vertragspflicht, also einer Pflicht, deren Erfüllung die ordnungsgemäße Durchführung dieser Vereinbarung überhaupt erst ermöglicht und auf deren Einhaltung Sie regelmäßig vertrauen dürfen. In diesem Fall ist die Haftung auf den vertragstypischen, vorhersehbaren Schaden begrenzt."
+            },
+            {
+              "t": "p",
+              "x": "Eine weitergehende Haftung ist ausgeschlossen. Insbesondere haften wir nicht für mittelbare Schäden und Folgeschäden, entgangenen Gewinn oder Datenverlust und nicht für Entscheidungen, die Sie aufgrund von Inhalten oder KI-Ausgaben treffen, sowie nicht für Kosten, Bußgelder, versäumte Fristen oder von Dritten oder Behörden abgelehnte Anträge."
+            },
+            {
+              "t": "p",
+              "x": "Die vorstehenden Beschränkungen gelten ebenso zugunsten unserer gesetzlichen Vertreter, Beschäftigten und Ehrenamtlichen sowie für deliktische wie für vertragliche Ansprüche. Sie gelten nicht, soweit die Haftung gesetzlich zwingend ist."
+            },
+            {
+              "t": "p",
+              "x": "Für Ereignisse außerhalb unseres zumutbaren Einflussbereichs sind wir nicht verantwortlich, darunter Internet- oder Hosting-Störungen, Ausfälle bei Anbietern, Cyberangriffe, Arbeitskämpfe, Epidemien und hoheitliche Maßnahmen."
+            },
+            {
+              "t": "p",
+              "x": "Für Ihre eigene Nutzung des Dienstes sind Sie verantwortlich. Nimmt ein Dritter uns wegen Ihrer rechtswidrigen Nutzung in Anspruch, stellen Sie uns von diesem Anspruch und den angemessenen Kosten der Rechtsverteidigung frei, es sei denn, Sie haben die Verletzung nicht zu vertreten."
+            }
+          ]
+        },
+        {
+          "id": "termination",
+          "title": "Sperrung und Beendigung",
+          "summary": "Wie beide Seiten aussteigen können und was danach fortgilt.",
+          "blocks": [
+            {
+              "t": "p",
+              "x": "Sie können die Nutzung jederzeit beenden. Es bedarf keiner Mitteilung, und es ist nichts zu kündigen."
+            },
+            {
+              "t": "p",
+              "x": "Wir dürfen Ihren Zugang sperren, Inhalte entfernen oder den Dienst ganz oder teilweise einstellen, wenn Sie gegen diese Bedingungen verstoßen, wenn Sicherheit oder Stabilität des Dienstes es erfordern oder wenn wir den Betrieb des Projekts beenden. Ist eine Unterbrechung nicht eilbedürftig, kündigen wir sie angemessen an."
+            },
+            {
+              "t": "p",
+              "x": "Bestimmungen, die ihrer Natur nach fortgelten sollen, insbesondere zu geistigem Eigentum, Haftung, Freistellung und anwendbarem Recht, bleiben nach dem Ende Ihrer Nutzung in Kraft."
+            }
+          ]
+        },
+        {
+          "id": "changes",
+          "title": "Änderungen dieser Bedingungen",
+          "summary": "Wann wir sie anpassen dürfen und was eine Anpassung für Sie bedeutet.",
+          "blocks": [
+            {
+              "t": "p",
+              "x": "Wir dürfen diese Bedingungen anpassen, wenn eine Änderung des Dienstes, unserer Anbieter, der Rechtsprechung oder des anwendbaren Rechts es erforderlich macht oder um einen Fehler oder eine Unklarheit zu beheben. Fassung und Datum am Kopf dieser Seite bezeichnen den jeweils geltenden Text."
+            },
+            {
+              "t": "p",
+              "x": "Änderungen werden hier vor ihrem Wirksamwerden veröffentlicht, soweit das praktikabel ist. Da der Dienst ohne Konto und ohne Dauerschuldverhältnis genutzt wird, gilt für Ihre Nutzung die jeweils zum Nutzungszeitpunkt geltende Fassung. Wenn Sie eine geänderte Fassung nicht akzeptieren, besteht Ihr Recht darin, die Nutzung einzustellen."
+            },
+            {
+              "t": "p",
+              "x": "Anpassungen werden niemals dazu genutzt, Ihre zwingenden gesetzlichen Rechte zu verkürzen. Frühere Fassungen bleiben in der Historie des öffentlichen Quellcode-Repositorys unter {repo} einsehbar."
+            }
+          ]
+        },
+        {
+          "id": "law",
+          "title": "Anwendbares Recht und Streitbeilegung",
+          "summary": "Welches Recht gilt, welches Gericht entscheidet und wie es auch ohne geht.",
+          "blocks": [
+            {
+              "t": "p",
+              "x": "Diese Bedingungen und alle daraus entstehenden außervertraglichen Schuldverhältnisse unterliegen dem Recht der Bundesrepublik Deutschland unter Ausschluss des UN-Kaufrechts und unter Ausschluss seiner Kollisionsnormen."
+            },
+            {
+              "t": "p",
+              "x": "Sind Sie Verbraucherin oder Verbraucher mit gewöhnlichem Aufenthalt in einem anderen Staat der Europäischen Union, entzieht Ihnen diese Rechtswahl nicht den Schutz der zwingenden Vorschriften des Rechts Ihres Aufenthaltsstaats, entsprechend Art. 6 der Verordnung (EG) Nr. 593/2008, bekannt als Rom I."
+            },
+            {
+              "t": "p",
+              "x": "Sind Sie Kaufmann, juristische Person des öffentlichen Rechts oder öffentlich-rechtliches Sondervermögen oder haben Sie in Deutschland keinen allgemeinen Gerichtsstand, ist ausschließlicher Gerichtsstand München. Verbraucherinnen und Verbraucher können nach den anwendbaren Verfahrensvorschriften klagen und verklagt werden, insbesondere nach der Verordnung (EU) Nr. 1215/2012."
+            },
+            {
+              "t": "p",
+              "x": "Zur Teilnahme an einem Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle im Sinne des Verbraucherstreitbeilegungsgesetzes sind wir weder verpflichtet noch bereit. Der direkte Kontakt zu uns ist in der Regel schneller: Wir lesen jede Nachricht und versuchen, Beschwerden formlos zu klären."
+            },
+            {
+              "t": "p",
+              "x": "Sollte eine Bestimmung dieser Bedingungen unwirksam oder undurchführbar sein oder werden, bleibt die Wirksamkeit der übrigen Bestimmungen unberührt. An die Stelle der unwirksamen Bestimmung tritt die einschlägige gesetzliche Regelung."
+            },
+            {
+              "t": "p",
+              "x": "Mitteilungen nach diesen Bedingungen richten Sie bitte an {email}. Wir übermitteln Mitteilungen an Sie über den Dienst oder, wenn Sie uns geschrieben haben, als Antwort an Ihre Adresse."
+            }
+          ]
+        }
+      ]
     }
   },
   "tools": {

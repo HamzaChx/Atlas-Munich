@@ -44,10 +44,10 @@ const TIP_TINTS = ["bg-tint-terra", "bg-tint-blue", "bg-tint-green", "bg-tint-sa
 const TIP_ACCENTS = ["text-acc-terra", "text-acc-blue", "text-acc-green", "text-acc-saffron"];
 
 const INK_PILL =
-  "inline-flex items-center gap-2 rounded-full bg-zinc-900 px-6 py-3 text-sm font-semibold text-white shadow-md shadow-zinc-900/10 transition-colors hover:bg-zinc-800 dark:bg-white dark:text-zinc-900 dark:shadow-none dark:hover:bg-zinc-200";
+  "inline-flex items-center gap-2 rounded-full bg-zinc-900 px-6 py-3 text-sm font-semibold text-white shadow-md shadow-zinc-900/10 transition-colors hover:bg-zinc-800 dark:bg-zinc-50 dark:text-zinc-900 dark:shadow-none dark:hover:bg-zinc-200";
 
 const PANEL_CARD =
-  "rounded-3xl bg-card shadow-[0_2px_16px_rgb(0_0_0/0.04)] dark:shadow-none dark:ring-1 dark:ring-white/10";
+  "rounded-3xl bg-card shadow-[0_2px_16px_rgb(0_0_0/0.04)] dark:shadow-none dark:ring-1 dark:ring-border";
 
 function ZelligeWatermark({ className, rotation }: { className: string; rotation: string }) {
   return (
@@ -78,7 +78,7 @@ export async function AssistantLanding({ config }: { config: AssistantLandingCon
     <div className="min-h-screen bg-background">
       {/* ========== HERO ========== */}
       <section className="mx-auto max-w-3xl px-5 pb-10 pt-14 text-center sm:pb-14 sm:pt-20">
-        <h1 className="rise rise-1 font-display text-3xl font-bold tracking-tight text-zinc-900 sm:text-5xl dark:text-white">
+        <h1 className="rise rise-1 font-display text-3xl font-bold tracking-tight text-zinc-900 sm:text-5xl dark:text-zinc-50">
           {t("title")} <span className="text-bloom">{t("titleHighlight")}</span>
         </h1>
         <p className="rise rise-2 mx-auto mt-4 max-w-xl text-base leading-relaxed text-zinc-500 sm:text-lg dark:text-zinc-400">
@@ -89,7 +89,7 @@ export async function AssistantLanding({ config }: { config: AssistantLandingCon
       {/* ========== ASSISTANT PANEL ========== */}
       <section className="mx-auto max-w-5xl px-4 pb-16 sm:px-6 sm:pb-20 lg:px-8">
         <div
-          className={`rise rise-3 relative overflow-hidden rounded-[2rem] p-7 sm:p-10 dark:ring-1 dark:ring-white/10 ${accent.tint}`}
+          className={`rise rise-3 relative overflow-hidden rounded-[2rem] p-7 sm:p-10 dark:ring-1 dark:ring-border ${accent.tint}`}
         >
           <ZelligeWatermark
             className={`right-0 top-1/2 h-[19rem] w-[19rem] -translate-y-1/2 translate-x-[30%] ${accent.acc}`}
@@ -117,7 +117,7 @@ export async function AssistantLanding({ config }: { config: AssistantLandingCon
                 </span>
               </div>
               <div>
-                <p className="font-display text-lg font-bold text-zinc-900 dark:text-white">
+                <p className="font-display text-lg font-bold text-zinc-900 dark:text-zinc-50">
                   {config.name}
                 </p>
                 <p className={`text-xs font-semibold ${accent.acc}`}>{tagline}</p>
@@ -125,7 +125,7 @@ export async function AssistantLanding({ config }: { config: AssistantLandingCon
             </div>
 
             <div className="flex-1 text-center sm:text-left">
-              <p className="font-display text-lg font-semibold leading-snug text-zinc-900 sm:text-xl dark:text-white">
+              <p className="font-display text-lg font-semibold leading-snug text-zinc-900 sm:text-xl dark:text-zinc-50">
                 {t("intro")}
               </p>
               <div className="mt-6">
@@ -141,7 +141,7 @@ export async function AssistantLanding({ config }: { config: AssistantLandingCon
 
       {/* ========== HOW IT WORKS ========== */}
       <section className="reveal mx-auto max-w-5xl px-4 pb-16 sm:px-6 sm:pb-20 lg:px-8">
-        <h2 className="font-display text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl dark:text-white">
+        <h2 className="font-display text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl dark:text-zinc-50">
           {t("features.title")}
         </h2>
 
@@ -149,7 +149,7 @@ export async function AssistantLanding({ config }: { config: AssistantLandingCon
           {config.stepIcons.map((Icon, i) => (
             <div key={i} className={`relative p-6 sm:p-7 ${PANEL_CARD}`}>
               <span
-                className={`absolute right-6 top-6 font-display text-2xl font-bold tabular-nums text-zinc-200 dark:text-white/10`}
+                className={`absolute right-6 top-6 font-display text-2xl font-bold tabular-nums text-zinc-200 dark:text-foreground/10`}
               >
                 {`0${i + 1}`}
               </span>
@@ -158,7 +158,7 @@ export async function AssistantLanding({ config }: { config: AssistantLandingCon
               >
                 <Icon className="h-5 w-5" />
               </span>
-              <h3 className="font-display text-base font-bold text-zinc-900 dark:text-white">
+              <h3 className="font-display text-base font-bold text-zinc-900 dark:text-zinc-50">
                 {t(`features.step${i + 1}Title`)}
               </h3>
               <p className="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
@@ -171,7 +171,7 @@ export async function AssistantLanding({ config }: { config: AssistantLandingCon
 
       {/* ========== TIPS ========== */}
       <section className="reveal mx-auto max-w-5xl px-4 pb-16 sm:px-6 sm:pb-20 lg:px-8">
-        <h2 className="font-display text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl dark:text-white">
+        <h2 className="font-display text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl dark:text-zinc-50">
           {t("tips.title")}
         </h2>
 
@@ -184,7 +184,7 @@ export async function AssistantLanding({ config }: { config: AssistantLandingCon
                 <Icon className="h-5 w-5" />
               </span>
               <div className="min-w-0">
-                <h3 className="font-display text-base font-bold text-zinc-900 dark:text-white">
+                <h3 className="font-display text-base font-bold text-zinc-900 dark:text-zinc-50">
                   {t(`tips.tip${i + 1}Title`)}
                 </h3>
                 <p className="mt-1.5 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
@@ -198,7 +198,7 @@ export async function AssistantLanding({ config }: { config: AssistantLandingCon
 
       {/* ========== OUTBOUND LINKS ========== */}
       <section className="reveal mx-auto max-w-5xl px-4 pb-16 sm:px-6 sm:pb-20 lg:px-8">
-        <h2 className="font-display text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl dark:text-white">
+        <h2 className="font-display text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl dark:text-zinc-50">
           {t(`${config.linksKey}.title`)}
         </h2>
         <p className="mt-2 text-sm text-zinc-500 dark:text-zinc-400">
@@ -222,7 +222,7 @@ export async function AssistantLanding({ config }: { config: AssistantLandingCon
                 <LinkIcon className="h-4 w-4" />
               </span>
               <div className="min-w-0 flex-1">
-                <p className="font-display text-base font-bold text-zinc-900 dark:text-white">
+                <p className="font-display text-base font-bold text-zinc-900 dark:text-zinc-50">
                   {link.name}
                 </p>
                 <p className="truncate text-sm text-zinc-500 dark:text-zinc-400">{link.label}</p>
@@ -239,7 +239,7 @@ export async function AssistantLanding({ config }: { config: AssistantLandingCon
       {/* ========== CLOSING CHAT BAND ========== */}
       <section className="mx-auto max-w-5xl px-4 pb-20 sm:px-6 sm:pb-24 lg:px-8">
         <div
-          className={`reveal relative overflow-hidden rounded-[2rem] px-6 py-12 text-center sm:py-14 dark:ring-1 dark:ring-white/10 ${accent.tint}`}
+          className={`reveal relative overflow-hidden rounded-[2rem] px-6 py-12 text-center sm:py-14 dark:ring-1 dark:ring-border ${accent.tint}`}
         >
           <ZelligeWatermark
             className={`left-0 top-1/2 h-[17rem] w-[17rem] -translate-x-[35%] -translate-y-1/2 ${accent.acc}`}
@@ -260,7 +260,7 @@ export async function AssistantLanding({ config }: { config: AssistantLandingCon
               />
             </div>
 
-            <h2 className="font-display text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl dark:text-white">
+            <h2 className="font-display text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl dark:text-zinc-50">
               {config.name}
             </h2>
             <p className={`mt-1 text-sm font-semibold ${accent.acc}`}>{tagline}</p>

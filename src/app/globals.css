@@ -32,15 +32,16 @@
   /* Moroccan red, from the brand emblem (theme-aware) */
   --color-bloom: var(--bloom);
 
-  /* The zellige palette, deep register — fixed in both themes.
-     Majorelle blue doubles as the Bavarian Raute blue. */
-  --color-majorelle-deep: oklch(0.44 0.125 263);
-  --color-majorelle-deeper: oklch(0.34 0.115 266);
-  --color-tile-blue: oklch(0.46 0.14 262);
-  --color-tile-terra: oklch(0.58 0.125 42);
-  --color-tile-green: oklch(0.5 0.1 166);
-  --color-tile-plum: oklch(0.45 0.1 330);
-  --color-tile-saffron: oklch(0.8 0.13 85);
+  /* The zellige palette, deep register.
+     Majorelle blue doubles as the Bavarian Raute blue. Theme-aware, so the
+     rosette reads as inlaid ceramic against plaster and against night. */
+  --color-majorelle-deep: var(--majorelle-deep);
+  --color-majorelle-deeper: var(--majorelle-deeper);
+  --color-tile-blue: var(--tile-blue);
+  --color-tile-terra: var(--tile-terra);
+  --color-tile-green: var(--tile-green);
+  --color-tile-plum: var(--tile-plum);
+  --color-tile-saffron: var(--tile-saffron);
 
   /* Theme-aware soft tints (surfaces) and accents (text/markers on tints) */
   --color-tint-terra: var(--tint-terra);
@@ -54,95 +55,104 @@
   --color-acc-plum: var(--acc-plum);
   --color-acc-saffron: var(--acc-saffron);
 
-  /* Recast the zinc ramp: warm plaster lights, blue-ink darks.
-     Keeps contrast relationships in components that still use zinc-*. */
-  --color-zinc-50: oklch(0.975 0.005 80);
-  --color-zinc-100: oklch(0.955 0.006 80);
-  --color-zinc-200: oklch(0.91 0.008 80);
-  --color-zinc-300: oklch(0.86 0.009 80);
-  --color-zinc-400: oklch(0.68 0.012 265);
-  --color-zinc-500: oklch(0.55 0.014 265);
-  --color-zinc-600: oklch(0.44 0.016 265);
-  --color-zinc-700: oklch(0.35 0.018 265);
-  --color-zinc-800: oklch(0.26 0.02 265);
-  --color-zinc-900: oklch(0.21 0.022 265);
-  --color-zinc-950: oklch(0.17 0.022 265);
+  /* Recast the zinc ramp, and make it theme-aware: warm plaster in light,
+     a near-neutral night ramp in dark. Keeps contrast relationships in
+     components that still use zinc-*. */
+  --color-zinc-50: var(--zinc-50);
+  --color-zinc-100: var(--zinc-100);
+  --color-zinc-200: var(--zinc-200);
+  --color-zinc-300: var(--zinc-300);
+  --color-zinc-400: var(--zinc-400);
+  --color-zinc-500: var(--zinc-500);
+  --color-zinc-600: var(--zinc-600);
+  --color-zinc-700: var(--zinc-700);
+  --color-zinc-800: var(--zinc-800);
+  --color-zinc-900: var(--zinc-900);
+  --color-zinc-950: var(--zinc-950);
 
   /* Recast legacy accent ramps (emerald/blue/indigo/violet/purple/teal/cyan)
-     onto the single majorelle-blue accent so components still using those
-     classes stay on-palette. orange/amber keep Tailwind defaults for
+     onto the single Moroccan-green accent so components still using those
+     classes stay on-palette. All seven alias one shared, theme-aware ramp
+     (--legacy-*), tuned per theme so a leftover emerald fill on an older
+     page stays legible in both. orange/amber keep Tailwind defaults for
      semantic warning states. */
-  --color-emerald-50: oklch(0.962 0.015 155);
-  --color-emerald-100: oklch(0.935 0.03 155);
-  --color-emerald-200: oklch(0.885 0.05 155);
-  --color-emerald-300: oklch(0.815 0.075 155);
-  --color-emerald-400: oklch(0.715 0.1 155);
-  --color-emerald-500: oklch(0.595 0.12 155);
-  --color-emerald-600: oklch(0.5 0.13 155);
-  --color-emerald-700: oklch(0.44 0.12 155);
-  --color-emerald-800: oklch(0.37 0.1 155);
-  --color-emerald-900: oklch(0.31 0.08 155);
-  --color-blue-50: oklch(0.962 0.015 155);
-  --color-blue-100: oklch(0.935 0.03 155);
-  --color-blue-200: oklch(0.885 0.05 155);
-  --color-blue-300: oklch(0.815 0.075 155);
-  --color-blue-400: oklch(0.715 0.1 155);
-  --color-blue-500: oklch(0.595 0.12 155);
-  --color-blue-600: oklch(0.5 0.13 155);
-  --color-blue-700: oklch(0.44 0.12 155);
-  --color-blue-800: oklch(0.37 0.1 155);
-  --color-blue-900: oklch(0.31 0.08 155);
-  --color-blue-950: oklch(0.25 0.06 155);
-  --color-indigo-50: oklch(0.962 0.015 155);
-  --color-indigo-100: oklch(0.935 0.03 155);
-  --color-indigo-200: oklch(0.885 0.05 155);
-  --color-indigo-300: oklch(0.815 0.075 155);
-  --color-indigo-400: oklch(0.715 0.1 155);
-  --color-indigo-500: oklch(0.595 0.12 155);
-  --color-indigo-600: oklch(0.5 0.13 155);
-  --color-indigo-700: oklch(0.44 0.12 155);
-  --color-indigo-800: oklch(0.37 0.1 155);
-  --color-indigo-900: oklch(0.31 0.08 155);
-  --color-violet-50: oklch(0.962 0.015 155);
-  --color-violet-100: oklch(0.935 0.03 155);
-  --color-violet-200: oklch(0.885 0.05 155);
-  --color-violet-300: oklch(0.815 0.075 155);
-  --color-violet-400: oklch(0.715 0.1 155);
-  --color-violet-500: oklch(0.595 0.12 155);
-  --color-violet-600: oklch(0.5 0.13 155);
-  --color-violet-700: oklch(0.44 0.12 155);
-  --color-violet-800: oklch(0.37 0.1 155);
-  --color-violet-900: oklch(0.31 0.08 155);
-  --color-purple-50: oklch(0.962 0.015 155);
-  --color-purple-100: oklch(0.935 0.03 155);
-  --color-purple-200: oklch(0.885 0.05 155);
-  --color-purple-300: oklch(0.815 0.075 155);
-  --color-purple-400: oklch(0.715 0.1 155);
-  --color-purple-500: oklch(0.595 0.12 155);
-  --color-purple-600: oklch(0.5 0.13 155);
-  --color-purple-700: oklch(0.44 0.12 155);
-  --color-purple-800: oklch(0.37 0.1 155);
-  --color-purple-900: oklch(0.31 0.08 155);
-  --color-teal-50: oklch(0.962 0.015 155);
-  --color-teal-100: oklch(0.935 0.03 155);
-  --color-teal-200: oklch(0.885 0.05 155);
-  --color-teal-300: oklch(0.815 0.075 155);
-  --color-teal-400: oklch(0.715 0.1 155);
-  --color-teal-500: oklch(0.595 0.12 155);
-  --color-teal-600: oklch(0.5 0.13 155);
-  --color-teal-700: oklch(0.44 0.12 155);
-  --color-teal-800: oklch(0.37 0.1 155);
-  --color-teal-900: oklch(0.31 0.08 155);
-  --color-cyan-50: oklch(0.962 0.015 155);
-  --color-cyan-100: oklch(0.935 0.03 155);
-  --color-cyan-200: oklch(0.885 0.05 155);
-  --color-cyan-300: oklch(0.815 0.075 155);
-  --color-cyan-400: oklch(0.715 0.1 155);
-  --color-cyan-500: oklch(0.595 0.12 155);
-  --color-cyan-600: oklch(0.5 0.13 155);
-  --color-cyan-700: oklch(0.44 0.12 155);
-  --color-cyan-800: oklch(0.37 0.1 155);
-  --color-cyan-900: oklch(0.31 0.08 155);
+  --color-emerald-50: var(--legacy-50);
+  --color-emerald-100: var(--legacy-100);
+  --color-emerald-200: var(--legacy-200);
+  --color-emerald-300: var(--legacy-300);
+  --color-emerald-400: var(--legacy-400);
+  --color-emerald-500: var(--legacy-500);
+  --color-emerald-600: var(--legacy-600);
+  --color-emerald-700: var(--legacy-700);
+  --color-emerald-800: var(--legacy-800);
+  --color-emerald-900: var(--legacy-900);
+  --color-emerald-950: var(--legacy-950);
+  --color-blue-50: var(--legacy-50);
+  --color-blue-100: var(--legacy-100);
+  --color-blue-200: var(--legacy-200);
+  --color-blue-300: var(--legacy-300);
+  --color-blue-400: var(--legacy-400);
+  --color-blue-500: var(--legacy-500);
+  --color-blue-600: var(--legacy-600);
+  --color-blue-700: var(--legacy-700);
+  --color-blue-800: var(--legacy-800);
+  --color-blue-900: var(--legacy-900);
+  --color-blue-950: var(--legacy-950);
+  --color-indigo-50: var(--legacy-50);
+  --color-indigo-100: var(--legacy-100);
+  --color-indigo-200: var(--legacy-200);
+  --color-indigo-300: var(--legacy-300);
+  --color-indigo-400: var(--legacy-400);
+  --color-indigo-500: var(--legacy-500);
+  --color-indigo-600: var(--legacy-600);
+  --color-indigo-700: var(--legacy-700);
+  --color-indigo-800: var(--legacy-800);
+  --color-indigo-900: var(--legacy-900);
+  --color-indigo-950: var(--legacy-950);
+  --color-violet-50: var(--legacy-50);
+  --color-violet-100: var(--legacy-100);
+  --color-violet-200: var(--legacy-200);
+  --color-violet-300: var(--legacy-300);
+  --color-violet-400: var(--legacy-400);
+  --color-violet-500: var(--legacy-500);
+  --color-violet-600: var(--legacy-600);
+  --color-violet-700: var(--legacy-700);
+  --color-violet-800: var(--legacy-800);
+  --color-violet-900: var(--legacy-900);
+  --color-violet-950: var(--legacy-950);
+  --color-purple-50: var(--legacy-50);
+  --color-purple-100: var(--legacy-100);
+  --color-purple-200: var(--legacy-200);
+  --color-purple-300: var(--legacy-300);
+  --color-purple-400: var(--legacy-400);
+  --color-purple-500: var(--legacy-500);
+  --color-purple-600: var(--legacy-600);
+  --color-purple-700: var(--legacy-700);
+  --color-purple-800: var(--legacy-800);
+  --color-purple-900: var(--legacy-900);
+  --color-purple-950: var(--legacy-950);
+  --color-teal-50: var(--legacy-50);
+  --color-teal-100: var(--legacy-100);
+  --color-teal-200: var(--legacy-200);
+  --color-teal-300: var(--legacy-300);
+  --color-teal-400: var(--legacy-400);
+  --color-teal-500: var(--legacy-500);
+  --color-teal-600: var(--legacy-600);
+  --color-teal-700: var(--legacy-700);
+  --color-teal-800: var(--legacy-800);
+  --color-teal-900: var(--legacy-900);
+  --color-teal-950: var(--legacy-950);
+  --color-cyan-50: var(--legacy-50);
+  --color-cyan-100: var(--legacy-100);
+  --color-cyan-200: var(--legacy-200);
+  --color-cyan-300: var(--legacy-300);
+  --color-cyan-400: var(--legacy-400);
+  --color-cyan-500: var(--legacy-500);
+  --color-cyan-600: var(--legacy-600);
+  --color-cyan-700: var(--legacy-700);
+  --color-cyan-800: var(--legacy-800);
+  --color-cyan-900: var(--legacy-900);
+  --color-cyan-950: var(--legacy-950);
 
   /* shadcn component tokens */
   --color-sidebar-ring: var(--sidebar-ring);
@@ -186,6 +196,42 @@
   /* Plaster & ink */
   --background: oklch(0.978 0.006 80);
   --foreground: oklch(0.23 0.025 265);
+
+  /* Neutral ramp — warm plaster */
+  --zinc-50: oklch(0.975 0.005 80);
+  --zinc-100: oklch(0.955 0.006 80);
+  --zinc-200: oklch(0.91 0.008 80);
+  --zinc-300: oklch(0.86 0.009 80);
+  --zinc-400: oklch(0.68 0.012 265);
+  --zinc-500: oklch(0.55 0.014 265);
+  --zinc-600: oklch(0.44 0.016 265);
+  --zinc-700: oklch(0.35 0.018 265);
+  --zinc-800: oklch(0.26 0.02 265);
+  --zinc-900: oklch(0.21 0.022 265);
+  --zinc-950: oklch(0.17 0.022 265);
+
+  /* Shared ramp behind the legacy emerald/blue/indigo/violet/purple/teal/cyan
+     classes still used by the older pages */
+  --legacy-50: oklch(0.962 0.015 155);
+  --legacy-100: oklch(0.935 0.03 155);
+  --legacy-200: oklch(0.885 0.05 155);
+  --legacy-300: oklch(0.815 0.075 155);
+  --legacy-400: oklch(0.715 0.1 155);
+  --legacy-500: oklch(0.595 0.12 155);
+  --legacy-600: oklch(0.5 0.13 155);
+  --legacy-700: oklch(0.44 0.12 155);
+  --legacy-800: oklch(0.37 0.1 155);
+  --legacy-900: oklch(0.31 0.08 155);
+  --legacy-950: oklch(0.25 0.06 155);
+
+  /* Rosette tiles, deep register on plaster */
+  --majorelle-deep: oklch(0.44 0.125 263);
+  --majorelle-deeper: oklch(0.34 0.115 266);
+  --tile-blue: oklch(0.46 0.14 262);
+  --tile-terra: oklch(0.58 0.125 42);
+  --tile-green: oklch(0.5 0.1 166);
+  --tile-plum: oklch(0.45 0.1 330);
+  --tile-saffron: oklch(0.8 0.13 85);
 
   /* Brand accents */
   --bloom: oklch(0.54 0.19 25);
@@ -233,54 +279,146 @@
   --sidebar-ring: oklch(0.49 0.11 152);
 }
 
+/* ============================================================
+   Dark theme
+
+   Built to be read for a long time, not to look moody in a
+   screenshot. Four decisions carry it:
+
+   1. NEITHER END TOUCHES THE EXTREME. The ground sits at L .185,
+      not near-black, and body text at L .925, not #fff. Pure white
+      on near-black is what makes a dark UI glare and smear at the
+      edges of glyphs; backing both ends off kills that while
+      keeping ~11:1 on body copy.
+
+   2. ELEVATION IS LIGHTNESS, AND THE STEPS ARE BIG ENOUGH TO SEE.
+      ground .185 -> sidebar .215 -> card .265 -> muted .325 ->
+      tint .38 -> border .395 -> input .47. Every step is a real
+      jump, so a panel, a chip and an edge each read as a distinct
+      plane.
+
+   3. COLOURED SURFACES LIVE AT L .38-.41, NEVER BELOW .34. This is
+      the decision that makes the theme look chosen rather than
+      broken. Hue discrimination collapses in the dark: below about
+      L .30 a clay panel, an olive panel and an aubergine panel all
+      just read as "murky", so a set of five of them reads as a
+      mistake rather than a palette. Lifting them into the high .30s
+      is what makes green look green and gold look gold, and it does
+      far more for legibility than chroma ever can. They are still
+      dark surfaces, roughly a twelfth of the luminance of the body
+      text, so a full-width panel never glares.
+
+      The lightness is nudged per hue, because equal L does not mean
+      equal weight: gold reads heavy and olive-ish where blue and
+      plum read clean, so gold is carried at .405 and the rest at
+      about .38.
+
+   4. LIGHTNESS CARRIES THE HUE, CHROMA STAYS MODEST. Because the
+      lift in (3) does the identifying work, tints only need
+      C .042-.058 to read unmistakably as their colour. Pushing
+      chroma instead would give back the saturated colour blocks
+      that made the old theme look like a toy. Chroma is spent on
+      the small marks instead: --acc-* run C .08-.105 as icons,
+      counts, labels and dots on top.
+
+   The neutrals sit on hue 264 at C .006-.013. That is barely any
+   colour at all, just enough to stop grey going flat and muddy;
+   the brand red stays a brand accent (--bloom, the eyebrow dot,
+   the hero highlight) instead of being mixed into every surface.
+   ============================================================ */
+
 .dark {
-  /* Blue-ink night, deepened, with jewel-toned accents for more vibrancy */
-  --background: oklch(0.155 0.026 264);
-  --foreground: oklch(0.96 0.008 85);
+  --background: oklch(0.185 0.006 264);
+  --foreground: oklch(0.925 0.004 264);
 
-  --bloom: oklch(0.72 0.18 25);
-  --zellige: oklch(0.75 0.13 152);
-  --zellige-soft: oklch(0.29 0.05 152);
-  --terracotta: oklch(0.74 0.14 45);
-  --terracotta-soft: oklch(0.3 0.05 45);
-  --saffron: oklch(0.84 0.15 85);
+  /* Neutral ramp. zinc-400 carries almost all secondary copy in the
+     app, so it is held high (L .765) rather than left to fade out. */
+  --zinc-50: oklch(0.957 0.003 264);
+  --zinc-100: oklch(0.932 0.004 264);
+  --zinc-200: oklch(0.893 0.005 264);
+  --zinc-300: oklch(0.84 0.007 264);
+  --zinc-400: oklch(0.765 0.009 264);
+  --zinc-500: oklch(0.655 0.011 264);
+  --zinc-600: oklch(0.535 0.012 264);
+  --zinc-700: oklch(0.435 0.013 264);
+  --zinc-800: oklch(0.34 0.012 264);
+  --zinc-900: oklch(0.265 0.01 264);
+  --zinc-950: oklch(0.185 0.006 264);
 
-  /* Soft tints & accents per hue, richer and more saturated than plaster ground */
-  --tint-terra: oklch(0.29 0.06 45);
-  --tint-blue: oklch(0.285 0.065 262);
-  --tint-green: oklch(0.285 0.055 166);
-  --tint-plum: oklch(0.29 0.06 330);
-  --tint-saffron: oklch(0.3 0.07 85);
-  --acc-terra: oklch(0.8 0.15 45);
-  --acc-blue: oklch(0.82 0.13 258);
-  --acc-green: oklch(0.8 0.13 166);
-  --acc-plum: oklch(0.8 0.13 330);
-  --acc-saffron: oklch(0.87 0.15 85);
+  /* Shared legacy ramp, kept bright enough to stay legible on the
+     older pages that still fill with it */
+  --legacy-50: oklch(0.955 0.015 155);
+  --legacy-100: oklch(0.915 0.035 155);
+  --legacy-200: oklch(0.87 0.055 155);
+  --legacy-300: oklch(0.835 0.08 155);
+  --legacy-400: oklch(0.795 0.1 155);
+  --legacy-500: oklch(0.69 0.12 155);
+  --legacy-600: oklch(0.6 0.12 155);
+  --legacy-700: oklch(0.5 0.105 155);
+  --legacy-800: oklch(0.42 0.08 155);
+  --legacy-900: oklch(0.355 0.06 155);
+  --legacy-950: oklch(0.29 0.045 155);
 
-  --card: oklch(0.205 0.03 264);
-  --card-foreground: oklch(0.96 0.008 85);
-  --popover: oklch(0.205 0.03 264);
-  --popover-foreground: oklch(0.96 0.008 85);
-  --primary: oklch(0.75 0.13 152);
-  --primary-foreground: oklch(0.155 0.026 264);
-  --secondary: oklch(0.26 0.032 264);
-  --secondary-foreground: oklch(0.96 0.008 85);
-  --muted: oklch(0.26 0.032 264);
-  --muted-foreground: oklch(0.72 0.02 264);
-  --accent: oklch(0.29 0.06 152);
-  --accent-foreground: oklch(0.96 0.008 85);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 14%);
-  --ring: oklch(0.75 0.13 152);
-  --sidebar: oklch(0.19 0.028 264);
-  --sidebar-foreground: oklch(0.96 0.008 85);
-  --sidebar-primary: oklch(0.75 0.13 152);
-  --sidebar-primary-foreground: oklch(0.155 0.026 264);
-  --sidebar-accent: oklch(0.26 0.032 264);
-  --sidebar-accent-foreground: oklch(0.96 0.008 85);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.75 0.13 152);
+  /* Rosette tiles: mid register, so the hero panel reads as inlaid
+     ceramic rather than either a glow or a smudge */
+  --majorelle-deep: oklch(0.525 0.11 263);
+  --majorelle-deeper: oklch(0.425 0.1 266);
+  --tile-blue: oklch(0.55 0.115 262);
+  --tile-terra: oklch(0.625 0.11 42);
+  --tile-green: oklch(0.57 0.09 166);
+  --tile-plum: oklch(0.55 0.09 330);
+  --tile-saffron: oklch(0.755 0.115 85);
+
+  /* Brand accents. These are marks, never fields, so they keep the
+     light theme's conviction instead of being washed out. */
+  --bloom: oklch(0.715 0.17 25);
+  --zellige: oklch(0.785 0.13 152);
+  --zellige-soft: oklch(0.378 0.046 155);
+  --terracotta: oklch(0.785 0.12 45);
+  --terracotta-soft: oklch(0.385 0.05 42);
+  --saffron: oklch(0.865 0.135 85);
+
+  /* Panel fills (--tint-*) and the marks that sit on them (--acc-*).
+     See note 3 above: these sit high enough that each hue is named
+     at a glance, and low enough in chroma that a full-width panel
+     is still a surface rather than a slab of colour. */
+  --tint-terra: oklch(0.385 0.05 42);
+  --tint-blue: oklch(0.385 0.058 260);
+  --tint-green: oklch(0.378 0.046 158);
+  --tint-plum: oklch(0.385 0.05 328);
+  --tint-saffron: oklch(0.405 0.042 80);
+  --acc-terra: oklch(0.86 0.1 50);
+  --acc-blue: oklch(0.86 0.085 250);
+  --acc-green: oklch(0.865 0.095 160);
+  --acc-plum: oklch(0.86 0.08 328);
+  --acc-saffron: oklch(0.885 0.105 88);
+
+  --card: oklch(0.265 0.01 264);
+  --card-foreground: oklch(0.925 0.004 264);
+  --popover: oklch(0.29 0.011 264);
+  --popover-foreground: oklch(0.925 0.004 264);
+  --primary: oklch(0.785 0.13 152);
+  --primary-foreground: oklch(0.185 0.006 264);
+  --secondary: oklch(0.325 0.012 264);
+  --secondary-foreground: oklch(0.925 0.004 264);
+  --muted: oklch(0.325 0.012 264);
+  --muted-foreground: oklch(0.765 0.009 264);
+  --accent: oklch(0.378 0.046 155);
+  --accent-foreground: oklch(0.925 0.004 264);
+  --destructive: oklch(0.69 0.185 25);
+  /* Solid hairlines rather than a white wash, sitting just above the
+     tint band so an edge still draws on a coloured panel */
+  --border: oklch(0.395 0.013 264);
+  --input: oklch(0.47 0.014 264);
+  --ring: oklch(0.785 0.13 152);
+  --sidebar: oklch(0.215 0.008 264);
+  --sidebar-foreground: oklch(0.925 0.004 264);
+  --sidebar-primary: oklch(0.785 0.13 152);
+  --sidebar-primary-foreground: oklch(0.185 0.006 264);
+  --sidebar-accent: oklch(0.325 0.012 264);
+  --sidebar-accent-foreground: oklch(0.925 0.004 264);
+  --sidebar-border: oklch(0.395 0.013 264);
+  --sidebar-ring: oklch(0.785 0.13 152);
 }
 
 @layer base {
@@ -500,6 +638,10 @@
     background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
     animation: skeleton-shimmer 1.5s infinite;
   }
+  /* A 40% white sweep blows out in dark; this reads as a pass of light */
+  .dark .skeleton::after {
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.09), transparent);
+  }
   @keyframes skeleton-shimmer {
     100% {
       transform: translateX(100%);
@@ -706,7 +848,7 @@
 }
 
 .dark {
-  --pin-ink: oklch(0.18 0.022 265);
+  --pin-ink: oklch(0.19 0.006 264);
 }
 
 .atlas-map .leaflet-container {
@@ -801,8 +943,8 @@
 }
 
 .dark .atlas-map .leaflet-popup-content-wrapper {
-  outline: 1px solid rgb(255 255 255 / 0.1);
-  box-shadow: 0 18px 45px -14px rgb(0 0 0 / 0.6);
+  outline: 1px solid var(--border);
+  box-shadow: 0 18px 45px -14px rgb(0 0 0 / 0.7);
 }
 
 .atlas-map .leaflet-popup-content {
@@ -820,7 +962,7 @@
 }
 
 .dark .atlas-map .leaflet-popup-tip {
-  outline: 1px solid rgb(255 255 255 / 0.1);
+  outline: 1px solid var(--border);
 }
 
 .atlas-map .leaflet-container a.leaflet-popup-close-button {
@@ -896,4 +1038,52 @@
 .atlas-map .leaflet-control-attribution a {
   color: var(--muted-foreground);
   text-decoration: underline;
+}
+
+/* ------------------------------------------------------------------ *
+ * Print
+ *
+ * A legal text has to be saveable as one complete document. The legal
+ * pages keep every section in the DOM and only hide the inactive ones
+ * on screen, so printing just needs the chrome out of the way and the
+ * page back on a white ground.
+ * ------------------------------------------------------------------ */
+@media print {
+  header,
+  footer,
+  .no-print {
+    display: none !important;
+  }
+
+  :root,
+  html,
+  body {
+    background: #fff !important;
+    color: #000 !important;
+  }
+
+  h1,
+  h2,
+  h3 {
+    break-after: avoid-page;
+  }
+
+  article,
+  table,
+  li {
+    break-inside: avoid-page;
+  }
+
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.85em;
+    word-break: break-all;
+  }
+
+  .rise,
+  .reveal {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }

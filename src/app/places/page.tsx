@@ -98,18 +98,18 @@ export default function PlacesPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* ========== HERO ========== */}
-      <section className="mx-auto flex max-w-2xl flex-col items-center px-5 pb-8 pt-14 text-center sm:pb-10 sm:pt-20">
-        <h1 className="rise rise-1 font-display text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-5xl">
+      <section className="mx-auto flex max-w-2xl flex-col items-center px-5 pb-8 pt-14 text-center sm:pb-10 sm:pt-20 2xl:max-w-3xl">
+        <h1 className="rise rise-1 font-display text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-5xl 2xl:text-6xl">
           {t("title")} <span className="text-bloom">{t("titleHighlight")}</span>
         </h1>
-        <p className="rise rise-2 mt-4 max-w-md text-base leading-relaxed text-zinc-500 dark:text-zinc-400 sm:text-lg">
+        <p className="rise rise-2 mt-4 max-w-md text-base leading-relaxed text-zinc-500 dark:text-zinc-400 sm:text-lg 2xl:max-w-lg 2xl:text-xl">
           {t("subtitle")}
         </p>
       </section>
 
       {/* ========== STICKY FILTER TOOLBAR ========== */}
       <div className="rise rise-3 sticky top-14 z-30 bg-background pb-3 pt-3 shadow-[0_12px_16px_-12px_rgb(0_0_0/0.06)] sm:top-16">
-        <div className="mx-auto flex max-w-7xl flex-col gap-3 px-4 sm:px-6 lg:flex-row lg:items-center lg:px-8">
+        <div className="mx-auto flex max-w-7xl 2xl:max-w-[96rem] flex-col gap-3 px-4 sm:px-6 lg:flex-row lg:items-center lg:px-8 2xl:px-12">
           {/* Search */}
           <div className="relative lg:w-72 lg:shrink-0">
             <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-400 dark:text-zinc-500" />
@@ -118,7 +118,7 @@ export default function PlacesPage() {
               placeholder={t("searchPlaceholder")}
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              className="h-11 w-full rounded-full bg-card pl-11 pr-10 text-sm text-zinc-900 shadow-sm outline-none transition-shadow placeholder:text-zinc-400 focus:ring-2 focus:ring-zellige/40 dark:bg-white/5 dark:text-white dark:shadow-none dark:placeholder:text-zinc-500 dark:ring-1 dark:ring-white/10 dark:focus:ring-zellige/40"
+              className="h-11 w-full rounded-full bg-card pl-11 pr-10 text-sm text-zinc-900 shadow-sm outline-none transition-shadow placeholder:text-zinc-400 focus:ring-2 focus:ring-zellige/40 dark:bg-foreground/[0.075] dark:text-zinc-50 dark:shadow-none dark:placeholder:text-zinc-500 dark:ring-1 dark:ring-border dark:focus:ring-zellige/40"
             />
             {searchQuery && (
               <button
@@ -139,8 +139,8 @@ export default function PlacesPage() {
                 className={cn(
                   "flex items-center gap-1.5 rounded-full px-3.5 py-2 text-[13px] font-semibold transition-all duration-200",
                   selectedCategory === null
-                    ? "bg-zinc-900 text-white dark:bg-white dark:text-zinc-900"
-                    : "text-zinc-500 hover:bg-card hover:text-zinc-900 hover:shadow-sm dark:text-zinc-400 dark:hover:bg-white/5 dark:hover:text-white"
+                    ? "bg-zinc-900 text-white dark:bg-zinc-50 dark:text-zinc-900"
+                    : "text-zinc-500 hover:bg-card hover:text-zinc-900 hover:shadow-sm dark:text-zinc-400 dark:hover:bg-foreground/[0.075] dark:hover:text-zinc-50"
                 )}
               >
                 {t("filters.all")}
@@ -166,8 +166,8 @@ export default function PlacesPage() {
                     className={cn(
                       "flex items-center gap-1.5 rounded-full px-3.5 py-2 text-[13px] font-semibold transition-all duration-200",
                       active
-                        ? "bg-zinc-900 text-white dark:bg-white dark:text-zinc-900"
-                        : "text-zinc-500 hover:bg-card hover:text-zinc-900 hover:shadow-sm dark:text-zinc-400 dark:hover:bg-white/5 dark:hover:text-white"
+                        ? "bg-zinc-900 text-white dark:bg-zinc-50 dark:text-zinc-900"
+                        : "text-zinc-500 hover:bg-card hover:text-zinc-900 hover:shadow-sm dark:text-zinc-400 dark:hover:bg-foreground/[0.075] dark:hover:text-zinc-50"
                     )}
                   >
                     <span
@@ -205,15 +205,15 @@ export default function PlacesPage() {
               </button>
             )}
             {/* Map leads, since it is what the page opens on */}
-            <div className="flex rounded-full bg-card p-1 shadow-sm dark:bg-white/5 dark:shadow-none">
+            <div className="flex rounded-full bg-card p-1 shadow-sm dark:bg-foreground/[0.075] dark:shadow-none">
               <button
                 onClick={() => setViewMode("map")}
                 aria-pressed={viewMode === "map"}
                 className={cn(
                   "flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[13px] font-semibold transition-all",
                   viewMode === "map"
-                    ? "bg-zinc-900 text-white dark:bg-white dark:text-zinc-900"
-                    : "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+                    ? "bg-zinc-900 text-white dark:bg-zinc-50 dark:text-zinc-900"
+                    : "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
                 )}
               >
                 <Map className="h-3.5 w-3.5" />
@@ -225,8 +225,8 @@ export default function PlacesPage() {
                 className={cn(
                   "flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[13px] font-semibold transition-all",
                   viewMode === "browse"
-                    ? "bg-zinc-900 text-white dark:bg-white dark:text-zinc-900"
-                    : "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+                    ? "bg-zinc-900 text-white dark:bg-zinc-50 dark:text-zinc-900"
+                    : "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
                 )}
               >
                 <Columns2 className="h-3.5 w-3.5" />
@@ -238,7 +238,7 @@ export default function PlacesPage() {
       </div>
 
       {/* ========== DIRECTORY ========== */}
-      <section className="mx-auto max-w-7xl px-4 pb-16 pt-8 sm:px-6 sm:pb-24 lg:px-8">
+      <section className="mx-auto max-w-7xl 2xl:max-w-[96rem] px-4 pb-16 pt-8 sm:px-6 sm:pb-24 lg:px-8 2xl:px-12">
         {/* Map view */}
         {viewMode === "map" && (
           <PlacesMap places={localizedPlaces} categoryLabels={categoryLabelMap} />
@@ -250,7 +250,7 @@ export default function PlacesPage() {
             <>
               {isFiltering && (
                 <p className="mb-5 text-sm text-zinc-500 dark:text-zinc-400">
-                  <span className="text-base font-bold text-zinc-900 dark:text-white">
+                  <span className="text-base font-bold text-zinc-900 dark:text-zinc-50">
                     {filteredPlaces.length}
                   </span>{" "}
                   {filteredPlaces.length === 1 ? t("results.place") : t("results.places")}
@@ -267,7 +267,7 @@ export default function PlacesPage() {
                     <>
                       {" "}
                       {t("results.matching")} &ldquo;
-                      <span className="font-medium text-zinc-900 dark:text-white">
+                      <span className="font-medium text-zinc-900 dark:text-zinc-50">
                         {searchQuery}
                       </span>
                       &rdquo;
@@ -286,8 +286,8 @@ export default function PlacesPage() {
           ))}
 
         {/* Contribute CTA */}
-        <div className="reveal mt-16 rounded-[2rem] bg-tint-terra p-8 text-center sm:mt-24 sm:p-12 dark:ring-1 dark:ring-white/10">
-          <h3 className="font-display text-2xl font-bold text-zinc-900 dark:text-white">
+        <div className="reveal mt-16 rounded-[2rem] bg-tint-terra p-8 text-center sm:mt-24 sm:p-12 dark:ring-1 dark:ring-border">
+          <h3 className="font-display text-2xl font-bold text-zinc-900 dark:text-zinc-50">
             {t("cta.title")}
           </h3>
           <p className="mx-auto mt-2 max-w-md text-base text-zinc-600 dark:text-zinc-300">
@@ -298,7 +298,7 @@ export default function PlacesPage() {
               href="https://github.com/HamzaChx/Atlas-Munich/issues/new"
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-2 rounded-full bg-zinc-900 px-7 py-3 text-sm font-semibold text-white shadow-md shadow-zinc-900/15 transition-all hover:bg-zinc-800 dark:bg-white dark:text-zinc-900 dark:shadow-none dark:hover:bg-zinc-200"
+              className="group inline-flex items-center gap-2 rounded-full bg-zinc-900 px-7 py-3 text-sm font-semibold text-white shadow-md shadow-zinc-900/15 transition-all hover:bg-zinc-800 dark:bg-zinc-50 dark:text-zinc-900 dark:shadow-none dark:hover:bg-zinc-200"
             >
               {t("cta.button")}
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

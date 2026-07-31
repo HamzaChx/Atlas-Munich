@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
 const TOAST_SHELL =
   "fixed right-3 top-[4.5rem] z-[60] w-[min(22rem,calc(100vw-1.5rem))] sm:right-5 sm:top-20";
 const TOAST_CARD =
-  "flex items-center gap-3 rounded-2xl bg-card px-4 py-3 shadow-[0_12px_40px_-12px_rgb(0_0_0/0.28)] ring-1 ring-border dark:ring-white/10";
+  "flex items-center gap-3 rounded-2xl bg-card px-4 py-3 shadow-[0_12px_40px_-12px_rgb(0_0_0/0.28)] ring-1 ring-border dark:ring-border";
 
 const COUNTDOWN_SECONDS = 15;
 const RING_LENGTH = 2 * Math.PI * 18;
@@ -63,7 +63,7 @@ export function RedirectCountdownToast({
 
         <div className="min-w-0 flex-1">
           <p className="text-xs text-zinc-500 dark:text-zinc-400">{message}</p>
-          <p className="truncate font-display text-sm font-bold text-zinc-900 dark:text-white">
+          <p className="truncate font-display text-sm font-bold text-zinc-900 dark:text-zinc-50">
             {targetChatbot}
           </p>
         </div>
@@ -94,7 +94,7 @@ export function SuccessToast({
         </span>
         <div className="min-w-0 flex-1">
           <p className="text-xs text-zinc-500 dark:text-zinc-400">Connected to</p>
-          <p className="truncate font-display text-sm font-bold text-zinc-900 dark:text-white">
+          <p className="truncate font-display text-sm font-bold text-zinc-900 dark:text-zinc-50">
             {chatbotName}
           </p>
         </div>

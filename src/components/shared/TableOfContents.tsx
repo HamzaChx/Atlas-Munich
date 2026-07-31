@@ -57,7 +57,7 @@ export function TableOfContents({ sections, className }: TableOfContentsProps) {
 
   return (
     <nav className={cn("space-y-1", className)} aria-label="Table of contents">
-      <p className="mb-3 text-sm font-semibold text-zinc-900 dark:text-white">On this page</p>
+      <p className="mb-3 text-sm font-semibold text-zinc-900 dark:text-zinc-50">On this page</p>
       <ul className="space-y-1 text-sm">
         {sections.map((section) => (
           <li key={section.id}>
@@ -65,7 +65,7 @@ export function TableOfContents({ sections, className }: TableOfContentsProps) {
               href={`#${section.id}`}
               onClick={(e) => handleClick(e, section.id)}
               className={cn(
-                "block rounded-md py-1.5 pl-3 transition-colors hover:text-zinc-900 dark:hover:text-white",
+                "block rounded-md py-1.5 pl-3 transition-colors hover:text-zinc-900 dark:hover:text-zinc-50",
                 activeId === section.id
                   ? "border-l-2 border-emerald-500 bg-emerald-100 dark:bg-emerald-500/10 font-medium text-emerald-700 dark:text-emerald-400"
                   : "border-l-2 border-transparent text-zinc-500 hover:border-zinc-400 dark:hover:border-zinc-600"
@@ -81,7 +81,7 @@ export function TableOfContents({ sections, className }: TableOfContentsProps) {
                       href={`#${sub.id}`}
                       onClick={(e) => handleClick(e, sub.id)}
                       className={cn(
-                        "block rounded-md py-1 pl-6 text-sm transition-colors hover:text-zinc-900 dark:hover:text-white",
+                        "block rounded-md py-1 pl-6 text-sm transition-colors hover:text-zinc-900 dark:hover:text-zinc-50",
                         activeId === sub.id
                           ? "font-medium text-emerald-700 dark:text-emerald-400"
                           : "text-zinc-500"

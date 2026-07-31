@@ -134,7 +134,7 @@ export function ZelligeRosette({
       >
         <svg
           viewBox={`${-VIEW} ${-VIEW} ${VIEW * 2} ${VIEW * 2}`}
-          className={`block opacity-30 dark:opacity-50 ${svgClassName}`}
+          className={`block opacity-30 dark:opacity-45 ${svgClassName}`}
         >
           <defs>
             {RINGS.map((ring) => (

@@ -63,8 +63,8 @@ function QuestionCard({
       className={cn(
         "scroll-mt-32 rounded-2xl transition-colors duration-200",
         open
-          ? cn(topic.tint, "dark:ring-1 dark:ring-white/10")
-          : "bg-card shadow-[0_1px_8px_rgb(0_0_0/0.05)] dark:bg-white/5 dark:shadow-none"
+          ? cn(topic.tint, "dark:ring-1 dark:ring-border")
+          : "bg-card shadow-[0_1px_8px_rgb(0_0_0/0.05)] dark:bg-foreground/[0.075] dark:shadow-none"
       )}
     >
       <button
@@ -88,7 +88,7 @@ function QuestionCard({
           <span
             className={cn(
               "block text-[15px] font-semibold leading-snug transition-colors duration-200",
-              open ? topic.text : "text-zinc-900 dark:text-white"
+              open ? topic.text : "text-zinc-900 dark:text-zinc-50"
             )}
           >
             {faq.question}
@@ -97,7 +97,7 @@ function QuestionCard({
         <span
           className={cn(
             "flex h-7 w-7 shrink-0 items-center justify-center rounded-full transition-colors duration-200",
-            open ? cn("bg-card", topic.text) : "bg-zinc-100 text-zinc-500 dark:bg-white/10 dark:text-zinc-400"
+            open ? cn("bg-card", topic.text) : "bg-zinc-100 text-zinc-500 dark:bg-foreground/10 dark:text-zinc-400"
           )}
         >
           <ChevronDown
@@ -180,12 +180,12 @@ export default function FAQPage() {
   return (
     <div className="min-h-screen bg-background">
       {/* ========== HERO ========== */}
-      <section className="mx-auto flex max-w-2xl flex-col items-center px-5 pb-8 pt-14 text-center sm:pb-12 sm:pt-20">
-        <h1 className="rise rise-1 font-display text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-5xl">
+      <section className="mx-auto flex max-w-2xl flex-col items-center px-5 pb-8 pt-14 text-center sm:pb-12 sm:pt-20 2xl:max-w-3xl">
+        <h1 className="rise rise-1 font-display text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-5xl 2xl:text-6xl">
           {t("title")} <span className="text-bloom">{t("titleHighlight")}</span>
         </h1>
 
-        <p className="rise rise-2 mt-4 max-w-md text-base leading-relaxed text-zinc-500 dark:text-zinc-400 sm:text-lg">
+        <p className="rise rise-2 mt-4 max-w-md text-base leading-relaxed text-zinc-500 dark:text-zinc-400 sm:text-lg 2xl:max-w-lg 2xl:text-xl">
           {t("subtitle")}
         </p>
 
@@ -200,7 +200,7 @@ export default function FAQPage() {
               setSearchQuery(e.target.value);
               setOpenId(null);
             }}
-            className="h-13 w-full rounded-full bg-card pl-13 pr-12 text-base text-zinc-900 shadow-[0_6px_24px_rgb(0_0_0/0.08)] outline-none transition-shadow placeholder:text-zinc-400 focus:ring-2 focus:ring-zellige/40 dark:bg-white/5 dark:text-white dark:shadow-none dark:placeholder:text-zinc-500 dark:ring-1 dark:ring-white/10 dark:focus:ring-zellige/40"
+            className="h-13 w-full rounded-full bg-card pl-13 pr-12 text-base text-zinc-900 shadow-[0_6px_24px_rgb(0_0_0/0.08)] outline-none transition-shadow placeholder:text-zinc-400 focus:ring-2 focus:ring-zellige/40 dark:bg-foreground/[0.075] dark:text-zinc-50 dark:shadow-none dark:placeholder:text-zinc-500 dark:ring-1 dark:ring-border dark:focus:ring-zellige/40"
           />
           {searchQuery && (
             <button
@@ -229,8 +229,8 @@ export default function FAQPage() {
                     className={cn(
                       "flex shrink-0 items-center gap-1.5 rounded-full px-3.5 py-2 text-[13px] font-semibold transition-all duration-200",
                       active
-                        ? cn(topic.tint, topic.text, "dark:ring-1 dark:ring-white/10")
-                        : "bg-card text-zinc-600 shadow-sm dark:bg-white/5 dark:text-zinc-400 dark:shadow-none"
+                        ? cn(topic.tint, topic.text, "dark:ring-1 dark:ring-border")
+                        : "bg-card text-zinc-600 shadow-sm dark:bg-foreground/[0.075] dark:text-zinc-400 dark:shadow-none"
                     )}
                   >
                     <span className={cn("h-1.5 w-1.5 rounded-full", topic.dot)} aria-hidden="true" />
@@ -247,8 +247,8 @@ export default function FAQPage() {
       )}
 
       {/* ========== BROWSER ========== */}
-      <section className="mx-auto max-w-6xl px-4 pb-16 pt-6 sm:px-6 sm:pb-24 lg:px-8 lg:pt-4">
-        <div className="lg:grid lg:grid-cols-12 lg:gap-8">
+      <section className="mx-auto max-w-6xl 2xl:max-w-[96rem] px-4 pb-16 pt-6 sm:px-6 sm:pb-24 lg:px-8 lg:pt-4 2xl:px-12">
+        <div className="lg:grid lg:grid-cols-12 lg:gap-8 2xl:gap-12">
           {/* Topic cards: filters, each wearing its own hue */}
           <aside className="hidden lg:col-span-4 lg:block">
             <nav className="sticky top-24" aria-label={t("topics")}>
@@ -264,8 +264,8 @@ export default function FAQPage() {
                       className={cn(
                         "flex w-full items-center gap-3.5 rounded-2xl p-3.5 text-left transition-all duration-200",
                         active
-                          ? cn(topic.tint, "dark:ring-1 dark:ring-white/10")
-                          : "bg-card shadow-[0_1px_8px_rgb(0_0_0/0.05)] hover:-translate-y-0.5 hover:shadow-md dark:bg-white/5 dark:shadow-none dark:hover:bg-white/10"
+                          ? cn(topic.tint, "dark:ring-1 dark:ring-border")
+                          : "bg-card shadow-[0_1px_8px_rgb(0_0_0/0.05)] hover:-translate-y-0.5 hover:shadow-md dark:bg-foreground/[0.075] dark:shadow-none dark:hover:bg-foreground/10"
                       )}
                     >
                       <span
@@ -305,12 +305,12 @@ export default function FAQPage() {
               <div key="search" className="animate-in fade-in slide-in-from-bottom-2 duration-300">
                 <div className="mb-5 flex items-center justify-between gap-4">
                   <p className="text-sm text-zinc-500 dark:text-zinc-400">
-                    <span className="text-base font-bold text-zinc-900 dark:text-white">
+                    <span className="text-base font-bold text-zinc-900 dark:text-zinc-50">
                       {visibleFaqs.length}
                     </span>{" "}
                     {visibleFaqs.length === 1 ? t("results.result") : t("results.results")}{" "}
                     {t("results.for")} &ldquo;
-                    <span className="font-medium text-zinc-900 dark:text-white">{searchQuery}</span>
+                    <span className="font-medium text-zinc-900 dark:text-zinc-50">{searchQuery}</span>
                     &rdquo;
                   </p>
                   <button
@@ -357,7 +357,7 @@ export default function FAQPage() {
                     <activeTopic.icon className={cn("h-[18px] w-[18px]", activeTopic.text)} />
                   </span>
                   <div>
-                    <h2 className="font-display text-xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-2xl">
+                    <h2 className="font-display text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-2xl">
                       {topicLabel(selectedTopic)}{" "}
                       <span className="text-sm font-medium tabular-nums text-zinc-400 dark:text-zinc-500">
                         {countByTopic[selectedTopic] ?? 0}
@@ -385,8 +385,8 @@ export default function FAQPage() {
         </div>
 
         {/* ========== CTA ========== */}
-        <div className="reveal mt-14 rounded-[2rem] bg-tint-green p-8 text-center sm:mt-20 sm:p-10 dark:ring-1 dark:ring-white/10">
-          <h3 className="font-display text-xl font-bold text-zinc-900 dark:text-white sm:text-2xl">
+        <div className="reveal mt-14 rounded-[2rem] bg-tint-green p-8 text-center sm:mt-20 sm:p-10 dark:ring-1 dark:ring-border">
+          <h3 className="font-display text-xl font-bold text-zinc-900 dark:text-zinc-50 sm:text-2xl">
             {t("cta.title")}
           </h3>
           <p className="mx-auto mt-2 max-w-md text-base text-zinc-600 dark:text-zinc-300">
@@ -395,14 +395,14 @@ export default function FAQPage() {
           <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
             <Link
               href="/guides"
-              className="group inline-flex items-center gap-2 rounded-full bg-zinc-900 px-6 py-3 text-sm font-semibold text-white shadow-md shadow-zinc-900/15 transition-all hover:bg-zinc-800 dark:bg-white dark:text-zinc-900 dark:shadow-none dark:hover:bg-zinc-200"
+              className="group inline-flex items-center gap-2 rounded-full bg-zinc-900 px-6 py-3 text-sm font-semibold text-white shadow-md shadow-zinc-900/15 transition-all hover:bg-zinc-800 dark:bg-zinc-50 dark:text-zinc-900 dark:shadow-none dark:hover:bg-zinc-200"
             >
               {t("cta.browseGuides")}
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
             <Link
               href="/about#contact"
-              className="group inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-zinc-700 transition-colors hover:bg-card dark:text-zinc-300 dark:hover:bg-white/10"
+              className="group inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-zinc-700 transition-colors hover:bg-card dark:text-zinc-300 dark:hover:bg-foreground/10"
             >
               {t("cta.contactUs")}
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />

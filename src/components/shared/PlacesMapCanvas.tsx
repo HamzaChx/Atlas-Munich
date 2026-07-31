@@ -261,7 +261,7 @@ function PlacePopupCard({ place, label }: { place: Place; label: string }) {
         {label}
       </span>
 
-      <h3 className="font-display mt-1.5 pr-7 text-[15px] font-bold leading-snug tracking-tight text-zinc-900 dark:text-white">
+      <h3 className="font-display mt-1.5 pr-7 text-[15px] font-bold leading-snug tracking-tight text-zinc-900 dark:text-zinc-50">
         {place.name}
       </h3>
 
@@ -350,11 +350,11 @@ function Legend({ rows, total, variant }: { rows: LegendRow[]; total: number; va
   }
 
   return (
-    <div className="w-[13rem] rounded-2xl bg-card p-4 shadow-[0_8px_30px_rgb(0_0_0/0.10)] dark:shadow-none dark:ring-1 dark:ring-white/10">
+    <div className="w-[13rem] rounded-2xl bg-card p-4 shadow-[0_8px_30px_rgb(0_0_0/0.10)] dark:shadow-none dark:ring-1 dark:ring-border">
       <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-zinc-400 dark:text-zinc-500">
         {t("map.legend")}
       </p>
-      <p className="font-display mt-1 text-2xl font-bold leading-none tracking-tight text-zinc-900 dark:text-white">
+      <p className="font-display mt-1 text-2xl font-bold leading-none tracking-tight text-zinc-900 dark:text-zinc-50">
         {total}{" "}
         <span className="text-sm font-medium text-zinc-500 dark:text-zinc-400">
           {total === 1 ? t("results.place") : t("results.places")}
@@ -444,7 +444,7 @@ export default function PlacesMapCanvas({
   }, [signature, map]);
 
   return (
-    <div className="atlas-map overflow-hidden rounded-[2rem] bg-card shadow-[0_2px_24px_rgb(0_0_0/0.08)] dark:shadow-none dark:ring-1 dark:ring-white/10">
+    <div className="atlas-map overflow-hidden rounded-[2rem] bg-card shadow-[0_2px_24px_rgb(0_0_0/0.08)] dark:shadow-none dark:ring-1 dark:ring-border">
       <div className={cn("relative w-full", className)}>
         <MapContainer
           ref={setMap}
@@ -498,12 +498,12 @@ export default function PlacesMapCanvas({
         )}
 
         {/* Zoom and framing controls, kept clear of the legend and the attribution */}
-        <div className="absolute right-4 top-4 z-10 flex flex-col gap-1 rounded-2xl bg-card p-1 shadow-[0_8px_30px_rgb(0_0_0/0.10)] dark:shadow-none dark:ring-1 dark:ring-white/10">
+        <div className="absolute right-4 top-4 z-10 flex flex-col gap-1 rounded-2xl bg-card p-1 shadow-[0_8px_30px_rgb(0_0_0/0.10)] dark:shadow-none dark:ring-1 dark:ring-border">
           <button
             type="button"
             onClick={() => map?.zoomIn()}
             aria-label={t("map.zoomIn")}
-            className="flex h-9 w-9 items-center justify-center rounded-xl text-zinc-600 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-white/10 dark:hover:text-white"
+            className="flex h-9 w-9 items-center justify-center rounded-xl text-zinc-600 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-foreground/10 dark:hover:text-zinc-50"
           >
             <Plus className="h-4 w-4" />
           </button>
@@ -511,7 +511,7 @@ export default function PlacesMapCanvas({
             type="button"
             onClick={() => map?.zoomOut()}
             aria-label={t("map.zoomOut")}
-            className="flex h-9 w-9 items-center justify-center rounded-xl text-zinc-600 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-white/10 dark:hover:text-white"
+            className="flex h-9 w-9 items-center justify-center rounded-xl text-zinc-600 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-foreground/10 dark:hover:text-zinc-50"
           >
             <Minus className="h-4 w-4" />
           </button>
@@ -519,7 +519,7 @@ export default function PlacesMapCanvas({
             type="button"
             onClick={() => fitToPlaces(true)}
             aria-label={t("map.fit")}
-            className="flex h-9 w-9 items-center justify-center rounded-xl text-zinc-600 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-white/10 dark:hover:text-white"
+            className="flex h-9 w-9 items-center justify-center rounded-xl text-zinc-600 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-foreground/10 dark:hover:text-zinc-50"
           >
             <Maximize className="h-4 w-4" />
           </button>
@@ -527,8 +527,8 @@ export default function PlacesMapCanvas({
 
         {mapped.length === 0 && (
           <div className="absolute inset-0 z-10 flex items-center justify-center p-6">
-            <div className="rounded-2xl bg-card px-6 py-5 text-center shadow-[0_8px_30px_rgb(0_0_0/0.10)] dark:shadow-none dark:ring-1 dark:ring-white/10">
-              <p className="font-display text-base font-bold text-zinc-900 dark:text-white">
+            <div className="rounded-2xl bg-card px-6 py-5 text-center shadow-[0_8px_30px_rgb(0_0_0/0.10)] dark:shadow-none dark:ring-1 dark:ring-border">
+              <p className="font-display text-base font-bold text-zinc-900 dark:text-zinc-50">
                 {t("noResults")}
               </p>
               <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">

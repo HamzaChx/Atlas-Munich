@@ -88,7 +88,7 @@ export function LanguageSwitcher({
                 "min-h-11 flex-1 rounded-xl px-3 text-sm font-semibold transition-colors duration-200",
                 isSelected
                   ? "bg-zellige-soft text-zellige"
-                  : "bg-zinc-100 text-zinc-600 hover:bg-zinc-200 dark:bg-white/5 dark:text-zinc-400 dark:hover:bg-white/10",
+                  : "bg-zinc-100 text-zinc-600 hover:bg-zinc-200 dark:bg-foreground/[0.075] dark:text-zinc-400 dark:hover:bg-foreground/10",
                 isPending && "opacity-50"
               )}
             >
@@ -107,7 +107,7 @@ export function LanguageSwitcher({
         onClick={() => setIsOpen(!isOpen)}
         disabled={isPending}
         className={cn(
-          "flex h-9 items-center gap-1.5 rounded-full border border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-white/5 px-3 text-xs font-semibold uppercase tracking-wide text-zinc-600 dark:text-zinc-300 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:border-zinc-300 dark:hover:border-white/20 hover:bg-zinc-100 dark:hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-zellige/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+          "flex h-9 items-center gap-1.5 rounded-full border border-zinc-200 dark:border-border bg-zinc-50 dark:bg-foreground/[0.075] px-3 text-xs font-semibold uppercase tracking-wide text-zinc-600 dark:text-zinc-300 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:border-zinc-300 dark:hover:border-input hover:bg-zinc-100 dark:hover:bg-foreground/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-zellige/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
           isOpen && "border-zellige/50 bg-zellige-soft text-zellige",
           isPending && "opacity-50 cursor-not-allowed"
         )}
@@ -130,7 +130,7 @@ export function LanguageSwitcher({
         className={cn(
           // Mobile: fixed panel near top with horizontal padding
           // Desktop (sm and up): absolute dropdown positioned to the right
-          "fixed left-3 right-3 top-14 z-50 overflow-hidden rounded-xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900 shadow-lg shadow-zinc-200/50 dark:shadow-none transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)]",
+          "fixed left-3 right-3 top-14 z-50 overflow-hidden rounded-xl border border-zinc-200 dark:border-border bg-white dark:bg-zinc-900 shadow-lg shadow-zinc-200/50 dark:shadow-none transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)]",
           "sm:left-auto sm:right-0 sm:top-full sm:mt-2 sm:min-w-[160px] sm:fixed-none sm:absolute",
           isOpen
             ? "opacity-100 translate-y-0 pointer-events-auto"
@@ -153,7 +153,7 @@ export function LanguageSwitcher({
                   "flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-150",
                   isSelected
                     ? "bg-zellige-soft text-zellige"
-                    : "text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-white/5 hover:text-zinc-900 dark:hover:text-white"
+                    : "text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-foreground/[0.075] hover:text-zinc-900 dark:hover:text-zinc-50"
                 )}
               >
                 <span className="w-7 text-xs font-semibold uppercase tracking-wide text-zinc-400 dark:text-zinc-500">

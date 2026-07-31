@@ -310,7 +310,7 @@ export function Chatbot() {
             isExpanded
               ? "h-full w-full rounded-none"
               : "h-[560px] max-h-[calc(100dvh-8rem)] rounded-3xl shadow-[0_16px_50px_-12px_rgb(0_0_0/0.3)]",
-            "ring-1 ring-border dark:ring-white/10"
+            "ring-1 ring-border dark:ring-border"
           )}
         >
           {notification && (
@@ -344,7 +344,7 @@ export function Chatbot() {
               </div>
               <div className="min-w-0">
                 <div className="flex items-center gap-1.5">
-                  <p className="truncate font-display text-sm font-bold leading-tight text-zinc-900 dark:text-white">
+                  <p className="truncate font-display text-sm font-bold leading-tight text-zinc-900 dark:text-zinc-50">
                     {chatbotConfig.name}
                   </p>
                   <span className="flex-shrink-0 rounded-full bg-card/70 px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
@@ -420,7 +420,7 @@ export function Chatbot() {
 
                 <h2
                   className={cn(
-                    "font-display font-bold tracking-tight text-zinc-900 dark:text-white",
+                    "font-display font-bold tracking-tight text-zinc-900 dark:text-zinc-50",
                     isExpanded ? "text-xl" : "text-lg"
                   )}
                 >
@@ -518,7 +518,7 @@ export function Chatbot() {
                 style={{ maxHeight: isExpanded ? "160px" : "100px" }}
                 className={cn(
                   "w-full flex-1 resize-none rounded-2xl border border-border bg-background px-4 py-2.5",
-                  "text-[13px] text-zinc-900 placeholder:text-zinc-400 dark:text-white dark:placeholder:text-zinc-500",
+                  "text-[13px] text-zinc-900 placeholder:text-zinc-400 dark:text-zinc-50 dark:placeholder:text-zinc-500",
                   "outline-none transition-colors",
                   accent.focus,
                   isExpanded && "sm:py-3 sm:text-sm"
@@ -560,7 +560,7 @@ export function Chatbot() {
       >
         {showNudge && !isOpen && (
           <div className="chat-message-enter absolute bottom-full right-0 mb-3 w-60">
-            <div className="relative rounded-2xl rounded-br-md bg-card px-4 py-3 shadow-[0_12px_40px_-12px_rgb(0_0_0/0.28)] ring-1 ring-border dark:ring-white/10">
+            <div className="relative rounded-2xl rounded-br-md bg-card px-4 py-3 shadow-[0_12px_40px_-12px_rgb(0_0_0/0.28)] ring-1 ring-border dark:ring-border">
               <button
                 onClick={() => setShowNudge(false)}
                 className="absolute right-2 top-2 cursor-pointer rounded-full p-0.5 text-zinc-400 transition-colors hover:text-zinc-600 dark:hover:text-zinc-300"
@@ -568,7 +568,7 @@ export function Chatbot() {
               >
                 <X className="h-3.5 w-3.5" />
               </button>
-              <p className="pr-4 text-[13px] font-semibold text-zinc-900 dark:text-white">
+              <p className="pr-4 text-[13px] font-semibold text-zinc-900 dark:text-zinc-50">
                 New in Munich?
               </p>
               <p className="mt-0.5 text-[11px] text-zinc-500 dark:text-zinc-400">

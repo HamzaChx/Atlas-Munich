@@ -141,15 +141,15 @@ export default async function CategoryPage({ params }: PageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
       />
       {/* ========== HERO ========== */}
-      <section className="relative overflow-hidden bg-background border-b border-zinc-200 dark:border-white/10">
-        <div className="relative z-10 mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8 lg:py-18">
+      <section className="relative overflow-hidden bg-background border-b border-zinc-200 dark:border-border">
+        <div className="relative z-10 mx-auto max-w-7xl 2xl:max-w-[96rem] px-4 py-10 sm:px-6 sm:py-14 lg:px-8 lg:py-18 2xl:px-12">
           {/* Breadcrumbs */}
           <div className="mb-8">
             <Breadcrumbs items={breadcrumbs} />
           </div>
 
           {/* Content */}
-          <div className="max-w-2xl">
+          <div className="max-w-2xl 2xl:max-w-3xl">
             {/* Category icon */}
             <div className="mb-6">
               <div className={`inline-flex items-center justify-center rounded-2xl p-3.5 ${tint}`}>
@@ -158,19 +158,19 @@ export default async function CategoryPage({ params }: PageProps) {
             </div>
 
             {/* Title */}
-            <h1 className="font-display text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-4xl lg:text-5xl">
+            <h1 className="font-display text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-4xl lg:text-5xl 2xl:text-6xl">
               {localizedCategoryTitle}
             </h1>
 
             {/* Description */}
-            <p className="mt-4 text-base leading-relaxed text-zinc-600 dark:text-zinc-400 sm:text-lg">
+            <p className="mt-4 text-base leading-relaxed text-zinc-600 dark:text-zinc-400 sm:text-lg 2xl:text-xl">
               {localizedCategoryDescription}
             </p>
 
             {/* Minimal inline stats */}
             <div className="mt-6 flex items-center gap-4 text-sm text-zinc-500 dark:text-zinc-400">
               <span>
-                <span className="font-semibold text-zinc-800 dark:text-white">
+                <span className="font-semibold text-zinc-800 dark:text-zinc-50">
                   {categoryGuides.length}
                 </span>{" "}
                 {categoryGuides.length === 1
@@ -179,7 +179,7 @@ export default async function CategoryPage({ params }: PageProps) {
               </span>
               <span className="text-zinc-300 dark:text-zinc-700">·</span>
               <span>
-                <span className="font-semibold text-zinc-800 dark:text-white">
+                <span className="font-semibold text-zinc-800 dark:text-zinc-50">
                   {categoryGuides.reduce((acc, g) => acc + g.readingTime, 0)}
                 </span>{" "}
                 {getMessage("categoryPage.readingSuffix") ?? "min read"}
@@ -190,14 +190,14 @@ export default async function CategoryPage({ params }: PageProps) {
       </section>
 
       {/* ========== GUIDES GRID ========== */}
-      <section className="relative border-b border-zinc-200 dark:border-white/10 bg-background py-12 sm:py-16 lg:py-20">
+      <section className="relative border-b border-zinc-200 dark:border-border bg-background py-12 sm:py-16 lg:py-20">
         <div className="absolute left-0 top-0 h-1 w-full bg-zellige/60" />
 
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl 2xl:max-w-[96rem] px-4 sm:px-6 lg:px-8 2xl:px-12">
           {/* Section header */}
           <div className="mb-8 sm:mb-10">
             <span className="eyebrow mb-2">{localizedCategoryTitle}</span>
-            <h2 className="font-display text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-3xl">
+            <h2 className="font-display text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-3xl 2xl:text-4xl">
               {(getMessage("categoryPage.browseGuides") ?? "Browse {count} Guides").replace(
                 "{count}",
                 String(categoryGuides.length)
@@ -213,7 +213,7 @@ export default async function CategoryPage({ params }: PageProps) {
 
           {/* Grid */}
           {categoryGuides.length > 0 ? (
-            <div className="grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-3">
+            <div className="grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-3 2xl:grid-cols-4">
               {categoryGuides.map((guide) => (
                 <GuideCard key={guide.slug} guide={guide} showCategory={false} />
               ))}
@@ -240,8 +240,8 @@ export default async function CategoryPage({ params }: PageProps) {
       {/* ========== BOTTOM CTA ========== */}
       <section className="py-12 sm:py-16">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <div className="rounded-2xl border border-zinc-200/60 dark:border-white/10 bg-gradient-to-br from-zinc-50/80 via-white to-zinc-50/50 dark:from-zinc-900 dark:via-zinc-900/80 dark:to-zinc-900 p-6 sm:p-8 text-center shadow-sm dark:shadow-none">
-            <h3 className="text-xl font-bold text-zinc-900 dark:text-white sm:text-2xl">
+          <div className="rounded-2xl border border-zinc-200/60 dark:border-border bg-gradient-to-br from-zinc-50/80 via-white to-zinc-50/50 dark:from-zinc-900 dark:via-zinc-900/80 dark:to-zinc-900 p-6 sm:p-8 text-center shadow-sm dark:shadow-none">
+            <h3 className="text-xl font-bold text-zinc-900 dark:text-zinc-50 sm:text-2xl">
               {getMessage("categoryPage.exploreMoreTitle") ?? "Looking for something else?"}
             </h3>
             <p className="mx-auto mt-2 max-w-md text-sm text-zinc-600 dark:text-zinc-400 sm:text-base">
@@ -252,7 +252,7 @@ export default async function CategoryPage({ params }: PageProps) {
               <Button
                 asChild
                 variant="outline"
-                className="border border-zinc-200 dark:border-white/10 text-zinc-900 dark:text-white hover:border-emerald-500/50 hover:bg-emerald-50 dark:hover:bg-emerald-500/10"
+                className="border border-zinc-200 dark:border-border text-zinc-900 dark:text-zinc-50 hover:border-emerald-500/50 hover:bg-emerald-50 dark:hover:bg-emerald-500/10"
               >
                 <Link href="/guides">
                   <ArrowLeft className="mr-2 h-4 w-4" />

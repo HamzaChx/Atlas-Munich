@@ -13,13 +13,13 @@ const badgeVariants = cva(
     variants: {
       variant: {
         default:
-          "border-transparent bg-zinc-900 dark:bg-white text-white dark:text-zinc-900 [a&]:hover:bg-zinc-800 dark:[a&]:hover:bg-zinc-100",
+          "border-transparent bg-zinc-900 dark:bg-zinc-50 text-white dark:text-zinc-900 [a&]:hover:bg-zinc-800 dark:[a&]:hover:bg-zinc-100",
         secondary:
-          "border-zinc-200 dark:border-white/10 bg-zinc-100 dark:bg-white/5 text-zinc-700 dark:text-zinc-300 [a&]:hover:bg-zinc-200 dark:[a&]:hover:bg-white/10",
+          "border-zinc-200 dark:border-border bg-zinc-100 dark:bg-foreground/[0.075] text-zinc-700 dark:text-zinc-300 [a&]:hover:bg-zinc-200 dark:[a&]:hover:bg-foreground/10",
         destructive:
           "border-transparent bg-red-600 text-white [a&]:hover:bg-red-500 focus-visible:ring-red-500/50",
         outline:
-          "border-zinc-200 dark:border-white/15 text-zinc-700 dark:text-zinc-300 bg-transparent [a&]:hover:bg-zinc-100 dark:[a&]:hover:bg-white/10",
+          "border-zinc-200 dark:border-input text-zinc-700 dark:text-zinc-300 bg-transparent [a&]:hover:bg-zinc-100 dark:[a&]:hover:bg-foreground/10",
         success:
           "border-transparent bg-emerald-100 dark:bg-emerald-500/15 text-emerald-700 dark:text-emerald-400 [a&]:hover:bg-emerald-200 dark:[a&]:hover:bg-emerald-500/25",
       },

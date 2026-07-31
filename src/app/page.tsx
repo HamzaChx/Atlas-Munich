@@ -134,26 +134,17 @@ export default async function Home() {
           </span>
         </div>
 
-        <div className="relative z-10 mx-auto flex max-w-2xl flex-col items-center px-5 pb-16 pt-20 text-center sm:pb-24 sm:pt-28">
-          <h1 className="rise rise-1 font-display text-[2.6rem] font-bold leading-[1.06] tracking-tight text-zinc-900 dark:text-white sm:text-6xl">
+        <div className="relative z-10 mx-auto flex max-w-2xl flex-col items-center px-5 pb-16 pt-20 text-center sm:pb-24 sm:pt-28 2xl:max-w-3xl 2xl:pb-32 2xl:pt-36">
+          <h1 className="rise rise-1 font-display text-[2.6rem] font-bold leading-[1.06] tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-6xl 2xl:text-7xl">
             {t("heroTitle")}
             <span className="block pb-1 text-bloom">{t("heroTitleHighlight")}</span>
           </h1>
 
-          <p className="rise rise-2 mt-5 max-w-md text-base leading-relaxed text-zinc-500 dark:text-zinc-400 sm:text-lg">
+          <p className="rise rise-2 mt-5 max-w-md text-base leading-relaxed text-zinc-500 dark:text-zinc-400 sm:text-lg 2xl:max-w-lg 2xl:text-xl">
             {t("heroSubtitle")}{" "}
-            <Link
-              href="https://hamzachaouki.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-medium text-zinc-700 underline decoration-zinc-300 underline-offset-4 transition-colors duration-200 hover:decoration-zinc-500 dark:text-zinc-300 dark:decoration-zinc-600 dark:hover:decoration-zinc-400"
-            >
-              {t("heroCommunity")}
-            </Link>
-            {t("heroSubtitle2")}
           </p>
 
-          <div className="rise rise-3 mt-9 w-full max-w-lg">
+          <div className="rise rise-3 mt-9 w-full max-w-lg 2xl:max-w-xl">
             <SearchBar placeholder={t("searchPlaceholder")} size="lg" showButton={false} />
           </div>
 
@@ -174,17 +165,17 @@ export default async function Home() {
       </section>
 
       {/* ========== CATEGORIES + GUIDES — one structured spread ========== */}
-      <section className="relative py-16 sm:py-24">
-        <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="reveal grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-14">
+      <section className="relative py-16 sm:py-24 2xl:py-28">
+        <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 2xl:max-w-[96rem] 2xl:px-12">
+          <div className="reveal grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-14 2xl:gap-20">
             {/* Left — find your way */}
             <div className="lg:col-span-7">
               <span className="eyebrow">{t("categories.badge")}</span>
-              <h2 className="font-display mt-3 text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-3xl">
+              <h2 className="font-display mt-3 text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-3xl 2xl:text-4xl">
                 {t("categories.title")}
                 <span className="text-bloom">{t("categories.titleHighlight")}</span>
               </h2>
-              <p className="mt-2.5 max-w-md text-sm text-zinc-500 dark:text-zinc-400">
+              <p className="mt-2.5 max-w-md text-sm text-zinc-500 dark:text-zinc-400 2xl:max-w-lg 2xl:text-base">
                 {t("categories.subtitle")}
               </p>
 
@@ -206,7 +197,7 @@ export default async function Home() {
                         {catEmoji[category.key]}
                       </span>
                       <span className="min-w-0 flex-1">
-                        <span className="block truncate text-sm font-semibold text-zinc-900 dark:text-white">
+                        <span className="block truncate text-sm font-semibold text-zinc-900 dark:text-zinc-50">
                           {tCat(`${category.key}.title`)}
                         </span>
                         <span className={`block text-xs font-medium ${style.count}`}>
@@ -230,9 +221,9 @@ export default async function Home() {
 
             {/* Right — most-read guides, on a golden panel */}
             <div className="lg:col-span-5">
-              <div className="rounded-3xl bg-tint-saffron p-6 shadow-[0_2px_20px_rgb(0_0_0/0.05)] sm:p-7 lg:mt-[4.5rem] dark:shadow-none dark:ring-1 dark:ring-white/10">
+              <div className="rounded-3xl bg-tint-saffron p-6 shadow-[0_2px_20px_rgb(0_0_0/0.05)] sm:p-7 lg:mt-[4.5rem] dark:shadow-none dark:ring-1 dark:ring-border">
                 <div className="flex items-baseline justify-between gap-4">
-                  <h3 className="font-display text-lg font-bold tracking-tight text-zinc-900 dark:text-white">
+                  <h3 className="font-display text-lg font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
                     {t("featured.title")}
                   </h3>
                   <Link
@@ -248,7 +239,7 @@ export default async function Home() {
                     <Link
                       key={guide.slug}
                       href={`/guides/${guide.slug}`}
-                      className="group -mx-2 flex items-center gap-3 rounded-xl px-3 py-3.5 transition-colors duration-200 hover:bg-card/80 dark:hover:bg-white/5"
+                      className="group -mx-2 flex items-center gap-3 rounded-xl px-3 py-3.5 transition-colors duration-200 hover:bg-card/80 dark:hover:bg-foreground/[0.075]"
                     >
                       <span
                         className={`h-2 w-2 shrink-0 rounded-full ${catStyles[guide.categoryKey]?.dot ?? "bg-zellige"}`}
@@ -270,20 +261,20 @@ export default async function Home() {
       </section>
 
       {/* ========== AGENTIC AI — the green pavilion ========== */}
-      <section className="px-4 py-6 sm:px-6 sm:py-10 lg:px-8">
-        <div className="reveal relative mx-auto max-w-6xl overflow-hidden rounded-[2rem] bg-tint-green p-7 shadow-[0_2px_24px_rgb(0_0_0/0.05)] sm:p-12 dark:shadow-none dark:ring-1 dark:ring-white/10">
-          <div className="relative grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-12">
+      <section className="px-4 py-6 sm:px-6 sm:py-10 lg:px-8 2xl:px-12">
+        <div className="reveal relative mx-auto max-w-6xl 2xl:max-w-[96rem] overflow-hidden rounded-[2rem] bg-tint-green p-7 shadow-[0_2px_24px_rgb(0_0_0/0.05)] sm:p-12 2xl:p-16 dark:shadow-none dark:ring-1 dark:ring-border">
+          <div className="relative grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-12 2xl:gap-16">
             <div className="lg:col-span-5">
               <span className="eyebrow">{t("toolsSpotlight.badge")}</span>
-              <h2 className="font-display mt-3 text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-3xl">
+              <h2 className="font-display mt-3 text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-3xl 2xl:text-4xl">
                 {t("toolsSpotlight.title")}
               </h2>
-              <p className="mt-2 max-w-sm text-sm leading-relaxed text-zinc-500 dark:text-zinc-400">
+              <p className="mt-2 max-w-sm text-sm leading-relaxed text-zinc-500 dark:text-zinc-400 2xl:max-w-md 2xl:text-base">
                 {t("toolsSpotlight.subtitle")}
               </p>
               <Button
                 asChild
-                className="mt-5 rounded-full bg-zinc-900 px-6 text-white shadow-md shadow-zinc-900/15 hover:bg-zinc-800 dark:bg-white dark:text-zinc-900 dark:shadow-none dark:hover:bg-zinc-200"
+                className="mt-5 rounded-full bg-zinc-900 px-6 text-white shadow-md shadow-zinc-900/15 hover:bg-zinc-800 dark:bg-zinc-50 dark:text-zinc-900 dark:shadow-none dark:hover:bg-zinc-200"
               >
                 <Link href="/tools">
                   {t("toolsSpotlight.cta")}
@@ -295,13 +286,13 @@ export default async function Home() {
             <div className="flex flex-col gap-2.5 lg:col-span-7">
               <Link
                 href="/housing"
-                className="group flex items-center gap-4 rounded-xl bg-card px-4 py-3.5 shadow-[0_1px_8px_rgb(0_0_0/0.05)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgb(0_0_0/0.1)] dark:shadow-none dark:ring-1 dark:ring-white/10 dark:hover:bg-zinc-800/60"
+                className="group flex items-center gap-4 rounded-xl bg-card px-4 py-3.5 shadow-[0_1px_8px_rgb(0_0_0/0.05)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgb(0_0_0/0.1)] dark:shadow-none dark:ring-1 dark:ring-border dark:hover:bg-zinc-800/60"
               >
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-tint-terra text-acc-terra">
                   <HomeIcon className="h-[18px] w-[18px]" />
                 </span>
                 <span className="min-w-0 flex-1">
-                  <span className="block truncate text-sm font-semibold text-zinc-900 dark:text-white">
+                  <span className="block truncate text-sm font-semibold text-zinc-900 dark:text-zinc-50">
                     {t("toolsSpotlight.housingTool")}
                   </span>
                   <span className="block truncate text-xs text-zinc-500 dark:text-zinc-400">
@@ -311,12 +302,12 @@ export default async function Home() {
                 <ArrowRight className="h-4 w-4 shrink-0 text-zinc-300 transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-zinc-500 dark:text-zinc-600 dark:group-hover:text-zinc-300" />
               </Link>
 
-              <div className="group relative flex items-center gap-4 rounded-xl bg-card px-4 py-3.5 shadow-[0_1px_8px_rgb(0_0_0/0.05)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgb(0_0_0/0.1)] dark:shadow-none dark:ring-1 dark:ring-white/10 dark:hover:bg-zinc-800/60">
+              <div className="group relative flex items-center gap-4 rounded-xl bg-card px-4 py-3.5 shadow-[0_1px_8px_rgb(0_0_0/0.05)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgb(0_0_0/0.1)] dark:shadow-none dark:ring-1 dark:ring-border dark:hover:bg-zinc-800/60">
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-tint-green text-acc-green">
                   <FileText className="h-[18px] w-[18px]" />
                 </span>
                 <span className="min-w-0 flex-1">
-                  <span className="block truncate text-sm font-semibold text-zinc-900 dark:text-white">
+                  <span className="block truncate text-sm font-semibold text-zinc-900 dark:text-zinc-50">
                     {t("toolsSpotlight.cvTool")}
                   </span>
                   <span className="block truncate text-xs text-zinc-500 dark:text-zinc-400">
@@ -334,12 +325,12 @@ export default async function Home() {
                 <ArrowRight className="h-4 w-4 shrink-0 text-zinc-300 transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-zinc-500 dark:text-zinc-600 dark:group-hover:text-zinc-300" />
               </div>
 
-              <div className="flex items-center gap-4 rounded-xl bg-card/60 px-4 py-3.5 shadow-[0_1px_8px_rgb(0_0_0/0.03)] dark:shadow-none dark:ring-1 dark:ring-white/5">
+              <div className="flex items-center gap-4 rounded-xl bg-card/60 px-4 py-3.5 shadow-[0_1px_8px_rgb(0_0_0/0.03)] dark:shadow-none dark:ring-1 dark:ring-border/70">
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-tint-plum text-acc-plum">
                   <CalendarDays className="h-[18px] w-[18px]" />
                 </span>
                 <span className="min-w-0 flex-1">
-                  <span className="block truncate text-sm font-semibold text-zinc-900 dark:text-white">
+                  <span className="block truncate text-sm font-semibold text-zinc-900 dark:text-zinc-50">
                     {t("toolsSpotlight.eventTool")}
                   </span>
                   <span className="block truncate text-xs text-zinc-500 dark:text-zinc-400">
@@ -356,12 +347,12 @@ export default async function Home() {
       </section>
 
       {/* ========== COMMUNITY ========== */}
-      <section className="relative py-16 sm:py-24">
-        <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="reveal grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-12">
+      <section className="relative py-16 sm:py-24 2xl:py-28">
+        <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 2xl:max-w-[96rem] 2xl:px-12">
+          <div className="reveal grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-12 2xl:gap-16">
             <div className="lg:col-span-7">
               <span className="eyebrow">{t("community.badge")}</span>
-              <h2 className="font-display mt-3 text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-3xl">
+              <h2 className="font-display mt-3 text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-3xl 2xl:text-4xl">
                 {t("community.title")}
                 <span className="text-bloom">{t("community.titleHighlight")}</span>
               </h2>
@@ -379,7 +370,7 @@ export default async function Home() {
               <div className="mt-5 flex flex-col gap-2.5 sm:flex-row sm:gap-3">
                 <Button
                   asChild
-                  className="rounded-full bg-zinc-900 px-6 text-white shadow-md shadow-zinc-900/15 hover:bg-zinc-800 dark:bg-white dark:text-zinc-900 dark:shadow-none dark:hover:bg-zinc-200"
+                  className="rounded-full bg-zinc-900 px-6 text-white shadow-md shadow-zinc-900/15 hover:bg-zinc-800 dark:bg-zinc-50 dark:text-zinc-900 dark:shadow-none dark:hover:bg-zinc-200"
                 >
                   <Link href="/about">
                     <Users className="mr-2 h-4 w-4" />
@@ -389,7 +380,7 @@ export default async function Home() {
                 <Button
                   asChild
                   variant="ghost"
-                  className="rounded-full px-6 text-zinc-600 hover:bg-card hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/60 dark:hover:text-white"
+                  className="rounded-full px-6 text-zinc-600 hover:bg-card hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/60 dark:hover:text-zinc-50"
                 >
                   <Link href="/faq">
                     <HelpCircle className="mr-2 h-4 w-4" />
@@ -408,7 +399,7 @@ export default async function Home() {
                 مرحبا بيك
               </p>
               <p className="mt-5 text-sm text-zinc-400 dark:text-zinc-500">
-                {t("builtTogether")} · {t("byTheCommunity")}
+                {t("byTheCommunity")}
               </p>
             </div>
           </div>

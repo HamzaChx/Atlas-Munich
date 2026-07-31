@@ -155,7 +155,7 @@ export default async function RootLayout({
         },
         contactPoint: {
           "@type": "ContactPoint",
-          email: "hello@atlasmunich.de",
+          email: "hamza.chaouki@tum.de",
           contactType: "customer support",
         },
         sameAs: ["https://github.com/HamzaChx/Atlas-Munich"],

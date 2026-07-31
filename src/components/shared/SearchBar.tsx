@@ -85,7 +85,7 @@ export function SearchBar({
           autoFocus={autoFocus}
           className={cn(
             inputRightPadding,
-            "border-border bg-card text-zinc-900 dark:text-white placeholder:text-zinc-400 dark:placeholder:text-zinc-500 shadow-sm dark:shadow-none transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] focus:border-zellige/50 focus:ring-2 focus:ring-zellige/20 focus:shadow-md focus:shadow-zellige/5 focus-visible:border-zellige/50 focus-visible:ring-2 focus-visible:ring-zellige/20 hover:border-zinc-300 dark:hover:border-white/15",
+            "border-border bg-card text-zinc-900 dark:text-zinc-50 placeholder:text-zinc-400 dark:placeholder:text-zinc-500 shadow-sm dark:shadow-none transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] focus:border-zellige/50 focus:ring-2 focus:ring-zellige/20 focus:shadow-md focus:shadow-zellige/5 focus-visible:border-zellige/50 focus-visible:ring-2 focus-visible:ring-zellige/20 hover:border-zinc-300 dark:hover:border-input",
             size === "lg"
               ? "h-12 sm:h-14 pl-10 sm:pl-14 text-base sm:text-lg rounded-full shadow-[0_6px_24px_rgb(0_0_0/0.08)] dark:shadow-none"
               : "h-11 pl-11 text-sm rounded-full",
@@ -97,7 +97,7 @@ export function SearchBar({
             type="button"
             onClick={handleClear}
             className={cn(
-              "absolute top-1/2 -translate-y-1/2 rounded-full p-1.5 text-zinc-400 dark:text-zinc-500 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-zinc-100 hover:text-zinc-600 dark:hover:bg-white/10 dark:hover:text-white active:scale-95 outline-none focus-visible:ring-2 focus-visible:ring-zellige/50",
+              "absolute top-1/2 -translate-y-1/2 rounded-full p-1.5 text-zinc-400 dark:text-zinc-500 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:bg-zinc-100 hover:text-zinc-600 dark:hover:bg-foreground/10 dark:hover:text-zinc-50 active:scale-95 outline-none focus-visible:ring-2 focus-visible:ring-zellige/50",
               clearRight
             )}
           >

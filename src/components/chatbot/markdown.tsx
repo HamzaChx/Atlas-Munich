@@ -200,15 +200,15 @@ function CodeBlock({ code, lang }: { code: string; lang?: string }) {
   }, [code]);
 
   return (
-    <div className="my-2 overflow-hidden rounded-xl border border-black/[0.07] bg-white/70 dark:border-white/10 dark:bg-black/20">
-      <div className="flex items-center justify-between border-b border-black/[0.06] px-3 py-1.5 dark:border-white/[0.08]">
+    <div className="my-2 overflow-hidden rounded-xl border border-black/[0.07] bg-white/70 dark:border-border dark:bg-black/20">
+      <div className="flex items-center justify-between border-b border-black/[0.06] px-3 py-1.5 dark:border-border/80">
         <span className="text-[0.72em] font-semibold tracking-[0.1em] text-zinc-500 uppercase dark:text-zinc-400">
           {lang || "text"}
         </span>
         <button
           type="button"
           onClick={handleCopy}
-          className="flex cursor-pointer items-center gap-1 rounded-full px-1.5 py-0.5 text-[0.75em] font-medium text-zinc-500 transition-colors hover:bg-black/[0.04] hover:text-zinc-700 dark:text-zinc-400 dark:hover:bg-white/10 dark:hover:text-zinc-200"
+          className="flex cursor-pointer items-center gap-1 rounded-full px-1.5 py-0.5 text-[0.75em] font-medium text-zinc-500 transition-colors hover:bg-black/[0.04] hover:text-zinc-700 dark:text-zinc-400 dark:hover:bg-foreground/10 dark:hover:text-zinc-200"
           aria-label={copied ? "Code copied" : "Copy code"}
         >
           {copied ? <Check className="h-3 w-3" /> : <Copy className="h-3 w-3" />}
@@ -533,7 +533,7 @@ export function ChatMarkdown({
     <div className="space-y-0.5">
       {renderBlocks(body, linkClass)}
       {tldr && (
-        <div className="mt-3 rounded-xl border border-black/[0.06] bg-white/60 px-3 py-2 dark:border-white/10 dark:bg-white/[0.06]">
+        <div className="mt-3 rounded-xl border border-black/[0.06] bg-white/60 px-3 py-2 dark:border-border dark:bg-foreground/[0.08]">
           <p
             className={cn(
               "mb-0.5 text-[0.72em] font-bold tracking-[0.12em] uppercase",

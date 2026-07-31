@@ -108,24 +108,24 @@ export default async function ToolsPage() {
   const t = await getTranslations("tools");
 
   const ctaClasses =
-    "w-full inline-flex justify-center items-center gap-2 px-4 py-2.5 rounded-full bg-zinc-900 text-white dark:bg-white dark:text-zinc-900 text-sm font-semibold shadow-md shadow-zinc-900/10 dark:shadow-none transition-all hover:bg-zinc-800 dark:hover:bg-zinc-200";
+    "w-full inline-flex justify-center items-center gap-2 px-4 py-2.5 rounded-full bg-zinc-900 text-white dark:bg-zinc-50 dark:text-zinc-900 text-sm font-semibold shadow-md shadow-zinc-900/10 dark:shadow-none transition-all hover:bg-zinc-800 dark:hover:bg-zinc-200";
 
   return (
     <div className="min-h-screen bg-background">
       {/* ========== HERO ========== */}
-      <section className="mx-auto flex max-w-2xl flex-col items-center px-5 pb-10 pt-14 text-center sm:pb-14 sm:pt-20">
-        <h1 className="rise rise-1 font-display text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-5xl">
+      <section className="mx-auto flex max-w-2xl flex-col items-center px-5 pb-10 pt-14 text-center sm:pb-14 sm:pt-20 2xl:max-w-3xl">
+        <h1 className="rise rise-1 font-display text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-5xl 2xl:text-6xl">
           {t("title")} <span className="text-bloom">{t("titleHighlight")}</span>
         </h1>
 
-        <p className="rise rise-2 mt-4 max-w-md text-base leading-relaxed text-zinc-500 dark:text-zinc-400 sm:text-lg">
+        <p className="rise rise-2 mt-4 max-w-md text-base leading-relaxed text-zinc-500 dark:text-zinc-400 sm:text-lg 2xl:max-w-lg 2xl:text-xl">
           {t("subtitle")}
         </p>
       </section>
 
       {/* ========== ASSISTANTS ========== */}
-      <section className="mx-auto max-w-5xl px-4 pb-16 sm:px-6 sm:pb-24 lg:px-8">
-        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
+      <section className="mx-auto max-w-5xl 2xl:max-w-[80rem] px-4 pb-16 sm:px-6 sm:pb-24 lg:px-8">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5 2xl:grid-cols-4 2xl:gap-6">
           {ASSISTANTS.map((assistant, index) => {
             const Icon = assistant.icon;
             const tags = t.raw(`tools.${assistant.key}.tags`) as string[];
@@ -133,7 +133,7 @@ export default async function ToolsPage() {
             return (
               <div
                 key={assistant.key}
-                className={`reveal group relative flex flex-col overflow-hidden rounded-3xl ${assistant.tint} transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:ring-1 dark:ring-white/10`}
+                className={`reveal group relative flex flex-col overflow-hidden rounded-3xl ${assistant.tint} transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:ring-1 dark:ring-border`}
               >
                 <div className="flex flex-1 flex-col p-6 sm:p-7">
                   {/* Profile header */}
@@ -160,7 +160,7 @@ export default async function ToolsPage() {
                       </span>
                     </div>
 
-                    <h2 className="font-display text-lg font-bold text-zinc-900 dark:text-white">
+                    <h2 className="font-display text-lg font-bold text-zinc-900 dark:text-zinc-50">
                       {assistant.name}
                     </h2>
                     <p className="text-sm font-medium text-zinc-500 dark:text-zinc-400">
@@ -216,7 +216,7 @@ export default async function ToolsPage() {
           })}
 
           {/* Coming Soon: Events (6th slot) */}
-          <div className="reveal relative flex flex-col overflow-hidden rounded-3xl bg-card/60 shadow-[0_2px_16px_rgb(0_0_0/0.04)] dark:shadow-none dark:ring-1 dark:ring-white/5">
+          <div className="reveal relative flex flex-col overflow-hidden rounded-3xl bg-card/60 shadow-[0_2px_16px_rgb(0_0_0/0.04)] dark:shadow-none dark:ring-1 dark:ring-border/70">
             <div className="flex flex-1 flex-col p-6 sm:p-7">
               <div className="mb-5 flex flex-col items-center text-center">
                 <div className="relative mb-3">
@@ -225,7 +225,7 @@ export default async function ToolsPage() {
                     <CalendarDays className="h-8 w-8 text-acc-plum" />
                   </div>
                 </div>
-                <h2 className="font-display text-lg font-bold text-zinc-900 dark:text-white">
+                <h2 className="font-display text-lg font-bold text-zinc-900 dark:text-zinc-50">
                   {t("tools.events.title")}
                 </h2>
                 <p className="text-sm font-medium text-zinc-500 dark:text-zinc-400">
@@ -245,7 +245,7 @@ export default async function ToolsPage() {
                 {(t.raw("tools.events.tags") as string[]).map((tag: string) => (
                   <span
                     key={tag}
-                    className="rounded-full bg-zinc-100 px-2.5 py-0.5 text-xs font-medium text-zinc-500 dark:bg-white/5 dark:text-zinc-400"
+                    className="rounded-full bg-zinc-100 px-2.5 py-0.5 text-xs font-medium text-zinc-500 dark:bg-foreground/[0.075] dark:text-zinc-400"
                   >
                     {tag}
                   </span>
@@ -253,7 +253,7 @@ export default async function ToolsPage() {
               </div>
 
               <div className="mt-auto">
-                <div className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-zinc-200 px-4 py-2.5 text-sm font-semibold text-zinc-500 dark:bg-white/10 dark:text-zinc-400">
+                <div className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-zinc-200 px-4 py-2.5 text-sm font-semibold text-zinc-500 dark:bg-foreground/10 dark:text-zinc-400">
                   <Clock className="h-4 w-4" />
                   {t("tools.events.comingSoonNote")}
                 </div>
@@ -263,7 +263,7 @@ export default async function ToolsPage() {
         </div>
 
         {/* Credits + more coming */}
-        <div className="reveal mt-12 rounded-[2rem] bg-tint-blue p-8 text-center dark:ring-1 dark:ring-white/10">
+        <div className="reveal mt-12 rounded-[2rem] bg-tint-blue p-8 text-center dark:ring-1 dark:ring-border">
           <p className="text-sm text-zinc-600 dark:text-zinc-300">
             {t("designedBy")}{" "}
             <a

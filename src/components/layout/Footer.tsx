@@ -37,7 +37,7 @@ export function Footer() {
 
   return (
     <footer className="bg-zinc-100/60 dark:bg-zinc-900/40">
-      <div className="mx-auto max-w-[1280px] px-4 py-8 sm:px-6 sm:py-10 lg:px-8 safe-area-bottom">
+      <div className="mx-auto max-w-[1280px] 2xl:max-w-[96rem] px-4 py-8 sm:px-6 sm:py-10 lg:px-8 2xl:px-12 safe-area-bottom">
         <div className="grid grid-cols-2 gap-8 sm:grid-cols-2 lg:grid-cols-5">
           {/* Brand */}
           <div className="col-span-2 lg:col-span-2">
@@ -52,7 +52,7 @@ export function Footer() {
                 height={32}
                 className="h-8 w-8 rounded-full transition-transform duration-300 group-hover:scale-105"
               />
-              <span className="font-display text-lg font-bold tracking-tight text-zinc-900 dark:text-white">
+              <span className="font-display text-lg font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
                 Atlas Munich
               </span>
             </Link>
@@ -73,7 +73,7 @@ export function Footer() {
           {/* Link columns */}
           {linkColumns.map((column) => (
             <div key={column.titleKey}>
-              <h3 className="text-xs font-semibold uppercase tracking-wider text-zinc-900 dark:text-white">
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-zinc-900 dark:text-zinc-50">
                 {t(column.titleKey)}
               </h3>
               <ul className="mt-3 space-y-2">
@@ -129,7 +129,7 @@ export function Footer() {
               <span className="sr-only">GitHub</span>
             </Link>
             <Link
-              href="mailto:hello@atlasmunich.de"
+              href="mailto:hamza.chaouki@tum.de"
               className="flex p-2 -m-1 text-zinc-500 transition-colors duration-200 hover:text-zellige dark:text-zinc-400 outline-none focus-visible:text-zellige"
             >
               <Mail className="h-4 w-4" />

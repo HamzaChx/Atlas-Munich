@@ -55,13 +55,13 @@ export function CategoryCard({
               <IconComponent className="h-5 w-5 text-zellige transition-colors duration-300 group-hover:text-white dark:group-hover:text-zinc-950" />
             </div>
             {countLabel && (
-              <span className="rounded-full border border-border bg-zinc-100 dark:bg-white/5 px-2.5 py-0.5 text-xs font-medium text-zinc-600 dark:text-zinc-400">
+              <span className="rounded-full border border-border bg-zinc-100 dark:bg-foreground/[0.075] px-2.5 py-0.5 text-xs font-medium text-zinc-600 dark:text-zinc-400">
                 {countLabel}
               </span>
             )}
           </div>
 
-          <h3 className="font-display text-base sm:text-lg font-bold leading-snug tracking-tight text-zinc-900 dark:text-white transition-colors duration-200 group-hover:text-zellige">
+          <h3 className="font-display text-base sm:text-lg font-bold leading-snug tracking-tight text-zinc-900 dark:text-zinc-50 transition-colors duration-200 group-hover:text-zellige">
             {displayTitle}
           </h3>
 

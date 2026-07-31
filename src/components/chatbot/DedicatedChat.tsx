@@ -217,7 +217,7 @@ function WelcomeScreen({
       </div>
 
       <div className="flex items-center gap-2">
-        <h1 className="font-display text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl dark:text-white">
+        <h1 className="font-display text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl dark:text-zinc-50">
           {name}
         </h1>
         <span className="rounded-full bg-muted px-2 py-0.5 text-[10px] font-bold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
@@ -427,7 +427,7 @@ export function DedicatedChat({ theme, backPath }: DedicatedChatProps) {
           className={cn(
             "mx-auto flex h-full max-w-4xl flex-col overflow-hidden bg-card",
             "sm:rounded-[2rem] sm:shadow-[0_8px_40px_-16px_rgb(0_0_0/0.18)] sm:dark:shadow-none",
-            "dark:ring-1 dark:ring-white/10"
+            "dark:ring-1 dark:ring-border"
           )}
         >
           {/* ---- Header ---- */}
@@ -458,7 +458,7 @@ export function DedicatedChat({ theme, backPath }: DedicatedChatProps) {
 
             <div className="min-w-0 flex-1">
               <div className="flex items-center gap-1.5">
-                <p className="truncate font-display text-[15px] font-bold leading-tight text-zinc-900 sm:text-base dark:text-white">
+                <p className="truncate font-display text-[15px] font-bold leading-tight text-zinc-900 sm:text-base dark:text-zinc-50">
                   {chatbotConfig.name}
                 </p>
                 <span className="flex-shrink-0 rounded-full bg-card/70 px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
@@ -565,7 +565,7 @@ export function DedicatedChat({ theme, backPath }: DedicatedChatProps) {
                 style={{ maxHeight: "140px" }}
                 className={cn(
                   "w-full flex-1 resize-none rounded-2xl border border-border bg-background px-4 py-3",
-                  "text-[14px] text-zinc-900 placeholder:text-zinc-400 dark:text-white dark:placeholder:text-zinc-500",
+                  "text-[14px] text-zinc-900 placeholder:text-zinc-400 dark:text-zinc-50 dark:placeholder:text-zinc-500",
                   "outline-none transition-colors",
                   accent.focus
                 )}

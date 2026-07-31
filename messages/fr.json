@@ -13,9 +13,8 @@
   "home": {
     "heroTitle": "Nouveau à Munich ?",
     "heroTitleHighlight": "On est là pour vous.",
-    "heroSubtitle": "Guides, adresses et assistants IA pour les Marocains qui s'installent à Munich. Lancé par",
+    "heroSubtitle": "Guides, adresses et assistants IA pour les Marocains qui s'installent à Munich.",
     "heroCommunity": "Hamza Chaouki",
-    "heroSubtitle2": ", porté par la communauté.",
     "searchPlaceholder": "Essayez « Anmeldung », « colocation » ou « boucherie halal »…",
     "quickLinks": {
       "findHousing": "Trouver un logement",
@@ -1409,32 +1408,867 @@
   },
   "legal": {
     "privacy": {
-      "title": "Politique de Confidentialité",
-      "intro": "Atlas Munich est un projet open source et non commercial créé pour l’apprentissage personnel. Cette Politique de Confidentialité explique quelles informations limitées sont traitées lorsque vous utilisez le site.",
-      "controller": "Atlas Munich, Munich, Allemagne",
-      "contact": "Pour toute question concernant la confidentialité : [votre email]",
-      "dataCollected": {
-        "title": "Données Traitées",
-        "analytics": "Nous utilisons Vercel Analytics pour comprendre l’usage du site (type d’appareil, pages consultées, région approximative). Aucun profil utilisateur identifiable n’est créé.",
-        "prompts": "Le texte que vous saisissez est envoyé à un fournisseur de modèles d’IA pour générer des réponses et peut être conservé temporairement. Nous ne cherchons pas à identifier les utilisateurs."
+      "title": "Politique de",
+      "titleHighlight": "confidentialité",
+      "subtitle": "Ce qu'Atlas Munich fait des données, d'abord en langage clair puis dans le détail contraignant. Rédigée conformément au RGPD, à la loi fédérale allemande sur la protection des données et au TDDDG.",
+      "ui": {
+        "contents": "Sommaire",
+        "section": "Section",
+        "of": "sur",
+        "readAll": "Lire le document complet",
+        "readOne": "Lire section par section",
+        "print": "Imprimer ou enregistrer en PDF",
+        "previous": "Précédent",
+        "next": "Suivant",
+        "version": "Version",
+        "effective": "En vigueur depuis le",
+        "authority": "Autorité de contrôle",
+        "addressMissing": "Une adresse postale doit encore être publiée ici pour satisfaire au § 5 DDG et au § 18 al. 2 MStV. Renseignez postalAddress dans src/lib/legal-config.ts.",
+        "questionsTitle": "Une question sur vos données ?",
+        "questionsBody": "Accès, rectification, effacement, opposition ou tout autre point de cette politique : écrivez-nous, nous répondons sous un mois, gratuitement, en français, en anglais ou en allemand.",
+        "writeUs": "Écrivez-nous"
       },
-      "cookies": "Atlas Munich n’utilise pas intentionnellement de cookies de suivi. Les analyses fonctionnent côté serveur autant que possible.",
-      "lawfulBasis": "Le traitement repose sur l’intérêt légitime (Art. 6(1)(f) RGPD) pour améliorer et maintenir le site.",
-      "thirdParties": "Nous utilisons des services externes tels que Vercel (hébergement + analyse) et Google Gemini (plateforme IA). Ces services suivent leurs propres politiques de confidentialité.",
-      "dataRetention": "Seules des données non identifiantes sont conservées pendant des périodes limitées.",
-      "rights": "Vous pouvez demander l'accès, la limitation ou la suppression de vos données conformément au RGPD.",
-      "updates": "Cette Politique pourra être mise à jour. La version la plus récente reste disponible sur cette page."
+      "sections": [
+        {
+          "id": "overview",
+          "title": "En bref",
+          "summary": "La version courte en langage clair. Ce sont les sections suivantes qui font foi.",
+          "blocks": [
+            {
+              "t": "p",
+              "x": "{entity} est un site d'information gratuit, non commercial et open source destiné aux nouveaux arrivants à Munich. Il a été conçu pour être utile sans recueillir sur vous plus que ce qu'il faut pour afficher une page."
+            },
+            {
+              "t": "list",
+              "x": [
+                "Aucun compte utilisateur, aucune inscription, aucune newsletter et aucune régie publicitaire.",
+                "Aucun cookie de suivi, aucun profilage entre sites, aucune vente ni partage de données personnelles avec des courtiers en données.",
+                "Les statistiques sont agrégées et sans cookies : nous comptons les pages vues sans vous reconnaître.",
+                "Les assistants IA transmettent ce que vous écrivez à un sous-traitant IA afin de produire une réponse. N'y saisissez pas d'informations personnelles ou sensibles.",
+                "Vos droits au titre du RGPD s'appliquent pleinement, leur exercice est gratuit et ils figurent à la section 10."
+              ]
+            },
+            {
+              "t": "note",
+              "x": "Ce résumé est fourni pour votre commodité. En cas de divergence avec une section détaillée ci-dessous, c'est la section détaillée qui s'applique."
+            }
+          ]
+        },
+        {
+          "id": "controller",
+          "title": "Qui est responsable",
+          "summary": "Identité du responsable de traitement, identification du fournisseur et moyen de joindre une personne.",
+          "blocks": [
+            {
+              "t": "p",
+              "x": "Le responsable du traitement au sens de l'article 4, point 7, du RGPD pour les opérations décrites dans la présente politique est l'exploitant d'{entity} indiqué ci-dessous. Ces mêmes mentions valent identification du fournisseur au titre du § 5 de la loi allemande sur les services numériques (DDG) et du § 18 al. 2 du traité inter-États sur les médias (MStV)."
+            },
+            {
+              "t": "controller"
+            },
+            {
+              "t": "p",
+              "x": "{entity} est animé par des bénévoles sur une base non commerciale. Comme nous ne traitons pas de catégories particulières de données à grande échelle et ne procédons pas à un suivi régulier et systématique à grande échelle, nous ne sommes pas tenus de désigner un délégué à la protection des données au titre de l'article 37 du RGPD. Les demandes relatives à la protection des données parviennent à l'adresse ci-dessus et sont traitées personnellement par l'exploitant."
+            },
+            {
+              "t": "p",
+              "x": "Nous sommes établis en Allemagne et nous adressons au marché allemand et européen. Le RGPD, la loi fédérale sur la protection des données (BDSG) et le TDDDG s'appliquent donc à ce service."
+            }
+          ]
+        },
+        {
+          "id": "data",
+          "title": "Ce que nous traitons",
+          "summary": "Toutes les catégories de données touchées par le site, leur finalité, leur base légale et leur durée de conservation.",
+          "blocks": [
+            {
+              "t": "p",
+              "x": "Vous pouvez lire tous les guides, toutes les réponses et toutes les fiches de lieux d'{entity} sans rien nous dire de vous. Les catégories ci-dessous constituent l'ensemble complet des données que le service manipule."
+            },
+            {
+              "t": "h",
+              "x": "Données d'accès et journaux serveur"
+            },
+            {
+              "t": "p",
+              "x": "À chaque demande d'une page ou d'une ressource, notre hébergeur traite des données techniques de connexion : l'adresse IP de l'appareil, la date et l'heure, la ressource demandée, le statut HTTP et le volume transféré, la page de provenance, ainsi que les identifiants de navigateur et de système d'exploitation envoyés par votre appareil. Ce traitement est techniquement nécessaire pour délivrer la page et maintenir le service stable et sûr. Ces données ne sont pas croisées avec d'autres sources et ne servent pas à vous identifier."
+            },
+            {
+              "t": "h",
+              "x": "Mesure d'audience"
+            },
+            {
+              "t": "p",
+              "x": "Nous utilisons Vercel Web Analytics et Vercel Speed Insights. Les deux fonctionnent sans cookies et n'écrivent ni ne lisent aucun identifiant sur votre appareil. Ils restituent des indicateurs agrégés : pages vues, catégorie de provenance, région au niveau du pays, type d'appareil et temps de chargement. Une empreinte éphémère et non réversible calculée à partir de propriétés de la requête sert uniquement à distinguer une visite d'une autre et ne nous permet pas de remonter à une personne."
+            },
+            {
+              "t": "h",
+              "x": "Conversations avec les assistants IA"
+            },
+            {
+              "t": "p",
+              "x": "Si vous ouvrez un assistant, les messages que vous écrivez, l'assistant choisi, la langue de l'interface et le chemin de la page où vous vous trouviez sont transmis à notre sous-traitant IA afin qu'une réponse soit produite. Les conversations ne sont enregistrées dans aucune base de données de notre côté et ne sont reliées à aucun profil. Le détail technique figure à la section 6."
+            },
+            {
+              "t": "h",
+              "x": "Prévention des abus"
+            },
+            {
+              "t": "p",
+              "x": "Pour éviter qu'un client saturé ne submerge le point d'accès de l'assistant, l'adresse IP fournie par notre proxy d'hébergement est conservée en mémoire vive du serveur avec un compteur de requêtes pendant une fenêtre glissante de dix minutes, puis écartée. Aucun enregistrement de ces compteurs n'est écrit sur disque."
+            },
+            {
+              "t": "h",
+              "x": "Contact par courriel"
+            },
+            {
+              "t": "p",
+              "x": "Si vous nous écrivez, votre adresse et le contenu de votre message sont traités pour vous répondre et, lorsqu'une conservation légale s'impose, conservés au titre de la correspondance. Rien de ce que vous nous envoyez n'est utilisé à d'autres fins."
+            },
+            {
+              "t": "table",
+              "head": [
+                "Données",
+                "Finalité",
+                "Base légale",
+                "Conservation"
+              ],
+              "rows": [
+                [
+                  "Journaux d'accès et serveur",
+                  "Délivrance du site, stabilité, sécurité informatique",
+                  "Art. 6, § 1, f) RGPD, intérêt légitime à un service fonctionnel et sûr",
+                  "Conservés par l'hébergeur pendant une courte période d'exploitation, en règle générale au plus 30 jours"
+                ],
+                [
+                  "Statistiques sans cookies",
+                  "Comprendre quels contenus servent et à quelle vitesse les pages chargent",
+                  "Art. 6, § 1, f) RGPD, intérêt légitime à améliorer le contenu",
+                  "Statistiques agrégées uniquement, aucun identifiant brut ne survit à la visite"
+                ],
+                [
+                  "Messages aux assistants IA",
+                  "Produire la réponse que vous avez demandée",
+                  "Art. 6, § 1, b) et f) RGPD, exécution du service demandé",
+                  "Non conservés par nous. Conservés jusqu'à 30 jours par le sous-traitant IA à des fins de contrôle des abus, puis supprimés"
+                ],
+                [
+                  "Compteurs de limitation de débit (IP)",
+                  "Prévention des abus et des saturations",
+                  "Art. 6, § 1, f) et art. 32 RGPD, sécurité du traitement",
+                  "Mémoire volatile uniquement, 10 minutes au plus"
+                ],
+                [
+                  "Stockage local sur votre appareil",
+                  "Mémoriser l'apparence choisie et le fait que l'assistant a déjà été ouvert",
+                  "§ 25 al. 2 n° 2 TDDDG, strictement nécessaire, et art. 6, § 1, f) RGPD",
+                  "Jusqu'à ce que vous effaciez le stockage de votre navigateur"
+                ],
+                [
+                  "Correspondance par courriel",
+                  "Répondre à votre demande",
+                  "Art. 6, § 1, b) ou f) RGPD",
+                  "Supprimée une fois l'affaire close, en l'absence d'obligation de conservation"
+                ]
+              ]
+            }
+          ]
+        },
+        {
+          "id": "legalBasis",
+          "title": "Bases légales",
+          "summary": "Quel article du RGPD autorise chaque opération, et la mise en balance derrière nos intérêts légitimes.",
+          "blocks": [
+            {
+              "t": "defs",
+              "x": [
+                {
+                  "k": "Art. 6, § 1, a), consentement",
+                  "v": "Si nous devions un jour demander votre consentement, par exemple à l'occasion d'un service intégré facultatif, le traitement n'aurait lieu qu'après votre accord et vous pourriez le retirer à tout moment pour l'avenir."
+                },
+                {
+                  "k": "Art. 6, § 1, b), mesures à votre demande",
+                  "v": "Produire la réponse d'un assistant que vous avez choisi d'ouvrir constitue un traitement nécessaire à l'exécution du service demandé."
+                },
+                {
+                  "k": "Art. 6, § 1, c), obligation légale",
+                  "v": "Lorsque des obligations légales nous imposent de conserver ou de communiquer des données, par exemple à la suite d'une injonction régulière."
+                },
+                {
+                  "k": "Art. 6, § 1, f), intérêts légitimes",
+                  "v": "Exploiter, sécuriser et améliorer un service d'information gratuit, comme exposé dans la mise en balance ci-dessous."
+                }
+              ]
+            },
+            {
+              "t": "h",
+              "x": "Notre mise en balance des intérêts légitimes"
+            },
+            {
+              "t": "p",
+              "x": "Notre intérêt est de faire tourner un site qui s'affiche, reste en ligne, résiste aux abus et s'améliore. Le traitement se limite à ce qu'un serveur web voit inévitablement, plus des statistiques agrégées. Nous ne constituons aucun profil, ne vous suivons pas d'un site à l'autre et n'enrichissons ces données d'aucune autre source. L'atteinte étant minime et aucun visiteur raisonnable ne s'attendant à ce qu'un site fonctionne sans cela, nous considérons que vos intérêts et libertés fondamentales ne prévalent pas sur les nôtres. Vous pouvez vous y opposer à tout moment pour des raisons tenant à votre situation particulière, au titre de l'article 21, § 1, du RGPD."
+            },
+            {
+              "t": "note",
+              "x": "La fourniture de données n'est imposée ni par la loi ni par un contrat. Vous pouvez consulter le site sans utiliser les assistants ni nous écrire, et aucun contenu ne vous sera refusé pour autant."
+            }
+          ]
+        },
+        {
+          "id": "storage",
+          "title": "Cookies et stockage local",
+          "summary": "Ce qui est écrit sur votre appareil, pourquoi cela ne requiert pas de consentement et comment le supprimer.",
+          "blocks": [
+            {
+              "t": "p",
+              "x": "{entity} n'utilise aucun cookie de suivi, aucun pixel publicitaire, aucun module social et aucune empreinte de navigateur. Il n'y a pas de bandeau de consentement parce que nous n'effectuons aucun traitement soumis à consentement au titre du § 25 al. 1 TDDDG."
+            },
+            {
+              "t": "p",
+              "x": "Deux entrées sont écrites dans le stockage local de votre navigateur. Toutes deux sont strictement nécessaires à la fourniture du service que vous avez expressément demandé et sont donc dispensées de consentement au titre du § 25 al. 2 n° 2 TDDDG. Elles restent sur votre appareil, ne sont lisibles que par ce site et ne nous sont jamais transmises."
+            },
+            {
+              "t": "table",
+              "head": [
+                "Nom",
+                "Type",
+                "Finalité",
+                "Durée"
+              ],
+              "rows": [
+                [
+                  "theme",
+                  "Stockage local",
+                  "Retient si vous avez choisi l'apparence claire, sombre ou système",
+                  "Jusqu'à effacement par vos soins"
+                ],
+                [
+                  "atlas-chatbot-interacted",
+                  "Stockage local",
+                  "Évite que l'assistant répète son introduction une fois que vous l'avez utilisé",
+                  "Jusqu'à effacement par vos soins"
+                ]
+              ]
+            },
+            {
+              "t": "p",
+              "x": "Vous pouvez les supprimer à tout moment via les réglages de votre navigateur relatifs aux données de site, et tout continue de fonctionner ensuite. Votre navigateur vous permet également, le cas échéant, de bloquer entièrement le stockage pour ce site."
+            },
+            {
+              "t": "p",
+              "x": "Les tuiles cartographiques de la page des lieux sont chargées auprès d'un tiers, ce qui implique votre adresse IP. Cela est décrit à la section 7."
+            }
+          ]
+        },
+        {
+          "id": "ai",
+          "title": "Les assistants IA",
+          "summary": "Ce qu'il advient de ce que vous écrivez, qui le traite et les limites à garder en tête.",
+          "blocks": [
+            {
+              "t": "note",
+              "x": "Vous interagissez avec un système d'intelligence artificielle et non avec un être humain. Cette information figure dans l'interface, comme l'exige l'article 50 du règlement européen sur l'IA. Les réponses peuvent être fausses. Ne saisissez jamais de mots de passe, de numéros de pièce d'identité ou de titre de séjour, de données de santé, de coordonnées bancaires ni de données personnelles d'autrui dans une conversation."
+            },
+            {
+              "t": "p",
+              "x": "Les assistants reposent sur un grand modèle de langage exploité par OpenAI en qualité de sous-traitant. À l'envoi d'un message, sont transmis : le texte de votre message, jusqu'aux vingt derniers tours de la conversation en cours pour le contexte, l'assistant choisi, la langue de l'interface et le chemin de la page où vous étiez. Rien d'autre n'est joint : ni nom, ni compte, ni cookie, ni identifiant de mesure d'audience."
+            },
+            {
+              "t": "p",
+              "x": "Nous ne conservons pas vos conversations. Elles vivent dans votre onglet tant qu'il reste ouvert et disparaissent dès que vous le fermez ou le rechargez. Selon les conditions d'API applicables, les entrées et les sorties ne servent pas à entraîner les modèles du fournisseur et ne sont conservées que trente jours au plus aux seules fins de détection des abus, avant suppression, sauf durée plus longue imposée par la loi."
+            },
+            {
+              "t": "p",
+              "x": "La longueur des messages, la longueur des conversations et la fréquence des requêtes sont plafonnées, à la fois pour protéger le service et pour limiter d'emblée le volume de données transmis."
+            },
+            {
+              "t": "h",
+              "x": "Pas de décision automatisée"
+            },
+            {
+              "t": "p",
+              "x": "Les assistants produisent de l'information, rien de plus. Aucune décision produisant des effets juridiques vous concernant ou vous affectant de manière significative n'est prise de façon automatisée, de sorte que l'article 22 du RGPD ne s'applique pas. Donner suite ou non à une réponse relève entièrement de votre choix, et nous recommandons de vérifier tout point important auprès de la source officielle."
+            },
+            {
+              "t": "h",
+              "x": "Exactitude et supervision humaine"
+            },
+            {
+              "t": "p",
+              "x": "Les productions de l'IA peuvent être périmées, incomplètes ou fausses avec aplomb, en particulier en matière de séjour, de fiscalité, de santé et de droit, où les règles changent souvent. Traitez chaque réponse comme un point de départ pour vos propres recherches. Signalez-nous toute réponse erronée ou nuisible et nous réexaminerons les instructions sous-jacentes."
+            }
+          ]
+        },
+        {
+          "id": "recipients",
+          "title": "Destinataires et sous-traitants",
+          "summary": "Les tiers impliqués, ce que chacun reçoit et à quel titre.",
+          "blocks": [
+            {
+              "t": "p",
+              "x": "Nous limitons le nombre de tiers autant qu'un site web moderne le permet. Lorsqu'un prestataire traite des données personnelles pour notre compte, un contrat de sous-traitance au titre de l'article 28 du RGPD est en place. Nous ne vendons pas de données personnelles, ne les transmettons pas à des courtiers en données et ne les utilisons pas à des fins publicitaires."
+            },
+            {
+              "t": "table",
+              "head": [
+                "Prestataire",
+                "Rôle",
+                "Ce qu'il reçoit",
+                "Où"
+              ],
+              "rows": [
+                [
+                  "Vercel Inc. et Vercel GmbH",
+                  "Sous-traitant : hébergement, diffusion, statistiques sans cookies",
+                  "Données de connexion dont l'adresse IP, la ressource demandée et les en-têtes techniques",
+                  "Union européenne et États-Unis"
+                ],
+                [
+                  "OpenAI Ireland Ltd. et OpenAI, L.L.C.",
+                  "Sous-traitant : inférence du modèle d'IA",
+                  "Le contenu de vos messages aux assistants et les instructions système",
+                  "Union européenne et États-Unis"
+                ],
+                [
+                  "CARTO (fonds de carte)",
+                  "Responsable de traitement indépendant pour la requête de tuiles",
+                  "Votre adresse IP et les tuiles demandées par votre navigateur, uniquement sur la page des lieux et seulement tant qu'une carte est affichée",
+                  "Union européenne et États-Unis"
+                ],
+                [
+                  "Fournisseur de messagerie",
+                  "Sous-traitant pour la correspondance",
+                  "Ce que vous choisissez de nous écrire",
+                  "Union européenne"
+                ]
+              ]
+            },
+            {
+              "t": "h",
+              "x": "Liens vers d'autres sites"
+            },
+            {
+              "t": "p",
+              "x": "Nos guides renvoient vers des administrations, des universités, des plateformes de logement et des ressources comparables. Dès que vous suivez un tel lien, vous êtes sur le site d'un tiers soumis à sa propre politique de confidentialité, sur laquelle nous n'avons aucun contrôle et dont nous n'assumons pas la responsabilité. Le QR code affiché sur la page à propos est récupéré par notre serveur et non par votre navigateur : votre adresse n'est donc pas divulguée à ce service."
+            },
+            {
+              "t": "p",
+              "x": "En dehors du tableau ci-dessus, des données personnelles ne sont communiquées que lorsque la loi nous y oblige, par exemple à la suite d'une injonction régulière d'une autorité compétente ou d'une juridiction."
+            }
+          ]
+        },
+        {
+          "id": "transfers",
+          "title": "Transferts internationaux",
+          "summary": "Quand les données quittent l'EEE et quelles garanties les accompagnent.",
+          "blocks": [
+            {
+              "t": "p",
+              "x": "Certains des prestataires ci-dessus sont établis aux États-Unis ou y traitent des données : un transfert vers un pays tiers au sens du chapitre V du RGPD a donc lieu."
+            },
+            {
+              "t": "list",
+              "x": [
+                "Lorsque le destinataire est certifié au titre du cadre de protection des données UE-États-Unis, le transfert repose sur la décision d'adéquation de la Commission européenne du 10 juillet 2023, prise sur le fondement de l'article 45 du RGPD.",
+                "À défaut, le transfert repose sur les clauses contractuelles types adoptées par la Commission européenne au titre de l'article 46, § 2, c), du RGPD, complétées si nécessaire par une analyse d'impact du transfert et des mesures techniques telles que le chiffrement en transit.",
+                "Lorsqu'un prestataire propose un traitement au sein de l'Union européenne, nous retenons cette option."
+              ]
+            },
+            {
+              "t": "p",
+              "x": "Sachez que les autorités des États-Unis peuvent en principe exiger l'accès aux données détenues par des prestataires relevant de leur juridiction, et que les voies de recours qui vous y sont ouvertes peuvent ne pas équivaloir à celles du droit de l'Union. Vous pouvez nous demander une copie des garanties en place à l'aide des coordonnées de la section 2."
+            }
+          ]
+        },
+        {
+          "id": "retention",
+          "title": "Conservation et effacement",
+          "summary": "Combien de temps chaque catégorie est conservée et ce qu'il advient ensuite.",
+          "blocks": [
+            {
+              "t": "p",
+              "x": "Nous ne conservons les données personnelles que le temps requis par la finalité pour laquelle elles ont été collectées. Elles sont ensuite supprimées ou, en présence d'une obligation de conservation prépondérante, leur traitement ultérieur est limité."
+            },
+            {
+              "t": "list",
+              "x": [
+                "Journaux serveur : conservés par l'hébergeur pendant une courte fenêtre d'exploitation, en règle générale au plus trente jours, sauf incident de sécurité précis nécessitant un examen plus long.",
+                "Statistiques : seuls des indicateurs agrégés survivent à la visite, il ne reste donc rien à rattacher à une personne.",
+                "Conversations avec les assistants : nullement conservées par nous, et conservées jusqu'à trente jours par le sous-traitant IA pour la détection des abus.",
+                "Compteurs de limitation de débit : mémoire volatile uniquement, dix minutes au plus, perdus à chaque déploiement ou redémarrage.",
+                "Stockage local : entièrement sous votre contrôle et supprimable à tout moment.",
+                "Courriels : supprimés une fois l'affaire réglée, sauf obligation de conservation commerciale ou fiscale, auquel cas le traitement est limité jusqu'à l'expiration du délai."
+              ]
+            }
+          ]
+        },
+        {
+          "id": "rights",
+          "title": "Vos droits",
+          "summary": "Tout ce que le RGPD vous accorde, comment l'exercer et où vous plaindre.",
+          "blocks": [
+            {
+              "t": "p",
+              "x": "Vous disposez des droits suivants sur les données personnelles vous concernant. Leur exercice est gratuit et nous répondons dans le mois suivant la réception de votre demande. Ce délai peut être prolongé de deux mois pour les demandes complexes, auquel cas nous vous en indiquons le motif dans le premier mois."
+            },
+            {
+              "t": "defs",
+              "x": [
+                {
+                  "k": "Accès, art. 15",
+                  "v": "Confirmation que des données vous concernant sont traitées et, le cas échéant, copie de celles-ci avec les finalités, les destinataires, les durées de conservation et la source."
+                },
+                {
+                  "k": "Rectification, art. 16",
+                  "v": "Correction des données inexactes et complétion des données incomplètes."
+                },
+                {
+                  "k": "Effacement, art. 17",
+                  "v": "Suppression lorsque les données ne sont plus nécessaires, lorsque vous avez retiré votre consentement, lorsque votre opposition a prospéré ou lorsque le traitement était illicite."
+                },
+                {
+                  "k": "Limitation, art. 18",
+                  "v": "Marquage des données de sorte qu'elles soient uniquement conservées, par exemple pendant la contestation de leur exactitude."
+                },
+                {
+                  "k": "Portabilité, art. 20",
+                  "v": "Réception des données que vous avez fournies dans un format structuré, couramment utilisé et lisible par machine, et transmission à un autre responsable lorsque cela est techniquement possible."
+                },
+                {
+                  "k": "Opposition, art. 21",
+                  "v": "Opposition à un traitement fondé sur l'intérêt légitime, pour des raisons tenant à votre situation particulière."
+                },
+                {
+                  "k": "Retrait du consentement, art. 7, § 3",
+                  "v": "Lorsqu'un traitement repose sur le consentement, retrait à tout moment pour l'avenir, sans affecter la licéité du traitement antérieur."
+                },
+                {
+                  "k": "Réclamation, art. 77",
+                  "v": "Introduction d'une réclamation auprès d'une autorité de contrôle, notamment dans l'État de votre résidence habituelle, de votre lieu de travail ou du lieu de la violation alléguée."
+                }
+              ]
+            },
+            {
+              "t": "note",
+              "x": "Droit d'opposition au titre de l'article 21 du RGPD : vous avez le droit de vous opposer à tout moment, pour des raisons tenant à votre situation particulière, au traitement des données personnelles vous concernant fondé sur l'article 6, § 1, f), du RGPD. En cas d'opposition, nous cesserons de traiter ces données, sauf si nous démontrons des motifs légitimes impérieux qui prévalent sur vos intérêts, droits et libertés, ou si le traitement sert à la constatation, à l'exercice ou à la défense de droits en justice. L'opposition peut être adressée sans formalité à {email}."
+            },
+            {
+              "t": "p",
+              "x": "Pour nous permettre de répondre, indiquez le traitement visé et, lorsque la demande porte sur des données que nous ne pourrions reconnaître que techniquement, tout élément aidant à les localiser. Nous pouvons demander des informations confirmant que la demande émane bien de vous, mais uniquement en cas de doute raisonnable sur votre identité et jamais au-delà du nécessaire."
+            },
+            {
+              "t": "p",
+              "x": "Vous pouvez introduire une réclamation auprès de toute autorité de contrôle. L'autorité compétente pour le responsable de traitement est :"
+            },
+            {
+              "t": "authority"
+            }
+          ]
+        },
+        {
+          "id": "security",
+          "title": "Comment nous protégeons le service",
+          "summary": "Les mesures techniques et organisationnelles au titre de l'article 32 du RGPD, et comment signaler une faille.",
+          "blocks": [
+            {
+              "t": "p",
+              "x": "Nous prenons les mesures ci-dessous pour protéger les données personnelles contre l'accès non autorisé, l'altération, la perte et la divulgation. Elles sont proportionnées au risque d'un site sans comptes, sans mots de passe et sans base de données clients, et suivent l'état de l'art visé à l'article 32 du RGPD. Notre démarche s'inspire de référentiels reconnus, dont l'annexe A de la norme ISO/IEC 27001, l'OWASP Application Security Verification Standard et l'OWASP Top Ten, sans que le projet revendique de certification au titre de l'un d'eux."
+            },
+            {
+              "t": "list",
+              "x": [
+                "Chiffrement du transport : l'ensemble du site est servi exclusivement en HTTPS avec un TLS moderne, les requêtes en clair étant redirigées.",
+                "Une politique de sécurité du contenu stricte limitant scripts, styles, images, polices et connexions réseau à des origines connues, avec interdiction de l'inclusion en cadre, des greffons et de l'envoi de formulaires vers des tiers.",
+                "Des en-têtes de sécurité sur chaque route : X-Content-Type-Options, X-Frame-Options, une politique de référent stricte et une politique de permissions désactivant la caméra, le micro, la géolocalisation et les interfaces de cohortes d'intérêt.",
+                "Un durcissement des entrées du point d'accès de l'assistant : limitation de la taille des charges utiles, plafonds sur le nombre et la longueur des messages, séparation stricte des rôles entre tours utilisateur et assistant afin qu'aucune instruction ne puisse être usurpée, et limitation de débit par client.",
+                "Une minimisation des données dès la conception : aucun compte, aucun mot de passe stocké, aucune donnée de paiement, aucun identifiant publicitaire et aucune base de données de visiteurs susceptible d'être compromise.",
+                "Les secrets tels que les clés d'API sont conservés dans la configuration d'environnement chiffrée de la plateforme d'hébergement, jamais dans le dépôt de code, et restent révocables à tout moment.",
+                "Les dépendances sont figées et mises à jour régulièrement, et le code source est public afin que les faiblesses puissent être trouvées et signalées ouvertement.",
+                "L'accès à la plateforme de déploiement est réservé aux mainteneurs et protégé par une authentification multifacteur."
+              ]
+            },
+            {
+              "t": "h",
+              "x": "Signaler une vulnérabilité"
+            },
+            {
+              "t": "p",
+              "x": "Si vous découvrez une faiblesse de sécurité ou de confidentialité, signalez-la à {email} avant toute divulgation publique et laissez-nous un délai raisonnable pour la corriger. Nous ne poursuivrons pas une recherche de sécurité de bonne foi qui respecte la vie privée des utilisateurs, évite les interruptions de service et n'accède pas à plus de données que nécessaire pour démontrer le problème."
+            },
+            {
+              "t": "h",
+              "x": "Violations de données personnelles"
+            },
+            {
+              "t": "p",
+              "x": "En cas de violation susceptible d'engendrer un risque pour vos droits et libertés, nous en informons l'autorité de contrôle compétente dans les meilleurs délais et, si possible, dans les soixante-douze heures après en avoir pris connaissance, conformément à l'article 33 du RGPD. Lorsque la violation est susceptible d'engendrer un risque élevé pour vous, nous informons également directement les personnes concernées, comme l'exige l'article 34 du RGPD."
+            },
+            {
+              "t": "p",
+              "x": "Aucun service en ligne ne peut promettre une sécurité absolue. La transmission sur internet comporte toujours un risque résiduel, raison de plus pour ne pas saisir d'informations sensibles dans une fenêtre de conversation."
+            }
+          ]
+        },
+        {
+          "id": "minors",
+          "title": "Enfants et adolescents",
+          "summary": "À qui s'adresse le service et comment nous traitons les données relatives aux mineurs.",
+          "blocks": [
+            {
+              "t": "p",
+              "x": "{entity} s'adresse aux étudiants, aux professionnels et aux familles qui arrivent à Munich, et non aux enfants. Nous ne traitons pas sciemment de données personnelles de personnes de moins de seize ans. En Allemagne, l'article 8 du RGPD combiné à la limite d'âge nationale fixe à seize ans l'âge à partir duquel un mineur peut consentir lui-même s'agissant des services de la société de l'information."
+            },
+            {
+              "t": "p",
+              "x": "Si vous êtes parent ou titulaire de l'autorité parentale et pensez qu'un mineur nous a transmis des données personnelles, notamment via une conversation avec un assistant, écrivez à {email} et nous supprimerons sans délai ce que nous pouvons identifier."
+            }
+          ]
+        },
+        {
+          "id": "contact",
+          "title": "Mises à jour, contact et réclamations",
+          "summary": "La version de cette politique, comment nous joindre et où porter le litige.",
+          "blocks": [
+            {
+              "t": "p",
+              "x": "Nous réexaminons cette politique à chaque évolution du service, à chaque changement de prestataire et au moins une fois par an. La version et la date affichées en haut de cette page identifient toujours le texte en vigueur. Les modifications substantielles sont annoncées sur le site avant leur entrée en vigueur lorsque cela est réalisable, et la version en vigueur au moment de votre visite s'applique à cette visite. Les versions antérieures restent consultables dans l'historique du dépôt public à l'adresse {repo}."
+            },
+            {
+              "t": "p",
+              "x": "Pour toute question, demande ou réclamation relative à la protection des données, écrivez à {email} en indiquant clairement votre demande. Nous répondons en français, en anglais ou en allemand."
+            },
+            {
+              "t": "p",
+              "x": "Vous conservez en toute hypothèse le droit d'introduire une réclamation auprès d'une autorité de contrôle, qu'il s'agisse de celle dont nous relevons ou de celle de votre lieu de résidence ou de travail."
+            }
+          ]
+        }
+      ]
     },
     "terms": {
-      "title": "Conditions d’Utilisation",
-      "intro": "Atlas Munich est un projet open source non commercial. En utilisant le service, vous acceptez les Conditions ci-dessous.",
-      "use": "Ne pas abuser du service, le surcharger ou soumettre du contenu illégal ou nuisible.",
-      "aiDisclaimer": "Les réponses générées par IA peuvent être incorrectes ou incomplètes. Ne vous fiez pas à celles-ci pour des décisions importantes.",
-      "noWarranty": "Le service est fourni « tel quel » sans garantie d’exactitude ou de disponibilité.",
-      "liability": "Nous ne sommes pas responsables des dommages résultant de l’utilisation ou de l’impossibilité d’utiliser ce projet.",
-      "ip": "Le code appartient à l’auteur du projet. Consultez GitHub pour la licence open source.",
-      "law": "Les Conditions sont régies par le droit allemand. Tout litige relève des tribunaux de Munich.",
-      "contact": "Questions ? Contactez : [votre email]"
+      "title": "Conditions",
+      "titleHighlight": "générales",
+      "subtitle": "Les règles d'utilisation d'Atlas Munich, les limites de ce qu'un projet communautaire gratuit peut promettre, et les droits que vous conservez en tant que consommateur en droit allemand et européen.",
+      "ui": {
+        "contents": "Sommaire",
+        "section": "Section",
+        "of": "sur",
+        "readAll": "Lire le document complet",
+        "readOne": "Lire section par section",
+        "print": "Imprimer ou enregistrer en PDF",
+        "previous": "Précédent",
+        "next": "Suivant",
+        "version": "Version",
+        "effective": "En vigueur depuis le",
+        "authority": "Autorité de contrôle",
+        "addressMissing": "Une adresse postale doit encore être publiée ici pour satisfaire au § 5 DDG et au § 18 al. 2 MStV. Renseignez postalAddress dans src/lib/legal-config.ts.",
+        "questionsTitle": "Un point vous semble obscur ?",
+        "questionsBody": "Nous préférons expliquer une clause plutôt que d'en débattre plus tard. Écrivez-nous et nous répondrons, en français, en anglais ou en allemand.",
+        "writeUs": "Écrivez-nous"
+      },
+      "sections": [
+        {
+          "id": "overview",
+          "title": "En bref",
+          "summary": "La version courte en langage clair. Ce sont les sections numérotées qui engagent les parties.",
+          "blocks": [
+            {
+              "t": "p",
+              "x": "{entity} est un site d'information gratuit, non commercial et open source. Les présentes conditions précisent ce que vous pouvez en attendre, ce que vous ne pouvez pas en faire et comment la responsabilité est répartie. Elles forment un accord contraignant entre vous et l'exploitant dès l'instant où vous utilisez le service."
+            },
+            {
+              "t": "list",
+              "x": [
+                "Tout est gratuit ici. Il n'y a ni compte, ni abonnement, ni paiement, ni publicité.",
+                "Les informations sont tenues à jour par la communauté et peuvent être erronées ou périmées. Elles ne constituent ni un conseil juridique, ni un conseil en immigration, en fiscalité, en santé ou en finance.",
+                "Les assistants sont des systèmes d'IA. Leurs réponses doivent être vérifiées avant que vous ne vous y fiiez.",
+                "Utilisez le service licitement : ne l'attaquez pas, ne l'aspirez pas massivement et ne le saturez pas.",
+                "Rien dans les présentes conditions ne limite vos droits impératifs de consommateur, et rien n'exclut la responsabilité en cas d'atteinte à la vie, à l'intégrité physique ou à la santé, ni en cas de faute intentionnelle ou de négligence grave."
+              ]
+            },
+            {
+              "t": "note",
+              "x": "Ce résumé n'a qu'une valeur d'orientation. En cas de divergence avec une section ci-dessous, c'est cette section qui s'applique."
+            }
+          ]
+        },
+        {
+          "id": "scope",
+          "title": "Champ d'application et acceptation",
+          "summary": "Qui sont les parties, quand l'accord commence et ce qu'il couvre.",
+          "blocks": [
+            {
+              "t": "p",
+              "x": "Les présentes conditions régissent votre utilisation du site {site} ainsi que de toutes ses sous-pages, de ses contenus, de ses téléchargements et de ses assistants IA, désignés ici comme le service. Le fournisseur est l'exploitant identifié ci-dessous, désigné par nous. Vous êtes désigné par vous ou l'utilisateur."
+            },
+            {
+              "t": "controller"
+            },
+            {
+              "t": "p",
+              "x": "En accédant au service ou en l'utilisant, vous acceptez les présentes conditions et la politique de confidentialité. Si vous ne les acceptez pas, n'utilisez pas le service. Aucun compte n'est créé, aucun frais n'est facturé et aucune déclaration distincte n'est requise : l'usage vaut acceptation."
+            },
+            {
+              "t": "p",
+              "x": "Vos propres conditions ne font pas partie de l'accord, même si nous ne nous y opposons pas expressément."
+            },
+            {
+              "t": "p",
+              "x": "Lorsque vous utilisez le service en qualité de consommateur au sens du § 13 du code civil allemand, les dispositions impératives de protection des consommateurs s'appliquent en votre faveur et priment tout élément des présentes qui vous serait moins favorable."
+            },
+            {
+              "t": "p",
+              "x": "Les présentes conditions sont mises à disposition en plusieurs langues par commodité. En cas de contradiction, la version anglaise fait foi, sans préjudice de toute règle impérative imposant une autre langue en votre faveur."
+            }
+          ]
+        },
+        {
+          "id": "service",
+          "title": "Le service et sa disponibilité",
+          "summary": "Ce qu'offre Atlas Munich, ce qu'il n'est pas, et ce que nous pouvons promettre en matière de disponibilité.",
+          "blocks": [
+            {
+              "t": "p",
+              "x": "{entity} rassemble des informations pratiques sur l'arrivée et la vie à Munich : des guides, des questions fréquentes, un répertoire de lieux et des assistants IA qui répondent à des questions sur ce contenu. Il s'agit d'un service d'information. Ce n'est ni une agence, ni un intermédiaire, ni une administration, ni un conseil juridique ou fiscal, ni une plateforme de logement, ni une source officielle de quelque nature que ce soit, et aucune relation de conseil, de mandat ou de représentation ne naît entre nous."
+            },
+            {
+              "t": "p",
+              "x": "Le service est fourni gratuitement et à titre bénévole. Nous pouvons modifier, étendre, restreindre ou interrompre des fonctionnalités, des contenus ou l'ensemble du service à tout moment, et nous ne sommes pas tenus de maintenir disponible un guide, une fiche ou un assistant donné."
+            },
+            {
+              "t": "p",
+              "x": "Nous ne vous devons aucun niveau de disponibilité particulier. La maintenance, les déploiements, les pannes de prestataires, les attaques et les cas de force majeure peuvent interrompre le service. Nous visons une continuité raisonnable, sans garantie de disponibilité ni engagement de niveau de service."
+            },
+            {
+              "t": "p",
+              "x": "Le service n'héberge ni comptes ni contenus créés par les utilisateurs : vous n'y avez donc rien à perdre. Ce que vous souhaitez conserver, conservez-le vous-même."
+            }
+          ]
+        },
+        {
+          "id": "acceptableUse",
+          "title": "Usage acceptable",
+          "summary": "Ce que vous pouvez faire du service et les comportements qui entraînent un blocage.",
+          "blocks": [
+            {
+              "t": "p",
+              "x": "Vous pouvez utiliser le service à des fins personnelles et d'information, et aider autrui à en faire autant. Vous pouvez le citer avec attribution et y renvoyer librement. Au-delà, vous vous engagez à ne rien faire de ce qui suit."
+            },
+            {
+              "t": "list",
+              "x": [
+                "Enfreindre la loi, porter atteinte aux droits d'autrui ou utiliser le service pour préparer ou commettre des actes illicites.",
+                "Soumettre des contenus illicites, diffamatoires, haineux, discriminatoires, harcelants, sexuellement abusifs ou violents, ou qui font l'apologie de tels actes.",
+                "Tenter d'obtenir un accès non autorisé à une partie du service, à son environnement d'hébergement, à ses comptes ou à tout système connexe, ou sonder, scanner ou tester sa sécurité sans notre autorisation écrite préalable.",
+                "Perturber ou saturer le service, y compris par des tentatives de déni de service, des flots de requêtes automatisées, le contournement des limitations de débit ou l'esquive de restrictions techniques.",
+                "Aspirer, collecter ou extraire systématiquement des contenus à grande échelle, ou employer des agents automatisés à cette fin, à l'exception d'une indexation raisonnable et respectueuse par les moteurs de recherche publics.",
+                "Utiliser les assistants pour générer des contenus illicites, extraire les instructions système, contourner les mesures de sécurité ou détourner le point d'accès au profit d'un autre produit.",
+                "Introduire des logiciels malveillants ou tout code destiné à endommager, désactiver ou dégrader le service.",
+                "Présenter le service ou ses productions comme votre propre conseil officiel, professionnel ou faisant autorité, ou utiliser notre nom, notre logo ou notre marque de manière à suggérer une approbation ou une affiliation.",
+                "Saisir les données personnelles d'un tiers dans un assistant sans base légale pour le faire."
+              ]
+            },
+            {
+              "t": "p",
+              "x": "Les requêtes vers le point d'accès de l'assistant sont limitées en débit. Lorsque votre usage est abusif, nuisible à autrui ou menace la stabilité ou la sécurité du service, nous pouvons bloquer l'accès, techniquement ou autrement, temporairement ou définitivement, et sans préavis. Lorsque le comportement laisse présumer une infraction pénale, nous pouvons le signaler aux autorités compétentes."
+            },
+            {
+              "t": "p",
+              "x": "Si un contenu du service vous paraît illicite, signalez-le à {email} en indiquant sa localisation et le motif. Nous évaluons ces signalements, retirons ou rendons inaccessibles les contenus que nous jugeons illicites, et vous informons de l'issue lorsque vous nous avez laissé un moyen de vous répondre."
+            }
+          ]
+        },
+        {
+          "id": "ai",
+          "title": "Utilisation des assistants IA",
+          "summary": "Transparence, limites et vos obligations lors de l'usage d'un système d'IA.",
+          "blocks": [
+            {
+              "t": "note",
+              "x": "Vous communiquez avec un système d'intelligence artificielle et non avec un être humain. Cette information est fournie conformément à l'article 50 du règlement (UE) 2024/1689, dit règlement sur l'IA. Les réponses sont générées automatiquement et ne sont pas relues par une personne avant de vous être présentées."
+            },
+            {
+              "t": "p",
+              "x": "Les assistants produisent du texte de manière statistique. Ils peuvent être faux, incomplets, périmés ou incohérents, et produire une réponse fluide et pourtant inexacte. Ils n'ont accès ni à votre dossier, ni à votre situation, ni au système d'une administration, ni à une base de données en temps réel, et ne peuvent pas vous dire ce qu'un service public décidera."
+            },
+            {
+              "t": "list",
+              "x": [
+                "Vérifiez auprès de la source officielle tout ce qui compte avant d'agir, en particulier ce qui touche au visa, au séjour, à la déclaration de domicile, à l'assurance maladie, aux impôts, à l'emploi, au logement ou à l'argent.",
+                "Ne saisissez pas de mots de passe, de numéros de pièce d'identité ou de titre de séjour, de coordonnées bancaires, de données de santé ni de données personnelles d'autrui.",
+                "N'utilisez pas les réponses comme un conseil juridique, médical, fiscal ou financier, et ne les présentez pas comme tel à des tiers.",
+                "N'utilisez pas les assistants d'une manière interdite par les règles d'usage du fournisseur d'IA sous-jacent, ces restrictions vous étant répercutées."
+              ]
+            },
+            {
+              "t": "p",
+              "x": "Nous ne revendiquons aucune propriété sur les réponses générées pour vous. Des productions semblables ou identiques peuvent être générées pour d'autres utilisateurs : les réponses ne vous sont donc pas exclusives et peuvent ne pas être protégeables. Vous êtes responsable de l'usage que vous en faites, y compris de la vérification des droits de tiers avant toute republication."
+            },
+            {
+              "t": "p",
+              "x": "L'assistant n'est pas un service d'urgence. En cas d'urgence médicale, appelez le 112. Pour la police, le 110. Pour un soutien en situation de crise, utilisez les services locaux indiqués dans nos guides."
+            }
+          ]
+        },
+        {
+          "id": "content",
+          "title": "Contenus, exactitude et tiers",
+          "summary": "Ce que valent les informations, d'où elles viennent et ce dont nous ne répondons pas.",
+          "blocks": [
+            {
+              "t": "p",
+              "x": "Les contenus sont préparés avec soin par des bénévoles, à partir de sources publiques et d'expériences vécues. Les règles, les frais, les délais, les horaires et les points de contact changent néanmoins souvent et sans préavis. Nous ne garantissons pas qu'un contenu soit exact, à jour ou complet, et nous ne nous engageons pas à le tenir à jour."
+            },
+            {
+              "t": "p",
+              "x": "Rien sur le service ne constitue un conseil juridique au sens de la loi allemande sur les services juridiques, ni un conseil fiscal, migratoire, médical ou financier, et aucun contrat de conseil ne naît. Pour toute affaire importante, consultez un professionnel qualifié ou l'autorité compétente."
+            },
+            {
+              "t": "p",
+              "x": "Le répertoire de lieux, de commerces et de services est purement informatif. Une inscription n'emporte ni recommandation, ni certification, ni affirmation quant au caractère halal, à la qualité, au prix, aux autorisations ou à l'adéquation, et nous n'entretenons aucune relation avec les exploitants sauf mention expresse. Vérifiez directement auprès d'eux tout ce qui compte pour vous."
+            },
+            {
+              "t": "p",
+              "x": "Le service contient des liens vers des sites externes. Ceux-ci échappent à notre contrôle et nous n'assumons pas la responsabilité de leur contenu. Au moment de la création du lien, aucun contenu illicite n'était décelable, et nous retirons les liens sans délai dès que nous avons connaissance d'une infraction. La responsabilité des contenus liés incombe à leur propre fournisseur au titre des §§ 7 à 10 de la loi allemande sur les services numériques."
+            },
+            {
+              "t": "p",
+              "x": "Si vous nous envoyez des corrections, des suggestions ou d'autres retours, vous nous concédez un droit gratuit, non exclusif, cessible, mondial et perpétuel d'utiliser, d'adapter et de publier ces éléments dans le cadre du service, et vous confirmez être en droit de concéder ce droit. Nous ne vous devons ni rémunération ni attribution pour ces retours, même si nous sommes généralement heureux de vous citer."
+            }
+          ]
+        },
+        {
+          "id": "ip",
+          "title": "Propriété intellectuelle et licences",
+          "summary": "Ce qui nous appartient, ce qui est open source et ce que vous pouvez réutiliser.",
+          "blocks": [
+            {
+              "t": "p",
+              "x": "Le code source d'{entity} est publié sous licence MIT dans notre dépôt public à l'adresse {repo}. Vos droits sur le code découlent de cette licence, dont le texte prime la présente section pour ce qui concerne le code."
+            },
+            {
+              "t": "p",
+              "x": "Les contenus éditoriaux, la mise en page, les graphismes, le nom de marque, le logo et les autres éléments de design sont protégés par le droit d'auteur et les droits voisins et ne relèvent pas de la licence du code. Vous pouvez citer des extraits avec une référence claire à la source et un lien, et partager librement des liens. La copie systématique, la republication d'une partie substantielle et toute réutilisation commerciale nécessitent notre autorisation écrite préalable."
+            },
+            {
+              "t": "p",
+              "x": "Les composants tiers conservent leurs propres licences et mentions, notamment le jeu d'icônes, les polices, la bibliothèque cartographique, les tuiles et les données cartographiques sous-jacentes. Les données cartographiques sont la propriété des contributeurs d'OpenStreetMap et sont disponibles sous Open Database License, l'habillage du fond de carte étant fourni par CARTO. Lorsqu'une licence impose une mention, celle-ci est affichée dans l'interface et ne doit pas être retirée."
+            },
+            {
+              "t": "p",
+              "x": "Les noms, marques et logos de tiers apparaissant sur le service appartiennent à leurs titulaires respectifs et sont utilisés à titre descriptif, sans revendication d'affiliation ou d'approbation."
+            },
+            {
+              "t": "p",
+              "x": "Si vous estimez qu'un contenu du service porte atteinte à vos droits, écrivez à {email} en précisant le matériel concerné, le droit que vous détenez et la preuve de votre titularité. Nous instruisons rapidement et retirons les contenus contrefaisants."
+            }
+          ]
+        },
+        {
+          "id": "liability",
+          "title": "Garantie et responsabilité",
+          "summary": "Les limites de notre responsabilité, et les limites légales de ces limites.",
+          "blocks": [
+            {
+              "t": "p",
+              "x": "Le service est mis à disposition gratuitement, en l'état et selon disponibilité. Dans la mesure permise par la loi et conformément au régime de responsabilité allégée du fournisseur à titre gratuit prévu aux §§ 521 et 599 du code civil allemand, nous ne donnons aucune garantie d'exactitude, d'exhaustivité, d'adéquation à un usage particulier, de disponibilité ininterrompue ni d'absence d'erreurs ou de code nuisible."
+            },
+            {
+              "t": "p",
+              "x": "Nous répondons sans limitation des dommages résultant d'une atteinte à la vie, à l'intégrité physique ou à la santé, des fautes intentionnelles et des négligences graves, au titre de la loi allemande sur la responsabilité du fait des produits, ainsi qu'en cas de garantie donnée ou de dissimulation dolosive d'un défaut."
+            },
+            {
+              "t": "p",
+              "x": "En cas de négligence légère, nous ne répondons que de la violation d'une obligation contractuelle essentielle, c'est-à-dire d'une obligation dont l'exécution rend possible la bonne exécution de l'accord et sur le respect de laquelle vous pouvez régulièrement compter. La responsabilité est alors limitée au dommage prévisible et typique de ce type d'accord."
+            },
+            {
+              "t": "p",
+              "x": "Toute responsabilité au-delà est exclue. Nous ne répondons notamment pas des dommages indirects ou consécutifs, du manque à gagner ou de la perte de données, ni des décisions que vous prenez sur la base de contenus ou de productions d'IA, ni des frais, amendes, délais manqués ou demandes rejetées par des tiers ou des administrations."
+            },
+            {
+              "t": "p",
+              "x": "Les limitations ci-dessus valent également au profit de nos représentants légaux, de nos collaborateurs et de nos bénévoles, et s'appliquent tant aux actions délictuelles que contractuelles. Elles ne s'appliquent pas lorsque la responsabilité est impérative en vertu de la loi."
+            },
+            {
+              "t": "p",
+              "x": "Nous ne répondons pas des événements échappant à notre contrôle raisonnable, notamment les défaillances d'internet ou d'hébergement, les pannes de prestataires, les cyberattaques, les conflits sociaux, les épidémies et les actes des autorités publiques."
+            },
+            {
+              "t": "p",
+              "x": "Vous êtes responsable de votre propre usage du service. Si un tiers nous met en cause en raison de votre usage illicite, vous nous garantissez contre cette demande et contre les frais raisonnables de défense, sauf si le manquement ne vous est pas imputable."
+            }
+          ]
+        },
+        {
+          "id": "termination",
+          "title": "Suspension et fin d'utilisation",
+          "summary": "Comment chaque partie peut se retirer, et ce qui survit ensuite.",
+          "blocks": [
+            {
+              "t": "p",
+              "x": "Vous pouvez cesser d'utiliser le service à tout moment. Aucun préavis n'est requis et il n'y a rien à résilier."
+            },
+            {
+              "t": "p",
+              "x": "Nous pouvons bloquer votre accès, retirer des contenus ou interrompre le service, en tout ou partie, en cas de manquement aux présentes conditions, lorsque la sécurité ou la stabilité du service l'exige, ou si nous décidons de cesser d'exploiter le projet. Lorsque l'interruption n'est pas urgente, nous en donnons un préavis raisonnable."
+            },
+            {
+              "t": "p",
+              "x": "Les stipulations qui, par leur nature, ont vocation à survivre, notamment celles relatives à la propriété intellectuelle, à la responsabilité, à la garantie d'indemnisation et au droit applicable, demeurent en vigueur après la fin de votre utilisation."
+            }
+          ]
+        },
+        {
+          "id": "changes",
+          "title": "Modification des présentes conditions",
+          "summary": "Quand nous pouvons les modifier, et ce qu'une modification implique pour vous.",
+          "blocks": [
+            {
+              "t": "p",
+              "x": "Nous pouvons modifier les présentes conditions lorsqu'une évolution du service, de nos prestataires, de la jurisprudence ou du droit applicable le rend nécessaire, ou pour corriger une erreur ou une ambiguïté. La version et la date affichées en haut de cette page identifient le texte en vigueur."
+            },
+            {
+              "t": "p",
+              "x": "Les modifications sont publiées ici avant leur entrée en vigueur lorsque cela est réalisable. Le service étant utilisé sans compte et sans relation contractuelle continue, la version en vigueur au moment où vous utilisez le service s'applique à cette utilisation. Si vous n'acceptez pas une version modifiée, votre recours consiste à cesser d'utiliser le service."
+            },
+            {
+              "t": "p",
+              "x": "Les modifications ne seront jamais utilisées pour réduire vos droits légaux impératifs. Les versions antérieures restent consultables dans l'historique du dépôt public à l'adresse {repo}."
+            }
+          ]
+        },
+        {
+          "id": "law",
+          "title": "Droit applicable et litiges",
+          "summary": "Quel droit s'applique, quelle juridiction tranche, et comment régler les choses sans elle.",
+          "blocks": [
+            {
+              "t": "p",
+              "x": "Les présentes conditions et les obligations non contractuelles qui en découlent sont régies par le droit de la République fédérale d'Allemagne, à l'exclusion de la convention des Nations unies sur les contrats de vente internationale de marchandises et à l'exclusion de ses règles de conflit de lois."
+            },
+            {
+              "t": "p",
+              "x": "Si vous êtes un consommateur ayant sa résidence habituelle dans un autre État de l'Union européenne, ce choix de loi ne vous prive pas de la protection des dispositions impératives du droit de votre pays de résidence, conformément à l'article 6 du règlement (CE) n° 593/2008, dit Rome I."
+            },
+            {
+              "t": "p",
+              "x": "Si vous êtes commerçant, personne morale de droit public ou fonds spécial de droit public, ou si vous n'avez pas de for général en Allemagne, le for exclusif est Munich. Les consommateurs peuvent agir et être attraits devant les juridictions désignées par les règles de procédure applicables, notamment le règlement (UE) n° 1215/2012."
+            },
+            {
+              "t": "p",
+              "x": "Nous ne sommes ni tenus ni disposés à participer à une procédure de règlement des litiges devant un organisme de médiation de la consommation au sens de la loi allemande sur le règlement extrajudiciaire des litiges de consommation. Nous contacter directement est en général plus rapide : nous lisons chaque message et cherchons à régler les réclamations à l'amiable."
+            },
+            {
+              "t": "p",
+              "x": "Si une stipulation des présentes conditions est ou devient nulle ou inapplicable, la validité des autres stipulations n'en est pas affectée. La stipulation nulle est remplacée par la règle légale applicable."
+            },
+            {
+              "t": "p",
+              "x": "Les notifications au titre des présentes conditions doivent être adressées à {email}. Nous vous adressons nos notifications via le service ou, si vous nous avez écrit, en réponse à votre adresse."
+            }
+          ]
+        }
+      ]
     }
   },
   "tools": {

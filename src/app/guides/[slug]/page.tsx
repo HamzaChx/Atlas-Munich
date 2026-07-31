@@ -330,7 +330,7 @@ export default async function GuidePage({ params }: PageProps) {
       <ReadingProgress fromColor={theme.from} toColor={theme.to} guideSlug={guide.slug} />
 
       {/* ========== HERO ========== */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-zinc-50 via-white to-white dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950 border-b border-zinc-200 dark:border-white/10">
+      <section className="relative overflow-hidden bg-gradient-to-b from-zinc-50 via-white to-white dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950 border-b border-zinc-200 dark:border-border">
         <div
           className={`pointer-events-none absolute -left-32 top-0 h-[400px] w-[400px] sm:h-[600px] sm:w-[600px] rounded-full bg-gradient-to-br ${theme.from}/15 ${theme.to}/8 blur-[120px]`}
         />
@@ -348,7 +348,7 @@ export default async function GuidePage({ params }: PageProps) {
             {/* Category pill */}
             <Link
               href={`/category/${guide.categoryKey}`}
-              className="mb-5 inline-flex items-center gap-2 rounded-full border border-zinc-200 dark:border-white/10 bg-white/80 dark:bg-zinc-900/80 px-3 py-1.5 text-sm font-medium text-zinc-600 dark:text-zinc-300 transition-all hover:border-emerald-300 dark:hover:border-emerald-500/40 hover:text-zinc-900 dark:hover:text-white"
+              className="mb-5 inline-flex items-center gap-2 rounded-full border border-zinc-200 dark:border-border bg-white/80 dark:bg-zinc-900/80 px-3 py-1.5 text-sm font-medium text-zinc-600 dark:text-zinc-300 transition-all hover:border-emerald-300 dark:hover:border-emerald-500/40 hover:text-zinc-900 dark:hover:text-zinc-50"
             >
               <span
                 className={`rounded-md bg-gradient-to-br ${theme.from} ${theme.to} p-1 text-white`}
@@ -360,7 +360,7 @@ export default async function GuidePage({ params }: PageProps) {
             </Link>
 
             {/* Title */}
-            <h1 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-3xl lg:text-[2.25rem] leading-tight">
+            <h1 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-3xl lg:text-[2.25rem] leading-tight">
               {localizedGuide.title}
             </h1>
 
@@ -402,8 +402,8 @@ export default async function GuidePage({ params }: PageProps) {
             <article className="min-w-0">
               {/* Mobile TOC */}
               {localizedGuide.sections.length > 0 && (
-                <div className="lg:hidden mb-8 rounded-2xl border border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-zinc-900/80 overflow-hidden">
-                  <div className="px-4 py-3 border-b border-zinc-200 dark:border-white/5">
+                <div className="lg:hidden mb-8 rounded-2xl border border-zinc-200 dark:border-border bg-zinc-50 dark:bg-zinc-900/80 overflow-hidden">
+                  <div className="px-4 py-3 border-b border-zinc-200 dark:border-border/70">
                     <h3 className="text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
                       {getMessage("guidePage.tableOfContents") ?? "In this guide"}
                     </h3>
@@ -421,7 +421,7 @@ export default async function GuidePage({ params }: PageProps) {
                     {/* Divider between sections (not first) */}
                     {index !== 0 && (
                       <div className="my-12">
-                        <div className="h-px bg-zinc-100 dark:bg-white/5" />
+                        <div className="h-px bg-zinc-100 dark:bg-foreground/[0.075]" />
                       </div>
                     )}
 
@@ -430,7 +430,7 @@ export default async function GuidePage({ params }: PageProps) {
                       <div
                         className={`h-6 w-1 rounded-full bg-gradient-to-b ${theme.from} ${theme.to}`}
                       />
-                      <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-zinc-900 dark:text-white leading-tight">
+                      <h2 className="text-xl sm:text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 leading-tight">
                         {section.title}
                       </h2>
                     </div>
@@ -449,7 +449,7 @@ export default async function GuidePage({ params }: PageProps) {
                           ${theme.code} ${theme.codeBg} prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:text-sm prose-code:font-medium prose-code:border ${theme.codeBorder}
                           prose-blockquote:border-l-4 prose-blockquote:border-amber-400 dark:prose-blockquote:border-amber-500 prose-blockquote:bg-amber-50 dark:prose-blockquote:bg-amber-500/10 prose-blockquote:rounded-r-xl prose-blockquote:px-5 prose-blockquote:py-3 prose-blockquote:not-italic prose-blockquote:text-amber-900 dark:prose-blockquote:text-amber-200 prose-blockquote:font-normal
                           [&_blockquote_p]:text-amber-800 dark:[&_blockquote_p]:text-amber-200 [&_blockquote_p]:!m-0 [&_blockquote_p]:leading-relaxed
-                          prose-hr:border-zinc-100 dark:prose-hr:border-white/5
+                          prose-hr:border-zinc-100 dark:prose-hr:border-border/70
                         `}
                       >
                         <ReactMarkdown remarkPlugins={[remarkGfm]}>{section.content}</ReactMarkdown>
@@ -458,7 +458,7 @@ export default async function GuidePage({ params }: PageProps) {
                       {/* Subsections */}
                       {section.subsections?.map((sub) => (
                         <div key={sub.id} id={sub.id} className="mt-8 scroll-mt-28">
-                          <h3 className="text-lg sm:text-xl font-semibold text-zinc-900 dark:text-white tracking-tight mb-4">
+                          <h3 className="text-lg sm:text-xl font-semibold text-zinc-900 dark:text-zinc-50 tracking-tight mb-4">
                             {sub.title}
                           </h3>
                           <div
@@ -482,16 +482,16 @@ export default async function GuidePage({ params }: PageProps) {
 
               {/* End-of-article divider */}
               <div className="mt-14">
-                <div className="h-px bg-zinc-100 dark:bg-white/5" />
+                <div className="h-px bg-zinc-100 dark:bg-foreground/[0.075]" />
               </div>
 
               {/* FAQ */}
               {localizedGuide.faqs && localizedGuide.faqs.length > 0 && (
                 <section className="mt-14">
-                  <h2 className="text-xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-2xl mb-6">
+                  <h2 className="text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-2xl mb-6">
                     {getMessage("guidePage.frequentlyAsked") ?? "Frequently Asked Questions"}
                   </h2>
-                  <div className="rounded-2xl border border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-zinc-900/80 p-4 sm:p-5">
+                  <div className="rounded-2xl border border-zinc-200 dark:border-border bg-zinc-50 dark:bg-zinc-900/80 p-4 sm:p-5">
                     <FAQAccordion faqs={localizedGuide.faqs} />
                   </div>
                 </section>
@@ -500,10 +500,10 @@ export default async function GuidePage({ params }: PageProps) {
               {/* Mobile Resources */}
               {localizedGuide.resources && localizedGuide.resources.length > 0 && (
                 <section className="mt-12 lg:hidden">
-                  <h2 className="text-xl font-bold tracking-tight text-zinc-900 dark:text-white mb-5">
+                  <h2 className="text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 mb-5">
                     {getMessage("guidePage.helpfulResources") ?? "Helpful Resources"}
                   </h2>
-                  <div className="rounded-2xl border border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-zinc-900/80 overflow-hidden">
+                  <div className="rounded-2xl border border-zinc-200 dark:border-border bg-zinc-50 dark:bg-zinc-900/80 overflow-hidden">
                     <div className="p-3 space-y-1">
                       {localizedGuide.resources.map((resource) => {
                         const Icon = resourceIcons[resource.type] || LinkIcon;
@@ -516,7 +516,7 @@ export default async function GuidePage({ params }: PageProps) {
                             className="group flex items-center gap-3 rounded-xl p-3 text-sm transition-all hover:bg-white dark:hover:bg-zinc-800"
                           >
                             <div
-                              className={`h-9 w-9 shrink-0 rounded-xl bg-zinc-100 dark:bg-white/5 flex items-center justify-center ${theme.iconHoverBg} transition-colors`}
+                              className={`h-9 w-9 shrink-0 rounded-xl bg-zinc-100 dark:bg-foreground/[0.075] flex items-center justify-center ${theme.iconHoverBg} transition-colors`}
                             >
                               <Icon
                                 className={`h-4 w-4 text-zinc-500 ${theme.hoverText} transition-colors`}
@@ -546,7 +546,7 @@ export default async function GuidePage({ params }: PageProps) {
               {/* Related Guides */}
               {relatedGuides.length > 0 && (
                 <section className="mt-14">
-                  <h2 className="text-xl font-bold text-zinc-900 dark:text-white sm:text-2xl mb-6">
+                  <h2 className="text-xl font-bold text-zinc-900 dark:text-zinc-50 sm:text-2xl mb-6">
                     {getMessage("guidePage.continueLearning") ?? "Continue Reading"}
                   </h2>
                   <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -558,10 +558,10 @@ export default async function GuidePage({ params }: PageProps) {
               )}
 
               {/* Bottom CTA */}
-              <div className="mt-14 rounded-2xl border border-zinc-200 dark:border-white/10 bg-gradient-to-br from-zinc-50 to-white dark:from-zinc-900/80 dark:to-zinc-900/40 p-6 sm:p-8">
+              <div className="mt-14 rounded-2xl border border-zinc-200 dark:border-border bg-gradient-to-br from-zinc-50 to-white dark:from-zinc-900/80 dark:to-zinc-900/40 p-6 sm:p-8">
                 <div className="flex flex-col items-start justify-between gap-5 sm:flex-row sm:items-center">
                   <div>
-                    <h3 className="text-lg font-bold text-zinc-900 dark:text-white sm:text-xl">
+                    <h3 className="text-lg font-bold text-zinc-900 dark:text-zinc-50 sm:text-xl">
                       {getMessage("guidePage.bottomCTATitle") ?? "Explore More Guides"}
                     </h3>
                     <p className="mt-1.5 text-sm text-zinc-500 dark:text-zinc-400 max-w-xs">
@@ -573,7 +573,7 @@ export default async function GuidePage({ params }: PageProps) {
                     <Button
                       asChild
                       variant="outline"
-                      className={`border border-zinc-200 dark:border-white/10 text-zinc-700 dark:text-zinc-300 ${theme.outlineHover}`}
+                      className={`border border-zinc-200 dark:border-border text-zinc-700 dark:text-zinc-300 ${theme.outlineHover}`}
                     >
                       <Link href={`/category/${guide.categoryKey}`}>
                         <ArrowLeft className="mr-2 h-4 w-4" />
@@ -596,8 +596,8 @@ export default async function GuidePage({ params }: PageProps) {
               <div className="sticky top-24 space-y-5">
                 {/* TOC */}
                 {localizedGuide.sections.length > 0 && (
-                  <div className="rounded-2xl border border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-zinc-900/80 overflow-hidden">
-                    <div className="border-b border-zinc-200 dark:border-white/5 px-5 py-3.5">
+                  <div className="rounded-2xl border border-zinc-200 dark:border-border bg-zinc-50 dark:bg-zinc-900/80 overflow-hidden">
+                    <div className="border-b border-zinc-200 dark:border-border/70 px-5 py-3.5">
                       <h3 className="text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
                         {getMessage("guidePage.tableOfContents") ?? "In this guide"}
                       </h3>
@@ -610,8 +610,8 @@ export default async function GuidePage({ params }: PageProps) {
 
                 {/* Resources */}
                 {localizedGuide.resources && localizedGuide.resources.length > 0 && (
-                  <div className="rounded-2xl border border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-zinc-900/80 overflow-hidden">
-                    <div className="border-b border-zinc-200 dark:border-white/5 px-5 py-3.5">
+                  <div className="rounded-2xl border border-zinc-200 dark:border-border bg-zinc-50 dark:bg-zinc-900/80 overflow-hidden">
+                    <div className="border-b border-zinc-200 dark:border-border/70 px-5 py-3.5">
                       <h3 className="text-xs font-bold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
                         {getMessage("guidePage.resources") ?? "Resources"}
                       </h3>
@@ -628,7 +628,7 @@ export default async function GuidePage({ params }: PageProps) {
                             className="group flex items-center gap-2.5 rounded-xl p-2.5 text-sm transition-all hover:bg-white dark:hover:bg-zinc-800"
                           >
                             <div
-                              className={`h-8 w-8 shrink-0 rounded-xl bg-zinc-100 dark:bg-white/5 flex items-center justify-center ${theme.iconHoverBg} transition-colors`}
+                              className={`h-8 w-8 shrink-0 rounded-xl bg-zinc-100 dark:bg-foreground/[0.075] flex items-center justify-center ${theme.iconHoverBg} transition-colors`}
                             >
                               <Icon
                                 className={`h-3.5 w-3.5 text-zinc-500 ${theme.hoverText} transition-colors`}
@@ -655,7 +655,7 @@ export default async function GuidePage({ params }: PageProps) {
                 )}
 
                 {/* Share */}
-                <div className="rounded-2xl border border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-zinc-900/80 p-4">
+                <div className="rounded-2xl border border-zinc-200 dark:border-border bg-zinc-50 dark:bg-zinc-900/80 p-4">
                   <ShareButton
                     className={`w-full bg-gradient-to-r ${theme.from} ${theme.to} text-white font-medium justify-center hover:opacity-90 transition-opacity`}
                     text={getMessage("guidePage.shareThisGuide") ?? "Share this guide"}

@@ -63,7 +63,7 @@ export function Header({ locale, translations }: HeaderProps) {
     >
       {/* Three tracks with equal-weight sides, so the nav sits on the page's
           centre line rather than wherever justify-between leaves it. */}
-      <div className="mx-auto grid h-14 sm:h-16 max-w-[1280px] grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center px-3 sm:px-6 lg:px-8">
+      <div className="mx-auto grid h-14 sm:h-16 max-w-[1280px] 2xl:max-w-[96rem] grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center px-3 sm:px-6 lg:px-8 2xl:px-12">
         <Link
           href="/"
           className="group flex w-fit items-center gap-2 sm:gap-2.5 outline-none focus-visible:ring-2 focus-visible:ring-zellige/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-lg"
@@ -75,7 +75,7 @@ export function Header({ locale, translations }: HeaderProps) {
             height={36}
             className="h-8 w-8 rounded-full transition-transform duration-300 group-hover:scale-105 sm:h-9 sm:w-9"
           />
-          <span className="font-display text-lg sm:text-xl font-bold tracking-tight text-zinc-900 dark:text-white">
+          <span className="font-display text-lg sm:text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
             <span className="text-zellige dark:text-zellige">Atlas</span> Munich
           </span>
         </Link>
@@ -91,8 +91,8 @@ export function Header({ locale, translations }: HeaderProps) {
                 className={cn(
                   "relative rounded-full px-3.5 py-2 text-sm font-medium transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-zellige/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                   isActive
-                    ? "bg-zinc-100 text-zinc-900 dark:bg-white/10 dark:text-white"
-                    : "text-zinc-500 dark:text-zinc-400 hover:bg-zinc-100/70 hover:text-zinc-900 dark:hover:bg-white/5 dark:hover:text-white"
+                    ? "bg-zinc-100 text-zinc-900 dark:bg-foreground/10 dark:text-zinc-50"
+                    : "text-zinc-500 dark:text-zinc-400 hover:bg-zinc-100/70 hover:text-zinc-900 dark:hover:bg-foreground/[0.075] dark:hover:text-zinc-50"
                 )}
               >
                 {item.label}
@@ -109,7 +109,7 @@ export function Header({ locale, translations }: HeaderProps) {
           <Button
             variant="ghost"
             size="icon"
-            className="h-10 w-10 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-white/5 hover:text-zinc-900 dark:hover:text-white md:hidden"
+            className="h-10 w-10 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-foreground/[0.075] hover:text-zinc-900 dark:hover:text-zinc-50 md:hidden"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
           >
@@ -137,7 +137,7 @@ export function Header({ locale, translations }: HeaderProps) {
                   "flex items-center gap-3 rounded-xl px-4 py-3.5 text-base font-medium transition-all duration-200 active:scale-[0.98] min-h-[48px]",
                   isActive
                     ? "bg-zellige-soft text-zellige"
-                    : "text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-white/5 hover:text-zinc-900 dark:hover:text-white"
+                    : "text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-foreground/[0.075] hover:text-zinc-900 dark:hover:text-zinc-50"
                 )}
               >
                 <span

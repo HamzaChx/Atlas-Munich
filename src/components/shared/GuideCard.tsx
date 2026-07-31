@@ -34,7 +34,7 @@ export function GuideCard({ guide, className, showCategory = true }: GuideCardPr
         className
       )}
     >
-      <div className="relative h-56 sm:h-60 overflow-hidden rounded-2xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900/50 p-4 sm:p-6 shadow-sm dark:shadow-none transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:border-emerald-200 dark:hover:border-emerald-500/30 hover:bg-zinc-50/80 dark:hover:bg-zinc-800/50 hover:shadow-lg hover:shadow-zinc-200/50 dark:hover:shadow-none flex flex-col justify-between">
+      <div className="relative h-56 sm:h-60 overflow-hidden rounded-2xl border border-zinc-200 dark:border-border bg-white dark:bg-zinc-900/50 p-4 sm:p-6 shadow-sm dark:shadow-none transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:border-emerald-200 dark:hover:border-emerald-500/30 hover:bg-zinc-50/80 dark:hover:bg-zinc-800/50 hover:shadow-lg hover:shadow-zinc-200/50 dark:hover:shadow-none flex flex-col justify-between">
         <div className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-emerald-500/0 blur-3xl transition-all duration-500 ease-out group-hover:bg-emerald-500/10" />
 
         {/* Content */}
@@ -43,7 +43,7 @@ export function GuideCard({ guide, className, showCategory = true }: GuideCardPr
             {showCategory && (
               <Badge
                 variant="secondary"
-                className="border-zinc-200 dark:border-white/10 bg-zinc-100 dark:bg-white/5 font-medium capitalize text-zinc-700 dark:text-zinc-300 text-xs"
+                className="border-zinc-200 dark:border-border bg-zinc-100 dark:bg-foreground/[0.075] font-medium capitalize text-zinc-700 dark:text-zinc-300 text-xs"
               >
                 {guide.categoryKey.replace(/-/g, " ")}
               </Badge>
@@ -55,7 +55,7 @@ export function GuideCard({ guide, className, showCategory = true }: GuideCardPr
             ))}
           </div>
 
-          <h3 className="line-clamp-2 text-base sm:text-lg font-semibold leading-snug tracking-tight text-zinc-900 dark:text-white transition-colors duration-200 group-hover:text-emerald-600 dark:group-hover:text-emerald-400">
+          <h3 className="line-clamp-2 text-base sm:text-lg font-semibold leading-snug tracking-tight text-zinc-900 dark:text-zinc-50 transition-colors duration-200 group-hover:text-emerald-600 dark:group-hover:text-emerald-400">
             {guide.title}
           </h3>
 
@@ -63,7 +63,7 @@ export function GuideCard({ guide, className, showCategory = true }: GuideCardPr
             {guide.summary}
           </p>
 
-          <div className="mt-4 sm:mt-5 flex items-center justify-between border-t border-zinc-100 dark:border-white/5 pt-3 sm:pt-4 text-xs text-zinc-500">
+          <div className="mt-4 sm:mt-5 flex items-center justify-between border-t border-zinc-100 dark:border-border/70 pt-3 sm:pt-4 text-xs text-zinc-500">
             <div className="flex items-center gap-4">
               <span className="flex items-center gap-1.5">
                 <Clock className="h-3.5 w-3.5" />
@@ -88,7 +88,7 @@ export function GuideCard({ guide, className, showCategory = true }: GuideCardPr
 export function GuideCardSkeleton({ className }: { className?: string }) {
   return (
     <div className={cn("block", className)}>
-      <div className="relative h-full overflow-hidden rounded-2xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900/50 p-6">
+      <div className="relative h-full overflow-hidden rounded-2xl border border-zinc-200 dark:border-border bg-white dark:bg-zinc-900/50 p-6">
         <div className="space-y-4">
           {/* Tags skeleton */}
           <div className="flex gap-2">
@@ -109,7 +109,7 @@ export function GuideCardSkeleton({ className }: { className?: string }) {
           </div>
 
           {/* Footer skeleton */}
-          <div className="mt-5 flex items-center justify-between border-t border-zinc-100 dark:border-white/5 pt-4">
+          <div className="mt-5 flex items-center justify-between border-t border-zinc-100 dark:border-border/70 pt-4">
             <div className="flex gap-4">
               <div className="h-4 w-16 rounded skeleton" />
               <div className="h-4 w-20 rounded skeleton" />

@@ -1,174 +1,62 @@
-import { Metadata } from "next";
-import Link from "next/link";
-import { getTranslations } from "next-intl/server";
-import { Shield, Lock, Database, Users, FileText } from "lucide-react";
+"use client";
 
-export const metadata: Metadata = {
-  title: "Privacy Policy",
-  description:
-    "Privacy Policy for Atlas Munich - Learn how we collect, use, and protect your data.",
-  robots: { index: false, follow: false },
+import { useTranslations } from "next-intl";
+import {
+  Baby,
+  Bot,
+  Building2,
+  CalendarClock,
+  Compass,
+  Cookie,
+  Database,
+  Globe,
+  Lock,
+  Mail,
+  Scale,
+  UserCheck,
+  Users,
+} from "lucide-react";
+
+import { LegalDocument, type LegalAccent } from "@/components/legal/LegalDocument";
+import { LEGAL } from "@/lib/legal-config";
+
+/* One hue and icon per section, on the landing tint system */
+const accents: Record<string, LegalAccent> = {
+  overview: { icon: Compass, tint: "bg-zellige-soft", text: "text-zellige", dot: "bg-zellige" },
+  controller: { icon: Building2, tint: "bg-tint-blue", text: "text-acc-blue", dot: "bg-acc-blue" },
+  data: { icon: Database, tint: "bg-tint-terra", text: "text-acc-terra", dot: "bg-acc-terra" },
+  legalBasis: { icon: Scale, tint: "bg-tint-plum", text: "text-acc-plum", dot: "bg-acc-plum" },
+  storage: {
+    icon: Cookie,
+    tint: "bg-tint-saffron",
+    text: "text-acc-saffron",
+    dot: "bg-acc-saffron",
+  },
+  ai: { icon: Bot, tint: "bg-tint-green", text: "text-acc-green", dot: "bg-acc-green" },
+  recipients: { icon: Users, tint: "bg-tint-blue", text: "text-acc-blue", dot: "bg-acc-blue" },
+  transfers: { icon: Globe, tint: "bg-tint-plum", text: "text-acc-plum", dot: "bg-acc-plum" },
+  retention: {
+    icon: CalendarClock,
+    tint: "bg-tint-saffron",
+    text: "text-acc-saffron",
+    dot: "bg-acc-saffron",
+  },
+  rights: { icon: UserCheck, tint: "bg-zellige-soft", text: "text-zellige", dot: "bg-zellige" },
+  security: { icon: Lock, tint: "bg-tint-terra", text: "text-acc-terra", dot: "bg-acc-terra" },
+  minors: { icon: Baby, tint: "bg-tint-green", text: "text-acc-green", dot: "bg-acc-green" },
+  contact: { icon: Mail, tint: "bg-tint-blue", text: "text-acc-blue", dot: "bg-acc-blue" },
 };
 
-export default async function PrivacyPage() {
-  const t = await getTranslations("legal.privacy");
-
-  const sections = [
-    {
-      icon: Database,
-      title: t("dataCollected.title"),
-      content: [
-        { label: "Analytics", text: t("dataCollected.analytics") },
-        { label: "AI Prompts", text: t("dataCollected.prompts") },
-      ],
-      gradient: "from-emerald-500/15 to-emerald-500/5",
-      iconColor: "text-zellige",
-    },
-    {
-      icon: Lock,
-      title: "Cookies & Tracking",
-      content: [{ label: "", text: t("cookies") }],
-      gradient: "from-emerald-500/15 to-emerald-500/5",
-      iconColor: "text-zellige",
-    },
-    {
-      icon: Users,
-      title: "Third Parties",
-      content: [{ label: "", text: t("thirdParties") }],
-      gradient: "from-emerald-500/15 to-emerald-500/5",
-      iconColor: "text-zellige",
-    },
-    {
-      icon: FileText,
-      title: "Your Rights",
-      content: [
-        { label: "GDPR Rights", text: t("rights") },
-        { label: "Data Retention", text: t("dataRetention") },
-      ],
-      gradient: "from-emerald-500/15 to-emerald-500/5",
-      iconColor: "text-zellige",
-    },
-  ];
+export default function PrivacyPage() {
+  const t = useTranslations("legal");
 
   return (
-    <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden border-b border-zinc-200 dark:border-white/10 bg-background">
-
-        <div className="relative z-10 mx-auto max-w-4xl px-4 py-10 sm:py-16 sm:px-6 lg:px-8 text-center">
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-200 dark:border-blue-500/30 bg-blue-50 dark:bg-blue-500/10 px-4 py-2 shadow-sm shadow-blue-900/5 dark:shadow-none">
-            <Shield className="h-4 w-4 text-blue-600 dark:text-blue-400" />
-            <span className="text-sm font-semibold text-blue-700 dark:text-blue-400">
-              Legal Information
-            </span>
-          </div>
-
-          <h1 className="mt-6 mb-4 text-4xl sm:text-5xl md:text-6xl font-bold tracking-tight text-zinc-900 dark:text-white">
-            {t("title")}
-          </h1>
-
-          <p className="mx-auto mt-4 max-w-2xl text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
-            {t("intro")}
-          </p>
-
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-6 text-sm text-zinc-600 dark:text-zinc-400">
-            <div className="flex items-center gap-2">
-              <Users className="h-4 w-4 text-emerald-500" />
-              <span>
-                <strong className="text-zinc-900 dark:text-white">Controller:</strong>{" "}
-                {t("controller")}
-              </span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Main Content */}
-      <div className="relative mx-auto max-w-5xl px-4 py-10 sm:py-16 sm:px-6 lg:px-8">
-        {/* Legal Basis */}
-        <section className="mb-12">
-          <div className="rounded-3xl border border-zinc-200/70 dark:border-white/10 bg-white dark:bg-zinc-900/30 p-6 sm:p-8 shadow-xl shadow-zinc-900/5 dark:shadow-none">
-            <div className="flex items-start gap-4">
-              <div className="rounded-xl bg-gradient-to-br from-emerald-100 to-teal-100 dark:from-emerald-500/15 dark:to-teal-500/15 p-3">
-                <Shield className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
-              </div>
-              <div className="flex-1">
-                <h2 className="text-xl font-bold text-zinc-900 dark:text-white mb-2">
-                  Lawful Basis for Processing
-                </h2>
-                <p className="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-                  {t("lawfulBasis")}
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Data Sections Grid */}
-        <section className="mb-12">
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-            {sections.map((section) => (
-              <div
-                key={section.title}
-                className="group rounded-2xl border border-zinc-200/70 dark:border-white/10 bg-white dark:bg-zinc-900/50 p-6 shadow-xl shadow-zinc-900/5 dark:shadow-none backdrop-blur-sm transition-all hover:border-zinc-300/80 dark:hover:border-white/20 hover:shadow-2xl hover:shadow-zinc-900/10 dark:hover:shadow-none"
-              >
-                <div
-                  className={`mb-4 inline-flex rounded-xl bg-gradient-to-br ${section.gradient} p-3`}
-                >
-                  <section.icon className={`h-5 w-5 ${section.iconColor}`} />
-                </div>
-                <h3 className="text-lg font-semibold text-zinc-900 dark:text-white mb-3">
-                  {section.title}
-                </h3>
-                <div className="space-y-3">
-                  {section.content.map((item, idx) => (
-                    <div key={idx}>
-                      {item.label && (
-                        <div className="text-sm font-medium text-zinc-700 dark:text-zinc-300 mb-1">
-                          {item.label}
-                        </div>
-                      )}
-                      <p className="text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-                        {item.text}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Updates Notice */}
-        <section className="mb-12">
-          <div className="rounded-2xl border border-amber-200/70 dark:border-amber-500/20 bg-gradient-to-br from-amber-50 to-orange-50/50 dark:from-amber-950/20 dark:to-orange-950/10 p-6 shadow-lg shadow-amber-900/5 dark:shadow-none">
-            <div className="flex items-start gap-4">
-              <div className="rounded-lg bg-amber-100 dark:bg-amber-500/15 p-2">
-                <FileText className="h-5 w-5 text-amber-600 dark:text-amber-400" />
-              </div>
-              <div className="flex-1">
-                <h3 className="text-base font-semibold text-zinc-900 dark:text-white mb-1">
-                  Policy Updates
-                </h3>
-                <p className="text-sm text-zinc-600 dark:text-zinc-400">{t("updates")}</p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Quick Links to Terms */}
-        <div className="mt-8 text-center">
-          <p className="text-sm text-zinc-600 dark:text-zinc-400">
-            Also view our{" "}
-            <Link
-              href="/terms"
-              className="font-medium text-zellige hover:opacity-80 underline"
-            >
-              Terms & Conditions
-            </Link>
-          </p>
-        </div>
-      </div>
-    </div>
+    <LegalDocument
+      namespace="legal.privacy"
+      version={LEGAL.privacy.version}
+      effective={LEGAL.privacy.effective}
+      accents={accents}
+      sibling={{ href: "/terms", label: t("terms.title") + " " + t("terms.titleHighlight") }}
+    />
   );
 }

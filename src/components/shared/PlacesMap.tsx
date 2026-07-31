@@ -18,7 +18,7 @@ interface PlacesMapProps {
 function MapSkeleton({ className }: { className?: string }) {
   const t = useTranslations("places");
   return (
-    <div className="overflow-hidden rounded-[2rem] bg-card shadow-[0_2px_24px_rgb(0_0_0/0.08)] dark:shadow-none dark:ring-1 dark:ring-white/10">
+    <div className="overflow-hidden rounded-[2rem] bg-card shadow-[0_2px_24px_rgb(0_0_0/0.08)] dark:shadow-none dark:ring-1 dark:ring-border">
       <div className={cn("flex w-full items-center justify-center bg-muted", className)}>
         <div className="flex flex-col items-center gap-3">
           <div className="h-8 w-8 animate-spin rounded-full border-2 border-zellige border-t-transparent" />

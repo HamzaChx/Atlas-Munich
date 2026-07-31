@@ -59,7 +59,7 @@ function IconAction({
       rel="noopener noreferrer"
       aria-label={label}
       title={label}
-      className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-zinc-100 text-zinc-500 outline-none transition-colors hover:bg-zinc-200 hover:text-zinc-900 focus-visible:ring-2 focus-visible:ring-zellige/50 dark:bg-white/10 dark:text-zinc-400 dark:hover:bg-white/20 dark:hover:text-white"
+      className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-zinc-100 text-zinc-500 outline-none transition-colors hover:bg-zinc-200 hover:text-zinc-900 focus-visible:ring-2 focus-visible:ring-zellige/50 dark:bg-foreground/10 dark:text-zinc-400 dark:hover:bg-foreground/20 dark:hover:text-zinc-50"
     >
       <Icon className="h-[18px] w-[18px]" />
     </Link>
@@ -75,7 +75,7 @@ function Spotlight({ place, className }: { place: Place; className?: string }) {
   return (
     <div
       className={cn(
-        "overflow-hidden rounded-[1.75rem] bg-card ring-1 ring-zinc-900/[0.05] dark:ring-white/10",
+        "overflow-hidden rounded-[1.75rem] bg-card ring-1 ring-zinc-900/[0.05] dark:ring-border",
         className
       )}
     >
@@ -110,7 +110,7 @@ function Spotlight({ place, className }: { place: Place; className?: string }) {
           </span>
 
           {place.rating && (
-            <span className="flex shrink-0 items-center gap-1.5 rounded-full bg-card px-3 py-1.5 text-sm font-bold tabular-nums text-zinc-900 shadow-sm dark:text-white">
+            <span className="flex shrink-0 items-center gap-1.5 rounded-full bg-card px-3 py-1.5 text-sm font-bold tabular-nums text-zinc-900 shadow-sm dark:text-zinc-50">
               <Star className="h-3.5 w-3.5 fill-acc-saffron text-acc-saffron" />
               {place.rating}
               {place.reviewCount && (
@@ -122,7 +122,7 @@ function Spotlight({ place, className }: { place: Place; className?: string }) {
           )}
         </div>
 
-        <h3 className="font-display relative mt-4 text-2xl font-bold leading-tight tracking-tight text-zinc-900 sm:text-[1.75rem] dark:text-white">
+        <h3 className="font-display relative mt-4 text-2xl font-bold leading-tight tracking-tight text-zinc-900 sm:text-[1.75rem] dark:text-zinc-50">
           {place.name}
         </h3>
 
@@ -155,7 +155,7 @@ function Spotlight({ place, className }: { place: Place; className?: string }) {
             {place.tags.map((tag) => (
               <span
                 key={tag}
-                className="rounded-md bg-zinc-100 px-2.5 py-1 text-xs font-medium text-zinc-500 dark:bg-white/[0.07] dark:text-zinc-400"
+                className="rounded-md bg-zinc-100 px-2.5 py-1 text-xs font-medium text-zinc-500 dark:bg-foreground/[0.09] dark:text-zinc-400"
               >
                 {tag.replace(/-/g, " ")}
               </span>
@@ -171,7 +171,7 @@ function Spotlight({ place, className }: { place: Place; className?: string }) {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => track("place_directions_click", { place: place.slug, category: place.category })}
-            className="flex flex-1 items-center justify-center gap-2 rounded-full bg-zinc-900 px-6 py-3 text-sm font-semibold text-white outline-none transition-colors hover:bg-zinc-700 focus-visible:ring-2 focus-visible:ring-zellige/50 sm:flex-none dark:bg-white dark:text-zinc-900 dark:hover:bg-zinc-200"
+            className="flex flex-1 items-center justify-center gap-2 rounded-full bg-zinc-900 px-6 py-3 text-sm font-semibold text-white outline-none transition-colors hover:bg-zinc-700 focus-visible:ring-2 focus-visible:ring-zellige/50 sm:flex-none dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-200"
           >
             <Navigation className="h-4 w-4" />
             {t("card.directions")}
@@ -247,7 +247,7 @@ export function PlacesBrowser({ places, categories, className }: PlacesBrowserPr
     >
       {/* ---------- Index ---------- */}
       <div className="lg:sticky lg:top-[8.75rem] lg:self-start">
-        <div className="overflow-hidden rounded-[1.75rem] bg-card ring-1 ring-zinc-900/[0.05] dark:ring-white/10">
+        <div className="overflow-hidden rounded-[1.75rem] bg-card ring-1 ring-zinc-900/[0.05] dark:ring-border">
           <div className="flex items-baseline justify-between px-5 py-4">
             <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-zinc-400 dark:text-zinc-500">
               {t("title")}
@@ -297,7 +297,7 @@ export function PlacesBrowser({ places, categories, className }: PlacesBrowserPr
                             "relative flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left outline-none transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-zellige/50",
                             active
                               ? accent.tint
-                              : "hover:bg-zinc-100/80 dark:hover:bg-white/[0.06]"
+                              : "hover:bg-zinc-100/80 dark:hover:bg-foreground/[0.08]"
                           )}
                         >
                           {active && (

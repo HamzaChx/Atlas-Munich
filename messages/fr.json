@@ -184,13 +184,22 @@
     },
     "list": {
       "title": "Tous les guides"
-    }
+    },
+    "results": {
+      "for": "pour",
+      "clear": "Effacer la recherche"
+    },
+    "noResults": "Aucun guide trouvé",
+    "noResultsDescription": "Essayez une autre recherche ou parcourez tous les sujets."
   },
   "faq": {
     "badge": "Questions répondues",
     "title": "Questions",
     "titleHighlight": "Fréquentes",
     "subtitle": "Réponses rapides aux questions courantes sur la vie à Munich en tant qu'étudiant ou professionnel marocain.",
+    "topics": "Thèmes",
+    "general": "Premiers pas",
+    "generalDescription": "L'essentiel pour vos premières semaines, plus la nourriture et la vie quotidienne à Munich.",
     "searchPlaceholder": "Rechercher des questions...",
     "filters": {
       "all": "Toutes"

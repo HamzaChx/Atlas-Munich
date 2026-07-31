@@ -163,13 +163,22 @@
     },
     "list": {
       "title": "Alle Guides"
-    }
+    },
+    "results": {
+      "for": "für",
+      "clear": "Suche zurücksetzen"
+    },
+    "noResults": "Keine Guides gefunden",
+    "noResultsDescription": "Versuche eine andere Suche oder stöbere in allen Themen."
   },
   "faq": {
     "badge": "Fragen beantwortet",
     "title": "Häufig gestellte",
     "titleHighlight": "Fragen",
     "subtitle": "Schnelle Antworten auf häufige Fragen über das Leben in München als marokkanischer Student oder Berufstätiger.",
+    "topics": "Themen",
+    "general": "Erste Schritte",
+    "generalDescription": "Das Wichtigste für die ersten Wochen, dazu Essen und Alltag in München.",
     "searchPlaceholder": "Fragen durchsuchen...",
     "filters": {
       "all": "Alle"

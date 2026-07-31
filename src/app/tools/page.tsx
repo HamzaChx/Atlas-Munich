@@ -145,14 +145,14 @@ export default async function ToolsPage() {
             return (
               <div
                 key={assistant.key}
-                className="reveal group relative flex flex-col overflow-hidden rounded-3xl bg-card shadow-[0_2px_16px_rgb(0_0_0/0.06)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_16px_40px_rgb(0_0_0/0.12)] dark:shadow-none dark:ring-1 dark:ring-white/10 dark:hover:bg-zinc-800/60"
+                className={`reveal group relative flex flex-col overflow-hidden rounded-3xl ${assistant.tint} transition-all duration-300 hover:-translate-y-1 hover:shadow-xl dark:ring-1 dark:ring-white/10`}
               >
                 <div className="flex flex-1 flex-col p-6 sm:p-7">
                   {/* Profile header */}
                   <div className="mb-5 flex flex-col items-center text-center">
                     <div className="relative mb-3">
                       <span
-                        className={`absolute -inset-2 rounded-full ${assistant.tint}`}
+                        className="absolute -inset-2 rounded-full bg-card/70"
                         aria-hidden="true"
                       />
                       <Image
@@ -179,14 +179,14 @@ export default async function ToolsPage() {
                       {t(`tools.${assistant.key}.title`)}
                     </p>
 
-                    <span className="mt-2.5 inline-flex items-center gap-1.5 rounded-full bg-tint-green px-2.5 py-0.5 text-xs font-semibold text-acc-green">
+                    <span className="mt-2.5 inline-flex items-center gap-1.5 rounded-full bg-card/80 px-2.5 py-0.5 text-xs font-semibold text-acc-green">
                       <span className="h-1.5 w-1.5 rounded-full bg-acc-green" aria-hidden="true" />
                       {t(`tools.${assistant.key}.status`)}
                     </span>
                   </div>
 
                   {/* Description */}
-                  <p className="mb-4 line-clamp-3 text-center text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+                  <p className="mb-4 line-clamp-3 text-center text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">
                     {t(`tools.${assistant.key}.description`)}
                   </p>
 
@@ -195,7 +195,7 @@ export default async function ToolsPage() {
                     {tags.map((tag) => (
                       <span
                         key={tag}
-                        className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${assistant.tint} ${assistant.acc}`}
+                        className={`rounded-full bg-card/70 px-2.5 py-0.5 text-xs font-medium ${assistant.acc}`}
                       >
                         {tag}
                       </span>

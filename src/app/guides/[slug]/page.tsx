@@ -357,7 +357,7 @@ export default async function GuidePage({ params }: PageProps) {
       {/* ========== CONTENT ========== */}
       <section className="relative bg-background">
         <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8 lg:py-16">
-          <div className="grid gap-10 lg:gap-16 lg:grid-cols-[minmax(0,1fr)_260px]">
+          <div className="grid grid-cols-1 gap-10 lg:gap-16 lg:grid-cols-[minmax(0,1fr)_260px]">
             {/* Main article */}
             <article className="min-w-0">
               {/* Mobile TOC */}
@@ -509,7 +509,7 @@ export default async function GuidePage({ params }: PageProps) {
                   <h2 className="text-xl font-bold text-zinc-900 dark:text-white sm:text-2xl mb-6">
                     {getMessage("guidePage.continueLearning") ?? "Continue Reading"}
                   </h2>
-                  <div className="grid gap-4 sm:grid-cols-2">
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                     {relatedGuides.slice(0, 4).map((related) => (
                       <GuideCard key={related.slug} guide={related} />
                     ))}

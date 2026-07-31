@@ -160,7 +160,7 @@ export default async function Home() {
       {/* ========== CATEGORIES + GUIDES — one structured spread ========== */}
       <section className="relative py-16 sm:py-24">
         <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="reveal grid gap-12 lg:grid-cols-12 lg:gap-14">
+          <div className="reveal grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-14">
             {/* Left — find your way */}
             <div className="lg:col-span-7">
               <span className="eyebrow">{t("categories.badge")}</span>
@@ -172,7 +172,7 @@ export default async function Home() {
                 {t("categories.subtitle")}
               </p>
 
-              <div className="mt-8 grid gap-3 sm:grid-cols-2">
+              <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
                 {categories.map((category) => {
                   const style = catStyles[category.key];
                   const count = guideCountByCategory(category.key);
@@ -256,7 +256,7 @@ export default async function Home() {
       {/* ========== AGENTIC AI — the green pavilion ========== */}
       <section className="px-4 py-6 sm:px-6 sm:py-10 lg:px-8">
         <div className="reveal relative mx-auto max-w-6xl overflow-hidden rounded-[2rem] bg-tint-green p-7 shadow-[0_2px_24px_rgb(0_0_0/0.05)] sm:p-12 dark:shadow-none dark:ring-1 dark:ring-white/10">
-          <div className="relative grid items-center gap-10 lg:grid-cols-12 lg:gap-12">
+          <div className="relative grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-12">
             <div className="lg:col-span-5">
               <span className="eyebrow">{t("toolsSpotlight.badge")}</span>
               <h2 className="font-display mt-3 text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-3xl">
@@ -296,13 +296,6 @@ export default async function Home() {
               </Link>
 
               <div className="group relative flex items-center gap-4 rounded-xl bg-card px-4 py-3.5 shadow-[0_1px_8px_rgb(0_0_0/0.05)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgb(0_0_0/0.1)] dark:shadow-none dark:ring-1 dark:ring-white/10 dark:hover:bg-zinc-800/60">
-                <a
-                  href="https://hiro-easier-hiring.vercel.app/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="absolute inset-0 rounded-xl"
-                  aria-label="Open Hiro CV Drafter"
-                />
                 <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-tint-green text-acc-green">
                   <FileText className="h-[18px] w-[18px]" />
                 </span>
@@ -349,7 +342,7 @@ export default async function Home() {
       {/* ========== COMMUNITY ========== */}
       <section className="relative py-16 sm:py-24">
         <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <div className="reveal grid items-center gap-10 lg:grid-cols-12 lg:gap-12">
+          <div className="reveal grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-12">
             <div className="lg:col-span-7">
               <span className="eyebrow">{t("community.badge")}</span>
               <h2 className="font-display mt-3 text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-3xl">

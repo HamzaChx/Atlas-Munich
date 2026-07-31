@@ -5,12 +5,13 @@ import { useRouter } from "next/navigation";
 import { useTransition } from "react";
 import { cn } from "@/lib/utils";
 import { setLocale, type Locale } from "@/i18n";
-import { Check } from "lucide-react";
+import { Check, Languages } from "lucide-react";
+import { useTranslations } from "next-intl";
 
-const languages: { code: Locale; label: string; flag: string }[] = [
-  { code: "en", label: "English", flag: "🇬🇧" },
-  { code: "fr", label: "Français", flag: "🇫🇷" },
-  { code: "de", label: "Deutsch", flag: "🇩🇪" },
+const languages: { code: Locale; label: string }[] = [
+  { code: "en", label: "English" },
+  { code: "fr", label: "Français" },
+  { code: "de", label: "Deutsch" },
 ];
 
 interface LanguageSwitcherProps {
@@ -20,6 +21,7 @@ interface LanguageSwitcherProps {
 
 export function LanguageSwitcher({ currentLocale, className }: LanguageSwitcherProps) {
   const router = useRouter();
+  const common = useTranslations("common");
   const [isPending, startTransition] = useTransition();
   const [isOpen, setIsOpen] = React.useState(false);
   const dropdownRef = React.useRef<HTMLDivElement>(null);
@@ -70,18 +72,21 @@ export function LanguageSwitcher({ currentLocale, className }: LanguageSwitcherP
         onClick={() => setIsOpen(!isOpen)}
         disabled={isPending}
         className={cn(
-          "flex h-9 w-9 items-center justify-center rounded-full border border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-white/5 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:border-zinc-300 dark:hover:border-white/20 hover:bg-zinc-100 dark:hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
-          isOpen && "border-emerald-500/50 bg-emerald-50 dark:bg-emerald-500/10",
+          "flex h-9 items-center gap-1.5 rounded-full border border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-white/5 px-3 text-xs font-semibold uppercase tracking-wide text-zinc-600 dark:text-zinc-300 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:border-zinc-300 dark:hover:border-white/20 hover:bg-zinc-100 dark:hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-zellige/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+          isOpen && "border-zellige/50 bg-zellige-soft text-zellige",
           isPending && "opacity-50 cursor-not-allowed"
         )}
-        aria-label="Change language"
+        aria-label={common("language")}
         aria-expanded={isOpen}
         aria-haspopup="listbox"
       >
         {isPending ? (
           <div className="h-4 w-4 animate-spin rounded-full border-2 border-zinc-400 border-t-transparent" />
         ) : (
-          <span className="text-base leading-none">{currentLanguage.flag}</span>
+          <>
+            <Languages className="h-4 w-4" />
+            {currentLanguage.code}
+          </>
         )}
       </button>
 
@@ -112,13 +117,15 @@ export function LanguageSwitcher({ currentLocale, className }: LanguageSwitcherP
                 className={cn(
                   "flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-150",
                   isSelected
-                    ? "bg-emerald-50 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400"
+                    ? "bg-zellige-soft text-zellige"
                     : "text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-white/5 hover:text-zinc-900 dark:hover:text-white"
                 )}
               >
-                <span className="text-base">{language.flag}</span>
+                <span className="w-7 text-xs font-semibold uppercase tracking-wide text-zinc-400 dark:text-zinc-500">
+                  {language.code}
+                </span>
                 <span className="flex-1 text-left">{language.label}</span>
-                {isSelected && <Check className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />}
+                {isSelected && <Check className="h-4 w-4 text-zellige" />}
               </button>
             );
           })}

@@ -106,7 +106,7 @@ export default async function PrivacyPage() {
 
         {/* Data Sections Grid */}
         <section className="mb-12">
-          <div className="grid gap-6 md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {sections.map((section) => (
               <div
                 key={section.title}

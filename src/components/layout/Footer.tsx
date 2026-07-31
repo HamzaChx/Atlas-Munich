@@ -81,7 +81,7 @@ export function Footer() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-sm text-zinc-500 transition-colors duration-200 hover:text-zellige dark:text-zinc-400 outline-none focus-visible:text-zellige"
+                      className="inline-block py-1 -my-1 text-sm text-zinc-500 transition-colors duration-200 hover:text-zellige dark:text-zinc-400 outline-none focus-visible:text-zellige"
                     >
                       {t(link.labelKey)}
                     </Link>
@@ -109,13 +109,13 @@ export function Footer() {
           <div className="flex items-center gap-4 py-4">
             <Link
               href="/privacy"
-              className="text-xs text-zinc-500 transition-colors hover:text-zellige dark:text-zinc-400"
+              className="py-2 -my-2 text-xs text-zinc-500 transition-colors hover:text-zellige dark:text-zinc-400"
             >
               {t("links.privacy")}
             </Link>
             <Link
               href="/terms"
-              className="text-xs text-zinc-500 transition-colors hover:text-zellige dark:text-zinc-400"
+              className="py-2 -my-2 text-xs text-zinc-500 transition-colors hover:text-zellige dark:text-zinc-400"
             >
               {t("links.terms")}
             </Link>
@@ -123,14 +123,14 @@ export function Footer() {
               href="https://github.com/HamzaChx/Atlas-Munich"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-zinc-500 transition-colors duration-200 hover:text-zellige dark:text-zinc-400 outline-none focus-visible:text-zellige"
+              className="flex p-2 -m-1 text-zinc-500 transition-colors duration-200 hover:text-zellige dark:text-zinc-400 outline-none focus-visible:text-zellige"
             >
               <Github className="h-4 w-4" />
               <span className="sr-only">GitHub</span>
             </Link>
             <Link
               href="mailto:hello@atlasmunich.de"
-              className="text-zinc-500 transition-colors duration-200 hover:text-zellige dark:text-zinc-400 outline-none focus-visible:text-zellige"
+              className="flex p-2 -m-1 text-zinc-500 transition-colors duration-200 hover:text-zellige dark:text-zinc-400 outline-none focus-visible:text-zellige"
             >
               <Mail className="h-4 w-4" />
               <span className="sr-only">Email</span>

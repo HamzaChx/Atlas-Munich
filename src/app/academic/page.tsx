@@ -155,7 +155,7 @@ export default async function AcademicPage() {
             </h2>
           </div>
 
-          <div className="relative grid gap-6 sm:grid-cols-3">
+          <div className="relative grid grid-cols-1 gap-6 sm:grid-cols-3">
             {/* Connecting line between steps (desktop only) */}
             <div className="hidden sm:block absolute top-12 left-[calc(16.67%+2rem)] right-[calc(16.67%+2rem)] border-t-2 border-dashed border-zinc-200 dark:border-zinc-700 z-0" />
 
@@ -203,7 +203,7 @@ export default async function AcademicPage() {
             </h2>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             {[1, 2, 3, 4].map((tip, i) => {
               const Icon = TIP_ICONS[i];
               return (

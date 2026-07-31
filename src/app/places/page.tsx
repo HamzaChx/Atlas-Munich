@@ -279,7 +279,7 @@ export default function PlacesPage() {
                       </>
                     )}
                   </p>
-                  <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
                     {localizedPlaces.map((place) => (
                       <PlaceCard key={place.slug} place={place} />
                     ))}
@@ -318,7 +318,7 @@ export default function PlacesPage() {
                           <ArrowRight className="h-3.5 w-3.5" />
                         </button>
                       </div>
-                      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
                         {group.items.map((place) => (
                           <PlaceCard key={place.slug} place={place} />
                         ))}

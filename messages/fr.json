@@ -795,18 +795,6 @@
           "Allemand parfait"
         ]
       },
-      "cv": {
-        "title": "Créateur de CV & Lettre de motivation",
-        "description": "Adapté au marché de l'emploi allemand. Chargez vos informations et Hiro créera un CV au format allemand et une lettre de motivation convaincante pour les employeurs munichois.",
-        "status": "Disponible",
-        "cta": "Lancer Hiro",
-        "poweredBy": "Propulsé par Hiro",
-        "tags": [
-          "Format CV allemand",
-          "Lettres de motivation",
-          "Adapté à Munich"
-        ]
-      },
       "events": {
         "title": "Planificateur d'événements",
         "description": "Planifiez des sorties, des sessions d'étude et des événements communautaires avec vos amis à Munich. Partagez des plans, votez pour des lieux et coordonnez sans effort.",

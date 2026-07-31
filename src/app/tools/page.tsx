@@ -67,17 +67,6 @@ const ASSISTANTS: AssistantConfig[] = [
     ringClass: "ring-acc-terra/40",
   },
   {
-    key: "cv",
-    name: "Hiro",
-    avatar: "/hiro.webp",
-    icon: FileText,
-    href: "https://hiro-easier-hiring.vercel.app/",
-    external: true,
-    tint: "bg-tint-green",
-    acc: "text-acc-green",
-    ringClass: "ring-acc-green/40",
-  },
-  {
     key: "dalilah",
     name: "Dalilah",
     avatar: "/dalilah.webp",
@@ -137,7 +126,7 @@ export default async function ToolsPage() {
 
       {/* ========== ASSISTANTS ========== */}
       <section className="mx-auto max-w-5xl px-4 pb-16 sm:px-6 sm:pb-24 lg:px-8">
-        <div className="grid gap-4 sm:grid-cols-2 sm:gap-5">
+        <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
           {ASSISTANTS.map((assistant, index) => {
             const Icon = assistant.icon;
             const tags = t.raw(`tools.${assistant.key}.tags`) as string[];

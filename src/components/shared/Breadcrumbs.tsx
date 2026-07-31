@@ -15,7 +15,7 @@ export function Breadcrumbs({ items, className }: BreadcrumbsProps) {
         <li>
           <Link
             href="/"
-            className="flex items-center gap-1 transition-colors hover:text-zinc-900 dark:hover:text-white"
+            className="flex items-center gap-1 p-2 -m-2 transition-colors hover:text-zinc-900 dark:hover:text-white"
           >
             <Home className="h-4 w-4" />
             <span className="sr-only">Home</span>
@@ -27,7 +27,7 @@ export function Breadcrumbs({ items, className }: BreadcrumbsProps) {
             {item.href ? (
               <Link
                 href={item.href}
-                className="transition-colors hover:text-zinc-900 dark:hover:text-white"
+                className="inline-block py-2 -my-2 transition-colors hover:text-zinc-900 dark:hover:text-white"
               >
                 {item.label}
               </Link>

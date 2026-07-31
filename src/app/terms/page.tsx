@@ -112,7 +112,7 @@ export default async function TermsPage() {
             </p>
           </div>
 
-          <div className="grid gap-6 md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             {sections
               .filter((section) => !section.highlight)
               .map((section) => (
@@ -138,7 +138,7 @@ export default async function TermsPage() {
 
         {/* Two Column: Jurisdiction & No Warranty */}
         <section className="mb-12">
-          <div className="grid gap-6 md:grid-cols-2">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
             <div className="rounded-2xl border border-blue-200/70 dark:border-blue-500/20 bg-gradient-to-br from-blue-50 to-indigo-50/50 dark:from-blue-950/20 dark:to-indigo-950/10 p-6 shadow-lg shadow-blue-900/5 dark:shadow-none">
               <div className="flex items-start gap-3">
                 <div className="rounded-lg bg-blue-100 dark:bg-blue-500/15 p-2">

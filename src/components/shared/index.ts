@@ -8,7 +8,6 @@ export { PlacesBrowser } from "./PlacesBrowser";
 export { PlacesMap } from "./PlacesMap";
 export { Callout } from "./Callout";
 export { EmptyState } from "./EmptyState";
-export { HeroBadge } from "./HeroBadge";
 export { ThemeProvider } from "./ThemeProvider";
 export { ThemeToggle } from "./ThemeToggle";
 export { ShareButton } from "./ShareButton";

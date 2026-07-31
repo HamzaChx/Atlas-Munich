@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { BookOpen, ChevronRight, Search, Sparkles, Star } from "lucide-react";
+import { BookOpen, ChevronRight, Search, Star } from "lucide-react";
 
 export function Hero() {
   return (
@@ -20,7 +20,6 @@ export function Hero() {
             <span className="text-6xl" role="img" aria-label="Morocco flag">
               🇲🇦
             </span>
-            <Sparkles className="h-8 w-8 text-amber-500" aria-hidden="true" />
             <span className="text-6xl" role="img" aria-label="Germany flag">
               🇩🇪
             </span>

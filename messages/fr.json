@@ -1402,7 +1402,10 @@
       "loubna": "Une navigatrice santé rassurante et culturellement sensible qui aide les étudiants marocains à Munich à comprendre l'assurance maladie allemande, trouver des médecins, traduire leurs symptômes et accéder à un soutien psychologique."
     },
     "redirecting": "Redirection vers",
-    "typeMessage": "Écris ton message…"
+    "typeMessage": "Écris ton message…",
+    "aiBadge": "IA",
+    "aiDisclaimer": "Assistant IA, les réponses peuvent contenir des erreurs. Vérifie les informations importantes.",
+    "typing": "écrit…"
   },
   "legal": {
     "privacy": {

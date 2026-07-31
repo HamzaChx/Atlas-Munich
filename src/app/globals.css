@@ -542,31 +542,6 @@
 
 /* ===== Chat animations ===== */
 
-@keyframes chat-dot {
-  0%,
-  60%,
-  100% {
-    transform: translateY(0);
-    opacity: 0.4;
-  }
-  30% {
-    transform: translateY(-4px);
-    opacity: 1;
-  }
-}
-
-@keyframes fab-pulse {
-  0%,
-  100% {
-    transform: scale(1);
-    opacity: 0;
-  }
-  50% {
-    transform: scale(1.15);
-    opacity: 0.3;
-  }
-}
-
 .chat-message-enter {
   animation: chat-msg-in 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
@@ -605,13 +580,11 @@
 @keyframes dc-msg-in {
   from {
     opacity: 0;
-    transform: translateY(12px) scale(0.96);
-    filter: blur(2px);
+    transform: translateY(10px) scale(0.97);
   }
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
-    filter: blur(0);
   }
 }
 
@@ -656,21 +629,6 @@
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
-  }
-}
-
-.dc-glow-pulse {
-  animation: dc-glow 3s ease-in-out infinite;
-}
-@keyframes dc-glow {
-  0%,
-  100% {
-    opacity: 0.3;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.5;
-    transform: scale(1.08);
   }
 }
 

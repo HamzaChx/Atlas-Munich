@@ -1381,7 +1381,10 @@
       "loubna": "Eine beruhigende, kultursensible Gesundheitsnavigatorin, die marokkanischen Studierenden in München hilft, die deutsche Krankenversicherung zu verstehen, Ärzte zu finden, Symptome zu übersetzen und psychologische Unterstützung zu finden."
     },
     "redirecting": "Weiterleitung zu",
-    "typeMessage": "Nachricht eingeben…"
+    "typeMessage": "Nachricht eingeben…",
+    "aiBadge": "KI",
+    "aiDisclaimer": "KI-Assistent, Antworten können Fehler enthalten. Wichtige Informationen bitte prüfen.",
+    "typing": "schreibt…"
   },
   "legal": {
     "privacy": {

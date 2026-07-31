@@ -7,10 +7,10 @@ import { ShareButton } from "@/components/shared";
 import { getTranslations } from "next-intl/server";
 import {
   Heart,
+  HeartHandshake,
   GithubIcon,
   Mail,
   MessageCircle,
-  Sparkles,
   CheckCircle2,
   Globe,
   ExternalLink,
@@ -130,7 +130,7 @@ export default async function AboutPage() {
             className="rounded-full bg-zinc-900 px-6 text-white shadow-md shadow-zinc-900/15 hover:bg-zinc-800 dark:bg-white dark:text-zinc-900 dark:shadow-none dark:hover:bg-zinc-200"
           >
             <Link href="#contribute">
-              <Sparkles className="mr-2 h-4 w-4" />
+              <HeartHandshake className="mr-2 h-4 w-4" />
               {t("howToContribute")}
             </Link>
           </Button>

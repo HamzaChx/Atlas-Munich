@@ -1380,7 +1380,10 @@
       "loubna": "A reassuring, culturally-sensitive healthcare navigator who helps Moroccan students in Munich understand German health insurance, find doctors, translate symptoms, and access mental health support."
     },
     "redirecting": "Redirecting you to",
-    "typeMessage": "Type your message…"
+    "typeMessage": "Type your message…",
+    "aiBadge": "AI",
+    "aiDisclaimer": "AI assistant, responses can be inaccurate. Verify anything important.",
+    "typing": "typing…"
   },
   "legal": {
     "privacy": {

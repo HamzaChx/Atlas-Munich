@@ -1,11 +1,13 @@
 "use client";
 
 // ============================================
-// Atlas Munich Chatbot – Premium Floating UI
-// Glass-morphism, micro-interactions, refined UX
+// Atlas Munich – floating chat widget
+//
+// Same grammar as the dedicated chat pages, shrunk to a corner panel:
+// flat plaster card, tint header, tinted assistant bubbles, ink user bubbles.
 // ============================================
 
-import { useState, useRef, useEffect, FormEvent, KeyboardEvent } from "react";
+import { useState, useRef, useEffect, type FormEvent, type KeyboardEvent } from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -18,299 +20,108 @@ import {
   Loader2,
   ChevronDown,
   RefreshCcw,
-  Sparkles,
   Maximize2,
   Minimize2,
-  MessageCircle,
   ArrowUpRight,
+  AlertCircle,
+  MessageCircle,
 } from "lucide-react";
+import { ChatMarkdown } from "./markdown";
+import { HandoffToast, RedirectCountdownToast, SuccessToast } from "./notifications";
+import { ASSISTANT_ACCENTS, type AssistantAccent } from "./chat-themes";
 
-// ============================================
-// Sub-components
-// ============================================
+/* ------------------------------------------------------------------ */
+/*  Sub-components                                                     */
+/* ------------------------------------------------------------------ */
+
+function formatTimestamp(date: Date): string {
+  return date.toLocaleTimeString(undefined, { hour: "2-digit", minute: "2-digit" });
+}
 
 function ChatBubble({
   message,
   isUser,
-  chatbotAvatar,
+  avatar,
+  accent,
+  timestamp,
+  showAvatar,
 }: {
   message: string;
   isUser: boolean;
-  chatbotAvatar: string;
+  avatar: string;
+  accent: AssistantAccent;
+  timestamp: Date;
+  /** False for continuation messages in a consecutive run from the same sender */
+  showAvatar: boolean;
 }) {
-  const parseInlineFormatting = (text: string): React.ReactNode[] => {
-    const result: React.ReactNode[] = [];
-    const regex = /(\*\*[^*]+\*\*)|(\[[^\]]+\]\([^)]+\))/g;
-    let lastIndex = 0;
-    let match;
-    let keyCounter = 0;
-
-    while ((match = regex.exec(text)) !== null) {
-      if (match.index > lastIndex) {
-        result.push(text.slice(lastIndex, match.index));
-      }
-      const matchedText = match[0];
-      if (matchedText.startsWith("**")) {
-        const boldContent = matchedText.slice(2, -2);
-        result.push(<strong key={`bold-${keyCounter++}`} className="font-semibold">{boldContent}</strong>);
-      } else if (matchedText.startsWith("[")) {
-        const linkMatch = matchedText.match(/\[([^\]]+)\]\(([^)]+)\)/);
-        if (linkMatch) {
-          result.push(
-            <a
-              key={`link-${keyCounter++}`}
-              href={linkMatch[2]}
-              className="inline-flex items-center gap-0.5 text-emerald-600 dark:text-emerald-400 underline decoration-emerald-500/30 underline-offset-2 hover:decoration-emerald-500 transition-colors"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {linkMatch[1]}
-              <ArrowUpRight className="h-3 w-3" />
-            </a>
-          );
-        }
-      }
-      lastIndex = match.index + matchedText.length;
-    }
-    if (lastIndex < text.length) {
-      result.push(text.slice(lastIndex));
-    }
-    return result.length > 0 ? result : [text];
-  };
-
-  const renderMarkdown = (text: string) => {
-    const lines = text.split("\n");
-    const elements: React.ReactNode[] = [];
-    let listItems: React.ReactNode[] = [];
-
-    const flushList = () => {
-      if (listItems.length > 0) {
-        elements.push(
-          <ul key={`list-${elements.length}`} className="my-2 ml-1 space-y-1.5">
-            {listItems.map((item, i) => (
-              <li key={i} className="text-[13px] leading-relaxed flex items-start gap-2">
-                <span className="mt-[7px] h-1.5 w-1.5 rounded-full bg-current opacity-30 flex-shrink-0" />
-                <span>{item}</span>
-              </li>
-            ))}
-          </ul>
-        );
-        listItems = [];
-      }
-    };
-
-    lines.forEach((line, idx) => {
-      const trimmed = line.trimStart();
-      const isIndented = line !== trimmed && trimmed.length > 0;
-
-      if (trimmed.startsWith("### ")) {
-        flushList();
-        elements.push(
-          <h3 key={idx} className="text-sm font-bold mt-3 mb-1 tracking-tight">
-            {parseInlineFormatting(trimmed.replace("### ", ""))}
-          </h3>
-        );
-      } else if (trimmed.startsWith("## ")) {
-        flushList();
-        elements.push(
-          <h2 key={idx} className="text-base font-bold mt-3 mb-1 tracking-tight">
-            {parseInlineFormatting(trimmed.replace("## ", ""))}
-          </h2>
-        );
-      } else if (trimmed.startsWith("# ")) {
-        flushList();
-        elements.push(
-          <h1 key={idx} className="text-lg font-bold mt-3 mb-1 tracking-tight">
-            {parseInlineFormatting(trimmed.replace("# ", ""))}
-          </h1>
-        );
-      } else if (trimmed.match(/^[-*•]\s/)) {
-        listItems.push(parseInlineFormatting(trimmed.replace(/^[-*•]\s/, "")));
-      } else if (trimmed.match(/^\d+\.\s/)) {
-        flushList();
-        const content = trimmed.replace(/^\d+\.\s/, "");
-        elements.push(
-          <p key={idx} className="my-1 text-[13px] leading-relaxed">
-            <span className="inline-flex items-center justify-center h-5 w-5 rounded-full bg-emerald-500/10 dark:bg-emerald-400/10 text-emerald-600 dark:text-emerald-400 text-[11px] font-bold mr-1.5">
-              {trimmed.match(/^\d+/)?.[0]}
-            </span>
-            {parseInlineFormatting(content)}
-          </p>
-        );
-      } else if (isIndented) {
-        flushList();
-        elements.push(
-          <p key={idx} className="mt-2 mb-0.5 text-[13px] font-semibold">
-            {parseInlineFormatting(trimmed)}
-          </p>
-        );
-      } else if (trimmed === "") {
-        flushList();
-        elements.push(<div key={idx} className="h-1.5" />);
-      } else {
-        flushList();
-        elements.push(
-          <p key={idx} className="my-0.5 text-[13px] leading-relaxed">
-            {parseInlineFormatting(line)}
-          </p>
-        );
-      }
-    });
-
-    flushList();
-    return elements;
-  };
-
   return (
-    <div
-      className={cn(
-        "flex gap-2.5 chat-message-enter",
-        isUser ? "flex-row-reverse" : "flex-row"
-      )}
-    >
-      {/* Avatar */}
+    <div className={cn("group flex gap-2.5", isUser ? "flex-row-reverse" : "flex-row")}>
       {!isUser && (
-        <div className="relative h-7 w-7 flex-shrink-0 mt-1">
-          <div className="absolute inset-0 rounded-full bg-gradient-to-br from-emerald-400/20 to-teal-400/20 dark:from-emerald-500/10 dark:to-teal-500/10 blur-sm" />
-          <div className="relative h-7 w-7 overflow-hidden rounded-full ring-1 ring-white/80 dark:ring-white/10">
-            <Image src={chatbotAvatar} alt="Chatbot" fill className="object-cover" />
-          </div>
-        </div>
+        <span className="mt-0.5 h-7 w-7 flex-shrink-0">
+          {showAvatar && (
+            <span className="relative block h-7 w-7 overflow-hidden rounded-full">
+              <Image src={avatar} alt="" fill sizes="28px" className="object-cover" />
+            </span>
+          )}
+        </span>
       )}
+      <div className={cn("flex min-w-0 flex-col gap-0.5", isUser ? "items-end" : "items-start")}>
+        <div
+          className={cn(
+            "chat-message-enter max-w-[82%] rounded-2xl px-3.5 py-2.5 text-[13px] shadow-[0_1px_2px_rgb(0_0_0/0.04)]",
+            isUser
+              ? "rounded-br-md bg-foreground text-background"
+              : cn("rounded-bl-md text-foreground", accent.tint)
+          )}
+        >
+          <ChatMarkdown text={message} linkClass={isUser ? "text-background" : accent.acc} />
+        </div>
+        <span className="px-1 text-[10px] font-medium tabular-nums text-zinc-400 opacity-0 transition-opacity duration-200 group-hover:opacity-100 dark:text-zinc-500">
+          {formatTimestamp(timestamp)}
+        </span>
+      </div>
+    </div>
+  );
+}
 
-      {/* Message bubble */}
+function TypingIndicator({
+  avatar,
+  accent,
+  label,
+}: {
+  avatar: string;
+  accent: AssistantAccent;
+  label: string;
+}) {
+  return (
+    <div className="flex gap-2.5">
+      <span className="relative mt-0.5 h-7 w-7 flex-shrink-0 overflow-hidden rounded-full">
+        <Image src={avatar} alt="" fill sizes="28px" className="object-cover" />
+      </span>
       <div
         className={cn(
-          "max-w-[82%] rounded-2xl px-3.5 py-2.5 leading-relaxed",
-          isUser
-            ? "bg-gradient-to-br from-emerald-500 to-teal-600 text-white rounded-br-sm shadow-lg shadow-emerald-500/15"
-            : "bg-white/80 dark:bg-white/[0.06] backdrop-blur-sm text-zinc-800 dark:text-zinc-200 rounded-bl-sm border border-zinc-100/80 dark:border-white/[0.06] shadow-sm"
+          "chat-message-enter flex items-center gap-2 rounded-2xl rounded-bl-md px-4 py-3.5",
+          accent.tint
         )}
       >
-        <div className="space-y-0.5">{renderMarkdown(message)}</div>
-      </div>
-    </div>
-  );
-}
-
-function TypingIndicator({ avatar }: { avatar: string }) {
-  return (
-    <div className="flex gap-2.5 chat-message-enter">
-      <div className="relative h-7 w-7 flex-shrink-0 mt-1">
-        <div className="absolute inset-0 rounded-full bg-gradient-to-br from-emerald-400/20 to-teal-400/20 blur-sm" />
-        <div className="relative h-7 w-7 overflow-hidden rounded-full ring-1 ring-white/80 dark:ring-white/10">
-          <Image src={avatar} alt="Chatbot" fill className="object-cover" />
-        </div>
-      </div>
-      <div className="flex items-center gap-1.5 rounded-2xl rounded-bl-sm bg-white/80 dark:bg-white/[0.06] backdrop-blur-sm px-4 py-3 border border-zinc-100/80 dark:border-white/[0.06] shadow-sm">
-        <span className="h-1.5 w-1.5 rounded-full bg-zinc-400 dark:bg-zinc-500 animate-[chat-dot_1.4s_ease-in-out_infinite]" />
-        <span className="h-1.5 w-1.5 rounded-full bg-zinc-400 dark:bg-zinc-500 animate-[chat-dot_1.4s_ease-in-out_0.2s_infinite]" />
-        <span className="h-1.5 w-1.5 rounded-full bg-zinc-400 dark:bg-zinc-500 animate-[chat-dot_1.4s_ease-in-out_0.4s_infinite]" />
-      </div>
-    </div>
-  );
-}
-
-function HandoffNotification({ message, onDismiss }: { message: string; onDismiss: () => void }) {
-  return (
-    <div className="absolute -top-16 left-0 right-0 chat-message-enter">
-      <div className="mx-4 flex items-center gap-3 rounded-2xl bg-gradient-to-r from-amber-500 to-orange-500 px-4 py-3 text-white shadow-xl shadow-orange-500/20 backdrop-blur-sm">
-        <Sparkles className="h-5 w-5 flex-shrink-0" />
-        <p className="flex-1 text-sm font-medium">{message}</p>
-        <button
-          onClick={onDismiss}
-          className="rounded-full p-1 hover:bg-white/20 transition-colors"
-        >
-          <X className="h-4 w-4" />
-        </button>
-      </div>
-    </div>
-  );
-}
-
-function RedirectCountdownNotification({
-  message,
-  secondsRemaining,
-  targetChatbot,
-  onCancel,
-}: {
-  message: string;
-  secondsRemaining: number;
-  targetChatbot: string;
-  onCancel: () => void;
-}) {
-  return (
-    <div
-      className="fixed top-4 right-4 animate-in fade-in-0 slide-in-from-right-4 duration-500"
-      style={{ zIndex: 2147483647 }}
-    >
-      <div className="flex items-center gap-4 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 px-6 py-4 text-white shadow-2xl shadow-emerald-500/25 backdrop-blur-sm border border-white/10">
-        <div className="relative h-12 w-12 flex-shrink-0">
-          <svg className="h-12 w-12 -rotate-90 transform">
-            <circle cx="24" cy="24" r="20" stroke="rgba(255,255,255,0.15)" strokeWidth="3" fill="none" />
-            <circle
-              cx="24" cy="24" r="20" stroke="white" strokeWidth="3" fill="none"
-              strokeDasharray={125.6}
-              strokeDashoffset={125.6 * (1 - secondsRemaining / 15)}
-              strokeLinecap="round"
-              className="transition-all duration-1000 ease-linear"
+        <div className="flex items-center gap-1.5">
+          {[0, 0.15, 0.3].map((delay) => (
+            <span
+              key={delay}
+              className={cn("dc-typing-dot h-1.5 w-1.5 rounded-full", accent.accBg)}
+              style={{ animationDelay: `${delay}s` }}
             />
-          </svg>
-          <span className="absolute inset-0 flex items-center justify-center text-lg font-bold">
-            {secondsRemaining}
-          </span>
+          ))}
         </div>
-        <div className="flex flex-col">
-          <p className="text-sm font-medium opacity-70">{message}</p>
-          <p className="text-lg font-bold">{targetChatbot}</p>
-        </div>
-        <button
-          onClick={onCancel}
-          className="ml-4 rounded-xl bg-white/15 px-4 py-2 text-sm font-semibold hover:bg-white/25 transition-all cursor-pointer border border-white/10"
-        >
-          Cancel
-        </button>
+        <span className="text-[11px] font-medium text-zinc-500 dark:text-zinc-400">{label}</span>
       </div>
     </div>
   );
 }
 
-function SuccessNotification({
-  chatbotName,
-  onDismiss,
-}: {
-  chatbotName: string;
-  onDismiss: () => void;
-}) {
-  return (
-    <div
-      className="fixed top-4 right-4 animate-in fade-in-0 slide-in-from-right-4 duration-500"
-      style={{ zIndex: 2147483647 }}
-    >
-      <div className="flex items-center gap-3 rounded-2xl bg-gradient-to-br from-green-500 to-emerald-600 px-6 py-4 text-white shadow-2xl shadow-green-500/25 backdrop-blur-sm border border-white/10">
-        <div className="flex h-10 w-10 items-center justify-center rounded-full bg-white/20">
-          <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-            <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-          </svg>
-        </div>
-        <div className="flex flex-col">
-          <p className="text-sm font-medium opacity-70">Successfully connected to</p>
-          <p className="text-lg font-bold">{chatbotName}</p>
-        </div>
-        <button
-          onClick={onDismiss}
-          className="ml-4 rounded-full p-1 hover:bg-white/20 transition-colors cursor-pointer"
-        >
-          <X className="h-5 w-5" />
-        </button>
-      </div>
-    </div>
-  );
-}
-
-// ============================================
-// Main Component
-// ============================================
+/* ------------------------------------------------------------------ */
+/*  Main component                                                     */
+/* ------------------------------------------------------------------ */
 
 export function Chatbot() {
   const pathname = usePathname();
@@ -345,6 +156,8 @@ export function Chatbot() {
   );
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
+
+  const accent = ASSISTANT_ACCENTS[currentChatbot];
 
   const shouldHideChatbot =
     pathname === "/faq" ||
@@ -393,22 +206,25 @@ export function Chatbot() {
   }, [messages, isLoading]);
 
   useEffect(() => {
-    if (isOpen) {
-      setTimeout(() => inputRef.current?.focus(), 100);
-    }
+    if (!isOpen) return;
+    const timer = setTimeout(() => inputRef.current?.focus(), 100);
+    if (window.innerWidth < 640) setIsExpanded(true);
+    return () => clearTimeout(timer);
   }, [isOpen]);
 
   useEffect(() => {
-    if (isOpen && window.innerWidth < 640) {
-      setIsExpanded(true);
-    }
-  }, [isOpen]);
+    const ta = inputRef.current;
+    if (!ta) return;
+    ta.style.height = "auto";
+    ta.style.height = `${Math.min(ta.scrollHeight, isExpanded ? 160 : 100)}px`;
+  }, [input, isExpanded]);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (input.trim() && !isLoading) {
       sendMessage(input);
       setInput("");
+      if (inputRef.current) inputRef.current.style.height = "auto";
     }
   };
 
@@ -421,23 +237,36 @@ export function Chatbot() {
 
   if (shouldHideChatbot) return null;
 
-  const _taglineKey = `taglines.${currentChatbot}`;
-  const _translatedTagline = t(_taglineKey);
+  const taglineKey = `taglines.${currentChatbot}`;
+  const translatedTagline = t(taglineKey);
   const tagline =
-    _translatedTagline && _translatedTagline !== _taglineKey
-      ? _translatedTagline
+    translatedTagline && translatedTagline !== taglineKey
+      ? translatedTagline
       : chatbotConfig.tagline;
+
+  const rawSuggestions = t.raw(`suggestions.${currentChatbot}`);
+  const suggestions: string[] =
+    rawSuggestions && typeof rawSuggestions === "object" ? Object.values(rawSuggestions) : [];
+
+  const aiBadge = t("aiBadge");
+  const aiDisclaimer = t("aiDisclaimer");
+  const typingLabel = `${chatbotConfig.name} ${t("typing")}`;
+
+  const canSend = input.trim().length > 0 && !isLoading;
+
+  const quietButton =
+    "flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-card/70 text-zinc-600 transition-colors hover:bg-card active:scale-90 dark:text-zinc-300";
 
   return (
     <div className="chatbot-container">
-      {/* Portals */}
       {redirectCountdown &&
         typeof document !== "undefined" &&
         createPortal(
-          <RedirectCountdownNotification
+          <RedirectCountdownToast
             message="Redirecting you to"
             secondsRemaining={redirectCountdown.secondsRemaining}
             targetChatbot={redirectCountdown.targetChatbot}
+            accClass={accent.acc}
             onCancel={cancelRedirect}
           />,
           document.body
@@ -446,248 +275,251 @@ export function Chatbot() {
       {showSuccessNotification &&
         typeof document !== "undefined" &&
         createPortal(
-          <SuccessNotification chatbotName={currentChatbot} onDismiss={dismissSuccessNotification} />,
+          <SuccessToast chatbotName={currentChatbot} onDismiss={dismissSuccessNotification} />,
           document.body
         )}
 
-      {/* =================== Chat Window =================== */}
+      {/* =================== Chat panel =================== */}
       <div
         className={cn(
-          "transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]",
-          isExpanded ? "w-full h-full max-w-full" : "w-[420px] max-w-[calc(100vw-2rem)]",
+          "fixed z-[9999] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]",
+          isExpanded ? "inset-0 h-full w-full max-w-full" : "w-[420px] max-w-[calc(100vw-2rem)]",
           isOpen
-            ? "opacity-100 translate-y-0 scale-100 pointer-events-auto"
-            : "opacity-0 translate-y-4 scale-[0.97] pointer-events-none"
+            ? "pointer-events-auto translate-y-0 scale-100 opacity-100"
+            : "pointer-events-none translate-y-4 scale-[0.97] opacity-0"
         )}
-        style={{
-          position: "fixed",
-          bottom: isExpanded ? "0" : "6rem",
-          right: isExpanded ? "0" : "1rem",
-          top: isExpanded ? "0" : "auto",
-          left: isExpanded ? "0" : "auto",
-          zIndex: 9999,
-        }}
+        style={
+          isExpanded ? undefined : { bottom: "6rem", right: "1rem", top: "auto", left: "auto" }
+        }
       >
         <div
           className={cn(
-            "relative flex flex-col overflow-hidden",
+            "relative flex flex-col overflow-hidden bg-card",
             isExpanded
               ? "h-full w-full rounded-none"
-              : "h-[540px] max-h-[calc(100dvh-8rem)] rounded-3xl",
-            "bg-white/95 dark:bg-zinc-900/95 backdrop-blur-2xl",
-            "shadow-2xl shadow-zinc-900/15 dark:shadow-black/40",
-            "border border-zinc-200/60 dark:border-white/[0.08]",
-            "ring-1 ring-black/[0.03] dark:ring-white/[0.03]"
+              : "h-[560px] max-h-[calc(100dvh-8rem)] rounded-3xl shadow-[0_16px_50px_-12px_rgb(0_0_0/0.3)]",
+            "ring-1 ring-border dark:ring-white/10"
           )}
         >
           {notification && (
-            <HandoffNotification message={notification.message} onDismiss={dismissNotification} />
+            <HandoffToast
+              message={notification.message}
+              onDismiss={dismissNotification}
+              className="absolute inset-x-3 top-3 z-30"
+            />
           )}
 
           {/* ---- Header ---- */}
-          <div
+          <header
             className={cn(
-              "relative flex items-center justify-between px-4 flex-shrink-0 overflow-hidden",
-              isExpanded ? "py-3.5" : "py-3"
+              "flex flex-shrink-0 items-center justify-between gap-2 px-3 py-3",
+              accent.tint
             )}
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 dark:from-emerald-700 dark:via-teal-700 dark:to-emerald-800" />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255,255,255,0.1),transparent_60%)]" />
-
-            <div className="relative flex items-center gap-3">
-              <div className="relative">
-                <div className="absolute -inset-0.5 rounded-full bg-white/20 blur-sm" />
-                <div
-                  className={cn(
-                    "relative overflow-hidden rounded-full bg-gradient-to-br from-amber-100 to-orange-100",
-                    isExpanded ? "h-10 w-10" : "h-9 w-9",
-                    "ring-2 ring-white/30"
-                  )}
-                >
-                  <Image src={chatbotConfig.avatar} alt={chatbotConfig.name} fill className="object-cover" />
-                </div>
-                <div className="absolute -bottom-0 -right-0 h-3 w-3 rounded-full bg-green-400 ring-2 ring-emerald-600 dark:ring-emerald-700">
-                  <div className="absolute inset-0 rounded-full bg-green-400 animate-ping opacity-40" />
-                </div>
+            <div className="flex min-w-0 items-center gap-2.5">
+              <div className="relative flex-shrink-0">
+                <Image
+                  src={chatbotConfig.avatar}
+                  alt={chatbotConfig.name}
+                  width={72}
+                  height={72}
+                  sizes="36px"
+                  className={cn("h-9 w-9 rounded-full object-cover ring-2", accent.ring)}
+                />
+                <span className="absolute -bottom-0.5 -right-0.5 flex h-3.5 w-3.5 items-center justify-center rounded-full bg-card">
+                  <span className="dc-online-pulse h-1.5 w-1.5 rounded-full bg-acc-green" />
+                </span>
               </div>
-              <div>
-                <h3 className="font-semibold text-sm text-white tracking-tight">
-                  {chatbotConfig.name}
-                </h3>
-                <p className="text-[11px] text-white/60 mt-0.5 truncate max-w-[180px]">
-                  {tagline}
-                </p>
+              <div className="min-w-0">
+                <div className="flex items-center gap-1.5">
+                  <p className="truncate font-display text-sm font-bold leading-tight text-zinc-900 dark:text-white">
+                    {chatbotConfig.name}
+                  </p>
+                  <span className="flex-shrink-0 rounded-full bg-card/70 px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
+                    {aiBadge}
+                  </span>
+                </div>
+                <p className={cn("truncate text-[11px] font-medium", accent.acc)}>{tagline}</p>
               </div>
             </div>
 
-            <div className="relative flex items-center gap-0.5">
+            <div className="flex flex-shrink-0 items-center gap-1">
               <button
                 onClick={clearMessages}
-                className="flex h-10 w-10 items-center justify-center rounded-lg text-white/60 hover:bg-white/10 hover:text-white transition-all duration-200 cursor-pointer active:scale-90"
+                className={cn(quietButton, "group")}
                 title="Clear chat"
                 aria-label="Clear chat"
               >
-                <RefreshCcw className="h-4 w-4 hover:rotate-180 transition-transform duration-500" />
+                <RefreshCcw className="h-4 w-4 transition-transform duration-500 group-hover:rotate-180" />
               </button>
               <button
                 onClick={() => setIsExpanded(!isExpanded)}
-                className="flex h-10 w-10 items-center justify-center rounded-lg text-white/60 hover:bg-white/10 hover:text-white transition-all duration-200 cursor-pointer active:scale-90"
+                className={cn(quietButton, "hidden sm:flex")}
                 title={isExpanded ? "Minimize" : "Expand"}
                 aria-label={isExpanded ? "Minimize" : "Expand"}
               >
-                {isExpanded ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
+                {isExpanded ? (
+                  <Minimize2 className="h-4 w-4" />
+                ) : (
+                  <Maximize2 className="h-4 w-4" />
+                )}
               </button>
               <button
-                onClick={() => { setIsOpen(false); setIsExpanded(false); }}
-                className="flex h-10 w-10 items-center justify-center rounded-lg text-white/60 hover:bg-white/10 hover:text-white transition-all duration-200 cursor-pointer active:scale-90"
+                onClick={() => {
+                  setIsOpen(false);
+                  setIsExpanded(false);
+                }}
+                className={quietButton}
                 title="Close chat"
                 aria-label="Close chat"
               >
                 <X className="h-4 w-4" />
               </button>
             </div>
-          </div>
+          </header>
 
           {/* ---- Messages ---- */}
           <div
             className={cn(
-              "flex-1 min-h-0 overflow-y-auto scroll-smooth",
-              "bg-gradient-to-b from-zinc-50/50 to-zinc-100/30 dark:from-zinc-900/50 dark:to-zinc-950/80",
-              isExpanded ? "p-4 sm:p-6 sm:max-w-3xl sm:mx-auto sm:w-full" : "p-4",
-              "space-y-3"
+              "min-h-0 flex-1 space-y-3 overflow-y-auto scroll-smooth p-4",
+              isExpanded && "sm:mx-auto sm:w-full sm:max-w-3xl sm:p-6"
             )}
           >
             {messages.length === 0 && (
-              <div className="flex flex-col items-center justify-center h-full text-center px-4">
-                <div className="relative mb-5">
-                  <div className="absolute -inset-4 rounded-full bg-gradient-to-br from-emerald-400/15 to-teal-400/15 dark:from-emerald-400/10 dark:to-teal-400/10 blur-xl animate-pulse" />
-                  <div
+              <div className="flex h-full flex-col items-center justify-center px-2 text-center">
+                <div className="relative mb-4">
+                  <span
+                    className={cn("absolute -inset-2.5 rounded-full", accent.tint)}
+                    aria-hidden="true"
+                  />
+                  <Image
+                    src={chatbotConfig.avatar}
+                    alt={chatbotConfig.name}
+                    width={128}
+                    height={128}
+                    sizes="80px"
                     className={cn(
-                      "relative overflow-hidden rounded-full bg-gradient-to-br from-amber-100 to-orange-100 dark:from-amber-900/30 dark:to-orange-900/30",
-                      "ring-2 ring-emerald-500/20 dark:ring-emerald-400/20 shadow-lg",
-                      isExpanded ? "h-24 w-24" : "h-16 w-16"
+                      "relative rounded-full object-cover ring-2",
+                      accent.ring,
+                      isExpanded ? "h-20 w-20" : "h-16 w-16"
                     )}
-                  >
-                    <Image src={chatbotConfig.avatar} alt={chatbotConfig.name} fill className="object-cover" />
-                  </div>
+                  />
                 </div>
 
-                <h3
+                <h2
                   className={cn(
-                    "font-bold text-zinc-900 dark:text-white mb-1 tracking-tight",
+                    "font-display font-bold tracking-tight text-zinc-900 dark:text-white",
                     isExpanded ? "text-xl" : "text-lg"
                   )}
                 >
                   {chatbotConfig.name}
-                </h3>
+                </h2>
+                <p className={cn("mt-0.5 text-xs font-semibold", accent.acc)}>{tagline}</p>
+
                 <p
                   className={cn(
-                    "text-zinc-500 dark:text-zinc-400 mb-5 leading-relaxed",
-                    isExpanded ? "text-base max-w-md" : "text-[13px] max-w-[260px]"
+                    "mt-3 leading-relaxed text-zinc-500 dark:text-zinc-400",
+                    isExpanded ? "max-w-md text-sm" : "max-w-[280px] text-[13px]"
                   )}
                 >
                   {t(`welcome.${currentChatbot}`)}
                 </p>
+                <p className="mt-1.5 max-w-[280px] text-[11px] leading-relaxed text-zinc-400 dark:text-zinc-500">
+                  {aiDisclaimer}
+                </p>
 
-                <div className={cn("flex flex-wrap gap-2 justify-center", isExpanded && "max-w-lg")}>
-                  {(() => {
-                    const suggestions: string[] = [];
-                    for (let i = 0; i < 3; i++) {
-                      const key = `suggestions.${currentChatbot}.${i}`;
-                      const val = t(key);
-                      if (!val || val === key) break;
-                      suggestions.push(val);
-                    }
-                    return suggestions.map((q: string, i: number) => (
-                      <button
-                        key={i}
-                        onClick={() => sendMessage(q)}
+                <div
+                  className={cn(
+                    "mt-5 grid w-full gap-2",
+                    isExpanded ? "max-w-lg sm:grid-cols-2" : "max-w-[320px]"
+                  )}
+                >
+                  {suggestions.map((question, i) => (
+                    <button
+                      key={question}
+                      onClick={() => sendMessage(question)}
+                      style={{ animationDelay: `${i * 70 + 120}ms` }}
+                      className={cn(
+                        "dc-chip-stagger group/chip flex cursor-pointer items-start justify-between gap-2 rounded-2xl px-3.5 py-2.5 text-left text-xs text-zinc-700 dark:text-zinc-200",
+                        "transition-transform duration-200 hover:-translate-y-0.5 active:translate-y-0",
+                        accent.tint
+                      )}
+                    >
+                      <span className="leading-snug">{question}</span>
+                      <ArrowUpRight
                         className={cn(
-                          "group rounded-2xl border transition-all duration-200 cursor-pointer",
-                          "bg-white/80 dark:bg-white/[0.05] backdrop-blur-sm",
-                          "border-zinc-200/80 dark:border-white/[0.08]",
-                          "text-zinc-600 dark:text-zinc-300",
-                          "hover:bg-emerald-50 dark:hover:bg-emerald-500/10",
-                          "hover:border-emerald-300/60 dark:hover:border-emerald-500/20",
-                          "hover:text-emerald-700 dark:hover:text-emerald-300",
-                          "hover:shadow-md hover:shadow-emerald-500/5",
-                          "active:scale-[0.97]",
-                          isExpanded ? "text-sm px-4 py-2.5" : "text-xs px-3 py-2"
+                          "mt-0.5 h-3.5 w-3.5 flex-shrink-0 transition-transform duration-200 group-hover/chip:translate-x-0.5 group-hover/chip:-translate-y-0.5",
+                          accent.acc
                         )}
-                      >
-                        <span className="flex items-center gap-1.5">
-                          <MessageCircle className="h-3 w-3 opacity-40 group-hover:opacity-70 transition-opacity" />
-                          {q}
-                        </span>
-                      </button>
-                    ));
-                  })()}
+                        aria-hidden="true"
+                      />
+                    </button>
+                  ))}
                 </div>
               </div>
             )}
 
-            {messages.map((msg) => (
+            {messages.map((msg, i) => (
               <ChatBubble
                 key={msg.id}
                 message={msg.content}
                 isUser={msg.role === "user"}
-                chatbotAvatar={chatbotConfig.avatar}
+                avatar={chatbotConfig.avatar}
+                accent={accent}
+                timestamp={msg.timestamp}
+                showAvatar={i === 0 || messages[i - 1].role !== msg.role}
               />
             ))}
 
-            {isLoading && <TypingIndicator avatar={chatbotConfig.avatar} />}
+            {isLoading && (
+              <TypingIndicator avatar={chatbotConfig.avatar} accent={accent} label={typingLabel} />
+            )}
 
             {error && (
-              <div className="rounded-2xl bg-red-50/80 dark:bg-red-900/10 backdrop-blur-sm border border-red-200/60 dark:border-red-800/30 px-4 py-3 text-[13px] text-red-600 dark:text-red-400">
-                {error}
+              <div className="flex items-start gap-2 rounded-2xl bg-tint-terra px-4 py-3 text-[13px] text-acc-terra">
+                <AlertCircle className="mt-0.5 h-4 w-4 flex-shrink-0" />
+                <p>{error}</p>
               </div>
             )}
 
             <div ref={messagesEndRef} />
           </div>
 
-          {/* ---- Input ---- */}
+          {/* ---- Composer ---- */}
           <form
             onSubmit={handleSubmit}
             className={cn(
-              "flex-shrink-0 border-t border-zinc-200/60 dark:border-white/[0.06]",
-              "bg-white/80 dark:bg-zinc-900/80 backdrop-blur-xl",
-              isExpanded ? "p-3 sm:p-4" : "p-3"
+              "flex-shrink-0 border-t border-border p-3",
+              isExpanded && "sm:px-6 sm:py-4"
             )}
           >
-            <div className={cn("flex items-end gap-2", isExpanded && "sm:max-w-3xl sm:mx-auto")}>
-              <div className="relative flex-1">
-                <textarea
-                  ref={inputRef}
-                  value={input}
-                  onChange={(e) => setInput(e.target.value)}
-                  onKeyDown={handleKeyDown}
-                  placeholder="Type your message..."
-                  rows={1}
-                  className={cn(
-                    "w-full resize-none rounded-2xl",
-                    "border border-zinc-200/80 dark:border-white/[0.08]",
-                    "bg-zinc-50/50 dark:bg-white/[0.03]",
-                    "px-4 py-2.5 text-[13px] text-zinc-900 dark:text-white",
-                    "placeholder:text-zinc-400 dark:placeholder:text-zinc-500",
-                    "focus:outline-none focus:border-emerald-400/60 dark:focus:border-emerald-500/40",
-                    "focus:ring-2 focus:ring-emerald-500/15 dark:focus:ring-emerald-500/10",
-                    "focus:bg-white dark:focus:bg-white/[0.05]",
-                    "transition-all duration-200",
-                    isExpanded && "py-3 text-sm"
-                  )}
-                  style={{ maxHeight: isExpanded ? "160px" : "100px" }}
-                />
-              </div>
+            <div className={cn("flex items-end gap-2", isExpanded && "sm:mx-auto sm:max-w-3xl")}>
+              <textarea
+                ref={inputRef}
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                onKeyDown={handleKeyDown}
+                placeholder={t("typeMessage")}
+                rows={1}
+                aria-label="Message input"
+                style={{ maxHeight: isExpanded ? "160px" : "100px" }}
+                className={cn(
+                  "w-full flex-1 resize-none rounded-2xl border border-border bg-background px-4 py-2.5",
+                  "text-[13px] text-zinc-900 placeholder:text-zinc-400 dark:text-white dark:placeholder:text-zinc-500",
+                  "outline-none transition-colors",
+                  accent.focus,
+                  isExpanded && "sm:py-3 sm:text-sm"
+                )}
+              />
               <button
                 type="submit"
-                disabled={!input.trim() || isLoading}
+                disabled={!canSend}
+                aria-label="Send message"
                 className={cn(
-                  "flex items-center justify-center rounded-2xl transition-all duration-300 cursor-pointer flex-shrink-0",
-                  isExpanded ? "h-11 w-11" : "h-10 w-10",
-                  input.trim() && !isLoading
-                    ? "bg-gradient-to-br from-emerald-500 to-teal-600 text-white shadow-lg shadow-emerald-500/20 hover:shadow-xl hover:shadow-emerald-500/30 hover:scale-105 active:scale-95"
-                    : "bg-zinc-100 dark:bg-white/[0.05] text-zinc-400 dark:text-zinc-600 cursor-not-allowed"
+                  "flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full transition-all duration-200",
+                  canSend
+                    ? cn("cursor-pointer text-card hover:scale-105 active:scale-95", accent.accBg)
+                    : "cursor-not-allowed bg-muted text-zinc-400 dark:text-zinc-500"
                 )}
               >
                 {isLoading ? (
@@ -697,55 +529,76 @@ export function Chatbot() {
                 )}
               </button>
             </div>
+            <p
+              className={cn(
+                "mt-1.5 text-center text-[10px] leading-snug text-zinc-400 dark:text-zinc-500",
+                isExpanded && "sm:mx-auto sm:max-w-3xl"
+              )}
+            >
+              {aiDisclaimer}
+            </p>
           </form>
         </div>
       </div>
 
-      {/* =================== FAB =================== */}
+      {/* =================== Launcher =================== */}
       <div
-        className={cn(!isOpen || !isExpanded ? "block" : "hidden")}
-        style={{ position: "fixed", bottom: "1.25rem", right: "1.25rem", zIndex: 10000 }}
+        className={cn("fixed bottom-5 right-5 z-[10000]", !isOpen || !isExpanded ? "block" : "hidden")}
       >
         {showNudge && !isOpen && (
-          <div className="absolute bottom-full right-0 mb-3 w-56 chat-message-enter">
-            <div className="relative rounded-2xl rounded-br-sm bg-white/95 dark:bg-zinc-800/95 backdrop-blur-xl shadow-xl shadow-zinc-900/10 dark:shadow-black/30 border border-zinc-200/60 dark:border-white/[0.08] px-4 py-3">
+          <div className="chat-message-enter absolute bottom-full right-0 mb-3 w-60">
+            <div className="relative rounded-2xl rounded-br-md bg-card px-4 py-3 shadow-[0_12px_40px_-12px_rgb(0_0_0/0.28)] ring-1 ring-border dark:ring-white/10">
               <button
                 onClick={() => setShowNudge(false)}
-                className="absolute top-2 right-2 rounded-full p-0.5 text-zinc-400 hover:text-zinc-600 dark:hover:text-zinc-300 transition-colors cursor-pointer"
+                className="absolute right-2 top-2 cursor-pointer rounded-full p-0.5 text-zinc-400 transition-colors hover:text-zinc-600 dark:hover:text-zinc-300"
                 aria-label="Dismiss"
               >
                 <X className="h-3.5 w-3.5" />
               </button>
-              <p className="text-[13px] font-semibold text-zinc-900 dark:text-white pr-4">
-                Need help settling in Munich?
+              <p className="pr-4 text-[13px] font-semibold text-zinc-900 dark:text-white">
+                New in Munich?
               </p>
               <p className="mt-0.5 text-[11px] text-zinc-500 dark:text-zinc-400">
-                {chatbotConfig.name} is here to guide you.
+                {chatbotConfig.name} is here to help you settle in.
               </p>
             </div>
-            <div className="absolute -bottom-1.5 right-5 h-3 w-3 rotate-45 rounded-br-sm bg-white/95 dark:bg-zinc-800/95 border-r border-b border-zinc-200/60 dark:border-white/[0.08]" />
           </div>
         )}
 
         <button
-          onClick={() => { toggleOpen(); setShowNudge(false); }}
+          onClick={() => {
+            toggleOpen();
+            setShowNudge(false);
+          }}
           className={cn(
-            "group relative flex items-center justify-center rounded-full cursor-pointer transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]",
+            "group relative flex cursor-pointer items-center justify-center rounded-full transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]",
+            "shadow-[0_10px_30px_-8px_rgb(0_0_0/0.35)] active:scale-95",
             isOpen
-              ? "h-12 w-12 bg-zinc-800 dark:bg-zinc-700 shadow-lg hover:bg-zinc-700 dark:hover:bg-zinc-600 hover:scale-105 active:scale-95"
-              : "h-14 w-14 shadow-xl hover:scale-110 active:scale-95"
+              ? "h-12 w-12 bg-foreground text-background hover:scale-105"
+              : "h-14 w-14 hover:scale-110"
           )}
           aria-label={isOpen ? "Close chat" : "Open AI assistant"}
         >
           {isOpen ? (
-            <ChevronDown className="h-5 w-5 text-white" />
+            <ChevronDown className="h-5 w-5" />
           ) : (
             <>
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-emerald-400 to-teal-500 animate-[fab-pulse_3s_ease-in-out_infinite]" />
-              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 shadow-lg shadow-emerald-500/30" />
-              <div className="relative h-9 w-9 overflow-hidden rounded-full ring-2 ring-white/30">
-                <Image src={chatbotConfig.avatar} alt={chatbotConfig.name} fill className="object-cover" />
-              </div>
+              <Image
+                src={chatbotConfig.avatar}
+                alt=""
+                width={112}
+                height={112}
+                sizes="56px"
+                className={cn("h-14 w-14 rounded-full object-cover ring-2", accent.ring)}
+              />
+              <span
+                className={cn(
+                  "absolute -right-0.5 -top-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-card",
+                  accent.acc
+                )}
+              >
+                <MessageCircle className="h-3 w-3" />
+              </span>
             </>
           )}
         </button>

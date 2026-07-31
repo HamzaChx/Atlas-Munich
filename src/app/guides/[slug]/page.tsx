@@ -35,6 +35,8 @@ import {
 import { fmtUpdated } from "@/lib/date";
 import { getLocale } from "@/i18n";
 
+const BASE_URL = "https://atlasmunich.de";
+
 const iconMap: Record<string, LucideIcon> = {
   Home,
   FileText,
@@ -284,8 +286,46 @@ export default async function GuidePage({ params }: PageProps) {
     { label: localizedGuide.title },
   ];
 
+  const guideUrl = `${BASE_URL}/guides/${guide.slug}`;
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "@id": `${guideUrl}#article`,
+        headline: localizedGuide.title,
+        description: localizedGuide.summary,
+        datePublished: guide.lastUpdated,
+        dateModified: guide.lastUpdated,
+        inLanguage: locale,
+        articleSection: localizedCategoryTitle,
+        author: {
+          "@type": guide.author ? "Person" : "Organization",
+          name: guide.author ?? "Atlas Munich Team",
+        },
+        publisher: { "@id": `${BASE_URL}/#organization` },
+        mainEntityOfPage: guideUrl,
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          ...breadcrumbs.map((crumb, index) => ({
+            "@type": "ListItem",
+            position: index + 1,
+            name: crumb.label,
+            item: crumb.href ? `${BASE_URL}${crumb.href}` : guideUrl,
+          })),
+        ],
+      },
+    ],
+  };
+
   return (
     <div className="min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Reading progress bar */}
       <ReadingProgress fromColor={theme.from} toColor={theme.to} />
 

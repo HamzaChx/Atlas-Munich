@@ -11,11 +11,11 @@
 
 Built by Hamza Chaouki, for the Moroccan community. Everything you need to navigate life in Munich — from your first Anmeldung to finding the best tajine in town.
 
-[![Next.js](https://img.shields.io/badge/Next.js-15.5-black?style=flat&logo=next.js)](https://nextjs.org)
+[![Next.js](https://img.shields.io/badge/Next.js-16-black?style=flat&logo=next.js)](https://nextjs.org)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=flat&logo=typescript)](https://www.typescriptlang.org/)
 [![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-[🌐 Live Demo](https://atlas-munich.vercel.app) · [📖 Documentation](#features) · [🐛 Report Bug](../../issues) · [✨ Request Feature](../../issues)
+[🌐 Live Demo](https://atlasmunich.de) · [📖 Documentation](#features) · [🐛 Report Bug](../../issues) · [✨ Request Feature](../../issues)
 
 </div>
 
@@ -41,31 +41,30 @@ Atlas Munich is a comprehensive web platform designed to help members of the Mor
 - 📚 **Practical Guides** - Step-by-step tutorials for common tasks
 - 🗺️ **Places & Services** - Community-recommended locations
 - ❓ **FAQs** - Answers to frequently asked questions
-- 📅 **Events** - Community gatherings and cultural events
+- 💬 **AI Chat Guides** - Persona-driven assistants for housing, bureaucracy, academics, and healthcare
 
 ## ✨ Features
 
-- **🌐 Multilingual Support** - Available in English, French, German, and Moroccan Arabic (Darija)
-- **🔍 Smart Search** - Fuzzy search powered by Fuse.js to find guides, places, and FAQs quickly
+- **🌐 Multilingual Support** - Available in English, French, and German
+- **🔍 Smart Search** - Fuzzy search powered by Fuse.js to find guides quickly
 - **🗺️ Interactive Maps** - Explore places with Leaflet.js integration
 - **📱 Responsive Design** - Beautiful, modern UI that works on all devices
 - **🌓 Dark Mode** - Eye-friendly theme switching with next-themes
 - **♿ Accessible** - Built with accessibility in mind using Radix UI components
-- **⚡ Lightning Fast** - Optimized with Next.js 15 and Turbopack
-- **📖 Rich Content** - MDX support for detailed, formatted guides
+- **⚡ Lightning Fast** - Optimized with Next.js 16 and Turbopack
 - **🎨 Modern UI** - Styled with Tailwind CSS and shadcn/ui components
 - **🧹 Clean Code** - Automated linting, formatting, and pre-commit hooks
 
 ## 🛠️ Tech Stack
 
-- **Framework:** [Next.js 15](https://nextjs.org/) with App Router
+- **Framework:** [Next.js 16](https://nextjs.org/) with App Router
 - **Language:** [TypeScript](https://www.typescriptlang.org/)
 - **Styling:** [Tailwind CSS 4](https://tailwindcss.com/)
 - **UI Components:** [Radix UI](https://www.radix-ui.com/) + [shadcn/ui](https://ui.shadcn.com/)
 - **Internationalization:** [next-intl](https://next-intl-docs.vercel.app/)
 - **Maps:** [Leaflet](https://leafletjs.com/) + [React Leaflet](https://react-leaflet.js.org/)
 - **Search:** [Fuse.js](https://fusejs.io/)
-- **Content:** [MDX](https://mdxjs.com/) with [react-markdown](https://github.com/remarkjs/react-markdown)
+- **Content:** [react-markdown](https://github.com/remarkjs/react-markdown)
 - **Icons:** [Lucide React](https://lucide.dev/)
 - **Code Quality:** ESLint, Prettier, Husky, lint-staged
 
@@ -197,14 +196,15 @@ Atlas-Munich/
 
 ## 🌐 Internationalization
 
-The project supports four languages:
+The project supports three languages:
 
 - 🇬🇧 English (`en`)
 - 🇫🇷 French (`fr`)
 - 🇩🇪 German (`de`)
-- 🇲🇦 Moroccan Arabic - Darija (`ar`) - Franco-Arab transliteration
 
 Translation files are located in the `messages/` directory. To add or update translations, edit the corresponding JSON file.
+
+A Moroccan Arabic (Darija) locale is on the roadmap but not implemented yet.
 
 ## 🤝 Contributing
 

@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import { getAllFaqs } from "@/data/faqs";
 
 export const metadata: Metadata = {
   title: "Frequently Asked Questions",
@@ -31,5 +32,26 @@ export const metadata: Metadata = {
 };
 
 export default function FAQLayout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: getAllFaqs().map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      {children}
+    </>
+  );
 }

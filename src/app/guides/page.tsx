@@ -1,7 +1,9 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { Suspense, useEffect, useMemo, useState } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
+import Fuse from "fuse.js";
 import { Callout, EmptyState } from "@/components/shared";
 
 import { guides } from "@/data/guides";
@@ -39,14 +41,22 @@ const topics: {
 const topicFor = (categoryKey: string) =>
   topics.find((topic) => topic.key === categoryKey) ?? topics[0];
 
-export default function GuidesPage() {
+function GuidesPageContent() {
   const t = useTranslations("guides");
   const tCat = useTranslations("categories");
   const tHome = useTranslations("home");
   const common = useTranslations("common");
+  const searchParams = useSearchParams();
 
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState(() => searchParams.get("q") ?? "");
   const [selectedTopic, setSelectedTopic] = useState("all");
+
+  // Keep the field in sync if the page is reached with a different ?q= while
+  // already mounted (e.g. a second search from the header without a full reload).
+  useEffect(() => {
+    const paramQuery = searchParams.get("q") ?? "";
+    setSearchQuery((current) => (paramQuery !== current ? paramQuery : current));
+  }, [searchParams]);
 
   const isSearching = searchQuery.trim().length > 0;
 
@@ -60,20 +70,33 @@ export default function GuidesPage() {
     return counts;
   }, []);
 
+  // Indexed with the localized topic label so "housing" matches "logement" in French too.
+  const fuse = useMemo(
+    () =>
+      new Fuse(
+        guides.map((guide) => ({ ...guide, topicLabel: topicLabel(guide.categoryKey) })),
+        {
+          keys: [
+            { name: "title", weight: 2 },
+            { name: "summary", weight: 1 },
+            { name: "topicLabel", weight: 1 },
+            { name: "tags", weight: 0.5 },
+          ],
+          threshold: 0.35,
+          ignoreLocation: true,
+        }
+      ),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [t, tCat]
+  );
+
   const visibleGuides = useMemo(() => {
     if (isSearching) {
-      const query = searchQuery.toLowerCase();
-      return guides.filter(
-        (guide) =>
-          guide.title.toLowerCase().includes(query) ||
-          guide.summary.toLowerCase().includes(query) ||
-          topicLabel(guide.categoryKey).toLowerCase().includes(query)
-      );
+      return fuse.search(searchQuery.trim()).map((result) => result.item);
     }
     if (selectedTopic === "all") return guides;
     return guides.filter((guide) => guide.categoryKey === selectedTopic);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchQuery, selectedTopic, isSearching]);
+  }, [searchQuery, selectedTopic, isSearching, fuse]);
 
   const selectTopic = (key: string) => {
     setSelectedTopic(key);
@@ -356,5 +379,13 @@ export default function GuidesPage() {
         </div>
       </section>
     </div>
+  );
+}
+
+export default function GuidesPage() {
+  return (
+    <Suspense fallback={null}>
+      <GuidesPageContent />
+    </Suspense>
   );
 }

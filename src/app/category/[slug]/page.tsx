@@ -14,6 +14,8 @@ const iconMap = Icons as any;
 
 import { getLocale } from "@/i18n";
 
+const BASE_URL = "https://atlasmunich.de";
+
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
@@ -118,10 +120,26 @@ export default async function CategoryPage({ params }: PageProps) {
     { label: localizedCategoryTitle },
   ];
 
+  const categoryUrl = `${BASE_URL}/category/${category.key}`;
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: breadcrumbs.map((crumb, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: crumb.label,
+      item: crumb.href ? `${BASE_URL}${crumb.href}` : categoryUrl,
+    })),
+  };
+
   const tint = "bg-zellige-soft text-zellige";
 
   return (
     <div className="min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       {/* ========== HERO ========== */}
       <section className="relative overflow-hidden bg-background border-b border-zinc-200 dark:border-white/10">
         <div className="relative z-10 mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8 lg:py-18">

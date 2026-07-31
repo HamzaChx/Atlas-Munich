@@ -8,6 +8,7 @@ import { guides } from "@/data/guides";
 import { places } from "@/data/places";
 import { categories } from "@/data/categories";
 import { faqs } from "@/data/faqs";
+import { WHATSAPP_COMMUNITY_URL } from "@/lib/site-config";
 
 // Base system prompt template
 const BASE_SYSTEM_PROMPT = `You are a helpful assistant for Atlas Munich, a comprehensive web platform helping Moroccan students and professionals navigate life in Munich, Germany.
@@ -35,7 +36,7 @@ const BASE_SYSTEM_PROMPT = `You are a helpful assistant for Atlas Munich, a comp
 - LISTS: use "-" for options and "1." for anything that happens in order. Keep each item to one or two lines. Do not nest deeper than two levels.
 - BOLD: use "**text**" only for the things a user would highlight with a marker, meaning deadlines, amounts, document names, German terms, and hard warnings. Aim for 3 to 6 bold spans in a normal answer. NEVER bold a whole sentence, a whole list item, or a paragraph. Bold everywhere means bold nowhere.
 - LINKS: every URL MUST use markdown link syntax with a human label, "[Munich appointment booking](https://stadt.muenchen.de/service/terminvereinbarung.html)". Never paste a naked URL, never write "(see website)" without a link, never invent a URL you were not given.
-- INTERNAL PAGES: link to Atlas Munich pages by path with the same syntax, "[our Anmeldung guide](/guides/anmeldung-guide)", "[the places directory](/places)". Use only paths that exist in your context.
+- INTERNAL PAGES: link to Atlas Munich pages by path with the same syntax, "[our Anmeldung guide](/guides/anmeldung-city-registration)", "[the places directory](/places)". Use only paths that exist in your context.
 - PHONE NUMBERS: make them dialable, "[112](tel:112)", "[116 117](tel:116117)". Emails likewise: "[name@example.de](mailto:name@example.de)".
 - CODE BLOCKS: put anything the user will copy verbatim in a triple-backtick fenced block with a language tag. German email and message templates use \`\`\`text, LaTeX uses \`\`\`latex, commands use \`\`\`bash. Never wrap ordinary prose in a code block.
 - TABLES: only for genuine comparisons of 3+ rows across 2 or 3 columns, for example insurance providers or districts by price. Otherwise use a list.
@@ -189,7 +190,7 @@ ${categories.map((c) => `- ${c.key}: ${c.title} - ${c.description}`).join("\n")}
 </categories>
 
 <instructions>
-- Reference specific guides by their slug when relevant (e.g., "Check out our /guides/anmeldung-guide")
+- Reference specific guides by their slug when relevant (e.g., "Check out our /guides/anmeldung-city-registration")
 - Break down complex procedures into steps
 - Provide practical, actionable advice
 - Share the real experience of navigating Munich bureaucracy
@@ -500,8 +501,8 @@ You can generate German email templates on request:
 - Always mention deadlines prominently with dates when the user provides their move-in/arrival date
 - When user seems overwhelmed, offer to focus on ONE task at a time
 - Celebrate completed milestones: "One less thing to worry about! What's next on your Munich journey?"
-- Cross-reference Atlas Munich guides when relevant (e.g., "/guides/anmeldung-guide")
-- Link to community WhatsApp group for peer support when appropriate
+- Cross-reference Atlas Munich guides when relevant (e.g., "/guides/anmeldung-city-registration")
+- Link to the community WhatsApp group for peer support when appropriate: "[Atlas Munich WhatsApp community](${WHATSAPP_COMMUNITY_URL})"
 </instructions>
 </context>`;
 }
@@ -1053,7 +1054,7 @@ Morocco vs. Germany:
 - Doctolib: https://www.doctolib.de
 - Jameda: https://www.jameda.de
 - Psychotherapeuten-Kammer Bayern: https://www.ptk-bay.de
-- Healthcare guide: /guides/healthcare
+- Healthcare hub: /healthcare
 </official-resources>
 
 <critical-constraints>
@@ -1069,7 +1070,7 @@ Morocco vs. Germany:
 - Assess urgency: Call 112 / See doctor today / Wait 24h / Self-care
 - Generate full appointment phone scripts on request
 - For mental health, start with destigmatization before giving resources
-- Cross-reference Atlas Munich guides: /guides/healthcare
+- Cross-reference the Atlas Munich healthcare hub: /healthcare
 - Celebrate health wins: "You advocated for your health in German! That's huge! 🏥"
 </instructions>
 </context>`;
@@ -1128,10 +1129,33 @@ Mix in Darija phrases naturally regardless of the main language.
 ${currentSection}`;
 
   return `${BASE_SYSTEM_PROMPT}
+${buildValidRoutesSection()}
 ${personalitySection}
 ${contextSection}
 ${capabilitiesSection}
 ${localeInstruction}`;
+}
+
+// Ground-truth route allowlist, generated from data instead of hardcoded in
+// each persona's prompt — a stale slug here previously sent users to 404s.
+function buildValidRoutesSection(): string {
+  const guideRoutes = guides.map((g) => `/guides/${g.slug}`);
+  const hubRoutes = [
+    "/guides",
+    "/places",
+    "/tools",
+    "/faq",
+    "/housing",
+    "/bureaucracy",
+    "/academic",
+    "/healthcare",
+    "/about",
+  ];
+  return `
+<valid-internal-routes>
+These are the ONLY internal Atlas Munich paths that currently exist. Never link to a path outside this list, even if it looks plausible (e.g. there is no /guides/healthcare — the healthcare content lives at /healthcare).
+${[...hubRoutes, ...guideRoutes].map((route) => `- ${route}`).join("\n")}
+</valid-internal-routes>`;
 }
 
 // Get current section information

@@ -5,29 +5,30 @@ import { categories } from "@/data/categories";
 const BASE_URL = "https://atlasmunich.de";
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  // Static pages have no tracked "last updated" value in the data model, so
+  // stamping build time here would just be a fake freshness signal — omit
+  // lastModified rather than lie about it. Only guide/category pages have a
+  // real date to report, derived from content in `guides.ts`.
+
   // Core pages — highest priority, change frequently
   const corePages: MetadataRoute.Sitemap = [
     {
       url: BASE_URL,
-      lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 1.0,
     },
     {
       url: `${BASE_URL}/guides`,
-      lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.95,
     },
     {
       url: `${BASE_URL}/places`,
-      lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
       url: `${BASE_URL}/faq`,
-      lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.9,
     },
@@ -37,31 +38,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const topicPages: MetadataRoute.Sitemap = [
     {
       url: `${BASE_URL}/housing`,
-      lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.88,
     },
     {
       url: `${BASE_URL}/bureaucracy`,
-      lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.88,
     },
     {
       url: `${BASE_URL}/academic`,
-      lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.88,
     },
     {
       url: `${BASE_URL}/healthcare`,
-      lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.85,
     },
     {
       url: `${BASE_URL}/tools`,
-      lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.8,
     },
@@ -71,31 +67,37 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const secondaryPages: MetadataRoute.Sitemap = [
     {
       url: `${BASE_URL}/about`,
-      lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.55,
     },
     {
       url: `${BASE_URL}/privacy`,
-      lastModified: new Date(),
       changeFrequency: "yearly",
       priority: 0.2,
     },
     {
       url: `${BASE_URL}/terms`,
-      lastModified: new Date(),
       changeFrequency: "yearly",
       priority: 0.2,
     },
   ];
 
-  // Category pages — grouped topic indexes
-  const categoryPages: MetadataRoute.Sitemap = categories.map((category) => ({
-    url: `${BASE_URL}/category/${category.key}`,
-    lastModified: new Date(),
-    changeFrequency: "weekly",
-    priority: 0.82,
-  }));
+  // Category pages — grouped topic indexes. Real freshness signal: the most
+  // recently updated guide within that category, when there is one.
+  const categoryPages: MetadataRoute.Sitemap = categories.map((category) => {
+    const categoryGuideDates = guides
+      .filter((guide) => guide.categoryKey === category.key)
+      .map((guide) => new Date(guide.lastUpdated).getTime());
+    const lastModified =
+      categoryGuideDates.length > 0 ? new Date(Math.max(...categoryGuideDates)) : undefined;
+
+    return {
+      url: `${BASE_URL}/category/${category.key}`,
+      ...(lastModified ? { lastModified } : {}),
+      changeFrequency: "weekly" as const,
+      priority: 0.82,
+    };
+  });
 
   // Individual guide pages — most valuable content pieces
   const guidePages: MetadataRoute.Sitemap = guides.map((guide) => ({

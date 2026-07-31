@@ -1,4 +1,20 @@
 import { Metadata } from "next";
+import { places } from "@/data/places";
+import type { PlaceCategory } from "@/types";
+
+const BASE_URL = "https://atlasmunich.de";
+
+const SCHEMA_TYPE_BY_CATEGORY: Record<PlaceCategory, string> = {
+  restaurant: "Restaurant",
+  cafe: "CafeOrCoffeeShop",
+  bakery: "Bakery",
+  grocery: "GroceryStore",
+  butcher: "Store",
+  mosque: "PlaceOfWorship",
+  "study-spot": "LocalBusiness",
+  cowork: "LocalBusiness",
+  barber: "HairSalon",
+};
 
 export const metadata: Metadata = {
   title: "Halal Food & Community Places in Munich",
@@ -31,5 +47,43 @@ export const metadata: Metadata = {
 };
 
 export default function PlacesLayout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": places.map((place) => ({
+      "@type": SCHEMA_TYPE_BY_CATEGORY[place.category],
+      "@id": `${BASE_URL}/places#${place.slug}`,
+      name: place.name,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: place.address,
+        addressLocality: "Munich",
+        addressCountry: "DE",
+      },
+      ...(place.lat && place.lng
+        ? { geo: { "@type": "GeoCoordinates", latitude: place.lat, longitude: place.lng } }
+        : {}),
+      ...(place.phone ? { telephone: place.phone } : {}),
+      ...(place.website ? { url: place.website } : {}),
+      ...(place.price ? { priceRange: place.price } : {}),
+      ...(place.rating && place.reviewCount
+        ? {
+            aggregateRating: {
+              "@type": "AggregateRating",
+              ratingValue: place.rating,
+              reviewCount: place.reviewCount,
+            },
+          }
+        : {}),
+    })),
+  };
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      {children}
+    </>
+  );
 }

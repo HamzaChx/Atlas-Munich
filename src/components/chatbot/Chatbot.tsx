@@ -176,6 +176,13 @@ export function Chatbot() {
     pathname.startsWith("/academic") ||
     pathname.startsWith("/healthcare");
 
+  const markInteracted = () => {
+    if (!hasInteractedRef.current) {
+      hasInteractedRef.current = true;
+      localStorage.setItem("atlas-chatbot-interacted", "true");
+    }
+  };
+
   useEffect(() => {
     const handleOpenChatbot = () => {
       setIsOpen(true);
@@ -186,15 +193,11 @@ export function Chatbot() {
     return () => window.removeEventListener("open-chatbot", handleOpenChatbot);
   }, [setIsOpen]);
 
-  const markInteracted = () => {
-    if (!hasInteractedRef.current) {
-      hasInteractedRef.current = true;
-      localStorage.setItem("atlas-chatbot-interacted", "true");
-    }
-  };
-
   useEffect(() => {
     if (isOpen) {
+      // Nudge bubble must disappear the instant the widget opens, regardless
+      // of which of several call sites (toggle, event, deep link) opened it.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       setShowNudge(false);
       if (nudgeTimerRef.current) clearTimeout(nudgeTimerRef.current);
       markInteracted();
@@ -205,7 +208,7 @@ export function Chatbot() {
     return () => {
       if (nudgeTimerRef.current) clearTimeout(nudgeTimerRef.current);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+     
   }, [isOpen]);
 
   useEffect(() => {
@@ -215,6 +218,8 @@ export function Chatbot() {
   useEffect(() => {
     if (!isOpen) return;
     const timer = setTimeout(() => inputRef.current?.focus(), 100);
+    // Mobile viewport width is only known once mounted in the browser.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     if (window.innerWidth < 640) setIsExpanded(true);
     return () => clearTimeout(timer);
   }, [isOpen]);

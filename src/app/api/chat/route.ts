@@ -3,20 +3,43 @@ import { openai } from "@ai-sdk/openai";
 import { streamText, type ModelMessage } from "ai";
 import { buildSystemPrompt } from "@/chatbot/prompt-builder";
 import { ChatRequest } from "@/chatbot/types";
+import { checkRateLimit, getClientIdentifier } from "@/lib/rate-limit";
 
 /** How many turns of history to carry. Older turns rarely change the answer. */
 const MAX_HISTORY_MESSAGES = 20;
 /** Guard against a pasted contract or listing blowing up the context. */
 const MAX_MESSAGE_CHARS = 8000;
+/** Reject oversized payloads before we even slice/filter them. */
+const MAX_INCOMING_MESSAGES = 100;
 
 export async function POST(request: NextRequest) {
   try {
+    const clientId = getClientIdentifier(request.headers);
+    const rateLimit = checkRateLimit(clientId);
+    if (!rateLimit.allowed) {
+      const retryAfterSeconds = Math.max(1, Math.ceil((rateLimit.resetAt - Date.now()) / 1000));
+      return NextResponse.json(
+        { error: "Too many requests. Please slow down." },
+        {
+          status: 429,
+          headers: {
+            "Retry-After": String(retryAfterSeconds),
+            "X-RateLimit-Remaining": "0",
+          },
+        }
+      );
+    }
+
     const body: ChatRequest = await request.json();
     const { messages, chatbotType, locale, currentPath } = body;
 
     // Validate request
     if (!messages || !Array.isArray(messages) || messages.length === 0) {
       return NextResponse.json({ error: "Messages array is required" }, { status: 400 });
+    }
+
+    if (messages.length > MAX_INCOMING_MESSAGES) {
+      return NextResponse.json({ error: "Too many messages in request" }, { status: 400 });
     }
 
     if (!chatbotType) {

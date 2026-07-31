@@ -1,7 +1,8 @@
 # Atlas Munich — Audit Tickets
 
 Audited: live site (atlasmunich.de) + codebase. 2026-07-19.
-✅ = shipped (UI/UX pass, 2026-07-19). Priority: **P1** = do first (high user/impression impact) · **P2** = important · **P3** = polish/debt.
+Re-verified against code 2026-07-31: several items had already shipped or partially shipped since the first pass and are removed/updated below; the rest were re-confirmed against current source before being marked fixed.
+✅ = shipped. Priority: **P1** = do first (high user/impression impact) · **P2** = important · **P3** = polish/debt.
 
 ---
 
@@ -46,9 +47,6 @@ Label says search (`links.search`), target is the tools page. Rename or point to
 The two prominent hero search bars drop the query: `SearchBar` pushes `/guides` without `?q=`, no page reads a query param, and Fuse.js is installed but never imported. JSON-LD even advertises `/guides?q={query}` to Google.
 **Fix:** build a real client-side fuzzy search (Fuse over guides/places/FAQs) with a results page or command-palette overlay; wire `?q=` through.
 
-### B2 · /guides lists no guides — P1
-The guides page shows only 5 category cards; there is no guide list, no featured guides, and the unused `FeaturedGuides` component never renders on the home page either. Surface actual guide cards (title, reading time, updated date) on /guides and home — content depth is invisible today.
-
 ### B3 · Real community events calendar — P1
 An `Events` component and `events.ts` exist but are unused and contain only placeholder data; the "Event Planner" tool is "coming soon". A curated events page (student association meetups, career fairs, Eid/Ramadan community events) is the single strongest recurring-visit driver for this audience. Ship a simple data-driven `/events` page + home section.
 
@@ -56,13 +54,15 @@ An `Events` component and `events.ts` exist but are unused and contain only plac
 `useChatbot` clears messages on every path change, and the Zellija auto-redirect (after a 15 s countdown) navigates — wiping the conversation the user just had. Persist history per bot in `sessionStorage`, carry context through handoffs, and cut the countdown to ~5 s with an immediate "Go now" button.
 
 ### B5 · Contribution funnel requires GitHub — P2
-"Suggest a place" / "contribute" CTAs link to GitHub issues — a dead end for non-developer students. Add a simple form (or mailto/Tally/WhatsApp) path. Bonus: the Riad prompt references a "community WhatsApp group" that doesn't exist anywhere on the site — either create/link one (strong retention lever) or remove the mention.
+"Suggest a place" / "contribute" CTAs link to GitHub issues — a dead end for non-developer students. Add a simple form (or mailto/Tally/WhatsApp) path.
+_(2026-07-31: the WhatsApp group itself now exists and is linked with a QR code on `/about` — that part shipped. The GitHub-only contribution CTA on `/places` is still open.)_
 
 ### B6 · No lightweight engagement loops — P2
 No "was this guide helpful?" feedback, no bookmarking, no newsletter/WhatsApp signup, no "recently updated" surfacing (`lastUpdated` exists in data but isn't leveraged as freshness signal). Pick 1–2; guide feedback + a channel signup are cheapest.
 
 ### B7 · Place cards lack actionable info — P2
-No Google Maps/directions link, no opening hours, no per-district filter. A "directions" deep link (`https://maps.google.com/?q=<address>`) is a 10-minute win.
+No opening hours, no per-district filter.
+_(2026-07-31: the Google Maps directions link shipped — `PlacesBrowser.tsx` now links out with name+address. Opening hours and a district filter are still missing; `places.ts` has no `hours` field at all.)_
 
 ### B8 · FR/DE content invisible to search engines — P2
 Locale is cookie-based, so crawlers only ever see English; FAQ content (`faqs.ts`) additionally has no FR/DE translations at all. Consider `/fr`, `/de` route prefixes with hreflang (large SEO surface for French-speaking Moroccan students), and translate FAQs.
@@ -80,17 +80,18 @@ The `"minimatch": ">=10.2.1"` override breaks `@eslint/eslintrc` (`no default ex
 ### C2 · /api/chat is an unprotected paid endpoint — P1
 No rate limiting, no message-count/length caps, callable by anyone → OpenAI cost abuse. Add per-IP rate limiting (e.g. Upstash or Vercel WAF rules), cap `messages` length/size, and trim history.
 
-### C3 · Chat API flattens history into one prompt string — P2
-Messages are joined as `"User: … Assistant: …"` text, so users can spoof assistant turns and the model loses turn structure. Pass the `messages` array to `streamText` directly.
+### C3 ✅ · Chat API flattens history into one prompt string — P2
+Fixed prior to this pass — `route.ts` now passes a real role-separated `ModelMessage[]` array to `streamText` instead of a flattened `"User: … Assistant: …"` string; history is capped at 20 turns and each message at 8000 chars.
 
-### C4 · Chatbot prompts link to non-existent routes — P2
-Prompts reference `/guides/anmeldung-guide` and `/guides/healthcare` (real slug: `anmeldung-city-registration`; no healthcare guide exists) → bots confidently send users to 404s. Generate route lists from `guides.ts` instead of hardcoding.
+### C4 ✅ · Chatbot prompts link to non-existent routes — P2
+Prompts referenced `/guides/anmeldung-guide` and `/guides/healthcare` (real slug: `anmeldung-city-registration`; healthcare content actually lives at `/healthcare`, not under `/guides`) → bots confidently sent users to 404s.
+**Fixed 2026-07-31:** route references in `prompt-builder.ts` are now generated from `guides.ts` slugs + the real hub routes instead of hardcoded, so they can't drift out of sync again. Also fixed a related bug found during the audit: the Riad prompt instructed the bot to "link to the community WhatsApp group" without ever giving it the URL, while the system prompt separately forbids inventing URLs — the bot structurally could not follow its own instruction. The real invite link is now injected into context.
 
 ### C5 · SearchBar spinner never resolves — P3
 `setIsSearching(true)` before `router.push` is never reset (and the query is dropped, see B1).
 
 ### C6 · `sitemap.ts` stamps `lastModified: new Date()` on everything — P3
-Every URL claims modification at build time, defeating the field. Use real dates (guides already have `lastUpdated`).
+Every URL claims modification at build time, defeating the field. Guide pages already use real `guide.lastUpdated`; core/topic/category/secondary pages still stamp build time.
 
 ### C7 · Misc — P3
 `public/googled52b7aabc83b6473(2).html` — the `(2)` in the filename means Google can never fetch it (meta verification covers it; delete). Header `locale as "en" | "fr"` cast silently excludes `de`. README: claims MIT license but no LICENSE file, "Next.js 15" (it's 16), live-demo link points to old `atlas-munich.vercel.app`, and advertises features that don't exist (fuzzy search, Darija locale).

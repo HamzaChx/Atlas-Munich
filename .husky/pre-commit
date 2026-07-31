@@ -1,3 +1,1 @@
-# npx lint-staged
-# Temporarily disabled due to permission/memory issues
-# Run 'npm run lint' and 'npm run format' manually before committing
+npx lint-staged

@@ -7,6 +7,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Header, ConditionalFooter } from "@/components/layout";
 import { ThemeProvider } from "@/components/shared";
 import { ChatbotWrapper } from "@/components/chatbot";
+import { locales, defaultLocale, type Locale } from "@/i18n";
 import "./globals.css";
 
 const archivo = Archivo({
@@ -30,11 +31,7 @@ export const metadata: Metadata = {
   },
   description:
     "The complete starter guide for Moroccan students and professionals in Munich. Housing, KVR, university, halal food, and more. Built by the community, for the community.",
-  icons: {
-    icon: "/logo.png",
-    shortcut: "/logo.png",
-    apple: "/logo.png",
-  },
+  manifest: "/manifest.webmanifest",
   keywords: [
     "Atlas Munich",
     "Munich guide",
@@ -110,7 +107,8 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const locale = await getLocale();
+  const rawLocale = await getLocale();
+  const locale: Locale = locales.includes(rawLocale as Locale) ? (rawLocale as Locale) : defaultLocale;
   const messages = await getMessages();
 
   // Extract nav translations for the header
@@ -185,7 +183,7 @@ export default async function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <Header locale={locale as "en" | "fr"} translations={navTranslations} />
+            <Header locale={locale} translations={navTranslations} />
             <main className="pt-14 sm:pt-16">{children}</main>
             <ConditionalFooter />
             <ChatbotWrapper />

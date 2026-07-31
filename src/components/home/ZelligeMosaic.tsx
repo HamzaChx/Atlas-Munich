@@ -12,7 +12,6 @@
  * whole thing costs a few kilobytes of markup and no network request.
  */
 
-const R = 100; // the rosette's design radius; the viewBox does the scaling
 const VIEW = 112;
 
 function polar(r: number, deg: number): [number, number] {

@@ -3,6 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { ShareButton } from "@/components/shared";
+import { WHATSAPP_COMMUNITY_URL } from "@/lib/site-config";
 
 import { getTranslations } from "next-intl/server";
 import {
@@ -246,7 +247,7 @@ export default async function AboutPage() {
 
                 <div className="mt-7 flex flex-col items-center gap-3 lg:items-start">
                   <a
-                    href="https://chat.whatsapp.com/BjITbXHnM9Q6xapvC1Q3rX"
+                    href={WHATSAPP_COMMUNITY_URL}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 rounded-full bg-zinc-900 px-7 py-3.5 text-sm font-semibold text-white shadow-md shadow-zinc-900/15 transition-all hover:bg-zinc-800 dark:bg-white dark:text-zinc-900 dark:shadow-none dark:hover:bg-zinc-200"
@@ -266,7 +267,7 @@ export default async function AboutPage() {
               <div className="shrink-0">
                 <div className="rounded-2xl bg-card p-4 shadow-[0_8px_30px_rgb(0_0_0/0.1)] dark:shadow-none dark:ring-1 dark:ring-white/10">
                   <Image
-                    src={`https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=${encodeURIComponent("https://chat.whatsapp.com/BjITbXHnM9Q6xapvC1Q3rX")}&bgcolor=ffffff&color=000000&margin=16`}
+                    src={`https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=${encodeURIComponent(WHATSAPP_COMMUNITY_URL)}&bgcolor=ffffff&color=000000&margin=16`}
                     alt="WhatsApp Community QR Code"
                     width={180}
                     height={180}

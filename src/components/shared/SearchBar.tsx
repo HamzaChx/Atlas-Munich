@@ -45,15 +45,17 @@ export function SearchBar({
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!query.trim()) return;
-
-    setIsSearching(true);
+    const trimmed = query.trim();
+    if (!trimmed) return;
 
     if (onSearch) {
-      onSearch(query.trim());
+      setIsSearching(true);
+      onSearch(trimmed);
       setIsSearching(false);
     } else {
-      router.push(`/guides`);
+      // Navigation unmounts this component, so there's nothing to reset the
+      // spinner afterward — only show it for the in-page (onSearch) case.
+      router.push(`/guides?q=${encodeURIComponent(trimmed)}`);
     }
   };
 

@@ -91,15 +91,15 @@ export default async function Home() {
         <ZelligeRosette
           uid="zl"
           spin="420s"
-          className="left-0 top-[38%] -translate-x-[46%] -translate-y-1/2"
-          svgClassName="w-[140px] sm:w-[280px] lg:w-[400px]"
+          className="left-0 top-[38%] -translate-x-[46%] -translate-y-1/2 pointer-events-none"
+          svgClassName="w-[70px] sm:w-[280px] lg:w-[400px] opacity-40 sm:opacity-100"
         />
         <ZelligeRosette
           uid="zr"
           spin="530s"
           reverse
-          className="right-0 top-[62%] translate-x-[46%] -translate-y-1/2"
-          svgClassName="w-[120px] sm:w-[250px] lg:w-[355px]"
+          className="right-0 top-[62%] translate-x-[46%] -translate-y-1/2 pointer-events-none"
+          svgClassName="w-[60px] sm:w-[250px] lg:w-[355px] opacity-40 sm:opacity-100"
         />
 
         {/* Floating words, the two homes drifting around the message */}

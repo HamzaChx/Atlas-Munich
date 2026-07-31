@@ -473,7 +473,7 @@ export function Chatbot() {
             "relative flex flex-col overflow-hidden",
             isExpanded
               ? "h-full w-full rounded-none"
-              : "h-[540px] max-h-[calc(100vh-8rem)] rounded-3xl",
+              : "h-[540px] max-h-[calc(100dvh-8rem)] rounded-3xl",
             "bg-white/95 dark:bg-zinc-900/95 backdrop-blur-2xl",
             "shadow-2xl shadow-zinc-900/15 dark:shadow-black/40",
             "border border-zinc-200/60 dark:border-white/[0.08]",
@@ -523,22 +523,25 @@ export function Chatbot() {
             <div className="relative flex items-center gap-0.5">
               <button
                 onClick={clearMessages}
-                className="rounded-lg p-2 text-white/60 hover:bg-white/10 hover:text-white transition-all duration-200 cursor-pointer active:scale-90"
+                className="flex h-10 w-10 items-center justify-center rounded-lg text-white/60 hover:bg-white/10 hover:text-white transition-all duration-200 cursor-pointer active:scale-90"
                 title="Clear chat"
+                aria-label="Clear chat"
               >
                 <RefreshCcw className="h-4 w-4 hover:rotate-180 transition-transform duration-500" />
               </button>
               <button
                 onClick={() => setIsExpanded(!isExpanded)}
-                className="rounded-lg p-2 text-white/60 hover:bg-white/10 hover:text-white transition-all duration-200 cursor-pointer active:scale-90"
+                className="flex h-10 w-10 items-center justify-center rounded-lg text-white/60 hover:bg-white/10 hover:text-white transition-all duration-200 cursor-pointer active:scale-90"
                 title={isExpanded ? "Minimize" : "Expand"}
+                aria-label={isExpanded ? "Minimize" : "Expand"}
               >
                 {isExpanded ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
               </button>
               <button
                 onClick={() => { setIsOpen(false); setIsExpanded(false); }}
-                className="rounded-lg p-2 text-white/60 hover:bg-white/10 hover:text-white transition-all duration-200 cursor-pointer active:scale-90"
+                className="flex h-10 w-10 items-center justify-center rounded-lg text-white/60 hover:bg-white/10 hover:text-white transition-all duration-200 cursor-pointer active:scale-90"
                 title="Close chat"
+                aria-label="Close chat"
               >
                 <X className="h-4 w-4" />
               </button>

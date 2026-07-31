@@ -308,6 +308,30 @@
     font-family: var(--font-archivo), var(--font-hanken), sans-serif;
   }
 
+  /* German compound words, addresses and URLs wrap instead of widening the page */
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  li,
+  td,
+  th {
+    overflow-wrap: break-word;
+  }
+
+  /* Markdown tables and code blocks scroll inside their own box */
+  .prose :where(table) {
+    display: block;
+    width: fit-content;
+    max-width: 100%;
+    overflow-x: auto;
+  }
+  .prose :where(pre) {
+    max-width: 100%;
+    overflow-x: auto;
+  }
+
   :focus-visible {
     @apply outline-none ring-2 ring-zellige/60 ring-offset-2 ring-offset-background;
   }

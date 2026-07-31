@@ -150,11 +150,11 @@ export function Header({ locale, translations }: HeaderProps) {
             );
           })}
 
-          <div className="flex items-center gap-3 rounded-xl px-4 py-3 text-base font-medium text-zinc-600 dark:text-zinc-400 min-h-[48px]">
-            <LanguageSwitcher currentLocale={locale} />
+          <div className="mt-2 border-t border-border px-4 pt-4">
+            <LanguageSwitcher currentLocale={locale} variant="inline" />
           </div>
 
-          <div className="flex items-center gap-3 rounded-xl px-4 py-3 text-base font-medium text-zinc-600 dark:text-zinc-400 min-h-[48px]">
+          <div className="flex min-h-[48px] items-center gap-3 rounded-xl px-4 py-3 text-base font-medium text-zinc-600 dark:text-zinc-400">
             <ThemeToggle />
             <span>{translations.toggleTheme}</span>
           </div>

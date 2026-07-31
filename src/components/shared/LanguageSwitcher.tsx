@@ -17,9 +17,15 @@ const languages: { code: Locale; label: string }[] = [
 interface LanguageSwitcherProps {
   currentLocale: Locale;
   className?: string;
+  /** "inline" lays the locales out as tappable pills, for the mobile menu */
+  variant?: "dropdown" | "inline";
 }
 
-export function LanguageSwitcher({ currentLocale, className }: LanguageSwitcherProps) {
+export function LanguageSwitcher({
+  currentLocale,
+  className,
+  variant = "dropdown",
+}: LanguageSwitcherProps) {
   const router = useRouter();
   const common = useTranslations("common");
   const [isPending, startTransition] = useTransition();
@@ -65,9 +71,36 @@ export function LanguageSwitcher({ currentLocale, className }: LanguageSwitcherP
     return () => document.removeEventListener("keydown", handleEscape);
   }, []);
 
+  if (variant === "inline") {
+    return (
+      <div className={cn("flex items-center gap-1.5", className)} role="group" aria-label={common("language")}>
+        {languages.map((language) => {
+          const isSelected = language.code === currentLocale;
+          return (
+            <button
+              key={language.code}
+              onClick={() => handleLanguageChange(language.code)}
+              disabled={isPending}
+              aria-pressed={isSelected}
+              className={cn(
+                "min-h-11 flex-1 rounded-xl px-3 text-sm font-semibold transition-colors duration-200",
+                isSelected
+                  ? "bg-zellige-soft text-zellige"
+                  : "bg-zinc-100 text-zinc-600 hover:bg-zinc-200 dark:bg-white/5 dark:text-zinc-400 dark:hover:bg-white/10",
+                isPending && "opacity-50"
+              )}
+            >
+              {language.label}
+            </button>
+          );
+        })}
+      </div>
+    );
+  }
+
   return (
     <div ref={dropdownRef} className={cn("relative", className)}>
-      {/* Trigger Button - Shows current language flag */}
+      {/* Trigger Button - Shows current language code */}
       <button
         onClick={() => setIsOpen(!isOpen)}
         disabled={isPending}

@@ -193,9 +193,6 @@ export default async function Home() {
                       href={`/category/${category.key}`}
                       className={`group flex items-center gap-3.5 rounded-2xl px-4.5 py-4 outline-none transition-all duration-300 hover:-translate-y-1 focus-visible:ring-2 focus-visible:ring-zellige focus-visible:ring-offset-2 focus-visible:ring-offset-background ${style.row}`}
                     >
-                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-card/80 text-lg shadow-sm">
-                        {catEmoji[category.key]}
-                      </span>
                       <span className="min-w-0 flex-1">
                         <span className="block truncate text-sm font-semibold text-zinc-900 dark:text-zinc-50">
                           {tCat(`${category.key}.title`)}

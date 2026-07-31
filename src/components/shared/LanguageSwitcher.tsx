@@ -107,7 +107,8 @@ export function LanguageSwitcher({
         onClick={() => setIsOpen(!isOpen)}
         disabled={isPending}
         className={cn(
-          "flex h-9 items-center gap-1.5 rounded-full border border-zinc-200 dark:border-border bg-zinc-50 dark:bg-foreground/[0.075] px-3 text-xs font-semibold uppercase tracking-wide text-zinc-600 dark:text-zinc-300 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:border-zinc-300 dark:hover:border-input hover:bg-zinc-100 dark:hover:bg-foreground/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-zellige/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+          "flex h-9 items-center gap-1.5 rounded-full px-3 text-xs font-semibold uppercase tracking-wide transition-all duration-300",
+          "border border-border/50 bg-card/80 backdrop-blur-md text-zinc-600 dark:text-zinc-300 shadow-sm hover:bg-muted hover:text-zinc-900 dark:hover:text-zinc-50 focus:outline-none focus-visible:ring-2 focus-visible:ring-zellige/50",
           isOpen && "border-zellige/50 bg-zellige-soft text-zellige",
           isPending && "opacity-50 cursor-not-allowed"
         )}

@@ -32,16 +32,11 @@ export interface AssistantLandingConfig {
   icon: LucideIcon;
   chatPath: string;
   stepIcons: [LucideIcon, LucideIcon, LucideIcon];
-  tipIcons: [LucideIcon, LucideIcon, LucideIcon, LucideIcon];
   /** Translation key of the outbound links section */
   linksKey: "platforms" | "resources" | "authorities";
   links: AssistantLink[];
 }
 
-/* Tips rotate through the brand hues so the grid reads as a zellige panel
-   rather than four copies of the same card. */
-const TIP_TINTS = ["bg-tint-terra", "bg-tint-blue", "bg-tint-green", "bg-tint-saffron"];
-const TIP_ACCENTS = ["text-acc-terra", "text-acc-blue", "text-acc-green", "text-acc-saffron"];
 
 const INK_PILL =
   "inline-flex items-center gap-2 rounded-full bg-zinc-900 px-6 py-3 text-sm font-semibold text-white shadow-md shadow-zinc-900/10 transition-colors hover:bg-zinc-800 dark:bg-zinc-50 dark:text-zinc-900 dark:shadow-none dark:hover:bg-zinc-200";
@@ -169,32 +164,6 @@ export async function AssistantLanding({ config }: { config: AssistantLandingCon
         </div>
       </section>
 
-      {/* ========== TIPS ========== */}
-      <section className="reveal mx-auto max-w-5xl px-4 pb-16 sm:px-6 sm:pb-20 lg:px-8">
-        <h2 className="font-display text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl dark:text-zinc-50">
-          {t("tips.title")}
-        </h2>
-
-        <div className="mt-7 grid gap-4 sm:grid-cols-2">
-          {config.tipIcons.map((Icon, i) => (
-            <div key={i} className={`flex gap-4 p-6 ${PANEL_CARD}`}>
-              <span
-                className={`flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-2xl ${TIP_TINTS[i]} ${TIP_ACCENTS[i]}`}
-              >
-                <Icon className="h-5 w-5" />
-              </span>
-              <div className="min-w-0">
-                <h3 className="font-display text-base font-bold text-zinc-900 dark:text-zinc-50">
-                  {t(`tips.tip${i + 1}Title`)}
-                </h3>
-                <p className="mt-1.5 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-                  {t(`tips.tip${i + 1}Desc`)}
-                </p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </section>
 
       {/* ========== OUTBOUND LINKS ========== */}
       <section className="reveal mx-auto max-w-5xl px-4 pb-16 sm:px-6 sm:pb-20 lg:px-8">

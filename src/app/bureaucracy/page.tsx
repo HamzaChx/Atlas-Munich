@@ -48,7 +48,6 @@ const CONFIG: AssistantLandingConfig = {
   icon: Building2,
   chatPath: "/bureaucracy/chat",
   stepIcons: [MessageSquareText, ClipboardList, CheckCircle2],
-  tipIcons: [Clock, FileCheck, ShieldCheck, AlertCircle],
   linksKey: "authorities",
   links: [
     {

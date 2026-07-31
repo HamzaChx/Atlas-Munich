@@ -45,7 +45,6 @@ const CONFIG: AssistantLandingConfig = {
   icon: GraduationCap,
   chatPath: "/academic/chat",
   stepIcons: [Search, PenLine, Trophy],
-  tipIcons: [Lightbulb, ShieldCheck, Clock, BookMarked],
   linksKey: "resources",
   links: [
     {

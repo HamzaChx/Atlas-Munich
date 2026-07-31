@@ -47,7 +47,6 @@ const CONFIG: AssistantLandingConfig = {
   icon: HomeIcon,
   chatPath: "/housing/chat",
   stepIcons: [ClipboardPaste, MessageSquareText, Send],
-  tipIcons: [Zap, FileCheck, UserCheck, ShieldAlert],
   linksKey: "platforms",
   links: [
     {

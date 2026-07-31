@@ -45,7 +45,6 @@ const CONFIG: AssistantLandingConfig = {
   icon: Activity,
   chatPath: "/healthcare/chat",
   stepIcons: [MessageSquareText, ClipboardList, CheckCircle2],
-  tipIcons: [Activity, ShieldCheck, Heart, AlertCircle],
   linksKey: "resources",
   links: [
     {

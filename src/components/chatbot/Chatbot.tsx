@@ -25,6 +25,9 @@ import {
   ArrowUpRight,
   AlertCircle,
   MessageCircle,
+  Copy,
+  Check,
+  Trash2,
 } from "lucide-react";
 import { ChatMarkdown } from "./markdown";
 import { HandoffToast, RedirectCountdownToast, SuccessToast } from "./notifications";
@@ -228,8 +231,8 @@ export function Chatbot() {
     const ta = inputRef.current;
     if (!ta) return;
     ta.style.height = "auto";
-    ta.style.height = `${Math.min(ta.scrollHeight, isExpanded ? 160 : 100)}px`;
-  }, [input, isExpanded]);
+    ta.style.height = `${ta.scrollHeight}px`;
+  }, [input]);
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
@@ -309,8 +312,8 @@ export function Chatbot() {
             "relative flex flex-col overflow-hidden bg-card",
             isExpanded
               ? "h-full w-full rounded-none"
-              : "h-[560px] max-h-[calc(100dvh-8rem)] rounded-3xl shadow-[0_16px_50px_-12px_rgb(0_0_0/0.3)]",
-            "ring-1 ring-border dark:ring-border"
+              : "h-[560px] max-h-[calc(100dvh-8rem)] rounded-[2rem] shadow-[0_30px_80px_-20px_rgb(0_0_0/0.4)] dark:shadow-[0_30px_80px_-20px_rgb(0_0_0/0.8)]",
+            "ring-1 ring-border/50 dark:ring-white/10"
           )}
         >
           {notification && (
@@ -324,8 +327,7 @@ export function Chatbot() {
           {/* ---- Header ---- */}
           <header
             className={cn(
-              "flex flex-shrink-0 items-center justify-between gap-2 px-3 py-3",
-              accent.tint
+              "absolute inset-x-0 top-0 z-10 flex flex-shrink-0 items-center justify-between gap-2 px-4 py-3 backdrop-blur-2xl bg-card/70 border-b border-border/50 transition-colors"
             )}
           >
             <div className="flex min-w-0 items-center gap-2.5">
@@ -358,11 +360,11 @@ export function Chatbot() {
             <div className="flex flex-shrink-0 items-center gap-1">
               <button
                 onClick={clearMessages}
-                className={cn(quietButton, "group")}
+                className={cn(quietButton, "group hover:bg-tint-terra hover:text-acc-terra dark:hover:bg-tint-terra dark:hover:text-acc-terra")}
                 title="Clear chat"
                 aria-label="Clear chat"
               >
-                <RefreshCcw className="h-4 w-4 transition-transform duration-500 group-hover:rotate-180" />
+                <Trash2 className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
               </button>
               <button
                 onClick={() => setIsExpanded(!isExpanded)}
@@ -393,8 +395,8 @@ export function Chatbot() {
           {/* ---- Messages ---- */}
           <div
             className={cn(
-              "min-h-0 flex-1 space-y-3 overflow-y-auto scroll-smooth p-4",
-              isExpanded && "sm:mx-auto sm:w-full sm:max-w-3xl sm:p-6"
+              "min-h-0 flex-1 space-y-3 overflow-y-auto scroll-smooth p-4 pt-20 pb-28 scrollbar-hide [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
+              isExpanded && "sm:mx-auto sm:w-full sm:max-w-3xl sm:p-6 sm:pt-24 sm:pb-32"
             )}
           >
             {messages.length === 0 && (
@@ -502,8 +504,8 @@ export function Chatbot() {
           <form
             onSubmit={handleSubmit}
             className={cn(
-              "flex-shrink-0 border-t border-border p-3",
-              isExpanded && "sm:px-6 sm:py-4"
+              "absolute inset-x-0 bottom-0 z-10 flex-shrink-0 p-4 pt-8 bg-gradient-to-t from-background via-background/90 to-transparent",
+              isExpanded && "sm:px-6 sm:pb-6"
             )}
           >
             <div className={cn("flex items-end gap-2", isExpanded && "sm:mx-auto sm:max-w-3xl")}>
@@ -515,13 +517,13 @@ export function Chatbot() {
                 placeholder={t("typeMessage")}
                 rows={1}
                 aria-label="Message input"
-                style={{ maxHeight: isExpanded ? "160px" : "100px" }}
+                style={{ maxHeight: "300px" }}
                 className={cn(
-                  "w-full flex-1 resize-none rounded-2xl border border-border bg-background px-4 py-2.5",
+                  "w-full flex-1 resize-none overflow-y-auto scrollbar-hide [scrollbar-width:none] [&::-webkit-scrollbar]:hidden rounded-3xl border border-border/50 bg-card/80 backdrop-blur-md px-5 py-3.5 shadow-sm",
                   "text-[13px] text-zinc-900 placeholder:text-zinc-400 dark:text-zinc-50 dark:placeholder:text-zinc-500",
-                  "outline-none transition-colors",
+                  "outline-none transition-all duration-200 hover:bg-card/90",
                   accent.focus,
-                  isExpanded && "sm:py-3 sm:text-sm"
+                  isExpanded && "sm:py-4 sm:text-sm"
                 )}
               />
               <button
@@ -544,7 +546,7 @@ export function Chatbot() {
             </div>
             <p
               className={cn(
-                "mt-1.5 text-center text-[10px] leading-snug text-zinc-400 dark:text-zinc-500",
+                "mt-2.5 text-center text-[10px] leading-snug text-zinc-400 dark:text-zinc-500",
                 isExpanded && "sm:mx-auto sm:max-w-3xl"
               )}
             >

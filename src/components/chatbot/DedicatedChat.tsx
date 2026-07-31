@@ -32,6 +32,7 @@ import {
   AlertCircle,
   Copy,
   Check,
+  Trash2,
 } from "lucide-react";
 import { ChatMarkdown } from "./markdown";
 import { HandoffToast, RedirectCountdownToast, SuccessToast } from "./notifications";
@@ -357,7 +358,7 @@ export function DedicatedChat({ theme, backPath }: DedicatedChatProps) {
     const ta = inputRef.current;
     if (!ta) return;
     ta.style.height = "auto";
-    ta.style.height = `${Math.min(ta.scrollHeight, 140)}px`;
+    ta.style.height = `${ta.scrollHeight}px`;
   }, [input]);
 
   const handleSubmit = (e: FormEvent) => {
@@ -420,24 +421,16 @@ export function DedicatedChat({ theme, backPath }: DedicatedChatProps) {
         />
       )}
 
-      {/* Full-height stage: the panel floats on the plaster ground on desktop
-          and goes full bleed on phones. */}
-      <div className="h-[calc(100dvh-3.5rem)] bg-background sm:h-[calc(100dvh-4rem)] sm:px-6 sm:py-5">
-        <div
-          className={cn(
-            "mx-auto flex h-full max-w-4xl flex-col overflow-hidden bg-card",
-            "sm:rounded-[2rem] sm:shadow-[0_8px_40px_-16px_rgb(0_0_0/0.18)] sm:dark:shadow-none",
-            "dark:ring-1 dark:ring-border"
-          )}
-        >
+      {/* Full-height edge-to-edge agentic canvas */}
+      <div className="relative flex flex-col h-[calc(100dvh-3.5rem)] bg-card sm:h-[calc(100dvh-4rem)] overflow-hidden">
           {/* ---- Header ---- */}
           <header
             className={cn(
-              "flex flex-shrink-0 items-center gap-3 px-3 py-3 sm:px-4",
-              accent.tint
+              "absolute inset-x-0 top-0 z-10 backdrop-blur-2xl bg-card/70 border-b border-border/50"
             )}
           >
-            <Link href={backPath} className={quietButton} aria-label="Back">
+            <div className="mx-auto w-full max-w-3xl flex flex-shrink-0 items-center gap-3 px-4 py-3">
+              <Link href={backPath} className={quietButton} aria-label="Back">
               <ArrowLeft className="h-[18px] w-[18px]" />
             </Link>
 
@@ -470,28 +463,29 @@ export function DedicatedChat({ theme, backPath }: DedicatedChatProps) {
               </p>
             </div>
 
-            <button
-              onClick={clearMessages}
-              className={cn(quietButton, "group")}
-              title="Clear conversation"
-              aria-label="Clear conversation"
-            >
-              <RefreshCcw className="h-4 w-4 transition-transform duration-500 group-hover:rotate-180" />
-            </button>
+              <button
+                onClick={clearMessages}
+                className={cn(quietButton, "group hover:bg-tint-terra hover:text-acc-terra dark:hover:bg-tint-terra dark:hover:text-acc-terra")}
+                title="Clear conversation"
+                aria-label="Clear conversation"
+              >
+                <Trash2 className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
+              </button>
+            </div>
           </header>
 
           {/* ---- Messages ---- */}
           <div
             ref={messagesContainerRef}
-            className="relative min-h-0 flex-1 overflow-y-auto"
+            className="relative min-h-0 flex-1 overflow-y-auto scrollbar-hide [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
             role="log"
             aria-live="polite"
             aria-label="Chat messages"
           >
             <div
               className={cn(
-                "mx-auto w-full max-w-3xl px-4 sm:px-6",
-                hasMessages ? "space-y-5 py-6" : "flex min-h-full flex-col py-2"
+                "mx-auto w-full max-w-3xl px-4 sm:px-6 pt-24 pb-40",
+                hasMessages ? "space-y-5" : "flex min-h-[calc(100%-8rem)] flex-col"
               )}
             >
               {!hasMessages && (
@@ -550,10 +544,10 @@ export function DedicatedChat({ theme, backPath }: DedicatedChatProps) {
           {/* ---- Composer ---- */}
           <form
             onSubmit={handleSubmit}
-            className="flex-shrink-0 border-t border-border px-3 py-3 sm:px-6 sm:py-4"
-            style={{ paddingBottom: "max(0.75rem, env(safe-area-inset-bottom))" }}
+            className="absolute inset-x-0 bottom-0 z-10 flex-shrink-0 px-3 py-4 sm:px-6 sm:py-6 pt-12 bg-gradient-to-t from-card via-card/95 to-transparent pointer-events-none"
+            style={{ paddingBottom: "max(1.5rem, env(safe-area-inset-bottom))" }}
           >
-            <div className="mx-auto flex max-w-3xl items-end gap-2.5">
+            <div className="mx-auto flex max-w-3xl items-end gap-2.5 pointer-events-auto">
               <textarea
                 ref={inputRef}
                 value={input}
@@ -562,11 +556,11 @@ export function DedicatedChat({ theme, backPath }: DedicatedChatProps) {
                 placeholder={t("typeMessage")}
                 rows={1}
                 aria-label="Message input"
-                style={{ maxHeight: "140px" }}
+                style={{ maxHeight: "300px" }}
                 className={cn(
-                  "w-full flex-1 resize-none rounded-2xl border border-border bg-background px-4 py-3",
+                  "w-full flex-1 resize-none overflow-y-auto scrollbar-hide [scrollbar-width:none] [&::-webkit-scrollbar]:hidden rounded-3xl border border-border/50 bg-card/80 backdrop-blur-md px-5 py-3 shadow-sm",
                   "text-[14px] text-zinc-900 placeholder:text-zinc-400 dark:text-zinc-50 dark:placeholder:text-zinc-500",
-                  "outline-none transition-colors",
+                  "outline-none transition-all duration-200 hover:bg-card/90",
                   accent.focus
                 )}
               />
@@ -589,10 +583,10 @@ export function DedicatedChat({ theme, backPath }: DedicatedChatProps) {
               </button>
             </div>
 
-            <p className="mt-2 text-center text-[11px] text-zinc-400 dark:text-zinc-500">
+            <p className="mt-3 text-center text-[11px] text-zinc-400 dark:text-zinc-500 pointer-events-auto">
               {aiDisclaimer}
             </p>
-            <p className="mt-1 hidden text-center text-[11px] text-zinc-400 sm:block dark:text-zinc-500">
+            <p className="mt-1 hidden text-center text-[11px] text-zinc-400 sm:block dark:text-zinc-500 pointer-events-auto">
               <kbd className="rounded bg-muted px-1.5 py-0.5 font-mono text-[10px]">Enter</kbd> to
               send,{" "}
               <kbd className="rounded bg-muted px-1.5 py-0.5 font-mono text-[10px]">
@@ -601,7 +595,6 @@ export function DedicatedChat({ theme, backPath }: DedicatedChatProps) {
               for a new line
             </p>
           </form>
-        </div>
       </div>
     </>
   );

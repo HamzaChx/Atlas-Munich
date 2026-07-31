@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { SearchBar } from "@/components/shared";
+import { ZelligeRosette } from "@/components/home";
 import { categories } from "@/data/categories";
 import { guides, getFeaturedGuides } from "@/data/guides";
 import { getTranslations } from "next-intl/server";
@@ -84,26 +85,41 @@ export default async function Home() {
 
   return (
     <div className="min-h-screen">
-      {/* ========== HERO — an open, airy canvas with floating words ========== */}
+      {/* ========== HERO — a mosaic ground, floating words, clean center ========== */}
       <section className="relative overflow-hidden">
+        {/* Two rosettes, each continuing past the edge of the page */}
+        <ZelligeRosette
+          uid="zl"
+          spin="420s"
+          className="left-0 top-1/2 -translate-x-[46%] -translate-y-1/2"
+          svgClassName="w-[340px] sm:w-[440px] lg:w-[560px]"
+        />
+        <ZelligeRosette
+          uid="zr"
+          spin="530s"
+          reverse
+          className="right-0 top-[46%] translate-x-[46%] -translate-y-1/2"
+          svgClassName="w-[300px] sm:w-[390px] lg:w-[500px]"
+        />
+
         {/* Floating words, the two homes drifting around the message */}
         <div className="pointer-events-none absolute inset-0 select-none" aria-hidden="true">
           <span
             dir="rtl"
             lang="ar"
-            className="float-slow absolute left-[7%] top-[20%] hidden text-6xl font-bold text-bloom/25 lg:block xl:left-[11%] dark:text-bloom/35"
+            className="float-slow absolute left-[18%] top-[20%] hidden text-6xl font-bold text-bloom/25 lg:block xl:left-[20%] dark:text-bloom/35"
             style={{ "--tilt": "-6deg" } as React.CSSProperties}
           >
             مرحبا
           </span>
           <span
-            className="float-slower absolute right-[6%] top-[16%] hidden font-display text-4xl font-extrabold text-zellige/30 lg:block xl:right-[10%]"
+            className="float-slower absolute right-[17%] top-[16%] hidden font-display text-4xl font-extrabold text-zellige/30 lg:block xl:right-[19%]"
             style={{ "--tilt": "5deg" } as React.CSSProperties}
           >
             Servus!
           </span>
           <span
-            className="float-slower absolute left-[14%] top-[64%] hidden font-display text-xl font-bold tracking-wide text-zinc-400/50 xl:block dark:text-zinc-500/50"
+            className="float-slower absolute left-[20%] top-[66%] hidden font-display text-xl font-bold tracking-wide text-zinc-400/50 xl:block dark:text-zinc-500/50"
             style={{ "--tilt": "-4deg" } as React.CSSProperties}
           >
             München
@@ -111,7 +127,7 @@ export default async function Home() {
           <span
             dir="rtl"
             lang="ar"
-            className="float-slow absolute right-[13%] top-[62%] hidden text-3xl font-semibold text-saffron/45 xl:block"
+            className="float-slow absolute right-[20%] top-[64%] hidden text-3xl font-semibold text-saffron/45 xl:block"
             style={{ "--tilt": "4deg" } as React.CSSProperties}
           >
             الأطلس

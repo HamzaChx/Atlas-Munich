@@ -115,7 +115,13 @@
       "grid": "Grid",
       "map": "Map"
     },
-    "mapNote": "Click on markers to see details. Only places with coordinates are shown on the map.",
+    "mapNote": "Click a marker for details, or a cluster to zoom in. Drag to explore the city.",
+    "map": {
+      "legend": "On the map",
+      "zoomIn": "Zoom in",
+      "zoomOut": "Zoom out",
+      "fit": "Fit to results"
+    },
     "noResults": "No places found",
     "noResultsDescription": "Try adjusting your search or filters.",
     "cta": {
@@ -646,6 +652,646 @@
       "benko-cafe": {
         "name": "Benko Café",
         "description": "A favorite for Technical University (TUM) students due to its proximity to the main campus. It offers a spacious interior with large tables, making it good for groups or lunch breaks between seminars."
+      },
+      "abant-restaurant": {
+        "name": "Abant Restaurant",
+        "description": "Abant Restaurant is a halal restaurant in Munich — Turkish cuisine."
+      },
+      "alanya-kebab": {
+        "name": "Alanya Kebab",
+        "description": "Alanya Kebab is a halal restaurant in Munich — Turkish cuisine."
+      },
+      "ali-baba-restaurant-2": {
+        "name": "Ali Baba Restaurant",
+        "description": "Ali Baba Restaurant is a halal restaurant in Munich — Turkish cuisine, no alcohol served."
+      },
+      "alis-superfood": {
+        "name": "Alis SUPERFOOD",
+        "description": "Alis SUPERFOOD is a halal restaurant in Munich — Turkish cuisine, halal-certified, no alcohol served."
+      },
+      "altin-dilim-antep-sofrasi": {
+        "name": "Altin Dilim Antep Sofrası",
+        "description": "Altin Dilim Antep Sofrası is a halal restaurant in Munich — Turkish cuisine, halal-certified, no alcohol served."
+      },
+      "amber-restaurant": {
+        "name": "Amber Restaurant",
+        "description": "Amber Restaurant is a halal restaurant in Munich — Indian cuisine."
+      },
+      "annes-haus-mamas-kost": {
+        "name": "Anne's house \"mama's\" food",
+        "description": "Anne's house \"mama's\" food is a halal restaurant in Munich — Turkish cuisine, halal-certified, no alcohol served."
+      },
+      "antalya-restaurant": {
+        "name": "Antalya Restaurant",
+        "description": "Antalya Restaurant is a halal restaurant in Munich — Turkish cuisine."
+      },
+      "antep-kebap-doener": {
+        "name": "Antep Kebap Döner",
+        "description": "Antep Kebap Döner is a halal restaurant in Munich — Turkish cuisine."
+      },
+      "arabesk": {
+        "name": "Arabesque",
+        "description": "Arabesque is a halal restaurant in Munich — Lebanese cuisine."
+      },
+      "arkadas-kebap": {
+        "name": "Arkadas Kebab",
+        "description": "Arkadas Kebab is a halal restaurant in Munich — Turkish cuisine, no alcohol served."
+      },
+      "bab-al-yemen": {
+        "name": "Bab Al Yemen",
+        "description": "Bab Al Yemen is a halal restaurant in Munich — Mediterranean cuisine, no alcohol served."
+      },
+      "babas-doener-massiv-muenchen": {
+        "name": "Baba's Döner By Massiv | Munich",
+        "description": "Baba's Döner By Massiv | Munich is a halal restaurant in Munich — halal-certified, no alcohol served."
+      },
+      "balkan-imbiss-doener": {
+        "name": "Balkan Snack Bar - Doner Kebab",
+        "description": "Balkan Snack Bar - Doner Kebab is a halal restaurant in Munich — Balkan cuisine."
+      },
+      "beirutbeirut": {
+        "name": "Beirutbeirut",
+        "description": "Beirutbeirut is a halal restaurant in Munich — Lebanese cuisine."
+      },
+      "beste-doener-laim": {
+        "name": "Best Doner Kebab Laim",
+        "description": "Best Doner Kebab Laim is a halal restaurant in Munich — Turkish cuisine, no alcohol served."
+      },
+      "best-doener-harras": {
+        "name": "Best Döner Kebab | Harras",
+        "description": "Best Döner Kebab | Harras is a halal restaurant in Munich — Turkish cuisine."
+      },
+      "best-doener-westend": {
+        "name": "Best Döner | Westend",
+        "description": "Best Döner | Westend is a halal restaurant in Munich — Turkish cuisine, halal-certified."
+      },
+      "bistro-isot": {
+        "name": "Bistro Isot",
+        "description": "Bistro Isot is a halal restaurant in Munich — Turkish cuisine."
+      },
+      "bosporus-grill-kebap-haus": {
+        "name": "Bosporus Grill & Kebab House",
+        "description": "Bosporus Grill & Kebab House is a halal restaurant in Munich — Turkish cuisine."
+      },
+      "burak-gurme": {
+        "name": "Burak Gurme",
+        "description": "Burak Gurme is a halal restaurant in Munich — Turkish cuisine, halal-certified, no alcohol served."
+      },
+      "burgerbae": {
+        "name": "Burger King",
+        "description": "Burger King is a halal restaurant in Munich — American cuisine, no alcohol served."
+      },
+      "cafe-factory-muenchen": {
+        "name": "Cafe Factory Munich",
+        "description": "Cafe Factory Munich is a halal restaurant in Munich — Turkish cuisine, no alcohol served."
+      },
+      "cafe-violin": {
+        "name": "Cafe Violin",
+        "description": "Cafe Violin is a halal restaurant in Munich — Turkish cuisine, halal-certified, no alcohol served."
+      },
+      "cavusoglu-doener-imbiss": {
+        "name": "Cavusoglu Doner Kebab Shop",
+        "description": "Cavusoglu Doner Kebab Shop is a halal restaurant in Munich — Turkish cuisine, no alcohol served."
+      },
+      "cedar-lounge": {
+        "name": "Cedar Lounge",
+        "description": "Cedar Lounge is a halal restaurant in Munich — Lebanese cuisine."
+      },
+      "chickyz-fried-chicken": {
+        "name": "Chickyz - Fried Chicken",
+        "description": "Chickyz - Fried Chicken is a halal restaurant in Munich — no alcohol served."
+      },
+      "cigkoefte-von-efsane-zentrum": {
+        "name": "Cigköfte from Efsane Center",
+        "description": "Cigköfte from Efsane Center is a halal restaurant in Munich — Turkish cuisine, no alcohol served."
+      },
+      "cigkoeftem-muenchen-pep-einkaufszentrum": {
+        "name": "Cigköftem Munich PEP Shopping Center",
+        "description": "Cigköftem Munich PEP Shopping Center is a halal restaurant in Munich — Turkish cuisine, no alcohol served."
+      },
+      "cinnamood-muenchen": {
+        "name": "Cinnamood | Munich",
+        "description": "Cinnamood | Munich is a halal restaurant in Munich — no alcohol served."
+      },
+      "crispy-more-pasing": {
+        "name": "Crispy & More - Pasing",
+        "description": "Crispy & More - Pasing is a halal restaurant in Munich — no alcohol served."
+      },
+      "crispy-more-theresienwiese": {
+        "name": "Crispy & More - Theresienwiese",
+        "description": "Crispy & More - Theresienwiese is a halal restaurant in Munich — no alcohol served."
+      },
+      "crusty-slices-muenchen": {
+        "name": "Crusty Slices | Munich",
+        "description": "Crusty Slices | Munich is a halal restaurant in Munich — halal-certified, no alcohol served."
+      },
+      "dakju-korean-chicken": {
+        "name": "Dakju Korean Chicken",
+        "description": "Dakju Korean Chicken is a halal restaurant in Munich — Asian cuisine, halal-certified."
+      },
+      "deeba": {
+        "name": "Deeba",
+        "description": "Deeba is a halal restaurant in Munich — Pakistani cuisine."
+      },
+      "dehbaschi": {
+        "name": "Dehbashi",
+        "description": "Dehbashi is a halal restaurant in Munich — Persian cuisine."
+      },
+      "leckero-imbiss": {
+        "name": "Delicious snack",
+        "description": "Delicious snack is a halal restaurant in Munich — Turkish cuisine."
+      },
+      "derya-restaurant": {
+        "name": "Derya Restaurant",
+        "description": "Derya Restaurant is a halal restaurant in Munich — Turkish cuisine, halal-certified, no alcohol served."
+      },
+      "dfs-urkebap": {
+        "name": "DFS UrKebap",
+        "description": "DFS UrKebap is a halal restaurant in Munich — Turkish cuisine, no alcohol served."
+      },
+      "djangos-giesing": {
+        "name": "Django's Giesing",
+        "description": "Django's Giesing is a halal restaurant in Munich — Turkish cuisine, halal-certified, no alcohol served."
+      },
+      "doener-de-luxe": {
+        "name": "Doner De Luxe",
+        "description": "Doner De Luxe is a halal restaurant in Munich — Turkish cuisine, no alcohol served."
+      },
+      "doener-liebe": {
+        "name": "Doner Love",
+        "description": "Doner Love is a halal restaurant in Munich — Turkish cuisine."
+      },
+      "doenerkings": {
+        "name": "DönerKings",
+        "description": "DönerKings is a halal restaurant in Munich — Turkish cuisine."
+      },
+      "efendy-kebap": {
+        "name": "Efendy Kebab",
+        "description": "Efendy Kebab is a halal restaurant in Munich — Turkish cuisine, no alcohol served."
+      },
+      "elit-pide-palast": {
+        "name": "Elit Pide Palace",
+        "description": "Elit Pide Palace is a halal restaurant in Munich — Turkish cuisine, no alcohol served."
+      },
+      "emsa-doener": {
+        "name": "Emsa Doner",
+        "description": "Emsa Doner is a halal restaurant in Munich — Turkish cuisine."
+      },
+      "enfes-grillhouse": {
+        "name": "ENFES Grillhouse",
+        "description": "ENFES Grillhouse is a halal restaurant in Munich — Turkish cuisine, halal-certified, no alcohol served."
+      },
+      "esspoint-hasenbergl": {
+        "name": "Esspoint Hasenbergl",
+        "description": "Esspoint Hasenbergl is a halal restaurant in Munich — Turkish cuisine, halal-certified, no alcohol served."
+      },
+      "esspoint-neuaubing": {
+        "name": "Esspoint Neuaubing",
+        "description": "Esspoint Neuaubing is a halal restaurant in Munich — Turkish cuisine, no alcohol served."
+      },
+      "estare-restaurant": {
+        "name": "Estare Restaurant",
+        "description": "Estare Restaurant is a halal restaurant in Munich — Turkish cuisine."
+      },
+      "fat-man-smashburger": {
+        "name": "FAT-MAN Smashburger",
+        "description": "FAT-MAN Smashburger is a halal food truck in Munich — American cuisine, no alcohol served."
+      },
+      "foodies-burger-pommes-germering": {
+        "name": "Foodies Burger & Fries",
+        "description": "Foodies Burger & Fries is a halal restaurant in Munich — halal-certified, no alcohol served."
+      },
+      "fresh-cooking": {
+        "name": "Fresh Cooking",
+        "description": "Fresh Cooking is a halal restaurant in Munich — Asian cuisine, halal-certified, no alcohol served."
+      },
+      "garam-masala": {
+        "name": "Garam Masala",
+        "description": "Garam Masala is a halal restaurant in Munich — Indian cuisine."
+      },
+      "gourm-et": {
+        "name": "GOURMET",
+        "description": "GOURMET is a halal restaurant in Munich — Mediterranean cuisine, halal-certified, no alcohol served."
+      },
+      "grandpa-27s-pilav": {
+        "name": "Grandpa's Pilaf",
+        "description": "Grandpa's Pilaf is a halal restaurant in Munich — Turkish cuisine, halal-certified, no alcohol served."
+      },
+      "gustosa-berg-am-laim": {
+        "name": "Gustosa | Berg am Laim",
+        "description": "Gustosa | Berg am Laim is a halal restaurant in Munich — Turkish cuisine, no alcohol served."
+      },
+      "gustosa-mira-einkaufscenter": {
+        "name": "Gustosa | Mira Shopping Center",
+        "description": "Gustosa | Mira Shopping Center is a halal restaurant in Munich — Turkish cuisine, no alcohol served."
+      },
+      "gustosa-pep-neuperlach": {
+        "name": "Gustosa | PEP - Neuperlach Shopping Center",
+        "description": "Gustosa | PEP - Neuperlach Shopping Center is a halal restaurant in Munich — Turkish cuisine."
+      },
+      "gustosa-riem-arcaden": {
+        "name": "Gustosa | Riem Arcades",
+        "description": "Gustosa | Riem Arcades is a halal restaurant in Munich — Turkish cuisine, no alcohol served."
+      },
+      "guel-doener": {
+        "name": "Gül Döner",
+        "description": "Gül Döner is a halal restaurant in Munich — Turkish cuisine, no alcohol served."
+      },
+      "hans-kebab-2": {
+        "name": "Hans Kebab at the Viktualienmarkt",
+        "description": "Hans Kebab at the Viktualienmarkt is a halal restaurant in Munich — Turkish cuisine."
+      },
+      "happy-smash-burger": {
+        "name": "Happy Smash Burger",
+        "description": "Happy Smash Burger is a halal restaurant in Munich — halal-certified, no alcohol served."
+      },
+      "hatay-durum": {
+        "name": "Hatay Dürüm",
+        "description": "Hatay Dürüm is a halal restaurant in Munich — Turkish cuisine, halal-certified, no alcohol served."
+      },
+      "hindukush": {
+        "name": "hindu kush",
+        "description": "hindu kush is a halal restaurant in Munich — Afghan cuisine, no alcohol served."
+      },
+      "kabul-restaurant": {
+        "name": "Kabul Restaurant",
+        "description": "Kabul Restaurant is a halal restaurant in Munich — Afghan cuisine."
+      },
+      "kartoffelkoenig-maxvorstadt": {
+        "name": "Kartoffelkönig Maxvorstadt",
+        "description": "Kartoffelkönig Maxvorstadt is a halal restaurant in Munich — Turkish cuisine, no alcohol served."
+      },
+      "kartoffelkoenig-riem": {
+        "name": "Kartoffelkönig Riem",
+        "description": "Kartoffelkönig Riem is a halal restaurant in Munich — Turkish cuisine, no alcohol served."
+      },
+      "kebup": {
+        "name": "KEB'UP",
+        "description": "KEB'UP is a halal restaurant in Munich — Turkish cuisine, no alcohol served."
+      },
+      "kebabi": {
+        "name": "Kebab",
+        "description": "Kebab is a halal restaurant in Munich — Turkish cuisine, no alcohol served."
+      },
+      "kebab-haus": {
+        "name": "Kebab House",
+        "description": "Kebab House is a halal restaurant in Munich — Turkish cuisine."
+      },
+      "kebap-kitchen": {
+        "name": "Kebap Kitchen",
+        "description": "Kebap Kitchen is a halal restaurant in Munich — Turkish cuisine, no alcohol served."
+      },
+      "kumpes-kebap-berliner-doener": {
+        "name": "Kumpes Kebap (Berlin doner kebab)",
+        "description": "Kumpes Kebap (Berlin doner kebab) is a halal restaurant in Munich — Turkish cuisine, no alcohol served."
+      },
+      "koey-fine-kebab-culture": {
+        "name": "KÖY | Fine Kebab Culture",
+        "description": "KÖY | Fine Kebab Culture is a halal food truck in Munich — Turkish cuisine, no alcohol served."
+      },
+      "lal-qila": {
+        "name": "Lal Qila",
+        "description": "Lal Qila is a halal restaurant in Munich — Indian cuisine."
+      },
+      "lezizel-manti-city": {
+        "name": "Lezizel Manti | Munich City",
+        "description": "Lezizel Manti | Munich City is a halal restaurant in Munich — Turkish cuisine, halal-certified, no alcohol served."
+      },
+      "lezizel-manti-maxvorstadt": {
+        "name": "Lezizel Manti | Munich Maxvorstadt",
+        "description": "Lezizel Manti | Munich Maxvorstadt is a halal restaurant in Munich — Turkish cuisine, halal-certified, no alcohol served."
+      },
+      "lezizel-manti-pasing": {
+        "name": "Lezizel Manti | Munich Pasing",
+        "description": "Lezizel Manti | Munich Pasing is a halal restaurant in Munich — Turkish cuisine, halal-certified, no alcohol served."
+      },
+      "lezizel-manti-riem-arcaden": {
+        "name": "Lezizel Manti | Munich Riem Arcaden",
+        "description": "Lezizel Manti | Munich Riem Arcaden is a halal restaurant in Munich — Turkish cuisine, halal-certified, no alcohol served."
+      },
+      "lokanta-kebap-falafel": {
+        "name": "Lokanta Kebab & Falafel",
+        "description": "Lokanta Kebab & Falafel is a halal restaurant in Munich — Turkish cuisine, no alcohol served."
+      },
+      "lokos-doener-hasenbergl": {
+        "name": "Loko's Döner Hasenbergl",
+        "description": "Loko's Döner Hasenbergl is a halal restaurant in Munich — Turkish cuisine, no alcohol served."
+      },
+      "mabelle-munich": {
+        "name": "MABELLE Munich",
+        "description": "MABELLE Munich is a halal restaurant in Munich — Turkish cuisine, halal-certified, no alcohol served."
+      },
+      "make-falafel-not-war-halal": {
+        "name": "Make Falafel Not War Halal",
+        "description": "Make Falafel Not War Halal is a halal restaurant in Munich — Middle Eastern cuisine, no alcohol served."
+      },
+      "mamas-kueche-street-food": {
+        "name": "Mama's Kitchen Street Food",
+        "description": "Mama's Kitchen Street Food is a halal restaurant in Munich — Turkish cuisine, no alcohol served."
+      },
+      "marmaris-restaurant": {
+        "name": "Marmaris Restaurant",
+        "description": "Marmaris Restaurant is a halal restaurant in Munich — Turkish cuisine, no alcohol served."
+      },
+      "masa-pide-grill": {
+        "name": "Masa Pide & Grill",
+        "description": "Masa Pide & Grill is a halal restaurant in Munich — Turkish cuisine, halal-certified, no alcohol served."
+      },
+      "mayas-munich": {
+        "name": "Maya's Munich",
+        "description": "Maya's Munich is a halal restaurant in Munich — no alcohol served."
+      },
+      "mahlzeit-doener-falafel-pide": {
+        "name": "Meal Doner Falafel Pide",
+        "description": "Meal Doner Falafel Pide is a halal restaurant in Munich — Turkish cuisine."
+      },
+      "mahlzeit-doener-kebab": {
+        "name": "Meal Doner Kebab",
+        "description": "Meal Doner Kebab is a halal restaurant in Munich — Turkish cuisine."
+      },
+      "mellos-kebaphaus": {
+        "name": "Mello's Kebab House",
+        "description": "Mello's Kebab House is a halal restaurant in Munich — Turkish cuisine, no alcohol served."
+      },
+      "mamas-broetchen": {
+        "name": "Mom's rolls",
+        "description": "Mom's rolls is a halal restaurant in Munich — Turkish cuisine, halal-certified, no alcohol served."
+      },
+      "moosacher-imbiss-ii": {
+        "name": "Moosacher Imbiss II",
+        "description": "Moosacher Imbiss II is a halal restaurant in Munich — Turkish cuisine, no alcohol served."
+      },
+      "my-bubble-waffle-suma-center": {
+        "name": "My Bubble Waffle | SUMA Center",
+        "description": "My Bubble Waffle | SUMA Center is a halal restaurant in Munich — no alcohol served."
+      },
+      "my-bubble-waffle-viktualienmarkt": {
+        "name": "My Bubble Waffle | Viktualienmarkt",
+        "description": "My Bubble Waffle | Viktualienmarkt is a halal restaurant in Munich — no alcohol served."
+      },
+      "my-simit-mira": {
+        "name": "My Simit Mira",
+        "description": "My Simit Mira is a halal restaurant in Munich — Turkish cuisine."
+      },
+      "my-simit-pep": {
+        "name": "My Simit Pep",
+        "description": "My Simit Pep is a halal restaurant in Munich — Turkish cuisine, halal-certified, no alcohol served."
+      },
+      "nadir-gullu-baklava": {
+        "name": "Nadir Güllü Baklava",
+        "description": "Nadir Güllü Baklava is a halal restaurant in Munich — Turkish cuisine, no alcohol served."
+      },
+      "nigin": {
+        "name": "Nigin",
+        "description": "Nigin is a halal restaurant in Munich — Afghan cuisine."
+      },
+      "nordgrill": {
+        "name": "Nordgrill",
+        "description": "Nordgrill is a halal restaurant in Munich — American cuisine, no alcohol served."
+      },
+      "oliva-hauptbahnhof": {
+        "name": "OLIVA main station",
+        "description": "OLIVA main station is a halal restaurant in Munich — Turkish cuisine."
+      },
+      "oliva-muenchner-freiheit": {
+        "name": "OLIVA Munich Freedom",
+        "description": "OLIVA Munich Freedom is a halal restaurant in Munich — Turkish cuisine."
+      },
+      "oliva-stachus": {
+        "name": "OLIVA Stachus",
+        "description": "OLIVA Stachus is a halal restaurant in Munich — Turkish cuisine."
+      },
+      "oliva-zob": {
+        "name": "OLIVA ZOB",
+        "description": "OLIVA ZOB is a halal restaurant in Munich — Turkish cuisine."
+      },
+      "oliviva-olympia-einkaufszentrum": {
+        "name": "Oliviva in the Olympia Shopping Center",
+        "description": "Oliviva in the Olympia Shopping Center is a halal restaurant in Munich — Turkish cuisine, halal-certified, no alcohol served."
+      },
+      "olympia-pizza-haus": {
+        "name": "Olympia Pizza House",
+        "description": "Olympia Pizza House is a halal restaurant in Munich — Italian cuisine."
+      },
+      "ora-kebap": {
+        "name": "Ora Kebab",
+        "description": "Ora Kebab is a halal restaurant in Munich — Turkish cuisine, halal-certified."
+      },
+      "oses-cigkofte-muenchen": {
+        "name": "Oses Çiğ Köfte Munich",
+        "description": "Oses Çiğ Köfte Munich is a halal restaurant in Munich — Turkish cuisine, no alcohol served."
+      },
+      "pardi-restaurant": {
+        "name": "Pardi Restaurant",
+        "description": "Pardi Restaurant is a halal restaurant in Munich — Turkish cuisine."
+      },
+      "pera-restaurant": {
+        "name": "Pear",
+        "description": "Pear is a halal restaurant in Munich — Turkish cuisine."
+      },
+      "pletttoast-by-caygarden": {
+        "name": "Plett'toast by CayGarden",
+        "description": "Plett'toast by CayGarden is a halal food truck in Munich — Turkish cuisine, no alcohol served."
+      },
+      "puzzles-game-of-food-im-rewe-markt-kayacan": {
+        "name": "PUZZLES - Game of Food | REWE market Kayacan",
+        "description": "PUZZLES - Game of Food | REWE market Kayacan is a halal restaurant in Munich — Turkish cuisine, no alcohol served."
+      },
+      "restaurant-diyar": {
+        "name": "Restaurant Diyar",
+        "description": "Restaurant Diyar is a halal restaurant in Munich — Kurdish cuisine."
+      },
+      "restaurant-persopolis": {
+        "name": "Restaurant Persopolis",
+        "description": "Restaurant Persopolis is a halal restaurant in Munich — Persian cuisine."
+      },
+      "restaurant-suhag": {
+        "name": "Restaurant Suhag",
+        "description": "Restaurant Suhag is a halal restaurant in Munich — Indian cuisine."
+      },
+      "rollo-kebab-burgerhaus": {
+        "name": "Rollo Kebab & Burger House",
+        "description": "Rollo Kebab & Burger House is a halal restaurant in Munich — American cuisine."
+      },
+      "roni-doenerwerk": {
+        "name": "Roni Dönerwerk",
+        "description": "Roni Dönerwerk is a halal restaurant in Munich — Turkish cuisine, halal-certified, no alcohol served."
+      },
+      "rumeli": {
+        "name": "Rumeli Restaurant - Meze & Grill",
+        "description": "Rumeli Restaurant - Meze & Grill is a halal restaurant in Munich — Turkish cuisine."
+      },
+      "sababa-am-viktualienmarkt": {
+        "name": "Sababa at the Viktualienmarkt",
+        "description": "Sababa at the Viktualienmarkt is a halal restaurant in Munich — Lebanese cuisine, no alcohol served."
+      },
+      "sams-smash-burger": {
+        "name": "Sam's Smash Burger",
+        "description": "Sam's Smash Burger is a halal food truck in Munich — American cuisine, halal-certified, no alcohol served."
+      },
+      "sangam-indisches-restaurant": {
+        "name": "Sangam Indian Restaurant",
+        "description": "Sangam Indian Restaurant is a halal restaurant in Munich — Indian cuisine."
+      },
+      "sangeet": {
+        "name": "Sangeet",
+        "description": "Sangeet is a halal restaurant in Munich — Indian cuisine."
+      },
+      "sara-restaurant": {
+        "name": "Sara Restaurant",
+        "description": "Sara Restaurant is a halal restaurant in Munich — Middle Eastern cuisine, no alcohol served."
+      },
+      "say-cheese-smashburger": {
+        "name": "Say Cheese Smashburger",
+        "description": "Say Cheese Smashburger is a halal restaurant in Munich — American cuisine, halal-certified, no alcohol served."
+      },
+      "schnitzery-muenchen": {
+        "name": "Schnitzery | Munich",
+        "description": "Schnitzery | Munich is a halal restaurant in Munich — halal-certified, no alcohol served."
+      },
+      "sendlings-spezial-kebap-house": {
+        "name": "Sendling's Special Kebab House",
+        "description": "Sendling's Special Kebab House is a halal restaurant in Munich — halal-certified, no alcohol served."
+      },
+      "sesam-falafel": {
+        "name": "Sesame falafel",
+        "description": "Sesame falafel is a halal restaurant in Munich — Arabic cuisine, no alcohol served."
+      },
+      "sesam-falafel-ii": {
+        "name": "Sesame Falafel II",
+        "description": "Sesame Falafel II is a halal restaurant in Munich — Arabic cuisine, no alcohol served."
+      },
+      "sevdas-mediterrane-feinkost": {
+        "name": "Sevdas Mediterranean Delicatessen",
+        "description": "Sevdas Mediterranean Delicatessen is a halal restaurant in Munich — Turkish cuisine, no alcohol served."
+      },
+      "shandiz": {
+        "name": "Shandiz",
+        "description": "Shandiz is a halal restaurant in Munich — Persian cuisine."
+      },
+      "shawarmery": {
+        "name": "Shawarmery",
+        "description": "Shawarmery is a halal restaurant in Munich — Arabic cuisine, no alcohol served."
+      },
+      "simitci-cafe-muenchen-milbertshofen": {
+        "name": "Simitçi Café Munich Milbertshofen",
+        "description": "Simitçi Café Munich Milbertshofen is a halal restaurant in Munich — Turkish cuisine, no alcohol served."
+      },
+      "simitci-cafe-muenchen-neuperlach": {
+        "name": "Simitçi Café Munich Neuperlach",
+        "description": "Simitçi Café Munich Neuperlach is a halal restaurant in Munich — Turkish cuisine, no alcohol served."
+      },
+      "sindbad-restaurant": {
+        "name": "Sindbad Restaurant",
+        "description": "Sindbad Restaurant is a halal restaurant in Munich — Arabic cuisine, no alcohol served."
+      },
+      "slemani-grill": {
+        "name": "Slemani Grill",
+        "description": "Slemani Grill is a halal restaurant in Munich — Iraqi cuisine, no alcohol served."
+      },
+      "sollner-kebap-haus": {
+        "name": "Sollner Kebab House",
+        "description": "Sollner Kebab House is a halal restaurant in Munich — Turkish cuisine, no alcohol served."
+      },
+      "springtime-doener": {
+        "name": "Springtime Döner",
+        "description": "Springtime Döner is a halal restaurant in Munich — Turkish cuisine, no alcohol served."
+      },
+      "sucukeria-muenchen": {
+        "name": "Sugar Factory | Munich",
+        "description": "Sugar Factory | Munich is a halal restaurant in Munich — Turkish cuisine, no alcohol served."
+      },
+      "sultan-backparadies-hasenbergl": {
+        "name": "Sultan Baking Paradise Hasenbergl",
+        "description": "Sultan Baking Paradise Hasenbergl is a halal restaurant in Munich — Turkish cuisine, halal-certified, no alcohol served."
+      },
+      "sultan-imbiss": {
+        "name": "Sultan Snack Bar",
+        "description": "Sultan Snack Bar is a halal food truck in Munich — Turkish cuisine, no alcohol served."
+      },
+      "sultan-turkish-cuisine": {
+        "name": "Sultan Turkish Cuisine",
+        "description": "Sultan Turkish Cuisine is a halal restaurant in Munich — Turkish cuisine, halal-certified, no alcohol served."
+      },
+      "sultanahmet-koftecisi-munich": {
+        "name": "Sultanahmet Koftecisi Munich",
+        "description": "Sultanahmet Koftecisi Munich is a halal restaurant in Munich — Turkish cuisine, halal-certified, no alcohol served."
+      },
+      "sultanim-doener-imbiss": {
+        "name": "Sultanim Doner Snack Bar",
+        "description": "Sultanim Doner Snack Bar is a halal food truck in Munich — Turkish cuisine, no alcohol served."
+      },
+      "sweetery-muenchen": {
+        "name": "Sweetery Munich",
+        "description": "Sweetery Munich is a halal restaurant in Munich — no alcohol served."
+      },
+      "taklamakan": {
+        "name": "Taklamakan Munich",
+        "description": "Taklamakan Munich is a halal restaurant in Munich — Uyghur cuisine, halal-certified."
+      },
+      "tengri-tagh-uyghur": {
+        "name": "Tengri Tagh Uyghur - Munich",
+        "description": "Tengri Tagh Uyghur - Munich is a halal restaurant in Munich — Uyghur cuisine, halal-certified, no alcohol served."
+      },
+      "turka-kebap": {
+        "name": "Turkish Kebab",
+        "description": "Turkish Kebab is a halal restaurant in Munich — Turkish cuisine."
+      },
+      "tuerkitch-humboldtstr": {
+        "name": "TÜRKITCH Humboldtstr",
+        "description": "TÜRKITCH Humboldtstr is a halal restaurant in Munich — Turkish cuisine."
+      },
+      "tuerkitch-muenchner-freiheit": {
+        "name": "TÜRKITCH Munich Freedom",
+        "description": "TÜRKITCH Munich Freedom is a halal restaurant in Munich — Turkish cuisine."
+      },
+      "tuerkitch-smash-burger": {
+        "name": "TÜRKITCH Smash Burger",
+        "description": "TÜRKITCH Smash Burger is a halal restaurant in Munich — Turkish cuisine."
+      },
+      "tuerkitch-tuerkenstrasse": {
+        "name": "TÜRKITCH Türkenstraße",
+        "description": "TÜRKITCH Türkenstraße is a halal restaurant in Munich — Turkish cuisine."
+      },
+      "unique-burger-giesing": {
+        "name": "Unique Burger | Munich Giesing",
+        "description": "Unique Burger | Munich Giesing is a halal restaurant in Munich — halal-certified, no alcohol served."
+      },
+      "unique-burger-laim": {
+        "name": "Unique Burger | Munich Laim",
+        "description": "Unique Burger | Munich Laim is a halal restaurant in Munich — American cuisine, halal-certified, no alcohol served."
+      },
+      "vatan-imbiss": {
+        "name": "Vatan Snack Bar",
+        "description": "Vatan Snack Bar is a halal restaurant in Munich — Turkish cuisine, no alcohol served."
+      },
+      "veganland-muenchen": {
+        "name": "Veganland Munich",
+        "description": "Veganland Munich is a halal restaurant in Munich — Turkish cuisine, no alcohol served."
+      },
+      "vip-doener-imbiss": {
+        "name": "VIP kebab shop",
+        "description": "VIP kebab shop is a halal restaurant in Munich — Turkish cuisine, no alcohol served."
+      },
+      "waffelwerk": {
+        "name": "Waffelwerk",
+        "description": "Waffelwerk is a halal restaurant in Munich."
+      },
+      "westend-doener": {
+        "name": "Westend Doner",
+        "description": "Westend Doner is a halal restaurant in Munich — Turkish cuisine."
+      },
+      "wing-nation-schwanthalerhoehe": {
+        "name": "Wing Nation | Schwanthalerhöhe",
+        "description": "Wing Nation | Schwanthalerhöhe is a halal restaurant in Munich — American cuisine."
+      },
+      "wonderwaffel-muenchen": {
+        "name": "WonderWaffle | Munich",
+        "description": "WonderWaffle | Munich is a halal restaurant in Munich."
+      },
+      "oez-urfa-doener": {
+        "name": "Öz Urfa Doner",
+        "description": "Öz Urfa Doner is a halal restaurant in Munich — Turkish cuisine."
       }
     }
   },

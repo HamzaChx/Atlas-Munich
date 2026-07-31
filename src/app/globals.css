@@ -388,6 +388,46 @@
     }
   }
 
+  /* Zellige rosette — rings settle from the core outward, then it turns */
+  .zellige-ring {
+    animation: zellige-ring 1s var(--ease-out-expo) both;
+    animation-delay: var(--zd, 0s);
+  }
+  @keyframes zellige-ring {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  /* Rotation lives on a wrapping div so the browser composites it on the GPU
+     instead of re-rasterising the SVG every frame */
+  .zellige-turn {
+    animation: zellige-turn var(--zt, 420s) linear infinite;
+    will-change: transform;
+  }
+  @keyframes zellige-turn {
+    to {
+      transform: rotate(var(--zturn, 360deg));
+    }
+  }
+
+  .zellige-breathe {
+    animation: zellige-breathe var(--zb, 11s) ease-in-out infinite;
+    animation-delay: var(--zbd, 0s);
+  }
+  @keyframes zellige-breathe {
+    0%,
+    100% {
+      opacity: 0.3;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
   /* Expanded display setting (Archivo wdth axis) */
   .display-wide {
     font-stretch: 112%;
@@ -444,7 +484,9 @@
   @media (prefers-reduced-motion: reduce) {
     .reveal,
     .float-slow,
-    .float-slower {
+    .float-slower,
+    .zellige-breathe,
+    .zellige-turn {
       animation: none;
     }
   }
@@ -669,4 +711,210 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* ============================================================
+   Places map (Leaflet)
+
+   Leaflet ships unlayered CSS, which outranks every Tailwind
+   utility, so anything it targets directly (the container, links)
+   is overridden here with a higher-specificity rule.
+   ============================================================ */
+
+:root {
+  /* Glyph and label colour riding on top of an --acc-* marker */
+  --pin-ink: oklch(0.99 0.003 80);
+}
+
+.dark {
+  --pin-ink: oklch(0.18 0.022 265);
+}
+
+.atlas-map .leaflet-container {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  background: var(--muted);
+  outline: none;
+}
+
+/* Category marker: brand hue, plaster ring, lucide glyph */
+.atlas-pin {
+  display: block;
+  transform-origin: 50% 100%;
+  filter: drop-shadow(0 2px 3px rgb(0 0 0 / 0.28));
+  transition: transform 0.2s var(--ease-out-expo);
+}
+
+.atlas-pin svg {
+  display: block;
+}
+
+.atlas-pin__body {
+  fill: var(--pin);
+  stroke: var(--card);
+  stroke-width: 1.75;
+}
+
+.atlas-pin__glyph {
+  fill: none;
+  stroke: var(--pin-ink);
+}
+
+.atlas-pin--active,
+.atlas-marker:hover .atlas-pin,
+.atlas-marker:focus-visible .atlas-pin {
+  transform: scale(1.14);
+}
+
+.atlas-marker:hover,
+.atlas-marker:focus-visible {
+  z-index: 1200 !important;
+}
+
+.atlas-marker:focus-visible {
+  outline: none;
+}
+
+.atlas-marker:focus-visible .atlas-pin__body {
+  stroke: var(--zellige);
+  stroke-width: 2.5;
+}
+
+/* Cluster: family hue while the group is uniform, ink when mixed */
+.atlas-cluster {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  border: 2px solid var(--card);
+  background: var(--pin);
+  color: var(--pin-ink);
+  font-size: 13px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  cursor: pointer;
+  box-shadow:
+    0 0 0 5px color-mix(in oklab, var(--pin) 20%, transparent),
+    0 2px 6px rgb(0 0 0 / 0.22);
+  transition: transform 0.2s var(--ease-out-expo);
+}
+
+.atlas-cluster--mixed {
+  background: var(--foreground);
+  color: var(--background);
+  box-shadow:
+    0 0 0 5px color-mix(in oklab, var(--foreground) 16%, transparent),
+    0 2px 6px rgb(0 0 0 / 0.22);
+}
+
+.atlas-marker:hover .atlas-cluster {
+  transform: scale(1.08);
+}
+
+/* Popup */
+.atlas-map .leaflet-popup-content-wrapper {
+  padding: 0;
+  border-radius: 1.25rem;
+  background: var(--card);
+  color: var(--foreground);
+  box-shadow: 0 18px 45px -14px rgb(0 0 0 / 0.3);
+}
+
+.dark .atlas-map .leaflet-popup-content-wrapper {
+  outline: 1px solid rgb(255 255 255 / 0.1);
+  box-shadow: 0 18px 45px -14px rgb(0 0 0 / 0.6);
+}
+
+.atlas-map .leaflet-popup-content {
+  margin: 0;
+  font-size: inherit;
+  line-height: inherit;
+}
+
+.atlas-map .leaflet-popup-tip {
+  width: 14px;
+  height: 14px;
+  margin: -7px auto 0;
+  background: var(--card);
+  box-shadow: none;
+}
+
+.dark .atlas-map .leaflet-popup-tip {
+  outline: 1px solid rgb(255 255 255 / 0.1);
+}
+
+.atlas-map .leaflet-container a.leaflet-popup-close-button {
+  top: 10px;
+  right: 10px;
+  display: flex;
+  width: 24px;
+  height: 24px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border-radius: 9999px;
+  background: var(--muted);
+  color: var(--muted-foreground);
+  font: 600 15px/1 var(--font-sans, sans-serif);
+  transition:
+    background 0.15s,
+    color 0.15s;
+}
+
+.atlas-map .leaflet-container a.leaflet-popup-close-button:hover {
+  background: var(--secondary);
+  color: var(--foreground);
+}
+
+/* Popup actions, written out here because Leaflet's own `a` rule
+   outranks Tailwind's layered utilities */
+.atlas-map .leaflet-popup-content a.atlas-popup__cta,
+.atlas-map .leaflet-popup-content a.atlas-popup__ghost {
+  display: inline-flex;
+  flex: 1 1 0;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  border-radius: 9999px;
+  padding: 0.5rem 0.9rem;
+  font-size: 13px;
+  font-weight: 600;
+  text-decoration: none;
+  transition:
+    background 0.15s,
+    color 0.15s;
+}
+
+.atlas-map .leaflet-popup-content a.atlas-popup__cta {
+  background: var(--foreground);
+  color: var(--background);
+}
+
+.atlas-map .leaflet-popup-content a.atlas-popup__cta:hover {
+  background: color-mix(in oklab, var(--foreground) 88%, var(--background));
+}
+
+.atlas-map .leaflet-popup-content a.atlas-popup__ghost {
+  background: var(--muted);
+  color: var(--muted-foreground);
+}
+
+.atlas-map .leaflet-popup-content a.atlas-popup__ghost:hover {
+  background: var(--secondary);
+  color: var(--foreground);
+}
+
+/* Attribution, kept legible but quiet */
+.atlas-map .leaflet-control-attribution {
+  padding: 2px 8px;
+  border-radius: 8px 0 0 0;
+  background: var(--card);
+  color: var(--muted-foreground);
+  font-size: 10px;
+}
+
+.atlas-map .leaflet-control-attribution a {
+  color: var(--muted-foreground);
+  text-decoration: underline;
 }

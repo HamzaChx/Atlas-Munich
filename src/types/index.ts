@@ -121,6 +121,7 @@ export interface Place {
   rating?: number;
   reviewCount?: number;
   featured?: boolean;
+  instagram?: string;
 }
 
 // ============================================

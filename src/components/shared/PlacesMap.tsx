@@ -1,260 +1,47 @@
 "use client";
 
-import "leaflet/dist/leaflet.css";
-import { useEffect, useState } from "react";
-import { useTheme } from "next-themes";
+import dynamic from "next/dynamic";
 import { useTranslations } from "next-intl";
+
 import { Place } from "@/types";
 import { cn } from "@/lib/utils";
 
 interface PlacesMapProps {
   places: Place[];
+  /** Localized category names, used by the legend and the marker popups */
+  categoryLabels?: Record<string, string>;
   className?: string;
 }
 
-const categoryColors: Record<string, string> = {
-  restaurant: "#f97316", // orange-500
-  grocery: "#22c55e", // green-500
-  mosque: "#14b8a6", // teal-500
-  butcher: "#f43f5e", // rose-500
-  cafe: "#f59e0b", // amber-500
-  bakery: "#eab308", // yellow-500
-  "study-spot": "#3b82f6", // blue-500
-  cowork: "#a855f7", // purple-500
-  barber: "#64748b", // slate-500
-};
-
-const categoryIcons: Record<string, string> = {
-  restaurant: "🍽️",
-  grocery: "🛒",
-  mosque: "🕌",
-  butcher: "🥩",
-  cafe: "☕",
-  bakery: "🥐",
-  "study-spot": "📚",
-  cowork: "💻",
-  barber: "💈",
-};
-
-export function PlacesMap({ places, className }: PlacesMapProps) {
+function MapSkeleton({ className }: { className?: string }) {
   const t = useTranslations("places");
-  const [isClient, setIsClient] = useState(false);
-  const [Map, setMap] = useState<React.ComponentType<Record<string, unknown>> | null>(null);
-
-  useEffect(() => {
-    setIsClient(true);
-    // Dynamically import Leaflet components only on client side
-    import("react-leaflet").then((mod) => {
-      setMap(() => mod.MapContainer as React.ComponentType<Record<string, unknown>>);
-    });
-  }, []);
-
-  if (!isClient || !Map) {
-    return (
-      <div
-        className={cn(
-          "relative h-[500px] w-full rounded-2xl border border-zinc-200 dark:border-white/10 bg-zinc-100 dark:bg-zinc-900/50 flex items-center justify-center",
-          className
-        )}
-      >
+  return (
+    <div className="overflow-hidden rounded-[2rem] bg-card shadow-[0_2px_24px_rgb(0_0_0/0.08)] dark:shadow-none dark:ring-1 dark:ring-white/10">
+      <div className={cn("flex w-full items-center justify-center bg-muted", className)}>
         <div className="flex flex-col items-center gap-3">
           <div className="h-8 w-8 animate-spin rounded-full border-2 border-zellige border-t-transparent" />
           <span className="text-sm text-zinc-500 dark:text-zinc-400">{t("loadingMap")}</span>
         </div>
       </div>
-    );
-  }
-
-  // Filter places with valid coordinates
-  const placesWithCoords = places.filter((p) => p.lat && p.lng);
-
-  // Munich city center coordinates
-  const center: [number, number] = [48.1351, 11.582];
-
-  return (
-    <div
-      className={cn(
-        "relative overflow-hidden rounded-2xl border border-zinc-200 dark:border-white/10 shadow-lg dark:shadow-none",
-        className
-      )}
-    >
-      <MapWrapper places={placesWithCoords} center={center} />
-
-      {/* Legend */}
-      <div className="absolute bottom-4 left-4 z-[1000] rounded-lg border border-zinc-200 dark:border-white/10 bg-white/95 dark:bg-zinc-900/90 p-3 backdrop-blur-sm shadow-lg dark:shadow-none">
-        <p className="mb-2 text-xs font-medium text-zinc-600 dark:text-zinc-400">Legend</p>
-        <div className="grid grid-cols-2 gap-x-4 gap-y-1">
-          {Object.entries(categoryIcons)
-            .slice(0, 6)
-            .map(([key, icon]) => (
-              <div key={key} className="flex items-center gap-1.5">
-                <span className="text-sm">{icon}</span>
-                <span className="text-xs capitalize text-zinc-600 dark:text-zinc-400">
-                  {key.replace("-", " ")}
-                </span>
-              </div>
-            ))}
-        </div>
+      <div className="px-5 py-4">
+        <p className="text-[13px] text-zinc-500 dark:text-zinc-400">{t("mapNote")}</p>
       </div>
     </div>
   );
 }
 
-// Separate component to handle the actual map rendering
-function MapWrapper({ places, center }: { places: Place[]; center: [number, number] }) {
-  const t = useTranslations("places");
-  const { resolvedTheme } = useTheme();
-  const [leaflet, setLeaflet] = useState<{
-    MapContainer: React.ComponentType<Record<string, unknown>>;
-    TileLayer: React.ComponentType<Record<string, unknown>>;
-    Marker: React.ComponentType<Record<string, unknown>>;
-    Popup: React.ComponentType<Record<string, unknown>>;
-  } | null>(null);
-  const [L, setL] = useState<typeof import("leaflet") | null>(null);
+/* Leaflet touches `window` on import, so the canvas is browser only */
+const PlacesMapCanvas = dynamic(() => import("./PlacesMapCanvas"), {
+  ssr: false,
+  loading: () => <MapSkeleton className="h-[60vh] min-h-[26rem] sm:h-[38rem]" />,
+});
 
-  const isDark = resolvedTheme === "dark";
-
-  useEffect(() => {
-    // Import Leaflet and react-leaflet on client side
-    Promise.all([import("react-leaflet"), import("leaflet")]).then(([reactLeaflet, leafletLib]) => {
-      setLeaflet({
-        MapContainer: reactLeaflet.MapContainer as unknown as React.ComponentType<
-          Record<string, unknown>
-        >,
-        TileLayer: reactLeaflet.TileLayer as unknown as React.ComponentType<
-          Record<string, unknown>
-        >,
-        Marker: reactLeaflet.Marker as unknown as React.ComponentType<Record<string, unknown>>,
-        Popup: reactLeaflet.Popup as unknown as React.ComponentType<Record<string, unknown>>,
-      });
-      setL(leafletLib.default);
-    });
-  }, []);
-
-  if (!leaflet || !L) {
-    return (
-      <div className="h-[500px] w-full flex items-center justify-center bg-zinc-100 dark:bg-zinc-900/50">
-        <div className="flex flex-col items-center gap-3">
-          <div className="h-8 w-8 animate-spin rounded-full border-2 border-zellige border-t-transparent" />
-          <span className="text-sm text-zinc-500 dark:text-zinc-400">{t("loadingMap")}</span>
-        </div>
-      </div>
-    );
-  }
-
-  const { MapContainer, TileLayer, Marker, Popup } = leaflet;
-
-  // Create custom icons for each category with sharper styling
-  const createIcon = (category: string) => {
-    const color = categoryColors[category] || "#10b981";
-    const emoji = categoryIcons[category] || "📍";
-    return L.divIcon({
-      className: "custom-marker",
-      html: `
-        <div style="
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 30px;
-          height: 30px;
-          background: linear-gradient(135deg, ${color} 0%, ${color}cc 100%);
-          border-radius: 50% 50% 50% 0;
-          transform: rotate(-45deg);
-          border: 2px solid white;
-          box-shadow: 0 3px 8px -2px rgba(0, 0, 0, 0.45);
-        ">
-          <span style="transform: rotate(45deg); font-size: 14px; line-height:1; filter: drop-shadow(0 1px 1px rgba(0,0,0,0.25));">${emoji}</span>
-        </div>
-      `,
-      iconSize: [30, 30],
-      iconAnchor: [15, 30],
-      popupAnchor: [0, -28],
-    });
-  };
-
+export function PlacesMap({ places, categoryLabels, className }: PlacesMapProps) {
   return (
-    <MapContainer
-      key={isDark ? "dark" : "light"}
-      center={center}
-      zoom={12}
-      scrollWheelZoom={true}
-      style={{ height: "500px", width: "100%" }}
-      className="z-0"
-    >
-      <TileLayer
-        attribution={
-          isDark
-            ? '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://stadiamaps.com/">Stadia Maps</a>'
-            : '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
-        }
-        url={
-          isDark
-            ? "https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png"
-            : "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
-        }
-        opacity={1}
-      />
-      {isDark && (
-        // Add a subtle colorful overlay (labels) to improve contrast in dark mode
-        <TileLayer
-          url="https://{s}.basemaps.cartocdn.com/dark_only_labels/{z}/{x}/{y}{r}.png"
-          opacity={0.95}
-        />
-      )}
-      {places.map((place) => (
-        <Marker
-          key={place.slug}
-          position={[place.lat!, place.lng!]}
-          icon={createIcon(place.category)}
-        >
-          <Popup>
-            <div className="min-w-[200px] p-1">
-              <div className="flex items-center gap-2 mb-1">
-                <span className="text-lg">{categoryIcons[place.category]}</span>
-                <span className="font-semibold text-zinc-900">{place.name}</span>
-              </div>
-              <p className="text-xs text-zinc-600 mb-2">{place.address}</p>
-              {place.description && (
-                <p className="text-xs text-zinc-500 line-clamp-2">{place.description}</p>
-              )}
-              {place.rating && (
-                <p className="text-xs mt-1">
-                  <span className="text-amber-500">★</span> {place.rating}
-                </p>
-              )}
-              {(place.website || (place.lat && place.lng)) && (
-                <div className="flex gap-2 mt-2">
-                  {((place.address && place.address.length > 0) || (place.lat && place.lng)) && (
-                    <div className="flex gap-2 mt-2">
-                      {place.address ? (
-                        <a
-                          href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-                            place.address
-                          )}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-xs text-blue-600 hover:underline"
-                        >
-                          Directions →
-                        </a>
-                      ) : (
-                        <a
-                          href={`https://www.google.com/maps/search/?api=1&query=${place.lat},${place.lng}`}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-xs text-blue-600 hover:underline"
-                        >
-                          Directions →
-                        </a>
-                      )}
-                    </div>
-                  )}
-                </div>
-              )}
-            </div>
-          </Popup>
-        </Marker>
-      ))}
-    </MapContainer>
+    <PlacesMapCanvas
+      places={places}
+      categoryLabels={categoryLabels}
+      className={cn("h-[60vh] min-h-[26rem] sm:h-[38rem]", className)}
+    />
   );
 }

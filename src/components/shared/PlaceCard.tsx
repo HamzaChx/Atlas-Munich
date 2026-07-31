@@ -24,17 +24,22 @@ const categoryLabels: Record<string, string> = {
   barber: "Barber Shop",
 };
 
-/* One hue per place category, shared with the page filters */
-export const placeAccents: Record<string, { text: string; dot: string }> = {
-  restaurant: { text: "text-acc-terra", dot: "bg-acc-terra" },
-  butcher: { text: "text-acc-terra", dot: "bg-acc-terra" },
-  cafe: { text: "text-acc-saffron", dot: "bg-acc-saffron" },
-  bakery: { text: "text-acc-saffron", dot: "bg-acc-saffron" },
-  grocery: { text: "text-acc-green", dot: "bg-acc-green" },
-  mosque: { text: "text-acc-green", dot: "bg-acc-green" },
-  "study-spot": { text: "text-acc-blue", dot: "bg-acc-blue" },
-  barber: { text: "text-acc-blue", dot: "bg-acc-blue" },
-  cowork: { text: "text-acc-plum", dot: "bg-acc-plum" },
+/* The five brand hues, one per place category family */
+export type PlaceAccent = "terra" | "saffron" | "green" | "blue" | "plum";
+
+/* One hue per place category, shared with the page filters and the map.
+   `key` lets non-Tailwind consumers (the Leaflet markers) reach the same
+   `--acc-*` token, so a colour means the same thing everywhere on the page. */
+export const placeAccents: Record<string, { key: PlaceAccent; text: string; dot: string }> = {
+  restaurant: { key: "terra", text: "text-acc-terra", dot: "bg-acc-terra" },
+  butcher: { key: "terra", text: "text-acc-terra", dot: "bg-acc-terra" },
+  cafe: { key: "saffron", text: "text-acc-saffron", dot: "bg-acc-saffron" },
+  bakery: { key: "saffron", text: "text-acc-saffron", dot: "bg-acc-saffron" },
+  grocery: { key: "green", text: "text-acc-green", dot: "bg-acc-green" },
+  mosque: { key: "green", text: "text-acc-green", dot: "bg-acc-green" },
+  "study-spot": { key: "blue", text: "text-acc-blue", dot: "bg-acc-blue" },
+  barber: { key: "blue", text: "text-acc-blue", dot: "bg-acc-blue" },
+  cowork: { key: "plum", text: "text-acc-plum", dot: "bg-acc-plum" },
 };
 
 export function PlaceCard({ place, className }: PlaceCardProps) {

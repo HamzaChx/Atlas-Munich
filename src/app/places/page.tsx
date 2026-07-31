@@ -40,6 +40,13 @@ export default function PlacesPage() {
   // Only offer filters for categories that actually have places
   const categoryFilters = filterMeta.filter((f) => (countByCategory[f.key] ?? 0) > 0);
 
+  // Localized category names for the map legend and marker popups
+  const categoryLabelMap = useMemo(
+    () => Object.fromEntries(filterMeta.map((f) => [f.key, f.label])),
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [t]
+  );
+
   const placesData = useTranslations("placesData");
 
   const filteredPlaces = useMemo(() => {
@@ -242,10 +249,7 @@ export default function PlacesPage() {
       <section className="mx-auto max-w-7xl px-4 pb-16 pt-8 sm:px-6 sm:pb-24 lg:px-8">
         {/* Map view */}
         {viewMode === "map" && (
-          <div className="overflow-hidden rounded-3xl shadow-[0_2px_20px_rgb(0_0_0/0.08)] dark:shadow-none dark:ring-1 dark:ring-white/10">
-            <PlacesMap places={filteredPlaces} className="h-[560px]" />
-            <p className="bg-card py-3 text-center text-sm text-zinc-500">{t("mapNote")}</p>
-          </div>
+          <PlacesMap places={localizedPlaces} categoryLabels={categoryLabelMap} />
         )}
 
         {viewMode === "grid" && (

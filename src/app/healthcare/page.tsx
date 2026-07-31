@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { HeroBadge } from "@/components/shared";
-import { MoroccanCorner } from "@/components/home";
+
 import { getTranslations } from "next-intl/server";
 import {
   Activity,
@@ -41,29 +41,29 @@ const HEALTH_LINKS = [
   {
     name: "Techniker Krankenkasse",
     url: "https://www.tk.de",
-    color: "from-blue-500 to-indigo-500",
-    shadow: "shadow-blue-500/20",
+    color: "from-emerald-600 to-emerald-500",
+    shadow: "shadow-zinc-500/10",
     label: "Health Insurance (TK)",
   },
   {
     name: "AOK Bayern",
     url: "https://www.aok.de/pk/plus/",
     color: "from-green-500 to-emerald-500",
-    shadow: "shadow-green-500/20",
+    shadow: "shadow-zinc-500/10",
     label: "Health Insurance (AOK)",
   },
   {
     name: "Klinikum r.d. Isar",
     url: "https://www.mri.tum.de",
     color: "from-rose-500 to-red-500",
-    shadow: "shadow-rose-500/20",
+    shadow: "shadow-zinc-500/10",
     label: "TUM Hospital",
   },
   {
     name: "LMU Klinikum",
     url: "https://www.lmu-klinikum.de",
-    color: "from-violet-500 to-purple-500",
-    shadow: "shadow-violet-500/20",
+    color: "from-emerald-600 to-emerald-500",
+    shadow: "shadow-zinc-500/10",
     label: "LMU Hospital",
   },
 ];
@@ -72,60 +72,46 @@ const STEP_ICONS = [MessageSquareText, ClipboardList, CheckCircle2];
 const STEP_COLORS = [
   {
     bg: "from-rose-500 to-red-600",
-    shadow: "shadow-rose-500/30",
+    shadow: "shadow-zinc-500/10",
     ring: "ring-rose-500/20",
   },
-  { bg: "from-pink-500 to-rose-600", shadow: "shadow-pink-500/30", ring: "ring-pink-500/20" },
+  { bg: "from-pink-500 to-rose-600", shadow: "shadow-zinc-500/10", ring: "ring-pink-500/20" },
   {
     bg: "from-red-500 to-rose-600",
-    shadow: "shadow-red-500/30",
+    shadow: "shadow-zinc-500/10",
     ring: "ring-red-500/20",
   },
 ];
 
 const TIP_ICONS = [Activity, ShieldCheck, Heart, AlertCircle];
 const TIP_COLORS = [
-  "border-blue-200 dark:border-blue-500/30 bg-blue-50 dark:bg-blue-500/5",
+  "border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-white/5",
   "border-rose-200 dark:border-rose-500/30 bg-rose-50 dark:bg-rose-500/5",
-  "border-emerald-200 dark:border-emerald-500/30 bg-emerald-50 dark:bg-emerald-500/5",
-  "border-amber-200 dark:border-amber-500/30 bg-amber-50 dark:bg-amber-500/5",
+  "border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-white/5",
+  "border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-white/5",
 ];
 const TIP_ICON_COLORS = [
   "text-blue-600 dark:text-blue-400",
   "text-rose-600 dark:text-rose-400",
   "text-emerald-600 dark:text-emerald-400",
-  "text-amber-600 dark:text-amber-400",
+  "text-zellige",
 ];
 
 export default async function HealthcarePage() {
   const t = await getTranslations("healthcare");
 
   return (
-    <div className="min-h-screen bg-white dark:bg-zinc-950">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-zinc-50 via-white to-zinc-50 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950">
-        {/* Gradient orbs */}
-        <div className="pointer-events-none absolute -left-20 top-1/4 h-[280px] w-[280px] sm:h-[420px] sm:w-[420px] rounded-full bg-gradient-to-br from-rose-200/30 to-red-100/10 dark:from-rose-700/15 dark:to-red-600/5 blur-[100px]" />
-        <div className="pointer-events-none absolute -right-20 bottom-1/4 h-[280px] w-[280px] sm:h-[420px] sm:w-[420px] rounded-full bg-gradient-to-br from-pink-200/30 to-rose-100/10 dark:from-pink-700/15 dark:to-rose-600/5 blur-[100px]" />
-        <div className="pointer-events-none absolute left-[22%] top-[18%] h-[90px] w-[90px] sm:h-[130px] sm:w-[130px] rounded-full bg-rose-400/20 dark:bg-rose-400/12 blur-[40px]" />
-        <div className="pointer-events-none absolute right-[20%] bottom-[22%] h-[70px] w-[70px] sm:h-[100px] sm:w-[100px] rounded-full bg-red-400/18 dark:bg-red-400/10 blur-[35px]" />
+      <section className="relative overflow-hidden bg-background">
 
-        {/* Moroccan corner ornaments */}
-        <MoroccanCorner
-          position="top-left"
-          className="pointer-events-none absolute left-0 top-0 h-20 w-20 sm:h-28 sm:w-28 lg:h-36 lg:w-36 opacity-50"
-        />
-        <MoroccanCorner
-          position="top-right"
-          className="pointer-events-none absolute right-0 top-0 h-20 w-20 sm:h-28 sm:w-28 lg:h-36 lg:w-36 opacity-50"
-        />
 
         <div className="relative z-20 mx-auto flex max-w-2xl flex-col items-center px-5 pb-16 pt-14 sm:pb-20 sm:pt-18 lg:pb-24 lg:pt-22 text-center">
           <HeroBadge icon={Activity} text={t("badge")} color="orange" />
 
           <h1 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-4xl lg:text-5xl">
             {t("title")}
-            <span className="mt-1 block bg-gradient-to-r from-red-600 via-rose-600 to-pink-600 dark:from-red-400 dark:via-rose-400 dark:to-pink-400 bg-clip-text text-transparent">
+            <span className="mt-1 block text-zellige">
               {t("titleHighlight")}
             </span>
           </h1>
@@ -163,7 +149,7 @@ export default async function HealthcarePage() {
       </section>
 
       {/* Theme-colored separator */}
-      <div className="h-1 w-full bg-gradient-to-r from-red-500 via-rose-500 to-pink-500 opacity-80" />
+      <div className="h-1 w-full bg-zellige/60" />
 
       {/* How It Works */}
       <section className="border-b border-zinc-200 dark:border-white/10 bg-zinc-50/50 dark:bg-zinc-900/50 py-12 sm:py-16">

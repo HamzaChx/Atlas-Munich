@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { HeroBadge } from "@/components/shared";
-import { MoroccanCorner } from "@/components/home";
+
 import { getTranslations } from "next-intl/server";
 import {
   HomeIcon,
@@ -42,53 +42,53 @@ const PLATFORMS = [
   {
     name: "ImmobilienScout24",
     url: "https://www.immobilienscout24.de",
-    color: "from-orange-500 to-red-500",
-    shadow: "shadow-orange-500/20",
+    color: "from-emerald-600 to-emerald-500",
+    shadow: "shadow-zinc-500/10",
   },
   {
     name: "WG-Gesucht",
     url: "https://www.wg-gesucht.de",
-    color: "from-blue-500 to-indigo-500",
-    shadow: "shadow-blue-500/20",
+    color: "from-emerald-600 to-emerald-500",
+    shadow: "shadow-zinc-500/10",
   },
   {
     name: "Immowelt",
     url: "https://www.immowelt.de",
-    color: "from-teal-500 to-cyan-500",
-    shadow: "shadow-teal-500/20",
+    color: "from-emerald-600 to-emerald-500",
+    shadow: "shadow-zinc-500/10",
   },
   {
     name: "eBay Kleinanzeigen",
     url: "https://www.kleinanzeigen.de",
     color: "from-green-500 to-emerald-500",
-    shadow: "shadow-green-500/20",
+    shadow: "shadow-zinc-500/10",
   },
 ];
 
 const STEP_ICONS = [ClipboardPaste, MessageSquareText, Send];
 const STEP_COLORS = [
-  { bg: "from-blue-500 to-cyan-600", shadow: "shadow-blue-500/30", ring: "ring-blue-500/20" },
+  { bg: "from-emerald-600 to-emerald-500", shadow: "shadow-zinc-500/10", ring: "ring-blue-500/20" },
   {
-    bg: "from-violet-500 to-purple-600",
-    shadow: "shadow-violet-500/30",
+    bg: "from-emerald-600 to-emerald-500",
+    shadow: "shadow-zinc-500/10",
     ring: "ring-violet-500/20",
   },
   {
-    bg: "from-emerald-500 to-green-600",
-    shadow: "shadow-emerald-500/30",
+    bg: "from-emerald-600 to-emerald-500",
+    shadow: "shadow-zinc-500/10",
     ring: "ring-emerald-500/20",
   },
 ];
 
 const TIP_ICONS = [Zap, FileCheck, UserCheck, ShieldAlert];
 const TIP_COLORS = [
-  "border-amber-200 dark:border-amber-500/30 bg-amber-50 dark:bg-amber-500/5",
-  "border-blue-200 dark:border-blue-500/30 bg-blue-50 dark:bg-blue-500/5",
-  "border-violet-200 dark:border-violet-500/30 bg-violet-50 dark:bg-violet-500/5",
-  "border-rose-200 dark:border-rose-500/30 bg-rose-50 dark:bg-rose-500/5",
+  "border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-white/5",
+  "border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-white/5",
+  "border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-white/5",
+  "border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-white/5",
 ];
 const TIP_ICON_COLORS = [
-  "text-amber-600 dark:text-amber-400",
+  "text-zellige",
   "text-blue-600 dark:text-blue-400",
   "text-violet-600 dark:text-violet-400",
   "text-rose-600 dark:text-rose-400",
@@ -98,32 +98,18 @@ export default async function HousingPage() {
   const t = await getTranslations("housing");
 
   return (
-    <div className="min-h-screen bg-white dark:bg-zinc-950">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-zinc-50 via-white to-zinc-50 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950">
-        {/* Gradient orbs */}
-        <div className="pointer-events-none absolute -left-20 top-1/4 h-[280px] w-[280px] sm:h-[420px] sm:w-[420px] rounded-full bg-gradient-to-br from-amber-200/30 to-orange-100/10 dark:from-amber-700/15 dark:to-orange-600/5 blur-[100px]" />
-        <div className="pointer-events-none absolute -right-20 bottom-1/4 h-[280px] w-[280px] sm:h-[420px] sm:w-[420px] rounded-full bg-gradient-to-br from-yellow-200/30 to-amber-100/10 dark:from-yellow-700/15 dark:to-amber-600/5 blur-[100px]" />
+      <section className="relative overflow-hidden bg-background">
         {/* Smaller theme bubbles */}
-        <div className="pointer-events-none absolute left-[22%] top-[18%] h-[90px] w-[90px] sm:h-[130px] sm:w-[130px] rounded-full bg-amber-400/20 dark:bg-amber-400/12 blur-[40px]" />
-        <div className="pointer-events-none absolute right-[20%] bottom-[22%] h-[70px] w-[70px] sm:h-[100px] sm:w-[100px] rounded-full bg-orange-400/18 dark:bg-orange-400/10 blur-[35px]" />
 
-        {/* Moroccan corner ornaments */}
-        <MoroccanCorner
-          position="top-left"
-          className="pointer-events-none absolute left-0 top-0 h-20 w-20 sm:h-28 sm:w-28 lg:h-36 lg:w-36 opacity-50"
-        />
-        <MoroccanCorner
-          position="top-right"
-          className="pointer-events-none absolute right-0 top-0 h-20 w-20 sm:h-28 sm:w-28 lg:h-36 lg:w-36 opacity-50"
-        />
 
         <div className="relative z-20 mx-auto flex max-w-2xl flex-col items-center px-5 pb-16 pt-14 sm:pb-20 sm:pt-18 lg:pb-24 lg:pt-22 text-center">
           <HeroBadge icon={HomeIcon} text={t("badge")} color="amber" />
 
           <h1 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-4xl lg:text-5xl">
             {t("title")}
-            <span className="mt-1 block bg-gradient-to-r from-amber-600 via-orange-600 to-amber-700 dark:from-amber-400 dark:via-orange-400 dark:to-yellow-400 bg-clip-text text-transparent">
+            <span className="mt-1 block text-zellige">
               {t("titleHighlight")}
             </span>
           </h1>
@@ -143,9 +129,9 @@ export default async function HousingPage() {
                 quality={90}
                 sizes="48px"
                 priority
-                className="h-12 w-12 rounded-full object-cover ring-2 ring-amber-300/60 dark:ring-amber-500/40"
+                className="h-12 w-12 rounded-full object-cover ring-2 ring-zinc-200 dark:ring-white/10"
               />
-              <div className="absolute -bottom-0.5 -right-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-gradient-to-br from-amber-500 to-orange-600 ring-2 ring-white dark:ring-zinc-800">
+              <div className="absolute -bottom-0.5 -right-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-zellige ring-2 ring-white dark:ring-zinc-800">
                 <HomeIcon className="h-2.5 w-2.5 text-white" />
               </div>
             </div>
@@ -161,7 +147,7 @@ export default async function HousingPage() {
       </section>
 
       {/* Theme-colored separator */}
-      <div className="h-1 w-full bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 opacity-80" />
+      <div className="h-1 w-full bg-zellige/60" />
 
       {/* How It Works */}
       <section className="border-b border-zinc-200 dark:border-white/10 bg-zinc-50/50 dark:bg-zinc-900/50 py-12 sm:py-16">

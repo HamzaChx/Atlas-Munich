@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import { HeroBadge } from "@/components/shared";
-import { MoroccanCorner } from "@/components/home";
+
 import { getTranslations } from "next-intl/server";
 import {
   Building2,
@@ -43,29 +43,29 @@ const AUTHORITY_LINKS = [
   {
     name: "KVR Munich",
     url: "https://www.muenchen.de/rathaus/kreisverwaltungsreferat",
-    color: "from-emerald-500 to-teal-500",
-    shadow: "shadow-emerald-500/20",
+    color: "from-emerald-600 to-emerald-500",
+    shadow: "shadow-zinc-500/10",
     label: "City Registration",
   },
   {
     name: "Ausländerbehörde",
     url: "https://www.muenchen.de/rathaus/auslaenderbehoerde",
-    color: "from-blue-500 to-indigo-500",
-    shadow: "shadow-blue-500/20",
+    color: "from-emerald-600 to-emerald-500",
+    shadow: "shadow-zinc-500/10",
     label: "Residence Permits",
   },
   {
     name: "BAMF",
     url: "https://www.bamf.de",
-    color: "from-violet-500 to-purple-500",
-    shadow: "shadow-violet-500/20",
+    color: "from-emerald-600 to-emerald-500",
+    shadow: "shadow-zinc-500/10",
     label: "Federal Migration Office",
   },
   {
     name: "Rundfunkbeitrag",
     url: "https://www.rundfunkbeitrag.de",
-    color: "from-amber-500 to-orange-500",
-    shadow: "shadow-amber-500/20",
+    color: "from-emerald-600 to-emerald-500",
+    shadow: "shadow-zinc-500/10",
     label: "Broadcasting Fee / GEZ",
   },
 ];
@@ -73,62 +73,48 @@ const AUTHORITY_LINKS = [
 const STEP_ICONS = [MessageSquareText, ClipboardList, CheckCircle2];
 const STEP_COLORS = [
   {
-    bg: "from-emerald-500 to-teal-600",
-    shadow: "shadow-emerald-500/30",
+    bg: "from-emerald-600 to-emerald-500",
+    shadow: "shadow-zinc-500/10",
     ring: "ring-emerald-500/20",
   },
-  { bg: "from-blue-500 to-indigo-600", shadow: "shadow-blue-500/30", ring: "ring-blue-500/20" },
+  { bg: "from-emerald-600 to-emerald-500", shadow: "shadow-zinc-500/10", ring: "ring-blue-500/20" },
   {
-    bg: "from-violet-500 to-purple-600",
-    shadow: "shadow-violet-500/30",
+    bg: "from-emerald-600 to-emerald-500",
+    shadow: "shadow-zinc-500/10",
     ring: "ring-violet-500/20",
   },
 ];
 
 const TIP_ICONS = [Clock, FileCheck, ShieldCheck, AlertCircle];
 const TIP_COLORS = [
-  "border-rose-200 dark:border-rose-500/30 bg-rose-50 dark:bg-rose-500/5",
-  "border-blue-200 dark:border-blue-500/30 bg-blue-50 dark:bg-blue-500/5",
-  "border-emerald-200 dark:border-emerald-500/30 bg-emerald-50 dark:bg-emerald-500/5",
-  "border-amber-200 dark:border-amber-500/30 bg-amber-50 dark:bg-amber-500/5",
+  "border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-white/5",
+  "border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-white/5",
+  "border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-white/5",
+  "border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-white/5",
 ];
 const TIP_ICON_COLORS = [
   "text-rose-600 dark:text-rose-400",
   "text-blue-600 dark:text-blue-400",
   "text-emerald-600 dark:text-emerald-400",
-  "text-amber-600 dark:text-amber-400",
+  "text-zellige",
 ];
 
 export default async function BureaucracyPage() {
   const t = await getTranslations("bureaucracy");
 
   return (
-    <div className="min-h-screen bg-white dark:bg-zinc-950">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-zinc-50 via-white to-zinc-50 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950">
-        {/* Gradient orbs */}
-        <div className="pointer-events-none absolute -left-20 top-1/4 h-[280px] w-[280px] sm:h-[420px] sm:w-[420px] rounded-full bg-gradient-to-br from-emerald-200/30 to-teal-100/10 dark:from-emerald-700/15 dark:to-teal-600/5 blur-[100px]" />
-        <div className="pointer-events-none absolute -right-20 bottom-1/4 h-[280px] w-[280px] sm:h-[420px] sm:w-[420px] rounded-full bg-gradient-to-br from-teal-200/30 to-cyan-100/10 dark:from-teal-700/15 dark:to-cyan-600/5 blur-[100px]" />
+      <section className="relative overflow-hidden bg-background">
         {/* Smaller theme bubbles */}
-        <div className="pointer-events-none absolute left-[22%] top-[18%] h-[90px] w-[90px] sm:h-[130px] sm:w-[130px] rounded-full bg-emerald-400/20 dark:bg-emerald-400/12 blur-[40px]" />
-        <div className="pointer-events-none absolute right-[20%] bottom-[22%] h-[70px] w-[70px] sm:h-[100px] sm:w-[100px] rounded-full bg-teal-400/18 dark:bg-teal-400/10 blur-[35px]" />
 
-        {/* Moroccan corner ornaments */}
-        <MoroccanCorner
-          position="top-left"
-          className="pointer-events-none absolute left-0 top-0 h-20 w-20 sm:h-28 sm:w-28 lg:h-36 lg:w-36 opacity-50"
-        />
-        <MoroccanCorner
-          position="top-right"
-          className="pointer-events-none absolute right-0 top-0 h-20 w-20 sm:h-28 sm:w-28 lg:h-36 lg:w-36 opacity-50"
-        />
 
         <div className="relative z-20 mx-auto flex max-w-2xl flex-col items-center px-5 pb-16 pt-14 sm:pb-20 sm:pt-18 lg:pb-24 lg:pt-22 text-center">
           <HeroBadge icon={Building2} text={t("badge")} color="emerald" />
 
           <h1 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-4xl lg:text-5xl">
             {t("title")}
-            <span className="mt-1 block bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 dark:from-emerald-400 dark:via-teal-400 dark:to-cyan-400 bg-clip-text text-transparent">
+            <span className="mt-1 block text-zellige">
               {t("titleHighlight")}
             </span>
           </h1>
@@ -166,7 +152,7 @@ export default async function BureaucracyPage() {
       </section>
 
       {/* Theme-colored separator */}
-      <div className="h-1 w-full bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-500 opacity-80" />
+      <div className="h-1 w-full bg-zellige/60" />
 
       {/* How It Works */}
       <section className="border-b border-zinc-200 dark:border-white/10 bg-zinc-50/50 dark:bg-zinc-900/50 py-12 sm:py-16">

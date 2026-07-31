@@ -18,47 +18,44 @@ export default async function TermsPage() {
       icon: Shield,
       title: "Acceptable Use",
       content: t("use"),
-      gradient: "from-emerald-500/20 to-teal-500/20",
-      iconColor: "text-emerald-400",
+      gradient: "from-emerald-500/15 to-emerald-500/5",
+      iconColor: "text-zellige",
     },
     {
       icon: AlertTriangle,
       title: "AI Disclaimer",
       content: t("aiDisclaimer"),
-      gradient: "from-amber-500/20 to-orange-500/20",
-      iconColor: "text-amber-400",
+      gradient: "from-emerald-500/15 to-emerald-500/5",
+      iconColor: "text-zellige",
       highlight: true,
     },
     {
       icon: FileText,
       title: "No Warranty",
       content: t("noWarranty"),
-      gradient: "from-blue-500/20 to-indigo-500/20",
-      iconColor: "text-blue-400",
+      gradient: "from-emerald-500/15 to-emerald-500/5",
+      iconColor: "text-zellige",
     },
     {
       icon: Scale,
       title: "Liability",
       content: t("liability"),
-      gradient: "from-purple-500/20 to-violet-500/20",
-      iconColor: "text-purple-400",
+      gradient: "from-emerald-500/15 to-emerald-500/5",
+      iconColor: "text-zellige",
     },
     {
       icon: Code,
       title: "Intellectual Property",
       content: t("ip"),
-      gradient: "from-rose-500/20 to-pink-500/20",
-      iconColor: "text-rose-400",
+      gradient: "from-emerald-500/15 to-emerald-500/5",
+      iconColor: "text-zellige",
     },
   ];
 
   return (
     <div className="min-h-screen bg-zinc-50 dark:bg-zinc-950">
       {/* Hero Section */}
-      <section className="relative overflow-hidden border-b border-zinc-200 dark:border-white/10 bg-gradient-to-br from-emerald-50 via-white to-teal-50 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950">
-        {/* Gradient Orbs - smaller on mobile */}
-        <div className="absolute -left-16 sm:-left-32 top-0 z-[5] h-[250px] w-[250px] sm:h-[500px] sm:w-[500px] rounded-full bg-gradient-to-br from-emerald-400/40 to-teal-300/30 dark:from-emerald-600/25 dark:to-teal-500/15 blur-[80px] sm:blur-[120px]" />
-        <div className="absolute -right-16 sm:-right-32 bottom-0 z-[5] h-[250px] w-[250px] sm:h-[500px] sm:w-[500px] rounded-full bg-gradient-to-br from-teal-400/40 to-cyan-300/30 dark:from-teal-600/25 dark:to-cyan-500/15 blur-[80px] sm:blur-[120px]" />
+      <section className="relative overflow-hidden border-b border-zinc-200 dark:border-white/10 bg-background">
 
         <div className="relative z-10 mx-auto max-w-4xl px-4 py-10 sm:py-16 sm:px-6 lg:px-8 text-center">
           <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-emerald-200 dark:border-emerald-500/30 bg-emerald-50 dark:bg-emerald-500/10 px-4 py-2 shadow-sm shadow-emerald-900/5 dark:shadow-none">

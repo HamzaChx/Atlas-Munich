@@ -1,18 +1,8 @@
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { Badge } from "@/components/ui/badge";
 import { ArrowRight } from "lucide-react";
 import * as Icons from "lucide-react";
 import { useTranslations } from "next-intl";
-
-/**
- * CategoryCard component following premium UI principles:
- * - Rule 6: Visual hierarchy obvious in under 1 second
- * - Rule 17: One primary action per screen
- * - Rule 34: Hover states required on desktop
- * - Rule 35: Animations 150-300ms
- * - Rule 44: Micro-interactions sparingly but intentionally
- */
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const iconMap = Icons as any;
@@ -22,10 +12,9 @@ interface CategoryCardProps {
   description: string;
   href: string;
   icon: string;
-  color: string;
   count?: number | string;
   className?: string;
-  categoryKey?: string; // Optional category key for translations
+  categoryKey?: string;
 }
 
 export function CategoryCard({
@@ -33,84 +22,56 @@ export function CategoryCard({
   description,
   href,
   icon,
-  color,
   count,
   className,
   categoryKey,
 }: CategoryCardProps) {
   const t = useTranslations("categories");
+  const common = useTranslations("common");
 
-  // Use translations if categoryKey is provided, otherwise use props
   const displayTitle = categoryKey ? t(`${categoryKey}.title`) : title;
   const displayDescription = categoryKey ? t(`${categoryKey}.description`) : description;
-  // Dynamically get icon component
   const IconComponent = iconMap[icon] || Icons.Folder;
+
+  const countLabel =
+    typeof count === "number"
+      ? `${count} ${count === 1 ? common("guide") : common("guides")}`
+      : count !== undefined
+        ? common("new")
+        : null;
 
   return (
     <Link
       href={href}
       className={cn(
-        "group block outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-2xl",
+        "group block outline-none focus-visible:ring-2 focus-visible:ring-zellige/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-2xl",
         className
       )}
     >
-      <div className="relative h-full overflow-hidden rounded-2xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900/50 p-4 sm:p-6 shadow-sm dark:shadow-none transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:border-emerald-200 dark:hover:border-white/20 hover:bg-zinc-50/80 dark:hover:bg-zinc-800/50 hover:shadow-lg hover:shadow-zinc-200/50 dark:hover:shadow-none">
-        {/* Gradient glow on hover - Rule 44: Micro-interactions */}
-        <div
-          className={cn(
-            "absolute -right-20 -top-20 h-48 w-48 rounded-full opacity-0 blur-3xl transition-all duration-500 ease-out group-hover:opacity-30",
-            color.includes("blue")
-              ? "bg-blue-500"
-              : color.includes("emerald") || color.includes("teal")
-                ? "bg-emerald-500"
-                : color.includes("purple") || color.includes("pink")
-                  ? "bg-purple-500"
-                  : color.includes("orange") || color.includes("red")
-                    ? "bg-orange-500"
-                    : color.includes("rose")
-                      ? "bg-rose-500"
-                      : color.includes("indigo") || color.includes("violet")
-                        ? "bg-indigo-500"
-                        : "bg-emerald-500"
-          )}
-        />
-
-        {/* Content */}
+      <div className="relative h-full overflow-hidden rounded-2xl border border-border bg-card p-4 sm:p-6 shadow-sm dark:shadow-none transition-all duration-200 hover:-translate-y-1 hover:border-zellige/40 hover:shadow-lg hover:shadow-zinc-200/50 dark:hover:shadow-none">
         <div className="relative">
-          {/* Header - Rule 6: Visual hierarchy */}
           <div className="mb-4 sm:mb-5 flex items-start justify-between gap-2">
-            <div
-              className={cn(
-                "rounded-xl bg-gradient-to-br p-2.5 sm:p-3.5 text-white shadow-lg transition-transform duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105",
-                color
-              )}
-            >
-              <IconComponent className="h-5 w-5 sm:h-6 sm:w-6" />
+            <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-zellige-soft transition-colors duration-300 group-hover:bg-zellige sm:h-12 sm:w-12">
+              <IconComponent className="h-5 w-5 text-zellige transition-colors duration-300 group-hover:text-white dark:group-hover:text-zinc-950" />
             </div>
-            {count !== undefined && (
-              <Badge
-                variant="secondary"
-                className="border-zinc-200 dark:border-white/10 bg-zinc-100 dark:bg-white/5 text-xs font-medium text-zinc-600 dark:text-zinc-400"
-              >
-                {count} {typeof count === "number" && count === 1 ? "guide" : "guides"}
-              </Badge>
+            {countLabel && (
+              <span className="rounded-full border border-border bg-zinc-100 dark:bg-white/5 px-2.5 py-0.5 text-xs font-medium text-zinc-600 dark:text-zinc-400">
+                {countLabel}
+              </span>
             )}
           </div>
 
-          {/* Title - Rule 25: Headings communicate meaning */}
-          <h3 className="text-base sm:text-lg font-semibold leading-snug tracking-tight text-zinc-900 dark:text-white transition-colors duration-200 group-hover:text-emerald-600 dark:group-hover:text-emerald-400">
+          <h3 className="font-display text-base sm:text-lg font-bold leading-snug tracking-tight text-zinc-900 dark:text-white transition-colors duration-200 group-hover:text-zellige">
             {displayTitle}
           </h3>
 
-          {/* Description - Rule 24: Break content */}
           <p className="mt-2 sm:mt-2.5 line-clamp-2 text-sm sm:text-[15px] leading-relaxed text-zinc-600 dark:text-zinc-400">
             {displayDescription}
           </p>
 
-          {/* CTA - Rule 17: Clear action */}
-          <div className="mt-5 flex items-center text-sm font-medium text-emerald-600 dark:text-emerald-400">
-            Explore
-            <ArrowRight className="ml-1.5 h-4 w-4 transition-transform duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1" />
+          <div className="mt-5 flex items-center text-sm font-medium text-zellige">
+            {common("explore")}
+            <ArrowRight className="ml-1.5 h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" />
           </div>
         </div>
       </div>

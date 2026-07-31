@@ -4,9 +4,6 @@ import { cn } from "@/lib/utils"
 
 /**
  * Input component following premium UI principles:
- * - Rule 34: Hover states required
- * - Rule 35: Animations 150-300ms
- * - Rule 40: Forms should feel like conversations
  */
 function Input({ className, type, ...props }: React.ComponentProps<"input">) {
   return (

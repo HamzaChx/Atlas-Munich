@@ -7,11 +7,6 @@ import { fmtUpdated } from "@/lib/date";
 
 /**
  * GuideCard component following premium UI principles:
- * - Rule 6: Visual hierarchy obvious in under 1 second
- * - Rule 34: Hover states required on desktop
- * - Rule 35: Animations 150-300ms
- * - Rule 37: Skeleton loaders beat spinners (prep for loading state)
- * - Rule 43: Avoid layout shifts
  */
 interface GuideCardProps {
   guide: Guide;
@@ -40,12 +35,10 @@ export function GuideCard({ guide, className, showCategory = true }: GuideCardPr
       )}
     >
       <div className="relative h-56 sm:h-60 overflow-hidden rounded-2xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900/50 p-4 sm:p-6 shadow-sm dark:shadow-none transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:border-emerald-200 dark:hover:border-emerald-500/30 hover:bg-zinc-50/80 dark:hover:bg-zinc-800/50 hover:shadow-lg hover:shadow-zinc-200/50 dark:hover:shadow-none flex flex-col justify-between">
-        {/* Subtle gradient glow on hover - Rule 44: Micro-interactions sparingly */}
         <div className="absolute -right-20 -top-20 h-40 w-40 rounded-full bg-emerald-500/0 blur-3xl transition-all duration-500 ease-out group-hover:bg-emerald-500/10" />
 
         {/* Content */}
         <div className="relative">
-          {/* Tags - Rule 6: Visual hierarchy */}
           <div className="mb-3 sm:mb-4 flex flex-wrap items-center gap-1.5 sm:gap-2">
             {showCategory && (
               <Badge
@@ -62,17 +55,14 @@ export function GuideCard({ guide, className, showCategory = true }: GuideCardPr
             ))}
           </div>
 
-          {/* Title - Rule 25: Headings communicate meaning */}
           <h3 className="line-clamp-2 text-base sm:text-lg font-semibold leading-snug tracking-tight text-zinc-900 dark:text-white transition-colors duration-200 group-hover:text-emerald-600 dark:group-hover:text-emerald-400">
             {guide.title}
           </h3>
 
-          {/* Summary - Rule 24: Break content every 2-3 lines */}
           <p className="mt-2 sm:mt-3 line-clamp-2 text-sm sm:text-[15px] leading-relaxed text-zinc-600 dark:text-zinc-400">
             {guide.summary}
           </p>
 
-          {/* Footer - Rule 16: Group related elements visually */}
           <div className="mt-4 sm:mt-5 flex items-center justify-between border-t border-zinc-100 dark:border-white/5 pt-3 sm:pt-4 text-xs text-zinc-500">
             <div className="flex items-center gap-4">
               <span className="flex items-center gap-1.5">
@@ -95,9 +85,6 @@ export function GuideCard({ guide, className, showCategory = true }: GuideCardPr
   );
 }
 
-/**
- * Skeleton loader for GuideCard - Rule 37
- */
 export function GuideCardSkeleton({ className }: { className?: string }) {
   return (
     <div className={cn("block", className)}>

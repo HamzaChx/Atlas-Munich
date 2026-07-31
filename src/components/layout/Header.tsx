@@ -2,30 +2,13 @@
 
 import * as React from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 import { ThemeToggle, LanguageSwitcher } from "@/components/shared";
 import { Locale } from "@/i18n";
-import {
-  Menu,
-  X,
-  Home,
-  BookOpen,
-  HelpCircle,
-  Wrench,
-  MapPin,
-  Info,
-} from "lucide-react";
-
-/**
- * Header component following premium UI principles:
- * - Rule 6: Visual hierarchy obvious in under 1 second
- * - Rule 8: UI feels invisible - users focus on content
- * - Rule 17: One primary action per screen (Explore CTA)
- * - Rule 35: Animations 150-300ms
- */
+import { Menu, X } from "lucide-react";
 
 interface NavTranslations {
   home: string;
@@ -50,15 +33,14 @@ export function Header({ locale, translations }: HeaderProps) {
   const [scrolled, setScrolled] = React.useState(false);
 
   const navItems = [
-    { label: translations.home, href: "/", icon: Home },
-    { label: translations.guides, href: "/guides", icon: BookOpen },
-    { label: translations.places, href: "/places", icon: MapPin },
-    { label: translations.tools, href: "/tools", icon: Wrench },
-    { label: translations.faq, href: "/faq", icon: HelpCircle },
-    { label: translations.about, href: "/about", icon: Info },
+    { label: translations.home, href: "/" },
+    { label: translations.guides, href: "/guides" },
+    { label: translations.places, href: "/places" },
+    { label: translations.tools, href: "/tools" },
+    { label: translations.faq, href: "/faq" },
+    { label: translations.about, href: "/about" },
   ];
 
-  // Check if we're on the home page (dark hero)
   const isHomePage = pathname === "/";
 
   React.useEffect(() => {
@@ -69,43 +51,35 @@ export function Header({ locale, translations }: HeaderProps) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Dynamic styles based on scroll and page - Rule 35: 150-300ms transitions
   const headerBg = scrolled
-    ? "bg-white/98 dark:bg-zinc-950/98 backdrop-blur-2xl border-b border-zinc-200/80 dark:border-white/8 shadow-[0_1px_3px_0_rgb(0_0_0_/_0.05)] dark:shadow-none"
+    ? "bg-background border-b border-border shadow-[0_1px_3px_0_rgb(0_0_0_/_0.05)] dark:shadow-none"
     : isHomePage
       ? "bg-transparent border-b border-transparent"
-      : "bg-white dark:bg-zinc-950 border-b border-zinc-200/80 dark:border-white/8";
+      : "bg-background border-b border-border";
 
   return (
     <header
       className={cn("fixed top-0 z-50 w-full transition-all duration-300 safe-area-top", headerBg)}
     >
-      {/* Rule 12: Max content width 1100-1280px for readability */}
       <div className="mx-auto flex h-14 sm:h-16 max-w-[1280px] items-center justify-between px-3 sm:px-6 lg:px-8">
-        {/* Logo - Rule 34: Hover states required */}
         <Link
           href="/"
-          className="group flex items-center gap-2 sm:gap-3 outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-lg"
+          className="group flex items-center gap-2 sm:gap-2.5 outline-none focus-visible:ring-2 focus-visible:ring-zellige/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-lg"
         >
-          <div className="relative h-8 w-8 sm:h-10 sm:w-10 overflow-hidden rounded-full border border-zinc-200 dark:border-white/10 bg-zinc-50 dark:bg-white/5 backdrop-blur-sm transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:border-emerald-500/40 group-hover:bg-emerald-50 dark:group-hover:bg-emerald-500/10 group-hover:shadow-sm group-hover:shadow-emerald-500/10">
-            <Image
-              src="/logo.png"
-              alt="Atlas Munich Logo"
-              width={40}
-              height={40}
-              className="h-full w-full object-cover"
-            />
-          </div>
-          <span className="text-lg sm:text-xl font-bold tracking-tight">
-            <span className="bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-400 dark:to-teal-400 bg-clip-text text-transparent">
-              Atlas
-            </span>{" "}
-            <span className="text-zinc-900 dark:text-white">Munich</span>
+          <Image
+            src="/logo.png"
+            alt=""
+            width={36}
+            height={36}
+            className="h-8 w-8 rounded-full transition-transform duration-300 group-hover:scale-105 sm:h-9 sm:w-9"
+          />
+          <span className="font-display text-lg sm:text-xl font-bold tracking-tight text-zinc-900 dark:text-white">
+            Atlas Munich
           </span>
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden items-center gap-1 md:flex">
+        <nav className="hidden items-center gap-0.5 md:flex">
           {navItems.map((item) => {
             const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
             return (
@@ -113,13 +87,12 @@ export function Header({ locale, translations }: HeaderProps) {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-medium transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+                  "relative rounded-full px-3.5 py-2 text-sm font-medium transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-zellige/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                   isActive
-                    ? "bg-emerald-100 dark:bg-emerald-500/15 text-emerald-700 dark:text-emerald-400 shadow-sm shadow-emerald-500/5"
-                    : "text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-white/5 hover:text-zinc-900 dark:hover:text-white"
+                    ? "bg-zinc-100 text-zinc-900 dark:bg-white/10 dark:text-white"
+                    : "text-zinc-500 dark:text-zinc-400 hover:bg-zinc-100/70 hover:text-zinc-900 dark:hover:bg-white/5 dark:hover:text-white"
                 )}
               >
-                <item.icon className="h-4 w-4" />
                 {item.label}
               </Link>
             );
@@ -128,13 +101,9 @@ export function Header({ locale, translations }: HeaderProps) {
 
         {/* Right Side Actions */}
         <div className="flex items-center gap-1 sm:gap-2">
-          {/* Language Switcher */}
           <LanguageSwitcher currentLocale={locale} className="hidden sm:block" />
-
-          {/* Theme Toggle */}
           <ThemeToggle className="hidden sm:flex" />
 
-          {/* Mobile menu button - larger touch target */}
           <Button
             variant="ghost"
             size="icon"
@@ -147,10 +116,10 @@ export function Header({ locale, translations }: HeaderProps) {
         </div>
       </div>
 
-      {/* Mobile Navigation - Rule 36: Motion to explain cause and effect */}
+      {/* Mobile Navigation */}
       <div
         className={cn(
-          "border-t border-zinc-200/80 dark:border-white/8 bg-white/98 dark:bg-zinc-950/98 backdrop-blur-2xl md:hidden overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] safe-area-x",
+          "border-t border-border bg-background md:hidden overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] safe-area-x",
           mobileMenuOpen ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
         )}
       >
@@ -163,29 +132,32 @@ export function Header({ locale, translations }: HeaderProps) {
                 href={item.href}
                 onClick={() => setMobileMenuOpen(false)}
                 className={cn(
-                  "flex items-center gap-3 rounded-xl px-4 py-3.5 text-base font-medium transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] active:scale-[0.98] min-h-[48px]",
+                  "flex items-center gap-3 rounded-xl px-4 py-3.5 text-base font-medium transition-all duration-200 active:scale-[0.98] min-h-[48px]",
                   isActive
-                    ? "bg-emerald-100 dark:bg-emerald-500/15 text-emerald-700 dark:text-emerald-400"
+                    ? "bg-zellige-soft text-zellige"
                     : "text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-white/5 hover:text-zinc-900 dark:hover:text-white"
                 )}
               >
-                <item.icon className="h-5 w-5" />
+                <span
+                  className={cn(
+                    "h-1.5 w-1.5 rounded-full",
+                    isActive ? "bg-zellige" : "bg-zinc-300 dark:bg-zinc-600"
+                  )}
+                  aria-hidden="true"
+                />
                 {item.label}
               </Link>
             );
           })}
 
-          {/* Mobile Language Switcher */}
           <div className="flex items-center gap-3 rounded-xl px-4 py-3 text-base font-medium text-zinc-600 dark:text-zinc-400 min-h-[48px]">
             <LanguageSwitcher currentLocale={locale} />
           </div>
 
-          {/* Mobile Theme Toggle */}
           <div className="flex items-center gap-3 rounded-xl px-4 py-3 text-base font-medium text-zinc-600 dark:text-zinc-400 min-h-[48px]">
             <ThemeToggle />
             <span>{translations.toggleTheme}</span>
           </div>
-
         </nav>
       </div>
     </header>

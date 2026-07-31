@@ -13,10 +13,6 @@ import { FAQ } from "@/types";
 
 /**
  * FAQAccordion component following premium UI principles:
- * - Rule 6: Visual hierarchy obvious in under 1 second
- * - Rule 35: Animations 150-300ms
- * - Rule 36: Motion to explain cause and effect
- * - Rule 39: Feedback immediate after user action
  */
 interface FAQAccordionProps {
   faqs: FAQ[];

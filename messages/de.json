@@ -7,17 +7,16 @@
     "faq": "FAQ",
     "about": "Über uns",
     "search": "Suche",
-
     "toggleTheme": "Theme wechseln",
     "tools": "Tools"
   },
   "home": {
-    "heroTitle": "Dein vollständiger Handbuch zum",
-    "heroTitleHighlight": "Leben in München",
-    "heroSubtitle": "Von",
+    "heroTitle": "Neu in München?",
+    "heroTitleHighlight": "Wir sind für dich da.",
+    "heroSubtitle": "Guides, Orte und KI-Helfer für Marokkanerinnen und Marokkaner, die in München ankommen. Gestartet von",
     "heroCommunity": "Hamza Chaouki",
-    "heroSubtitle2": " erstellt, für die marokkanische Community.",
-    "searchPlaceholder": "Suche nach Ratgebern, Orten oder Antworten...",
+    "heroSubtitle2": ", getragen von der Community.",
+    "searchPlaceholder": "Such nach „Anmeldung“, „WG-Zimmer“ oder „Halal-Metzger“ …",
     "quickLinks": {
       "findHousing": "Wohnung finden",
       "kvrRegistration": "KVR-Anmeldung",
@@ -36,10 +35,10 @@
       "badge": "Unsere Geschichte",
       "title": "München zu einem",
       "titleHighlight": " Zuhause machen",
-      "description1": "Wir kennen die Herausforderung — deutsche Bürokratie bewältigen, Halal-Essen finden, Universitätssysteme verstehen und sich in einer neuen Stadt ein wenig verloren fühlen.",
+      "description1": "Wir kennen die Herausforderung, deutsche Bürokratie bewältigen, Halal-Essen finden, Universitätssysteme verstehen und sich in einer neuen Stadt ein wenig verloren fühlen.",
       "description2": "Deshalb haben wir",
       "atlasName": "Atlas München",
-      "description3": " erstellt — eine kollektive Wissensdatenbank, in der jeder Tipp, jeder Ratgeber und jeder versteckte Schatz von Menschen stammt, die den gleichen Weg gegangen sind.",
+      "description3": " erstellt, eine kollektive Wissensdatenbank, in der jeder Tipp, jeder Ratgeber und jeder versteckte Schatz von Menschen stammt, die den gleichen Weg gegangen sind.",
       "aboutCommunity": "Über unsere Community",
       "commonQuestions": "Häufige Fragen"
     },
@@ -47,7 +46,7 @@
       "badge": "Open Source",
       "title": "Hilf uns, diesen",
       "titleHighlight": "Wissens-Hub zu erweitern",
-      "description": "Jede Korrektur, jeder neue Ratgeber, jede geteilte Erfahrung hilft dem nächsten Marokkaner, der in München ankommt. Dein Wissen ist wertvoll — teile es mit der Community.",
+      "description": "Jede Korrektur, jeder neue Ratgeber, jede geteilte Erfahrung hilft dem nächsten Marokkaner, der in München ankommt. Dein Wissen ist wertvoll, teile es mit der Community.",
       "contributeGithub": "Auf GitHub beitragen",
       "learnHow": "Erfahre wie",
       "freeForever": "100% kostenlos für immer",
@@ -61,17 +60,17 @@
     "munichLife": "München Leben",
     "localExpertise": "Lokales Fachwissen",
     "categories": {
-      "badge": "München entdecken",
+      "badge": "Finde deinen Weg",
       "title": "Alles, was du brauchst,",
-      "titleHighlight": "an einem Ort",
-      "subtitle": "Umfassende Ratgeber, organisiert nach dem, was für dich am wichtigsten ist",
+      "titleHighlight": " an einem Ort",
+      "subtitle": "Ehrliche Guides zu den Dingen, die wirklich kompliziert sind, geschrieben von Leuten, die es selbst erlebt haben.",
       "browseAll": "Alle Ratgeber durchsuchen"
     },
     "toolsSpotlight": {
-      "badge": "KI-gestützte Tools",
-      "title": "Smarte Tools für München",
-      "subtitle": "Schreibe gewinnende Mietbewerbungen, erstelle deutsche Lebensläufe, plane Events und mehr — speziell für Newcomer.",
-      "cta": "Alle Tools entdecken",
+      "badge": "Agentische KI",
+      "title": "Helfer für den Papierkram",
+      "subtitle": "Speziell gebaute KI-Agenten für Wohnungsbewerbungen, deutsche Lebensläufe und Behördenpost, damit du Zeit fürs Leben hast.",
+      "cta": "Helfer kennenlernen",
       "housingTool": "Wohnungsbewerbungs-Assistent",
       "housingToolDesc": "Füge ein Inserat ein, erhalte eine WG-Nachricht, die Antworten bekommt",
       "housingToolStatus": "Aktiv",
@@ -81,13 +80,18 @@
       "eventTool": "Event-Planer",
       "eventToolDesc": "Plane Treffen und Events mit Freunden",
       "eventToolStatus": "Bald"
+    },
+    "featured": {
+      "title": "Fang mit diesen an",
+      "viewAll": "Alle Guides",
+      "minRead": "Min. Lesezeit"
     }
   },
   "places": {
     "badge": "Verifizierte Orte",
     "title": "Orte",
     "titleHighlight": "Verzeichnis",
-    "subtitle": "Halal-Restaurants, marokkanische Lebensmittelgeschäfte, Moscheen, Lernorte und mehr — alle von unserer Community verifiziert.",
+    "subtitle": "Halal-Restaurants, marokkanische Lebensmittelgeschäfte, Moscheen, Lernorte und mehr, alle von unserer Community verifiziert.",
     "searchPlaceholder": "Suche Orte nach Name, Tag oder Standort...",
     "filters": {
       "all": "Alle",
@@ -95,7 +99,11 @@
       "cafes": "Cafés",
       "butchers": "Metzgereien",
       "mosques": "Moscheen",
-      "studySpots": "Lernorte"
+      "studySpots": "Lernorte",
+      "groceries": "Lebensmittel",
+      "bakeries": "Bäckereien",
+      "coworking": "Coworking",
+      "barbers": "Barbiere"
     },
     "results": {
       "place": "Ort",
@@ -123,13 +131,14 @@
       "readMore": "Mehr lesen",
       "showLess": "Weniger anzeigen",
       "verified": "Verifiziert"
-    }
+    },
+    "loadingMap": "Karte wird geladen…"
   },
   "guides": {
     "badge": "Community-Ratgeber",
     "title": "Dein komplettes",
     "titleHighlight": "München Playbook",
-    "subtitle": "Vom ersten Tag bis zum Zuhause-Gefühl — umfassende Ratgeber geschrieben von",
+    "subtitle": "Vom ersten Tag bis zum Zuhause-Gefühl, umfassende Ratgeber geschrieben von",
     "subtitleHighlight": " Marokkanern, die dort gewesen sind",
     "searchPlaceholder": "Suche nach Wohnungstipps, Visa-Infos, Halal-Essen...",
     "stats": {
@@ -147,6 +156,13 @@
       "description": "Unsere Ratgeber wachsen ständig. Wenn du Wissen teilen möchtest oder Hilfe benötigst, tritt unserer Community bei.",
       "browseFaqs": "FAQs durchsuchen",
       "contributeGuide": "Ratgeber beitragen"
+    },
+    "callout": {
+      "title": "Hinweis: Angaben können sich ändern",
+      "body": "Wir halten diese Guides so aktuell wie möglich, aber Details können sich ändern. Nutze sie als Ausgangspunkt, und wenn dir etwas Veraltetes auffällt, sag uns Bescheid, damit wir es korrigieren."
+    },
+    "list": {
+      "title": "Alle Guides"
     }
   },
   "faq": {
@@ -169,13 +185,15 @@
       "description": "Schau dir unsere detaillierten Ratgeber an oder wende dich an die Community.",
       "browseGuides": "Ratgeber durchsuchen",
       "contactUs": "Kontaktiere uns"
-    }
+    },
+    "noResults": "Keine Fragen gefunden",
+    "noResultsDescription": "Versuch eine andere Suche oder stöbere durch alle Kategorien."
   },
   "about": {
     "badge": "Community-Projekt",
     "title": "Über",
     "titleHighlight": "Atlas München",
-    "subtitle": "Atlas München ist ein Community-Handbuch, der erstellt wurde, um die Reibung bei der Ankunft in München zu reduzieren — insbesondere für marokkanische Studenten, die Bürokratie, Wohnung und Alltag bewältigen.",
+    "subtitle": "Atlas München ist ein Community-Handbuch, der erstellt wurde, um die Reibung bei der Ankunft in München zu reduzieren, insbesondere für marokkanische Studenten, die Bürokratie, Wohnung und Alltag bewältigen.",
     "howToContribute": "Wie man beiträgt",
     "getInTouch": "Kontakt aufnehmen",
     "manifesto": {
@@ -184,11 +202,11 @@
       "description": "Wir konzentrieren uns auf praktische Schritte, echte Erfahrungen und kleine Details, die München leichter navigierbar machen.",
       "items": {
         "practical": "Praktisch, Schritt für Schritt",
-        "practicalDesc": "Kein Füllstoff — nur was funktioniert.",
+        "practicalDesc": "Kein Füllstoff, nur was funktioniert.",
         "studentAware": "Studentenbewusst",
         "studentAwareDesc": "LMU/TUM-Realitäten, Fristen und Systeme.",
         "openSource": "Open Source",
-        "openSourceDesc": "Jeder kann es verbessern — transparent."
+        "openSourceDesc": "Jeder kann es verbessern, transparent."
       }
     },
     "story": {
@@ -196,7 +214,7 @@
       "title": "Warum wir das gebaut haben",
       "p1": "Der Umzug nach München als marokkanischer Student oder Berufstätiger kann überwältigend sein. Die Bürokratie ist komplex, eine Wohnung zu finden ist herausfordernd, und herauszufinden, wo man Halal-Essen findet, braucht Zeit.",
       "p2Start": "Atlas München wurde aus dieser Erfahrung geboren.",
-      "p2End": " Wir wollten eine einzige, vertrauenswürdige Ressource schaffen, die alle Fragen von Neuankömmlingen beantwortet — die gleichen Fragen, die wir einst hatten.",
+      "p2End": " Wir wollten eine einzige, vertrauenswürdige Ressource schaffen, die alle Fragen von Neuankömmlingen beantwortet, die gleichen Fragen, die wir einst hatten.",
       "p3": "Heute ist Atlas München eine wachsende Sammlung von Ratgebern, Tipps und Ressourcen, die von Freiwilligen gepflegt wird, die alles durchgemacht haben und anderen helfen wollen, dasselbe zu tun."
     },
     "values": {
@@ -323,14 +341,17 @@
       "search": "Suche",
       "aboutUs": "Über uns",
       "contribute": "Beitragen",
-      "contact": "Kontakt"
+      "contact": "Kontakt",
+      "privacy": "Datenschutz",
+      "terms": "Nutzungsbedingungen",
+      "aiTools": "KI-Tools"
     }
   },
   "search": {
     "badge": "Alles durchsuchen",
     "title": "Finde was du",
     "titleHighlight": "brauchst",
-    "subtitle": "Durchsuche Ratgeber, Orte und FAQs — deine vollständige München-Wissensdatenbank zur Hand.",
+    "subtitle": "Durchsuche Ratgeber, Orte und FAQs, deine vollständige München-Wissensdatenbank zur Hand.",
     "placeholder": "Suche nach Ratgebern, Orten, FAQs...",
     "resultsFound": "Ergebnisse gefunden",
     "noResults": "Keine Ergebnisse gefunden",
@@ -380,11 +401,11 @@
       "description": "Verifiziert und moderiert vom Atlas München Team"
     },
     "benefitsTitle": "Warum unserer Community beitreten?",
-    "benefitsSubtitle": "Mehr als nur ein Gruppenchat — es ist dein Support-Netzwerk in München.",
+    "benefitsSubtitle": "Mehr als nur ein Gruppenchat, es ist dein Support-Netzwerk in München.",
     "benefits": {
       "support": {
         "title": "Sofortiger Support",
-        "description": "Erhalte schnelle Antworten von Menschen, die die gleichen Herausforderungen durchgemacht haben — von Anmeldung bis Wohnungssuche."
+        "description": "Erhalte schnelle Antworten von Menschen, die die gleichen Herausforderungen durchgemacht haben, von Anmeldung bis Wohnungssuche."
       },
       "realtime": {
         "title": "Echtzeit-Updates",
@@ -405,7 +426,7 @@
     "guidelines": {
       "respectful": "Sei respektvoll und freundlich. Wir sind alle hier, um uns gegenseitig beim Erfolg in München zu helfen.",
       "helpful": "Teile Wissen großzügig. Deine Erfahrung könnte jemandem Stunden der Frustration ersparen.",
-      "language": "Fühle dich frei, Englisch, Französisch, Arabisch, Darija oder Deutsch zu verwenden — wir sind mehrsprachig!",
+      "language": "Fühle dich frei, Englisch, Französisch, Arabisch, Darija oder Deutsch zu verwenden, wir sind mehrsprachig!",
       "spam": "Kein Spam, Werbung oder Selbstpromotion ohne Erlaubnis der Moderatoren.",
       "privacy": "Respektiere die Privatsphäre. Teile keine persönlichen Informationen oder Screenshots ohne Zustimmung."
     },
@@ -421,7 +442,12 @@
     "previous": "Zurück",
     "close": "Schließen",
     "open": "Öffnen",
-    "language": "Sprache"
+    "language": "Sprache",
+    "explore": "Entdecken",
+    "guide": "Guide",
+    "guides": "Guides",
+    "new": "Neu",
+    "searchAction": "Suchen"
   },
   "placesData": {
     "places": {
@@ -443,7 +469,7 @@
       },
       "the-ash-muenchner-freiheit": {
         "name": "The Ash",
-        "description": "Stilvolles Restaurant mit hochwertigen Grillgerichten. Auf Anfrage werden halal-Fleischoptionen angeboten — ideal für ein Abendessen mit Freunden oder Familie."
+        "description": "Stilvolles Restaurant mit hochwertigen Grillgerichten. Auf Anfrage werden halal-Fleischoptionen angeboten, ideal für ein Abendessen mit Freunden oder Familie."
       },
       "argana-moroccan-restaurant": {
         "name": "Argana - Moroccan Restaurant",
@@ -487,7 +513,7 @@
       },
       "hot-dog-station-muenchen": {
         "name": "Hot Dog Station",
-        "description": "Casual Eatery mit halal-Hotdogs und verschiedenen Toppings — praktisch und lecker für unterwegs."
+        "description": "Casual Eatery mit halal-Hotdogs und verschiedenen Toppings, praktisch und lecker für unterwegs."
       },
       "wing-nation": {
         "name": "Wing Nation",
@@ -684,10 +710,12 @@
       "jmila": "Eine ruhige, essensbegeisterte Begleiterin, die die besten Orte in München empfiehlt.",
       "hamza": "Ein technischer, community-orientierter Entwickler, der das Projekt und die Mitwirkung erklärt.",
       "riad": "Ein scharfsinniger Wohnungsbewerbungsspezialist, der hochkonvertierte WG- und Apartmentnachrichten für Münchens kompetitiven Mietmarkt schreibt.",
-      "dalilah": "Eine präzise, einfühlsame Behörden-Navigatorin, die marokkanische Newcomer durch jeden deutschen Verwaltungsprozess führt — Anmeldung, Aufenthaltstitel, KVR, Krankenversicherung und mehr.",
+      "dalilah": "Eine präzise, einfühlsame Behörden-Navigatorin, die marokkanische Newcomer durch jeden deutschen Verwaltungsprozess führt, Anmeldung, Aufenthaltstitel, KVR, Krankenversicherung und mehr.",
       "ilham": "Eine erstklassige akademische Begleiterin, die Münchner Studierenden hilft, Forschungsfragen zu entwickeln, Paper zu strukturieren, Texte zu verfeinern und Thesis-Arbeiten mit vollständiger akademischer Integrität vorzubereiten.",
       "loubna": "Eine beruhigende, kultursensible Gesundheitsnavigatorin, die marokkanischen Studierenden in München hilft, die deutsche Krankenversicherung zu verstehen, Ärzte zu finden, Symptome zu übersetzen und psychologische Unterstützung zu finden."
-    }
+    },
+    "redirecting": "Weiterleitung zu",
+    "typeMessage": "Nachricht eingeben…"
   },
   "legal": {
     "privacy": {
@@ -731,7 +759,11 @@
         "status": "Aktiv",
         "cta": "Tool starten",
         "poweredBy": "KI-gestützt von Riad",
-        "tags": ["WG-Bewerbungen", "Wohnungsinserate", "Perfektes Deutsch"]
+        "tags": [
+          "WG-Bewerbungen",
+          "Wohnungsinserate",
+          "Perfektes Deutsch"
+        ]
       },
       "cv": {
         "title": "Lebenslauf & Anschreiben-Ersteller",
@@ -739,39 +771,59 @@
         "status": "Aktiv",
         "cta": "Hiro starten",
         "poweredBy": "Powered by Hiro",
-        "tags": ["Deutsches Lebenslauf-Format", "Anschreiben", "Für München optimiert"]
+        "tags": [
+          "Deutsches Lebenslauf-Format",
+          "Anschreiben",
+          "Für München optimiert"
+        ]
       },
       "events": {
         "title": "Event-Planer",
         "description": "Plane Treffen, Lernsessions und Community-Events mit Freunden in München. Teile Pläne, stimme über Orte ab und koordiniere mühelos.",
         "status": "Demnächst",
         "cta": "Demnächst",
-        "comingSoonNote": "Wir bauen dieses Tool — bleib dran!",
-        "tags": ["Events planen", "Freunde einladen", "Münchner Orte"]
+        "comingSoonNote": "Wir bauen dieses Tool, bleib dran!",
+        "tags": [
+          "Events planen",
+          "Freunde einladen",
+          "Münchner Orte"
+        ]
       },
       "dalilah": {
         "title": "Behörden-Navigator",
-        "description": "Anmeldung, Aufenthaltserlaubnis, KVR, Krankenversicherung und deutsche Formulare — Dalilah führt dich durch jeden Schritt ohne verpasste Fristen.",
+        "description": "Anmeldung, Aufenthaltserlaubnis, KVR, Krankenversicherung und deutsche Formulare, Dalilah führt dich durch jeden Schritt ohne verpasste Fristen.",
         "status": "Aktiv",
         "cta": "Tool starten",
         "poweredBy": "KI-gestützt von Dalilah",
-        "tags": ["Anmeldung", "Aufenthaltstitel", "KVR & Fristen"]
+        "tags": [
+          "Anmeldung",
+          "Aufenthaltstitel",
+          "KVR & Fristen"
+        ]
       },
       "ilham": {
         "title": "Akademischer Forschungsbegleiter",
-        "description": "Ilham hilft dir bei Forschungsfragen, Papiergliederung, wissenschaftlichem Schreiben und Thesis-Vorbereitung an TUM oder LMU — mit vollständiger akademischer Integrität.",
+        "description": "Ilham hilft dir bei Forschungsfragen, Papiergliederung, wissenschaftlichem Schreiben und Thesis-Vorbereitung an TUM oder LMU, mit vollständiger akademischer Integrität.",
         "status": "Aktiv",
         "cta": "Tool starten",
         "poweredBy": "KI-gestützt von Ilham",
-        "tags": ["Forschung & Literatur", "Wissenschaftliches Schreiben", "Thesis & LaTeX"]
+        "tags": [
+          "Forschung & Literatur",
+          "Wissenschaftliches Schreiben",
+          "Thesis & LaTeX"
+        ]
       },
       "loubna": {
         "title": "Gesundheitsnavigatorin & Medizinische Übersetzerin",
-        "description": "Loubna hilft dir beim Verständnis der deutschen Krankenversicherung, bei der Arztsuche, der Symptomübersetzung und dem Verständnis von Rezepten — damit nichts verloren geht.",
+        "description": "Loubna hilft dir beim Verständnis der deutschen Krankenversicherung, bei der Arztsuche, der Symptomübersetzung und dem Verständnis von Rezepten, damit nichts verloren geht.",
         "status": "Aktiv",
         "cta": "Tool starten",
         "poweredBy": "KI-gestützt von Loubna",
-        "tags": ["Krankenversicherung", "Arztsuche", "Medizinische Übersetzung"]
+        "tags": [
+          "Krankenversicherung",
+          "Arztsuche",
+          "Medizinische Übersetzung"
+        ]
       }
     },
     "moreComing": "Weitere Assistenten kommen bald. Hast du eine Idee? Trage auf",
@@ -877,7 +929,7 @@
     "badge": "Gesundheitsnavigatorin",
     "title": "Deutsches Gesundheitswesen",
     "titleHighlight": "Einfach Erklärt",
-    "subtitle": "Loubna führt dich durch Krankenversicherung, Arztsuche und medizinische Prozesse in München — in deiner Sprache.",
+    "subtitle": "Loubna führt dich durch Krankenversicherung, Arztsuche und medizinische Prozesse in München, in deiner Sprache.",
     "intro": "Salam! Ich bin Loubna. Stell mir deine Gesundheitsfrage und ich führe dich Schritt für Schritt durch das deutsche Medizinsystem.",
     "cta": "Loubna fragen",
     "features": {
@@ -892,13 +944,13 @@
     "tips": {
       "title": "Gesundheitstipps für München",
       "tip1Title": "Bei TK für englischen Support anmelden",
-      "tip1Desc": "Die Techniker Krankenkasse (TK) ist die erste Wahl für internationale Studierende — englische Hotline, digitale App und schnelle Anmeldung auf tk.de.",
+      "tip1Desc": "Die Techniker Krankenkasse (TK) ist die erste Wahl für internationale Studierende, englische Hotline, digitale App und schnelle Anmeldung auf tk.de.",
       "tip2Title": "Immer beim Hausarzt beginnen",
       "tip2Desc": "Der Hausarzt ist dein erster Anlaufpunkt für alle nicht-notfallmäßigen Beschwerden. Er stellt Überweisungen aus und ist dein Hauptansprechpartner.",
       "tip3Title": "Versicherungsnachweis an die Uni",
       "tip3Desc": "Nach der Krankenversicherungsanmeldung reiche deinen Versicherungsnachweis zeitnah beim Immatrikulationsamt ein.",
       "tip4Title": "Psychische Gesundheitshilfe vorhanden",
-      "tip4Desc": "Überwältigt zu sein ist normal. TK übernimmt Psychotherapie nach einer Erstbeurteilung — frag Loubna, wie du darauf zugreifen kannst."
+      "tip4Desc": "Überwältigt zu sein ist normal. TK übernimmt Psychotherapie nach einer Erstbeurteilung, frag Loubna, wie du darauf zugreifen kannst."
     },
     "resources": {
       "title": "Gesundheitsressourcen",

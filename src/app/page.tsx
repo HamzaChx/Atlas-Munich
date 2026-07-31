@@ -1,270 +1,301 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { SearchBar, CategoryCard } from "@/components/shared";
-import { MunichSkyline, MoroccanCorner, MashrabiyaPattern } from "@/components/home";
+import { SearchBar } from "@/components/shared";
 import { categories } from "@/data/categories";
-import { guides } from "@/data/guides";
-import { places } from "@/data/places";
-import { faqs } from "@/data/faqs";
+import { guides, getFeaturedGuides } from "@/data/guides";
 import { getTranslations } from "next-intl/server";
 import {
-  BookOpen,
-  ChevronRight,
-  Sparkles,
   HelpCircle,
   Users,
-  Heart,
-  Compass,
-  Coffee,
   Home as HomeIcon,
   FileText,
   ArrowRight,
-  Wrench,
+  ArrowUpRight,
   CalendarDays,
 } from "lucide-react";
 
+/* One hue per category — each row wears its own soft color */
+const catStyles: Record<string, { row: string; count: string; dot: string }> = {
+  "rent-housing": {
+    row: "bg-tint-terra hover:shadow-xl hover:shadow-acc-terra/15",
+    count: "text-acc-terra",
+    dot: "bg-acc-terra",
+  },
+  "kvr-residence": {
+    row: "bg-tint-blue hover:shadow-xl hover:shadow-acc-blue/15",
+    count: "text-acc-blue",
+    dot: "bg-acc-blue",
+  },
+  "university-life": {
+    row: "bg-tint-green hover:shadow-xl hover:shadow-acc-green/15",
+    count: "text-acc-green",
+    dot: "bg-acc-green",
+  },
+  career: {
+    row: "bg-tint-plum hover:shadow-xl hover:shadow-acc-plum/15",
+    count: "text-acc-plum",
+    dot: "bg-acc-plum",
+  },
+  "useful-apps": {
+    row: "bg-tint-saffron hover:shadow-xl hover:shadow-acc-saffron/15",
+    count: "text-acc-saffron",
+    dot: "bg-acc-saffron",
+  },
+};
+
+const catEmoji: Record<string, string> = {
+  "rent-housing": "🔑",
+  "kvr-residence": "📋",
+  "university-life": "🎓",
+  career: "💼",
+  "useful-apps": "📱",
+};
+
 export default async function Home() {
   const t = await getTranslations("home");
+  const tCat = await getTranslations("categories");
+  const common = await getTranslations("common");
 
   const guideCountByCategory = (key: string) => guides.filter((g) => g.categoryKey === key).length;
+  const featuredGuides = getFeaturedGuides();
+
+  const quickLinks = [
+    {
+      label: t("quickLinks.findHousing"),
+      href: "/housing",
+      pill: "bg-tint-terra text-acc-terra hover:shadow-acc-terra/20",
+    },
+    {
+      label: t("quickLinks.halalFood"),
+      href: "/places",
+      pill: "bg-tint-green text-acc-green hover:shadow-acc-green/20",
+    },
+    {
+      label: t("quickLinks.allGuides"),
+      href: "/guides",
+      pill: "bg-tint-blue text-acc-blue hover:shadow-acc-blue/20",
+    },
+    {
+      label: t("quickLinks.aiTools"),
+      href: "/tools",
+      pill: "bg-tint-plum text-acc-plum hover:shadow-acc-plum/20",
+    },
+  ];
 
   return (
     <div className="min-h-screen">
-      {/* ========== HERO ========== */}
-      <section className="relative min-h-[60vh] sm:min-h-[70vh] overflow-hidden bg-gradient-to-b from-zinc-50 via-white to-zinc-50 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950">
-        {/* Moroccan-flag gradient orbs */}
-        <div className="pointer-events-none absolute -left-20 top-1/4 h-[280px] w-[280px] sm:h-[420px] sm:w-[420px] rounded-full bg-gradient-to-br from-red-200/30 to-red-100/10 dark:from-red-700/15 dark:to-red-600/5 blur-[100px]" />
-        <div className="pointer-events-none absolute -right-20 bottom-1/4 h-[280px] w-[280px] sm:h-[420px] sm:w-[420px] rounded-full bg-gradient-to-br from-green-200/30 to-emerald-100/10 dark:from-green-700/15 dark:to-emerald-600/5 blur-[100px]" />
+      {/* ========== HERO — an open, airy canvas with floating words ========== */}
+      <section className="relative overflow-hidden">
+        {/* Floating words, the two homes drifting around the message */}
+        <div className="pointer-events-none absolute inset-0 select-none" aria-hidden="true">
+          <span
+            dir="rtl"
+            lang="ar"
+            className="float-slow absolute left-[7%] top-[20%] hidden text-6xl font-bold text-bloom/25 lg:block xl:left-[11%] dark:text-bloom/35"
+            style={{ "--tilt": "-6deg" } as React.CSSProperties}
+          >
+            مرحبا
+          </span>
+          <span
+            className="float-slower absolute right-[6%] top-[16%] hidden font-display text-4xl font-extrabold text-zellige/30 lg:block xl:right-[10%]"
+            style={{ "--tilt": "5deg" } as React.CSSProperties}
+          >
+            Servus!
+          </span>
+          <span
+            className="float-slower absolute left-[14%] top-[64%] hidden font-display text-xl font-bold tracking-wide text-zinc-400/50 xl:block dark:text-zinc-500/50"
+            style={{ "--tilt": "-4deg" } as React.CSSProperties}
+          >
+            München
+          </span>
+          <span
+            dir="rtl"
+            lang="ar"
+            className="float-slow absolute right-[13%] top-[62%] hidden text-3xl font-semibold text-saffron/45 xl:block"
+            style={{ "--tilt": "4deg" } as React.CSSProperties}
+          >
+            الأطلس
+          </span>
+        </div>
 
-        {/* Moroccan corner ornaments — desktop only */}
-        <MoroccanCorner
-          position="top-left"
-          className="pointer-events-none absolute left-0 top-0 h-24 w-24 sm:h-32 sm:w-32 lg:h-40 lg:w-40 opacity-60"
-        />
-        <MoroccanCorner
-          position="top-right"
-          className="pointer-events-none absolute right-0 top-0 h-24 w-24 sm:h-32 sm:w-32 lg:h-40 lg:w-40 opacity-60"
-        />
-
-        {/* Munich Skyline at bottom */}
-        <MunichSkyline className="pointer-events-none absolute bottom-0 left-0 right-0 z-10 h-14 sm:h-20 md:h-28 lg:h-36 opacity-[0.06] sm:opacity-[0.09] lg:opacity-[0.12]" />
-
-        {/* Content */}
-        <div className="relative z-20 mx-auto flex max-w-2xl flex-col items-center px-5 pb-16 pt-14 sm:pb-20 sm:pt-18 lg:pb-24 lg:pt-22 text-center">
-          {/* Flag-colored accent line */}
-          <div className="mb-6 flex items-center gap-1">
-            <span className="h-1 w-6 rounded-full bg-red-500/60" />
-            <span className="h-1 w-6 rounded-full bg-amber-500/60" />
-            <span className="h-1 w-6 rounded-full bg-green-500/60" />
-          </div>
-
-          {/* Title */}
-          <h1 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-4xl lg:text-5xl">
+        <div className="relative z-10 mx-auto flex max-w-2xl flex-col items-center px-5 pb-16 pt-20 text-center sm:pb-24 sm:pt-28">
+          <h1 className="rise rise-1 font-display text-[2.6rem] font-bold leading-[1.06] tracking-tight text-zinc-900 dark:text-white sm:text-6xl">
             {t("heroTitle")}
-            <span className="mt-1 block bg-gradient-to-r from-emerald-600 to-teal-600 dark:from-emerald-400 dark:to-teal-400 bg-clip-text text-transparent">
-              {t("heroTitleHighlight")}
-            </span>
+            <span className="block pb-1 text-bloom">{t("heroTitleHighlight")}</span>
           </h1>
 
-          {/* Subtitle */}
-          <p className="mt-5 text-base leading-relaxed text-zinc-600 dark:text-zinc-400 sm:text-lg">
+          <p className="rise rise-2 mt-5 max-w-md text-base leading-relaxed text-zinc-500 dark:text-zinc-400 sm:text-lg">
             {t("heroSubtitle")}{" "}
             <Link
               href="https://hamzachaouki.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-medium text-amber-600 dark:text-amber-400 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] hover:text-amber-700 dark:hover:text-amber-300 outline-none focus-visible:text-amber-700 dark:focus-visible:text-amber-300"
+              className="font-medium text-zinc-700 underline decoration-zinc-300 underline-offset-4 transition-colors duration-200 hover:decoration-zinc-500 dark:text-zinc-300 dark:decoration-zinc-600 dark:hover:decoration-zinc-400"
             >
               {t("heroCommunity")}
             </Link>
             {t("heroSubtitle2")}
           </p>
 
-          {/* Search Bar */}
-          <div className="mt-7 w-full sm:mt-8">
+          <div className="rise rise-3 mt-9 w-full max-w-lg">
             <SearchBar placeholder={t("searchPlaceholder")} size="lg" showButton={false} />
           </div>
 
-          {/* Quick Links — horizontal scroll on mobile, grid on sm+ */}
-          <div className="mt-5 w-full sm:mt-6">
-            <div className="flex gap-2 overflow-x-auto pb-1 sm:grid sm:grid-cols-4 sm:overflow-visible hide-scrollbar-mobile">
-              {[
-                {
-                  label: t("quickLinks.findHousing"),
-                  href: "/housing",
-                  icon: HomeIcon,
-                  color: "text-blue-600 dark:text-blue-400",
-                  bg: "bg-blue-50 dark:bg-blue-500/10",
-                },
-                {
-                  label: t("quickLinks.halalFood"),
-                  href: "/places",
-                  icon: Coffee,
-                  color: "text-emerald-600 dark:text-emerald-400",
-                  bg: "bg-emerald-50 dark:bg-emerald-500/10",
-                },
-                {
-                  label: t("quickLinks.allGuides"),
-                  href: "/guides",
-                  icon: Compass,
-                  color: "text-purple-600 dark:text-purple-400",
-                  bg: "bg-purple-50 dark:bg-purple-500/10",
-                },
-                {
-                  label: t("quickLinks.aiTools"),
-                  href: "/tools",
-                  icon: Wrench,
-                  color: "text-violet-600 dark:text-violet-400",
-                  bg: "bg-violet-50 dark:bg-violet-500/10",
-                },
-              ].map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={`group flex shrink-0 items-center gap-2 rounded-full ${link.bg} px-3.5 py-2 text-sm font-medium text-zinc-700 dark:text-zinc-200 transition-all hover:shadow-sm active:scale-[0.97]`}
-                >
-                  <link.icon className={`h-4 w-4 shrink-0 ${link.color}`} />
-                  <span className="whitespace-nowrap">{link.label}</span>
-                </Link>
-              ))}
-            </div>
-          </div>
-
-          {/* Stats */}
-          <div className="mt-7 flex flex-wrap items-center justify-center gap-x-5 gap-y-1 text-sm text-zinc-500 dark:text-zinc-400 sm:mt-8">
-            <span>
-              <span className="font-semibold text-zinc-800 dark:text-white">{guides.length}+</span>{" "}
-              {t("stats.guides")}
-            </span>
-            <span className="text-zinc-300 dark:text-zinc-700">·</span>
-            <span>
-              <span className="font-semibold text-zinc-800 dark:text-white">{places.length}+</span>{" "}
-              {t("stats.places")}
-            </span>
-            <span className="text-zinc-300 dark:text-zinc-700">·</span>
-            <span>
-              <span className="font-semibold text-zinc-800 dark:text-white">{faqs.length}+</span>{" "}
-              {t("stats.faqsAnswered")}
-            </span>
-            <span className="text-zinc-300 dark:text-zinc-700">·</span>
-            <span>
-              <span className="font-semibold text-zinc-800 dark:text-white">100%</span>{" "}
-              {t("stats.free")}
-            </span>
-          </div>
-        </div>
-      </section>
-
-      {/* ========== CATEGORIES ========== */}
-      <section className="relative border-b border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-950 py-10 sm:py-16">
-        {/* Zellige-inspired top border — Moroccan flag colors */}
-        <div className="absolute left-0 top-0 h-1 w-full bg-gradient-to-r from-red-500 via-amber-500 to-green-500 opacity-80" />
-
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          {/* Section Header */}
-          <div className="mb-6 sm:mb-10 text-center">
-            <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-3xl">
-              {t("categories.title")}{" "}
-              <span className="text-emerald-600 dark:text-emerald-400">
-                {t("categories.titleHighlight")}
-              </span>
-            </h2>
-            <p className="mx-auto mt-3 max-w-xl text-sm text-zinc-600 dark:text-zinc-400 sm:text-base">
-              {t("categories.subtitle")}
-            </p>
-          </div>
-
-          {/* Categories Grid */}
-          <div className="grid gap-3 grid-cols-2 sm:grid-cols-2 lg:grid-cols-6">
-            {categories.map((category, index) => (
-              <CategoryCard
-                key={category.key}
-                categoryKey={category.key}
-                title={category.title}
-                description={category.description}
-                href={`/category/${category.key}`}
-                icon={category.icon}
-                color={category.color}
-                count={guideCountByCategory(category.key) || "New"}
-                className={
-                  index <= 2
-                    ? "lg:col-span-2"
-                    : index === 3
-                      ? "lg:col-span-2 lg:col-start-2"
-                      : "col-span-2 lg:col-span-2"
-                }
-              />
+          {/* Colored quick links */}
+          <div className="rise rise-4 mt-6 flex flex-wrap items-center justify-center gap-2.5">
+            {quickLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`flex items-center rounded-full px-4 py-2 text-[13px] font-semibold transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg ${link.pill}`}
+              >
+                {link.label}
+              </Link>
             ))}
           </div>
 
-          {/* View All */}
-          <div className="mt-8 text-center">
-            <Button
-              asChild
-              size="lg"
-              variant="outline"
-              className="group border border-zinc-200 dark:border-white/10 text-zinc-900 dark:text-white hover:border-emerald-500/50 hover:bg-emerald-50 dark:hover:bg-emerald-500/10"
-            >
-              <Link href="/guides">
-                <BookOpen className="mr-2 h-4 w-4" />
-                {t("categories.browseAll")}
-                <ChevronRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Link>
-            </Button>
+        </div>
+      </section>
+
+      {/* ========== CATEGORIES + GUIDES — one structured spread ========== */}
+      <section className="relative py-16 sm:py-24">
+        <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="reveal grid gap-12 lg:grid-cols-12 lg:gap-14">
+            {/* Left — find your way */}
+            <div className="lg:col-span-7">
+              <span className="eyebrow">{t("categories.badge")}</span>
+              <h2 className="font-display mt-3 text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-3xl">
+                {t("categories.title")}
+                <span className="text-bloom">{t("categories.titleHighlight")}</span>
+              </h2>
+              <p className="mt-2.5 max-w-md text-sm text-zinc-500 dark:text-zinc-400">
+                {t("categories.subtitle")}
+              </p>
+
+              <div className="mt-8 grid gap-3 sm:grid-cols-2">
+                {categories.map((category) => {
+                  const style = catStyles[category.key];
+                  const count = guideCountByCategory(category.key);
+                  const countLabel =
+                    count > 0
+                      ? `${count} ${count === 1 ? common("guide") : common("guides")}`
+                      : common("new");
+                  return (
+                    <Link
+                      key={category.key}
+                      href={`/category/${category.key}`}
+                      className={`group flex items-center gap-3.5 rounded-2xl px-4.5 py-4 outline-none transition-all duration-300 hover:-translate-y-1 focus-visible:ring-2 focus-visible:ring-zellige focus-visible:ring-offset-2 focus-visible:ring-offset-background ${style.row}`}
+                    >
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-card/80 text-lg shadow-sm">
+                        {catEmoji[category.key]}
+                      </span>
+                      <span className="min-w-0 flex-1">
+                        <span className="block truncate text-sm font-semibold text-zinc-900 dark:text-white">
+                          {tCat(`${category.key}.title`)}
+                        </span>
+                        <span className={`block text-xs font-medium ${style.count}`}>
+                          {countLabel}
+                        </span>
+                      </span>
+                      <ArrowRight className="h-4 w-4 shrink-0 text-zinc-400/70 transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-zinc-600 dark:group-hover:text-zinc-300" />
+                    </Link>
+                  );
+                })}
+
+                <Link
+                  href="/guides"
+                  className="group flex items-center justify-center gap-2 rounded-2xl border border-dashed border-zinc-300/80 px-4.5 py-4 text-sm font-semibold text-zinc-500 outline-none transition-all duration-300 hover:-translate-y-1 hover:border-zellige/40 hover:text-zellige focus-visible:ring-2 focus-visible:ring-zellige focus-visible:ring-offset-2 focus-visible:ring-offset-background dark:border-zinc-700 dark:text-zinc-400 dark:hover:border-zellige/50 dark:hover:text-zellige"
+                >
+                  {t("categories.browseAll")}
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Right — most-read guides, on a golden panel */}
+            <div className="lg:col-span-5">
+              <div className="rounded-3xl bg-tint-saffron p-6 shadow-[0_2px_20px_rgb(0_0_0/0.05)] sm:p-7 lg:mt-[4.5rem] dark:shadow-none dark:ring-1 dark:ring-white/10">
+                <div className="flex items-baseline justify-between gap-4">
+                  <h3 className="font-display text-lg font-bold tracking-tight text-zinc-900 dark:text-white">
+                    {t("featured.title")}
+                  </h3>
+                  <Link
+                    href="/guides"
+                    className="group flex shrink-0 items-center gap-1 text-sm font-semibold text-acc-saffron transition-opacity hover:opacity-80"
+                  >
+                    {t("featured.viewAll")}
+                    <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                  </Link>
+                </div>
+                <div className="mt-4 space-y-1">
+                  {featuredGuides.map((guide) => (
+                    <Link
+                      key={guide.slug}
+                      href={`/guides/${guide.slug}`}
+                      className="group -mx-2 flex items-center gap-3 rounded-xl px-3 py-3.5 transition-colors duration-200 hover:bg-card/80 dark:hover:bg-white/5"
+                    >
+                      <span
+                        className={`h-2 w-2 shrink-0 rounded-full ${catStyles[guide.categoryKey]?.dot ?? "bg-zellige"}`}
+                        aria-hidden="true"
+                      />
+                      <span className="min-w-0 flex-1 truncate text-sm font-medium text-zinc-800 dark:text-zinc-200">
+                        {guide.title}
+                      </span>
+                      <span className="shrink-0 text-xs text-zinc-400 dark:text-zinc-500">
+                        {guide.readingTime} {t("featured.minRead")}
+                      </span>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* ========== AI TOOLS ========== */}
-      <section className="relative border-b border-zinc-200 dark:border-white/10 bg-zinc-50/80 dark:bg-zinc-900/50 py-10 sm:py-14 overflow-hidden">
-        {/* Subtle mashrabiya lattice background */}
-        <MashrabiyaPattern className="pointer-events-none absolute inset-0 text-zinc-400/[0.04] dark:text-white/[0.03]" />
-
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between lg:gap-10">
-            {/* Text */}
-            <div className="max-w-md shrink-0">
-              <Badge className="mb-3 border-violet-500/30 bg-violet-100 dark:bg-violet-500/10 text-violet-700 dark:text-violet-400">
-                <Sparkles className="mr-1.5 h-3.5 w-3.5" />
-                {t("toolsSpotlight.badge")}
-              </Badge>
-              <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-3xl">
+      {/* ========== AGENTIC AI — the green pavilion ========== */}
+      <section className="px-4 py-6 sm:px-6 sm:py-10 lg:px-8">
+        <div className="reveal relative mx-auto max-w-6xl overflow-hidden rounded-[2rem] bg-tint-green p-7 shadow-[0_2px_24px_rgb(0_0_0/0.05)] sm:p-12 dark:shadow-none dark:ring-1 dark:ring-white/10">
+          <div className="relative grid items-center gap-10 lg:grid-cols-12 lg:gap-12">
+            <div className="lg:col-span-5">
+              <span className="eyebrow">{t("toolsSpotlight.badge")}</span>
+              <h2 className="font-display mt-3 text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-3xl">
                 {t("toolsSpotlight.title")}
               </h2>
-              <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400 sm:text-base">
+              <p className="mt-2 max-w-sm text-sm leading-relaxed text-zinc-500 dark:text-zinc-400">
                 {t("toolsSpotlight.subtitle")}
               </p>
-              <Link
-                href="/tools"
-                className="mt-4 inline-flex items-center gap-2 rounded-lg bg-violet-600 hover:bg-violet-700 px-4 py-2 text-sm font-medium text-white transition-colors"
+              <Button
+                asChild
+                className="mt-5 rounded-full bg-zinc-900 px-6 text-white shadow-md shadow-zinc-900/15 hover:bg-zinc-800 dark:bg-white dark:text-zinc-900 dark:shadow-none dark:hover:bg-zinc-200"
               >
-                <Wrench className="h-4 w-4" />
-                {t("toolsSpotlight.cta")}
-                <ArrowRight className="h-3.5 w-3.5" />
-              </Link>
+                <Link href="/tools">
+                  {t("toolsSpotlight.cta")}
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Link>
+              </Button>
             </div>
 
-            {/* Tool cards */}
-            <div className="grid gap-3 sm:grid-cols-3 lg:min-w-[480px]">
+            <div className="flex flex-col gap-2.5 lg:col-span-7">
               <Link
                 href="/housing"
-                className="group flex items-center gap-3 rounded-xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900 p-3.5 transition-all hover:border-blue-300 dark:hover:border-blue-500/30 hover:shadow-sm"
+                className="group flex items-center gap-4 rounded-xl bg-card px-4 py-3.5 shadow-[0_1px_8px_rgb(0_0_0/0.05)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgb(0_0_0/0.1)] dark:shadow-none dark:ring-1 dark:ring-white/10 dark:hover:bg-zinc-800/60"
               >
-                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500 to-cyan-600">
-                  <HomeIcon className="h-4 w-4 text-white" />
-                </div>
-                <div className="min-w-0">
-                  <div className="truncate text-sm font-semibold text-zinc-900 dark:text-white">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-tint-terra text-acc-terra">
+                  <HomeIcon className="h-[18px] w-[18px]" />
+                </span>
+                <span className="min-w-0 flex-1">
+                  <span className="block truncate text-sm font-semibold text-zinc-900 dark:text-white">
                     {t("toolsSpotlight.housingTool")}
-                  </div>
-                  <div className="truncate text-xs text-zinc-500 dark:text-zinc-400">
+                  </span>
+                  <span className="block truncate text-xs text-zinc-500 dark:text-zinc-400">
                     {t("toolsSpotlight.housingToolDesc")}
-                  </div>
-                </div>
+                  </span>
+                </span>
+                <ArrowRight className="h-4 w-4 shrink-0 text-zinc-300 transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-zinc-500 dark:text-zinc-600 dark:group-hover:text-zinc-300" />
               </Link>
 
-              <div className="group relative flex items-center gap-3 rounded-xl border border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-900 p-3.5 transition-all hover:border-purple-300 dark:hover:border-purple-500/30 hover:shadow-sm">
+              <div className="group relative flex items-center gap-4 rounded-xl bg-card px-4 py-3.5 shadow-[0_1px_8px_rgb(0_0_0/0.05)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgb(0_0_0/0.1)] dark:shadow-none dark:ring-1 dark:ring-white/10 dark:hover:bg-zinc-800/60">
                 <a
                   href="https://hiro-easier-hiring.vercel.app/"
                   target="_blank"
@@ -272,45 +303,43 @@ export default async function Home() {
                   className="absolute inset-0 rounded-xl"
                   aria-label="Open Hiro CV Drafter"
                 />
-                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-purple-500 to-pink-600">
-                  <FileText className="h-4 w-4 text-white" />
-                </div>
-                <div className="min-w-0">
-                  <div className="truncate text-sm font-semibold text-zinc-900 dark:text-white">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-tint-green text-acc-green">
+                  <FileText className="h-[18px] w-[18px]" />
+                </span>
+                <span className="min-w-0 flex-1">
+                  <span className="block truncate text-sm font-semibold text-zinc-900 dark:text-white">
                     {t("toolsSpotlight.cvTool")}
-                  </div>
-                  <div className="truncate text-xs text-zinc-500 dark:text-zinc-400">
-                    {t("toolsSpotlight.cvToolDesc")}
-                  </div>
-                  <div className="mt-1 flex items-center gap-1">
-                    <span className="text-[10px] text-zinc-400 dark:text-zinc-500">by</span>
+                  </span>
+                  <span className="block truncate text-xs text-zinc-500 dark:text-zinc-400">
+                    {t("toolsSpotlight.cvToolDesc")} ·{" "}
                     <a
                       href="https://mohamed-nejjar.vercel.app/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="relative z-10 text-[10px] font-medium text-purple-600 dark:text-purple-400 hover:underline"
+                      className="relative z-10 font-medium text-zinc-500 hover:underline dark:text-zinc-400"
                     >
                       Mohamed Nejjar
                     </a>
-                  </div>
-                </div>
+                  </span>
+                </span>
+                <ArrowRight className="h-4 w-4 shrink-0 text-zinc-300 transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-zinc-500 dark:text-zinc-600 dark:group-hover:text-zinc-300" />
               </div>
 
-              <div className="flex items-center gap-3 rounded-xl border border-dashed border-zinc-200 dark:border-white/10 bg-white/60 dark:bg-zinc-900/60 p-3.5 opacity-60">
-                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-amber-500 to-orange-600">
-                  <CalendarDays className="h-4 w-4 text-white" />
-                </div>
-                <div className="min-w-0 flex-1">
-                  <div className="truncate text-sm font-semibold text-zinc-900 dark:text-white">
+              <div className="flex items-center gap-4 rounded-xl bg-card/60 px-4 py-3.5 shadow-[0_1px_8px_rgb(0_0_0/0.03)] dark:shadow-none dark:ring-1 dark:ring-white/5">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-tint-plum text-acc-plum">
+                  <CalendarDays className="h-[18px] w-[18px]" />
+                </span>
+                <span className="min-w-0 flex-1">
+                  <span className="block truncate text-sm font-semibold text-zinc-900 dark:text-white">
                     {t("toolsSpotlight.eventTool")}
-                  </div>
-                  <div className="truncate text-xs text-zinc-500 dark:text-zinc-400">
+                  </span>
+                  <span className="block truncate text-xs text-zinc-500 dark:text-zinc-400">
                     {t("toolsSpotlight.eventToolDesc")}
-                  </div>
-                </div>
-                <Badge className="shrink-0 text-[10px] border-amber-500/30 bg-amber-100 dark:bg-amber-500/10 text-amber-700 dark:text-amber-400">
+                  </span>
+                </span>
+                <span className="shrink-0 rounded-full bg-tint-saffron px-2.5 py-0.5 text-[11px] font-semibold text-acc-saffron">
                   {t("toolsSpotlight.eventToolStatus")}
-                </Badge>
+                </span>
               </div>
             </div>
           </div>
@@ -318,40 +347,31 @@ export default async function Home() {
       </section>
 
       {/* ========== COMMUNITY ========== */}
-      <section className="relative border-b border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-950 py-10 sm:py-16 overflow-hidden">
-        {/* Moroccan corner ornaments */}
-        <MoroccanCorner
-          position="bottom-right"
-          className="pointer-events-none absolute right-0 bottom-0 h-28 w-28 sm:h-36 sm:w-36 opacity-40"
-        />
-
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid items-center gap-8 lg:grid-cols-5">
-            {/* Content */}
-            <div className="lg:col-span-3">
-              <Badge className="mb-3 border-amber-500/30 bg-amber-100 dark:bg-amber-500/10 text-amber-700 dark:text-amber-400">
-                <Heart className="mr-1.5 h-3.5 w-3.5" />
-                {t("community.badge")}
-              </Badge>
-              <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-3xl">
+      <section className="relative py-16 sm:py-24">
+        <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+          <div className="reveal grid items-center gap-10 lg:grid-cols-12 lg:gap-12">
+            <div className="lg:col-span-7">
+              <span className="eyebrow">{t("community.badge")}</span>
+              <h2 className="font-display mt-3 text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-3xl">
                 {t("community.title")}
-                <span className="text-emerald-600 dark:text-emerald-400">
-                  {t("community.titleHighlight")}
-                </span>
+                <span className="text-bloom">{t("community.titleHighlight")}</span>
               </h2>
-              <p className="mt-4 text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
+              <p className="mt-3 text-sm leading-relaxed text-zinc-500 dark:text-zinc-400 sm:text-[15px]">
                 {t("community.description1")}
               </p>
-              <p className="mt-2 text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
+              <p className="mt-2 text-sm leading-relaxed text-zinc-500 dark:text-zinc-400 sm:text-[15px]">
                 {t("community.description2")}{" "}
-                <span className="font-semibold text-zinc-900 dark:text-white">
+                <span className="font-semibold text-zinc-800 dark:text-zinc-200">
                   {t("community.atlasName")}
                 </span>
                 {t("community.description3")}
               </p>
 
               <div className="mt-5 flex flex-col gap-2.5 sm:flex-row sm:gap-3">
-                <Button asChild className="text-white bg-emerald-600 hover:bg-emerald-500">
+                <Button
+                  asChild
+                  className="rounded-full bg-zinc-900 px-6 text-white shadow-md shadow-zinc-900/15 hover:bg-zinc-800 dark:bg-white dark:text-zinc-900 dark:shadow-none dark:hover:bg-zinc-200"
+                >
                   <Link href="/about">
                     <Users className="mr-2 h-4 w-4" />
                     {t("community.aboutCommunity")}
@@ -359,8 +379,8 @@ export default async function Home() {
                 </Button>
                 <Button
                   asChild
-                  variant="outline"
-                  className="border border-zinc-200 dark:border-white/10 text-zinc-900 dark:text-white hover:border-emerald-500/50 hover:bg-emerald-50 dark:hover:bg-emerald-500/10"
+                  variant="ghost"
+                  className="rounded-full px-6 text-zinc-600 hover:bg-card hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/60 dark:hover:text-white"
                 >
                   <Link href="/faq">
                     <HelpCircle className="mr-2 h-4 w-4" />
@@ -370,42 +390,17 @@ export default async function Home() {
               </div>
             </div>
 
-            {/* Visual card — desktop only */}
-            <div className="hidden lg:flex lg:col-span-2 items-center justify-center">
-              <div className="relative flex flex-col items-center rounded-2xl border border-zinc-200/80 dark:border-white/10 bg-gradient-to-br from-zinc-50 to-white dark:from-zinc-900 dark:to-zinc-800/80 p-10 shadow-sm">
-                {/* Moroccan-inspired 8-pointed star as background watermark */}
-                <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-[0.04] dark:opacity-[0.06]">
-                  <svg viewBox="0 0 100 100" className="h-48 w-48">
-                    <g transform="translate(50, 50)">
-                      <rect x="-25" y="-25" width="50" height="50" className="fill-emerald-600" />
-                      <rect
-                        x="-25"
-                        y="-25"
-                        width="50"
-                        height="50"
-                        transform="rotate(45)"
-                        className="fill-emerald-600"
-                      />
-                    </g>
-                  </svg>
-                </div>
-
-                <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-emerald-500 to-teal-600 shadow-lg shadow-emerald-500/25">
-                  <span className="text-3xl">🤝</span>
-                </div>
-                <h3 className="mt-4 text-xl font-bold text-zinc-900 dark:text-white">
-                  {t("builtTogether")}
-                </h3>
-                <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">
-                  {t("byTheCommunity")}
-                </p>
-                {/* Moroccan flag accent */}
-                <div className="mt-4 flex gap-1.5">
-                  <span className="h-1.5 w-5 rounded-full bg-red-500/70" />
-                  <span className="h-1.5 w-5 rounded-full bg-amber-500/70" />
-                  <span className="h-1.5 w-5 rounded-full bg-green-500/70" />
-                </div>
-              </div>
+            <div className="hidden flex-col items-center text-center lg:col-span-5 lg:flex">
+              <p
+                dir="rtl"
+                lang="ar"
+                className="float-slower text-6xl font-bold leading-snug text-bloom"
+              >
+                مرحبا بيك
+              </p>
+              <p className="mt-5 text-sm text-zinc-400 dark:text-zinc-500">
+                {t("builtTogether")} · {t("byTheCommunity")}
+              </p>
             </div>
           </div>
         </div>

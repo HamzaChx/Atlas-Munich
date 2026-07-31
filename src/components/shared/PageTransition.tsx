@@ -5,10 +5,6 @@ import { cn } from "@/lib/utils";
 
 /**
  * PageTransition component following premium UI principles:
- * - Rule 35: Animations 150-300ms
- * - Rule 36: Motion to explain cause and effect
- * - Rule 41: Speed is UX
- * - Rule 43: Avoid layout shifts
  */
 interface PageTransitionProps {
   children: React.ReactNode;
@@ -43,7 +39,6 @@ export function PageTransition({ children, className }: PageTransitionProps) {
 
 /**
  * Staggered animation wrapper for list items
- * Rule 36: Motion to explain cause and effect
  */
 interface StaggerChildrenProps {
   children: React.ReactNode;

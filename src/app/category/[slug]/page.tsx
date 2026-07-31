@@ -118,53 +118,12 @@ export default async function CategoryPage({ params }: PageProps) {
     { label: localizedCategoryTitle },
   ];
 
-  const themeMap: Record<string, { from: string; to: string; text: string }> = {
-    "rent-housing": {
-      from: "from-blue-500",
-      to: "to-cyan-500",
-      text: "text-blue-600 dark:text-blue-400",
-    },
-    "kvr-residence": {
-      from: "from-emerald-500",
-      to: "to-teal-500",
-      text: "text-emerald-600 dark:text-emerald-400",
-    },
-    "university-life": {
-      from: "from-purple-500",
-      to: "to-pink-500",
-      text: "text-purple-600 dark:text-purple-400",
-    },
-    "halal-food": {
-      from: "from-orange-500",
-      to: "to-red-500",
-      text: "text-orange-600 dark:text-orange-400",
-    },
-    career: { from: "from-rose-500", to: "to-pink-500", text: "text-rose-600 dark:text-rose-400" },
-    "useful-apps": {
-      from: "from-indigo-500",
-      to: "to-violet-500",
-      text: "text-indigo-600 dark:text-indigo-400",
-    },
-  };
-
-  const theme = themeMap[category.key] || {
-    from: "from-emerald-500",
-    to: "to-teal-500",
-    text: "text-emerald-600 dark:text-emerald-400",
-  };
+  const tint = "bg-zellige-soft text-zellige";
 
   return (
     <div className="min-h-screen">
       {/* ========== HERO ========== */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-zinc-50 via-white to-zinc-50 dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950 border-b border-zinc-200 dark:border-white/10">
-        {/* Ambient gradient orbs */}
-        <div
-          className={`pointer-events-none absolute -left-20 top-1/4 h-[280px] w-[280px] sm:h-[420px] sm:w-[420px] rounded-full bg-gradient-to-br ${theme.from}/20 ${theme.to}/10 blur-[100px]`}
-        />
-        <div
-          className={`pointer-events-none absolute -right-20 bottom-1/4 h-[280px] w-[280px] sm:h-[420px] sm:w-[420px] rounded-full bg-gradient-to-br ${theme.to}/20 ${theme.from}/10 blur-[100px]`}
-        />
-
+      <section className="relative overflow-hidden bg-background border-b border-zinc-200 dark:border-white/10">
         <div className="relative z-10 mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8 lg:py-18">
           {/* Breadcrumbs */}
           <div className="mb-8">
@@ -175,15 +134,13 @@ export default async function CategoryPage({ params }: PageProps) {
           <div className="max-w-2xl">
             {/* Category icon */}
             <div className="mb-6">
-              <div
-                className={`inline-flex items-center justify-center rounded-2xl bg-gradient-to-br ${theme.from} ${theme.to} p-3.5 text-white shadow-lg`}
-              >
+              <div className={`inline-flex items-center justify-center rounded-2xl p-3.5 ${tint}`}>
                 <IconComponent className="h-7 w-7" />
               </div>
             </div>
 
             {/* Title */}
-            <h1 className="text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-4xl lg:text-5xl">
+            <h1 className="font-display text-3xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-4xl lg:text-5xl">
               {localizedCategoryTitle}
             </h1>
 
@@ -215,22 +172,14 @@ export default async function CategoryPage({ params }: PageProps) {
       </section>
 
       {/* ========== GUIDES GRID ========== */}
-      <section className="relative border-b border-zinc-200 dark:border-white/10 bg-white dark:bg-zinc-950 py-12 sm:py-16 lg:py-20">
-        {/* Category-themed separator line */}
-        <div
-          className={`absolute left-0 top-0 h-1 w-full bg-gradient-to-r ${theme.from} ${theme.to} opacity-80`}
-        />
+      <section className="relative border-b border-zinc-200 dark:border-white/10 bg-background py-12 sm:py-16 lg:py-20">
+        <div className="absolute left-0 top-0 h-1 w-full bg-zellige/60" />
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           {/* Section header */}
           <div className="mb-8 sm:mb-10">
-            <div className="mb-2 flex items-center gap-2">
-              <BookOpen className={`h-4 w-4 ${theme.text}`} />
-              <span className="text-xs font-semibold uppercase tracking-wider text-zinc-500 dark:text-zinc-400">
-                {localizedCategoryTitle}
-              </span>
-            </div>
-            <h2 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-3xl">
+            <span className="eyebrow mb-2">{localizedCategoryTitle}</span>
+            <h2 className="font-display text-2xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-3xl">
               {(getMessage("categoryPage.browseGuides") ?? "Browse {count} Guides").replace(
                 "{count}",
                 String(categoryGuides.length)

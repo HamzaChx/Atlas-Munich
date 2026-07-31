@@ -6,9 +6,6 @@ import { cn } from "@/lib/utils"
 
 /**
  * Badge component following premium UI principles:
- * - Rule 6: Visual hierarchy obvious
- * - Rule 27: Color must convey meaning
- * - Rule 28: WCAG AA contrast
  */
 const badgeVariants = cva(
   "inline-flex items-center justify-center rounded-full border px-2.5 py-0.5 text-xs font-medium w-fit whitespace-nowrap shrink-0 [&>svg]:size-3 gap-1 [&>svg]:pointer-events-none focus-visible:ring-2 focus-visible:ring-emerald-500/50 focus-visible:ring-offset-1 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] overflow-hidden",

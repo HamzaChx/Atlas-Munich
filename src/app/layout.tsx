@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Geist } from "next/font/google";
+import { Archivo, Hanken_Grotesk } from "next/font/google";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getLocale } from "next-intl/server";
 import { Analytics } from "@vercel/analytics/next";
@@ -9,8 +9,14 @@ import { ThemeProvider } from "@/components/shared";
 import { ChatbotWrapper } from "@/components/chatbot";
 import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const archivo = Archivo({
+  variable: "--font-archivo",
+  subsets: ["latin"],
+  axes: ["wdth"],
+});
+
+const hanken = Hanken_Grotesk({
+  variable: "--font-hanken",
   subsets: ["latin"],
 });
 
@@ -163,7 +169,7 @@ export default async function RootLayout({
     <html
       lang={locale}
       suppressHydrationWarning
-      className={[geistSans.variable, "antialiased"].join(" ")}
+      className={[archivo.variable, hanken.variable, "antialiased"].join(" ")}
     >
       <head>
         <script
@@ -171,9 +177,14 @@ export default async function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-screen bg-white transition-colors dark:bg-zinc-950">
+      <body className="min-h-screen bg-background transition-colors">
         <NextIntlClientProvider messages={messages}>
-          <ThemeProvider attribute="class" defaultTheme="light" disableTransitionOnChange>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
             <Header locale={locale as "en" | "fr"} translations={navTranslations} />
             <main className="pt-14 sm:pt-16">{children}</main>
             <ConditionalFooter />

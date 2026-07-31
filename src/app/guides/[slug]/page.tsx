@@ -291,7 +291,6 @@ export default async function GuidePage({ params }: PageProps) {
 
       {/* ========== HERO ========== */}
       <section className="relative overflow-hidden bg-gradient-to-b from-zinc-50 via-white to-white dark:from-zinc-950 dark:via-zinc-900 dark:to-zinc-950 border-b border-zinc-200 dark:border-white/10">
-        {/* Ambient gradient orbs */}
         <div
           className={`pointer-events-none absolute -left-32 top-0 h-[400px] w-[400px] sm:h-[600px] sm:w-[600px] rounded-full bg-gradient-to-br ${theme.from}/15 ${theme.to}/8 blur-[120px]`}
         />
@@ -356,7 +355,7 @@ export default async function GuidePage({ params }: PageProps) {
       </section>
 
       {/* ========== CONTENT ========== */}
-      <section className="relative bg-white dark:bg-zinc-950">
+      <section className="relative bg-background">
         <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8 lg:py-16">
           <div className="grid gap-10 lg:gap-16 lg:grid-cols-[minmax(0,1fr)_260px]">
             {/* Main article */}

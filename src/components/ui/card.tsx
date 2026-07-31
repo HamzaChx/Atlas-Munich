@@ -4,10 +4,6 @@ import { cn } from "@/lib/utils"
 
 /**
  * Card components following premium UI principles:
- * - Rule 34: Hover states are required
- * - Rule 35: Animations 150-300ms
- * - Rule 43: Avoid layout shifts
- * - Rule 44: Micro-interactions sparingly but intentionally
  */
 function Card({ className, ...props }: React.ComponentProps<"div">) {
   return (

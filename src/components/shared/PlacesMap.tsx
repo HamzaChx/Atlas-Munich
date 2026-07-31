@@ -3,6 +3,7 @@
 import "leaflet/dist/leaflet.css";
 import { useEffect, useState } from "react";
 import { useTheme } from "next-themes";
+import { useTranslations } from "next-intl";
 import { Place } from "@/types";
 import { cn } from "@/lib/utils";
 
@@ -36,6 +37,7 @@ const categoryIcons: Record<string, string> = {
 };
 
 export function PlacesMap({ places, className }: PlacesMapProps) {
+  const t = useTranslations("places");
   const [isClient, setIsClient] = useState(false);
   const [Map, setMap] = useState<React.ComponentType<Record<string, unknown>> | null>(null);
 
@@ -56,8 +58,8 @@ export function PlacesMap({ places, className }: PlacesMapProps) {
         )}
       >
         <div className="flex flex-col items-center gap-3">
-          <div className="h-8 w-8 animate-spin rounded-full border-2 border-emerald-500 dark:border-emerald-400 border-t-transparent" />
-          <span className="text-sm text-zinc-500 dark:text-zinc-400">Loading map...</span>
+          <div className="h-8 w-8 animate-spin rounded-full border-2 border-zellige border-t-transparent" />
+          <span className="text-sm text-zinc-500 dark:text-zinc-400">{t("loadingMap")}</span>
         </div>
       </div>
     );
@@ -100,6 +102,7 @@ export function PlacesMap({ places, className }: PlacesMapProps) {
 
 // Separate component to handle the actual map rendering
 function MapWrapper({ places, center }: { places: Place[]; center: [number, number] }) {
+  const t = useTranslations("places");
   const { resolvedTheme } = useTheme();
   const [leaflet, setLeaflet] = useState<{
     MapContainer: React.ComponentType<Record<string, unknown>>;
@@ -132,8 +135,8 @@ function MapWrapper({ places, center }: { places: Place[]; center: [number, numb
     return (
       <div className="h-[500px] w-full flex items-center justify-center bg-zinc-100 dark:bg-zinc-900/50">
         <div className="flex flex-col items-center gap-3">
-          <div className="h-8 w-8 animate-spin rounded-full border-2 border-emerald-500 dark:border-emerald-400 border-t-transparent" />
-          <span className="text-sm text-zinc-500 dark:text-zinc-400">Loading map...</span>
+          <div className="h-8 w-8 animate-spin rounded-full border-2 border-zellige border-t-transparent" />
+          <span className="text-sm text-zinc-500 dark:text-zinc-400">{t("loadingMap")}</span>
         </div>
       </div>
     );

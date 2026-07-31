@@ -5,3 +5,4 @@ export * from "./FeaturedGuides";
 export * from "./Events";
 export * from "./MunichSkyline";
 export * from "./MoroccanPatterns";
+export * from "./Identity";

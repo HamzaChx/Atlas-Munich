@@ -7,17 +7,16 @@
     "faq": "FAQ",
     "about": "À propos",
     "search": "Rechercher",
-
     "toggleTheme": "Changer de thème",
     "tools": "Outils"
   },
   "home": {
-    "heroTitle": "Votre guide complet pour",
-    "heroTitleHighlight": "réussir à Munich",
-    "heroSubtitle": "Créé par",
+    "heroTitle": "Nouveau à Munich ?",
+    "heroTitleHighlight": "On est là pour vous.",
+    "heroSubtitle": "Guides, adresses et assistants IA pour les Marocains qui s'installent à Munich. Lancé par",
     "heroCommunity": "Hamza Chaouki",
-    "heroSubtitle2": ", pour la communauté marocaine.",
-    "searchPlaceholder": "Rechercher des guides, lieux ou réponses...",
+    "heroSubtitle2": ", porté par la communauté.",
+    "searchPlaceholder": "Essayez « Anmeldung », « colocation » ou « boucherie halal »…",
     "quickLinks": {
       "findHousing": "Trouver un logement",
       "kvrRegistration": "Inscription KVR",
@@ -32,17 +31,17 @@
       "free": "Gratuit"
     },
     "categories": {
-      "badge": "Naviguer Munich",
-      "title": "Tout ce dont vous avez besoin,",
-      "titleHighlight": "Au même endroit",
-      "subtitle": "Des guides complets organisés selon ce qui compte le plus pour vous",
+      "badge": "Trouvez votre chemin",
+      "title": "Tout ce qu'il vous faut,",
+      "titleHighlight": " au même endroit",
+      "subtitle": "De vrais guides sur ce qui pose vraiment problème, écrits par ceux qui sont passés par là.",
       "browseAll": "Parcourir tous les guides"
     },
     "toolsSpotlight": {
-      "badge": "Outils IA",
-      "title": "Outils intelligents pour Munich",
-      "subtitle": "Rédigez des candidatures de location gagnantes, créez des CV allemands, planifiez des événements, et plus encore — pour les nouveaux arrivants.",
-      "cta": "Explorer tous les outils",
+      "badge": "IA agentique",
+      "title": "Des assistants qui font la paperasse",
+      "subtitle": "Des agents IA conçus pour rédiger vos candidatures de logement, CV allemands et démarches, pour que vous puissiez vivre votre vie.",
+      "cta": "Découvrir les assistants",
       "housingTool": "Rédacteur de candidature logement",
       "housingToolDesc": "Collez une annonce, obtenez un message WG qui obtient des réponses",
       "housingToolStatus": "Disponible",
@@ -57,10 +56,10 @@
       "badge": "Notre histoire",
       "title": "Faire de Munich",
       "titleHighlight": " votre chez-vous",
-      "description1": "Nous connaissons les défis — naviguer la bureaucratie allemande, trouver de la nourriture halal, comprendre les systèmes universitaires, et se sentir un peu perdu dans une nouvelle ville.",
+      "description1": "Nous connaissons les défis, naviguer la bureaucratie allemande, trouver de la nourriture halal, comprendre les systèmes universitaires, et se sentir un peu perdu dans une nouvelle ville.",
       "description2": "C'est pourquoi nous avons créé",
       "atlasName": "Atlas Munich",
-      "description3": " — une base de connaissances collective où chaque conseil, chaque guide et chaque bon plan vient de personnes qui ont parcouru le même chemin.",
+      "description3": ", une base de connaissances collective où chaque conseil, chaque guide et chaque bon plan vient de personnes qui ont parcouru le même chemin.",
       "aboutCommunity": "À propos de notre communauté",
       "commonQuestions": "Questions fréquentes"
     },
@@ -68,7 +67,7 @@
       "badge": "Open Source",
       "title": "Aidez-nous à développer ce",
       "titleHighlight": "Centre de connaissances",
-      "description": "Chaque correction, chaque nouveau guide, chaque expérience partagée aide le prochain Marocain arrivant à Munich. Vos connaissances sont précieuses — partagez-les avec la communauté.",
+      "description": "Chaque correction, chaque nouveau guide, chaque expérience partagée aide le prochain Marocain arrivant à Munich. Vos connaissances sont précieuses, partagez-les avec la communauté.",
       "contributeGithub": "Contribuer sur GitHub",
       "learnHow": "En savoir plus",
       "suggestions": {
@@ -102,13 +101,18 @@
     "moroccanRoots": "Racines marocaines",
     "authenticGuidance": "Conseils authentiques",
     "munichLife": "Vie à Munich",
-    "localExpertise": "Expertise locale"
+    "localExpertise": "Expertise locale",
+    "featured": {
+      "title": "Commencez par ceux-ci",
+      "viewAll": "Tous les guides",
+      "minRead": "min de lecture"
+    }
   },
   "places": {
     "badge": "Lieux vérifiés",
     "title": "Receuil des",
     "titleHighlight": "Lieux",
-    "subtitle": "Restaurants halal, épiceries marocaines, mosquées, espaces d'étude et plus encore — tous vérifiés par notre communauté.",
+    "subtitle": "Restaurants halal, épiceries marocaines, mosquées, espaces d'étude et plus encore, tous vérifiés par notre communauté.",
     "searchPlaceholder": "Rechercher des lieux par nom, tag ou emplacement...",
     "filters": {
       "all": "Tous",
@@ -116,7 +120,11 @@
       "cafes": "Cafés",
       "butchers": "Boucheries",
       "mosques": "Mosquées",
-      "studySpots": "Espaces d'étude"
+      "studySpots": "Espaces d'étude",
+      "groceries": "Épiceries",
+      "bakeries": "Boulangeries",
+      "coworking": "Coworking",
+      "barbers": "Coiffeurs"
     },
     "results": {
       "place": "lieu",
@@ -144,13 +152,14 @@
       "readMore": "Lire plus",
       "showLess": "Réduire",
       "verified": "Vérifié"
-    }
+    },
+    "loadingMap": "Chargement de la carte…"
   },
   "guides": {
     "badge": "Guides communautaires",
     "title": "Votre",
     "titleHighlight": "Guide Munich complet",
-    "subtitle": "De votre premier jour jusqu'à vous sentir chez vous — des guides complets écrits par",
+    "subtitle": "De votre premier jour jusqu'à vous sentir chez vous, des guides complets écrits par",
     "subtitleHighlight": " des Marocains qui sont passés par là",
     "searchPlaceholder": "Rechercher des conseils logement, visa, nourriture halal...",
     "stats": {
@@ -168,6 +177,13 @@
       "description": "Nos guides sont en constante évolution. Si vous avez des connaissances à partager ou besoin d'aide, rejoignez notre communauté.",
       "browseFaqs": "Parcourir les FAQs",
       "contributeGuide": "Contribuer un guide"
+    },
+    "callout": {
+      "title": "Attention : les infos peuvent changer",
+      "body": "Nous faisons de notre mieux pour garder ces guides à jour, mais certains détails peuvent évoluer. Prenez-les comme point de départ, et si quelque chose a changé, dites-le-nous pour que nous puissions corriger."
+    },
+    "list": {
+      "title": "Tous les guides"
     }
   },
   "faq": {
@@ -190,13 +206,15 @@
       "description": "Consultez nos guides détaillés ou contactez la communauté.",
       "browseGuides": "Parcourir les guides",
       "contactUs": "Nous contacter"
-    }
+    },
+    "noResults": "Aucune question trouvée",
+    "noResultsDescription": "Essayez une autre recherche ou parcourez toutes les catégories."
   },
   "about": {
     "badge": "Projet communautaire",
     "title": "À propos d'",
     "titleHighlight": "Atlas Munich",
-    "subtitle": "Atlas Munich est un guide communautaire créé pour faciliter l'arrivée à Munich — particulièrement pour les étudiants marocains naviguant la bureaucratie, le logement et la vie quotidienne.",
+    "subtitle": "Atlas Munich est un guide communautaire créé pour faciliter l'arrivée à Munich, particulièrement pour les étudiants marocains naviguant la bureaucratie, le logement et la vie quotidienne.",
     "howToContribute": "Comment contribuer",
     "getInTouch": "Nous contacter",
     "manifesto": {
@@ -205,11 +223,11 @@
       "description": "Nous nous concentrons sur des étapes pratiques, des expériences réelles et les petits détails qui rendent Munich plus facile à naviguer.",
       "items": {
         "practical": "Pratique, étape par étape",
-        "practicalDesc": "Pas de superflu — juste ce qui fonctionne.",
+        "practicalDesc": "Pas de superflu, juste ce qui fonctionne.",
         "studentAware": "Adapté aux étudiants",
         "studentAwareDesc": "Réalités LMU/TUM, délais et systèmes.",
         "openSource": "Open source",
-        "openSourceDesc": "Tout le monde peut l'améliorer — en toute transparence."
+        "openSourceDesc": "Tout le monde peut l'améliorer, en toute transparence."
       }
     },
     "story": {
@@ -217,7 +235,7 @@
       "title": "Pourquoi nous avons créé ceci",
       "p1": "Déménager à Munich en tant qu'étudiant ou professionnel marocain peut être accablant. La bureaucratie est complexe, trouver un logement est difficile, et découvrir où trouver de la nourriture halal prend du temps.",
       "p2Start": "Atlas Munich est né de cette expérience.",
-      "p2End": " Nous voulions créer une ressource unique et fiable qui répond à toutes les questions des nouveaux arrivants — les mêmes questions que nous avions autrefois.",
+      "p2End": " Nous voulions créer une ressource unique et fiable qui répond à toutes les questions des nouveaux arrivants, les mêmes questions que nous avions autrefois.",
       "p3": "Aujourd'hui, Atlas Munich est une collection grandissante de guides, conseils et ressources maintenue par des bénévoles qui sont passés par là et veulent aider les autres à faire de même."
     },
     "values": {
@@ -344,14 +362,17 @@
       "search": "Rechercher",
       "aboutUs": "À propos",
       "contribute": "Contribuer",
-      "contact": "Contact"
+      "contact": "Contact",
+      "privacy": "Politique de confidentialité",
+      "terms": "Conditions d'utilisation",
+      "aiTools": "Outils IA"
     }
   },
   "search": {
     "badge": "Tout rechercher",
     "title": "Trouvez ce dont vous",
     "titleHighlight": "avez besoin",
-    "subtitle": "Recherchez parmi les guides, les lieux et les FAQ — votre base de connaissances complète sur Munich à portée de main.",
+    "subtitle": "Recherchez parmi les guides, les lieux et les FAQ, votre base de connaissances complète sur Munich à portée de main.",
     "placeholder": "Rechercher des guides, des lieux, des FAQ...",
     "resultsFound": "Résultats trouvés",
     "noResults": "Aucun résultat trouvé",
@@ -401,11 +422,11 @@
       "description": "Vérifiée et modérée par l'équipe Atlas Munich"
     },
     "benefitsTitle": "Pourquoi rejoindre notre communauté ?",
-    "benefitsSubtitle": "Plus qu'un simple groupe de discussion — c'est votre réseau de soutien à Munich.",
+    "benefitsSubtitle": "Plus qu'un simple groupe de discussion, c'est votre réseau de soutien à Munich.",
     "benefits": {
       "support": {
         "title": "Support instantané",
-        "description": "Obtenez des réponses rapides de personnes qui ont vécu les mêmes défis — de l'Anmeldung à la recherche d'appartement."
+        "description": "Obtenez des réponses rapides de personnes qui ont vécu les mêmes défis, de l'Anmeldung à la recherche d'appartement."
       },
       "realtime": {
         "title": "Mises à jour en temps réel",
@@ -426,7 +447,7 @@
     "guidelines": {
       "respectful": "Soyez respectueux et gentil. Nous sommes tous ici pour nous aider mutuellement à réussir à Munich.",
       "helpful": "Partagez les connaissances généreusement. Votre expérience pourrait épargner des heures de frustration à quelqu'un.",
-      "language": "N'hésitez pas à utiliser l'anglais, le français, l'arabe, le Darija ou l'allemand — nous sommes multilingues !",
+      "language": "N'hésitez pas à utiliser l'anglais, le français, l'arabe, le Darija ou l'allemand, nous sommes multilingues !",
       "spam": "Pas de spam, de publicité ou d'autopromotion sans la permission des modérateurs.",
       "privacy": "Respectez la vie privée. Ne partagez pas d'informations personnelles ou de captures d'écran sans consentement."
     },
@@ -442,7 +463,12 @@
     "previous": "Précédent",
     "close": "Fermer",
     "open": "Ouvrir",
-    "language": "Langue"
+    "language": "Langue",
+    "explore": "Explorer",
+    "guide": "guide",
+    "guides": "guides",
+    "new": "Nouveau",
+    "searchAction": "Rechercher"
   },
   "placesData": {
     "places": {
@@ -673,7 +699,11 @@
         "Où puis-je étudier ?",
         "Des endroits marocains pour manger"
       ],
-      "hamza": ["À propos de ce projet", "Comment contribuer ?", "Quel est le stack technique ?"],
+      "hamza": [
+        "À propos de ce projet",
+        "Comment contribuer ?",
+        "Quel est le stack technique ?"
+      ],
       "riad": [
         "Rédige une candidature WG pour moi",
         "Rédige une candidature formelle",
@@ -701,10 +731,12 @@
       "jmila": "Un guide calme et gourmand qui recommande les meilleurs endroits à Munich.",
       "hamza": "Un développeur technique et engagé dans la communauté qui peut expliquer le projet et comment contribuer.",
       "riad": "Un spécialiste des candidatures locatives qui rédige des messages à fort taux de conversion pour le marché locatif compétitif de Munich.",
-      "dalilah": "Une navigatrice bureaucratique précise et empathique qui guide les nouveaux arrivants marocains à travers chaque démarche administrative — Anmeldung, titres de séjour, KVR, assurance maladie et plus encore.",
+      "dalilah": "Une navigatrice bureaucratique précise et empathique qui guide les nouveaux arrivants marocains à travers chaque démarche administrative, Anmeldung, titres de séjour, KVR, assurance maladie et plus encore.",
       "ilham": "Une compagnon de recherche académique d'élite qui aide les étudiants de Munich à développer des questions de recherche, structurer des articles, affiner l'écriture et préparer leurs thèses avec intégrité académique.",
       "loubna": "Une navigatrice santé rassurante et culturellement sensible qui aide les étudiants marocains à Munich à comprendre l'assurance maladie allemande, trouver des médecins, traduire leurs symptômes et accéder à un soutien psychologique."
-    }
+    },
+    "redirecting": "Redirection vers",
+    "typeMessage": "Écris ton message…"
   },
   "legal": {
     "privacy": {
@@ -748,7 +780,11 @@
         "status": "Disponible",
         "cta": "Lancer l'outil",
         "poweredBy": "Propulsé par IA via Riad",
-        "tags": ["Candidatures WG", "Annonces appartement", "Allemand parfait"]
+        "tags": [
+          "Candidatures WG",
+          "Annonces appartement",
+          "Allemand parfait"
+        ]
       },
       "cv": {
         "title": "Créateur de CV & Lettre de motivation",
@@ -756,23 +792,35 @@
         "status": "Disponible",
         "cta": "Lancer Hiro",
         "poweredBy": "Propulsé par Hiro",
-        "tags": ["Format CV allemand", "Lettres de motivation", "Adapté à Munich"]
+        "tags": [
+          "Format CV allemand",
+          "Lettres de motivation",
+          "Adapté à Munich"
+        ]
       },
       "events": {
         "title": "Planificateur d'événements",
         "description": "Planifiez des sorties, des sessions d'étude et des événements communautaires avec vos amis à Munich. Partagez des plans, votez pour des lieux et coordonnez sans effort.",
         "status": "Bientôt disponible",
         "cta": "Bientôt disponible",
-        "comingSoonNote": "Nous construisons cet outil — restez connecté !",
-        "tags": ["Planifier des événements", "Inviter des amis", "Lieux à Munich"]
+        "comingSoonNote": "Nous construisons cet outil, restez connecté !",
+        "tags": [
+          "Planifier des événements",
+          "Inviter des amis",
+          "Lieux à Munich"
+        ]
       },
       "dalilah": {
         "title": "Navigateur Bureaucratie Allemande",
-        "description": "Anmeldung, permis de séjour, KVR, assurance maladie et formulaires allemands — Dalilah vous guide à travers chaque étape sans délai manqué.",
+        "description": "Anmeldung, permis de séjour, KVR, assurance maladie et formulaires allemands, Dalilah vous guide à travers chaque étape sans délai manqué.",
         "status": "Disponible",
         "cta": "Lancer l'outil",
         "poweredBy": "Optimisé par IA via Dalilah",
-        "tags": ["Anmeldung", "Permis de séjour", "KVR & Délais"]
+        "tags": [
+          "Anmeldung",
+          "Permis de séjour",
+          "KVR & Délais"
+        ]
       },
       "ilham": {
         "title": "Compagnon de Recherche Académique",
@@ -780,15 +828,23 @@
         "status": "Disponible",
         "cta": "Lancer l'outil",
         "poweredBy": "Optimisé par IA via Ilham",
-        "tags": ["Recherche & Littérature", "Écriture scientifique", "Thèse & LaTeX"]
+        "tags": [
+          "Recherche & Littérature",
+          "Écriture scientifique",
+          "Thèse & LaTeX"
+        ]
       },
       "loubna": {
         "title": "Navigatrice Santé & Traductrice Médicale",
-        "description": "Loubna vous aide à comprendre l'assurance maladie allemande, trouver des médecins anglophones, traduire vos symptômes et comprendre vos ordonnances — pour que rien ne se perde dans la traduction.",
+        "description": "Loubna vous aide à comprendre l'assurance maladie allemande, trouver des médecins anglophones, traduire vos symptômes et comprendre vos ordonnances, pour que rien ne se perde dans la traduction.",
         "status": "Disponible",
         "cta": "Lancer l'outil",
         "poweredBy": "Optimisé par IA via Loubna",
-        "tags": ["Assurance Maladie", "Recherche Médecin", "Traduction Médicale"]
+        "tags": [
+          "Assurance Maladie",
+          "Recherche Médecin",
+          "Traduction Médicale"
+        ]
       }
     },
     "moreComing": "D'autres assistants arrivent bientôt. Une idée ? Contribuez sur",
@@ -894,7 +950,7 @@
     "badge": "Navigatrice Santé",
     "title": "Santé en Allemagne",
     "titleHighlight": "Simplifiée",
-    "subtitle": "Loubna vous guide dans l'assurance maladie, la recherche de médecins et les démarches médicales à Munich — dans votre langue.",
+    "subtitle": "Loubna vous guide dans l'assurance maladie, la recherche de médecins et les démarches médicales à Munich, dans votre langue.",
     "intro": "Salam! Je suis Loubna. Posez-moi votre question santé et je vous guide pas à pas dans le système médical allemand.",
     "cta": "Questionner Loubna",
     "features": {
@@ -909,13 +965,13 @@
     "tips": {
       "title": "Conseils Santé à Munich",
       "tip1Title": "Inscrivez-vous à TK pour un support en anglais",
-      "tip1Desc": "La Techniker Krankenkasse (TK) est le premier choix pour les étudiants internationaux — hotline en anglais, app numérique, inscription rapide sur tk.de.",
+      "tip1Desc": "La Techniker Krankenkasse (TK) est le premier choix pour les étudiants internationaux, hotline en anglais, app numérique, inscription rapide sur tk.de.",
       "tip2Title": "Commencez toujours par un Hausarzt (médecin généraliste)",
       "tip2Desc": "Votre médecin généraliste est votre premier contact pour tous les problèmes non urgents. Il émet des ordonnances et des orientations vers des spécialistes.",
       "tip3Title": "Soumettez votre attestation à l'université",
       "tip3Desc": "Après votre inscription à l'assurance maladie, soumettez votre Versicherungsnachweis rapidement à l'Immatrikulationsamt.",
       "tip4Title": "Le soutien en santé mentale est disponible",
-      "tip4Desc": "Se sentir dépassé est normal. TK couvre la psychothérapie après une évaluation initiale — demandez à Loubna comment y accéder."
+      "tip4Desc": "Se sentir dépassé est normal. TK couvre la psychothérapie après une évaluation initiale, demandez à Loubna comment y accéder."
     },
     "resources": {
       "title": "Ressources Santé",

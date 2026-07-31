@@ -17,7 +17,15 @@ import "leaflet/dist/leaflet.css";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import L from "leaflet";
-import { MapContainer, Marker, Popup, TileLayer, useMap, useMapEvents } from "react-leaflet";
+import {
+  AttributionControl,
+  MapContainer,
+  Marker,
+  Popup,
+  TileLayer,
+  useMap,
+  useMapEvents,
+} from "react-leaflet";
 import { useTheme } from "next-themes";
 import { useTranslations } from "next-intl";
 import { ExternalLink, Maximize, MapPin, Minus, Plus, Star } from "lucide-react";
@@ -217,6 +225,25 @@ function MarkerLayer({ places, selected, onSelect }: MarkerLayerProps) {
 
 /* ------------------------------------------------------------------ popup */
 
+/**
+ * Bounds that hold the bulk of the set. A handful of places sit far out in the
+ * suburbs; framing on them would leave the city itself as one unreadable
+ * cluster, so large sets are framed on their 10th to 90th percentile and the
+ * outliers stay one pan away.
+ */
+function coreBounds(places: Place[]) {
+  const lats = places.map((place) => place.lat!).sort((a, b) => a - b);
+  const lngs = places.map((place) => place.lng!).sort((a, b) => a - b);
+  const at = (values: number[], ratio: number) =>
+    values[Math.min(values.length - 1, Math.max(0, Math.round((values.length - 1) * ratio)))];
+
+  const trim = places.length >= 20 ? 0.1 : 0;
+  return L.latLngBounds(
+    [at(lats, trim), at(lngs, trim)],
+    [at(lats, 1 - trim), at(lngs, 1 - trim)]
+  );
+}
+
 function PlacePopupCard({ place, label }: { place: Place; label: string }) {
   const t = useTranslations("places");
   const color = accentColor(place.category);
@@ -356,13 +383,17 @@ function Legend({ rows, total, variant }: { rows: LegendRow[]; total: number; va
 
 export interface PlacesMapCanvasProps {
   places: Place[];
+  /** Plural category names, for the counted legend */
   categoryLabels?: Record<string, string>;
+  /** Singular category names, for a single marker's popup */
+  categoryNames?: Record<string, string>;
   className?: string;
 }
 
 export default function PlacesMapCanvas({
   places,
   categoryLabels,
+  categoryNames,
   className,
 }: PlacesMapCanvasProps) {
   const t = useTranslations("places");
@@ -397,10 +428,7 @@ export default function PlacesMapCanvas({
         map.setView([mapped[0].lat!, mapped[0].lng!], 15, { animate });
         return;
       }
-      const bounds = L.latLngBounds(
-        mapped.map((place) => [place.lat!, place.lng!] as [number, number])
-      );
-      map.fitBounds(bounds, { padding: [56, 56], maxZoom: 15, animate });
+      map.fitBounds(coreBounds(mapped), { padding: [56, 56], maxZoom: 15, animate });
     },
     [map, mapped]
   );
@@ -426,8 +454,10 @@ export default function PlacesMapCanvas({
           maxZoom={18}
           zoomControl={false}
           scrollWheelZoom={false}
+          attributionControl={false}
           className="z-0 h-full w-full"
         >
+          <AttributionControl position="bottomright" prefix={false} />
           <TileLayer
             key={isDark ? "dark" : "light"}
             url={
@@ -452,9 +482,7 @@ export default function PlacesMapCanvas({
             >
               <PlacePopupCard
                 place={selected}
-                label={
-                  categoryLabels?.[selected.category] ?? selected.category.replace(/-/g, " ")
-                }
+                label={categoryNames?.[selected.category] ?? selected.category.replace(/-/g, " ")}
               />
             </Popup>
           )}
@@ -469,8 +497,8 @@ export default function PlacesMapCanvas({
           </div>
         )}
 
-        {/* Zoom and framing controls */}
-        <div className="absolute bottom-6 right-4 z-10 flex flex-col gap-1 rounded-2xl bg-card p-1 shadow-[0_8px_30px_rgb(0_0_0/0.10)] dark:shadow-none dark:ring-1 dark:ring-white/10">
+        {/* Zoom and framing controls, kept clear of the legend and the attribution */}
+        <div className="absolute right-4 top-4 z-10 flex flex-col gap-1 rounded-2xl bg-card p-1 shadow-[0_8px_30px_rgb(0_0_0/0.10)] dark:shadow-none dark:ring-1 dark:ring-white/10">
           <button
             type="button"
             onClick={() => map?.zoomIn()}

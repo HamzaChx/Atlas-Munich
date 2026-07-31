@@ -8,8 +8,10 @@ import { cn } from "@/lib/utils";
 
 interface PlacesMapProps {
   places: Place[];
-  /** Localized category names, used by the legend and the marker popups */
+  /** Plural category names, for the counted legend */
   categoryLabels?: Record<string, string>;
+  /** Singular category names, for a single marker's popup */
+  categoryNames?: Record<string, string>;
   className?: string;
 }
 
@@ -36,11 +38,12 @@ const PlacesMapCanvas = dynamic(() => import("./PlacesMapCanvas"), {
   loading: () => <MapSkeleton className="h-[60vh] min-h-[26rem] sm:h-[38rem]" />,
 });
 
-export function PlacesMap({ places, categoryLabels, className }: PlacesMapProps) {
+export function PlacesMap({ places, categoryLabels, categoryNames, className }: PlacesMapProps) {
   return (
     <PlacesMapCanvas
       places={places}
       categoryLabels={categoryLabels}
+      categoryNames={categoryNames}
       className={cn("h-[60vh] min-h-[26rem] sm:h-[38rem]", className)}
     />
   );

@@ -116,6 +116,17 @@
       "map": "Map"
     },
     "mapNote": "Click a marker for details, or a cluster to zoom in. Drag to explore the city.",
+    "category": {
+      "restaurant": "Restaurant",
+      "cafe": "Café",
+      "grocery": "Grocery Store",
+      "bakery": "Bakery",
+      "butcher": "Butcher",
+      "mosque": "Mosque",
+      "study-spot": "Study Spot",
+      "cowork": "Coworking",
+      "barber": "Barber Shop"
+    },
     "map": {
       "legend": "On the map",
       "zoomIn": "Zoom in",

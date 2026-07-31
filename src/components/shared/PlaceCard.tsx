@@ -3,7 +3,24 @@
 import { useState } from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { MapPin, Star, ExternalLink, BadgeCheck, ChevronDown, ChevronUp } from "lucide-react";
+import {
+  BadgeCheck,
+  BookOpen,
+  ChevronDown,
+  ChevronUp,
+  Coffee,
+  Croissant,
+  ExternalLink,
+  Laptop,
+  LucideIcon,
+  MapPin,
+  MoonStar,
+  Scissors,
+  ShoppingBasket,
+  Star,
+  Beef,
+  Utensils,
+} from "lucide-react";
 import { Place } from "@/types";
 import { useTranslations } from "next-intl";
 
@@ -30,16 +47,49 @@ export type PlaceAccent = "terra" | "saffron" | "green" | "blue" | "plum";
 /* One hue per place category, shared with the page filters and the map.
    `key` lets non-Tailwind consumers (the Leaflet markers) reach the same
    `--acc-*` token, so a colour means the same thing everywhere on the page. */
-export const placeAccents: Record<string, { key: PlaceAccent; text: string; dot: string }> = {
-  restaurant: { key: "terra", text: "text-acc-terra", dot: "bg-acc-terra" },
-  butcher: { key: "terra", text: "text-acc-terra", dot: "bg-acc-terra" },
-  cafe: { key: "saffron", text: "text-acc-saffron", dot: "bg-acc-saffron" },
-  bakery: { key: "saffron", text: "text-acc-saffron", dot: "bg-acc-saffron" },
-  grocery: { key: "green", text: "text-acc-green", dot: "bg-acc-green" },
-  mosque: { key: "green", text: "text-acc-green", dot: "bg-acc-green" },
-  "study-spot": { key: "blue", text: "text-acc-blue", dot: "bg-acc-blue" },
-  barber: { key: "blue", text: "text-acc-blue", dot: "bg-acc-blue" },
-  cowork: { key: "plum", text: "text-acc-plum", dot: "bg-acc-plum" },
+export interface PlaceAccentStyles {
+  key: PlaceAccent;
+  /** accent text colour */
+  text: string;
+  /** solid accent fill, for dots and hovered chips */
+  dot: string;
+  /** soft surface, for the icon chip at rest */
+  tint: string;
+}
+
+export const placeAccents: Record<string, PlaceAccentStyles> = {
+  restaurant: { key: "terra", text: "text-acc-terra", dot: "bg-acc-terra", tint: "bg-tint-terra" },
+  butcher: { key: "terra", text: "text-acc-terra", dot: "bg-acc-terra", tint: "bg-tint-terra" },
+  cafe: {
+    key: "saffron",
+    text: "text-acc-saffron",
+    dot: "bg-acc-saffron",
+    tint: "bg-tint-saffron",
+  },
+  bakery: {
+    key: "saffron",
+    text: "text-acc-saffron",
+    dot: "bg-acc-saffron",
+    tint: "bg-tint-saffron",
+  },
+  grocery: { key: "green", text: "text-acc-green", dot: "bg-acc-green", tint: "bg-tint-green" },
+  mosque: { key: "green", text: "text-acc-green", dot: "bg-acc-green", tint: "bg-tint-green" },
+  "study-spot": { key: "blue", text: "text-acc-blue", dot: "bg-acc-blue", tint: "bg-tint-blue" },
+  barber: { key: "blue", text: "text-acc-blue", dot: "bg-acc-blue", tint: "bg-tint-blue" },
+  cowork: { key: "plum", text: "text-acc-plum", dot: "bg-acc-plum", tint: "bg-tint-plum" },
+};
+
+/* The glyph a category wears, on the card chip and on its map marker */
+export const placeIcons: Record<string, LucideIcon> = {
+  restaurant: Utensils,
+  butcher: Beef,
+  cafe: Coffee,
+  bakery: Croissant,
+  grocery: ShoppingBasket,
+  mosque: MoonStar,
+  "study-spot": BookOpen,
+  cowork: Laptop,
+  barber: Scissors,
 };
 
 export function PlaceCard({ place, className }: PlaceCardProps) {

@@ -117,6 +117,17 @@
       "map": "Karte"
     },
     "mapNote": "Klicke auf eine Markierung für Details oder auf eine Gruppe, um hineinzuzoomen. Ziehe, um die Stadt zu erkunden.",
+    "category": {
+      "restaurant": "Restaurant",
+      "cafe": "Café",
+      "grocery": "Lebensmittelladen",
+      "bakery": "Bäckerei",
+      "butcher": "Metzgerei",
+      "mosque": "Moschee",
+      "study-spot": "Lernort",
+      "cowork": "Coworking",
+      "barber": "Friseur"
+    },
     "map": {
       "legend": "Auf der Karte",
       "zoomIn": "Vergrößern",

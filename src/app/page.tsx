@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { SearchBar } from "@/components/shared";
@@ -107,7 +108,7 @@ export default async function Home() {
           <span
             dir="rtl"
             lang="ar"
-            className="float-slow absolute left-[18%] top-[20%] hidden text-6xl font-bold text-bloom/25 lg:block xl:left-[20%] dark:text-bloom/35"
+            className="float-slow absolute left-[18%] top-[20%] hidden text-6xl font-bold text-bloom opacity-[0.25] lg:block xl:left-[20%] dark:opacity-[0.35]"
             style={{ "--tilt": "-6deg" } as React.CSSProperties}
           >
             مرحبا
@@ -127,7 +128,7 @@ export default async function Home() {
           <span
             dir="rtl"
             lang="ar"
-            className="float-slow absolute right-[20%] top-[64%] hidden text-3xl font-semibold text-saffron/45 xl:block"
+            className="float-slow absolute right-[20%] top-[64%] hidden text-3xl font-semibold text-saffron opacity-[0.45] xl:block"
             style={{ "--tilt": "4deg" } as React.CSSProperties}
           >
             الأطلس
@@ -285,8 +286,8 @@ export default async function Home() {
                 href="/housing"
                 className="group flex items-center gap-4 rounded-xl bg-card px-4 py-3.5 shadow-[0_1px_8px_rgb(0_0_0/0.05)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgb(0_0_0/0.1)] dark:shadow-none dark:ring-1 dark:ring-border dark:hover:bg-zinc-800/60"
               >
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-tint-terra text-acc-terra">
-                  <HomeIcon className="h-[18px] w-[18px]" />
+                <span className="flex h-10 w-10 shrink-0 overflow-hidden rounded-lg shadow-sm">
+                  <Image src="/riad.webp" alt="Riad" width={40} height={40} className="h-full w-full object-cover" />
                 </span>
                 <span className="min-w-0 flex-1">
                   <span className="block truncate text-sm font-semibold text-zinc-900 dark:text-zinc-50">
@@ -299,45 +300,41 @@ export default async function Home() {
                 <ArrowRight className="h-4 w-4 shrink-0 text-zinc-300 transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-zinc-500 dark:text-zinc-600 dark:group-hover:text-zinc-300" />
               </Link>
 
-              <div className="group relative flex items-center gap-4 rounded-xl bg-card px-4 py-3.5 shadow-[0_1px_8px_rgb(0_0_0/0.05)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgb(0_0_0/0.1)] dark:shadow-none dark:ring-1 dark:ring-border dark:hover:bg-zinc-800/60">
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-tint-green text-acc-green">
-                  <FileText className="h-[18px] w-[18px]" />
+              <Link
+                href="/bureaucracy"
+                className="group relative flex items-center gap-4 rounded-xl bg-card px-4 py-3.5 shadow-[0_1px_8px_rgb(0_0_0/0.05)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgb(0_0_0/0.1)] dark:shadow-none dark:ring-1 dark:ring-border dark:hover:bg-zinc-800/60"
+              >
+                <span className="flex h-10 w-10 shrink-0 overflow-hidden rounded-lg shadow-sm">
+                  <Image src="/dalilah.webp" alt="Dalilah" width={40} height={40} className="h-full w-full object-cover" />
                 </span>
                 <span className="min-w-0 flex-1">
                   <span className="block truncate text-sm font-semibold text-zinc-900 dark:text-zinc-50">
-                    {t("toolsSpotlight.cvTool")}
+                    {t("toolsSpotlight.bureaucracyTool")}
                   </span>
                   <span className="block truncate text-xs text-zinc-500 dark:text-zinc-400">
-                    {t("toolsSpotlight.cvToolDesc")} ·{" "}
-                    <a
-                      href="https://mohamed-nejjar.vercel.app/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="relative z-10 font-medium text-zinc-500 hover:underline dark:text-zinc-400"
-                    >
-                      Mohamed Nejjar
-                    </a>
+                    {t("toolsSpotlight.bureaucracyToolDesc")}
                   </span>
                 </span>
                 <ArrowRight className="h-4 w-4 shrink-0 text-zinc-300 transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-zinc-500 dark:text-zinc-600 dark:group-hover:text-zinc-300" />
-              </div>
+              </Link>
 
-              <div className="flex items-center gap-4 rounded-xl bg-card/60 px-4 py-3.5 shadow-[0_1px_8px_rgb(0_0_0/0.03)] dark:shadow-none dark:ring-1 dark:ring-border/70">
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-tint-plum text-acc-plum">
-                  <CalendarDays className="h-[18px] w-[18px]" />
+              <Link
+                href="/academic"
+                className="group flex items-center gap-4 rounded-xl bg-card/60 px-4 py-3.5 shadow-[0_1px_8px_rgb(0_0_0/0.03)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgb(0_0_0/0.1)] hover:bg-card dark:shadow-none dark:ring-1 dark:ring-border/70 dark:hover:bg-zinc-800/60"
+              >
+                <span className="flex h-10 w-10 shrink-0 overflow-hidden rounded-lg shadow-sm">
+                  <Image src="/ilham.webp" alt="Ilham" width={40} height={40} className="h-full w-full object-cover" />
                 </span>
                 <span className="min-w-0 flex-1">
                   <span className="block truncate text-sm font-semibold text-zinc-900 dark:text-zinc-50">
-                    {t("toolsSpotlight.eventTool")}
+                    {t("toolsSpotlight.academicTool")}
                   </span>
                   <span className="block truncate text-xs text-zinc-500 dark:text-zinc-400">
-                    {t("toolsSpotlight.eventToolDesc")}
+                    {t("toolsSpotlight.academicToolDesc")}
                   </span>
                 </span>
-                <span className="shrink-0 rounded-full bg-tint-saffron px-2.5 py-0.5 text-[11px] font-semibold text-acc-saffron">
-                  {t("toolsSpotlight.eventToolStatus")}
-                </span>
-              </div>
+                <ArrowRight className="h-4 w-4 shrink-0 text-zinc-300 transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-zinc-500 dark:text-zinc-600 dark:group-hover:text-zinc-300" />
+              </Link>
             </div>
           </div>
         </div>

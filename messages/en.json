@@ -43,12 +43,12 @@
       "housingTool": "Housing Application Writer",
       "housingToolDesc": "Paste a listing, get a WG message that gets replies",
       "housingToolStatus": "Live",
-      "cvTool": "CV & Cover Letter Drafter",
-      "cvToolDesc": "Tailored for Germany's job market",
-      "cvToolStatus": "Live",
-      "eventTool": "Event Planner",
-      "eventToolDesc": "Plan hangouts and events with friends",
-      "eventToolStatus": "Soon"
+      "bureaucracyTool": "Bureaucracy Navigator",
+      "bureaucracyToolDesc": "Navigate Anmeldung and KVR step by step",
+      "bureaucracyToolStatus": "Live",
+      "academicTool": "Academic Companion",
+      "academicToolDesc": "Research and structure your TUM or LMU thesis",
+      "academicToolStatus": "Live"
     },
     "community": {
       "badge": "Our story",

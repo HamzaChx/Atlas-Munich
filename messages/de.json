@@ -72,12 +72,12 @@
       "housingTool": "Wohnungsbewerbungs-Assistent",
       "housingToolDesc": "Füge ein Inserat ein, erhalte eine WG-Nachricht, die Antworten bekommt",
       "housingToolStatus": "Aktiv",
-      "cvTool": "Lebenslauf & Anschreiben-Ersteller",
-      "cvToolDesc": "Für den Münchner Jobmarkt optimiert",
-      "cvToolStatus": "Aktiv",
-      "eventTool": "Event-Planer",
-      "eventToolDesc": "Plane Treffen und Events mit Freunden",
-      "eventToolStatus": "Bald"
+      "bureaucracyTool": "Bureaucracy Navigator",
+      "bureaucracyToolDesc": "Navigate Anmeldung and KVR step by step",
+      "bureaucracyToolStatus": "Live",
+      "academicTool": "Academic Companion",
+      "academicToolDesc": "Research and structure your TUM or LMU thesis",
+      "academicToolStatus": "Live"
     },
     "featured": {
       "title": "Fang mit diesen an",

@@ -44,12 +44,12 @@
       "housingTool": "Rédacteur de candidature logement",
       "housingToolDesc": "Collez une annonce, obtenez un message WG qui obtient des réponses",
       "housingToolStatus": "Disponible",
-      "cvTool": "Créateur de CV & Lettre de motivation",
-      "cvToolDesc": "Adapté au marché de l'emploi munichois",
-      "cvToolStatus": "Disponible",
-      "eventTool": "Planificateur d'événements",
-      "eventToolDesc": "Planifiez des sorties et événements avec des amis",
-      "eventToolStatus": "Bientôt"
+      "bureaucracyTool": "Bureaucracy Navigator",
+      "bureaucracyToolDesc": "Navigate Anmeldung and KVR step by step",
+      "bureaucracyToolStatus": "Live",
+      "academicTool": "Academic Companion",
+      "academicToolDesc": "Research and structure your TUM or LMU thesis",
+      "academicToolStatus": "Live"
     },
     "community": {
       "badge": "Notre histoire",

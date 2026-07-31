@@ -113,8 +113,8 @@
       "clearFilters": "Filter löschen"
     },
     "viewMode": {
-      "grid": "Raster",
-      "map": "Karte"
+      "map": "Karte",
+      "browse": "Übersicht"
     },
     "mapNote": "Klicke auf eine Markierung für Details oder auf eine Gruppe, um hineinzuzoomen. Ziehe, um die Stadt zu erkunden.",
     "category": {
@@ -145,9 +145,9 @@
     "card": {
       "website": "Webseite",
       "directions": "Wegbeschreibung",
-      "readMore": "Mehr lesen",
-      "showLess": "Weniger anzeigen",
-      "verified": "Verifiziert"
+      "verified": "Verifiziert",
+      "instagram": "Instagram",
+      "call": "Anrufen"
     },
     "loadingMap": "Karte wird geladen…"
   },

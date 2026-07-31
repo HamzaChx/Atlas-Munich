@@ -61,10 +61,12 @@ export function Header({ locale, translations }: HeaderProps) {
     <header
       className={cn("fixed top-0 z-50 w-full transition-all duration-300 safe-area-top", headerBg)}
     >
-      <div className="mx-auto flex h-14 sm:h-16 max-w-[1280px] items-center justify-between px-3 sm:px-6 lg:px-8">
+      {/* Three tracks with equal-weight sides, so the nav sits on the page's
+          centre line rather than wherever justify-between leaves it. */}
+      <div className="mx-auto grid h-14 sm:h-16 max-w-[1280px] grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center px-3 sm:px-6 lg:px-8">
         <Link
           href="/"
-          className="group flex items-center gap-2 sm:gap-2.5 outline-none focus-visible:ring-2 focus-visible:ring-zellige/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-lg"
+          className="group flex w-fit items-center gap-2 sm:gap-2.5 outline-none focus-visible:ring-2 focus-visible:ring-zellige/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-lg"
         >
           <Image
             src="/logo.png"
@@ -74,7 +76,7 @@ export function Header({ locale, translations }: HeaderProps) {
             className="h-8 w-8 rounded-full transition-transform duration-300 group-hover:scale-105 sm:h-9 sm:w-9"
           />
           <span className="font-display text-lg sm:text-xl font-bold tracking-tight text-zinc-900 dark:text-white">
-            Atlas Munich
+            <span className="text-zellige dark:text-zellige">Atlas</span> Munich
           </span>
         </Link>
 
@@ -100,7 +102,7 @@ export function Header({ locale, translations }: HeaderProps) {
         </nav>
 
         {/* Right Side Actions */}
-        <div className="flex items-center gap-1 sm:gap-2">
+        <div className="col-start-3 flex items-center justify-self-end gap-1 sm:gap-2">
           <LanguageSwitcher currentLocale={locale} className="hidden sm:block" />
           <ThemeToggle className="hidden sm:flex" />
 

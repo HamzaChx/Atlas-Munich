@@ -31,7 +31,7 @@ import { useTranslations } from "next-intl";
 import { ExternalLink, Maximize, MapPin, Minus, Plus, Star } from "lucide-react";
 
 import type { Place } from "@/types";
-import { placeAccents } from "./PlaceCard";
+import { placeAccents } from "./place-accents";
 import { cn } from "@/lib/utils";
 
 const MUNICH_CENTER: [number, number] = [48.1372, 11.5756];

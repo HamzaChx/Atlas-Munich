@@ -112,8 +112,8 @@
       "clearFilters": "Clear filters"
     },
     "viewMode": {
-      "grid": "Grid",
-      "map": "Map"
+      "map": "Map",
+      "browse": "Browse"
     },
     "mapNote": "Click a marker for details, or a cluster to zoom in. Drag to explore the city.",
     "category": {
@@ -144,9 +144,9 @@
     "card": {
       "website": "Website",
       "directions": "Directions",
-      "readMore": "Read more",
-      "showLess": "Show less",
-      "verified": "Verified"
+      "verified": "Verified",
+      "instagram": "Instagram",
+      "call": "Call"
     },
     "loadingMap": "Loading map…"
   },

@@ -714,6 +714,27 @@
 }
 
 /* ============================================================
+   Zellige motif watermark (place cards)
+
+   One rosette, shipped once as a mask so every card can tint it
+   with its own accent (background-color: currentColor) instead of
+   carrying its own copy of the SVG. Each card rotates it by a
+   different amount, so a wall of same-category cards still reads
+   as a panel of hand-cut tiles rather than one shape repeated.
+   ============================================================ */
+
+.zellige-motif {
+  --motif-rot: 0deg;
+  background-color: currentColor;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  mask-size: contain;
+  transform: rotate(var(--motif-rot));
+  transition: transform 0.6s var(--ease-out-expo);
+}
+
+/* ============================================================
    Places map (Leaflet)
 
    Leaflet ships unlayered CSS, which outranks every Tailwind

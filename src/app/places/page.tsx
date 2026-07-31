@@ -2,12 +2,12 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
-import { PlaceCard, EmptyState, PlacesMap } from "@/components/shared";
-import { placeAccents } from "@/components/shared/PlaceCard";
+import { PlacesBrowser, EmptyState, PlacesMap } from "@/components/shared";
+import { placeAccents } from "@/components/shared/place-accents";
 
 import { places } from "@/data/places";
-import { Place, PlaceCategory } from "@/types";
-import { Search, ArrowRight, Map, LayoutGrid, X } from "lucide-react";
+import { PlaceCategory } from "@/types";
+import { Search, ArrowRight, Map, Columns2, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
 
@@ -15,7 +15,9 @@ export default function PlacesPage() {
   const t = useTranslations("places");
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<PlaceCategory | null>(null);
-  const [viewMode, setViewMode] = useState<"grid" | "map">("grid");
+  /* The map is the page's front door: pins answer "what is near me?" faster
+     than any list can. The browse view is one tap away. */
+  const [viewMode, setViewMode] = useState<"browse" | "map">("map");
 
   const filterMeta: { key: PlaceCategory; label: string }[] = [
     { key: "restaurant", label: t("filters.restaurants") },
@@ -91,18 +93,7 @@ export default function PlacesPage() {
     });
   }, [filteredPlaces, placesData]);
 
-  // Grouped directory when browsing without filters, flat grid when narrowed down
   const isFiltering = Boolean(selectedCategory || searchQuery.trim());
-  const groupedPlaces = useMemo(() => {
-    if (isFiltering) return null;
-    const groups: { key: PlaceCategory; label: string; items: Place[] }[] = [];
-    categoryFilters.forEach((f) => {
-      const items = localizedPlaces.filter((p) => p.category === f.key);
-      if (items.length) groups.push({ key: f.key, label: f.label, items });
-    });
-    return groups;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isFiltering, localizedPlaces]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -213,20 +204,8 @@ export default function PlacesPage() {
                 {t("results.clearFilters")}
               </button>
             )}
+            {/* Map leads, since it is what the page opens on */}
             <div className="flex rounded-full bg-card p-1 shadow-sm dark:bg-white/5 dark:shadow-none">
-              <button
-                onClick={() => setViewMode("grid")}
-                aria-pressed={viewMode === "grid"}
-                className={cn(
-                  "flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[13px] font-semibold transition-all",
-                  viewMode === "grid"
-                    ? "bg-zinc-900 text-white dark:bg-white dark:text-zinc-900"
-                    : "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
-                )}
-              >
-                <LayoutGrid className="h-3.5 w-3.5" />
-                {t("viewMode.grid")}
-              </button>
               <button
                 onClick={() => setViewMode("map")}
                 aria-pressed={viewMode === "map"}
@@ -240,6 +219,19 @@ export default function PlacesPage() {
                 <Map className="h-3.5 w-3.5" />
                 {t("viewMode.map")}
               </button>
+              <button
+                onClick={() => setViewMode("browse")}
+                aria-pressed={viewMode === "browse"}
+                className={cn(
+                  "flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[13px] font-semibold transition-all",
+                  viewMode === "browse"
+                    ? "bg-zinc-900 text-white dark:bg-white dark:text-zinc-900"
+                    : "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-white"
+                )}
+              >
+                <Columns2 className="h-3.5 w-3.5" />
+                {t("viewMode.browse")}
+              </button>
             </div>
           </div>
         </div>
@@ -252,88 +244,46 @@ export default function PlacesPage() {
           <PlacesMap places={localizedPlaces} categoryLabels={categoryLabelMap} />
         )}
 
-        {viewMode === "grid" && (
-          <>
-            {/* Narrowed down: flat grid with result count */}
-            {isFiltering ? (
-              filteredPlaces.length > 0 ? (
-                <>
-                  <p className="mb-6 text-sm text-zinc-500 dark:text-zinc-400">
-                    <span className="text-base font-bold text-zinc-900 dark:text-white">
-                      {filteredPlaces.length}
-                    </span>{" "}
-                    {filteredPlaces.length === 1 ? t("results.place") : t("results.places")}
-                    {selectedCategory && (
-                      <>
-                        {" "}
-                        {t("results.in")}{" "}
-                        <span className="font-medium text-zellige">
-                          {categoryFilters.find((c) => c.key === selectedCategory)?.label}
-                        </span>
-                      </>
-                    )}
-                    {searchQuery && (
-                      <>
-                        {" "}
-                        {t("results.matching")} &ldquo;
-                        <span className="font-medium text-zinc-900 dark:text-white">
-                          {searchQuery}
-                        </span>
-                        &rdquo;
-                      </>
-                    )}
-                  </p>
-                  <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                    {localizedPlaces.map((place) => (
-                      <PlaceCard key={place.slug} place={place} />
-                    ))}
-                  </div>
-                </>
-              ) : (
-                <EmptyState
-                  type="places"
-                  title={t("noResults")}
-                  description={t("noResultsDescription")}
-                />
-              )
-            ) : (
-              /* Browsing: the full directory, grouped by category */
-              <div className="space-y-12 sm:space-y-16">
-                {groupedPlaces?.map((group) => {
-                  const accent = placeAccents[group.key];
-                  return (
-                    <section key={group.key} className="reveal">
-                      <div className="mb-5 flex items-baseline gap-3">
-                        <h2 className="flex items-center gap-2.5 font-display text-xl font-bold tracking-tight text-zinc-900 dark:text-white sm:text-2xl">
-                          <span
-                            className={cn("h-2.5 w-2.5 rounded-full", accent?.dot)}
-                            aria-hidden="true"
-                          />
-                          {group.label}
-                        </h2>
-                        <span className="text-sm font-medium tabular-nums text-zinc-400 dark:text-zinc-500">
-                          {group.items.length}
-                        </span>
-                        <button
-                          onClick={() => setSelectedCategory(group.key)}
-                          className="ml-auto flex items-center gap-1 text-sm font-semibold text-zinc-400 transition-colors hover:text-zellige dark:text-zinc-500"
-                        >
-                          {t("filters.all")}
-                          <ArrowRight className="h-3.5 w-3.5" />
-                        </button>
-                      </div>
-                      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                        {group.items.map((place) => (
-                          <PlaceCard key={place.slug} place={place} />
-                        ))}
-                      </div>
-                    </section>
-                  );
-                })}
-              </div>
-            )}
-          </>
-        )}
+        {/* Browse view: index on the left, the selected place shown large */}
+        {viewMode === "browse" &&
+          (localizedPlaces.length > 0 ? (
+            <>
+              {isFiltering && (
+                <p className="mb-5 text-sm text-zinc-500 dark:text-zinc-400">
+                  <span className="text-base font-bold text-zinc-900 dark:text-white">
+                    {filteredPlaces.length}
+                  </span>{" "}
+                  {filteredPlaces.length === 1 ? t("results.place") : t("results.places")}
+                  {selectedCategory && (
+                    <>
+                      {" "}
+                      {t("results.in")}{" "}
+                      <span className="font-medium text-zellige">
+                        {categoryFilters.find((c) => c.key === selectedCategory)?.label}
+                      </span>
+                    </>
+                  )}
+                  {searchQuery && (
+                    <>
+                      {" "}
+                      {t("results.matching")} &ldquo;
+                      <span className="font-medium text-zinc-900 dark:text-white">
+                        {searchQuery}
+                      </span>
+                      &rdquo;
+                    </>
+                  )}
+                </p>
+              )}
+              <PlacesBrowser places={localizedPlaces} categories={categoryFilters} />
+            </>
+          ) : (
+            <EmptyState
+              type="places"
+              title={t("noResults")}
+              description={t("noResultsDescription")}
+            />
+          ))}
 
         {/* Contribute CTA */}
         <div className="reveal mt-16 rounded-[2rem] bg-tint-terra p-8 text-center sm:mt-24 sm:p-12 dark:ring-1 dark:ring-white/10">

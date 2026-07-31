@@ -138,6 +138,9 @@ export function useChatbot(options: UseChatbotOptions = {}): UseChatbotReturn {
       setIsLoading(true);
       setError(null);
 
+      // Tracked outside the try so a failed stream can clean up its placeholder
+      let assistantId: string | null = null;
+
       try {
         // Prepare messages for API
         const apiMessages = [...messages, userMessage].map((msg) => ({
@@ -164,13 +167,14 @@ export function useChatbot(options: UseChatbotOptions = {}): UseChatbotReturn {
         }
 
         // Add placeholder assistant message and stream chunks into it
-        const assistantId = generateId();
+        assistantId = generateId();
         const assistantMessage: ChatMessage = {
           id: assistantId,
           role: "assistant",
           content: "",
           timestamp: new Date(),
           chatbot: currentChatbot,
+          isStreaming: true,
         };
         setMessages((prev) => [...prev, assistantMessage]);
 
@@ -204,7 +208,11 @@ export function useChatbot(options: UseChatbotOptions = {}): UseChatbotReturn {
 
         // Ensure final clean content is set
         setMessages((prev) =>
-          prev.map((msg) => (msg.id === assistantId ? { ...msg, content: cleanResponse } : msg))
+          prev.map((msg) =>
+            msg.id === assistantId
+              ? { ...msg, content: cleanResponse, isStreaming: false }
+              : msg
+          )
         );
 
         // Handle navigation/routing if present
@@ -245,9 +253,20 @@ export function useChatbot(options: UseChatbotOptions = {}): UseChatbotReturn {
           }, 1000);
         }
       } catch (err) {
-        if (err instanceof Error && err.name === "AbortError") {
-          return; // Request was cancelled
+        const cancelled = err instanceof Error && err.name === "AbortError";
+
+        // A half-written or empty bubble is worse than none: drop it if nothing
+        // arrived, otherwise keep what the user already read and stop the caret.
+        if (assistantId) {
+          const id = assistantId;
+          setMessages((prev) =>
+            prev
+              .filter((msg) => !(msg.id === id && msg.content.trim() === ""))
+              .map((msg) => (msg.id === id ? { ...msg, isStreaming: false } : msg))
+          );
         }
+
+        if (cancelled) return; // Request was cancelled
         setError("Failed to send message. Please try again.");
         console.error("Chat error:", err);
       } finally {

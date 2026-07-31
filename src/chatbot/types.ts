@@ -38,6 +38,8 @@ export interface ChatMessage {
   content: string;
   timestamp: Date;
   chatbot?: ChatbotType;
+  /** True while the answer is still streaming in */
+  isStreaming?: boolean;
 }
 
 export interface ChatState {

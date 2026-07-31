@@ -61,6 +61,7 @@ function ChatBubble({
   accent,
   timestamp,
   showAvatar,
+  streaming = false,
 }: {
   message: string;
   isUser: boolean;
@@ -69,6 +70,8 @@ function ChatBubble({
   timestamp: Date;
   /** False for continuation messages in a consecutive run from the same sender */
   showAvatar: boolean;
+  /** True while the answer is still arriving */
+  streaming?: boolean;
 }) {
   const [copied, setCopied] = useState(false);
 
@@ -102,6 +105,7 @@ function ChatBubble({
           <ChatMarkdown
             text={message}
             linkClass={isUser ? "text-background" : accent.acc}
+            streaming={streaming}
           />
         </div>
 
@@ -114,7 +118,7 @@ function ChatBubble({
           <span className="text-[11px] font-medium tabular-nums text-zinc-400 dark:text-zinc-500">
             {formatTimestamp(timestamp)}
           </span>
-          {!isUser && (
+          {!isUser && !streaming && (
             <button
               onClick={handleCopy}
               className={cn(
@@ -513,6 +517,7 @@ export function DedicatedChat({ theme, backPath }: DedicatedChatProps) {
                   accent={accent}
                   timestamp={msg.timestamp}
                   showAvatar={i === 0 || messages[i - 1].role !== msg.role}
+                  streaming={msg.isStreaming}
                 />
               ))}
 

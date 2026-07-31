@@ -45,6 +45,7 @@ function ChatBubble({
   accent,
   timestamp,
   showAvatar,
+  streaming = false,
 }: {
   message: string;
   isUser: boolean;
@@ -53,6 +54,8 @@ function ChatBubble({
   timestamp: Date;
   /** False for continuation messages in a consecutive run from the same sender */
   showAvatar: boolean;
+  /** True while the answer is still arriving */
+  streaming?: boolean;
 }) {
   return (
     <div className={cn("group flex gap-2.5", isUser ? "flex-row-reverse" : "flex-row")}>
@@ -74,7 +77,11 @@ function ChatBubble({
               : cn("rounded-bl-md text-foreground", accent.tint)
           )}
         >
-          <ChatMarkdown text={message} linkClass={isUser ? "text-background" : accent.acc} />
+          <ChatMarkdown
+            text={message}
+            linkClass={isUser ? "text-background" : accent.acc}
+            streaming={streaming}
+          />
         </div>
         <span className="px-1 text-[10px] font-medium tabular-nums text-zinc-400 opacity-0 transition-opacity duration-200 group-hover:opacity-100 dark:text-zinc-500">
           {formatTimestamp(timestamp)}
@@ -468,6 +475,7 @@ export function Chatbot() {
                 accent={accent}
                 timestamp={msg.timestamp}
                 showAvatar={i === 0 || messages[i - 1].role !== msg.role}
+                streaming={msg.isStreaming}
               />
             ))}
 

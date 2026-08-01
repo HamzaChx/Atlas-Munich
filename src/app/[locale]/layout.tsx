@@ -242,10 +242,14 @@ export default async function RootLayout({
             production build, so there is nothing to register in dev. */}
         <SerwistProvider swUrl="/sw.js" disable={process.env.NODE_ENV !== "production"}>
           <NextIntlClientProvider messages={clientMessages}>
+            {/* Light is the product default: dark exists only for a visitor
+                who explicitly flips ThemeToggle, not because their OS says
+                so. Once they do, next-themes persists that choice in
+                localStorage and it wins on every later visit. */}
             <ThemeProvider
               attribute="class"
-              defaultTheme="system"
-              enableSystem
+              defaultTheme="light"
+              enableSystem={false}
               disableTransitionOnChange
             >
               <a

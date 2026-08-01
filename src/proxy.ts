@@ -20,8 +20,13 @@ export function proxy(request: NextRequest) {
   /* next-intl doesn't set this itself. Without it, the 307 that sends a
      French browser from / to /fr is an ordinary cacheable redirect keyed only
      on the URL: one shared cache node could pin every later visitor to /, a
-     crawler included, onto whichever language happened to ask first. */
-  response.headers.append("Vary", "Accept-Language");
+     crawler included, onto whichever language happened to ask first.
+
+     Resolution also reads the `NEXT_LOCALE` cookie (set the moment someone
+     picks a language, so it wins over Accept-Language on every later visit)
+     — so a cache keyed on Accept-Language alone could still hand a visitor
+     who chose French a response cached for someone else's English cookie. */
+  response.headers.append("Vary", "Accept-Language, Cookie");
 
   return response;
 }

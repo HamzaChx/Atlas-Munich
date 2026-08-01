@@ -54,11 +54,16 @@ export function useGeolocation(): UseGeolocationResult {
       },
       (error) => {
         setCoords(null);
-        if (error.code === error.PERMISSION_DENIED) setStatus("denied");
+        if (error.code === error.PERMISSION_DENIED) {
+          setStatus("denied");
+          if (typeof window !== "undefined") {
+            window.location.href = "app-settings:";
+          }
+        }
         else if (error.code === error.TIMEOUT) setStatus("timeout");
         else setStatus("error");
       },
-      { enableHighAccuracy: false, timeout: 10_000, maximumAge: 5 * 60 * 1000 }
+      { enableHighAccuracy: true, timeout: 10_000, maximumAge: 5 * 60 * 1000 }
     );
   }, [isSupported]);
 

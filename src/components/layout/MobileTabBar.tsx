@@ -15,7 +15,7 @@ import * as React from "react";
 import { Link } from "@/i18n/navigation";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { BookOpen, Home, MapPin, MoreHorizontal, Sparkles } from "lucide-react";
+import { BookOpen, Home, MapPin, MoreHorizontal, MessageCircle } from "lucide-react";
 
 import { MoreSheet } from "./MoreSheet";
 import type { Locale } from "@/i18n";
@@ -95,10 +95,10 @@ export function MobileTabBar({ locale }: { locale: Locale }) {
             }}
             className={cn(TAB, "text-zellige")}
           >
-            <span className="flex h-[38px] w-[38px] -mt-4 items-center justify-center rounded-full bg-zellige text-white shadow-[0_6px_16px_-4px_rgb(0_0_0/0.35)] transition-transform active:scale-95 dark:text-zinc-950">
-              <Sparkles className="h-[19px] w-[19px]" aria-hidden="true" />
+            <span className="flex h-[38px] w-[38px] items-center justify-center rounded-full bg-zellige text-white shadow-[0_6px_16px_-4px_rgb(0_0_0/0.35)] transition-transform active:scale-95 dark:text-zinc-950">
+              <MessageCircle className="h-[19px] w-[19px]" aria-hidden="true" />
             </span>
-            <span className="-mt-3">{t("ask")}</span>
+            <span>{t("ask")}</span>
           </button>
 
           <button

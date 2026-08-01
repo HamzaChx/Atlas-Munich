@@ -28,7 +28,7 @@ import {
 } from "react-leaflet";
 import { useTheme } from "next-themes";
 import { useTranslations, useLocale } from "next-intl";
-import { ExternalLink, Maximize, MapPin, Minus, Plus, Star } from "lucide-react";
+import { ExternalLink, Maximize, MapPin, Minus, Plus, Star, LocateFixed } from "lucide-react";
 
 import type { Place } from "@/types";
 import { placeAccents } from "./place-accents";
@@ -575,6 +575,16 @@ export default function PlacesMapCanvas({
           >
             <Maximize className="h-4 w-4" />
           </button>
+          {userLocation && (
+            <button
+              type="button"
+              onClick={() => map?.setView([userLocation.lat, userLocation.lng], 15, { animate: true })}
+              aria-label={t("location.button")}
+              className="flex h-10 w-10 items-center justify-center rounded-xl text-zinc-600 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-foreground/10 dark:hover:text-zinc-50 sm:h-9 sm:w-9"
+            >
+              <LocateFixed className="h-4 w-4" />
+            </button>
+          )}
         </div>
 
         {/* Cursor hint for scroll-zoom, desktop mouse only: touch devices

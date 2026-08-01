@@ -12,7 +12,7 @@ import * as React from "react";
 import { Link } from "@/i18n/navigation";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { Download, HelpCircle, Info, Sparkles, type LucideIcon } from "lucide-react";
+import { Download, HelpCircle, Info, Wrench, type LucideIcon } from "lucide-react";
 
 import { BottomSheet, BottomSheetContent } from "@/components/ui/bottom-sheet";
 import { LanguageSwitcher, ThemeToggle } from "@/components/shared";
@@ -38,7 +38,7 @@ export function MoreSheet({ open, onOpenChange, locale }: MoreSheetProps) {
   const { canInstall, promptInstall } = useInstallPrompt();
 
   const links: MoreLink[] = [
-    { label: t("tools"), href: "/tools", icon: Sparkles },
+    { label: t("tools"), href: "/tools", icon: Wrench },
     { label: t("faq"), href: "/faq", icon: HelpCircle },
     { label: t("about"), href: "/about", icon: Info },
   ];

@@ -58,25 +58,21 @@ export default async function Home({
      page of choices. */
   const intents = [
     {
-      emoji: "🏠",
       label: t("intents.flat"),
       href: "/housing/chat",
       pill: "bg-tint-terra text-acc-terra hover:shadow-acc-terra/20",
     },
     {
-      emoji: "📄",
       label: t("intents.paperwork"),
       href: `/bureaucracy/chat?q=${encodeURIComponent(t("intents.paperworkPrompt"))}`,
       pill: "bg-tint-blue text-acc-blue hover:shadow-acc-blue/20",
     },
     {
-      emoji: "🍽️",
       label: t("intents.halalFood"),
       href: "/places?category=restaurant",
       pill: "bg-tint-green text-acc-green hover:shadow-acc-green/20",
     },
     {
-      emoji: "🎓",
       label: t("intents.uni"),
       href: `/academic/chat?q=${encodeURIComponent(t("intents.uniPrompt"))}`,
       pill: "bg-tint-plum text-acc-plum hover:shadow-acc-plum/20",
@@ -164,7 +160,6 @@ export default async function Home({
                 href={intent.href}
                 className={`flex items-center gap-1.5 rounded-full px-4 py-2 text-[13px] font-semibold transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg ${intent.pill}`}
               >
-                <span aria-hidden="true">{intent.emoji}</span>
                 {intent.label}
               </Link>
             ))}

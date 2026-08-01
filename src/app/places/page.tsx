@@ -557,6 +557,10 @@ export default function PlacesPage() {
             />
           ))}
 
+        <p className="mt-10 text-center text-xs text-zinc-400 dark:text-zinc-500">
+          {t("attribution")}
+        </p>
+
         {/* Contribute CTA */}
         <div className="reveal mt-16 rounded-[2rem] bg-tint-terra p-8 text-center sm:mt-24 sm:p-12 dark:ring-1 dark:ring-border">
           <h3 className="font-display text-2xl font-bold text-zinc-900 dark:text-zinc-50">

@@ -176,7 +176,8 @@
       "instagram": "Instagram",
       "call": "Anrufen"
     },
-    "loadingMap": "Karte wird geladen…"
+    "loadingMap": "Karte wird geladen…",
+    "attribution": "Ortsdaten © OpenStreetMap-Mitwirkende, ODbL. Bewertungen und Rezensionszahlen, sofern angezeigt, stammen von Google."
   },
   "guides": {
     "badge": "Community-Ratgeber",

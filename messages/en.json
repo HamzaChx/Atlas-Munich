@@ -175,7 +175,8 @@
       "instagram": "Instagram",
       "call": "Call"
     },
-    "loadingMap": "Loading map…"
+    "loadingMap": "Loading map…",
+    "attribution": "Place data © OpenStreetMap contributors, ODbL. Ratings and review counts, where shown, are provided by Google."
   },
   "guides": {
     "badge": "Community Guides",

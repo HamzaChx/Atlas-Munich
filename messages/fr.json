@@ -198,7 +198,8 @@
       "instagram": "Instagram",
       "call": "Appeler"
     },
-    "loadingMap": "Chargement de la carte…"
+    "loadingMap": "Chargement de la carte…",
+    "attribution": "Données des lieux © contributeurs d'OpenStreetMap, ODbL. Les notes et le nombre d'avis, lorsqu'ils sont affichés, proviennent de Google."
   },
   "guides": {
     "badge": "Guides communautaires",

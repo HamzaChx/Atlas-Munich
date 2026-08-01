@@ -27,7 +27,23 @@ const hanken = Hanken_Grotesk({
 
 const BASE_URL = "https://atlasmunich.de";
 
-export const metadata: Metadata = {
+/** OpenGraph wants a full territory code, not the bare language tag. */
+const OG_LOCALE: Record<Locale, string> = {
+  en: "en_US",
+  fr: "fr_FR",
+  de: "de_DE",
+};
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale: rawLocale } = await params;
+  const locale = (hasLocale(routing.locales, rawLocale) ? rawLocale : routing.defaultLocale) as Locale;
+  const localeUrl = locale === routing.defaultLocale ? BASE_URL : `${BASE_URL}/${locale}`;
+
+  return {
   metadataBase: new URL(BASE_URL),
   title: {
     default: "Atlas Munich | Your Guide to Thriving in Munich",
@@ -71,8 +87,11 @@ export const metadata: Metadata = {
     description:
       "The complete starter guide for Moroccan students and professionals in Munich. Housing, KVR, university, halal food, and more.",
     type: "website",
-    locale: "en_US",
-    url: BASE_URL,
+    locale: OG_LOCALE[locale],
+    // Every translation is declared, so a share in one language surfaces the
+    // right variant rather than always advertising the English page.
+    alternateLocale: routing.locales.filter((l) => l !== locale).map((l) => OG_LOCALE[l]),
+    url: localeUrl,
     siteName: "Atlas Munich",
     images: [
       {
@@ -104,7 +123,8 @@ export const metadata: Metadata = {
   verification: {
     google: "-GZmYKhOD0IyzbpHSEwRSyH0FVDFivjMcv-lCJWFlRI",
   },
-};
+  };
+}
 
 export const viewport: Viewport = {
   width: "device-width",

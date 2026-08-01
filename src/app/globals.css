@@ -439,6 +439,14 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
+  /* Search fields ship their own clear button, so hide the browser's:
+     otherwise a native blue cross sits next to ours. */
+  input[type="search"]::-webkit-search-cancel-button,
+  input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+    appearance: none;
+  }
+
   /* Headlines carry the display face sitewide */
   h1,
   h2,

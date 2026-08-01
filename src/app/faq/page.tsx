@@ -4,40 +4,26 @@ import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { EmptyState } from "@/components/shared";
 
 import { getAllFaqs } from "@/data/faqs";
 import { FAQ } from "@/types";
-import {
-  Search,
-  ArrowRight,
-  ChevronDown,
-  X,
-  Compass,
-  Home,
-  FileText,
-  GraduationCap,
-  Briefcase,
-  Smartphone,
-  type LucideIcon,
-} from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
 
-/* One hue and icon per topic, on the landing tint system */
+/* One hue per topic, on the landing tint system. Colour alone carries the
+   topic, no icons: a tint chip with the topic's accent dot. */
 const topics: {
   key: string;
-  icon: LucideIcon;
   tint: string;
   text: string;
   dot: string;
 }[] = [
-  { key: "general", icon: Compass, tint: "bg-zellige-soft", text: "text-zellige", dot: "bg-zellige" },
-  { key: "rent-housing", icon: Home, tint: "bg-tint-terra", text: "text-acc-terra", dot: "bg-acc-terra" },
-  { key: "kvr-residence", icon: FileText, tint: "bg-tint-blue", text: "text-acc-blue", dot: "bg-acc-blue" },
-  { key: "university-life", icon: GraduationCap, tint: "bg-tint-green", text: "text-acc-green", dot: "bg-acc-green" },
-  { key: "career", icon: Briefcase, tint: "bg-tint-plum", text: "text-acc-plum", dot: "bg-acc-plum" },
-  { key: "useful-apps", icon: Smartphone, tint: "bg-tint-saffron", text: "text-acc-saffron", dot: "bg-acc-saffron" },
+  { key: "general", tint: "bg-zellige-soft", text: "text-zellige", dot: "bg-zellige" },
+  { key: "rent-housing", tint: "bg-tint-terra", text: "text-acc-terra", dot: "bg-acc-terra" },
+  { key: "kvr-residence", tint: "bg-tint-blue", text: "text-acc-blue", dot: "bg-acc-blue" },
+  { key: "university-life", tint: "bg-tint-green", text: "text-acc-green", dot: "bg-acc-green" },
+  { key: "career", tint: "bg-tint-plum", text: "text-acc-plum", dot: "bg-acc-plum" },
+  { key: "useful-apps", tint: "bg-tint-saffron", text: "text-acc-saffron", dot: "bg-acc-saffron" },
 ];
 
 const topicOf = (faq: FAQ) =>
@@ -100,10 +86,15 @@ function QuestionCard({
             open ? cn("bg-card", topic.text) : "bg-zinc-100 text-zinc-500 dark:bg-foreground/10 dark:text-zinc-400"
           )}
         >
-          <ChevronDown
-            className={cn("h-4 w-4 transition-transform duration-300", open && "rotate-180")}
+          <span
+            className={cn(
+              "block text-lg font-light leading-none transition-transform duration-300",
+              open && "rotate-45"
+            )}
             aria-hidden="true"
-          />
+          >
+            +
+          </span>
         </span>
       </button>
 
@@ -191,7 +182,6 @@ export default function FAQPage() {
 
         {/* Search: looks across every topic at once */}
         <div className="rise rise-3 relative mt-8 w-full">
-          <Search className="absolute left-5 top-1/2 h-5 w-5 -translate-y-1/2 text-zinc-400 dark:text-zinc-500" />
           <input
             type="search"
             placeholder={t("searchPlaceholder")}
@@ -200,17 +190,10 @@ export default function FAQPage() {
               setSearchQuery(e.target.value);
               setOpenId(null);
             }}
-            className="h-13 w-full rounded-full bg-card pl-13 pr-12 text-base text-zinc-900 shadow-[0_6px_24px_rgb(0_0_0/0.08)] outline-none transition-shadow placeholder:text-zinc-400 focus:ring-2 focus:ring-zellige/40 dark:bg-foreground/[0.075] dark:text-zinc-50 dark:shadow-none dark:placeholder:text-zinc-500 dark:ring-1 dark:ring-border dark:focus:ring-zellige/40"
+            className="h-13 w-full rounded-full bg-card px-6 text-base text-zinc-900 shadow-[0_6px_24px_rgb(0_0_0/0.08)] outline-none transition-shadow placeholder:text-zinc-400 focus:ring-2 focus:ring-zellige/40 dark:bg-foreground/[0.075] dark:text-zinc-50 dark:shadow-none dark:placeholder:text-zinc-500 dark:ring-1 dark:ring-border dark:focus:ring-zellige/40"
           />
-          {searchQuery && (
-            <button
-              onClick={() => setSearchQuery("")}
-              aria-label={t("results.clearFilters")}
-              className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full p-1 text-zinc-400 transition-colors hover:text-zinc-700 dark:hover:text-zinc-200"
-            >
-              <X className="h-4 w-4" />
-            </button>
-          )}
+          {/* No clear button here: the results row above the list already has one,
+              and it only ever shows while a search is active. */}
         </div>
       </section>
 
@@ -274,7 +257,7 @@ export default function FAQPage() {
                           active ? "bg-card shadow-sm" : topic.tint
                         )}
                       >
-                        <topic.icon className={cn("h-[18px] w-[18px]", topic.text)} />
+                        <span className={cn("h-2.5 w-2.5 rounded-full", topic.dot)} aria-hidden="true" />
                       </span>
                       <span
                         className={cn(
@@ -334,11 +317,14 @@ export default function FAQPage() {
                     ))}
                   </div>
                 ) : (
-                  <EmptyState
-                    type="search"
-                    title={t("noResults")}
-                    description={t("noResultsDescription")}
-                  />
+                  <div className="rounded-2xl bg-card px-6 py-14 text-center shadow-[0_1px_8px_rgb(0_0_0/0.05)] dark:bg-foreground/[0.075] dark:shadow-none">
+                    <p className="font-display text-base font-bold text-zinc-900 dark:text-zinc-50">
+                      {t("noResults")}
+                    </p>
+                    <p className="mx-auto mt-1.5 max-w-xs text-sm leading-relaxed text-zinc-500 dark:text-zinc-400">
+                      {t("noResultsDescription")}
+                    </p>
+                  </div>
                 )}
               </div>
             ) : (
@@ -354,7 +340,7 @@ export default function FAQPage() {
                       activeTopic.tint
                     )}
                   >
-                    <activeTopic.icon className={cn("h-[18px] w-[18px]", activeTopic.text)} />
+                    <span className={cn("h-2.5 w-2.5 rounded-full", activeTopic.dot)} aria-hidden="true" />
                   </span>
                   <div>
                     <h2 className="font-display text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-2xl">
@@ -398,14 +384,12 @@ export default function FAQPage() {
               className="group inline-flex items-center gap-2 rounded-full bg-zinc-900 px-6 py-3 text-sm font-semibold text-white shadow-md shadow-zinc-900/15 transition-all hover:bg-zinc-800 dark:bg-zinc-50 dark:text-zinc-900 dark:shadow-none dark:hover:bg-zinc-200"
             >
               {t("cta.browseGuides")}
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
             <Link
               href="/about#contact"
               className="group inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-zinc-700 transition-colors hover:bg-card dark:text-zinc-300 dark:hover:bg-foreground/10"
             >
               {t("cta.contactUs")}
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
           </div>
         </div>

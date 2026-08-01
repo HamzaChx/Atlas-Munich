@@ -2252,6 +2252,11 @@
     "title": "Meet Your",
     "titleHighlight": "AI Assistants",
     "subtitle": "Personal AI assistants built for your Munich journey. Each one specializes in a different part of life in Germany.",
+    "roster": "The roster",
+    "liveLabel": "live",
+    "capabilities": "What it handles",
+    "tryAsking": "Try asking",
+    "startChat": "Start chatting",
     "tools": {
       "housing": {
         "title": "Housing Application Writer",
@@ -2275,6 +2280,11 @@
           "Plan Events",
           "Invite Friends",
           "Munich Spots"
+        ],
+        "prompts": [
+          "Find a spot for a study session",
+          "Plan a weekend hangout",
+          "Invite friends to an iftar"
         ]
       },
       "dalilah": {

@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { Breadcrumbs, GuideCard, EmptyState } from "@/components/shared";
 import { categories, getCategoryByKey } from "@/data/categories";
 import { getGuidesByCategory } from "@/data/guides";
+import { localizeGuides } from "@/data/guides-i18n";
 import { CategoryKey } from "@/types";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -106,25 +107,10 @@ export default async function CategoryPage({ params }: PageProps) {
   const localizedCategoryDescription =
     getMessage(`categories.${category.key}.description`) ?? category.description;
 
-  const rawCategoryGuides = getGuidesByCategory(category.key as CategoryKey);
-
-  // Apply locale translation overlay to guide cards
-  let categoryGuides = rawCategoryGuides;
-  if (locale !== "en") {
-    try {
-      const mod = await import(`@/data/guides.${locale}`);
-      const translations = mod.guideTranslations;
-      if (translations) {
-        categoryGuides = rawCategoryGuides.map((guide) => {
-          const t = translations[guide.slug];
-          if (!t) return guide;
-          return { ...guide, title: t.title ?? guide.title, summary: t.summary ?? guide.summary };
-        });
-      }
-    } catch {
-      // fallback to English
-    }
-  }
+  const categoryGuides = await localizeGuides(
+    getGuidesByCategory(category.key as CategoryKey),
+    locale
+  );
 
   const breadcrumbs = [
     { label: getMessage("nav.guides") ?? "Guides", href: "/guides" },

@@ -12,6 +12,7 @@ import {
   ReadingProgress,
 } from "@/components/shared";
 import { guides, getGuideBySlug, getRelatedGuides } from "@/data/guides";
+import { localizeGuide, localizeGuides } from "@/data/guides-i18n";
 import { getCategoryByKey } from "@/data/categories";
 import { ArrowLeft, ExternalLink, ArrowRight } from "lucide-react";
 import { fmtUpdated } from "@/lib/date";
@@ -98,45 +99,10 @@ export default async function GuidePage({ params }: PageProps) {
   };
 
   const category = getCategoryByKey(guide.categoryKey);
-  const relatedGuides = getRelatedGuides(guide);
 
-  // Apply locale translation overlay
-  let localizedGuide = guide;
-  if (locale !== "en") {
-    try {
-      const mod = await import(`@/data/guides.${locale}`);
-      const t = mod.guideTranslations?.[guide.slug];
-      if (t) {
-        localizedGuide = {
-          ...guide,
-          title: t.title,
-          summary: t.summary,
-          sections: localizedGuide.sections.map((s, i) => ({
-            ...s,
-            title: t.sections[i]?.title ?? s.title,
-            content: t.sections[i]?.content ?? s.content,
-            subsections: s.subsections?.map((sub, j) => ({
-              ...sub,
-              title: t.sections[i]?.subsections?.[j]?.title ?? sub.title,
-              content: t.sections[i]?.subsections?.[j]?.content ?? sub.content,
-            })),
-          })),
-          faqs: localizedGuide.faqs?.map((faq, i) => ({
-            ...faq,
-            question: t.faqs?.[i]?.question ?? faq.question,
-            answer: t.faqs?.[i]?.answer ?? faq.answer,
-          })),
-          resources: localizedGuide.resources?.map((res, i) => ({
-            ...res,
-            title: t.resources?.[i]?.title ?? res.title,
-            description: t.resources?.[i]?.description ?? res.description,
-          })),
-        };
-      }
-    } catch {
-      // fallback to English if translation file not found
-    }
-  }
+  const localizedGuide = await localizeGuide(guide, locale);
+  // The related-guide cards at the foot of the page need the overlay too.
+  const relatedGuides = await localizeGuides(getRelatedGuides(guide), locale);
 
   const themeMap: Record<
     string,

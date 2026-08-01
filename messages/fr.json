@@ -2276,6 +2276,11 @@
     "title": "Vos",
     "titleHighlight": "Assistants IA",
     "subtitle": "Des assistants IA personnels conçus pour votre parcours à Munich. Chacun se spécialise dans un aspect de la vie en Allemagne.",
+    "roster": "L'équipe",
+    "liveLabel": "en ligne",
+    "capabilities": "Ce qu'il gère",
+    "tryAsking": "Essayez de demander",
+    "startChat": "Démarrer la discussion",
     "tools": {
       "housing": {
         "title": "Rédacteur de candidature logement",
@@ -2299,6 +2304,11 @@
           "Planifier des événements",
           "Inviter des amis",
           "Lieux à Munich"
+        ],
+        "prompts": [
+          "Trouver un lieu pour une session d'étude",
+          "Organiser une sortie le week-end",
+          "Inviter des amis à un iftar"
         ]
       },
       "dalilah": {

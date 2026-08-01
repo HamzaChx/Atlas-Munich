@@ -2254,6 +2254,11 @@
     "title": "Deine",
     "titleHighlight": "KI-Assistenten",
     "subtitle": "Persönliche KI-Assistenten für dein Leben in München. Jeder ist auf einen anderen Teil deiner Reise in Deutschland spezialisiert.",
+    "roster": "Das Team",
+    "liveLabel": "live",
+    "capabilities": "Was er übernimmt",
+    "tryAsking": "Frag zum Beispiel",
+    "startChat": "Chat starten",
     "tools": {
       "housing": {
         "title": "Wohnungsbewerbungs-Assistent",
@@ -2277,6 +2282,11 @@
           "Events planen",
           "Freunde einladen",
           "Münchner Orte"
+        ],
+        "prompts": [
+          "Einen Ort für eine Lernsession finden",
+          "Ein Treffen am Wochenende planen",
+          "Freunde zu einem Iftar einladen"
         ]
       },
       "dalilah": {

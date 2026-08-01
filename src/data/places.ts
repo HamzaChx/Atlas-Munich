@@ -14,8 +14,8 @@ export const places: Place[] = [
     description:
       "Popular spot near the main station offering a variety of halal Middle Eastern dishes including kebabs and falafel at affordable prices.",
     verified: true,
-    rating: 4.4,
-    reviewCount: 376,
+    rating: 4.6,
+    reviewCount: 535,
     website: "https://zaeem.de/",
   },
   {
@@ -31,8 +31,8 @@ export const places: Place[] = [
     description:
       "Located near Münchner Freiheit, this spot serves delicious tacos and wraps with halal-certified ingredients. Perfect for a quick bite or a casual lunch with friends.",
     verified: true,
-    rating: 4.4,
-    reviewCount: 156,
+    rating: 4.8,
+    reviewCount: 301,
     website: "https://www.savosfood.de/",
   },
   {
@@ -49,7 +49,7 @@ export const places: Place[] = [
       "Gourmet burger joint offering a variety of halal burger options with fresh ingredients and unique toppings. A great spot for casual dining with friends.",
     verified: true,
     rating: 4.6,
-    reviewCount: 289,
+    reviewCount: 3644,
     website: "https://tastemyburger.com",
   },
   {
@@ -66,7 +66,7 @@ export const places: Place[] = [
       "A stylish restaurant offering premium grilled dishes. They provide halal meat options upon request, making it a great place for dining out with friends or family.",
     verified: true,
     rating: 4.3,
-    reviewCount: 312,
+    reviewCount: 798,
     website: "https://the-ash.com",
   },
   {
@@ -83,7 +83,7 @@ export const places: Place[] = [
       "A newly opened Moroccan restaurant in Munich offering authentic Moroccan dishes such as tagines, couscous, and pastilla. Argana is fully halal and beautifully reflects the Moroccan culinary tradition in a cozy setting.",
     verified: true,
     rating: 4.7,
-    reviewCount: 67,
+    reviewCount: 1063,
     featured: true,
   },
   {
@@ -99,8 +99,8 @@ export const places: Place[] = [
     description:
       "Casablanca offers a rich menu of authentic Moroccan cuisine, including flavorful tagines and couscous dishes. The restaurant is fully halal and provides a warm, inviting atmosphere reminiscent of Morocco.",
     verified: true,
-    rating: 4.3,
-    reviewCount: 184,
+    rating: 4.4,
+    reviewCount: 191,
     featured: true,
   },
   {
@@ -117,7 +117,7 @@ export const places: Place[] = [
       "Charming Italian restaurant serving a variety of halal pasta and pizza dishes. La Fantasia offers a cozy ambiance perfect for family dinners or romantic evenings.",
     verified: true,
     rating: 4.7,
-    reviewCount: 899,
+    reviewCount: 952,
     featured: true,
     website: "https://www.lafantasiamuenchen.de",
   },
@@ -135,7 +135,7 @@ export const places: Place[] = [
       "Popular fast-food spot in the city center known for its delicious halal döner kebabs and affordable prices. Perfect for a quick and satisfying meal.",
     verified: true,
     rating: 4.8,
-    reviewCount: 1575,
+    reviewCount: 2509,
     featured: true,
     website: "https://www.instagram.com/bln_doner_muc?igsh=MTg1amg0aG43MjVvcg==",
   },
@@ -153,7 +153,7 @@ export const places: Place[] = [
       "Premium kebab restaurant offering a variety of halal kebab options made with high-quality ingredients. A great choice for those looking for a more upscale fast-food experience.",
     verified: true,
     rating: 4.8,
-    reviewCount: 922,
+    reviewCount: 1004,
     website: "https://hanskebap.de/",
   },
   {
@@ -169,8 +169,8 @@ export const places: Place[] = [
     description:
       "Gourmet burger joint offering a variety of halal burger options with fresh ingredients and unique toppings. A great spot for casual dining with friends.",
     verified: true,
-    rating: 4.5,
-    reviewCount: 1114,
+    rating: 4.7,
+    reviewCount: 1156,
   },
   {
     slug: "pars-restaurant",
@@ -186,7 +186,7 @@ export const places: Place[] = [
       "Authentic Persian restaurant offering a variety of halal dishes including kebabs and grilled specialties. A cozy spot for enjoying traditional flavors.",
     verified: false,
     rating: 4.8,
-    reviewCount: 935,
+    reviewCount: 1028,
     website: "https://pars-restaurant.de",
   },
   {
@@ -202,8 +202,8 @@ export const places: Place[] = [
     description:
       "Specializing in Uyghur cuisine, this halal restaurant offers unique dishes such as hand-pulled noodles and grilled meats. A must-visit for those seeking authentic flavors.",
     verified: false,
-    rating: 4.5,
-    reviewCount: 1247,
+    rating: 4.4,
+    reviewCount: 1376,
   },
   {
     slug: "etem-burger-steak",
@@ -218,8 +218,8 @@ export const places: Place[] = [
     description:
       "Casual dining spot known for its halal burgers and steaks made from quality ingredients. A great place for a relaxed meal with friends or family.",
     verified: false,
-    rating: 4.4,
-    reviewCount: 678,
+    rating: 4.8,
+    reviewCount: 1140,
   },
   {
     slug: "loco-chicken",
@@ -234,8 +234,8 @@ export const places: Place[] = [
     description:
       "Popular fast-food joint specializing in halal chicken dishes. Known for its crispy fried chicken and affordable prices, making it a favorite among locals.",
     verified: true,
-    rating: 4.8,
-    reviewCount: 39,
+    rating: 4.1,
+    reviewCount: 64,
   },
   {
     slug: "hot-dog-station-muenchen",
@@ -250,8 +250,8 @@ export const places: Place[] = [
     description:
       "Casual eatery specializing in halal hot dogs with a variety of toppings. A great spot for a quick and tasty meal on the go.",
     verified: true,
-    rating: 4.6,
-    reviewCount: 27,
+    rating: 4.5,
+    reviewCount: 154,
   },
   {
     slug: "wing-nation",
@@ -266,8 +266,8 @@ export const places: Place[] = [
     description:
       "Casual dining spot specializing in halal chicken wings with a variety of sauces and sides. Perfect for a quick bite or casual meal with friends.",
     verified: true,
-    rating: 4.7,
-    reviewCount: 145,
+    rating: 4.3,
+    reviewCount: 855,
   },
   {
     slug: "han-muenchen",
@@ -282,8 +282,8 @@ export const places: Place[] = [
     description:
       "Turkish restaurant known for its halal grilled dishes, including the famous Adana kebab. A cozy spot for enjoying authentic Turkish flavors.",
     verified: true,
-    rating: 4.3,
-    reviewCount: 210,
+    rating: 4.1,
+    reviewCount: 521,
   },
   {
     slug: "delicious-burger",
@@ -298,8 +298,8 @@ export const places: Place[] = [
     description:
       "Gourmet burger joint offering a variety of halal burger options with fresh ingredients and unique toppings. A great spot for casual dining with friends.",
     verified: true,
-    rating: 4.6,
-    reviewCount: 704,
+    rating: 4.8,
+    reviewCount: 966,
   },
   {
     slug: "rasoi-restaurant",
@@ -315,7 +315,7 @@ export const places: Place[] = [
       "Authentic Indian restaurant offering a variety of halal dishes including flavorful curries and tandoori specialties. A cozy spot for enjoying traditional Indian cuisine.",
     verified: true,
     rating: 4.5,
-    reviewCount: 512,
+    reviewCount: 1472,
     website: "https://rasoi-restaurant.de",
   },
   {
@@ -331,8 +331,8 @@ export const places: Place[] = [
     description:
       "Uzbek restaurant offering a variety of halal grilled dishes and burgers. Samarkand provides an authentic taste of Central Asian cuisine in a welcoming atmosphere.",
     verified: true,
-    rating: 4.4,
-    reviewCount: 298,
+    rating: 4.9,
+    reviewCount: 965,
     website: "https://samarkand-grill.de",
   },
   {
@@ -349,7 +349,7 @@ export const places: Place[] = [
       "Balkan restaurant specializing in halal grilled dishes and barbecue. Moosacher Paradies offers authentic flavors in a cozy setting, perfect for family dinners or group gatherings.",
     verified: true,
     rating: 4.8,
-    reviewCount: 4302,
+    reviewCount: 4623,
     website: "https://moosacher-paradies.de",
   },
   {
@@ -380,8 +380,8 @@ export const places: Place[] = [
     description:
       "Located directly at the Moosach U-Bahn station. Known for 'controlled Halal meat from Bavarian breeding' and a separate fresh fish counter, which is rare for local supermarkets.",
     verified: true,
-    rating: 4.4,
-    reviewCount: 180,
+    rating: 4.3,
+    reviewCount: 412,
   },
   {
     slug: "metzgerei-etem",
@@ -412,8 +412,8 @@ export const places: Place[] = [
     description:
       "A staple for students living centrally. The butcher counter is massive, offering affordable lamb and beef cuts. Very busy, high turnover ensures freshness.",
     verified: true,
-    rating: 4.3,
-    reviewCount: 1200,
+    rating: 4.2,
+    reviewCount: 2952,
   },
   {
     slug: "hahn-fleischhandel",
@@ -429,7 +429,7 @@ export const places: Place[] = [
       "Located directly at the slaughterhouse district (Schlachthof). They sell to restaurants but also have an 'Abholmarkt' for individuals. Certified halal regional meat.",
     verified: true,
     rating: 4.8,
-    reviewCount: 310,
+    reviewCount: 72,
   },
   {
     slug: "islamisches-zentrum-muenchen",
@@ -583,6 +583,8 @@ export const places: Place[] = [
     description:
       "The quintessential student cafe near LMU. 100% vegan, laptop-friendly during the day, and hosts events at night.",
     verified: true,
+    rating: 4.3,
+    reviewCount: 1810,
   },
   {
     slug: "bibliothek-deutsches-museum",
@@ -635,6 +637,8 @@ export const places: Place[] = [
     description:
       "Located directly at Odeonsplatz, this is a spacious bakery-cafe. While often busy with tourists and locals, its large upper seating area offers a solid spot for a quick breakfast or coffee between lectures.",
     verified: true,
+    rating: 4.1,
+    reviewCount: 170,
   },
   {
     slug: "mackbear-leopoldstr",
@@ -648,6 +652,8 @@ export const places: Place[] = [
     description:
       "Often affectionately called 'McBear', this is a top spot for deep work near Münchner Freiheit. Known for very strong coffee, modern interior, and being explicitly laptop-friendly with plenty of power outlets.",
     verified: true,
+    rating: 4.5,
+    reviewCount: 326,
   },
   {
     slug: "cadu-cafe-an-der-uni",
@@ -661,6 +667,8 @@ export const places: Place[] = [
     description:
       "A legendary institution directly next to the LMU main building (U-Bahn Universität). It transitions from a breakfast spot to a lively bar in the evening. Great for meeting people, less so for silent study.",
     verified: true,
+    rating: 3.9,
+    reviewCount: 2661,
   },
   {
     slug: "cafe-zeitgeist",
@@ -674,6 +682,8 @@ export const places: Place[] = [
     description:
       "Similar to CADU but deep in the Türkenstraße student quarter. Extremely popular for its affordable student breakfast/brunch and lively atmosphere. A classic place to meet friends after class.",
     verified: true,
+    rating: 4.3,
+    reviewCount: 3011,
   },
   {
     slug: "benko-cafe",
@@ -687,6 +697,8 @@ export const places: Place[] = [
     description:
       "A favorite for Technical University (TUM) students due to its proximity to the main campus. It offers a spacious interior with large tables, making it good for groups or lunch breaks between seminars.",
     verified: true,
+    rating: 4.7,
+    reviewCount: 421,
   },
   {
     slug: "abant-restaurant",
@@ -699,6 +711,8 @@ export const places: Place[] = [
     tags: ["halal", "restaurant", "turkish"],
     description: "Abant Restaurant is a halal restaurant in Munich — Turkish cuisine.",
     verified: false,
+    rating: 4.7,
+    reviewCount: 634,
     website: "https://www.abant-restaurant.de/",
     phone: "+49 89 50096858",
   },
@@ -713,6 +727,8 @@ export const places: Place[] = [
     tags: ["halal", "restaurant", "turkish"],
     description: "Alanya Kebab is a halal restaurant in Munich. Turkish cuisine.",
     verified: true,
+    rating: 4.8,
+    reviewCount: 606,
     website: "https://webonjo.com/e/de-view.php?seo=alanya-kebab-993237",
   },
   // --- OpenStreetMap-sourced additions (ODbL, © OpenStreetMap contributors) ---

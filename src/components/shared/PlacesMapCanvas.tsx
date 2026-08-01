@@ -447,6 +447,18 @@ export default function PlacesMapCanvas({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [signature, map]);
 
+  // react-leaflet only reads scrollWheelZoom once, at map construction, so
+  // toggling the prop after mount has no effect on the live map instance.
+  // Enable/disable the handler imperatively instead.
+  useEffect(() => {
+    if (!map) return;
+    if (scrollZoomActive) {
+      map.scrollWheelZoom.enable();
+    } else {
+      map.scrollWheelZoom.disable();
+    }
+  }, [map, scrollZoomActive]);
+
   return (
     <div className="atlas-map overflow-hidden rounded-[2rem] bg-card shadow-[0_2px_24px_rgb(0_0_0/0.08)] dark:shadow-none dark:ring-1 dark:ring-border">
       <div

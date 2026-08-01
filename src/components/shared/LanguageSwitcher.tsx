@@ -1,7 +1,6 @@
 "use client";
 
 import * as React from "react";
-import { useParams } from "next/navigation";
 import { useTransition } from "react";
 import { cn } from "@/lib/utils";
 import { usePathname, useRouter } from "@/i18n/navigation";
@@ -32,7 +31,6 @@ export function LanguageSwitcher({
   /* The locale-aware pathname: locale prefix stripped, so it can be re-added
      for whichever language is picked. */
   const pathname = usePathname();
-  const params = useParams();
   const common = useTranslations("common");
   const [isPending, startTransition] = useTransition();
   const [isOpen, setIsOpen] = React.useState(false);
@@ -52,13 +50,7 @@ export function LanguageSwitcher({
     track("language_switch", { from: currentLocale, to: locale });
     setIsOpen(false);
     startTransition(() => {
-      // `params` carries any dynamic segments ([slug]) the current route has.
-      router.replace(
-        // @ts-expect-error -- pathname is a runtime value, so it can't be
-        // narrowed to the statically-known route union.
-        { pathname, params },
-        { locale }
-      );
+      router.replace(pathname, { locale });
     });
   };
 

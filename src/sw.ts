@@ -59,17 +59,19 @@ const serwist = new Serwist({
       }),
     },
     {
-      // Guides and places change on our schedule, not the reader's: serve the
-      // stored copy instantly and refresh it in the background.
+      /* Every page navigation, not just guides: pages are no longer precached
+         (three locales of everything came to 10 MB), so this is what makes a
+         page the reader has already opened survive going offline. Content
+         changes on our schedule rather than theirs, so the stored copy is
+         served instantly and refreshed in the background. */
       matcher: ({ request, url }) =>
-        request.mode === "navigate" &&
-        (url.pathname.startsWith("/guides") ||
-          url.pathname.startsWith("/places") ||
-          url.pathname.startsWith("/category")),
+        request.mode === "navigate" && url.origin === self.location.origin,
       handler: new StaleWhileRevalidate({
         cacheName: PAGES_CACHE_NAME.html,
         plugins: [
-          new ExpirationPlugin({ maxEntries: 64, maxAgeSeconds: 7 * 24 * 60 * 60 }),
+          // Generous, because the entries are one locale's pages only — the
+          // ones this reader actually visited.
+          new ExpirationPlugin({ maxEntries: 96, maxAgeSeconds: 7 * 24 * 60 * 60 }),
         ],
       }),
     },
@@ -78,9 +80,10 @@ const serwist = new Serwist({
   fallbacks: {
     entries: [
       {
-        // A static file, not an app route: this app renders every route on
-        // demand (the locale is a cookie read in the root layout), so no page
-        // HTML is prerendered and none of it can be precached.
+        /* A static file rather than an app route. The fallback has to be one
+           precached URL, but the app now has three locales — this single 2 KB
+           page carries all three and picks between them from the locale
+           cookie, which is cheaper than precaching three real pages. */
         url: "/offline.html",
         matcher: ({ request }) => request.destination === "document",
       },

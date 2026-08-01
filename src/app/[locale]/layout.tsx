@@ -163,12 +163,15 @@ export default async function RootLayout({
 
   const messages = await getMessages();
 
-  // `placesData` is ~46 KB of place names and descriptions in every locale.
-  // It used to ride along in the client payload of every single page; /places
-  // now resolves it on the server and hands localized places to its client
-  // island, so nothing in the browser needs it.
+  // Two namespaces account for ~86 KB of the 118 KB message file and are each
+  // needed by exactly one part of the site, yet a single provider here would
+  // embed both in the HTML of every page — twice, since the RSC payload
+  // repeats it. They are supplied closer to where they're read instead:
+  //   placesData → resolved on the server in /places, never sent to the client
+  //   legal      → a nested provider in the /privacy and /terms layouts
   const clientMessages = { ...messages };
   delete clientMessages.placesData;
+  delete clientMessages.legal;
 
   // Extract nav translations for the header
   const navTranslations = messages.nav as {

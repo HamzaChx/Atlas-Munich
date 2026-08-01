@@ -1,4 +1,6 @@
 import { Metadata } from "next";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages, setRequestLocale } from "next-intl/server";
 import { LEGAL } from "@/lib/legal-config";
 
 export const metadata: Metadata = {
@@ -23,6 +25,25 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 };
 
-export default function TermsLayout({ children }: { children: React.ReactNode }) {
-  return children;
+/**
+ * The `legal` namespace is 42 KB — over a third of all translated strings —
+ * and only these two pages read it. Supplying it here rather than from the
+ * root layout keeps it out of the HTML of every other page in the app.
+ */
+export default async function TermsLayout({
+  children,
+  params,
+}: {
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>;
+}) {
+  // Reading messages here would otherwise pull this branch back into
+  // on-demand rendering, the way the whole app used to render.
+  const { locale } = await params;
+  setRequestLocale(locale);
+
+  const messages = await getMessages();
+  return (
+    <NextIntlClientProvider messages={{ legal: messages.legal }}>{children}</NextIntlClientProvider>
+  );
 }

@@ -2,12 +2,10 @@
 <!--
   Atlas Munich – offline fallback.
 
-  Deliberately a hand-written static file rather than an app route. Every
-  route in this app is server-rendered on demand (the locale comes from a
-  cookie, read in the root layout), so no page HTML is ever prerendered and
-  nothing under src/app can be precached. This file lives in public/, so the
-  service worker can store it at install time and always have something to
-  show when a navigation fails.
+  A hand-written static file rather than an app route. The service worker's
+  navigation fallback has to be one precached URL, but the site has three
+  locales — this single page carries all three and picks between them from the
+  NEXT_LOCALE cookie, which costs 2 KB instead of precaching three real pages.
 
   Self-contained by necessity: when this renders there is no network, so no
   external stylesheet, font, or script can load.

@@ -8,6 +8,14 @@ import { serwist } from "@serwist/next/config";
 export default await serwist({
   swSrc: "src/sw.ts",
   swDest: "public/sw.js",
+
+  /* Now that every page prerenders, the default would precache all three
+     locales of all ~25 routes — 10 MB of HTML pushed on install, most of it in
+     languages the reader doesn't speak. The app shell (JS/CSS/icons) is
+     precached instead, and pages are cached as they are actually visited by
+     the navigation rule in src/sw.ts. */
+  precachePrerendered: false,
+
   globIgnores: [
     // Every <Image> in the app is served through /_next/image, so the raw
     // files in public/ are never what the browser actually requests —

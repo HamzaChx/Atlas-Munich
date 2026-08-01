@@ -1040,7 +1040,7 @@ export const places: Place[] = [
   },
   {
     slug: "burgerbae",
-    name: "Burger King",
+    name: "Burgerbae",
     category: "restaurant",
     address: "Theresienhöhe 5, 80339 München-Schwanthalerhöhe",
     district: "Schwanthalerhöhe",
@@ -1056,7 +1056,7 @@ export const places: Place[] = [
       "no-pork-gelatin",
     ],
     description:
-      "Burger King is a halal restaurant in Munich — American cuisine, no alcohol served.",
+      "Burgerbae is a halal restaurant in Munich — American cuisine, no alcohol served.",
     verified: false,
     instagram: "https://www.instagram.com/burgerbae.muc/",
   },

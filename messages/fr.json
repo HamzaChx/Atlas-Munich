@@ -128,18 +128,30 @@
     "advancedFilters": {
       "button": "Filtres",
       "price": "Prix",
-      "rating": "Note",
-      "verifiedOnly": "Vérifiés uniquement",
+      "district": "Quartier",
+      "allDistricts": "Tous les quartiers",
+      "cuisine": "Cuisine",
+      "allCuisines": "Toutes les cuisines",
       "clear": "Effacer les filtres"
     },
-    "sort": {
-      "label": "Trier par",
-      "recommended": "Recommandé",
-      "ratingDesc": "Les mieux notés",
-      "reviewsDesc": "Les plus commentés",
-      "nameAsc": "Nom (A-Z)",
-      "priceAsc": "Prix : croissant",
-      "priceDesc": "Prix : décroissant"
+    "cuisines": {
+      "turkish": "Turque",
+      "arabic": "Arabe",
+      "lebanese": "Libanaise",
+      "persian": "Persane",
+      "moroccan": "Marocaine",
+      "indian": "Indienne",
+      "italian": "Italienne",
+      "afghan": "Afghane",
+      "uyghur": "Ouïghoure",
+      "pakistani": "Pakistanaise",
+      "kurdish": "Kurde",
+      "iraqi": "Irakienne",
+      "balkan": "Balkanique",
+      "mediterranean": "Méditerranéenne",
+      "asian": "Asiatique",
+      "american": "Américaine",
+      "uzbek": "Ouzbèke"
     },
     "results": {
       "place": "lieu",
@@ -1384,11 +1396,7 @@
         "Où puis-je étudier ?",
         "Des endroits marocains pour manger"
       ],
-      "hamza": [
-        "À propos de ce projet",
-        "Comment contribuer ?",
-        "Quel est le stack technique ?"
-      ],
+      "hamza": ["À propos de ce projet", "Comment contribuer ?", "Quel est le stack technique ?"],
       "riad": [
         "Rédige une candidature WG pour moi",
         "Rédige une candidature formelle",
@@ -1547,12 +1555,7 @@
             },
             {
               "t": "table",
-              "head": [
-                "Données",
-                "Finalité",
-                "Base légale",
-                "Conservation"
-              ],
+              "head": ["Données", "Finalité", "Base légale", "Conservation"],
               "rows": [
                 [
                   "Journaux d'accès et serveur",
@@ -1649,12 +1652,7 @@
             },
             {
               "t": "table",
-              "head": [
-                "Nom",
-                "Type",
-                "Finalité",
-                "Durée"
-              ],
+              "head": ["Nom", "Type", "Finalité", "Durée"],
               "rows": [
                 [
                   "theme",
@@ -1730,12 +1728,7 @@
             },
             {
               "t": "table",
-              "head": [
-                "Prestataire",
-                "Rôle",
-                "Ce qu'il reçoit",
-                "Où"
-              ],
+              "head": ["Prestataire", "Rôle", "Ce qu'il reçoit", "Où"],
               "rows": [
                 [
                   "Vercel Inc. et Vercel GmbH",
@@ -2308,11 +2301,7 @@
         "status": "Disponible",
         "cta": "Lancer l'outil",
         "poweredBy": "Propulsé par IA via Riad",
-        "tags": [
-          "Candidatures WG",
-          "Annonces appartement",
-          "Allemand parfait"
-        ]
+        "tags": ["Candidatures WG", "Annonces appartement", "Allemand parfait"]
       },
       "events": {
         "title": "Planificateur d'événements",
@@ -2320,11 +2309,7 @@
         "status": "Bientôt disponible",
         "cta": "Bientôt disponible",
         "comingSoonNote": "Nous construisons cet outil, restez connecté !",
-        "tags": [
-          "Planifier des événements",
-          "Inviter des amis",
-          "Lieux à Munich"
-        ],
+        "tags": ["Planifier des événements", "Inviter des amis", "Lieux à Munich"],
         "prompts": [
           "Trouver un lieu pour une session d'étude",
           "Organiser une sortie le week-end",
@@ -2337,11 +2322,7 @@
         "status": "Disponible",
         "cta": "Lancer l'outil",
         "poweredBy": "Optimisé par IA via Dalilah",
-        "tags": [
-          "Anmeldung",
-          "Permis de séjour",
-          "KVR & Délais"
-        ]
+        "tags": ["Anmeldung", "Permis de séjour", "KVR & Délais"]
       },
       "ilham": {
         "title": "Compagnon de Recherche Académique",
@@ -2349,11 +2330,7 @@
         "status": "Disponible",
         "cta": "Lancer l'outil",
         "poweredBy": "Optimisé par IA via Ilham",
-        "tags": [
-          "Recherche & Littérature",
-          "Écriture scientifique",
-          "Thèse & LaTeX"
-        ]
+        "tags": ["Recherche & Littérature", "Écriture scientifique", "Thèse & LaTeX"]
       },
       "loubna": {
         "title": "Navigatrice Santé & Traductrice Médicale",
@@ -2361,11 +2338,7 @@
         "status": "Disponible",
         "cta": "Lancer l'outil",
         "poweredBy": "Optimisé par IA via Loubna",
-        "tags": [
-          "Assurance Maladie",
-          "Recherche Médecin",
-          "Traduction Médicale"
-        ]
+        "tags": ["Assurance Maladie", "Recherche Médecin", "Traduction Médicale"]
       }
     },
     "moreComing": "D'autres assistants arrivent bientôt. Une idée ? Contribuez sur",
@@ -2498,5 +2471,19 @@
       "title": "Ressources Santé",
       "subtitle": "Services de santé officiels et assureurs pour les étudiants à Munich"
     }
+  },
+  "errors": {
+    "notFoundEyebrow": "404",
+    "notFoundTitle": "Cette page s'est perdue en chemin.",
+    "notFoundDescription": "La page que vous cherchez n'existe pas, a été déplacée, ou n'a jamais dépassé le brouillon. Essayez une recherche, ou retournez à un guide.",
+    "notFoundSearchPlaceholder": "Rechercher des guides, lieux et FAQ...",
+    "notFoundPopularGuides": "Guides populaires",
+    "backHome": "Retour à l'accueil",
+    "errorEyebrow": "Un problème est survenu",
+    "errorTitle": "Ça n'aurait pas dû arriver.",
+    "errorDescription": "Une erreur inattendue a interrompu cette page. Elle a été enregistrée, réessayez ou retournez en lieu sûr.",
+    "tryAgain": "Réessayer",
+    "globalErrorTitle": "Atlas Munich a rencontré un problème.",
+    "globalErrorDescription": "L'application n'a pas pu se charger. Recharger la page résout généralement le problème."
   }
 }

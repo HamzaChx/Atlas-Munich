@@ -12,7 +12,7 @@
 
 import * as React from "react";
 import Link from "next/link";
-import { BadgeCheck, Globe, Instagram, MapPin, Navigation, Phone, Star } from "lucide-react";
+import { BadgeCheck, Clock, Globe, Instagram, MapPin, Navigation, Phone, Star } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { track } from "@vercel/analytics";
 
@@ -80,7 +80,12 @@ function Spotlight({ place, className }: { place: Place; className?: string }) {
       )}
     >
       {/* Tinted plate, carrying the category and the rosette */}
-      <div className={cn("relative overflow-hidden px-6 pb-8 pt-7 sm:px-9 sm:pb-9 sm:pt-8", accent.tint)}>
+      <div
+        className={cn(
+          "relative overflow-hidden px-6 pb-8 pt-7 sm:px-9 sm:pb-9 sm:pt-8",
+          accent.tint
+        )}
+      >
         <span
           aria-hidden="true"
           className={cn(
@@ -131,13 +136,17 @@ function Spotlight({ place, className }: { place: Place; className?: string }) {
             <MapPin className="h-4 w-4 shrink-0 text-zinc-500 dark:text-zinc-400" />
             {place.address}
           </span>
-          {place.price && (
-            <span className={cn("font-bold", accent.text)}>{place.price}</span>
-          )}
+          {place.price && <span className={cn("font-bold", accent.text)}>{place.price}</span>}
           {place.verified && (
             <span className="flex items-center gap-1 font-semibold text-zellige">
               <BadgeCheck className="h-4 w-4" />
               {t("card.verified")}
+            </span>
+          )}
+          {place.openingHours && (
+            <span className="flex items-center gap-1.5">
+              <Clock className="h-4 w-4 shrink-0 text-zinc-500 dark:text-zinc-400" />
+              {place.openingHours}
             </span>
           )}
         </div>
@@ -170,13 +179,17 @@ function Spotlight({ place, className }: { place: Place; className?: string }) {
             )}`}
             target="_blank"
             rel="noopener noreferrer"
-            onClick={() => track("place_directions_click", { place: place.slug, category: place.category })}
+            onClick={() =>
+              track("place_directions_click", { place: place.slug, category: place.category })
+            }
             className="flex flex-1 items-center justify-center gap-2 rounded-full bg-zinc-900 px-7 py-3.5 text-sm font-semibold text-white outline-none transition-colors hover:bg-zinc-700 focus-visible:ring-2 focus-visible:ring-zellige/50 sm:flex-none dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-200"
           >
             <Navigation className="h-4 w-4" />
             {t("card.directions")}
           </Link>
-          {place.website && <IconAction href={place.website} label={t("card.website")} icon={Globe} />}
+          {place.website && (
+            <IconAction href={place.website} label={t("card.website")} icon={Globe} />
+          )}
           {place.instagram && (
             <IconAction href={place.instagram} label={t("card.instagram")} icon={Instagram} />
           )}
@@ -268,7 +281,10 @@ export function PlacesBrowser({ places, categories, className }: PlacesBrowserPr
               return (
                 <div key={group.key}>
                   <div className="sticky top-0 z-10 flex items-center gap-2 bg-card px-3 py-2">
-                    <span className={cn("h-1.5 w-1.5 rounded-full", accent.dot)} aria-hidden="true" />
+                    <span
+                      className={cn("h-1.5 w-1.5 rounded-full", accent.dot)}
+                      aria-hidden="true"
+                    />
                     <span className="text-[11px] font-bold uppercase tracking-[0.12em] text-zinc-500 dark:text-zinc-400">
                       {group.label}
                     </span>
@@ -313,9 +329,7 @@ export function PlacesBrowser({ places, categories, className }: PlacesBrowserPr
                             <span
                               className={cn(
                                 "block truncate text-[13.5px] font-semibold",
-                                active
-                                  ? accent.text
-                                  : "text-zinc-800 dark:text-zinc-100"
+                                active ? accent.text : "text-zinc-800 dark:text-zinc-100"
                               )}
                             >
                               {place.name}
@@ -354,7 +368,11 @@ export function PlacesBrowser({ places, categories, className }: PlacesBrowserPr
           height, so the two panels read as the same size instead of the
           card floating noticeably shorter than the list beside it. */}
       <div className="hidden lg:sticky lg:top-[8.75rem] lg:flex lg:min-h-[min(31rem,calc(100vh-16rem))] lg:flex-col lg:self-start">
-        <Spotlight key={selected.slug} place={selected} className="animate-in fade-in duration-300" />
+        <Spotlight
+          key={selected.slug}
+          place={selected}
+          className="animate-in fade-in duration-300"
+        />
       </div>
     </div>
   );

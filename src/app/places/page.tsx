@@ -7,41 +7,65 @@ import { placeAccents } from "@/components/shared/place-accents";
 
 import { places } from "@/data/places";
 import { PlaceCategory, PriceLevel } from "@/types";
-import { Search, ArrowRight, Map, Columns2, X, SlidersHorizontal, ChevronDown, Star } from "lucide-react";
+import {
+  Search,
+  ArrowRight,
+  Map,
+  Columns2,
+  X,
+  SlidersHorizontal,
+  ChevronDown,
+} from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
 
-type SortOption =
-  | "recommended"
-  | "rating-desc"
-  | "reviews-desc"
-  | "name-asc"
-  | "price-asc"
-  | "price-desc";
-
-const PRICE_RANK: Record<PriceLevel, number> = { "€": 1, "€€": 2, "€€€": 3 };
 const PRICE_LEVELS: PriceLevel[] = ["€", "€€", "€€€"];
-const RATING_LEVELS = [4.5, 4.0];
+
+// Cuisine tags found on restaurant entries, used to power the cuisine filter
+const CUISINE_TAGS = [
+  "turkish",
+  "arabic",
+  "lebanese",
+  "persian",
+  "moroccan",
+  "indian",
+  "italian",
+  "afghan",
+  "uyghur",
+  "pakistani",
+  "kurdish",
+  "iraqi",
+  "balkan",
+  "mediterranean",
+  "asian",
+  "american",
+  "uzbek",
+] as const;
+type CuisineTag = (typeof CUISINE_TAGS)[number];
 
 interface FiltersPopoverProps {
   price: PriceLevel | null;
   onPriceChange: (value: PriceLevel | null) => void;
-  minRating: number | null;
-  onMinRatingChange: (value: number | null) => void;
-  verifiedOnly: boolean;
-  onVerifiedOnlyChange: (value: boolean) => void;
+  district: string | null;
+  onDistrictChange: (value: string | null) => void;
+  districts: string[];
+  cuisine: CuisineTag | null;
+  onCuisineChange: (value: CuisineTag | null) => void;
+  cuisines: CuisineTag[];
   activeCount: number;
 }
 
-/** Price, rating, and verified toggles, tucked behind one button so the sticky
-    toolbar doesn't turn into a wall of pills. */
+/** Price, district, and cuisine filters, tucked behind one button so
+    the sticky toolbar doesn't turn into a wall of pills. */
 function FiltersPopover({
   price,
   onPriceChange,
-  minRating,
-  onMinRatingChange,
-  verifiedOnly,
-  onVerifiedOnlyChange,
+  district,
+  onDistrictChange,
+  districts,
+  cuisine,
+  onCuisineChange,
+  cuisines,
   activeCount,
 }: FiltersPopoverProps) {
   const t = useTranslations("places");
@@ -121,61 +145,59 @@ function FiltersPopover({
 
           <div className="mt-4">
             <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-zinc-400 dark:text-zinc-500">
-              {t("advancedFilters.rating")}
+              {t("advancedFilters.district")}
             </p>
-            <div className="mt-2 flex items-center gap-1.5">
-              {RATING_LEVELS.map((level) => {
-                const active = minRating === level;
-                return (
-                  <button
-                    key={level}
-                    type="button"
-                    onClick={() => onMinRatingChange(active ? null : level)}
-                    className={cn(
-                      "flex flex-1 items-center justify-center gap-1 rounded-lg py-1.5 text-[13px] font-semibold transition-colors",
-                      active
-                        ? "bg-zinc-900 text-white dark:bg-zinc-50 dark:text-zinc-900"
-                        : "bg-zinc-100 text-zinc-500 hover:bg-zinc-200 dark:bg-foreground/[0.09] dark:text-zinc-400 dark:hover:bg-foreground/[0.14]"
-                    )}
-                  >
-                    <Star className="h-3 w-3 fill-current" />
-                    {level}+
-                  </button>
-                );
-              })}
+            <div className="relative mt-2">
+              <select
+                value={district ?? ""}
+                onChange={(e) => onDistrictChange(e.target.value || null)}
+                className="h-9 w-full appearance-none rounded-lg bg-zinc-100 pl-3 pr-8 text-[13px] font-semibold text-zinc-700 outline-none transition-colors hover:bg-zinc-200 dark:bg-foreground/[0.09] dark:text-zinc-200 dark:hover:bg-foreground/[0.14]"
+              >
+                <option value="">{t("advancedFilters.allDistricts")}</option>
+                {districts.map((d) => (
+                  <option key={d} value={d}>
+                    {d}
+                  </option>
+                ))}
+              </select>
+              <ChevronDown
+                aria-hidden="true"
+                className="pointer-events-none absolute right-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-zinc-400"
+              />
             </div>
           </div>
 
-          <label className="mt-4 flex cursor-pointer items-center justify-between gap-3 py-1">
-            <span className="text-[13px] font-medium text-zinc-700 dark:text-zinc-200">
-              {t("advancedFilters.verifiedOnly")}
-            </span>
-            <button
-              type="button"
-              role="switch"
-              aria-checked={verifiedOnly}
-              onClick={() => onVerifiedOnlyChange(!verifiedOnly)}
-              className={cn(
-                "relative h-6 w-11 shrink-0 rounded-full transition-colors",
-                verifiedOnly ? "bg-zellige" : "bg-zinc-200 dark:bg-foreground/20"
-              )}
-            >
-              <span
-                className={cn(
-                  "absolute top-0.5 h-5 w-5 rounded-full bg-white shadow-sm transition-transform",
-                  verifiedOnly ? "translate-x-[1.375rem]" : "translate-x-0.5"
-                )}
+          <div className="mt-4">
+            <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-zinc-400 dark:text-zinc-500">
+              {t("advancedFilters.cuisine")}
+            </p>
+            <div className="relative mt-2">
+              <select
+                value={cuisine ?? ""}
+                onChange={(e) => onCuisineChange((e.target.value || null) as CuisineTag | null)}
+                className="h-9 w-full appearance-none rounded-lg bg-zinc-100 pl-3 pr-8 text-[13px] font-semibold text-zinc-700 outline-none transition-colors hover:bg-zinc-200 dark:bg-foreground/[0.09] dark:text-zinc-200 dark:hover:bg-foreground/[0.14]"
+              >
+                <option value="">{t("advancedFilters.allCuisines")}</option>
+                {cuisines.map((c) => (
+                  <option key={c} value={c}>
+                    {t(`cuisines.${c}`)}
+                  </option>
+                ))}
+              </select>
+              <ChevronDown
+                aria-hidden="true"
+                className="pointer-events-none absolute right-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-zinc-400"
               />
-            </button>
-          </label>
+            </div>
+          </div>
 
           {activeCount > 0 && (
             <button
               type="button"
               onClick={() => {
                 onPriceChange(null);
-                onMinRatingChange(null);
-                onVerifiedOnlyChange(false);
+                onDistrictChange(null);
+                onCuisineChange(null);
               }}
               className="mt-4 w-full text-center text-[13px] font-semibold text-zellige hover:underline"
             >
@@ -193,9 +215,8 @@ export default function PlacesPage() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<PlaceCategory | null>(null);
   const [priceFilter, setPriceFilter] = useState<PriceLevel | null>(null);
-  const [minRating, setMinRating] = useState<number | null>(null);
-  const [verifiedOnly, setVerifiedOnly] = useState(false);
-  const [sortBy, setSortBy] = useState<SortOption>("recommended");
+  const [districtFilter, setDistrictFilter] = useState<string | null>(null);
+  const [cuisineFilter, setCuisineFilter] = useState<CuisineTag | null>(null);
   /* The map is the page's front door: pins answer "what is near me?" faster
      than any list can. The browse view is one tap away. */
   const [viewMode, setViewMode] = useState<"browse" | "map">("map");
@@ -223,6 +244,12 @@ export default function PlacesPage() {
   // Only offer filters for categories that actually have places
   const categoryFilters = filterMeta.filter((f) => (countByCategory[f.key] ?? 0) > 0);
 
+  // Every district that appears in the data, alphabetized for the dropdown
+  const districts = useMemo(() => {
+    const unique = new Set(places.map((p) => p.district).filter((d): d is string => Boolean(d)));
+    return Array.from(unique).sort((a, b) => a.localeCompare(b));
+  }, []);
+
   // Localized category names for the map legend and marker popups
   const categoryLabelMap = useMemo(
     () => Object.fromEntries(filterMeta.map((f) => [f.key, f.label])),
@@ -231,6 +258,18 @@ export default function PlacesPage() {
   );
 
   const placesData = useTranslations("placesData");
+
+  // Only offer cuisines that actually appear on a restaurant in the data
+  const cuisines = useMemo(() => {
+    const present = new Set<CuisineTag>();
+    places.forEach((p) => {
+      if (p.category !== "restaurant") return;
+      p.tags.forEach((tag) => {
+        if ((CUISINE_TAGS as readonly string[]).includes(tag)) present.add(tag as CuisineTag);
+      });
+    });
+    return CUISINE_TAGS.filter((c) => present.has(c));
+  }, []);
 
   const filteredPlaces = useMemo(() => {
     let result = places;
@@ -243,12 +282,14 @@ export default function PlacesPage() {
       result = result.filter((place) => place.price === priceFilter);
     }
 
-    if (minRating) {
-      result = result.filter((place) => (place.rating ?? 0) >= minRating);
+    if (districtFilter) {
+      result = result.filter((place) => place.district === districtFilter);
     }
 
-    if (verifiedOnly) {
-      result = result.filter((place) => place.verified);
+    if (cuisineFilter) {
+      result = result.filter(
+        (place) => place.category === "restaurant" && place.tags.includes(cuisineFilter)
+      );
     }
 
     if (searchQuery.trim()) {
@@ -263,7 +304,7 @@ export default function PlacesPage() {
     }
 
     return result;
-  }, [selectedCategory, priceFilter, minRating, verifiedOnly, searchQuery]);
+  }, [selectedCategory, priceFilter, districtFilter, cuisineFilter, searchQuery]);
 
   // Localize place names/descriptions using messages under the `placesData` namespace.
   const localizedPlaces = useMemo(() => {
@@ -286,33 +327,7 @@ export default function PlacesPage() {
     });
   }, [filteredPlaces, placesData]);
 
-  /* Sorting happens after localization so "Name (A-Z)" sorts on what's shown.
-     PlacesBrowser groups by category, so order here is preserved within each
-     category group rather than as one flat ranking across categories. */
-  const sortedPlaces = useMemo(() => {
-    if (sortBy === "recommended") return localizedPlaces;
-    const result = [...localizedPlaces];
-    switch (sortBy) {
-      case "rating-desc":
-        result.sort((a, b) => (b.rating ?? 0) - (a.rating ?? 0));
-        break;
-      case "reviews-desc":
-        result.sort((a, b) => (b.reviewCount ?? 0) - (a.reviewCount ?? 0));
-        break;
-      case "name-asc":
-        result.sort((a, b) => a.name.localeCompare(b.name));
-        break;
-      case "price-asc":
-        result.sort((a, b) => (PRICE_RANK[a.price!] ?? 99) - (PRICE_RANK[b.price!] ?? 99));
-        break;
-      case "price-desc":
-        result.sort((a, b) => (PRICE_RANK[b.price!] ?? 99) - (PRICE_RANK[a.price!] ?? 99));
-        break;
-    }
-    return result;
-  }, [localizedPlaces, sortBy]);
-
-  const activeFilterCount = [priceFilter, minRating, verifiedOnly || null].filter(Boolean).length;
+  const activeFilterCount = [priceFilter, districtFilter, cuisineFilter].filter(Boolean).length;
   const isFiltering = Boolean(selectedCategory || searchQuery.trim() || activeFilterCount > 0);
 
   return (
@@ -351,39 +366,19 @@ export default function PlacesPage() {
             )}
           </div>
 
-          {/* Advanced filters + sort */}
+          {/* Advanced filters */}
           <div className="flex shrink-0 items-center gap-2">
             <FiltersPopover
               price={priceFilter}
               onPriceChange={setPriceFilter}
-              minRating={minRating}
-              onMinRatingChange={setMinRating}
-              verifiedOnly={verifiedOnly}
-              onVerifiedOnlyChange={setVerifiedOnly}
+              district={districtFilter}
+              onDistrictChange={setDistrictFilter}
+              districts={districts}
+              cuisine={cuisineFilter}
+              onCuisineChange={setCuisineFilter}
+              cuisines={cuisines}
               activeCount={activeFilterCount}
             />
-
-            {viewMode === "browse" && (
-              <div className="relative shrink-0">
-                <select
-                  value={sortBy}
-                  onChange={(e) => setSortBy(e.target.value as SortOption)}
-                  aria-label={t("sort.label")}
-                  className="h-9 appearance-none rounded-full bg-card py-0 pl-3.5 pr-8 text-[13px] font-semibold text-zinc-600 shadow-sm outline-none transition-colors hover:text-zinc-900 focus:ring-2 focus:ring-zellige/40 dark:bg-foreground/[0.075] dark:text-zinc-300 dark:shadow-none dark:ring-1 dark:ring-border dark:hover:text-zinc-50"
-                >
-                  <option value="recommended">{t("sort.recommended")}</option>
-                  <option value="rating-desc">{t("sort.ratingDesc")}</option>
-                  <option value="reviews-desc">{t("sort.reviewsDesc")}</option>
-                  <option value="name-asc">{t("sort.nameAsc")}</option>
-                  <option value="price-asc">{t("sort.priceAsc")}</option>
-                  <option value="price-desc">{t("sort.priceDesc")}</option>
-                </select>
-                <ChevronDown
-                  aria-hidden="true"
-                  className="pointer-events-none absolute right-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-zinc-400"
-                />
-              </div>
-            )}
           </div>
 
           {/* Category pills with live counts */}
@@ -454,8 +449,8 @@ export default function PlacesPage() {
                   setSelectedCategory(null);
                   setSearchQuery("");
                   setPriceFilter(null);
-                  setMinRating(null);
-                  setVerifiedOnly(false);
+                  setDistrictFilter(null);
+                  setCuisineFilter(null);
                 }}
                 className="text-[13px] font-semibold text-zellige hover:underline"
               >
@@ -504,7 +499,7 @@ export default function PlacesPage() {
 
         {/* Browse view: index on the left, the selected place shown large */}
         {viewMode === "browse" &&
-          (sortedPlaces.length > 0 ? (
+          (localizedPlaces.length > 0 ? (
             <>
               {isFiltering && (
                 <p className="mb-5 text-sm text-zinc-500 dark:text-zinc-400">
@@ -533,7 +528,7 @@ export default function PlacesPage() {
                   )}
                 </p>
               )}
-              <PlacesBrowser places={sortedPlaces} categories={categoryFilters} />
+              <PlacesBrowser places={localizedPlaces} categories={categoryFilters} />
             </>
           ) : (
             <EmptyState

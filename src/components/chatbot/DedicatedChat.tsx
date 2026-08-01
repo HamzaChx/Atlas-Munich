@@ -202,10 +202,7 @@ function WelcomeScreen({
   return (
     <div className="dc-welcome-enter flex flex-1 flex-col items-center justify-center px-2 py-8 text-center">
       <div className="relative mb-5">
-        <span
-          className={cn("absolute -inset-3 rounded-full", accent.tint)}
-          aria-hidden="true"
-        />
+        <span className={cn("absolute -inset-3 rounded-full", accent.tint)} aria-hidden="true" />
         <Image
           src={avatar}
           alt={name}
@@ -285,6 +282,7 @@ export function DedicatedChat({ theme, backPath }: DedicatedChatProps) {
     clearMessages,
     dismissNotification,
     cancelRedirect,
+    goNow,
     dismissSuccessNotification,
   } = useChatbot({ initialChatbot: theme.chatbotType });
 
@@ -316,8 +314,7 @@ export function DedicatedChat({ theme, backPath }: DedicatedChatProps) {
   useEffect(() => {
     const container = messagesContainerRef.current;
     if (!container) return;
-    const distFromBottom =
-      container.scrollHeight - container.scrollTop - container.clientHeight;
+    const distFromBottom = container.scrollHeight - container.scrollTop - container.clientHeight;
     if (distFromBottom < 150) {
       container.scrollTo({ top: container.scrollHeight, behavior: "smooth" });
     }
@@ -327,8 +324,7 @@ export function DedicatedChat({ theme, backPath }: DedicatedChatProps) {
     const container = messagesContainerRef.current;
     if (!container) return;
     const handleScroll = () => {
-      const distFromBottom =
-        container.scrollHeight - container.scrollTop - container.clientHeight;
+      const distFromBottom = container.scrollHeight - container.scrollTop - container.clientHeight;
       setShowScrollFab(distFromBottom > 200 && messages.length > 0);
     };
     container.addEventListener("scroll", handleScroll, { passive: true });
@@ -402,6 +398,7 @@ export function DedicatedChat({ theme, backPath }: DedicatedChatProps) {
             targetChatbot={redirectCountdown.targetChatbot}
             accClass={accent.acc}
             onCancel={cancelRedirect}
+            onGoNow={goNow}
           />,
           document.body
         )}
@@ -423,14 +420,14 @@ export function DedicatedChat({ theme, backPath }: DedicatedChatProps) {
 
       {/* Full-height edge-to-edge agentic canvas */}
       <div className="relative flex flex-col h-[calc(100dvh-3.5rem)] bg-card sm:h-[calc(100dvh-4rem)] overflow-hidden">
-          {/* ---- Header ---- */}
-          <header
-            className={cn(
-              "absolute inset-x-0 top-0 z-10 backdrop-blur-2xl bg-card/70 border-b border-border/50"
-            )}
-          >
-            <div className="mx-auto w-full max-w-3xl flex flex-shrink-0 items-center gap-3 px-4 py-3">
-              <Link href={backPath} className={quietButton} aria-label="Back">
+        {/* ---- Header ---- */}
+        <header
+          className={cn(
+            "absolute inset-x-0 top-0 z-10 backdrop-blur-2xl bg-card/70 border-b border-border/50"
+          )}
+        >
+          <div className="mx-auto w-full max-w-3xl flex flex-shrink-0 items-center gap-3 px-4 py-3">
+            <Link href={backPath} className={quietButton} aria-label="Back">
               <ArrowLeft className="h-[18px] w-[18px]" />
             </Link>
 
@@ -463,138 +460,141 @@ export function DedicatedChat({ theme, backPath }: DedicatedChatProps) {
               </p>
             </div>
 
-              <button
-                onClick={clearMessages}
-                className={cn(quietButton, "group hover:bg-tint-terra hover:text-acc-terra dark:hover:bg-tint-terra dark:hover:text-acc-terra")}
-                title="Clear conversation"
-                aria-label="Clear conversation"
-              >
-                <Trash2 className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
-              </button>
-            </div>
-          </header>
-
-          {/* ---- Messages ---- */}
-          <div
-            ref={messagesContainerRef}
-            className="relative min-h-0 flex-1 overflow-y-auto scrollbar-hide [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-            role="log"
-            aria-live="polite"
-            aria-label="Chat messages"
-          >
-            <div
+            <button
+              onClick={clearMessages}
               className={cn(
-                "mx-auto w-full max-w-3xl px-4 sm:px-6 pt-24 pb-40",
-                hasMessages ? "space-y-5" : "flex min-h-[calc(100%-8rem)] flex-col"
+                quietButton,
+                "group hover:bg-tint-terra hover:text-acc-terra dark:hover:bg-tint-terra dark:hover:text-acc-terra"
               )}
+              title="Clear conversation"
+              aria-label="Clear conversation"
             >
-              {!hasMessages && (
-                <WelcomeScreen
-                  avatar={chatbotConfig.avatar}
-                  name={chatbotConfig.name}
-                  tagline={tagline}
-                  welcomeText={t(`welcome.${currentChatbot}`)}
-                  suggestions={suggestions}
-                  accent={accent}
-                  aiBadge={aiBadge}
-                  aiDisclaimer={aiDisclaimer}
-                  onSend={sendMessage}
-                />
-              )}
+              <Trash2 className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
+            </button>
+          </div>
+        </header>
 
-              {messages.map((msg, i) => (
-                <ChatBubble
-                  key={msg.id}
-                  message={msg.content}
-                  isUser={msg.role === "user"}
-                  avatar={chatbotConfig.avatar}
-                  accent={accent}
-                  timestamp={msg.timestamp}
-                  showAvatar={i === 0 || messages[i - 1].role !== msg.role}
-                  streaming={msg.isStreaming}
-                />
-              ))}
-
-              {isLoading && (
-                <TypingIndicator avatar={chatbotConfig.avatar} accent={accent} label={typingLabel} />
-              )}
-
-              {error && (
-                <div className="flex items-start gap-2.5 rounded-2xl bg-tint-terra px-4 py-3 text-sm text-acc-terra">
-                  <AlertCircle className="mt-0.5 h-4 w-4 flex-shrink-0" />
-                  <p>{error}</p>
-                </div>
-              )}
-
-              <div ref={messagesEndRef} />
-            </div>
-
-            {showScrollFab && (
-              <button
-                onClick={scrollToBottom}
-                className="dc-scroll-fab-enter absolute bottom-4 left-1/2 z-20 flex -translate-x-1/2 cursor-pointer items-center gap-1.5 rounded-full bg-foreground px-4 py-2 text-xs font-semibold text-background shadow-[0_8px_24px_-8px_rgb(0_0_0/0.4)]"
-                aria-label="Scroll to latest message"
-              >
-                <ArrowDown className="h-3.5 w-3.5" />
-                Latest
-              </button>
+        {/* ---- Messages ---- */}
+        <div
+          ref={messagesContainerRef}
+          className="relative min-h-0 flex-1 overflow-y-auto scrollbar-hide [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          role="log"
+          aria-live="polite"
+          aria-label="Chat messages"
+        >
+          <div
+            className={cn(
+              "mx-auto w-full max-w-3xl px-4 sm:px-6 pt-24 pb-40",
+              hasMessages ? "space-y-5" : "flex min-h-[calc(100%-8rem)] flex-col"
             )}
+          >
+            {!hasMessages && (
+              <WelcomeScreen
+                avatar={chatbotConfig.avatar}
+                name={chatbotConfig.name}
+                tagline={tagline}
+                welcomeText={t(`welcome.${currentChatbot}`)}
+                suggestions={suggestions}
+                accent={accent}
+                aiBadge={aiBadge}
+                aiDisclaimer={aiDisclaimer}
+                onSend={sendMessage}
+              />
+            )}
+
+            {messages.map((msg, i) => (
+              <ChatBubble
+                key={msg.id}
+                message={msg.content}
+                isUser={msg.role === "user"}
+                avatar={chatbotConfig.avatar}
+                accent={accent}
+                timestamp={msg.timestamp}
+                showAvatar={i === 0 || messages[i - 1].role !== msg.role}
+                streaming={msg.isStreaming}
+              />
+            ))}
+
+            {isLoading && (
+              <TypingIndicator avatar={chatbotConfig.avatar} accent={accent} label={typingLabel} />
+            )}
+
+            {error && (
+              <div className="flex items-start gap-2.5 rounded-2xl bg-tint-terra px-4 py-3 text-sm text-acc-terra">
+                <AlertCircle className="mt-0.5 h-4 w-4 flex-shrink-0" />
+                <p>{error}</p>
+              </div>
+            )}
+
+            <div ref={messagesEndRef} />
           </div>
 
-          {/* ---- Composer ---- */}
-          <form
-            onSubmit={handleSubmit}
-            className="absolute inset-x-0 bottom-0 z-10 flex-shrink-0 px-3 py-4 sm:px-6 sm:py-6 pt-12 bg-gradient-to-t from-card via-card/95 to-transparent pointer-events-none"
-            style={{ paddingBottom: "max(1.5rem, env(safe-area-inset-bottom))" }}
-          >
-            <div className="mx-auto flex max-w-3xl items-end gap-2.5 pointer-events-auto">
-              <textarea
-                ref={inputRef}
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                onKeyDown={handleKeyDown}
-                placeholder={t("typeMessage")}
-                rows={1}
-                aria-label="Message input"
-                style={{ maxHeight: "300px" }}
-                className={cn(
-                  "w-full flex-1 resize-none overflow-y-auto scrollbar-hide [scrollbar-width:none] [&::-webkit-scrollbar]:hidden rounded-3xl border border-border/50 bg-card/80 backdrop-blur-md px-5 py-3 shadow-sm",
-                  "text-[14px] text-zinc-900 placeholder:text-zinc-400 dark:text-zinc-50 dark:placeholder:text-zinc-500",
-                  "outline-none transition-all duration-200 hover:bg-card/90",
-                  accent.focus
-                )}
-              />
-              <button
-                type="submit"
-                disabled={!canSend}
-                aria-label="Send message"
-                className={cn(
-                  "flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full transition-all duration-200",
-                  canSend
-                    ? cn("cursor-pointer text-card hover:scale-105 active:scale-95", accent.accBg)
-                    : "cursor-not-allowed bg-muted text-zinc-400 dark:text-zinc-500"
-                )}
-              >
-                {isLoading ? (
-                  <Loader2 className="h-[18px] w-[18px] animate-spin" />
-                ) : (
-                  <Send className="h-[18px] w-[18px]" />
-                )}
-              </button>
-            </div>
+          {showScrollFab && (
+            <button
+              onClick={scrollToBottom}
+              className="dc-scroll-fab-enter absolute bottom-4 left-1/2 z-20 flex -translate-x-1/2 cursor-pointer items-center gap-1.5 rounded-full bg-foreground px-4 py-2 text-xs font-semibold text-background shadow-[0_8px_24px_-8px_rgb(0_0_0/0.4)]"
+              aria-label="Scroll to latest message"
+            >
+              <ArrowDown className="h-3.5 w-3.5" />
+              Latest
+            </button>
+          )}
+        </div>
 
-            <p className="mt-3 text-center text-[11px] text-zinc-400 dark:text-zinc-500 pointer-events-auto">
-              {aiDisclaimer}
-            </p>
-            <p className="mt-1 hidden text-center text-[11px] text-zinc-400 sm:block dark:text-zinc-500 pointer-events-auto">
-              <kbd className="rounded bg-muted px-1.5 py-0.5 font-mono text-[10px]">Enter</kbd> to
-              send,{" "}
-              <kbd className="rounded bg-muted px-1.5 py-0.5 font-mono text-[10px]">
-                Shift + Enter
-              </kbd>{" "}
-              for a new line
-            </p>
-          </form>
+        {/* ---- Composer ---- */}
+        <form
+          onSubmit={handleSubmit}
+          className="absolute inset-x-0 bottom-0 z-10 flex-shrink-0 px-3 py-4 sm:px-6 sm:py-6 pt-12 bg-gradient-to-t from-card via-card/95 to-transparent pointer-events-none"
+          style={{ paddingBottom: "max(1.5rem, env(safe-area-inset-bottom))" }}
+        >
+          <div className="mx-auto flex max-w-3xl items-end gap-2.5 pointer-events-auto">
+            <textarea
+              ref={inputRef}
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={handleKeyDown}
+              placeholder={t("typeMessage")}
+              rows={1}
+              aria-label="Message input"
+              style={{ maxHeight: "300px" }}
+              className={cn(
+                "w-full flex-1 resize-none overflow-y-auto scrollbar-hide [scrollbar-width:none] [&::-webkit-scrollbar]:hidden rounded-3xl border border-border/50 bg-card/80 backdrop-blur-md px-5 py-3 shadow-sm",
+                "text-[14px] text-zinc-900 placeholder:text-zinc-400 dark:text-zinc-50 dark:placeholder:text-zinc-500",
+                "outline-none transition-all duration-200 hover:bg-card/90",
+                accent.focus
+              )}
+            />
+            <button
+              type="submit"
+              disabled={!canSend}
+              aria-label="Send message"
+              className={cn(
+                "flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full transition-all duration-200",
+                canSend
+                  ? cn("cursor-pointer text-card hover:scale-105 active:scale-95", accent.accBg)
+                  : "cursor-not-allowed bg-muted text-zinc-400 dark:text-zinc-500"
+              )}
+            >
+              {isLoading ? (
+                <Loader2 className="h-[18px] w-[18px] animate-spin" />
+              ) : (
+                <Send className="h-[18px] w-[18px]" />
+              )}
+            </button>
+          </div>
+
+          <p className="mt-3 text-center text-[11px] text-zinc-400 dark:text-zinc-500 pointer-events-auto">
+            {aiDisclaimer}
+          </p>
+          <p className="mt-1 hidden text-center text-[11px] text-zinc-400 sm:block dark:text-zinc-500 pointer-events-auto">
+            <kbd className="rounded bg-muted px-1.5 py-0.5 font-mono text-[10px]">Enter</kbd> to
+            send,{" "}
+            <kbd className="rounded bg-muted px-1.5 py-0.5 font-mono text-[10px]">
+              Shift + Enter
+            </kbd>{" "}
+            for a new line
+          </p>
+        </form>
       </div>
     </>
   );

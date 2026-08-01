@@ -106,18 +106,30 @@
     "advancedFilters": {
       "button": "Filter",
       "price": "Preis",
-      "rating": "Bewertung",
-      "verifiedOnly": "Nur verifizierte",
+      "district": "Stadtviertel",
+      "allDistricts": "Alle Stadtviertel",
+      "cuisine": "Küche",
+      "allCuisines": "Alle Küchen",
       "clear": "Filter löschen"
     },
-    "sort": {
-      "label": "Sortieren nach",
-      "recommended": "Empfohlen",
-      "ratingDesc": "Am besten bewertet",
-      "reviewsDesc": "Meiste Bewertungen",
-      "nameAsc": "Name (A-Z)",
-      "priceAsc": "Preis: aufsteigend",
-      "priceDesc": "Preis: absteigend"
+    "cuisines": {
+      "turkish": "Türkisch",
+      "arabic": "Arabisch",
+      "lebanese": "Libanesisch",
+      "persian": "Persisch",
+      "moroccan": "Marokkanisch",
+      "indian": "Indisch",
+      "italian": "Italienisch",
+      "afghan": "Afghanisch",
+      "uyghur": "Uigurisch",
+      "pakistani": "Pakistanisch",
+      "kurdish": "Kurdisch",
+      "iraqi": "Irakisch",
+      "balkan": "Balkanisch",
+      "mediterranean": "Mediterran",
+      "asian": "Asiatisch",
+      "american": "Amerikanisch",
+      "uzbek": "Usbekisch"
     },
     "results": {
       "place": "Ort",
@@ -1525,12 +1537,7 @@
             },
             {
               "t": "table",
-              "head": [
-                "Daten",
-                "Zweck",
-                "Rechtsgrundlage",
-                "Speicherdauer"
-              ],
+              "head": ["Daten", "Zweck", "Rechtsgrundlage", "Speicherdauer"],
               "rows": [
                 [
                   "Zugriffs- und Server-Logs",
@@ -1627,12 +1634,7 @@
             },
             {
               "t": "table",
-              "head": [
-                "Name",
-                "Art",
-                "Zweck",
-                "Dauer"
-              ],
+              "head": ["Name", "Art", "Zweck", "Dauer"],
               "rows": [
                 [
                   "theme",
@@ -1708,12 +1710,7 @@
             },
             {
               "t": "table",
-              "head": [
-                "Anbieter",
-                "Rolle",
-                "Was übermittelt wird",
-                "Wo"
-              ],
+              "head": ["Anbieter", "Rolle", "Was übermittelt wird", "Wo"],
               "rows": [
                 [
                   "Vercel Inc. und Vercel GmbH",
@@ -2286,11 +2283,7 @@
         "status": "Aktiv",
         "cta": "Tool starten",
         "poweredBy": "KI-gestützt von Riad",
-        "tags": [
-          "WG-Bewerbungen",
-          "Wohnungsinserate",
-          "Perfektes Deutsch"
-        ]
+        "tags": ["WG-Bewerbungen", "Wohnungsinserate", "Perfektes Deutsch"]
       },
       "events": {
         "title": "Event-Planer",
@@ -2298,11 +2291,7 @@
         "status": "Demnächst",
         "cta": "Demnächst",
         "comingSoonNote": "Wir bauen dieses Tool, bleib dran!",
-        "tags": [
-          "Events planen",
-          "Freunde einladen",
-          "Münchner Orte"
-        ],
+        "tags": ["Events planen", "Freunde einladen", "Münchner Orte"],
         "prompts": [
           "Einen Ort für eine Lernsession finden",
           "Ein Treffen am Wochenende planen",
@@ -2315,11 +2304,7 @@
         "status": "Aktiv",
         "cta": "Tool starten",
         "poweredBy": "KI-gestützt von Dalilah",
-        "tags": [
-          "Anmeldung",
-          "Aufenthaltstitel",
-          "KVR & Fristen"
-        ]
+        "tags": ["Anmeldung", "Aufenthaltstitel", "KVR & Fristen"]
       },
       "ilham": {
         "title": "Akademischer Forschungsbegleiter",
@@ -2327,11 +2312,7 @@
         "status": "Aktiv",
         "cta": "Tool starten",
         "poweredBy": "KI-gestützt von Ilham",
-        "tags": [
-          "Forschung & Literatur",
-          "Wissenschaftliches Schreiben",
-          "Thesis & LaTeX"
-        ]
+        "tags": ["Forschung & Literatur", "Wissenschaftliches Schreiben", "Thesis & LaTeX"]
       },
       "loubna": {
         "title": "Gesundheitsnavigatorin & Medizinische Übersetzerin",
@@ -2339,11 +2320,7 @@
         "status": "Aktiv",
         "cta": "Tool starten",
         "poweredBy": "KI-gestützt von Loubna",
-        "tags": [
-          "Krankenversicherung",
-          "Arztsuche",
-          "Medizinische Übersetzung"
-        ]
+        "tags": ["Krankenversicherung", "Arztsuche", "Medizinische Übersetzung"]
       }
     },
     "moreComing": "Weitere Assistenten kommen bald. Hast du eine Idee? Trage auf",
@@ -2476,5 +2453,19 @@
       "title": "Gesundheitsressourcen",
       "subtitle": "Offizielle Gesundheitsdienste und Versicherungen für Münchner Studierende"
     }
+  },
+  "errors": {
+    "notFoundEyebrow": "404",
+    "notFoundTitle": "Diese Seite ist auf dem Weg verloren gegangen.",
+    "notFoundDescription": "Die gesuchte Seite existiert nicht, wurde verschoben oder hat es nie über den Entwurf hinaus geschafft. Probier eine Suche oder geh zurück zu einem Guide.",
+    "notFoundSearchPlaceholder": "Guides, Orte und FAQs durchsuchen...",
+    "notFoundPopularGuides": "Beliebte Guides",
+    "backHome": "Zurück zur Startseite",
+    "errorEyebrow": "Etwas ist schiefgelaufen",
+    "errorTitle": "Das sollte nicht passieren.",
+    "errorDescription": "Ein unerwarteter Fehler hat diese Seite unterbrochen. Er wurde protokolliert, versuch es erneut oder geh zurück zur Startseite.",
+    "tryAgain": "Erneut versuchen",
+    "globalErrorTitle": "Atlas Munich hatte ein Problem.",
+    "globalErrorDescription": "Die App konnte nicht geladen werden. Ein Neuladen behebt das meist."
   }
 }

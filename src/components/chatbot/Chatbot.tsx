@@ -152,6 +152,7 @@ export function Chatbot() {
     setIsOpen,
     dismissNotification,
     cancelRedirect,
+    goNow,
     dismissSuccessNotification,
   } = useChatbot();
 
@@ -211,7 +212,6 @@ export function Chatbot() {
     return () => {
       if (nudgeTimerRef.current) clearTimeout(nudgeTimerRef.current);
     };
-     
   }, [isOpen]);
 
   useEffect(() => {
@@ -283,6 +283,7 @@ export function Chatbot() {
             targetChatbot={redirectCountdown.targetChatbot}
             accClass={accent.acc}
             onCancel={cancelRedirect}
+            onGoNow={goNow}
           />,
           document.body
         )}
@@ -360,7 +361,10 @@ export function Chatbot() {
             <div className="flex flex-shrink-0 items-center gap-1">
               <button
                 onClick={clearMessages}
-                className={cn(quietButton, "group hover:bg-tint-terra hover:text-acc-terra dark:hover:bg-tint-terra dark:hover:text-acc-terra")}
+                className={cn(
+                  quietButton,
+                  "group hover:bg-tint-terra hover:text-acc-terra dark:hover:bg-tint-terra dark:hover:text-acc-terra"
+                )}
                 title="Clear chat"
                 aria-label="Clear chat"
               >
@@ -372,11 +376,7 @@ export function Chatbot() {
                 title={isExpanded ? "Minimize" : "Expand"}
                 aria-label={isExpanded ? "Minimize" : "Expand"}
               >
-                {isExpanded ? (
-                  <Minimize2 className="h-4 w-4" />
-                ) : (
-                  <Maximize2 className="h-4 w-4" />
-                )}
+                {isExpanded ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
               </button>
               <button
                 onClick={() => {
@@ -558,7 +558,10 @@ export function Chatbot() {
 
       {/* =================== Launcher =================== */}
       <div
-        className={cn("fixed bottom-5 right-5 z-[10000]", !isOpen || !isExpanded ? "block" : "hidden")}
+        className={cn(
+          "fixed bottom-5 right-5 z-[10000]",
+          !isOpen || !isExpanded ? "block" : "hidden"
+        )}
       >
         {showNudge && !isOpen && (
           <div className="chat-message-enter absolute bottom-full right-0 mb-3 w-60">

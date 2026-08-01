@@ -15,7 +15,7 @@ const TOAST_SHELL =
 const TOAST_CARD =
   "flex items-center gap-3 rounded-2xl bg-card px-4 py-3 shadow-[0_12px_40px_-12px_rgb(0_0_0/0.28)] ring-1 ring-border dark:ring-border";
 
-const COUNTDOWN_SECONDS = 15;
+const COUNTDOWN_SECONDS = 5;
 const RING_LENGTH = 2 * Math.PI * 18;
 
 export function RedirectCountdownToast({
@@ -24,12 +24,14 @@ export function RedirectCountdownToast({
   targetChatbot,
   accClass,
   onCancel,
+  onGoNow,
 }: {
   message: string;
   secondsRemaining: number;
   targetChatbot: string;
   accClass: string;
   onCancel: () => void;
+  onGoNow: () => void;
 }) {
   return (
     <div className={cn(TOAST_SHELL, "animate-in fade-in-0 slide-in-from-top-2 duration-300")}>
@@ -68,12 +70,23 @@ export function RedirectCountdownToast({
           </p>
         </div>
 
-        <button
-          onClick={onCancel}
-          className="flex-shrink-0 cursor-pointer rounded-full bg-muted px-3 py-1.5 text-xs font-semibold text-zinc-700 transition-colors hover:bg-secondary dark:text-zinc-200"
-        >
-          Cancel
-        </button>
+        <div className="flex flex-shrink-0 flex-col gap-1">
+          <button
+            onClick={onGoNow}
+            className={cn(
+              "cursor-pointer rounded-full px-3 py-1.5 text-xs font-semibold text-white transition-colors dark:text-zinc-950",
+              accClass.replace("text-", "bg-")
+            )}
+          >
+            Go now
+          </button>
+          <button
+            onClick={onCancel}
+            className="cursor-pointer rounded-full bg-muted px-3 py-1.5 text-xs font-semibold text-zinc-700 transition-colors hover:bg-secondary dark:text-zinc-200"
+          >
+            Cancel
+          </button>
+        </div>
       </div>
     </div>
   );

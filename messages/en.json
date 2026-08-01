@@ -105,18 +105,30 @@
     "advancedFilters": {
       "button": "Filters",
       "price": "Price",
-      "rating": "Rating",
-      "verifiedOnly": "Verified only",
+      "district": "District",
+      "allDistricts": "All districts",
+      "cuisine": "Cuisine",
+      "allCuisines": "All cuisines",
       "clear": "Clear filters"
     },
-    "sort": {
-      "label": "Sort by",
-      "recommended": "Recommended",
-      "ratingDesc": "Top rated",
-      "reviewsDesc": "Most reviewed",
-      "nameAsc": "Name (A-Z)",
-      "priceAsc": "Price: Low to High",
-      "priceDesc": "Price: High to Low"
+    "cuisines": {
+      "turkish": "Turkish",
+      "arabic": "Arabic",
+      "lebanese": "Lebanese",
+      "persian": "Persian",
+      "moroccan": "Moroccan",
+      "indian": "Indian",
+      "italian": "Italian",
+      "afghan": "Afghan",
+      "uyghur": "Uyghur",
+      "pakistani": "Pakistani",
+      "kurdish": "Kurdish",
+      "iraqi": "Iraqi",
+      "balkan": "Balkan",
+      "mediterranean": "Mediterranean",
+      "asian": "Asian",
+      "american": "American",
+      "uzbek": "Uzbek"
     },
     "results": {
       "place": "place",
@@ -1523,12 +1535,7 @@
             },
             {
               "t": "table",
-              "head": [
-                "Data",
-                "Purpose",
-                "Legal basis",
-                "Retention"
-              ],
+              "head": ["Data", "Purpose", "Legal basis", "Retention"],
               "rows": [
                 [
                   "Access and server logs",
@@ -1625,12 +1632,7 @@
             },
             {
               "t": "table",
-              "head": [
-                "Name",
-                "Type",
-                "Purpose",
-                "Lifetime"
-              ],
+              "head": ["Name", "Type", "Purpose", "Lifetime"],
               "rows": [
                 [
                   "theme",
@@ -1706,12 +1708,7 @@
             },
             {
               "t": "table",
-              "head": [
-                "Provider",
-                "Role",
-                "What it receives",
-                "Where"
-              ],
+              "head": ["Provider", "Role", "What it receives", "Where"],
               "rows": [
                 [
                   "Vercel Inc. and Vercel GmbH",
@@ -2284,11 +2281,7 @@
         "status": "Live",
         "cta": "Launch Tool",
         "poweredBy": "AI-powered by Riad",
-        "tags": [
-          "WG Applications",
-          "Apartment Listings",
-          "Flawless German"
-        ]
+        "tags": ["WG Applications", "Apartment Listings", "Flawless German"]
       },
       "events": {
         "title": "Event Planner",
@@ -2296,11 +2289,7 @@
         "status": "Coming Soon",
         "cta": "Coming Soon",
         "comingSoonNote": "We're building this tool, stay tuned!",
-        "tags": [
-          "Plan Events",
-          "Invite Friends",
-          "Munich Spots"
-        ],
+        "tags": ["Plan Events", "Invite Friends", "Munich Spots"],
         "prompts": [
           "Find a spot for a study session",
           "Plan a weekend hangout",
@@ -2313,11 +2302,7 @@
         "status": "Live",
         "cta": "Launch Tool",
         "poweredBy": "AI-powered by Dalilah",
-        "tags": [
-          "Anmeldung",
-          "Residence Permits",
-          "KVR & Deadlines"
-        ]
+        "tags": ["Anmeldung", "Residence Permits", "KVR & Deadlines"]
       },
       "ilham": {
         "title": "Academic Research Companion",
@@ -2325,11 +2310,7 @@
         "status": "Live",
         "cta": "Launch Tool",
         "poweredBy": "AI-powered by Ilham",
-        "tags": [
-          "Research & Literature",
-          "Academic Writing",
-          "Thesis & LaTeX"
-        ]
+        "tags": ["Research & Literature", "Academic Writing", "Thesis & LaTeX"]
       },
       "loubna": {
         "title": "Healthcare Navigator & Medical Translator",
@@ -2337,11 +2318,7 @@
         "status": "Live",
         "cta": "Launch Tool",
         "poweredBy": "AI-powered by Loubna",
-        "tags": [
-          "Health Insurance",
-          "Doctor Search",
-          "Medical Translation"
-        ]
+        "tags": ["Health Insurance", "Doctor Search", "Medical Translation"]
       }
     },
     "moreComing": "More assistants coming soon. Have an idea? Contribute on",
@@ -2474,5 +2451,19 @@
       "title": "Health Resources",
       "subtitle": "Official health services and insurers for Munich students"
     }
+  },
+  "errors": {
+    "notFoundEyebrow": "404",
+    "notFoundTitle": "This page got lost in translation.",
+    "notFoundDescription": "The page you're looking for doesn't exist, moved, or never made it past the draft stage. Try a search, or jump back into a guide.",
+    "notFoundSearchPlaceholder": "Search guides, places, and FAQs...",
+    "notFoundPopularGuides": "Popular guides",
+    "backHome": "Back to home",
+    "errorEyebrow": "Something broke",
+    "errorTitle": "That wasn't supposed to happen.",
+    "errorDescription": "An unexpected error interrupted this page. It's been logged — try again, or head back to safety.",
+    "tryAgain": "Try again",
+    "globalErrorTitle": "Atlas Munich hit a snag.",
+    "globalErrorDescription": "The app failed to load. Reloading usually fixes it."
   }
 }

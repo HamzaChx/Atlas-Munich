@@ -38,6 +38,7 @@ interface UseChatbotReturn {
   setIsOpen: (open: boolean) => void;
   dismissNotification: () => void;
   cancelRedirect: () => void;
+  goNow: () => void;
   dismissSuccessNotification: () => void;
 }
 
@@ -46,8 +47,38 @@ function generateId(): string {
   return `${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
 }
 
-// Countdown duration in seconds
-const REDIRECT_COUNTDOWN_SECONDS = 15;
+// Countdown duration in seconds — short enough that it doesn't eat the
+// conversation the user just had, since history now carries across the hop.
+const REDIRECT_COUNTDOWN_SECONDS = 5;
+
+// Per-bot conversation history, kept for the tab's lifetime so a page
+// navigation (including the handoff redirect itself) doesn't wipe it.
+const STORAGE_PREFIX = "atlas-chat:";
+
+function loadStoredMessages(chatbot: ChatbotType): ChatMessage[] {
+  if (typeof window === "undefined") return [];
+  try {
+    const raw = window.sessionStorage.getItem(STORAGE_PREFIX + chatbot);
+    if (!raw) return [];
+    const parsed = JSON.parse(raw) as Array<Omit<ChatMessage, "timestamp"> & { timestamp: string }>;
+    return parsed.map((msg) => ({ ...msg, timestamp: new Date(msg.timestamp) }));
+  } catch {
+    return [];
+  }
+}
+
+function saveStoredMessages(chatbot: ChatbotType, messages: ChatMessage[]): void {
+  if (typeof window === "undefined") return;
+  try {
+    if (messages.length === 0) {
+      window.sessionStorage.removeItem(STORAGE_PREFIX + chatbot);
+    } else {
+      window.sessionStorage.setItem(STORAGE_PREFIX + chatbot, JSON.stringify(messages));
+    }
+  } catch {
+    // sessionStorage unavailable (private mode, quota) — degrade to in-memory only.
+  }
+}
 
 export function useChatbot(options: UseChatbotOptions = {}): UseChatbotReturn {
   const pathname = usePathname();
@@ -60,7 +91,9 @@ export function useChatbot(options: UseChatbotOptions = {}): UseChatbotReturn {
     return getChatbotForPath(pathname);
   }, [pathname, options.initialChatbot]);
 
-  const [messages, setMessages] = useState<ChatMessage[]>([]);
+  const [messages, setMessages] = useState<ChatMessage[]>(() =>
+    loadStoredMessages(getPageChatbot())
+  );
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [currentChatbot, setCurrentChatbot] = useState<ChatbotType>(getPageChatbot);
@@ -89,7 +122,15 @@ export function useChatbot(options: UseChatbotOptions = {}): UseChatbotReturn {
     }
   }, [pathname]);
 
-  // When path changes, clear messages and switch to the new page's chatbot
+  // Persist the active bot's thread as it grows, so a page navigation (or a
+  // tab reload) doesn't lose it.
+  useEffect(() => {
+    saveStoredMessages(currentChatbot, messages);
+  }, [currentChatbot, messages]);
+
+  // When path changes, switch to the new page's chatbot and load *that
+  // bot's* saved thread instead of wiping it — a handoff seeds this via
+  // saveStoredMessages(toChatbot, ...) below, so context carries over.
   useEffect(() => {
     const newChatbot = getPageChatbot();
 
@@ -97,9 +138,8 @@ export function useChatbot(options: UseChatbotOptions = {}): UseChatbotReturn {
     if (previousPathRef.current !== pathname) {
       previousPathRef.current = pathname;
 
-      // Clear messages and switch to new chatbot
-      setMessages([]);
       setCurrentChatbot(newChatbot);
+      setMessages(loadStoredMessages(newChatbot));
       setError(null);
     }
   }, [pathname, getPageChatbot]);
@@ -210,9 +250,7 @@ export function useChatbot(options: UseChatbotOptions = {}): UseChatbotReturn {
         // Ensure final clean content is set
         setMessages((prev) =>
           prev.map((msg) =>
-            msg.id === assistantId
-              ? { ...msg, content: cleanResponse, isStreaming: false }
-              : msg
+            msg.id === assistantId ? { ...msg, content: cleanResponse, isStreaming: false } : msg
           )
         );
 
@@ -223,6 +261,19 @@ export function useChatbot(options: UseChatbotOptions = {}): UseChatbotReturn {
           const toConfig = CHATBOT_CONFIG[toChatbot];
 
           track("chat_handoff", { from: currentChatbot, to: toChatbot });
+
+          // Seed the target bot's thread with this conversation so the
+          // handoff carries context instead of dropping the user into a
+          // blank chat when the redirect navigates.
+          const finalAssistantMessage: ChatMessage = {
+            id: assistantId,
+            role: "assistant",
+            content: cleanResponse,
+            timestamp: new Date(),
+            chatbot: currentChatbot,
+            isStreaming: false,
+          };
+          saveStoredMessages(toChatbot, [...messages, userMessage, finalAssistantMessage]);
 
           setRedirectCountdown({
             isActive: true,
@@ -287,6 +338,20 @@ export function useChatbot(options: UseChatbotOptions = {}): UseChatbotReturn {
     setRedirectCountdown(null);
   }, []);
 
+  // Skip the wait and navigate immediately
+  const goNow = useCallback(() => {
+    setRedirectCountdown((prev) => {
+      if (!prev) return prev;
+      if (countdownIntervalRef.current) {
+        clearInterval(countdownIntervalRef.current);
+      }
+      wasRedirectedRef.current = true;
+      setCurrentChatbot(prev.targetChatbot);
+      router.push(prev.targetPath);
+      return null;
+    });
+  }, [router]);
+
   // Dismiss success notification
   const dismissSuccessNotification = useCallback(() => {
     setShowSuccessNotification(false);
@@ -299,12 +364,13 @@ export function useChatbot(options: UseChatbotOptions = {}): UseChatbotReturn {
   }, []);
 
   const clearMessages = useCallback(() => {
+    saveStoredMessages(currentChatbot, []);
     setMessages([]);
     setError(null);
     // Reset to current page's chatbot when clearing
     const pageBot = getChatbotForPath(pathname);
     setCurrentChatbot(pageBot);
-  }, [pathname]);
+  }, [pathname, currentChatbot]);
 
   const toggleOpen = useCallback(() => {
     setIsOpen((prev) => {
@@ -346,6 +412,7 @@ export function useChatbot(options: UseChatbotOptions = {}): UseChatbotReturn {
     setIsOpen: trackedSetIsOpen,
     dismissNotification,
     cancelRedirect,
+    goNow,
     dismissSuccessNotification,
   };
 }

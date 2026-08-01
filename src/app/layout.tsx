@@ -108,7 +108,9 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const rawLocale = await getLocale();
-  const locale: Locale = locales.includes(rawLocale as Locale) ? (rawLocale as Locale) : defaultLocale;
+  const locale: Locale = locales.includes(rawLocale as Locale)
+    ? (rawLocale as Locale)
+    : defaultLocale;
   const messages = await getMessages();
 
   // Extract nav translations for the header
@@ -183,8 +185,16 @@ export default async function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
+            <a
+              href="#main-content"
+              className="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[100] focus:rounded-lg focus:bg-zinc-900 focus:px-4 focus:py-2.5 focus:text-sm focus:font-medium focus:text-white focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-zellige focus:ring-offset-2 dark:focus:bg-zinc-50 dark:focus:text-zinc-900"
+            >
+              Skip to content
+            </a>
             <Header locale={locale} translations={navTranslations} />
-            <main className="pt-14 sm:pt-16">{children}</main>
+            <main id="main-content" className="pt-14 sm:pt-16">
+              {children}
+            </main>
             <ConditionalFooter />
             <ChatbotWrapper />
           </ThemeProvider>

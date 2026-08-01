@@ -558,7 +558,28 @@ export default function PlacesPage() {
           ))}
 
         <p className="mt-10 text-center text-xs text-zinc-400 dark:text-zinc-500">
-          {t("attribution")}
+          {t.rich("attribution", {
+            osm: (chunks) => (
+              <Link
+                href="https://www.openstreetmap.org/copyright"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline decoration-dotted underline-offset-2 hover:text-zellige"
+              >
+                {chunks}
+              </Link>
+            ),
+            odbl: (chunks) => (
+              <Link
+                href="https://opendatacommons.org/licenses/odbl/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="underline decoration-dotted underline-offset-2 hover:text-zellige"
+              >
+                {chunks}
+              </Link>
+            ),
+          })}
         </p>
 
         {/* Contribute CTA */}

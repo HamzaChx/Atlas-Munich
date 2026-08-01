@@ -176,7 +176,7 @@
       "call": "Call"
     },
     "loadingMap": "Loading map…",
-    "attribution": "Place data © OpenStreetMap contributors, ODbL. Ratings and review counts, where shown, are provided by Google."
+    "attribution": "Place data © <osm>OpenStreetMap contributors</osm>, <odbl>ODbL</odbl>. Ratings and review counts, where shown, are provided by Google."
   },
   "guides": {
     "badge": "Community Guides",

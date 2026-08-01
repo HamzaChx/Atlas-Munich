@@ -177,7 +177,7 @@
       "call": "Anrufen"
     },
     "loadingMap": "Karte wird geladen…",
-    "attribution": "Ortsdaten © OpenStreetMap-Mitwirkende, ODbL. Bewertungen und Rezensionszahlen, sofern angezeigt, stammen von Google."
+    "attribution": "Ortsdaten © <osm>OpenStreetMap-Mitwirkende</osm>, <odbl>ODbL</odbl>. Bewertungen und Rezensionszahlen, sofern angezeigt, stammen von Google."
   },
   "guides": {
     "badge": "Community-Ratgeber",

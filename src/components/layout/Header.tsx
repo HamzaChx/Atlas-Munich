@@ -1,14 +1,12 @@
 "use client";
 
 import * as React from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { ThemeToggle, LanguageSwitcher } from "@/components/shared";
 import { Locale } from "@/i18n";
-import { Menu, X } from "lucide-react";
 
 interface NavTranslations {
   home: string;
@@ -29,7 +27,6 @@ interface HeaderProps {
 
 export function Header({ locale, translations }: HeaderProps) {
   const pathname = usePathname();
-  const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
 
   const navItems = [
@@ -101,66 +98,12 @@ export function Header({ locale, translations }: HeaderProps) {
           })}
         </nav>
 
-        {/* Right Side Actions */}
+        {/* Right Side Actions — desktop only. On mobile, language and theme
+            live in the tab bar's More sheet, so the header carries no menu. */}
         <div className="col-start-3 flex items-center justify-self-end gap-1 sm:gap-2">
-          <LanguageSwitcher currentLocale={locale} className="hidden sm:block" />
-          <ThemeToggle className="hidden sm:flex" />
-
-          <Button
-            variant="ghost"
-            size="icon"
-            className="h-10 w-10 text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-foreground/[0.075] hover:text-zinc-900 dark:hover:text-zinc-50 md:hidden"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
-          >
-            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </Button>
+          <LanguageSwitcher currentLocale={locale} className="hidden md:block" />
+          <ThemeToggle className="hidden md:flex" />
         </div>
-      </div>
-
-      {/* Mobile Navigation */}
-      <div
-        className={cn(
-          "border-t border-border bg-background md:hidden overflow-hidden transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] safe-area-x",
-          mobileMenuOpen ? "max-h-[600px] opacity-100" : "max-h-0 opacity-0"
-        )}
-      >
-        <nav className="mx-auto max-w-7xl space-y-1 px-4 py-4">
-          {navItems.map((item) => {
-            const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className={cn(
-                  "flex items-center gap-3 rounded-xl px-4 py-3.5 text-base font-medium transition-all duration-200 active:scale-[0.98] min-h-[48px]",
-                  isActive
-                    ? "bg-zellige-soft text-zellige"
-                    : "text-zinc-600 dark:text-zinc-400 hover:bg-zinc-100 dark:hover:bg-foreground/[0.075] hover:text-zinc-900 dark:hover:text-zinc-50"
-                )}
-              >
-                <span
-                  className={cn(
-                    "h-1.5 w-1.5 rounded-full",
-                    isActive ? "bg-zellige" : "bg-zinc-300 dark:bg-zinc-600"
-                  )}
-                  aria-hidden="true"
-                />
-                {item.label}
-              </Link>
-            );
-          })}
-
-          <div className="mt-2 border-t border-border px-4 pt-4">
-            <LanguageSwitcher currentLocale={locale} variant="inline" />
-          </div>
-
-          <div className="flex min-h-[48px] items-center gap-3 rounded-xl px-4 py-3 text-base font-medium text-zinc-600 dark:text-zinc-400">
-            <ThemeToggle />
-            <span>{translations.toggleTheme}</span>
-          </div>
-        </nav>
       </div>
     </header>
   );

@@ -9,6 +9,7 @@
 // ============================================
 
 import {
+  Suspense,
   useState,
   useRef,
   useEffect,
@@ -18,10 +19,12 @@ import {
 } from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useChatbot } from "@/chatbot/use-chatbot";
 import { cn } from "@/lib/utils";
+import { takePendingMessage } from "./chat-seed";
 import {
   Send,
   Loader2,
@@ -268,7 +271,21 @@ interface DedicatedChatProps {
   backPath: string;
 }
 
-export function DedicatedChat({ theme, backPath }: DedicatedChatProps) {
+/** Matches the canvas below, so the boundary costs no layout shift. */
+const CANVAS = "flex flex-col h-[calc(100dvh-var(--header-h))] bg-card";
+
+/* Reading ?q= means useSearchParams, which needs a Suspense boundary to stay
+   statically prerenderable. Owning it here rather than in each of the four
+   chat pages means a new assistant can't ship without one. */
+export function DedicatedChat(props: DedicatedChatProps) {
+  return (
+    <Suspense fallback={<div className={cn(CANVAS, "overflow-hidden")} />}>
+      <DedicatedChatInner {...props} />
+    </Suspense>
+  );
+}
+
+function DedicatedChatInner({ theme, backPath }: DedicatedChatProps) {
   const {
     messages,
     isLoading,
@@ -287,6 +304,9 @@ export function DedicatedChat({ theme, backPath }: DedicatedChatProps) {
   } = useChatbot({ initialChatbot: theme.chatbotType });
 
   const t = useTranslations("chatbot");
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   const [input, setInput] = useState("");
   const [showScrollFab, setShowScrollFab] = useState(false);
@@ -357,6 +377,38 @@ export function DedicatedChat({ theme, backPath }: DedicatedChatProps) {
     ta.style.height = `${ta.scrollHeight}px`;
   }, [input]);
 
+  /* Arriving with something already to say, so the visitor sees a real answer
+     without typing. The latch (plus the read-once slot) keeps strict mode's
+     double mount from sending twice.
+
+     The two sources get different rules on purpose. */
+  const autoSentRef = useRef(false);
+  useEffect(() => {
+    if (autoSentRef.current) return;
+
+    /* A paste handed over by a launch box is an explicit request made a
+       moment ago. It sends even when a previous thread was restored — it
+       appends to that conversation, which is what continuing with the same
+       assistant should do. Bailing here would drop it silently and leave it
+       in the slot to surface later, in some unrelated chat. */
+    const pending = takePendingMessage(theme.chatbotType);
+    if (pending) {
+      autoSentRef.current = true;
+      sendMessage(pending);
+      return;
+    }
+
+    /* ?q= seeds a fresh conversation only, since it survives in the URL in a
+       way a one-shot action does not. Dropping the param means neither a
+       refresh nor clearing the chat can replay it. */
+    const seed = searchParams.get("q")?.trim();
+    if (!seed || messages.length > 0) return;
+
+    autoSentRef.current = true;
+    router.replace(pathname, { scroll: false });
+    sendMessage(seed);
+  }, [messages.length, searchParams, pathname, router, sendMessage, theme.chatbotType]);
+
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     if (input.trim() && !isLoading) {
@@ -419,7 +471,7 @@ export function DedicatedChat({ theme, backPath }: DedicatedChatProps) {
       )}
 
       {/* Full-height edge-to-edge agentic canvas */}
-      <div className="relative flex flex-col h-[calc(100dvh-3.5rem)] bg-card sm:h-[calc(100dvh-4rem)] overflow-hidden">
+      <div className={cn("relative overflow-hidden", CANVAS)}>
         {/* ---- Header ---- */}
         <header
           className={cn(
@@ -559,7 +611,9 @@ export function DedicatedChat({ theme, backPath }: DedicatedChatProps) {
               style={{ maxHeight: "300px" }}
               className={cn(
                 "w-full flex-1 resize-none overflow-y-auto scrollbar-hide [scrollbar-width:none] [&::-webkit-scrollbar]:hidden rounded-3xl border border-border/50 bg-card/80 backdrop-blur-md px-5 py-3 shadow-sm",
-                "text-[14px] text-zinc-900 placeholder:text-zinc-400 dark:text-zinc-50 dark:placeholder:text-zinc-500",
+                // 16px on phones: iOS zooms the whole page in on focus for
+                // anything smaller, and never zooms back out.
+                "text-base text-zinc-900 placeholder:text-zinc-400 sm:text-[14px] dark:text-zinc-50 dark:placeholder:text-zinc-500",
                 "outline-none transition-all duration-200 hover:bg-card/90",
                 accent.focus
               )}

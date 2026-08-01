@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 
 import { Place } from "@/types";
 import { cn } from "@/lib/utils";
+import type { Coordinates } from "@/lib/geo";
 
 interface PlacesMapProps {
   places: Place[];
@@ -12,6 +13,8 @@ interface PlacesMapProps {
   categoryLabels?: Record<string, string>;
   /** Singular category names, for a single marker's popup */
   categoryNames?: Record<string, string>;
+  /** The visitor's opted-in position, shown as a marker. Never sent anywhere. */
+  userLocation?: Coordinates | null;
   className?: string;
 }
 
@@ -38,12 +41,19 @@ const PlacesMapCanvas = dynamic(() => import("./PlacesMapCanvas"), {
   loading: () => <MapSkeleton className="h-[60vh] min-h-[26rem] sm:h-[38rem]" />,
 });
 
-export function PlacesMap({ places, categoryLabels, categoryNames, className }: PlacesMapProps) {
+export function PlacesMap({
+  places,
+  categoryLabels,
+  categoryNames,
+  userLocation,
+  className,
+}: PlacesMapProps) {
   return (
     <PlacesMapCanvas
       places={places}
       categoryLabels={categoryLabels}
       categoryNames={categoryNames}
+      userLocation={userLocation}
       className={cn("h-[60vh] min-h-[26rem] sm:h-[38rem]", className)}
     />
   );

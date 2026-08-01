@@ -1,17 +1,17 @@
 import { getRequestConfig } from "next-intl/server";
-import { headers } from "next/headers";
+import { hasLocale } from "next-intl";
 
-export const locales = ["en", "fr", "de"] as const;
-export type Locale = (typeof locales)[number];
-export const defaultLocale: Locale = "en";
+import { routing } from "./routing";
 
-export default getRequestConfig(async () => {
-  // Get locale from headers (set by middleware)
-  const headersList = await headers();
-  const localeHeader = headersList.get("x-next-intl-locale");
-  const locale = (locales.includes(localeHeader as Locale) 
-    ? localeHeader 
-    : defaultLocale) as Locale;
+/**
+ * The locale now comes from the `[locale]` route segment rather than from a
+ * cookie read through `headers()`. That difference is the whole point of the
+ * migration: reading headers here opted every route in the app out of static
+ * generation, so no page HTML was ever prerendered.
+ */
+export default getRequestConfig(async ({ requestLocale }) => {
+  const requested = await requestLocale;
+  const locale = hasLocale(routing.locales, requested) ? requested : routing.defaultLocale;
 
   return {
     locale,

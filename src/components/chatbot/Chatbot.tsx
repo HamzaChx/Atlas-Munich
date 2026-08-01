@@ -520,7 +520,9 @@ export function Chatbot() {
                 style={{ maxHeight: "300px" }}
                 className={cn(
                   "w-full flex-1 resize-none overflow-y-auto scrollbar-hide [scrollbar-width:none] [&::-webkit-scrollbar]:hidden rounded-3xl border border-border/50 bg-card/80 backdrop-blur-md px-5 py-3.5 shadow-sm",
-                  "text-[13px] text-zinc-900 placeholder:text-zinc-400 dark:text-zinc-50 dark:placeholder:text-zinc-500",
+                  // 16px on phones: iOS zooms the whole page in on focus for
+                  // anything smaller, and never zooms back out.
+                  "text-base text-zinc-900 placeholder:text-zinc-400 sm:text-[13px] dark:text-zinc-50 dark:placeholder:text-zinc-500",
                   "outline-none transition-all duration-200 hover:bg-card/90",
                   accent.focus,
                   isExpanded && "sm:py-4 sm:text-sm"
@@ -556,11 +558,13 @@ export function Chatbot() {
         </div>
       </div>
 
-      {/* =================== Launcher =================== */}
+      {/* =================== Launcher ===================
+          Desktop only: on mobile the tab bar's centre "Ask" opens this same
+          widget, and a corner button there would sit on top of the tabs. */}
       <div
         className={cn(
           "fixed bottom-5 right-5 z-[10000]",
-          !isOpen || !isExpanded ? "block" : "hidden"
+          !isOpen || !isExpanded ? "hidden md:block" : "hidden"
         )}
       >
         {showNudge && !isOpen && (

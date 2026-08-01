@@ -8,20 +8,22 @@
     "about": "About",
     "search": "Search",
     "toggleTheme": "Toggle Theme",
-    "tools": "Tools"
+    "tools": "Tools",
+    "ask": "Ask",
+    "more": "More",
+    "moreTitle": "More",
+    "closeMenu": "Close menu",
+    "language": "Language",
+    "appearance": "Appearance",
+    "installApp": "Install Atlas Munich",
+    "installDesc": "Add it to your home screen and use it offline.",
+    "install": "Install",
+    "notNow": "Not now"
   },
   "home": {
     "heroTitle": "New in Munich?",
     "heroTitleHighlight": "We've got you.",
     "heroSubtitle": "Guides, places, and AI helpers for Moroccans making a home in Munich.",
-    "searchPlaceholder": "Try “Anmeldung”, “WG room”, or “halal butcher”…",
-    "quickLinks": {
-      "findHousing": "Find Housing",
-      "kvrRegistration": "KVR Registration",
-      "halalFood": "Halal Food",
-      "allGuides": "All Guides",
-      "aiTools": "AI Tools"
-    },
     "stats": {
       "guides": "Guides",
       "places": "Places",
@@ -82,6 +84,15 @@
       "title": "Start with these",
       "viewAll": "All guides",
       "minRead": "min read"
+    },
+    "launchPlaceholder": "Paste a WG listing and get a German application…",
+    "intents": {
+      "flat": "A flat",
+      "paperwork": "Paperwork",
+      "paperworkPrompt": "How do I do my Anmeldung in Munich?",
+      "halalFood": "Halal food",
+      "uni": "Uni stuff",
+      "uniPrompt": "How do I get started with my studies in Munich?"
     }
   },
   "places": {
@@ -110,6 +121,22 @@
       "cuisine": "Cuisine",
       "allCuisines": "All cuisines",
       "clear": "Clear filters"
+    },
+    "location": {
+      "button": "Near me",
+      "locating": "Locating…",
+      "consentDescription": "Used only in your browser to sort and filter places by distance. It's never sent to our servers or stored — turn it off any time.",
+      "allow": "Allow location",
+      "notNow": "Not now",
+      "turnOff": "Turn off",
+      "radiusLabel": "Within",
+      "radiusAny": "Any distance",
+      "radiusUpTo": "Within {km} km",
+      "away": "{distance} away",
+      "errorDenied": "Location access was denied. Enable it in your browser's site settings to use this.",
+      "errorUnavailable": "Location isn't available on this device or browser.",
+      "errorTimeout": "Finding your location took too long. Try again.",
+      "errorGeneric": "Something went wrong finding your location. Try again."
     },
     "cuisines": {
       "turkish": "Turkish",
@@ -1627,7 +1654,8 @@
     "typeMessage": "Type your message…",
     "aiBadge": "AI",
     "aiDisclaimer": "AI assistant, responses can be inaccurate. Verify anything important.",
-    "typing": "typing…"
+    "typing": "typing…",
+    "send": "Send"
   },
   "legal": {
     "privacy": {
@@ -1749,7 +1777,12 @@
             },
             {
               "t": "table",
-              "head": ["Data", "Purpose", "Legal basis", "Retention"],
+              "head": [
+                "Data",
+                "Purpose",
+                "Legal basis",
+                "Retention"
+              ],
               "rows": [
                 [
                   "Access and server logs",
@@ -1846,7 +1879,12 @@
             },
             {
               "t": "table",
-              "head": ["Name", "Type", "Purpose", "Lifetime"],
+              "head": [
+                "Name",
+                "Type",
+                "Purpose",
+                "Lifetime"
+              ],
               "rows": [
                 [
                   "theme",
@@ -1922,7 +1960,12 @@
             },
             {
               "t": "table",
-              "head": ["Provider", "Role", "What it receives", "Where"],
+              "head": [
+                "Provider",
+                "Role",
+                "What it receives",
+                "Where"
+              ],
               "rows": [
                 [
                   "Vercel Inc. and Vercel GmbH",
@@ -2487,7 +2530,6 @@
     "liveLabel": "live",
     "capabilities": "What it handles",
     "tryAsking": "Try asking",
-    "startChat": "Start chatting",
     "tools": {
       "housing": {
         "title": "Housing Application Writer",
@@ -2495,7 +2537,11 @@
         "status": "Live",
         "cta": "Launch Tool",
         "poweredBy": "AI-powered by Riad",
-        "tags": ["WG Applications", "Apartment Listings", "Flawless German"]
+        "tags": [
+          "WG Applications",
+          "Apartment Listings",
+          "Flawless German"
+        ]
       },
       "events": {
         "title": "Event Planner",
@@ -2503,7 +2549,11 @@
         "status": "Coming Soon",
         "cta": "Coming Soon",
         "comingSoonNote": "We're building this tool, stay tuned!",
-        "tags": ["Plan Events", "Invite Friends", "Munich Spots"],
+        "tags": [
+          "Plan Events",
+          "Invite Friends",
+          "Munich Spots"
+        ],
         "prompts": [
           "Find a spot for a study session",
           "Plan a weekend hangout",
@@ -2516,7 +2566,11 @@
         "status": "Live",
         "cta": "Launch Tool",
         "poweredBy": "AI-powered by Dalilah",
-        "tags": ["Anmeldung", "Residence Permits", "KVR & Deadlines"]
+        "tags": [
+          "Anmeldung",
+          "Residence Permits",
+          "KVR & Deadlines"
+        ]
       },
       "ilham": {
         "title": "Academic Research Companion",
@@ -2524,7 +2578,11 @@
         "status": "Live",
         "cta": "Launch Tool",
         "poweredBy": "AI-powered by Ilham",
-        "tags": ["Research & Literature", "Academic Writing", "Thesis & LaTeX"]
+        "tags": [
+          "Research & Literature",
+          "Academic Writing",
+          "Thesis & LaTeX"
+        ]
       },
       "loubna": {
         "title": "Healthcare Navigator & Medical Translator",
@@ -2532,11 +2590,16 @@
         "status": "Live",
         "cta": "Launch Tool",
         "poweredBy": "AI-powered by Loubna",
-        "tags": ["Health Insurance", "Doctor Search", "Medical Translation"]
+        "tags": [
+          "Health Insurance",
+          "Doctor Search",
+          "Medical Translation"
+        ]
       }
     },
     "moreComing": "More assistants coming soon. Have an idea? Contribute on",
-    "designedBy": "Designed and created by"
+    "designedBy": "Designed and created by",
+    "howItWorks": "How it works"
   },
   "academic": {
     "badge": "Academic Companion",
@@ -2568,7 +2631,8 @@
     "resources": {
       "title": "Academic Resources",
       "subtitle": "Key tools every Munich student should bookmark"
-    }
+    },
+    "launchPlaceholder": "Ask about your thesis, research, or academic writing…"
   },
   "bureaucracy": {
     "badge": "Munich Bureaucracy",
@@ -2600,7 +2664,8 @@
     "authorities": {
       "title": "Official Munich Authorities",
       "subtitle": "Direct links to the offices you'll deal with most"
-    }
+    },
+    "launchPlaceholder": "Ask about Anmeldung, visas, or any German paperwork…"
   },
   "housing": {
     "badge": "Munich Housing",
@@ -2632,7 +2697,8 @@
     "platforms": {
       "title": "Where to Search",
       "subtitle": "Top platforms for apartment hunting in Munich"
-    }
+    },
+    "launchPlaceholder": "Paste a WG or apartment listing…"
   },
   "healthcare": {
     "badge": "Healthcare Navigator",
@@ -2664,7 +2730,8 @@
     "resources": {
       "title": "Health Resources",
       "subtitle": "Official health services and insurers for Munich students"
-    }
+    },
+    "launchPlaceholder": "Ask about insurance, finding a doctor, or symptoms…"
   },
   "errors": {
     "notFoundEyebrow": "404",

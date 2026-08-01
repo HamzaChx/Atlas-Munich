@@ -6,6 +6,7 @@ export { TableOfContents } from "./TableOfContents";
 export { FAQAccordion } from "./FAQAccordion";
 export { PlacesBrowser } from "./PlacesBrowser";
 export { PlacesMap } from "./PlacesMap";
+export { LocationControl } from "./LocationControl";
 export { Callout } from "./Callout";
 export { EmptyState } from "./EmptyState";
 export { ThemeProvider } from "./ThemeProvider";

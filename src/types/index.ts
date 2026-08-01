@@ -122,6 +122,9 @@ export interface Place {
   reviewCount?: number;
   featured?: boolean;
   instagram?: string;
+  /** Distance from the visitor, computed client-side once they share their
+      location. Never persisted — absent unless "near me" is active. */
+  distanceKm?: number;
 }
 
 // ============================================

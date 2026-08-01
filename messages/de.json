@@ -8,20 +8,22 @@
     "about": "Über uns",
     "search": "Suche",
     "toggleTheme": "Theme wechseln",
-    "tools": "Tools"
+    "tools": "Tools",
+    "ask": "Fragen",
+    "more": "Mehr",
+    "moreTitle": "Mehr",
+    "closeMenu": "Menü schließen",
+    "language": "Sprache",
+    "appearance": "Darstellung",
+    "installApp": "Atlas Munich installieren",
+    "installDesc": "Zum Startbildschirm hinzufügen und offline nutzen.",
+    "install": "Installieren",
+    "notNow": "Später"
   },
   "home": {
     "heroTitle": "Neu in München?",
     "heroTitleHighlight": "Wir sind für dich da.",
     "heroSubtitle": "Guides, Orte und KI-Helfer für Marokkanerinnen und Marokkaner, die in München ankommen.",
-    "searchPlaceholder": "Such nach „Anmeldung“, „WG-Zimmer“ oder „Halal-Metzger“ …",
-    "quickLinks": {
-      "findHousing": "Wohnung finden",
-      "kvrRegistration": "KVR-Anmeldung",
-      "halalFood": "Halal-Essen",
-      "allGuides": "Alle Ratgeber",
-      "aiTools": "KI-Tools"
-    },
     "stats": {
       "guides": "Ratgeber",
       "places": "Orte",
@@ -83,6 +85,15 @@
       "title": "Fang mit diesen an",
       "viewAll": "Alle Guides",
       "minRead": "Min. Lesezeit"
+    },
+    "launchPlaceholder": "WG-Inserat einfügen und eine Bewerbung auf Deutsch erhalten …",
+    "intents": {
+      "flat": "Eine Wohnung",
+      "paperwork": "Papierkram",
+      "paperworkPrompt": "Wie mache ich meine Anmeldung in München?",
+      "halalFood": "Halal-Essen",
+      "uni": "Uni-Kram",
+      "uniPrompt": "Wie starte ich mein Studium in München?"
     }
   },
   "places": {
@@ -111,6 +122,22 @@
       "cuisine": "Küche",
       "allCuisines": "Alle Küchen",
       "clear": "Filter löschen"
+    },
+    "location": {
+      "button": "In meiner Nähe",
+      "locating": "Standort wird ermittelt…",
+      "consentDescription": "Wird nur in deinem Browser verwendet, um Orte nach Entfernung zu sortieren und zu filtern. Wird nie an unsere Server gesendet oder gespeichert — jederzeit abschaltbar.",
+      "allow": "Standort erlauben",
+      "notNow": "Nicht jetzt",
+      "turnOff": "Ausschalten",
+      "radiusLabel": "Umkreis",
+      "radiusAny": "Beliebige Entfernung",
+      "radiusUpTo": "Bis zu {km} km",
+      "away": "{distance} entfernt",
+      "errorDenied": "Standortzugriff wurde verweigert. Aktiviere ihn in den Website-Einstellungen deines Browsers, um diese Funktion zu nutzen.",
+      "errorUnavailable": "Standort ist auf diesem Gerät oder Browser nicht verfügbar.",
+      "errorTimeout": "Die Standortermittlung hat zu lange gedauert. Versuche es erneut.",
+      "errorGeneric": "Bei der Standortermittlung ist etwas schiefgelaufen. Versuche es erneut."
     },
     "cuisines": {
       "turkish": "Türkisch",
@@ -1628,7 +1655,8 @@
     "typeMessage": "Nachricht eingeben…",
     "aiBadge": "KI",
     "aiDisclaimer": "KI-Assistent, Antworten können Fehler enthalten. Wichtige Informationen bitte prüfen.",
-    "typing": "schreibt…"
+    "typing": "schreibt…",
+    "send": "Senden"
   },
   "legal": {
     "privacy": {
@@ -1751,7 +1779,12 @@
             },
             {
               "t": "table",
-              "head": ["Daten", "Zweck", "Rechtsgrundlage", "Speicherdauer"],
+              "head": [
+                "Daten",
+                "Zweck",
+                "Rechtsgrundlage",
+                "Speicherdauer"
+              ],
               "rows": [
                 [
                   "Zugriffs- und Server-Logs",
@@ -1848,7 +1881,12 @@
             },
             {
               "t": "table",
-              "head": ["Name", "Art", "Zweck", "Dauer"],
+              "head": [
+                "Name",
+                "Art",
+                "Zweck",
+                "Dauer"
+              ],
               "rows": [
                 [
                   "theme",
@@ -1924,7 +1962,12 @@
             },
             {
               "t": "table",
-              "head": ["Anbieter", "Rolle", "Was übermittelt wird", "Wo"],
+              "head": [
+                "Anbieter",
+                "Rolle",
+                "Was übermittelt wird",
+                "Wo"
+              ],
               "rows": [
                 [
                   "Vercel Inc. und Vercel GmbH",
@@ -2489,7 +2532,6 @@
     "liveLabel": "live",
     "capabilities": "Was er übernimmt",
     "tryAsking": "Frag zum Beispiel",
-    "startChat": "Chat starten",
     "tools": {
       "housing": {
         "title": "Wohnungsbewerbungs-Assistent",
@@ -2497,7 +2539,11 @@
         "status": "Aktiv",
         "cta": "Tool starten",
         "poweredBy": "KI-gestützt von Riad",
-        "tags": ["WG-Bewerbungen", "Wohnungsinserate", "Perfektes Deutsch"]
+        "tags": [
+          "WG-Bewerbungen",
+          "Wohnungsinserate",
+          "Perfektes Deutsch"
+        ]
       },
       "events": {
         "title": "Event-Planer",
@@ -2505,7 +2551,11 @@
         "status": "Demnächst",
         "cta": "Demnächst",
         "comingSoonNote": "Wir bauen dieses Tool, bleib dran!",
-        "tags": ["Events planen", "Freunde einladen", "Münchner Orte"],
+        "tags": [
+          "Events planen",
+          "Freunde einladen",
+          "Münchner Orte"
+        ],
         "prompts": [
           "Einen Ort für eine Lernsession finden",
           "Ein Treffen am Wochenende planen",
@@ -2518,7 +2568,11 @@
         "status": "Aktiv",
         "cta": "Tool starten",
         "poweredBy": "KI-gestützt von Dalilah",
-        "tags": ["Anmeldung", "Aufenthaltstitel", "KVR & Fristen"]
+        "tags": [
+          "Anmeldung",
+          "Aufenthaltstitel",
+          "KVR & Fristen"
+        ]
       },
       "ilham": {
         "title": "Akademischer Forschungsbegleiter",
@@ -2526,7 +2580,11 @@
         "status": "Aktiv",
         "cta": "Tool starten",
         "poweredBy": "KI-gestützt von Ilham",
-        "tags": ["Forschung & Literatur", "Wissenschaftliches Schreiben", "Thesis & LaTeX"]
+        "tags": [
+          "Forschung & Literatur",
+          "Wissenschaftliches Schreiben",
+          "Thesis & LaTeX"
+        ]
       },
       "loubna": {
         "title": "Gesundheitsnavigatorin & Medizinische Übersetzerin",
@@ -2534,11 +2592,16 @@
         "status": "Aktiv",
         "cta": "Tool starten",
         "poweredBy": "KI-gestützt von Loubna",
-        "tags": ["Krankenversicherung", "Arztsuche", "Medizinische Übersetzung"]
+        "tags": [
+          "Krankenversicherung",
+          "Arztsuche",
+          "Medizinische Übersetzung"
+        ]
       }
     },
     "moreComing": "Weitere Assistenten kommen bald. Hast du eine Idee? Trage auf",
-    "designedBy": "Entworfen und erstellt von"
+    "designedBy": "Entworfen und erstellt von",
+    "howItWorks": "So funktioniert's"
   },
   "academic": {
     "badge": "Akademischer Begleiter",
@@ -2570,7 +2633,8 @@
     "resources": {
       "title": "Akademische Ressourcen",
       "subtitle": "Wichtige Tools, die jeder Münchner Studierende kennen sollte"
-    }
+    },
+    "launchPlaceholder": "Frag zu Abschlussarbeit, Forschung oder wissenschaftlichem Schreiben …"
   },
   "bureaucracy": {
     "badge": "Münchner Behörden",
@@ -2602,7 +2666,8 @@
     "authorities": {
       "title": "Offizielle Münchner Behörden",
       "subtitle": "Direkte Links zu den wichtigsten Ämtern"
-    }
+    },
+    "launchPlaceholder": "Frag nach Anmeldung, Visum oder anderem Papierkram …"
   },
   "housing": {
     "badge": "München Wohnen",
@@ -2634,7 +2699,8 @@
     "platforms": {
       "title": "Wo suchen",
       "subtitle": "Top-Plattformen für die Wohnungssuche in München"
-    }
+    },
+    "launchPlaceholder": "WG- oder Wohnungsinserat einfügen …"
   },
   "healthcare": {
     "badge": "Gesundheitsnavigatorin",
@@ -2666,7 +2732,8 @@
     "resources": {
       "title": "Gesundheitsressourcen",
       "subtitle": "Offizielle Gesundheitsdienste und Versicherungen für Münchner Studierende"
-    }
+    },
+    "launchPlaceholder": "Frag zu Versicherung, Arztsuche oder Symptomen …"
   },
   "errors": {
     "notFoundEyebrow": "404",

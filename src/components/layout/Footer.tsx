@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import Image from "next/image";
 import { Github, Mail } from "lucide-react";
 import { useTranslations } from "next-intl";
@@ -36,7 +36,9 @@ export function Footer() {
   const t = useTranslations("footer");
 
   return (
-    <footer className="bg-zinc-100/60 dark:bg-zinc-900/40">
+    // The bottom padding clears the fixed mobile tab bar, which would
+    // otherwise sit on top of the last row of footer links.
+    <footer className="bg-zinc-100/60 pb-[4.25rem] dark:bg-zinc-900/40 md:pb-0">
       <div className="mx-auto max-w-[1280px] 2xl:max-w-[96rem] px-4 py-8 sm:px-6 sm:py-10 lg:px-8 2xl:px-12 safe-area-bottom">
         <div className="grid grid-cols-2 gap-8 sm:grid-cols-2 lg:grid-cols-5">
           {/* Brand */}

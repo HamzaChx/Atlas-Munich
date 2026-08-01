@@ -6,19 +6,22 @@
  * Instead of a wall of cards, the left column is a dense, scannable index of
  * every result and the right column is one large panel showing whichever place
  * is selected. Only the index scrolls; the spotlight stays put. Below `lg`
- * there is no room for two columns, so the spotlight opens inline under the
- * row that was tapped.
+ * there is no room for two columns, so the spotlight opens as a bottom sheet
+ * over the index — the list keeps its scroll position, and the back gesture
+ * dismisses the sheet.
  */
 
 import * as React from "react";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { BadgeCheck, Clock, Globe, Instagram, MapPin, Navigation, Phone, Star } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { track } from "@vercel/analytics";
 
 import { Place, PlaceCategory } from "@/types";
+import { BottomSheet, BottomSheetContent } from "@/components/ui/bottom-sheet";
 import { cn } from "@/lib/utils";
 import { placeDirectionsUrl } from "@/lib/maps";
+import { formatDistanceKm } from "@/lib/geo";
 import { fallbackAccent, placeAccents, placeIcons } from "./place-accents";
 import { ZELLIGE_MOTIF_MASK } from "./zellige-motif";
 
@@ -70,6 +73,7 @@ function IconAction({
 /** The selected place, shown large. */
 function Spotlight({ place, className }: { place: Place; className?: string }) {
   const t = useTranslations("places");
+  const locale = useLocale();
   const accent = placeAccents[place.category] ?? fallbackAccent;
   const Icon = placeIcons[place.category] ?? MapPin;
 
@@ -138,6 +142,11 @@ function Spotlight({ place, className }: { place: Place; className?: string }) {
             {place.address}
           </span>
           {place.price && <span className={cn("font-bold", accent.text)}>{place.price}</span>}
+          {place.distanceKm !== undefined && (
+            <span className={cn("font-semibold", accent.text)}>
+              {t("location.away", { distance: formatDistanceKm(place.distanceKm, locale) })}
+            </span>
+          )}
           {place.verified && (
             <span className="flex items-center gap-1 font-semibold text-zellige">
               <BadgeCheck className="h-4 w-4" />
@@ -203,6 +212,7 @@ function Spotlight({ place, className }: { place: Place; className?: string }) {
 
 export function PlacesBrowser({ places, categories, className }: PlacesBrowserProps) {
   const t = useTranslations("places");
+  const locale = useLocale();
 
   /* The index, grouped in filter-bar order; groups collapse away when a filter
      leaves only one category standing. */
@@ -216,7 +226,25 @@ export function PlacesBrowser({ places, categories, className }: PlacesBrowserPr
   const ordered = React.useMemo(() => groups.flatMap((g) => g.items), [groups]);
 
   const [selectedSlug, setSelectedSlug] = React.useState<string | null>(null);
+  const [sheetOpen, setSheetOpen] = React.useState(false);
   const rowRefs = React.useRef(new Map<string, HTMLButtonElement>());
+
+  /* Below `lg` the detail opens as a sheet over the list instead of pushing
+     the list down, so the reader keeps their place in the index. The sheet is
+     never opened on desktop, where the spotlight column is already visible. */
+  const selectPlace = (slug: string) => {
+    setSelectedSlug(slug);
+    if (window.matchMedia("(max-width: 1023.98px)").matches) setSheetOpen(true);
+  };
+
+  /* Rotating a phone into a wide layout would otherwise leave a sheet
+     floating over a spotlight showing the very same place. */
+  React.useEffect(() => {
+    const wide = window.matchMedia("(min-width: 1024px)");
+    const sync = () => wide.matches && setSheetOpen(false);
+    wide.addEventListener("change", sync);
+    return () => wide.removeEventListener("change", sync);
+  }, []);
 
   /* Filtering can remove whatever was selected; fall back to the first result. */
   const selected =
@@ -307,7 +335,7 @@ export function PlacesBrowser({ places, categories, className }: PlacesBrowserPr
                           /* Roving tabstop: Tab reaches the list once, the
                              arrow keys walk it from there. */
                           tabIndex={active ? 0 : -1}
-                          onClick={() => setSelectedSlug(place.slug)}
+                          onClick={() => selectPlace(place.slug)}
                           className={cn(
                             "relative flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left outline-none transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-zellige/50",
                             active
@@ -335,6 +363,8 @@ export function PlacesBrowser({ places, categories, className }: PlacesBrowserPr
                             </span>
                             <span className="mt-0.5 block truncate text-[11.5px] text-zinc-400 dark:text-zinc-500">
                               {locality(place)}
+                              {place.distanceKm !== undefined &&
+                                ` · ${formatDistanceKm(place.distanceKm, locale)}`}
                             </span>
                           </span>
                           {place.rating && (
@@ -345,13 +375,6 @@ export function PlacesBrowser({ places, categories, className }: PlacesBrowserPr
                           )}
                         </button>
 
-                        {/* No room for two columns on phones: open in place */}
-                        {active && (
-                          <Spotlight
-                            place={place}
-                            className="my-2 animate-in fade-in slide-in-from-top-1 duration-300 lg:hidden"
-                          />
-                        )}
                       </React.Fragment>
                     );
                   })}
@@ -373,6 +396,15 @@ export function PlacesBrowser({ places, categories, className }: PlacesBrowserPr
           className="animate-in fade-in duration-300"
         />
       </div>
+
+      {/* ---------- Spotlight, as a sheet on phones ---------- */}
+      <BottomSheet open={sheetOpen} onOpenChange={setSheetOpen}>
+        <BottomSheetContent title={selected.name} hideTitle className="lg:hidden">
+          {/* The sheet already supplies the rounded plate and the padding, so
+              the card sheds its own ring and sits flush inside it. */}
+          <Spotlight place={selected} className="ring-0 dark:ring-0" />
+        </BottomSheetContent>
+      </BottomSheet>
     </div>
   );
 }

@@ -1,10 +1,11 @@
 "use client";
 
 import * as React from "react";
-import { useRouter } from "next/navigation";
+import { useParams } from "next/navigation";
 import { useTransition } from "react";
 import { cn } from "@/lib/utils";
-import { setLocale, type Locale } from "@/i18n";
+import { usePathname, useRouter } from "@/i18n/navigation";
+import { type Locale } from "@/i18n";
 import { Check, Languages } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { track } from "@vercel/analytics";
@@ -28,6 +29,10 @@ export function LanguageSwitcher({
   variant = "dropdown",
 }: LanguageSwitcherProps) {
   const router = useRouter();
+  /* The locale-aware pathname: locale prefix stripped, so it can be re-added
+     for whichever language is picked. */
+  const pathname = usePathname();
+  const params = useParams();
   const common = useTranslations("common");
   const [isPending, startTransition] = useTransition();
   const [isOpen, setIsOpen] = React.useState(false);
@@ -35,17 +40,25 @@ export function LanguageSwitcher({
 
   const currentLanguage = languages.find((l) => l.code === currentLocale) || languages[0];
 
-  const handleLanguageChange = async (locale: Locale) => {
+  /* Switching language is a navigation now, not a cookie write plus a refresh:
+     each locale has its own URL, so the reader stays on the page they were on
+     and can share the link with the language intact. */
+  const handleLanguageChange = (locale: Locale) => {
     if (locale === currentLocale) {
       setIsOpen(false);
       return;
     }
 
     track("language_switch", { from: currentLocale, to: locale });
-    await setLocale(locale);
     setIsOpen(false);
     startTransition(() => {
-      router.refresh();
+      // `params` carries any dynamic segments ([slug]) the current route has.
+      router.replace(
+        // @ts-expect-error -- pathname is a runtime value, so it can't be
+        // narrowed to the statically-known route union.
+        { pathname, params },
+        { locale }
+      );
     });
   };
 
@@ -131,7 +144,7 @@ export function LanguageSwitcher({
         className={cn(
           // Mobile: fixed panel near top with horizontal padding
           // Desktop (sm and up): absolute dropdown positioned to the right
-          "fixed left-3 right-3 top-14 z-50 overflow-hidden rounded-xl border border-zinc-200 dark:border-border bg-white dark:bg-zinc-900 shadow-lg shadow-zinc-200/50 dark:shadow-none transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)]",
+          "fixed left-3 right-3 top-(--header-h) z-50 overflow-hidden rounded-xl border border-zinc-200 dark:border-border bg-white dark:bg-zinc-900 shadow-lg shadow-zinc-200/50 dark:shadow-none transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)]",
           "sm:left-auto sm:right-0 sm:top-full sm:mt-2 sm:min-w-[160px] sm:fixed-none sm:absolute",
           isOpen
             ? "opacity-100 translate-y-0 pointer-events-auto"

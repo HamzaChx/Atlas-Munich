@@ -8,21 +8,23 @@
     "about": "À propos",
     "search": "Rechercher",
     "toggleTheme": "Changer de thème",
-    "tools": "Outils"
+    "tools": "Outils",
+    "ask": "Demander",
+    "more": "Plus",
+    "moreTitle": "Plus",
+    "closeMenu": "Fermer le menu",
+    "language": "Langue",
+    "appearance": "Apparence",
+    "installApp": "Installer Atlas Munich",
+    "installDesc": "Ajoutez-le à votre écran d'accueil et utilisez-le hors ligne.",
+    "install": "Installer",
+    "notNow": "Plus tard"
   },
   "home": {
     "heroTitle": "Nouveau à Munich ?",
     "heroTitleHighlight": "On est là pour vous.",
     "heroSubtitle": "Guides, adresses et assistants IA pour les Marocains qui s'installent à Munich.",
     "heroCommunity": "Hamza Chaouki",
-    "searchPlaceholder": "Essayez « Anmeldung », « colocation » ou « boucherie halal »…",
-    "quickLinks": {
-      "findHousing": "Trouver un logement",
-      "kvrRegistration": "Inscription KVR",
-      "halalFood": "Nourriture Halal",
-      "allGuides": "Tous les guides",
-      "aiTools": "Outils IA"
-    },
     "stats": {
       "guides": "Guides",
       "places": "Lieux",
@@ -105,6 +107,15 @@
       "title": "Commencez par ceux-ci",
       "viewAll": "Tous les guides",
       "minRead": "min de lecture"
+    },
+    "launchPlaceholder": "Collez une annonce de colocation et recevez une candidature en allemand…",
+    "intents": {
+      "flat": "Un logement",
+      "paperwork": "Paperasse",
+      "paperworkPrompt": "Comment faire mon Anmeldung à Munich ?",
+      "halalFood": "Nourriture halal",
+      "uni": "Vie étudiante",
+      "uniPrompt": "Comment bien démarrer mes études à Munich ?"
     }
   },
   "places": {
@@ -133,6 +144,22 @@
       "cuisine": "Cuisine",
       "allCuisines": "Toutes les cuisines",
       "clear": "Effacer les filtres"
+    },
+    "location": {
+      "button": "Près de moi",
+      "locating": "Localisation…",
+      "consentDescription": "Utilisé uniquement dans votre navigateur pour trier et filtrer les lieux par distance. Jamais envoyé à nos serveurs ni stocké — désactivable à tout moment.",
+      "allow": "Autoriser la localisation",
+      "notNow": "Pas maintenant",
+      "turnOff": "Désactiver",
+      "radiusLabel": "Dans un rayon de",
+      "radiusAny": "Distance quelconque",
+      "radiusUpTo": "Jusqu'à {km} km",
+      "away": "à {distance}",
+      "errorDenied": "L'accès à la position a été refusé. Activez-le dans les paramètres du site de votre navigateur pour utiliser cette fonctionnalité.",
+      "errorUnavailable": "La position n'est pas disponible sur cet appareil ou ce navigateur.",
+      "errorTimeout": "La recherche de votre position a pris trop de temps. Réessayez.",
+      "errorGeneric": "Une erreur s'est produite lors de la recherche de votre position. Réessayez."
     },
     "cuisines": {
       "turkish": "Turque",
@@ -1610,7 +1637,11 @@
         "Où puis-je étudier ?",
         "Des endroits marocains pour manger"
       ],
-      "hamza": ["À propos de ce projet", "Comment contribuer ?", "Quel est le stack technique ?"],
+      "hamza": [
+        "À propos de ce projet",
+        "Comment contribuer ?",
+        "Quel est le stack technique ?"
+      ],
       "riad": [
         "Rédige une candidature WG pour moi",
         "Rédige une candidature formelle",
@@ -1646,7 +1677,8 @@
     "typeMessage": "Écris ton message…",
     "aiBadge": "IA",
     "aiDisclaimer": "Assistant IA, les réponses peuvent contenir des erreurs. Vérifie les informations importantes.",
-    "typing": "écrit…"
+    "typing": "écrit…",
+    "send": "Envoyer"
   },
   "legal": {
     "privacy": {
@@ -1769,7 +1801,12 @@
             },
             {
               "t": "table",
-              "head": ["Données", "Finalité", "Base légale", "Conservation"],
+              "head": [
+                "Données",
+                "Finalité",
+                "Base légale",
+                "Conservation"
+              ],
               "rows": [
                 [
                   "Journaux d'accès et serveur",
@@ -1866,7 +1903,12 @@
             },
             {
               "t": "table",
-              "head": ["Nom", "Type", "Finalité", "Durée"],
+              "head": [
+                "Nom",
+                "Type",
+                "Finalité",
+                "Durée"
+              ],
               "rows": [
                 [
                   "theme",
@@ -1942,7 +1984,12 @@
             },
             {
               "t": "table",
-              "head": ["Prestataire", "Rôle", "Ce qu'il reçoit", "Où"],
+              "head": [
+                "Prestataire",
+                "Rôle",
+                "Ce qu'il reçoit",
+                "Où"
+              ],
               "rows": [
                 [
                   "Vercel Inc. et Vercel GmbH",
@@ -2507,7 +2554,6 @@
     "liveLabel": "en ligne",
     "capabilities": "Ce qu'il gère",
     "tryAsking": "Essayez de demander",
-    "startChat": "Démarrer la discussion",
     "tools": {
       "housing": {
         "title": "Rédacteur de candidature logement",
@@ -2515,7 +2561,11 @@
         "status": "Disponible",
         "cta": "Lancer l'outil",
         "poweredBy": "Propulsé par IA via Riad",
-        "tags": ["Candidatures WG", "Annonces appartement", "Allemand parfait"]
+        "tags": [
+          "Candidatures WG",
+          "Annonces appartement",
+          "Allemand parfait"
+        ]
       },
       "events": {
         "title": "Planificateur d'événements",
@@ -2523,7 +2573,11 @@
         "status": "Bientôt disponible",
         "cta": "Bientôt disponible",
         "comingSoonNote": "Nous construisons cet outil, restez connecté !",
-        "tags": ["Planifier des événements", "Inviter des amis", "Lieux à Munich"],
+        "tags": [
+          "Planifier des événements",
+          "Inviter des amis",
+          "Lieux à Munich"
+        ],
         "prompts": [
           "Trouver un lieu pour une session d'étude",
           "Organiser une sortie le week-end",
@@ -2536,7 +2590,11 @@
         "status": "Disponible",
         "cta": "Lancer l'outil",
         "poweredBy": "Optimisé par IA via Dalilah",
-        "tags": ["Anmeldung", "Permis de séjour", "KVR & Délais"]
+        "tags": [
+          "Anmeldung",
+          "Permis de séjour",
+          "KVR & Délais"
+        ]
       },
       "ilham": {
         "title": "Compagnon de Recherche Académique",
@@ -2544,7 +2602,11 @@
         "status": "Disponible",
         "cta": "Lancer l'outil",
         "poweredBy": "Optimisé par IA via Ilham",
-        "tags": ["Recherche & Littérature", "Écriture scientifique", "Thèse & LaTeX"]
+        "tags": [
+          "Recherche & Littérature",
+          "Écriture scientifique",
+          "Thèse & LaTeX"
+        ]
       },
       "loubna": {
         "title": "Navigatrice Santé & Traductrice Médicale",
@@ -2552,11 +2614,16 @@
         "status": "Disponible",
         "cta": "Lancer l'outil",
         "poweredBy": "Optimisé par IA via Loubna",
-        "tags": ["Assurance Maladie", "Recherche Médecin", "Traduction Médicale"]
+        "tags": [
+          "Assurance Maladie",
+          "Recherche Médecin",
+          "Traduction Médicale"
+        ]
       }
     },
     "moreComing": "D'autres assistants arrivent bientôt. Une idée ? Contribuez sur",
-    "designedBy": "Conçu et créé par"
+    "designedBy": "Conçu et créé par",
+    "howItWorks": "Comment ça marche"
   },
   "academic": {
     "badge": "Compagnon Académique",
@@ -2588,7 +2655,8 @@
     "resources": {
       "title": "Ressources académiques",
       "subtitle": "Outils essentiels que tout étudiant à Munich devrait mettre en favoris"
-    }
+    },
+    "launchPlaceholder": "Posez une question sur votre thèse, vos recherches ou la rédaction académique…"
   },
   "bureaucracy": {
     "badge": "Bureaucratie Munich",
@@ -2620,7 +2688,8 @@
     "authorities": {
       "title": "Autorités Officielles de Munich",
       "subtitle": "Liens directs vers les organismes les plus importants"
-    }
+    },
+    "launchPlaceholder": "Anmeldung, visa, paperasse allemande : posez votre question…"
   },
   "housing": {
     "badge": "Logement Munich",
@@ -2652,7 +2721,8 @@
     "platforms": {
       "title": "Où chercher",
       "subtitle": "Meilleures plateformes pour la recherche de logement à Munich"
-    }
+    },
+    "launchPlaceholder": "Collez une annonce de colocation ou d'appartement…"
   },
   "healthcare": {
     "badge": "Navigatrice Santé",
@@ -2684,7 +2754,8 @@
     "resources": {
       "title": "Ressources Santé",
       "subtitle": "Services de santé officiels et assureurs pour les étudiants à Munich"
-    }
+    },
+    "launchPlaceholder": "Assurance, recherche de médecin, symptômes : posez votre question…"
   },
   "errors": {
     "notFoundEyebrow": "404",

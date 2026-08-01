@@ -8,12 +8,13 @@
 // ============================================
 
 import Image from "next/image";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import { getTranslations } from "next-intl/server";
 import { ArrowRight, ArrowUpRight, type LucideIcon } from "lucide-react";
 import type { ChatbotType } from "@/chatbot/types";
 import { ZELLIGE_MOTIF_MASK } from "@/components/shared/zellige-motif";
 import { ASSISTANT_ACCENTS } from "./chat-themes";
+import { ChatLaunchBox } from "./ChatLaunchBox";
 
 export interface AssistantLink {
   name: string;
@@ -123,47 +124,20 @@ export async function AssistantLanding({ config }: { config: AssistantLandingCon
               <p className="font-display text-lg font-semibold leading-snug text-zinc-900 sm:text-xl dark:text-zinc-50">
                 {t("intro")}
               </p>
+              {/* The working surface, not a link to it: type here and the
+                  answer is already streaming on the next screen. */}
               <div className="mt-6">
-                <Link href={config.chatPath} className={INK_PILL}>
-                  {t("cta")}
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
+                <ChatLaunchBox
+                  chatbot={config.chatbot}
+                  chatPath={config.chatPath}
+                  placeholder={t("launchPlaceholder")}
+                  submitLabel={tChat("send")}
+                />
               </div>
             </div>
           </div>
         </div>
       </section>
-
-      {/* ========== HOW IT WORKS ========== */}
-      <section className="reveal mx-auto max-w-5xl px-4 pb-16 sm:px-6 sm:pb-20 lg:px-8">
-        <h2 className="font-display text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl dark:text-zinc-50">
-          {t("features.title")}
-        </h2>
-
-        <div className="mt-7 grid gap-4 sm:grid-cols-3 sm:gap-5">
-          {config.stepIcons.map((Icon, i) => (
-            <div key={i} className={`relative p-6 sm:p-7 ${PANEL_CARD}`}>
-              <span
-                className={`absolute right-6 top-6 font-display text-2xl font-bold tabular-nums text-zinc-200 dark:text-foreground/10`}
-              >
-                {`0${i + 1}`}
-              </span>
-              <span
-                className={`mb-4 flex h-12 w-12 items-center justify-center rounded-2xl ${accent.tint} ${accent.acc}`}
-              >
-                <Icon className="h-5 w-5" />
-              </span>
-              <h3 className="font-display text-base font-bold text-zinc-900 dark:text-zinc-50">
-                {t(`features.step${i + 1}Title`)}
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-                {t(`features.step${i + 1}Desc`)}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-
 
       {/* ========== OUTBOUND LINKS ========== */}
       <section className="reveal mx-auto max-w-5xl px-4 pb-16 sm:px-6 sm:pb-20 lg:px-8">
@@ -202,6 +176,39 @@ export async function AssistantLanding({ config }: { config: AssistantLandingCon
             </a>
             );
           })}
+        </div>
+      </section>
+
+      {/* ========== HOW IT WORKS ==========
+          Below the fold on purpose. Someone who already knows what they want
+          has typed it into the panel above and left; this is for the visitor
+          who arrived cold from a search result. */}
+      <section className="reveal mx-auto max-w-5xl px-4 pb-16 sm:px-6 sm:pb-20 lg:px-8">
+        <h2 className="font-display text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl dark:text-zinc-50">
+          {t("features.title")}
+        </h2>
+
+        <div className="mt-7 grid gap-4 sm:grid-cols-3 sm:gap-5">
+          {config.stepIcons.map((Icon, i) => (
+            <div key={i} className={`relative p-6 sm:p-7 ${PANEL_CARD}`}>
+              <span
+                className={`absolute right-6 top-6 font-display text-2xl font-bold tabular-nums text-zinc-200 dark:text-foreground/10`}
+              >
+                {`0${i + 1}`}
+              </span>
+              <span
+                className={`mb-4 flex h-12 w-12 items-center justify-center rounded-2xl ${accent.tint} ${accent.acc}`}
+              >
+                <Icon className="h-5 w-5" />
+              </span>
+              <h3 className="font-display text-base font-bold text-zinc-900 dark:text-zinc-50">
+                {t(`features.step${i + 1}Title`)}
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+                {t(`features.step${i + 1}Desc`)}
+              </p>
+            </div>
+          ))}
         </div>
       </section>
 

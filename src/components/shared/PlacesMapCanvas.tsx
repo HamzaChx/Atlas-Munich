@@ -27,13 +27,14 @@ import {
   useMapEvents,
 } from "react-leaflet";
 import { useTheme } from "next-themes";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { ExternalLink, Maximize, MapPin, Minus, Plus, Star } from "lucide-react";
 
 import type { Place } from "@/types";
 import { placeAccents } from "./place-accents";
 import { cn } from "@/lib/utils";
 import { placeDirectionsUrl } from "@/lib/maps";
+import { formatDistanceKm, type Coordinates } from "@/lib/geo";
 
 const MUNICH_CENTER: [number, number] = [48.1372, 11.5756];
 
@@ -93,6 +94,19 @@ function pinIcon(category: string, active: boolean) {
 
   iconCache.set(cacheKey, icon);
   return icon;
+}
+
+let userLocationIcon: L.DivIcon | null = null;
+function getUserLocationIcon() {
+  if (!userLocationIcon) {
+    userLocationIcon = L.divIcon({
+      className: "atlas-marker",
+      html: `<div class="atlas-user-dot"></div>`,
+      iconSize: [16, 16],
+      iconAnchor: [8, 8],
+    });
+  }
+  return userLocationIcon;
 }
 
 function clusterIcon(count: number, color: string | null) {
@@ -247,6 +261,7 @@ function coreBounds(places: Place[]) {
 
 function PlacePopupCard({ place, label }: { place: Place; label: string }) {
   const t = useTranslations("places");
+  const locale = useLocale();
   const color = accentColor(place.category);
   const directions = placeDirectionsUrl(place);
 
@@ -283,7 +298,11 @@ function PlacePopupCard({ place, label }: { place: Place; label: string }) {
 
       <p className="mt-2 flex items-start gap-1.5 text-[13px] leading-relaxed text-zinc-500 dark:text-zinc-400">
         <MapPin className="mt-[3px] h-3.5 w-3.5 shrink-0" />
-        <span>{place.address}</span>
+        <span>
+          {place.address}
+          {place.distanceKm !== undefined &&
+            ` · ${t("location.away", { distance: formatDistanceKm(place.distanceKm, locale) })}`}
+        </span>
       </p>
 
       {place.description && (
@@ -386,6 +405,8 @@ export interface PlacesMapCanvasProps {
   categoryLabels?: Record<string, string>;
   /** Singular category names, for a single marker's popup */
   categoryNames?: Record<string, string>;
+  /** The visitor's opted-in position, shown as a marker. Never sent anywhere. */
+  userLocation?: Coordinates | null;
   className?: string;
 }
 
@@ -393,6 +414,7 @@ export default function PlacesMapCanvas({
   places,
   categoryLabels,
   categoryNames,
+  userLocation,
   className,
 }: PlacesMapCanvasProps) {
   const t = useTranslations("places");
@@ -489,6 +511,16 @@ export default function PlacesMapCanvas({
           />
 
           <MarkerLayer places={mapped} selected={selected} onSelect={setSelected} />
+
+          {userLocation && (
+            <Marker
+              position={[userLocation.lat, userLocation.lng]}
+              icon={getUserLocationIcon()}
+              title={t("location.button")}
+              interactive={false}
+              zIndexOffset={-1000}
+            />
+          )}
 
           {selected && (
             <Popup

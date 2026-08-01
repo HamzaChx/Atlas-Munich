@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { FileQuestion, Search, BookOpen, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 
 type EmptyStateType = "search" | "guides" | "places" | "general";
 

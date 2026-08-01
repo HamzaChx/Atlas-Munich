@@ -1,8 +1,7 @@
-// Re-export constants from request (types and constants)
-export const locales = ["en", "fr", "de"] as const;
-export type Locale = (typeof locales)[number];
-export const defaultLocale: Locale = "en";
+// The locale list lives with the routing config now, since the router is what
+// resolves it. Re-exported here so existing `@/i18n` imports keep working.
+export { locales, defaultLocale, routing, type Locale } from "./routing";
 
-// Re-export server actions
-export { setLocale, getLocale } from "./actions";
-
+// `getLocale`/`setLocale` are gone: the locale is a URL segment, so it is read
+// with `getLocale()` from `next-intl/server` and changed by navigating (see
+// LanguageSwitcher) rather than by writing a cookie.

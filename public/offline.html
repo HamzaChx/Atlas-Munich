@@ -1,0 +1,193 @@
+<!doctype html>
+<!--
+  Atlas Munich – offline fallback.
+
+  Deliberately a hand-written static file rather than an app route. Every
+  route in this app is server-rendered on demand (the locale comes from a
+  cookie, read in the root layout), so no page HTML is ever prerendered and
+  nothing under src/app can be precached. This file lives in public/, so the
+  service worker can store it at install time and always have something to
+  show when a navigation fails.
+
+  Self-contained by necessity: when this renders there is no network, so no
+  external stylesheet, font, or script can load.
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Offline | Atlas Munich</title>
+    <meta name="robots" content="noindex" />
+    <link rel="icon" href="/icon-192.png" />
+    <style>
+      :root {
+        --bg: #ffffff;
+        --card: #f4f4f5;
+        --ink: #18181b;
+        --muted: #71717a;
+        --zellige: #1f7a52;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #09090b;
+          --card: #18181b;
+          --ink: #fafafa;
+          --muted: #a1a1aa;
+          --zellige: #34d399;
+        }
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        min-height: 100dvh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem 1.5rem;
+        background: var(--bg);
+        color: var(--ink);
+        font-family:
+          system-ui,
+          -apple-system,
+          "Segoe UI",
+          Roboto,
+          sans-serif;
+        text-align: center;
+        line-height: 1.6;
+      }
+      .wrap {
+        max-width: 26rem;
+      }
+      .badge {
+        width: 4rem;
+        height: 4rem;
+        margin: 0 auto 1.5rem;
+        border-radius: 1.25rem;
+        background: var(--card);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .eyebrow {
+        font-size: 0.7rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--muted);
+      }
+      h1 {
+        margin: 0.75rem 0 0;
+        font-size: 1.75rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+      p {
+        margin: 1rem 0 0;
+        color: var(--muted);
+      }
+      .actions {
+        margin-top: 2rem;
+        display: flex;
+        gap: 0.75rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      a.btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 2.75rem;
+        padding: 0 1.5rem;
+        border-radius: 999px;
+        background: var(--card);
+        color: var(--ink);
+        font-size: 0.875rem;
+        font-weight: 600;
+        text-decoration: none;
+      }
+      a.btn.primary {
+        background: var(--zellige);
+        color: #ffffff;
+      }
+      @media (prefers-color-scheme: dark) {
+        a.btn.primary {
+          color: #09090b;
+        }
+      }
+      [data-lang] {
+        display: none;
+      }
+      [data-lang].active {
+        display: block;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="wrap">
+      <div class="badge" aria-hidden="true">
+        <svg
+          width="32"
+          height="32"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.8"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+        >
+          <path d="M17.5 19a4.5 4.5 0 0 0 1.2-8.8 7 7 0 0 0-11.4-3.4" />
+          <path d="M2 2l20 20" />
+          <path d="M5.8 9.2A4.5 4.5 0 0 0 6.5 19h8" />
+        </svg>
+      </div>
+
+      <div data-lang="en">
+        <span class="eyebrow">Offline</span>
+        <h1>You're offline right now.</h1>
+        <p>
+          This page hasn't been saved to your device yet. Guides and places you've already opened
+          still work without a connection.
+        </p>
+      </div>
+
+      <div data-lang="fr">
+        <span class="eyebrow">Hors ligne</span>
+        <h1>Vous êtes hors ligne.</h1>
+        <p>
+          Cette page n'a pas encore été enregistrée sur votre appareil. Les guides et lieux que vous
+          avez déjà ouverts restent accessibles sans connexion.
+        </p>
+      </div>
+
+      <div data-lang="de">
+        <span class="eyebrow">Offline</span>
+        <h1>Du bist gerade offline.</h1>
+        <p>
+          Diese Seite wurde noch nicht auf deinem Gerät gespeichert. Ratgeber und Orte, die du schon
+          geöffnet hast, funktionieren weiterhin ohne Verbindung.
+        </p>
+      </div>
+
+      <div class="actions">
+        <a class="btn primary" href="/">Atlas Munich</a>
+        <a class="btn" href="/guides">Guides</a>
+        <a class="btn" href="/places">Places</a>
+      </div>
+    </main>
+
+    <script>
+      // Same cookie the app's middleware reads, so the fallback speaks the
+      // language the reader picked rather than defaulting to English.
+      (function () {
+        var match = document.cookie.match(/(?:^|;\s*)NEXT_LOCALE=(en|fr|de)/);
+        var lang = match ? match[1] : (navigator.language || "en").slice(0, 2);
+        if (lang !== "fr" && lang !== "de") lang = "en";
+        document.documentElement.lang = lang;
+        var block = document.querySelector('[data-lang="' + lang + '"]');
+        if (block) block.classList.add("active");
+      })();
+    </script>
+  </body>
+</html>

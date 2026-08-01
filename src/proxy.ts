@@ -1,26 +1,20 @@
-import { NextRequest, NextResponse } from "next/server";
+import createMiddleware from "next-intl/middleware";
 
-const locales = ["en", "fr", "de"] as const;
-const defaultLocale = "en";
-const COOKIE_NAME = "NEXT_LOCALE";
+import { routing } from "@/i18n/routing";
 
-export function proxy(request: NextRequest) {
-  // Get locale from cookie or use default
-  const localeCookie = request.cookies.get(COOKIE_NAME)?.value;
-  const locale = locales.includes(localeCookie as typeof locales[number])
-    ? localeCookie
-    : defaultLocale;
-
-  // Create response with locale header for next-intl
-  const response = NextResponse.next();
-  
-  // Set the locale in the request headers for next-intl to pick up
-  response.headers.set("x-next-intl-locale", locale!);
-  
-  return response;
-}
+/**
+ * Locale routing, at the edge. Resolves which of /, /fr/... or /de/... a
+ * request belongs to, redirects /en/... to the unprefixed form, and sets
+ * `Vary: Accept-Language` so caches don't serve one locale's HTML to another.
+ *
+ * Replaces the previous hand-rolled cookie reader, which set a request header
+ * that `src/i18n/request.ts` then read via `headers()` — the single reason no
+ * page in this app could ever be statically prerendered.
+ */
+export const proxy = createMiddleware(routing);
 
 export const config = {
-  // Match all paths except static files and api routes
-  matcher: ["/((?!api|_next|.*\\..*).*)"],
+  // Everything except API routes, Next internals, the service worker, and any
+  // path with a file extension (static assets in public/).
+  matcher: ["/((?!api|_next|sw\\.js|.*\\..*).*)"],
 };

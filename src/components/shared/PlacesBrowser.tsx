@@ -18,6 +18,7 @@ import { track } from "@vercel/analytics";
 
 import { Place, PlaceCategory } from "@/types";
 import { cn } from "@/lib/utils";
+import { placeDirectionsUrl } from "@/lib/maps";
 import { fallbackAccent, placeAccents, placeIcons } from "./place-accents";
 import { ZELLIGE_MOTIF_MASK } from "./zellige-motif";
 
@@ -174,9 +175,7 @@ function Spotlight({ place, className }: { place: Place; className?: string }) {
 
         <div className="mt-auto flex items-center gap-2.5 pt-8">
           <Link
-            href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-              `${place.name} ${place.address}`
-            )}`}
+            href={placeDirectionsUrl(place)}
             target="_blank"
             rel="noopener noreferrer"
             onClick={() =>

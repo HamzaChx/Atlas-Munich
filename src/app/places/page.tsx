@@ -1,23 +1,23 @@
 "use client";
 
-import { useState, useMemo, useEffect, useRef } from "react";
+import { useState, useMemo } from "react";
 import Link from "next/link";
 import { PlacesBrowser, EmptyState, PlacesMap } from "@/components/shared";
 import { placeAccents } from "@/components/shared/place-accents";
 
 import { places } from "@/data/places";
 import { PlaceCategory, PriceLevel } from "@/types";
-import {
-  Search,
-  ArrowRight,
-  Map,
-  Columns2,
-  X,
-  SlidersHorizontal,
-  ChevronDown,
-} from "lucide-react";
+import { Search, ArrowRight, Map, Columns2, X, SlidersHorizontal } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const PRICE_LEVELS: PriceLevel[] = ["€", "€€", "€€€"];
 
@@ -55,8 +55,29 @@ interface FiltersPopoverProps {
   activeCount: number;
 }
 
+/** A removable summary chip for one active filter, shown next to the
+    Filters button so the applied state is visible without opening it. */
+function FilterChip({ label, onRemove }: { label: string; onRemove: () => void }) {
+  return (
+    <span className="flex shrink-0 items-center gap-1 rounded-full bg-zellige-soft py-1 pl-3 pr-1.5 text-[12.5px] font-semibold text-zellige">
+      {label}
+      <button
+        type="button"
+        onClick={onRemove}
+        aria-label={label}
+        className="flex h-4.5 w-4.5 items-center justify-center rounded-full text-zellige/70 transition-colors hover:bg-zellige/15 hover:text-zellige"
+      >
+        <X className="h-3 w-3" />
+      </button>
+    </span>
+  );
+}
+
 /** Price, district, and cuisine filters, tucked behind one button so
-    the sticky toolbar doesn't turn into a wall of pills. */
+    the sticky toolbar doesn't turn into a wall of pills. Built on shadcn's
+    Popover and Select so positioning, focus trapping, and keyboard nav
+    (including outside-click and Escape dismissal) come from Radix instead
+    of a hand-rolled listener. */
 function FiltersPopover({
   price,
   onPriceChange,
@@ -70,53 +91,36 @@ function FiltersPopover({
 }: FiltersPopoverProps) {
   const t = useTranslations("places");
   const [open, setOpen] = useState(false);
-  const rootRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (!open) return;
-    const onPointerDown = (event: MouseEvent) => {
-      if (rootRef.current && !rootRef.current.contains(event.target as Node)) setOpen(false);
-    };
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setOpen(false);
-    };
-    document.addEventListener("mousedown", onPointerDown);
-    document.addEventListener("keydown", onKeyDown);
-    return () => {
-      document.removeEventListener("mousedown", onPointerDown);
-      document.removeEventListener("keydown", onKeyDown);
-    };
-  }, [open]);
 
   return (
-    <div ref={rootRef} className="relative shrink-0">
-      <button
-        type="button"
-        onClick={() => setOpen((v) => !v)}
-        aria-expanded={open}
-        className={cn(
-          "flex items-center gap-1.5 rounded-full px-3.5 py-2 text-[13px] font-semibold shadow-sm transition-all",
-          activeCount > 0
-            ? "bg-zinc-900 text-white dark:bg-zinc-50 dark:text-zinc-900"
-            : "bg-card text-zinc-500 hover:text-zinc-900 dark:bg-foreground/[0.075] dark:text-zinc-400 dark:shadow-none dark:hover:text-zinc-50"
-        )}
-      >
-        <SlidersHorizontal className="h-3.5 w-3.5" />
-        {t("advancedFilters.button")}
-        {activeCount > 0 && (
-          <span
+    <div className="flex min-w-0 shrink-0 items-center gap-1.5">
+      <Popover open={open} onOpenChange={setOpen}>
+        <PopoverTrigger asChild>
+          <button
+            type="button"
+            aria-expanded={open}
             className={cn(
-              "flex h-4 min-w-4 items-center justify-center rounded-full px-1 text-[10px] tabular-nums",
-              "bg-white/20 dark:bg-zinc-900/15"
+              "flex shrink-0 items-center gap-1.5 rounded-full px-3.5 py-2 text-[13px] font-semibold shadow-sm outline-none transition-all focus-visible:ring-2 focus-visible:ring-zellige/50",
+              activeCount > 0
+                ? "bg-zinc-900 text-white dark:bg-zinc-50 dark:text-zinc-900"
+                : "bg-card text-zinc-500 hover:text-zinc-900 dark:bg-foreground/[0.075] dark:text-zinc-400 dark:shadow-none dark:hover:text-zinc-50"
             )}
           >
-            {activeCount}
-          </span>
-        )}
-      </button>
+            <SlidersHorizontal className="h-3.5 w-3.5" />
+            {t("advancedFilters.button")}
+            {activeCount > 0 && (
+              <span className="flex h-4 min-w-4 items-center justify-center rounded-full bg-white/20 px-1 text-[10px] tabular-nums dark:bg-zinc-900/15">
+                {activeCount}
+              </span>
+            )}
+          </button>
+        </PopoverTrigger>
 
-      {open && (
-        <div className="absolute left-0 top-[calc(100%+0.5rem)] z-40 w-72 rounded-2xl bg-card p-4 shadow-[0_12px_40px_rgb(0_0_0/0.14)] ring-1 ring-zinc-900/[0.05] dark:ring-border">
+        <PopoverContent
+          align="start"
+          sideOffset={8}
+          className="w-72 rounded-2xl border-0 bg-card p-4 shadow-[0_12px_40px_rgb(0_0_0/0.14)] ring-1 ring-zinc-900/[0.05] dark:ring-border"
+        >
           <div>
             <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-zinc-400 dark:text-zinc-500">
               {t("advancedFilters.price")}
@@ -147,48 +151,52 @@ function FiltersPopover({
             <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-zinc-400 dark:text-zinc-500">
               {t("advancedFilters.district")}
             </p>
-            <div className="relative mt-2">
-              <select
-                value={district ?? ""}
-                onChange={(e) => onDistrictChange(e.target.value || null)}
-                className="h-9 w-full appearance-none rounded-lg bg-zinc-100 pl-3 pr-8 text-[13px] font-semibold text-zinc-700 outline-none transition-colors hover:bg-zinc-200 dark:bg-foreground/[0.09] dark:text-zinc-200 dark:hover:bg-foreground/[0.14]"
+            <Select
+              value={district ?? "all"}
+              onValueChange={(value) => onDistrictChange(value === "all" ? null : value)}
+            >
+              <SelectTrigger
+                size="sm"
+                className="mt-2 h-9 w-full rounded-lg border-0 bg-zinc-100 px-3 text-[13px] font-semibold text-zinc-700 shadow-none hover:bg-zinc-200 dark:bg-foreground/[0.09] dark:text-zinc-200 dark:hover:bg-foreground/[0.14]"
               >
-                <option value="">{t("advancedFilters.allDistricts")}</option>
+                <SelectValue placeholder={t("advancedFilters.allDistricts")} />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">{t("advancedFilters.allDistricts")}</SelectItem>
                 {districts.map((d) => (
-                  <option key={d} value={d}>
+                  <SelectItem key={d} value={d}>
                     {d}
-                  </option>
+                  </SelectItem>
                 ))}
-              </select>
-              <ChevronDown
-                aria-hidden="true"
-                className="pointer-events-none absolute right-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-zinc-400"
-              />
-            </div>
+              </SelectContent>
+            </Select>
           </div>
 
           <div className="mt-4">
             <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-zinc-400 dark:text-zinc-500">
               {t("advancedFilters.cuisine")}
             </p>
-            <div className="relative mt-2">
-              <select
-                value={cuisine ?? ""}
-                onChange={(e) => onCuisineChange((e.target.value || null) as CuisineTag | null)}
-                className="h-9 w-full appearance-none rounded-lg bg-zinc-100 pl-3 pr-8 text-[13px] font-semibold text-zinc-700 outline-none transition-colors hover:bg-zinc-200 dark:bg-foreground/[0.09] dark:text-zinc-200 dark:hover:bg-foreground/[0.14]"
+            <Select
+              value={cuisine ?? "all"}
+              onValueChange={(value) =>
+                onCuisineChange(value === "all" ? null : (value as CuisineTag))
+              }
+            >
+              <SelectTrigger
+                size="sm"
+                className="mt-2 h-9 w-full rounded-lg border-0 bg-zinc-100 px-3 text-[13px] font-semibold text-zinc-700 shadow-none hover:bg-zinc-200 dark:bg-foreground/[0.09] dark:text-zinc-200 dark:hover:bg-foreground/[0.14]"
               >
-                <option value="">{t("advancedFilters.allCuisines")}</option>
+                <SelectValue placeholder={t("advancedFilters.allCuisines")} />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">{t("advancedFilters.allCuisines")}</SelectItem>
                 {cuisines.map((c) => (
-                  <option key={c} value={c}>
+                  <SelectItem key={c} value={c}>
                     {t(`cuisines.${c}`)}
-                  </option>
+                  </SelectItem>
                 ))}
-              </select>
-              <ChevronDown
-                aria-hidden="true"
-                className="pointer-events-none absolute right-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-zinc-400"
-              />
-            </div>
+              </SelectContent>
+            </Select>
           </div>
 
           {activeCount > 0 && (
@@ -204,7 +212,14 @@ function FiltersPopover({
               {t("advancedFilters.clear")}
             </button>
           )}
-        </div>
+        </PopoverContent>
+      </Popover>
+
+      {/* Applied filters, visible and individually removable without reopening the popover */}
+      {price && <FilterChip label={price} onRemove={() => onPriceChange(null)} />}
+      {district && <FilterChip label={district} onRemove={() => onDistrictChange(null)} />}
+      {cuisine && (
+        <FilterChip label={t(`cuisines.${cuisine}`)} onRemove={() => onCuisineChange(null)} />
       )}
     </div>
   );
@@ -342,48 +357,99 @@ export default function PlacesPage() {
         </p>
       </section>
 
-      {/* ========== STICKY FILTER TOOLBAR ========== */}
-      <div className="rise rise-3 sticky top-14 z-30 bg-background pb-3 pt-3 shadow-[0_12px_16px_-12px_rgb(0_0_0/0.06)] sm:top-16">
-        <div className="mx-auto flex max-w-7xl 2xl:max-w-[96rem] flex-col gap-3 px-4 sm:px-6 lg:flex-row lg:items-center lg:px-8 2xl:px-12">
-          {/* Search */}
-          <div className="relative lg:w-72 lg:shrink-0">
-            <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-400 dark:text-zinc-500" />
-            <input
-              type="search"
-              placeholder={t("searchPlaceholder")}
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="h-11 w-full rounded-full bg-card pl-11 pr-10 text-sm text-zinc-900 shadow-sm outline-none transition-shadow placeholder:text-zinc-400 focus:ring-2 focus:ring-zellige/40 dark:bg-foreground/[0.075] dark:text-zinc-50 dark:shadow-none dark:placeholder:text-zinc-500 dark:ring-1 dark:ring-border dark:focus:ring-zellige/40"
-            />
-            {searchQuery && (
+      {/* ========== STICKY FILTER TOOLBAR ==========
+          Sits directly on the page background (no shadow, no border) so it
+          reads as part of the same canvas as the hero above and the
+          map/browse section below, not a separate panel. */}
+      <div className="rise rise-3 sticky top-14 z-30 bg-background pb-4 pt-3 sm:top-16">
+        <div className="mx-auto flex max-w-7xl 2xl:max-w-[96rem] flex-col gap-3 px-4 sm:px-6 lg:px-8 2xl:px-12">
+          {/* Row 1: search, advanced filters, view toggle */}
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex flex-wrap items-center gap-2">
+              {/* Search */}
+              <div className="relative sm:w-64 lg:w-72">
+                <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-400 dark:text-zinc-500" />
+                <input
+                  type="search"
+                  placeholder={t("searchPlaceholder")}
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  className="h-11 w-full rounded-full bg-card pl-11 pr-10 text-sm text-zinc-900 shadow-sm outline-none transition-shadow placeholder:text-zinc-400 focus:ring-2 focus:ring-zellige/40 dark:bg-foreground/[0.075] dark:text-zinc-50 dark:shadow-none dark:placeholder:text-zinc-500 dark:ring-1 dark:ring-border dark:focus:ring-zellige/40"
+                />
+                {searchQuery && (
+                  <button
+                    onClick={() => setSearchQuery("")}
+                    aria-label={t("results.clearFilters")}
+                    className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full p-1 text-zinc-400 transition-colors hover:text-zinc-700 dark:hover:text-zinc-200"
+                  >
+                    <X className="h-3.5 w-3.5" />
+                  </button>
+                )}
+              </div>
+
+              {/* Advanced filters, with applied filters shown as removable chips */}
+              <FiltersPopover
+                price={priceFilter}
+                onPriceChange={setPriceFilter}
+                district={districtFilter}
+                onDistrictChange={setDistrictFilter}
+                districts={districts}
+                cuisine={cuisineFilter}
+                onCuisineChange={setCuisineFilter}
+                cuisines={cuisines}
+                activeCount={activeFilterCount}
+              />
+
+              {isFiltering && (
+                <button
+                  onClick={() => {
+                    setSelectedCategory(null);
+                    setSearchQuery("");
+                    setPriceFilter(null);
+                    setDistrictFilter(null);
+                    setCuisineFilter(null);
+                  }}
+                  className="shrink-0 text-[13px] font-semibold text-zellige hover:underline"
+                >
+                  {t("results.clearFilters")}
+                </button>
+              )}
+            </div>
+
+            {/* Map leads, since it is what the page opens on */}
+            <div className="flex shrink-0 self-start rounded-full bg-card p-1 shadow-sm dark:bg-foreground/[0.075] dark:shadow-none sm:self-auto">
               <button
-                onClick={() => setSearchQuery("")}
-                aria-label={t("results.clearFilters")}
-                className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full p-1 text-zinc-400 transition-colors hover:text-zinc-700 dark:hover:text-zinc-200"
+                onClick={() => setViewMode("map")}
+                aria-pressed={viewMode === "map"}
+                className={cn(
+                  "flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[13px] font-semibold transition-all",
+                  viewMode === "map"
+                    ? "bg-zinc-900 text-white dark:bg-zinc-50 dark:text-zinc-900"
+                    : "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
+                )}
               >
-                <X className="h-3.5 w-3.5" />
+                <Map className="h-3.5 w-3.5" />
+                {t("viewMode.map")}
               </button>
-            )}
+              <button
+                onClick={() => setViewMode("browse")}
+                aria-pressed={viewMode === "browse"}
+                className={cn(
+                  "flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[13px] font-semibold transition-all",
+                  viewMode === "browse"
+                    ? "bg-zinc-900 text-white dark:bg-zinc-50 dark:text-zinc-900"
+                    : "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
+                )}
+              >
+                <Columns2 className="h-3.5 w-3.5" />
+                {t("viewMode.browse")}
+              </button>
+            </div>
           </div>
 
-          {/* Advanced filters */}
-          <div className="flex shrink-0 items-center gap-2">
-            <FiltersPopover
-              price={priceFilter}
-              onPriceChange={setPriceFilter}
-              district={districtFilter}
-              onDistrictChange={setDistrictFilter}
-              districts={districts}
-              cuisine={cuisineFilter}
-              onCuisineChange={setCuisineFilter}
-              cuisines={cuisines}
-              activeCount={activeFilterCount}
-            />
-          </div>
-
-          {/* Category pills with live counts */}
-          <div className="-mx-4 flex-1 overflow-x-auto px-4 hide-scrollbar-mobile sm:mx-0 sm:px-0 lg:min-w-0 lg:overflow-visible">
-            <div className="flex min-w-max items-center gap-1.5 lg:min-w-0 lg:flex-wrap">
+          {/* Row 2: category pills with live counts */}
+          <div className="-mx-4 overflow-x-auto px-4 hide-scrollbar-mobile sm:mx-0 sm:px-0">
+            <div className="flex min-w-max items-center gap-1.5 sm:flex-wrap">
               <button
                 onClick={() => setSelectedCategory(null)}
                 className={cn(
@@ -440,58 +506,11 @@ export default function PlacesPage() {
               })}
             </div>
           </div>
-
-          {/* View toggle */}
-          <div className="flex shrink-0 items-center justify-between gap-2 lg:justify-end">
-            {isFiltering && (
-              <button
-                onClick={() => {
-                  setSelectedCategory(null);
-                  setSearchQuery("");
-                  setPriceFilter(null);
-                  setDistrictFilter(null);
-                  setCuisineFilter(null);
-                }}
-                className="text-[13px] font-semibold text-zellige hover:underline"
-              >
-                {t("results.clearFilters")}
-              </button>
-            )}
-            {/* Map leads, since it is what the page opens on */}
-            <div className="flex rounded-full bg-card p-1 shadow-sm dark:bg-foreground/[0.075] dark:shadow-none">
-              <button
-                onClick={() => setViewMode("map")}
-                aria-pressed={viewMode === "map"}
-                className={cn(
-                  "flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[13px] font-semibold transition-all",
-                  viewMode === "map"
-                    ? "bg-zinc-900 text-white dark:bg-zinc-50 dark:text-zinc-900"
-                    : "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
-                )}
-              >
-                <Map className="h-3.5 w-3.5" />
-                {t("viewMode.map")}
-              </button>
-              <button
-                onClick={() => setViewMode("browse")}
-                aria-pressed={viewMode === "browse"}
-                className={cn(
-                  "flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[13px] font-semibold transition-all",
-                  viewMode === "browse"
-                    ? "bg-zinc-900 text-white dark:bg-zinc-50 dark:text-zinc-900"
-                    : "text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
-                )}
-              >
-                <Columns2 className="h-3.5 w-3.5" />
-                {t("viewMode.browse")}
-              </button>
-            </div>
-          </div>
         </div>
       </div>
 
       {/* ========== DIRECTORY ========== */}
-      <section className="mx-auto max-w-7xl 2xl:max-w-[96rem] px-4 pb-16 pt-8 sm:px-6 sm:pb-24 lg:px-8 2xl:px-12">
+      <section className="mx-auto max-w-7xl 2xl:max-w-[96rem] px-4 pb-16 pt-6 sm:px-6 sm:pb-24 lg:px-8 2xl:px-12">
         {/* Map view */}
         {viewMode === "map" && (
           <PlacesMap places={localizedPlaces} categoryLabels={categoryLabelMap} />

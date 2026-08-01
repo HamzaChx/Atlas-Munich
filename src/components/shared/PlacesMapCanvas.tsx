@@ -33,6 +33,7 @@ import { ExternalLink, Maximize, MapPin, Minus, Plus, Star } from "lucide-react"
 import type { Place } from "@/types";
 import { placeAccents } from "./place-accents";
 import { cn } from "@/lib/utils";
+import { placeDirectionsUrl } from "@/lib/maps";
 
 const MUNICH_CENTER: [number, number] = [48.1372, 11.5756];
 
@@ -247,9 +248,7 @@ function coreBounds(places: Place[]) {
 function PlacePopupCard({ place, label }: { place: Place; label: string }) {
   const t = useTranslations("places");
   const color = accentColor(place.category);
-  const directions = place.address
-    ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(place.address)}`
-    : `https://www.google.com/maps/search/?api=1&query=${place.lat},${place.lng}`;
+  const directions = placeDirectionsUrl(place);
 
   return (
     <div className="p-4">

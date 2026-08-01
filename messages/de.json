@@ -158,7 +158,8 @@
       "legend": "Auf der Karte",
       "zoomIn": "Vergrößern",
       "zoomOut": "Verkleinern",
-      "fit": "An Ergebnisse anpassen"
+      "fit": "An Ergebnisse anpassen",
+      "scrollHint": "Karte anklicken, dann scrollen zum Zoomen"
     },
     "noResults": "Keine Orte gefunden",
     "noResultsDescription": "Versuche, deine Suche oder Filter anzupassen.",
@@ -1334,6 +1335,58 @@
       "oez-urfa-doener": {
         "name": "Öz Urfa Doner",
         "description": "Öz Urfa Doner ist ein halal Restaurant in München — türkische Küche."
+      },
+      "lmu-hauptbibliothek": {
+        "name": "LMU Universitätsbibliothek (Hauptbibliothek)",
+        "description": "Hauptbibliothek der LMU direkt am historischen Hauptcampus, mit langen Öffnungszeiten und einer Echtzeit-Anzeige freier Plätze."
+      },
+      "bibliothek-hochschule-muenchen": {
+        "name": "Bibliothek der Hochschule München (Zentralbibliothek)",
+        "description": "Zentralbibliothek der Hochschule München, die alle neun Fakultäten auf dem Campus Lothstraße versorgt."
+      },
+      "stadtbibliothek-am-gasteig": {
+        "name": "Münchner Stadtbibliothek Am Gasteig",
+        "description": "Münchens zentrale Stadtbibliothek — gut erreichbar, gut ausgestattet und für alle offen."
+      },
+      "stadtbibliothek-gasteig-hp8": {
+        "name": "Stadtbibliothek im Gasteig HP8",
+        "description": "„Offene Bibliothek“-Konzept — täglich von 7 bis 23 Uhr zugänglich, auch außerhalb der besetzten Servicezeiten, plus ein Lesecafé."
+      },
+      "mariandl": {
+        "name": "Mariandl – Café am Beethovenplatz",
+        "description": "Altwiener Kaffeehausflair mit günstigem Studentenfrühstück und WLAN, das sogar bis in den Biergarten reicht."
+      },
+      "gangundgaebe": {
+        "name": "gangundgäbe Rösterei & Café",
+        "description": "Kleine Specialty-Coffee-Rösterei und Café, bei Studierenden beliebt zum konzentrierten, ruhigen Arbeiten."
+      },
+      "cafe-bellevue-di-monaco": {
+        "name": "Café des Bellevue di Monaco",
+        "description": "Helles, einladendes Café, das gemeinsam mit Geflüchteten betrieben wird; schnelles WLAN, fair gehandelter Kaffee und ein soziales Anliegen."
+      },
+      "tum-magistrale": {
+        "name": "TUM Magistrale & Atrium",
+        "description": "Der Hauptgang und die Atriumbereiche der TUM mit informellen Sitzgelegenheiten zwischen den Vorlesungen — belebt, aber praktisch für kurze Lernphasen zwischen den Kursen."
+      },
+      "lmu-lernzentrum-geschwister-scholl-platz": {
+        "name": "LMU Lernzentrum am Geschwister-Scholl-Platz",
+        "description": "Eigenes Lernzentrum im Hauptgebäude der LMU, besonders hilfreich während der Prüfungszeit."
+      },
+      "tum-garching-campus": {
+        "name": "TUM Garching Campus (Cafeteria & Study Areas)",
+        "description": "Zentraler Anlaufpunkt des Forschungscampus Garching mit Mensa-Sitzplätzen und informellen Gruppenlernbereichen zwischen den naturwissenschaftlich-technischen Fakultätsgebäuden."
+      },
+      "pinakothek-der-moderne-cafe": {
+        "name": "Café Pinakothek der Moderne",
+        "description": "Ruhiges Wintergarten-Café im Museum für moderne Kunst — ruhig, hell und selten voller Studierender."
+      },
+      "container-collective": {
+        "name": "Container Collective",
+        "description": "Café und kreativer Coworking-Space aus Schiffscontainern im Werksviertel — entspannt, gutes WLAN und bei den meisten Studierenden noch ein Geheimtipp."
+      },
+      "englischer-garten-kleinhesseloher-see": {
+        "name": "Englischer Garten (Kleinhesseloher See area)",
+        "description": "An sonnigen Tagen werden die Wiesen rund um den Kleinhesselohersee zum inoffiziellen Lernplatz im Freien für LMU/TUM-Studierende — kostenlos, grün und an Wochentagvormittagen ruhig."
       }
     }
   },

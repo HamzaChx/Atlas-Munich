@@ -401,6 +401,11 @@ export default function PlacesMapCanvas({
 
   const [map, setMap] = useState<L.Map | null>(null);
   const [selected, setSelected] = useState<Place | null>(null);
+  // Scroll-to-zoom is opt-in (activated by a click on the map) so a mouse
+  // wheel scrolling the page doesn't get trapped the moment it passes over
+  // the map. Touch devices zoom by pinch regardless, via Leaflet's default
+  // touchZoom, so this only affects desktop cursor behaviour.
+  const [scrollZoomActive, setScrollZoomActive] = useState(false);
 
   const mapped = useMemo(
     () => places.filter((place) => typeof place.lat === "number" && typeof place.lng === "number"),
@@ -444,7 +449,11 @@ export default function PlacesMapCanvas({
 
   return (
     <div className="atlas-map overflow-hidden rounded-[2rem] bg-card shadow-[0_2px_24px_rgb(0_0_0/0.08)] dark:shadow-none dark:ring-1 dark:ring-border">
-      <div className={cn("relative w-full", className)}>
+      <div
+        className={cn("relative w-full", className)}
+        onClick={() => setScrollZoomActive(true)}
+        onMouseLeave={() => setScrollZoomActive(false)}
+      >
         <MapContainer
           ref={setMap}
           center={MUNICH_CENTER}
@@ -452,7 +461,7 @@ export default function PlacesMapCanvas({
           minZoom={10}
           maxZoom={18}
           zoomControl={false}
-          scrollWheelZoom={false}
+          scrollWheelZoom={scrollZoomActive}
           attributionControl={false}
           className="z-0 h-full w-full"
         >
@@ -502,7 +511,7 @@ export default function PlacesMapCanvas({
             type="button"
             onClick={() => map?.zoomIn()}
             aria-label={t("map.zoomIn")}
-            className="flex h-9 w-9 items-center justify-center rounded-xl text-zinc-600 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-foreground/10 dark:hover:text-zinc-50"
+            className="flex h-10 w-10 items-center justify-center rounded-xl text-zinc-600 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-foreground/10 dark:hover:text-zinc-50 sm:h-9 sm:w-9"
           >
             <Plus className="h-4 w-4" />
           </button>
@@ -510,7 +519,7 @@ export default function PlacesMapCanvas({
             type="button"
             onClick={() => map?.zoomOut()}
             aria-label={t("map.zoomOut")}
-            className="flex h-9 w-9 items-center justify-center rounded-xl text-zinc-600 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-foreground/10 dark:hover:text-zinc-50"
+            className="flex h-10 w-10 items-center justify-center rounded-xl text-zinc-600 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-foreground/10 dark:hover:text-zinc-50 sm:h-9 sm:w-9"
           >
             <Minus className="h-4 w-4" />
           </button>
@@ -518,11 +527,19 @@ export default function PlacesMapCanvas({
             type="button"
             onClick={() => fitToPlaces(true)}
             aria-label={t("map.fit")}
-            className="flex h-9 w-9 items-center justify-center rounded-xl text-zinc-600 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-foreground/10 dark:hover:text-zinc-50"
+            className="flex h-10 w-10 items-center justify-center rounded-xl text-zinc-600 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-foreground/10 dark:hover:text-zinc-50 sm:h-9 sm:w-9"
           >
             <Maximize className="h-4 w-4" />
           </button>
         </div>
+
+        {/* Cursor hint for scroll-zoom, desktop mouse only: touch devices
+            already zoom by pinch and have no wheel to explain. */}
+        {!scrollZoomActive && (
+          <div className="atlas-map__scroll-hint pointer-events-none absolute bottom-4 left-1/2 z-10 -translate-x-1/2 rounded-full bg-card/95 px-3 py-1.5 text-[12px] font-medium text-zinc-500 shadow-[0_8px_30px_rgb(0_0_0/0.10)] backdrop-blur dark:text-zinc-400 dark:shadow-none dark:ring-1 dark:ring-border">
+            {t("map.scrollHint")}
+          </div>
+        )}
 
         {mapped.length === 0 && (
           <div className="absolute inset-0 z-10 flex items-center justify-center p-6">

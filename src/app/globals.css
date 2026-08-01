@@ -873,6 +873,18 @@
   outline: none;
 }
 
+/* Scroll-zoom hint: desktop mouse only. Touch devices zoom by pinch and
+   have no wheel, so the hint would be meaningless noise on mobile. */
+.atlas-map__scroll-hint {
+  display: none;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .atlas-map__scroll-hint {
+    display: block;
+  }
+}
+
 /* Category marker: brand hue, plaster ring, lucide glyph */
 .atlas-pin {
   display: block;

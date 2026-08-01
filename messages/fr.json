@@ -180,7 +180,8 @@
       "legend": "Sur la carte",
       "zoomIn": "Zoom avant",
       "zoomOut": "Zoom arrière",
-      "fit": "Ajuster aux résultats"
+      "fit": "Ajuster aux résultats",
+      "scrollHint": "Cliquez sur la carte, puis défilez pour zoomer"
     },
     "noResults": "Aucun lieu trouvé",
     "noResultsDescription": "Essayez d'ajuster votre recherche ou vos filtres.",
@@ -1356,6 +1357,58 @@
       "oez-urfa-doener": {
         "name": "Öz Urfa Doner",
         "description": "Öz Urfa Doner est un restaurant halal à Munich — cuisine turque."
+      },
+      "lmu-hauptbibliothek": {
+        "name": "LMU Universitätsbibliothek (Hauptbibliothek)",
+        "description": "Bibliothèque principale de la LMU sur la place historique du campus principal, avec de longues heures d'ouverture et un indicateur de places en temps réel."
+      },
+      "bibliothek-hochschule-muenchen": {
+        "name": "Bibliothek der Hochschule München (Zentralbibliothek)",
+        "description": "Bibliothèque centrale de la Hochschule München (université des sciences appliquées), desservant les neuf facultés du campus de Lothstraße."
+      },
+      "stadtbibliothek-am-gasteig": {
+        "name": "Münchner Stadtbibliothek Am Gasteig",
+        "description": "Bibliothèque municipale centrale de Munich — facilement accessible, bien équipée et ouverte à tous."
+      },
+      "stadtbibliothek-gasteig-hp8": {
+        "name": "Stadtbibliothek im Gasteig HP8",
+        "description": "Concept de « bibliothèque ouverte » — accessible tous les jours de 7h à 23h, même en dehors des heures de service, avec un café de lecture."
+      },
+      "mariandl": {
+        "name": "Mariandl – Café am Beethovenplatz",
+        "description": "Ambiance de café viennois d'antan avec un petit-déjeuner étudiant abordable et un WiFi qui couvre même le jardin de bière."
+      },
+      "gangundgaebe": {
+        "name": "gangundgäbe Rösterei & Café",
+        "description": "Petite torréfaction de café de spécialité et café, appréciée des étudiants pour travailler au calme et se concentrer."
+      },
+      "cafe-bellevue-di-monaco": {
+        "name": "Café des Bellevue di Monaco",
+        "description": "Café lumineux et accueillant géré conjointement avec des réfugiés ; WiFi rapide, café équitable et une mission sociale."
+      },
+      "tum-magistrale": {
+        "name": "TUM Magistrale & Atrium",
+        "description": "Le hall principal et les atriums de la TUM avec des places assises informelles entre les cours — animé, mais pratique pour de courtes sessions entre deux cours."
+      },
+      "lmu-lernzentrum-geschwister-scholl-platz": {
+        "name": "LMU Lernzentrum am Geschwister-Scholl-Platz",
+        "description": "Centre d'apprentissage dédié au sein du bâtiment principal de la LMU, particulièrement utile pendant les périodes d'examens."
+      },
+      "tum-garching-campus": {
+        "name": "TUM Garching Campus (Cafeteria & Study Areas)",
+        "description": "Point central du campus de recherche de Garching avec des places assises à la cafétéria et des espaces de travail de groupe informels entre les bâtiments des facultés scientifiques."
+      },
+      "pinakothek-der-moderne-cafe": {
+        "name": "Café Pinakothek der Moderne",
+        "description": "Café calme façon jardin d'hiver au sein du musée d'art moderne — paisible, lumineux et rarement bondé d'étudiants."
+      },
+      "container-collective": {
+        "name": "Container Collective",
+        "description": "Café et espace de coworking créatif construit à partir de conteneurs maritimes dans le Werksviertel — décontracté, bon WiFi, encore méconnu de la plupart des étudiants."
+      },
+      "englischer-garten-kleinhesseloher-see": {
+        "name": "Englischer Garten (Kleinhesseloher See area)",
+        "description": "Les jours ensoleillés, les pelouses autour du Kleinhesselohersee deviennent un lieu d'étude en plein air officieux pour les étudiants de la LMU/TUM — gratuit, verdoyant et calme les matins de semaine."
       }
     }
   },

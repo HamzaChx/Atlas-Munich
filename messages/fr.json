@@ -125,6 +125,22 @@
       "coworking": "Coworking",
       "barbers": "Coiffeurs"
     },
+    "advancedFilters": {
+      "button": "Filtres",
+      "price": "Prix",
+      "rating": "Note",
+      "verifiedOnly": "Vérifiés uniquement",
+      "clear": "Effacer les filtres"
+    },
+    "sort": {
+      "label": "Trier par",
+      "recommended": "Recommandé",
+      "ratingDesc": "Les mieux notés",
+      "reviewsDesc": "Les plus commentés",
+      "nameAsc": "Nom (A-Z)",
+      "priceAsc": "Prix : croissant",
+      "priceDesc": "Prix : décroissant"
+    },
     "results": {
       "place": "lieu",
       "places": "lieux",
@@ -368,7 +384,11 @@
     "communityLabel": "Communauté",
     "resourcesCount": "{count} liens sélectionnés",
     "resourcesLinks": "{count} liens",
-    "faqsAnswered": "{count} questions courantes répondues"
+    "faqsAnswered": "{count} questions courantes répondues",
+    "minRead": "min de lecture",
+    "by": "par",
+    "onThisPage": "Sur cette page",
+    "atlasMunichTeam": "l'équipe Atlas Munich"
   },
   "footer": {
     "description": "Votre guide complet pour réussir à Munich en tant qu'étudiant ou jeune professionnel marocain.",

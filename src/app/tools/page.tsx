@@ -15,6 +15,7 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
+import { CalendarDays } from "lucide-react";
 
 import type { ChatbotType } from "@/chatbot/types";
 import { ASSISTANT_ACCENTS } from "@/components/chatbot/chat-themes";
@@ -33,6 +34,8 @@ interface Assistant {
   avatar?: string;
   href?: string;
   chatPath?: string;
+  /** Unbuilt assistants show this instead of an avatar or initial */
+  icon?: typeof CalendarDays;
   tint: string;
   acc: string;
   ring: string;
@@ -85,6 +88,7 @@ const ASSISTANTS: Assistant[] = [
     key: "events",
     name: "Events",
     // Still in the workshop, so it stays neutral: no hue is earned yet.
+    icon: CalendarDays,
     tint: "bg-muted",
     acc: "text-zinc-500 dark:text-zinc-400",
     ring: "ring-border",
@@ -99,7 +103,7 @@ const asList = (value: unknown): string[] =>
 /*  Pieces                                                             */
 /* ------------------------------------------------------------------ */
 
-/** Live assistants show their portrait, the unbuilt one shows its initial. */
+/** Live assistants show their portrait, the unbuilt one shows its icon (or initial, if it has none). */
 function AssistantFace({
   assistant,
   size,
@@ -112,6 +116,7 @@ function AssistantFace({
   const box = size === "lg" ? "h-20 w-20" : "h-11 w-11";
 
   if (!assistant.avatar) {
+    const Icon = assistant.icon;
     return (
       <span
         className={cn(
@@ -122,7 +127,11 @@ function AssistantFace({
           assistant.acc
         )}
       >
-        {assistant.name.charAt(0)}
+        {Icon ? (
+          <Icon className={size === "lg" ? "h-8 w-8" : "h-5 w-5"} aria-hidden="true" />
+        ) : (
+          assistant.name.charAt(0)
+        )}
       </span>
     );
   }
@@ -195,6 +204,10 @@ export default function ToolsPage() {
                       sizes="28px"
                       className="h-7 w-7 rounded-full object-cover"
                     />
+                  ) : assistant.icon ? (
+                    <span className="flex h-7 w-7 items-center justify-center rounded-full bg-card">
+                      <assistant.icon className="h-4 w-4" aria-hidden="true" />
+                    </span>
                   ) : (
                     <span className="flex h-7 w-7 items-center justify-center rounded-full bg-card font-display text-sm font-bold">
                       {assistant.name.charAt(0)}
@@ -394,14 +407,14 @@ export default function ToolsPage() {
         </div>
 
         {/* ========== CREDITS ========== */}
-        <div className="reveal mt-12 flex flex-col items-center gap-2 rounded-[2rem] bg-tint-blue px-6 py-8 text-center dark:ring-1 dark:ring-border sm:mt-16">
+        <div className="reveal mt-12 flex flex-col items-center gap-2 rounded-[2rem] bg-muted px-6 py-8 text-center dark:ring-1 dark:ring-border sm:mt-16">
           <p className="text-sm text-zinc-600 dark:text-zinc-300">
             {t("designedBy")}{" "}
             <a
               href="https://mohamed-nejjar.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-semibold text-acc-blue underline-offset-2 hover:underline"
+              className="font-semibold text-zellige underline-offset-2 hover:underline"
             >
               Mohamed Nejjar
             </a>
@@ -412,7 +425,7 @@ export default function ToolsPage() {
               href="https://github.com/HamzaChx/Atlas-Munich"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-semibold text-acc-blue underline-offset-2 hover:underline"
+              className="font-semibold text-zellige underline-offset-2 hover:underline"
             >
               GitHub
             </a>

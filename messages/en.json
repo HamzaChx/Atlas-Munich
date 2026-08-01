@@ -102,6 +102,22 @@
       "coworking": "Coworking",
       "barbers": "Barbers"
     },
+    "advancedFilters": {
+      "button": "Filters",
+      "price": "Price",
+      "rating": "Rating",
+      "verifiedOnly": "Verified only",
+      "clear": "Clear filters"
+    },
+    "sort": {
+      "label": "Sort by",
+      "recommended": "Recommended",
+      "ratingDesc": "Top rated",
+      "reviewsDesc": "Most reviewed",
+      "nameAsc": "Name (A-Z)",
+      "priceAsc": "Price: Low to High",
+      "priceDesc": "Price: High to Low"
+    },
     "results": {
       "place": "place",
       "places": "places",
@@ -345,7 +361,11 @@
     "communityLabel": "Community",
     "resourcesCount": "{count} curated links",
     "resourcesLinks": "{count} links",
-    "faqsAnswered": "{count} common questions answered"
+    "faqsAnswered": "{count} common questions answered",
+    "minRead": "min read",
+    "by": "by",
+    "onThisPage": "On this page",
+    "atlasMunichTeam": "Atlas Munich Team"
   },
   "footer": {
     "description": "Your complete guide to thriving in Munich as a Moroccan student or young professional.",

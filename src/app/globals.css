@@ -49,11 +49,13 @@
   --color-tint-green: var(--tint-green);
   --color-tint-plum: var(--tint-plum);
   --color-tint-saffron: var(--tint-saffron);
+  --color-tint-teal: var(--tint-teal);
   --color-acc-terra: var(--acc-terra);
   --color-acc-blue: var(--acc-blue);
   --color-acc-green: var(--acc-green);
   --color-acc-plum: var(--acc-plum);
   --color-acc-saffron: var(--acc-saffron);
+  --color-acc-teal: var(--acc-teal);
 
   /* Recast the zinc ramp, and make it theme-aware: warm plaster in light,
      a near-neutral night ramp in dark. Keeps contrast relationships in
@@ -247,11 +249,13 @@
   --tint-green: oklch(0.955 0.026 166);
   --tint-plum: oklch(0.955 0.024 330);
   --tint-saffron: oklch(0.965 0.038 85);
+  --tint-teal: oklch(0.955 0.026 195);
   --acc-terra: oklch(0.55 0.13 42);
   --acc-blue: oklch(0.47 0.14 262);
   --acc-green: oklch(0.48 0.1 166);
   --acc-plum: oklch(0.47 0.11 330);
   --acc-saffron: oklch(0.6 0.12 78);
+  --acc-teal: oklch(0.48 0.11 195);
 
   --card: oklch(0.995 0.003 80);
   --card-foreground: oklch(0.23 0.025 265);
@@ -387,11 +391,13 @@
   --tint-green: oklch(0.378 0.046 158);
   --tint-plum: oklch(0.385 0.05 328);
   --tint-saffron: oklch(0.405 0.042 80);
+  --tint-teal: oklch(0.38 0.05 195);
   --acc-terra: oklch(0.86 0.1 50);
   --acc-blue: oklch(0.86 0.085 250);
   --acc-green: oklch(0.865 0.095 160);
   --acc-plum: oklch(0.86 0.08 328);
   --acc-saffron: oklch(0.885 0.105 88);
+  --acc-teal: oklch(0.865 0.09 195);
 
   --card: oklch(0.265 0.01 264);
   --card-foreground: oklch(0.925 0.004 264);

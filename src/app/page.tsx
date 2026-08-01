@@ -5,7 +5,8 @@ import { SearchBar } from "@/components/shared";
 import { ZelligeRosette } from "@/components/home";
 import { categories } from "@/data/categories";
 import { guides, getFeaturedGuides } from "@/data/guides";
-import { getTranslations } from "next-intl/server";
+import { localizeGuides } from "@/data/guides-i18n";
+import { getLocale, getTranslations } from "next-intl/server";
 import {
   HelpCircle,
   Users,
@@ -58,8 +59,10 @@ export default async function Home() {
   const tCat = await getTranslations("categories");
   const common = await getTranslations("common");
 
+  const locale = await getLocale();
+
   const guideCountByCategory = (key: string) => guides.filter((g) => g.categoryKey === key).length;
-  const featuredGuides = getFeaturedGuides();
+  const featuredGuides = await localizeGuides(getFeaturedGuides(), locale);
 
   const quickLinks = [
     {

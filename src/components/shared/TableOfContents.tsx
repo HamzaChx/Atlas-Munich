@@ -7,9 +7,10 @@ import { GuideSection } from "@/types";
 interface TableOfContentsProps {
   sections: GuideSection[];
   className?: string;
+  label?: string;
 }
 
-export function TableOfContents({ sections, className }: TableOfContentsProps) {
+export function TableOfContents({ sections, className, label = "On this page" }: TableOfContentsProps) {
   const [activeId, setActiveId] = React.useState<string>("");
 
   React.useEffect(() => {
@@ -57,7 +58,7 @@ export function TableOfContents({ sections, className }: TableOfContentsProps) {
 
   return (
     <nav className={cn("space-y-1", className)} aria-label="Table of contents">
-      <p className="mb-3 text-sm font-semibold text-zinc-900 dark:text-zinc-50">On this page</p>
+      <p className="mb-3 text-sm font-semibold text-zinc-900 dark:text-zinc-50">{label}</p>
       <ul className="space-y-1 text-sm">
         {sections.map((section) => (
           <li key={section.id}>

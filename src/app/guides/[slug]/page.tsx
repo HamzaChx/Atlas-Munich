@@ -295,13 +295,24 @@ export default async function GuidePage({ params }: PageProps) {
 
             {/* Typographic Meta Row */}
             <div className="mt-12 flex flex-wrap items-center justify-center gap-4 text-[11px] font-bold uppercase tracking-[0.15em] text-zinc-400">
-              <span>{guide.readingTime} MIN READ</span>
+              <span>
+                {guide.readingTime} {getMessage("guidePage.minRead") ?? "min read"}
+              </span>
               <span className="h-1 w-1 rounded-full bg-zinc-300 dark:bg-zinc-700" />
-              <span>UPDATED {fmtUpdated(guide.lastUpdated).toUpperCase()}</span>
+              <span>
+                {getMessage("guidePage.updatedLabel") ?? "Updated"}{" "}
+                {fmtUpdated(guide.lastUpdated).toUpperCase()}
+              </span>
               {guide.author && (
                 <>
                   <span className="h-1 w-1 rounded-full bg-zinc-300 dark:bg-zinc-700" />
-                  <span>BY {guide.author.toUpperCase()}</span>
+                  <span>
+                    {getMessage("guidePage.by") ?? "by"}{" "}
+                    {(guide.author === "Atlas Munich Team"
+                      ? (getMessage("guidePage.atlasMunichTeam") ?? guide.author)
+                      : guide.author
+                    ).toUpperCase()}
+                  </span>
                 </>
               )}
             </div>
@@ -322,7 +333,10 @@ export default async function GuidePage({ params }: PageProps) {
                     {getMessage("guidePage.tableOfContents") ?? "In this guide"}
                   </h3>
                   <div className="pl-4 border-l border-zinc-100 dark:border-zinc-800">
-                    <TableOfContents sections={localizedGuide.sections} />
+                    <TableOfContents
+                      sections={localizedGuide.sections}
+                      label={getMessage("guidePage.onThisPage") ?? "On this page"}
+                    />
                   </div>
                 </div>
               )}
@@ -501,7 +515,10 @@ export default async function GuidePage({ params }: PageProps) {
                       {getMessage("guidePage.tableOfContents") ?? "In this guide"}
                     </h3>
                     <div className="pl-4 border-l border-zinc-100 dark:border-zinc-800">
-                      <TableOfContents sections={localizedGuide.sections} />
+                      <TableOfContents
+                      sections={localizedGuide.sections}
+                      label={getMessage("guidePage.onThisPage") ?? "On this page"}
+                    />
                     </div>
                   </div>
                 )}

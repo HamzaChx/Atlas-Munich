@@ -59,9 +59,9 @@ function IconAction({
       rel="noopener noreferrer"
       aria-label={label}
       title={label}
-      className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-zinc-100 text-zinc-500 outline-none transition-colors hover:bg-zinc-200 hover:text-zinc-900 focus-visible:ring-2 focus-visible:ring-zellige/50 dark:bg-foreground/10 dark:text-zinc-400 dark:hover:bg-foreground/20 dark:hover:text-zinc-50"
+      className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-zinc-100 text-zinc-500 outline-none transition-colors hover:bg-zinc-200 hover:text-zinc-900 focus-visible:ring-2 focus-visible:ring-zellige/50 dark:bg-foreground/10 dark:text-zinc-400 dark:hover:bg-foreground/20 dark:hover:text-zinc-50"
     >
-      <Icon className="h-[18px] w-[18px]" />
+      <Icon className="h-5 w-5" />
     </Link>
   );
 }
@@ -75,18 +75,18 @@ function Spotlight({ place, className }: { place: Place; className?: string }) {
   return (
     <div
       className={cn(
-        "overflow-hidden rounded-[1.75rem] bg-card ring-1 ring-zinc-900/[0.05] dark:ring-border",
+        "flex flex-1 flex-col overflow-hidden rounded-[1.75rem] bg-card ring-1 ring-zinc-900/[0.05] dark:ring-border",
         className
       )}
     >
       {/* Tinted plate, carrying the category and the rosette */}
-      <div className={cn("relative overflow-hidden px-6 pb-7 pt-6 sm:px-8", accent.tint)}>
+      <div className={cn("relative overflow-hidden px-6 pb-8 pt-7 sm:px-9 sm:pb-9 sm:pt-8", accent.tint)}>
         <span
           aria-hidden="true"
           className={cn(
             /* Mostly inside the plate, so its dense core reads as a rosette,
                with the outer rings running off the edge like a real panel. */
-            "zellige-motif pointer-events-none absolute right-0 top-1/2 h-[17rem] w-[17rem] -translate-y-1/2 translate-x-[26%] opacity-[0.18] dark:opacity-[0.26]",
+            "zellige-motif pointer-events-none absolute right-0 top-1/2 h-[19rem] w-[19rem] -translate-y-1/2 translate-x-[26%] opacity-[0.18] dark:opacity-[0.26]",
             accent.text
           )}
           style={
@@ -122,11 +122,11 @@ function Spotlight({ place, className }: { place: Place; className?: string }) {
           )}
         </div>
 
-        <h3 className="font-display relative mt-4 text-2xl font-bold leading-tight tracking-tight text-zinc-900 sm:text-[1.75rem] dark:text-zinc-50">
+        <h3 className="font-display relative mt-5 text-2xl font-bold leading-tight tracking-tight text-zinc-900 sm:text-[1.875rem] dark:text-zinc-50">
           {place.name}
         </h3>
 
-        <div className="relative mt-2.5 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-sm text-zinc-600 dark:text-zinc-300">
+        <div className="relative mt-3 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-sm text-zinc-600 dark:text-zinc-300">
           <span className="flex items-center gap-1.5">
             <MapPin className="h-4 w-4 shrink-0 text-zinc-500 dark:text-zinc-400" />
             {place.address}
@@ -143,7 +143,7 @@ function Spotlight({ place, className }: { place: Place; className?: string }) {
         </div>
       </div>
 
-      <div className="px-6 py-6 sm:px-8 sm:py-7">
+      <div className="flex flex-1 flex-col px-6 py-7 sm:px-9 sm:py-8">
         {place.description && (
           <p className="text-[15px] leading-relaxed text-zinc-600 dark:text-zinc-300">
             {place.description}
@@ -151,7 +151,7 @@ function Spotlight({ place, className }: { place: Place; className?: string }) {
         )}
 
         {place.tags.length > 0 && (
-          <div className="mt-5 flex flex-wrap items-center gap-1.5">
+          <div className="mt-6 flex flex-wrap items-center gap-1.5">
             {place.tags.map((tag) => (
               <span
                 key={tag}
@@ -163,7 +163,7 @@ function Spotlight({ place, className }: { place: Place; className?: string }) {
           </div>
         )}
 
-        <div className="mt-7 flex items-center gap-2.5">
+        <div className="mt-auto flex items-center gap-2.5 pt-8">
           <Link
             href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
               `${place.name} ${place.address}`
@@ -171,7 +171,7 @@ function Spotlight({ place, className }: { place: Place; className?: string }) {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => track("place_directions_click", { place: place.slug, category: place.category })}
-            className="flex flex-1 items-center justify-center gap-2 rounded-full bg-zinc-900 px-6 py-3 text-sm font-semibold text-white outline-none transition-colors hover:bg-zinc-700 focus-visible:ring-2 focus-visible:ring-zellige/50 sm:flex-none dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-200"
+            className="flex flex-1 items-center justify-center gap-2 rounded-full bg-zinc-900 px-7 py-3.5 text-sm font-semibold text-white outline-none transition-colors hover:bg-zinc-700 focus-visible:ring-2 focus-visible:ring-zellige/50 sm:flex-none dark:bg-zinc-50 dark:text-zinc-900 dark:hover:bg-zinc-200"
           >
             <Navigation className="h-4 w-4" />
             {t("card.directions")}
@@ -261,7 +261,7 @@ export function PlacesBrowser({ places, categories, className }: PlacesBrowserPr
             role="listbox"
             aria-label={t("title")}
             onKeyDown={onKeyDown}
-            className="max-h-[68vh] overflow-y-auto overscroll-contain px-2 pb-3 lg:max-h-[calc(100vh-15rem)]"
+            className="max-h-[68vh] overflow-y-auto overscroll-contain px-2 pb-3 lg:max-h-[min(28rem,calc(100vh-19rem))]"
           >
             {groups.map((group) => {
               const accent = placeAccents[group.key] ?? fallbackAccent;
@@ -350,7 +350,10 @@ export function PlacesBrowser({ places, categories, className }: PlacesBrowserPr
       </div>
 
       {/* ---------- Spotlight ---------- */}
-      <div className="hidden lg:sticky lg:top-[8.75rem] lg:block lg:self-start">
+      {/* A fixed (viewport-capped) floor roughly matching the index's own
+          height, so the two panels read as the same size instead of the
+          card floating noticeably shorter than the list beside it. */}
+      <div className="hidden lg:sticky lg:top-[8.75rem] lg:flex lg:min-h-[min(31rem,calc(100vh-16rem))] lg:flex-col lg:self-start">
         <Spotlight key={selected.slug} place={selected} className="animate-in fade-in duration-300" />
       </div>
     </div>

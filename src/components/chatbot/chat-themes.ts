@@ -51,15 +51,6 @@ const GREEN: AssistantAccent = {
   focus: "focus:border-acc-green/60 focus:ring-2 focus:ring-acc-green/20",
 };
 
-const PLUM: AssistantAccent = {
-  tint: "bg-tint-plum",
-  acc: "text-acc-plum",
-  accBg: "bg-acc-plum",
-  accHover: "group-hover:text-acc-plum",
-  ring: "ring-acc-plum/40",
-  focus: "focus:border-acc-plum/60 focus:ring-2 focus:ring-acc-plum/20",
-};
-
 const SAFFRON: AssistantAccent = {
   tint: "bg-tint-saffron",
   acc: "text-acc-saffron",
@@ -69,6 +60,25 @@ const SAFFRON: AssistantAccent = {
   focus: "focus:border-acc-saffron/60 focus:ring-2 focus:ring-acc-saffron/20",
 };
 
+const TEAL: AssistantAccent = {
+  tint: "bg-tint-teal",
+  acc: "text-acc-teal",
+  accBg: "bg-acc-teal",
+  accHover: "group-hover:text-acc-teal",
+  ring: "ring-acc-teal/40",
+  focus: "focus:border-acc-teal/60 focus:ring-2 focus:ring-acc-teal/20",
+};
+
+/* One hue per assistant, chosen by what the portrait looks like first and
+   what the role means second:
+     Ilham   green   her book's cover is green with gold tooling; the cover
+                     is claimed first, everything else works around it.
+     Riad    terra   a house of terracotta clay.
+     Dalilah blue    civic and official, and her folder is tiled in blue
+                     zellige under a Bavarian blue-white ribbon.
+     Loubna  teal    her medical bag's own zellige trim, and the clinical
+                     teal used for health the world over now that green
+                     is spoken for. */
 export const ASSISTANT_ACCENTS: Record<ChatbotType, AssistantAccent> = {
   zellija: BLUE,
   hamid: GREEN,
@@ -76,8 +86,8 @@ export const ASSISTANT_ACCENTS: Record<ChatbotType, AssistantAccent> = {
   hamza: TERRA,
   riad: TERRA,
   dalilah: BLUE,
-  ilham: PLUM,
-  loubna: SAFFRON,
+  ilham: GREEN,
+  loubna: TEAL,
 };
 
 export interface DedicatedChatTheme extends AssistantAccent {
@@ -88,6 +98,6 @@ export interface DedicatedChatTheme extends AssistantAccent {
 export const CHAT_THEMES = {
   housing: { chatbotType: "riad", ...TERRA },
   bureaucracy: { chatbotType: "dalilah", ...BLUE },
-  academic: { chatbotType: "ilham", ...PLUM },
-  healthcare: { chatbotType: "loubna", ...SAFFRON },
+  academic: { chatbotType: "ilham", ...GREEN },
+  healthcare: { chatbotType: "loubna", ...TEAL },
 } satisfies Record<string, DedicatedChatTheme>;

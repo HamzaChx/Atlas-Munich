@@ -103,6 +103,22 @@
       "coworking": "Coworking",
       "barbers": "Barbiere"
     },
+    "advancedFilters": {
+      "button": "Filter",
+      "price": "Preis",
+      "rating": "Bewertung",
+      "verifiedOnly": "Nur verifizierte",
+      "clear": "Filter löschen"
+    },
+    "sort": {
+      "label": "Sortieren nach",
+      "recommended": "Empfohlen",
+      "ratingDesc": "Am besten bewertet",
+      "reviewsDesc": "Meiste Bewertungen",
+      "nameAsc": "Name (A-Z)",
+      "priceAsc": "Preis: aufsteigend",
+      "priceDesc": "Preis: absteigend"
+    },
     "results": {
       "place": "Ort",
       "places": "Orte",
@@ -346,7 +362,11 @@
     "communityLabel": "Community",
     "resourcesCount": "{count} kuratierte Links",
     "resourcesLinks": "{count} Links",
-    "faqsAnswered": "{count} häufig gestellte Fragen beantwortet"
+    "faqsAnswered": "{count} häufig gestellte Fragen beantwortet",
+    "minRead": "Min. Lesezeit",
+    "by": "von",
+    "onThisPage": "Auf dieser Seite",
+    "atlasMunichTeam": "Atlas München Team"
   },
   "footer": {
     "description": "Dein vollständiger Handbuch zum Leben in München als marokkanischer Student oder junger Berufstätiger.",

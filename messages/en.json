@@ -1387,6 +1387,166 @@
       "englischer-garten-kleinhesseloher-see": {
         "name": "Englischer Garten (Kleinhesseloher See area)",
         "description": "On sunny days, the lawns around Kleinhesselohersee become an unofficial outdoor study spot for LMU/TUM students — free, green, and quiet on weekday mornings."
+      },
+      "sitar": {
+        "name": "Sitar",
+        "description": "Sitar is a halal-friendly restaurant in Munich serving indian cuisine."
+      },
+      "forumstar-supermarkt": {
+        "name": "Forumstar Supermarkt",
+        "description": "Forumstar Supermarkt is a halal-friendly supermarket in Munich."
+      },
+      "edeka-xpress": {
+        "name": "Edeka xpress",
+        "description": "Edeka xpress is a halal-friendly supermarket in Munich."
+      },
+      "deluxe-kebab": {
+        "name": "Deluxe Kebab",
+        "description": "Deluxe Kebab is a halal-friendly fast food in Munich serving kebab cuisine."
+      },
+      "konigs-kebap": {
+        "name": "König’s Kebap",
+        "description": "König’s Kebap is a halal-friendly fast food in Munich serving kebab cuisine."
+      },
+      "deeba-burger": {
+        "name": "Deeba Burger",
+        "description": "Deeba Burger is a halal-friendly fast food in Munich serving burger cuisine."
+      },
+      "la-barca": {
+        "name": "La Barca",
+        "description": "La Barca is a halal-friendly fast food in Munich serving pizza cuisine."
+      },
+      "esspoint": {
+        "name": "Esspoint",
+        "description": "Esspoint is a halal-friendly restaurant in Munich serving kebab cuisine."
+      },
+      "ercan-doner-vegan-doner": {
+        "name": "Ercan Döner & Vegan Döner",
+        "description": "Ercan Döner & Vegan Döner is a halal-friendly fast food in Munich serving kebab cuisine."
+      },
+      "pizzeria-regina": {
+        "name": "Pizzeria Regina",
+        "description": "Pizzeria Regina is a halal-friendly fast food in Munich."
+      },
+      "guardini-s-spezial-kebap": {
+        "name": "Guardini's Spezial Kebap",
+        "description": "Guardini's Spezial Kebap is a halal-friendly fast food in Munich serving turkish cuisine."
+      },
+      "berlin-doner-express": {
+        "name": "Berlin Döner Express",
+        "description": "Berlin Döner Express is a halal-friendly fast food in Munich serving turkish cuisine."
+      },
+      "sila-restaurant": {
+        "name": "Sila Restaurant",
+        "description": "Sila Restaurant is a halal-friendly fast food in Munich serving turkish cuisine."
+      },
+      "vollcorner-bio": {
+        "name": "VollCorner Bio",
+        "description": "VollCorner Bio is a halal-friendly supermarket in Munich."
+      },
+      "heray": {
+        "name": "Heray",
+        "description": "Heray is a halal-friendly fast food in Munich serving kebab cuisine."
+      },
+      "meister-doner": {
+        "name": "Meister Döner",
+        "description": "Meister Döner is a halal-friendly fast food in Munich serving kebab cuisine."
+      },
+      "ali-bey": {
+        "name": "Ali Bey",
+        "description": "Ali Bey is a halal-friendly restaurant in Munich serving turkish cuisine."
+      },
+      "mazagan": {
+        "name": "Mazagan",
+        "description": "Mazagan is a halal-friendly restaurant in Munich serving kebab cuisine."
+      },
+      "loko-s-doner": {
+        "name": "Loko's Döner",
+        "description": "Loko's Döner is a halal-friendly fast food in Munich serving kebab cuisine."
+      },
+      "karim-doner": {
+        "name": "Karim Döner",
+        "description": "Karim Döner is a halal-friendly fast food in Munich serving kebab cuisine."
+      },
+      "baban-doner-giesing": {
+        "name": "Baban Döner Giesing",
+        "description": "Baban Döner Giesing is a halal-friendly fast food in Munich serving kebab cuisine."
+      },
+      "mlem-bun": {
+        "name": "Mlem Bun",
+        "description": "Mlem Bun is a halal-friendly restaurant in Munich serving american cuisine."
+      },
+      "beef-crew": {
+        "name": "Beef Crew",
+        "description": "Beef Crew is a halal-friendly fast food in Munich serving burger cuisine."
+      },
+      "spring-time": {
+        "name": "Spring Time",
+        "description": "Spring Time is a halal-friendly fast food in Munich serving kebab cuisine."
+      },
+      "sam-s-falafel": {
+        "name": "Sam's Falafel",
+        "description": "Sam's Falafel is a halal-friendly fast food in Munich."
+      },
+      "natursaftbar-falafel-amer": {
+        "name": "Natursaftbar & Falafel Amer",
+        "description": "Natursaftbar & Falafel Amer is a halal-friendly fast food in Munich."
+      },
+      "the-tandoori-lounge": {
+        "name": "The Tandoori Lounge",
+        "description": "The Tandoori Lounge is a halal-friendly restaurant in Munich serving indian cuisine."
+      },
+      "helinam-doner": {
+        "name": "Helinam Döner",
+        "description": "Helinam Döner is a halal-friendly fast food in Munich serving kebab cuisine."
+      },
+      "sim-sim": {
+        "name": "Sim Sim",
+        "description": "Sim Sim is a halal-friendly fast food in Munich."
+      },
+      "nord-grill": {
+        "name": "Nord Grill",
+        "description": "Nord Grill is a halal-friendly restaurant in Munich serving kebab cuisine."
+      },
+      "tikka-n-talk": {
+        "name": "Tikka N Talk",
+        "description": "Tikka N Talk is a halal-friendly fast food in Munich serving indian cuisine."
+      },
+      "uyghur-kebap": {
+        "name": "Uyghur Kebap",
+        "description": "Uyghur Kebap is a halal-friendly fast food in Munich."
+      },
+      "radan-s-supermarket": {
+        "name": "Radan's Supermarket",
+        "description": "Radan's Supermarket is a halal-friendly supermarket in Munich."
+      },
+      "cafe-mint": {
+        "name": "Café Mint",
+        "description": "Café Mint is a halal-friendly bakery and coffee shop in Munich."
+      },
+      "tattva-indisches-restaurant": {
+        "name": "Tattva Indisches Restaurant",
+        "description": "Tattva Indisches Restaurant is a halal-friendly restaurant in Munich serving indian cuisine."
+      },
+      "staro-pizza-pasta": {
+        "name": "Staro Pizza & Pasta",
+        "description": "Staro Pizza & Pasta is a halal-friendly fast food in Munich serving pizza cuisine."
+      },
+      "hans-kebab": {
+        "name": "Hans Kebab",
+        "description": "Hans Kebab is a halal-friendly fast food in Munich serving kebab cuisine."
+      },
+      "pommesfreunde": {
+        "name": "Pommesfreunde",
+        "description": "Pommesfreunde is a halal-friendly fast food in Munich."
+      },
+      "doner-oz-urfa": {
+        "name": "Döner Öz Urfa",
+        "description": "Döner Öz Urfa is a halal-friendly fast food in Munich serving kebab cuisine."
+      },
+      "antep-kabap": {
+        "name": "Antep Kabap",
+        "description": "Antep Kabap is a halal-friendly fast food in Munich serving kebab cuisine."
       }
     }
   },

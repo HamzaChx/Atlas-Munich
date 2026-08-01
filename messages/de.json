@@ -1388,6 +1388,166 @@
       "englischer-garten-kleinhesseloher-see": {
         "name": "Englischer Garten (Kleinhesseloher See area)",
         "description": "An sonnigen Tagen werden die Wiesen rund um den Kleinhesselohersee zum inoffiziellen Lernplatz im Freien für LMU/TUM-Studierende — kostenlos, grün und an Wochentagvormittagen ruhig."
+      },
+      "sitar": {
+        "name": "Sitar",
+        "description": "Sitar ist ein halal-freundliches Restaurant in München mit indischer Küche."
+      },
+      "forumstar-supermarkt": {
+        "name": "Forumstar Supermarkt",
+        "description": "Forumstar Supermarkt ist ein halal-freundlicher Supermarkt in München."
+      },
+      "edeka-xpress": {
+        "name": "Edeka xpress",
+        "description": "Edeka xpress ist ein halal-freundlicher Supermarkt in München."
+      },
+      "deluxe-kebab": {
+        "name": "Deluxe Kebab",
+        "description": "Deluxe Kebab ist ein halal-freundlicher Schnellimbiss in München mit Kebab-Küche."
+      },
+      "konigs-kebap": {
+        "name": "König’s Kebap",
+        "description": "König’s Kebap ist ein halal-freundlicher Schnellimbiss in München mit Kebab-Küche."
+      },
+      "deeba-burger": {
+        "name": "Deeba Burger",
+        "description": "Deeba Burger ist ein halal-freundlicher Schnellimbiss in München mit Burger-Küche."
+      },
+      "la-barca": {
+        "name": "La Barca",
+        "description": "La Barca ist ein halal-freundlicher Schnellimbiss in München mit Pizza-Küche."
+      },
+      "esspoint": {
+        "name": "Esspoint",
+        "description": "Esspoint ist ein halal-freundliches Restaurant in München mit Kebab-Küche."
+      },
+      "ercan-doner-vegan-doner": {
+        "name": "Ercan Döner & Vegan Döner",
+        "description": "Ercan Döner & Vegan Döner ist ein halal-freundlicher Schnellimbiss in München mit Kebab-Küche."
+      },
+      "pizzeria-regina": {
+        "name": "Pizzeria Regina",
+        "description": "Pizzeria Regina ist ein halal-freundlicher Schnellimbiss in München."
+      },
+      "guardini-s-spezial-kebap": {
+        "name": "Guardini's Spezial Kebap",
+        "description": "Guardini's Spezial Kebap ist ein halal-freundlicher Schnellimbiss in München mit türkischer Küche."
+      },
+      "berlin-doner-express": {
+        "name": "Berlin Döner Express",
+        "description": "Berlin Döner Express ist ein halal-freundlicher Schnellimbiss in München mit türkischer Küche."
+      },
+      "sila-restaurant": {
+        "name": "Sila Restaurant",
+        "description": "Sila Restaurant ist ein halal-freundlicher Schnellimbiss in München mit türkischer Küche."
+      },
+      "vollcorner-bio": {
+        "name": "VollCorner Bio",
+        "description": "VollCorner Bio ist ein halal-freundlicher Supermarkt in München."
+      },
+      "heray": {
+        "name": "Heray",
+        "description": "Heray ist ein halal-freundlicher Schnellimbiss in München mit Kebab-Küche."
+      },
+      "meister-doner": {
+        "name": "Meister Döner",
+        "description": "Meister Döner ist ein halal-freundlicher Schnellimbiss in München mit Kebab-Küche."
+      },
+      "ali-bey": {
+        "name": "Ali Bey",
+        "description": "Ali Bey ist ein halal-freundliches Restaurant in München mit türkischer Küche."
+      },
+      "mazagan": {
+        "name": "Mazagan",
+        "description": "Mazagan ist ein halal-freundliches Restaurant in München mit Kebab-Küche."
+      },
+      "loko-s-doner": {
+        "name": "Loko's Döner",
+        "description": "Loko's Döner ist ein halal-freundlicher Schnellimbiss in München mit Kebab-Küche."
+      },
+      "karim-doner": {
+        "name": "Karim Döner",
+        "description": "Karim Döner ist ein halal-freundlicher Schnellimbiss in München mit Kebab-Küche."
+      },
+      "baban-doner-giesing": {
+        "name": "Baban Döner Giesing",
+        "description": "Baban Döner Giesing ist ein halal-freundlicher Schnellimbiss in München mit Kebab-Küche."
+      },
+      "mlem-bun": {
+        "name": "Mlem Bun",
+        "description": "Mlem Bun ist ein halal-freundliches Restaurant in München mit amerikanischer Küche."
+      },
+      "beef-crew": {
+        "name": "Beef Crew",
+        "description": "Beef Crew ist ein halal-freundlicher Schnellimbiss in München mit Burger-Küche."
+      },
+      "spring-time": {
+        "name": "Spring Time",
+        "description": "Spring Time ist ein halal-freundlicher Schnellimbiss in München mit Kebab-Küche."
+      },
+      "sam-s-falafel": {
+        "name": "Sam's Falafel",
+        "description": "Sam's Falafel ist ein halal-freundlicher Schnellimbiss in München."
+      },
+      "natursaftbar-falafel-amer": {
+        "name": "Natursaftbar & Falafel Amer",
+        "description": "Natursaftbar & Falafel Amer ist ein halal-freundlicher Schnellimbiss in München."
+      },
+      "the-tandoori-lounge": {
+        "name": "The Tandoori Lounge",
+        "description": "The Tandoori Lounge ist ein halal-freundliches Restaurant in München mit indischer Küche."
+      },
+      "helinam-doner": {
+        "name": "Helinam Döner",
+        "description": "Helinam Döner ist ein halal-freundlicher Schnellimbiss in München mit Kebab-Küche."
+      },
+      "sim-sim": {
+        "name": "Sim Sim",
+        "description": "Sim Sim ist ein halal-freundlicher Schnellimbiss in München."
+      },
+      "nord-grill": {
+        "name": "Nord Grill",
+        "description": "Nord Grill ist ein halal-freundliches Restaurant in München mit Kebab-Küche."
+      },
+      "tikka-n-talk": {
+        "name": "Tikka N Talk",
+        "description": "Tikka N Talk ist ein halal-freundlicher Schnellimbiss in München mit indischer Küche."
+      },
+      "uyghur-kebap": {
+        "name": "Uyghur Kebap",
+        "description": "Uyghur Kebap ist ein halal-freundlicher Schnellimbiss in München."
+      },
+      "radan-s-supermarket": {
+        "name": "Radan's Supermarket",
+        "description": "Radan's Supermarket ist ein halal-freundlicher Supermarkt in München."
+      },
+      "cafe-mint": {
+        "name": "Café Mint",
+        "description": "Café Mint ist ein halal-freundliches Bäckerei-Café in München."
+      },
+      "tattva-indisches-restaurant": {
+        "name": "Tattva Indisches Restaurant",
+        "description": "Tattva Indisches Restaurant ist ein halal-freundliches Restaurant in München mit indischer Küche."
+      },
+      "staro-pizza-pasta": {
+        "name": "Staro Pizza & Pasta",
+        "description": "Staro Pizza & Pasta ist ein halal-freundlicher Schnellimbiss in München mit Pizza-Küche."
+      },
+      "hans-kebab": {
+        "name": "Hans Kebab",
+        "description": "Hans Kebab ist ein halal-freundlicher Schnellimbiss in München mit Kebab-Küche."
+      },
+      "pommesfreunde": {
+        "name": "Pommesfreunde",
+        "description": "Pommesfreunde ist ein halal-freundlicher Schnellimbiss in München."
+      },
+      "doner-oz-urfa": {
+        "name": "Döner Öz Urfa",
+        "description": "Döner Öz Urfa ist ein halal-freundlicher Schnellimbiss in München mit Kebab-Küche."
+      },
+      "antep-kabap": {
+        "name": "Antep Kabap",
+        "description": "Antep Kabap ist ein halal-freundlicher Schnellimbiss in München mit Kebab-Küche."
       }
     }
   },

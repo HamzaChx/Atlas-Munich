@@ -1410,6 +1410,166 @@
       "englischer-garten-kleinhesseloher-see": {
         "name": "Englischer Garten (Kleinhesseloher See area)",
         "description": "Les jours ensoleillés, les pelouses autour du Kleinhesselohersee deviennent un lieu d'étude en plein air officieux pour les étudiants de la LMU/TUM — gratuit, verdoyant et calme les matins de semaine."
+      },
+      "sitar": {
+        "name": "Sitar",
+        "description": "Sitar est un restaurant à Munich proposant des options halal et une cuisine indienne."
+      },
+      "forumstar-supermarkt": {
+        "name": "Forumstar Supermarkt",
+        "description": "Forumstar Supermarkt est un supermarché à Munich proposant des options halal."
+      },
+      "edeka-xpress": {
+        "name": "Edeka xpress",
+        "description": "Edeka xpress est un supermarché à Munich proposant des options halal."
+      },
+      "deluxe-kebab": {
+        "name": "Deluxe Kebab",
+        "description": "Deluxe Kebab est un restaurant rapide à Munich proposant des options halal et une cuisine kebab."
+      },
+      "konigs-kebap": {
+        "name": "König’s Kebap",
+        "description": "König’s Kebap est un restaurant rapide à Munich proposant des options halal et une cuisine kebab."
+      },
+      "deeba-burger": {
+        "name": "Deeba Burger",
+        "description": "Deeba Burger est un restaurant rapide à Munich proposant des options halal et une cuisine burger."
+      },
+      "la-barca": {
+        "name": "La Barca",
+        "description": "La Barca est un restaurant rapide à Munich proposant des options halal et une cuisine pizza."
+      },
+      "esspoint": {
+        "name": "Esspoint",
+        "description": "Esspoint est un restaurant à Munich proposant des options halal et une cuisine kebab."
+      },
+      "ercan-doner-vegan-doner": {
+        "name": "Ercan Döner & Vegan Döner",
+        "description": "Ercan Döner & Vegan Döner est un restaurant rapide à Munich proposant des options halal et une cuisine kebab."
+      },
+      "pizzeria-regina": {
+        "name": "Pizzeria Regina",
+        "description": "Pizzeria Regina est un restaurant rapide à Munich proposant des options halal."
+      },
+      "guardini-s-spezial-kebap": {
+        "name": "Guardini's Spezial Kebap",
+        "description": "Guardini's Spezial Kebap est un restaurant rapide à Munich proposant des options halal et une cuisine turque."
+      },
+      "berlin-doner-express": {
+        "name": "Berlin Döner Express",
+        "description": "Berlin Döner Express est un restaurant rapide à Munich proposant des options halal et une cuisine turque."
+      },
+      "sila-restaurant": {
+        "name": "Sila Restaurant",
+        "description": "Sila Restaurant est un restaurant rapide à Munich proposant des options halal et une cuisine turque."
+      },
+      "vollcorner-bio": {
+        "name": "VollCorner Bio",
+        "description": "VollCorner Bio est un supermarché à Munich proposant des options halal."
+      },
+      "heray": {
+        "name": "Heray",
+        "description": "Heray est un restaurant rapide à Munich proposant des options halal et une cuisine kebab."
+      },
+      "meister-doner": {
+        "name": "Meister Döner",
+        "description": "Meister Döner est un restaurant rapide à Munich proposant des options halal et une cuisine kebab."
+      },
+      "ali-bey": {
+        "name": "Ali Bey",
+        "description": "Ali Bey est un restaurant à Munich proposant des options halal et une cuisine turque."
+      },
+      "mazagan": {
+        "name": "Mazagan",
+        "description": "Mazagan est un restaurant à Munich proposant des options halal et une cuisine kebab."
+      },
+      "loko-s-doner": {
+        "name": "Loko's Döner",
+        "description": "Loko's Döner est un restaurant rapide à Munich proposant des options halal et une cuisine kebab."
+      },
+      "karim-doner": {
+        "name": "Karim Döner",
+        "description": "Karim Döner est un restaurant rapide à Munich proposant des options halal et une cuisine kebab."
+      },
+      "baban-doner-giesing": {
+        "name": "Baban Döner Giesing",
+        "description": "Baban Döner Giesing est un restaurant rapide à Munich proposant des options halal et une cuisine kebab."
+      },
+      "mlem-bun": {
+        "name": "Mlem Bun",
+        "description": "Mlem Bun est un restaurant à Munich proposant des options halal et une cuisine américaine."
+      },
+      "beef-crew": {
+        "name": "Beef Crew",
+        "description": "Beef Crew est un restaurant rapide à Munich proposant des options halal et une cuisine burger."
+      },
+      "spring-time": {
+        "name": "Spring Time",
+        "description": "Spring Time est un restaurant rapide à Munich proposant des options halal et une cuisine kebab."
+      },
+      "sam-s-falafel": {
+        "name": "Sam's Falafel",
+        "description": "Sam's Falafel est un restaurant rapide à Munich proposant des options halal."
+      },
+      "natursaftbar-falafel-amer": {
+        "name": "Natursaftbar & Falafel Amer",
+        "description": "Natursaftbar & Falafel Amer est un restaurant rapide à Munich proposant des options halal."
+      },
+      "the-tandoori-lounge": {
+        "name": "The Tandoori Lounge",
+        "description": "The Tandoori Lounge est un restaurant à Munich proposant des options halal et une cuisine indienne."
+      },
+      "helinam-doner": {
+        "name": "Helinam Döner",
+        "description": "Helinam Döner est un restaurant rapide à Munich proposant des options halal et une cuisine kebab."
+      },
+      "sim-sim": {
+        "name": "Sim Sim",
+        "description": "Sim Sim est un restaurant rapide à Munich proposant des options halal."
+      },
+      "nord-grill": {
+        "name": "Nord Grill",
+        "description": "Nord Grill est un restaurant à Munich proposant des options halal et une cuisine kebab."
+      },
+      "tikka-n-talk": {
+        "name": "Tikka N Talk",
+        "description": "Tikka N Talk est un restaurant rapide à Munich proposant des options halal et une cuisine indienne."
+      },
+      "uyghur-kebap": {
+        "name": "Uyghur Kebap",
+        "description": "Uyghur Kebap est un restaurant rapide à Munich proposant des options halal."
+      },
+      "radan-s-supermarket": {
+        "name": "Radan's Supermarket",
+        "description": "Radan's Supermarket est un supermarché à Munich proposant des options halal."
+      },
+      "cafe-mint": {
+        "name": "Café Mint",
+        "description": "Café Mint est un café-boulangerie à Munich proposant des options halal."
+      },
+      "tattva-indisches-restaurant": {
+        "name": "Tattva Indisches Restaurant",
+        "description": "Tattva Indisches Restaurant est un restaurant à Munich proposant des options halal et une cuisine indienne."
+      },
+      "staro-pizza-pasta": {
+        "name": "Staro Pizza & Pasta",
+        "description": "Staro Pizza & Pasta est un restaurant rapide à Munich proposant des options halal et une cuisine pizza."
+      },
+      "hans-kebab": {
+        "name": "Hans Kebab",
+        "description": "Hans Kebab est un restaurant rapide à Munich proposant des options halal et une cuisine kebab."
+      },
+      "pommesfreunde": {
+        "name": "Pommesfreunde",
+        "description": "Pommesfreunde est un restaurant rapide à Munich proposant des options halal."
+      },
+      "doner-oz-urfa": {
+        "name": "Döner Öz Urfa",
+        "description": "Döner Öz Urfa est un restaurant rapide à Munich proposant des options halal et une cuisine kebab."
+      },
+      "antep-kabap": {
+        "name": "Antep Kabap",
+        "description": "Antep Kabap est un restaurant rapide à Munich proposant des options halal et une cuisine kebab."
       }
     }
   },

@@ -41,15 +41,17 @@ export default async function Home({
       {/* ========== HERO ==========
           Full-bleed conceptual illustration (Frauenkirche/Allianz Arena
           paired with Hassan II Mosque/Burj Mohammed 6 Tower), the same
-          image used in the Community section below. The scrim is a flat
-          solid tone, not a gradient, so it reads as one deliberate wash.
+          image used in the Community section below.
 
-          Unlike the previous photo hero, the source is a light cream
-          blueprint, so the whole hero is styled dark-ink-on-light rather
-          than white-on-dark. It's a permanently-light surface regardless
-          of which theme the reader is on, same reasoning as before, just
-          inverted, since the illustration itself doesn't change with
-          theme. */}
+          The text sits in a solid opaque card, not a translucent wash over
+          the whole hero: at any wash opacity short of fully hiding the
+          artwork, dark text crossing the illustration's own ink hatching
+          (the Frauenkirche roof especially) reads as broken, letterforms
+          and hatch lines visually merge. A flat card behind just the text
+          removes the hatching from behind the letters entirely, and lets
+          the illustration show at full clarity everywhere else, which is
+          the point of using it. Still no gradients/blur, per house rules,
+          just a solid fill and a box-shadow for lift. */}
       {/* `main` carries a global `pt-(--header-h)` so sticky offsets on every
           other page line up under the bar; that same padding would leave
           this hero's photo starting below the header instead of behind it.
@@ -65,9 +67,8 @@ export default async function Home({
           sizes="100vw"
           className="absolute inset-0 -z-10 object-cover object-center"
         />
-        <div aria-hidden="true" className="absolute inset-0 -z-10 bg-zinc-50/45" />
 
-        <div className="relative z-10 mx-auto flex max-w-3xl flex-col items-center px-5 pt-32 pb-16 text-center sm:px-6 sm:pt-40 sm:pb-24 lg:px-8 lg:pt-44">
+        <div className="relative z-10 mx-auto flex max-w-2xl flex-col items-center rounded-[2rem] bg-zinc-50 px-6 py-10 text-center shadow-[0_20px_60px_rgba(40,30,20,0.18)] sm:rounded-[2.5rem] sm:px-14 sm:py-14 lg:px-16">
           <h1 className="rise rise-1 display-wide font-display text-balance text-[2.75rem] font-bold leading-[0.98] tracking-[-0.02em] text-zinc-950 sm:text-6xl lg:text-7xl">
             {t("heroTitle")}
             <span className="block pb-1 text-[oklch(0.54_0.19_25)]">
@@ -85,15 +86,14 @@ export default async function Home({
           </span>
 
           {/* Same two-CTA grammar as the Community and Tools sections below
-              (dark ink pill + ghost), fixed rather than theme-reactive,
-              because the hero background is always light regardless of
-              which theme the reader is on. */}
+              (dark ink pill + ghost): the card behind them is solid, so
+              this can just use the site's normal light-surface colors. */}
           <div className="rise rise-4 mt-5 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
             {quickAccess.map((item, idx) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`inline-flex h-10 items-center justify-center rounded-full px-6 text-sm font-medium transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent focus-visible:ring-zinc-900 ${
+                className={`inline-flex h-10 items-center justify-center rounded-full px-6 text-sm font-medium transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:ring-zinc-900 ${
                   idx === 0
                     ? "bg-zinc-900 text-zinc-50 shadow-md shadow-zinc-900/15 hover:bg-zinc-800"
                     : "text-zinc-700 hover:bg-zinc-900/5 hover:text-zinc-900"

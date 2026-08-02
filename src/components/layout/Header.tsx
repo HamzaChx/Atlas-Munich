@@ -59,11 +59,13 @@ export function Header({ locale, translations }: HeaderProps) {
     { label: translations.tools, href: "/tools" },
   ];
 
-  /* Transparent at the top of the homepage, over the dark photo hero;
-     solid once the reader scrolls past it (or on any other page, which has
-     no dark hero to sit on). Only the wordmark and nav labels need a white
-     variant here — the About and Settings controls are each already an
-     opaque bg-card circle, so they read fine on the photo without one. */
+  /* Transparent at the top of the homepage, over the light illustration
+     hero; solid once the reader scrolls past it (or on any other page,
+     which has no hero to sit on). The hero background is a permanently
+     light surface regardless of site theme, so glass mode uses dark ink
+     text here, not white. The About and Settings controls are each
+     already an opaque bg-card circle, so they read fine over the hero
+     without needing a variant. */
   const isHomePage = pathname === "/";
   const isGlass = isHomePage && !scrolled;
 
@@ -89,8 +91,8 @@ export function Header({ locale, translations }: HeaderProps) {
             height={36}
             className="h-8 w-8 rounded-full transition-transform duration-300 group-hover:scale-105 sm:h-9 sm:w-9 shadow-sm"
           />
-          <span className={cn("font-display text-lg sm:text-xl font-bold tracking-tight transition-colors duration-300", isGlass ? "text-white" : "text-zinc-900 dark:text-zinc-50")}>
-            <span className={cn("transition-colors duration-300", isGlass ? "text-white" : "text-zellige dark:text-zellige")}>Atlas</span> Munich
+          <span className={cn("font-display text-lg sm:text-xl font-bold tracking-tight transition-colors duration-300", isGlass ? "text-zinc-900" : "text-zinc-900 dark:text-zinc-50")}>
+            <span className={cn("transition-colors duration-300", isGlass ? "text-zellige" : "text-zellige dark:text-zellige")}>Atlas</span> Munich
           </span>
         </Link>
 
@@ -105,10 +107,10 @@ export function Header({ locale, translations }: HeaderProps) {
                   "relative rounded-full px-4 py-2 text-sm font-medium transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-zellige/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                   isActive
                     ? isGlass
-                      ? "bg-white/20 text-white"
+                      ? "bg-zinc-900/10 text-zinc-900"
                       : "bg-zinc-100 text-zinc-900 dark:bg-foreground/10 dark:text-zinc-50"
                     : isGlass
-                      ? "text-white/85 hover:bg-white/10 hover:text-white"
+                      ? "text-zinc-700 hover:bg-zinc-900/5 hover:text-zinc-900"
                       : "text-zinc-500 dark:text-zinc-400 hover:bg-zinc-100/70 hover:text-zinc-900 dark:hover:bg-foreground/[0.075] dark:hover:text-zinc-50"
                 )}
               >

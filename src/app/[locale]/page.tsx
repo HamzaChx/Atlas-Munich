@@ -56,7 +56,7 @@ export default async function Home({
           else on the page shifts) is the fix, not touching the shared spacer. */}
       <section className="relative isolate -mt-(--header-h) flex min-h-[78vh] w-full flex-col justify-center overflow-hidden sm:min-h-screen">
         <Image
-          src="/atlas-hero.jpeg"
+          src="/atlas-hero.jpg"
           alt={t("heroImageAlt")}
           fill
           priority

@@ -39,16 +39,17 @@ export default async function Home({
   return (
     <div className="min-h-screen">
       {/* ========== HERO ==========
-          Full-bleed photograph again, per direction. The scrim is a flat
-          solid tone, not the previous layered black gradient, so it reads
-          as one deliberate wash rather than a decorative vignette.
+          Full-bleed conceptual illustration (Frauenkirche/Allianz Arena
+          paired with Hassan II Mosque/Burj Mohammed 6 Tower), the same
+          image used in the Community section below. The scrim is a flat
+          solid tone, not a gradient, so it reads as one deliberate wash.
 
-          The highlight word is pinned to the dark-surface red rather than
-          the theme's `text-bloom` (which is a softer red made for ink-on
-          -plaster): on a photo whose frame is dominated by red jerseys,
-          the softer value measured under 3:1 against the busiest patches
-          even through the scrim, and this page's type doesn't get to pick
-          a calmer patch of photo to sit on. */}
+          Unlike the previous photo hero, the source is a light cream
+          blueprint, so the whole hero is styled dark-ink-on-light rather
+          than white-on-dark. It's a permanently-light surface regardless
+          of which theme the reader is on, same reasoning as before, just
+          inverted, since the illustration itself doesn't change with
+          theme. */}
       {/* `main` carries a global `pt-(--header-h)` so sticky offsets on every
           other page line up under the bar; that same padding would leave
           this hero's photo starting below the header instead of behind it.
@@ -56,7 +57,7 @@ export default async function Home({
           else on the page shifts) is the fix, not touching the shared spacer. */}
       <section className="relative isolate -mt-(--header-h) flex min-h-[78vh] w-full flex-col justify-center overflow-hidden sm:min-h-screen">
         <Image
-          src="/atlas-hero.jpg"
+          src="/atlas-hero-2.jpg"
           alt={t("heroImageAlt")}
           fill
           priority
@@ -64,39 +65,38 @@ export default async function Home({
           sizes="100vw"
           className="absolute inset-0 -z-10 object-cover object-center"
         />
-        <div aria-hidden="true" className="absolute inset-0 -z-10 bg-zinc-950/60" />
+        <div aria-hidden="true" className="absolute inset-0 -z-10 bg-zinc-50/45" />
 
         <div className="relative z-10 mx-auto flex max-w-3xl flex-col items-center px-5 pt-32 pb-16 text-center sm:px-6 sm:pt-40 sm:pb-24 lg:px-8 lg:pt-44">
-          <h1 className="rise rise-1 display-wide font-display text-balance text-[2.75rem] font-bold leading-[0.98] tracking-[-0.02em] text-white sm:text-6xl lg:text-7xl [text-shadow:0_2px_24px_rgba(0,0,0,0.45)]">
+          <h1 className="rise rise-1 display-wide font-display text-balance text-[2.75rem] font-bold leading-[0.98] tracking-[-0.02em] text-zinc-950 sm:text-6xl lg:text-7xl">
             {t("heroTitle")}
-            <span className="block pb-1 text-[oklch(0.715_0.17_25)] [text-shadow:0_2px_24px_rgba(0,0,0,0.5)]">
+            <span className="block pb-1 text-[oklch(0.54_0.19_25)]">
               {t("heroTitleHighlight")}
             </span>
           </h1>
 
-          <p className="rise rise-2 mx-auto mt-6 max-w-lg text-balance text-lg leading-relaxed text-white/90 sm:text-xl [text-shadow:0_1px_16px_rgba(0,0,0,0.5)]">
+          <p className="rise rise-2 mx-auto mt-6 max-w-lg text-balance text-lg leading-relaxed text-zinc-700 sm:text-xl">
             {t("heroSubtitle")}
           </p>
 
-          <span className="rise rise-3 mt-12 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-white/80">
-            <span className="h-1.5 w-1.5 rounded-full bg-[oklch(0.715_0.17_25)]" aria-hidden="true" />
+          <span className="rise rise-3 mt-12 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-zinc-900/70">
+            <span className="h-1.5 w-1.5 rounded-full bg-[oklch(0.54_0.19_25)]" aria-hidden="true" />
             {t("quick.badge")}
           </span>
 
           {/* Same two-CTA grammar as the Community and Tools sections below
-              (dark ink pill + ghost), not a bespoke hero treatment: the ink
-              pill just borrows the site's own dark-mode colors (light fill,
-              dark text) because the hero is a permanently-dark surface
-              regardless of which theme the reader is on. */}
+              (dark ink pill + ghost), fixed rather than theme-reactive,
+              because the hero background is always light regardless of
+              which theme the reader is on. */}
           <div className="rise rise-4 mt-5 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
             {quickAccess.map((item, idx) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`inline-flex h-10 items-center justify-center rounded-full px-6 text-sm font-medium transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent focus-visible:ring-white ${
+                className={`inline-flex h-10 items-center justify-center rounded-full px-6 text-sm font-medium transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent focus-visible:ring-zinc-900 ${
                   idx === 0
-                    ? "bg-zinc-50 text-zinc-900 shadow-md shadow-black/20 hover:bg-zinc-200"
-                    : "text-white/90 hover:bg-white/10 hover:text-white"
+                    ? "bg-zinc-900 text-zinc-50 shadow-md shadow-zinc-900/15 hover:bg-zinc-800"
+                    : "text-zinc-700 hover:bg-zinc-900/5 hover:text-zinc-900"
                 }`}
               >
                 {item.label}

@@ -160,11 +160,7 @@
       "errorDenied": "Standortzugriff wurde verweigert. Aktiviere ihn in den Website-Einstellungen deines Browsers, um diese Funktion zu nutzen.",
       "errorUnavailable": "Standort ist auf diesem Gerät oder Browser nicht verfügbar.",
       "errorTimeout": "Die Standortermittlung hat zu lange gedauert. Versuche es erneut.",
-      "errorGeneric": "Bei der Standortermittlung ist etwas schiefgelaufen. Versuche es erneut.",
-      "eta": {
-        "walk": "~{minutes} Min. zu Fuß",
-        "transit": "~{minutes} Min. mit ÖPNV"
-      }
+      "errorGeneric": "Bei der Standortermittlung ist etwas schiefgelaufen. Versuche es erneut."
     },
     "cuisines": {
       "turkish": "Türkisch",
@@ -243,11 +239,11 @@
       "clear": "Route löschen",
       "stops": "{count} Stopps",
       "oneStop": "1 Stopp",
-      "total": "{distance} insgesamt, etwa {minutes} Min. unterwegs",
+      "total": "{distance} insgesamt",
       "openInMaps": "Route in Maps öffnen",
       "empty": "Noch keine Stopps. Füge einen Ort hinzu, um zu planen.",
-      "estimate": "Die Zeiten sind grobe Schätzungen, keine Live-Routenberechnung.",
-      "leg": "{distance} · etwa {minutes} Min."
+      "estimate": "Die Entfernungen sind grobe Luftlinien-Schätzungen, keine Live-Routenberechnung.",
+      "leg": "{distance}"
     }
   },
   "guides": {

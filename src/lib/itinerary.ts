@@ -13,7 +13,7 @@
 // ============================================
 
 import type { Place } from "@/types";
-import { haversineDistanceKm, travelEta, type Coordinates } from "./geo";
+import { haversineDistanceKm, type Coordinates } from "./geo";
 
 /** Beyond this the ordering stops helping and the map gets unreadable. */
 export const MAX_STOPS = 5;
@@ -22,7 +22,6 @@ export interface ItineraryLeg {
   from: Coordinates;
   to: Place;
   distanceKm: number;
-  minutes: number;
 }
 
 export interface Itinerary {
@@ -30,8 +29,6 @@ export interface Itinerary {
   stops: Place[];
   legs: ItineraryLeg[];
   totalKm: number;
-  /** Travel time only. Time spent at each stop is the reader's business. */
-  totalMinutes: number;
 }
 
 const coordsOf = (place: Place): Coordinates | null =>
@@ -77,7 +74,6 @@ export function planItinerary(places: Place[], origin: Coordinates | null): Itin
       from: cursor,
       to: next,
       distanceKm: bestKm,
-      minutes: travelEta(bestKm).minutes,
     });
     stops.push(next);
     cursor = coordsOf(next)!;
@@ -87,7 +83,6 @@ export function planItinerary(places: Place[], origin: Coordinates | null): Itin
     stops,
     legs,
     totalKm: legs.reduce((sum, leg) => sum + leg.distanceKm, 0),
-    totalMinutes: legs.reduce((sum, leg) => sum + leg.minutes, 0),
   };
 }
 

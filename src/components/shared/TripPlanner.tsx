@@ -77,10 +77,7 @@ export function TripPlanner({ stops, origin, onRemove, onClear }: TripPlannerPro
                 </span>
                 {leg && (
                   <span className="block truncate text-[11.5px] text-zinc-400 dark:text-zinc-500">
-                    {t("leg", {
-                      distance: formatDistanceKm(leg.distanceKm, locale),
-                      minutes: leg.minutes,
-                    })}
+                    {t("leg", { distance: formatDistanceKm(leg.distanceKm, locale) })}
                   </span>
                 )}
               </span>
@@ -99,10 +96,7 @@ export function TripPlanner({ stops, origin, onRemove, onClear }: TripPlannerPro
 
       {itinerary.legs.length > 0 && (
         <p className="mt-2 px-2 text-[13px] font-semibold text-zinc-700 dark:text-zinc-300">
-          {t("total", {
-            distance: formatDistanceKm(itinerary.totalKm, locale),
-            minutes: itinerary.totalMinutes,
-          })}
+          {t("total", { distance: formatDistanceKm(itinerary.totalKm, locale) })}
         </p>
       )}
 

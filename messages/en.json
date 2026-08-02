@@ -159,11 +159,7 @@
       "errorDenied": "Location access was denied. Enable it in your browser's site settings to use this.",
       "errorUnavailable": "Location isn't available on this device or browser.",
       "errorTimeout": "Finding your location took too long. Try again.",
-      "errorGeneric": "Something went wrong finding your location. Try again.",
-      "eta": {
-        "walk": "~{minutes} min walk",
-        "transit": "~{minutes} min by transit"
-      }
+      "errorGeneric": "Something went wrong finding your location. Try again."
     },
     "cuisines": {
       "turkish": "Turkish",
@@ -242,11 +238,11 @@
       "clear": "Clear trip",
       "stops": "{count} stops",
       "oneStop": "1 stop",
-      "total": "{distance} total, about {minutes} min travelling",
+      "total": "{distance} total",
       "openInMaps": "Open route in Maps",
       "empty": "No stops yet. Add a place to start planning.",
-      "estimate": "Times are rough estimates, not live routing.",
-      "leg": "{distance} · about {minutes} min"
+      "estimate": "Distances are straight-line estimates, not live routing.",
+      "leg": "{distance}"
     }
   },
   "guides": {

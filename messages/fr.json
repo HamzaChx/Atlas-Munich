@@ -182,11 +182,7 @@
       "errorDenied": "L'accès à la position a été refusé. Activez-le dans les paramètres du site de votre navigateur pour utiliser cette fonctionnalité.",
       "errorUnavailable": "La position n'est pas disponible sur cet appareil ou ce navigateur.",
       "errorTimeout": "La recherche de votre position a pris trop de temps. Réessayez.",
-      "errorGeneric": "Une erreur s'est produite lors de la recherche de votre position. Réessayez.",
-      "eta": {
-        "walk": "~{minutes} min à pied",
-        "transit": "~{minutes} min en transport"
-      }
+      "errorGeneric": "Une erreur s'est produite lors de la recherche de votre position. Réessayez."
     },
     "cuisines": {
       "turkish": "Turque",
@@ -265,11 +261,11 @@
       "clear": "Effacer le parcours",
       "stops": "{count} étapes",
       "oneStop": "1 étape",
-      "total": "{distance} au total, environ {minutes} min de trajet",
+      "total": "{distance} au total",
       "openInMaps": "Ouvrir l'itinéraire dans Maps",
       "empty": "Aucune étape pour l'instant. Ajoutez un lieu pour commencer.",
-      "estimate": "Les durées sont des estimations, pas un calcul d'itinéraire en direct.",
-      "leg": "{distance} · environ {minutes} min"
+      "estimate": "Les distances sont des estimations à vol d'oiseau, pas un calcul d'itinéraire en direct.",
+      "leg": "{distance}"
     }
   },
   "guides": {

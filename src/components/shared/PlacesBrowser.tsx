@@ -21,7 +21,7 @@ import { Place, PlaceCategory } from "@/types";
 import { BottomSheet, BottomSheetContent } from "@/components/ui/bottom-sheet";
 import { cn } from "@/lib/utils";
 import { placeDirectionsUrl } from "@/lib/maps";
-import { formatDistanceKm, travelEta } from "@/lib/geo";
+import { formatDistanceKm } from "@/lib/geo";
 import { fallbackAccent, placeAccents, placeIcons } from "./place-accents";
 import { ZELLIGE_MOTIF_MASK, motifAngle } from "./zellige-motif";
 
@@ -154,18 +154,9 @@ function Spotlight({
           </span>
           {place.price && <span className={cn("font-bold", accent.text)}>{place.price}</span>}
           {place.distanceKm !== undefined && (
-            <>
-              <span className={cn("font-semibold", accent.text)}>
-                {t("location.away", { distance: formatDistanceKm(place.distanceKm, locale) })}
-              </span>
-              {/* Distance answers "how far"; the estimate answers the question
-                  behind it, which is whether this fits before a lecture. */}
-              <span className="text-zinc-500 dark:text-zinc-400">
-                {t(`location.eta.${travelEta(place.distanceKm).mode}`, {
-                  minutes: travelEta(place.distanceKm).minutes,
-                })}
-              </span>
-            </>
+            <span className={cn("font-semibold", accent.text)}>
+              {t("location.away", { distance: formatDistanceKm(place.distanceKm, locale) })}
+            </span>
           )}
           {place.verified && (
             <span className="flex items-center gap-1 font-semibold text-zellige">
@@ -411,10 +402,7 @@ export function PlacesBrowser({
                             <span className="mt-0.5 block truncate text-[11.5px] text-zinc-400 dark:text-zinc-500">
                               {locality(place)}
                               {place.distanceKm !== undefined &&
-                                ` · ${formatDistanceKm(place.distanceKm, locale)} · ${t(
-                                  `location.eta.${travelEta(place.distanceKm).mode}`,
-                                  { minutes: travelEta(place.distanceKm).minutes }
-                                )}`}
+                                ` · ${formatDistanceKm(place.distanceKm, locale)}`}
                             </span>
                           </span>
                           {place.rating && (

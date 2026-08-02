@@ -1135,6 +1135,27 @@
   display: none;
 }
 
+/* Per-leg distance pill on the itinerary line — zellige, not blue, so it
+   reads as "part of the planned trip" rather than the live "you are here"
+   connector. Centered on its point via transform, since the divIcon itself
+   is a zero-size box anchored at [0,0]. */
+.atlas-leg-label {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translate(-50%, -50%);
+  display: inline-block;
+  white-space: nowrap;
+  border-radius: 9999px;
+  background: var(--zellige);
+  color: var(--card);
+  padding: 2px 8px;
+  font-size: 10.5px;
+  font-weight: 700;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 0.2);
+  pointer-events: none;
+}
+
 /* Popup */
 .atlas-map .leaflet-popup-content-wrapper {
   padding: 0;

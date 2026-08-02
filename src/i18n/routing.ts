@@ -20,4 +20,13 @@ export const routing = defineRouting({
      arriving from Morocco. It's a 307 with `Vary: Accept-Language`, so
      crawlers (which advertise en) still land on and index the English URLs. */
   localeDetection: true,
+
+  /* next-intl's NEXT_LOCALE cookie has no maxAge by default, so it's a
+     session cookie: closing the browser drops it, and the next visit falls
+     straight back to Accept-Language detection, overriding a deliberate
+     choice (e.g. picking English on a browser set to fr/de). One year keeps
+     the pick across visits. */
+  localeCookie: {
+    maxAge: 60 * 60 * 24 * 365,
+  },
 });

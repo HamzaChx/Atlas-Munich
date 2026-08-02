@@ -48,7 +48,7 @@ import type { Place } from "@/types";
 import { placeAccents } from "./place-accents";
 import { cn } from "@/lib/utils";
 import { placeDirectionsUrl } from "@/lib/maps";
-import { formatDistanceKm, haversineDistanceKm, travelEta, type Coordinates } from "@/lib/geo";
+import { formatDistanceKm, haversineDistanceKm, type Coordinates } from "@/lib/geo";
 
 const MUNICH_CENTER: [number, number] = [48.1372, 11.5756];
 
@@ -102,32 +102,67 @@ function escapeHtml(value: string) {
   );
 }
 
-/** A one- or two-word keyword floating over a pin — the place's first tag,
-    title-cased — so a glance at the map says "halal", "vegan", "library"
-    without opening a popup. The category itself would say the same thing on
-    every pin at once, since the map only ever shows one category. */
+/* These either restate the category a filtered map view is already showing
+   (every restaurant here is halal, every mosque is a mosque) or are too
+   generic to tell one pin from the next. The badge looks past them for
+   whichever tag actually is distinctive, falling back to the first tag only
+   when a place has nothing else on record. */
+const GENERIC_KEYWORD_TAGS = new Set([
+  "halal",
+  "halal-on-request",
+  "100-percent-halal",
+  "mosque",
+  "study",
+  "library",
+  "cafe",
+  "restaurant",
+  "bakery",
+  "butcher",
+  "grocery",
+  "park",
+  "sport",
+  "leisure",
+  "outdoor",
+]);
+
+/** A one- or two-word keyword floating over a pin — the place's most
+    distinctive tag, title-cased — so a glance at the map says "Turkish",
+    "Vegan", "Hidden Gem" instead of the "Halal" every single pin already
+    shares by virtue of being on this map at all. */
 function keywordFor(place: Place): string | null {
-  const tag = place.tags?.[0];
-  if (!tag) return null;
-  return tag
+  if (place.tags.length === 0) return null;
+  const distinctive = place.tags.find((tag) => !GENERIC_KEYWORD_TAGS.has(tag)) ?? place.tags[0];
+  return distinctive
     .split("-")
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
+}
+
+/** The full pin badge: keyword, price tier (as €/€€/€€€, never a bare
+    number), and distance in kilometres — never a travel-time estimate,
+    which belongs to the itinerary panel, not a pin floating over a place. */
+function pinBadgeText(place: Place, locale: string): string {
+  const parts: string[] = [];
+  const keyword = keywordFor(place);
+  if (keyword) parts.push(keyword);
+  if (place.price) parts.push(place.price);
+  if (typeof place.distanceKm === "number") parts.push(formatDistanceKm(place.distanceKm, locale));
+  return parts.join(" · ");
 }
 
 /* ---------------------------------------------------------------- markers */
 
 const iconCache = new Map<string, L.DivIcon>();
 
-function pinIcon(category: string, active: boolean, keyword: string | null) {
-  const cacheKey = `${category}:${active ? "on" : "off"}:${keyword ?? ""}`;
+function pinIcon(category: string, active: boolean, badgeText: string) {
+  const cacheKey = `${category}:${active ? "on" : "off"}:${badgeText}`;
   const cached = iconCache.get(cacheKey);
   if (cached) return cached;
 
   const glyph = CATEGORY_GLYPHS[category] ?? FALLBACK_GLYPH;
   const color = accentColor(category);
-  const badge = keyword
-    ? `<span class="atlas-pin__keyword" style="--pin:${color}">${escapeHtml(keyword)}</span>`
+  const badge = badgeText
+    ? `<span class="atlas-pin__keyword" style="--pin:${color}">${escapeHtml(badgeText)}</span>`
     : "";
   const icon = L.divIcon({
     className: "atlas-marker",
@@ -145,6 +180,25 @@ function pinIcon(category: string, active: boolean, keyword: string | null) {
   });
 
   iconCache.set(cacheKey, icon);
+  return icon;
+}
+
+/** A small pill dropped at a leg's midpoint on the itinerary line, showing
+    only the straight-line distance in kilometres — no time estimate, which
+    the trip panel already gives per leg. Anchored at [0,0] with a zero-size
+    box so the label centers itself exactly on the point via CSS transform,
+    the same trick a Leaflet divIcon label always needs. */
+const legLabelCache = new Map<string, L.DivIcon>();
+function legDistanceIcon(text: string) {
+  const cached = legLabelCache.get(text);
+  if (cached) return cached;
+  const icon = L.divIcon({
+    className: "atlas-marker",
+    html: `<span class="atlas-leg-label">${escapeHtml(text)}</span>`,
+    iconSize: [0, 0],
+    iconAnchor: [0, 0],
+  });
+  legLabelCache.set(text, icon);
   return icon;
 }
 
@@ -231,6 +285,7 @@ interface MarkerLayerProps {
 
 function MarkerLayer({ places, selected, onSelect }: MarkerLayerProps) {
   const map = useMap();
+  const locale = useLocale();
   const [zoom, setZoom] = useState(() => map.getZoom());
 
   useMapEvents({
@@ -266,7 +321,7 @@ function MarkerLayer({ places, selected, onSelect }: MarkerLayerProps) {
             <Marker
               key={place.slug}
               position={[place.lat!, place.lng!]}
-              icon={pinIcon(place.category, isSelected, keywordFor(place))}
+              icon={pinIcon(place.category, isSelected, pinBadgeText(place, locale))}
               title={place.name}
               zIndexOffset={isSelected ? 1000 : 0}
               eventHandlers={{ click: () => onSelect(place) }}
@@ -381,10 +436,7 @@ function PlacePopupCard({
         <span>
           {place.address}
           {place.distanceKm !== undefined &&
-            ` · ${t("location.away", { distance: formatDistanceKm(place.distanceKm, locale) })} · ${t(
-              `location.eta.${travelEta(place.distanceKm).mode}`,
-              { minutes: travelEta(place.distanceKm).minutes }
-            )}`}
+            ` · ${t("location.away", { distance: formatDistanceKm(place.distanceKm, locale) })}`}
         </span>
       </p>
 
@@ -654,25 +706,59 @@ export default function PlacesMapCanvas({
           />
 
           {/* The planned route, under the pins so it never hides one. A
-              straight line between stops, matching how the time is estimated:
-              drawing turn-by-turn geometry we did not compute would claim a
-              precision this does not have. */}
+              straight line between stops, matching how the distance is
+              estimated: drawing turn-by-turn geometry we did not compute
+              would claim a precision this does not have. A soft casing under
+              a crisp, flowing dash reads as a highlighted road rather than a
+              flat stroke, and each leg carries its own straight-line
+              distance so the shape of the trip is legible at a glance. */}
           {routePath && routePath.length > 1 && (
-            <Polyline
-              positions={routePath}
-              pathOptions={{
-                color: "var(--zellige)",
-                weight: 3,
-                opacity: 0.75,
-                dashArray: "1 7",
-                lineCap: "round",
-              }}
-            />
+            <>
+              <Polyline
+                positions={routePath}
+                pathOptions={{
+                  color: "var(--zellige)",
+                  weight: 8,
+                  opacity: 0.14,
+                  lineCap: "round",
+                  lineJoin: "round",
+                }}
+              />
+              <Polyline
+                positions={routePath}
+                pathOptions={{
+                  color: "var(--zellige)",
+                  weight: 3.5,
+                  opacity: 0.95,
+                  dashArray: "1 9",
+                  lineCap: "round",
+                  lineJoin: "round",
+                  className: "atlas-route-live",
+                }}
+              />
+              {routePath.slice(1).map((to, index) => {
+                const from = routePath[index];
+                const legKm = haversineDistanceKm(
+                  { lat: from[0], lng: from[1] },
+                  { lat: to[0], lng: to[1] }
+                );
+                const mid: [number, number] = [(from[0] + to[0]) / 2, (from[1] + to[1]) / 2];
+                return (
+                  <Marker
+                    key={`leg-${index}`}
+                    position={mid}
+                    icon={legDistanceIcon(formatDistanceKm(legKm, locale))}
+                    interactive={false}
+                    zIndexOffset={900}
+                  />
+                );
+              })}
+            </>
           )}
 
           {/* A live line from "you" to whatever pin is open, so tapping a
-              place answers "how far, and how do I get a feel for that" in
-              one glance, without waiting on the popup's text. */}
+              place answers "how far" in one glance, without waiting on the
+              popup's text. */}
           {userLocation &&
             selected &&
             typeof selected.lat === "number" &&
@@ -681,7 +767,6 @@ export default function PlacesMapCanvas({
               const distanceKm =
                 selected.distanceKm ??
                 haversineDistanceKm(userLocation, { lat: selected.lat, lng: selected.lng });
-              const eta = travelEta(distanceKm);
               return (
                 <Polyline
                   key={`live-route-${selected.slug}`}
@@ -704,8 +789,7 @@ export default function PlacesMapCanvas({
                     className="atlas-route-label"
                     interactive={false}
                   >
-                    {formatDistanceKm(distanceKm, locale)} ·{" "}
-                    {t(`location.eta.${eta.mode}`, { minutes: eta.minutes })}
+                    {formatDistanceKm(distanceKm, locale)}
                   </Tooltip>
                 </Polyline>
               );

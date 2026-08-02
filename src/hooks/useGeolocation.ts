@@ -54,12 +54,10 @@ export function useGeolocation(): UseGeolocationResult {
       },
       (error) => {
         setCoords(null);
-        if (error.code === error.PERMISSION_DENIED) {
-          setStatus("denied");
-          if (typeof window !== "undefined") {
-            window.location.href = "app-settings:";
-          }
-        }
+        /* Denial used to navigate to `app-settings:`, a scheme no browser
+           handles, which on desktop threw the user off the page for nothing.
+           The `errorDenied` copy already tells them where to re-enable it. */
+        if (error.code === error.PERMISSION_DENIED) setStatus("denied");
         else if (error.code === error.TIMEOUT) setStatus("timeout");
         else setStatus("error");
       },

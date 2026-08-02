@@ -10,8 +10,8 @@
     "searchOrAsk": "Suchen oder fragen",
     "searchPlaceholder": "Ratgeber, Orte, FAQ durchsuchen",
     "noResultsFor": "Keine Ergebnisse für „{query}“",
-    "askAtlasAi": "Atlas AI fragen",
-    "askAtlasAiDesc": "Erhalte eine persönliche Antwort vom Assistenten",
+    "askAtlasAi": "Atlas fragen",
+    "askAtlasAiDesc": "Bekomme eine persönliche Antwort",
     "closeSearch": "Suche schließen",
     "toggleTheme": "Theme wechseln",
     "tools": "Tools",
@@ -34,7 +34,7 @@
   "home": {
     "heroTitle": "Neu in München?",
     "heroTitleHighlight": "Wir sind für dich da.",
-    "heroSubtitle": "Guides, Orte und KI-Helfer für Marokkanerinnen und Marokkaner, die in München ankommen.",
+    "heroSubtitle": "Guides, eine Karte und Leute, die es schon gemacht haben, für Marokkaner, die in München ankommen.",
     "stats": {
       "guides": "Ratgeber",
       "places": "Orte",
@@ -78,18 +78,18 @@
       "browseAll": "Alle Ratgeber durchsuchen"
     },
     "toolsSpotlight": {
-      "badge": "Agentische KI",
-      "title": "Helfer für den Papierkram",
-      "subtitle": "Speziell gebaute KI-Agenten für Wohnungsbewerbungen, deutsche Lebensläufe und Behördenpost, damit du Zeit fürs Leben hast.",
-      "cta": "Helfer kennenlernen",
-      "housingTool": "Wohnungsbewerbungs-Assistent",
-      "housingToolDesc": "Füge ein Inserat ein, erhalte eine WG-Nachricht, die Antworten bekommt",
+      "badge": "Hilfe holen",
+      "title": "Hilfe bei den schweren Teilen",
+      "subtitle": "Vier Leute, die München kennen. Anzeige einfügen, Situation schildern, in eigenen Worten fragen.",
+      "cta": "Die Helfer kennenlernen",
+      "housingTool": "Eine Wohnung finden",
+      "housingToolDesc": "Anzeige einfügen, deutsche Bewerbung bekommen, die Antworten bringt",
       "housingToolStatus": "Aktiv",
-      "bureaucracyTool": "Bureaucracy Navigator",
-      "bureaucracyToolDesc": "Navigate Anmeldung and KVR step by step",
+      "bureaucracyTool": "Sich anmelden",
+      "bureaucracyToolDesc": "Anmeldung und KVR, Schritt für Schritt",
       "bureaucracyToolStatus": "Live",
-      "academicTool": "Academic Companion",
-      "academicToolDesc": "Research and structure your TUM or LMU thesis",
+      "academicTool": "Schreiben und forschen",
+      "academicToolDesc": "Eine Arbeit oder Thesis an TUM oder LMU strukturieren",
       "academicToolStatus": "Live"
     },
     "featured": {
@@ -133,8 +133,9 @@
       "studySpots": "Lernorte",
       "groceries": "Lebensmittel",
       "bakeries": "Bäckereien",
-      "coworking": "Coworking",
-      "barbers": "Barbiere"
+      "sport": "Sport",
+      "leisure": "Freizeit",
+      "parks": "Parks"
     },
     "advancedFilters": {
       "button": "Filter",
@@ -159,7 +160,11 @@
       "errorDenied": "Standortzugriff wurde verweigert. Aktiviere ihn in den Website-Einstellungen deines Browsers, um diese Funktion zu nutzen.",
       "errorUnavailable": "Standort ist auf diesem Gerät oder Browser nicht verfügbar.",
       "errorTimeout": "Die Standortermittlung hat zu lange gedauert. Versuche es erneut.",
-      "errorGeneric": "Bei der Standortermittlung ist etwas schiefgelaufen. Versuche es erneut."
+      "errorGeneric": "Bei der Standortermittlung ist etwas schiefgelaufen. Versuche es erneut.",
+      "eta": {
+        "walk": "~{minutes} Min. zu Fuß",
+        "transit": "~{minutes} Min. mit ÖPNV"
+      }
     },
     "cuisines": {
       "turkish": "Türkisch",
@@ -226,7 +231,22 @@
       "call": "Anrufen"
     },
     "loadingMap": "Karte wird geladen…",
-    "attribution": "Ortsdaten © <osm>OpenStreetMap-Mitwirkende</osm>, <odbl>ODbL</odbl>. Bewertungen und Rezensionszahlen, sofern angezeigt, stammen von Google."
+    "attribution": "Ortsdaten © <osm>OpenStreetMap-Mitwirkende</osm>, <odbl>ODbL</odbl>. Bewertungen und Rezensionszahlen, sofern angezeigt, stammen von Google.",
+    "trip": {
+      "title": "Route planen",
+      "hint": "Wähle bis zu {max} Orte, wir bringen sie in eine sinnvolle Reihenfolge.",
+      "add": "Zur Route hinzufügen",
+      "remove": "Aus Route entfernen",
+      "inTrip": "In deiner Route",
+      "clear": "Route löschen",
+      "stops": "{count} Stopps",
+      "oneStop": "1 Stopp",
+      "total": "{distance} insgesamt, etwa {minutes} Min. unterwegs",
+      "openInMaps": "Route in Maps öffnen",
+      "empty": "Noch keine Stopps. Füge einen Ort hinzu, um zu planen.",
+      "estimate": "Die Zeiten sind grobe Schätzungen, keine Live-Routenberechnung.",
+      "leg": "{distance} · etwa {minutes} Min."
+    }
   },
   "guides": {
     "badge": "Community-Ratgeber",
@@ -290,7 +310,8 @@
       "contactUs": "Kontaktiere uns"
     },
     "noResults": "Keine Fragen gefunden",
-    "noResultsDescription": "Versuch eine andere Suche oder stöbere durch alle Kategorien."
+    "noResultsDescription": "Versuch eine andere Suche oder stöbere durch alle Kategorien.",
+    "movedDescription": "Die Fragen sind umgezogen. Jede steht jetzt bei dem Schritt, den sie beantwortet."
   },
   "about": {
     "badge": "Community-Projekt",
@@ -451,7 +472,7 @@
       "contact": "Kontakt",
       "privacy": "Datenschutz",
       "terms": "Nutzungsbedingungen",
-      "aiTools": "KI-Tools"
+      "aiTools": "Hilfe holen"
     }
   },
   "search": {
@@ -1597,6 +1618,42 @@
       "antep-kabap": {
         "name": "Antep Kabap",
         "description": "Antep Kabap ist ein halal-freundlicher Schnellimbiss in München mit Kebab-Küche."
+      },
+      "zhs-olympiapark": {
+        "name": "ZHS Zentraler Hochschulsport (Olympiapark)",
+        "description": "Das zentrale Sportzentrum aller Münchner Hochschulen. Ein Semesterticket deckt Hunderte Kurse ab, von Fußball und Schwimmen bis Bouldern und Kampfsport. Die Anmeldung öffnet jedes Semester, beliebte Kurse sind in Minuten voll."
+      },
+      "olympia-schwimmhalle": {
+        "name": "Olympia-Schwimmhalle",
+        "description": "Olympia-Hallenbad im Olympiapark, öffentlich zugänglich. Es gibt Studentenrabatte, und die ZHS-Schwimmkurse finden hier statt."
+      },
+      "olympiapark-sportanlagen": {
+        "name": "Sportanlagen im Olympiapark",
+        "description": "Offene Wiesen, Laufstrecken und öffentliche Plätze im ganzen Olympiapark. An warmen Abenden kann man leicht bei einem spontanen Fußballspiel mitmachen."
+      },
+      "englischer-garten": {
+        "name": "Englischer Garten",
+        "description": "Einer der größten Stadtparks der Welt, größer als der Central Park. Biergärten am Chinesischen Turm, Surfer auf der Eisbachwelle und genug Platz, um einen Nachmittag zu verschwinden."
+      },
+      "olympiapark": {
+        "name": "Olympiapark",
+        "description": "Das Olympiagelände von 1972, heute ein Park mit See, einem Hügel, dessen Aufstieg sich an klaren Tagen für den Alpenblick lohnt, und Open-Air-Konzerten den Sommer über."
+      },
+      "westpark": {
+        "name": "Westpark",
+        "description": "Ruhiger als der Englische Garten und beliebt bei Studierenden im Südwesten. Mit thailändischen und chinesischen Gartenpavillons, einem See und einem Open-Air-Kino im Sommer."
+      },
+      "hirschgarten": {
+        "name": "Hirschgarten",
+        "description": "Park mit Damwildgehege und dem größten Biergarten Münchens mit rund 8.000 Plätzen. An den Selbstbedienungstischen darf man eigenes Essen mitbringen, was ihn zu einem der günstigsten Abende der Stadt macht."
+      },
+      "mathaeser-filmpalast": {
+        "name": "Mathäser Filmpalast",
+        "description": "Das größte Kino in der Innenstadt, wenige Gehminuten vom Hauptbahnhof. Zeigt neben den deutschen Fassungen auch Filme im Original (gekennzeichnet als OV oder OmU)."
+      },
+      "museum-lichtspiele": {
+        "name": "Museum Lichtspiele",
+        "description": "Kleines unabhängiges Kino nahe dem Isartor mit starkem Fokus auf Originalfassungen. Günstiger als die Multiplexe und mit deutlich mehr Charakter."
       }
     }
   },
@@ -1676,7 +1733,7 @@
     "redirecting": "Weiterleitung zu",
     "typeMessage": "Nachricht eingeben…",
     "aiBadge": "KI",
-    "aiDisclaimer": "KI-Assistent, Antworten können Fehler enthalten. Wichtige Informationen bitte prüfen.",
+    "aiDisclaimer": "Antworten werden generiert und können falsch sein. Prüfe, was wichtig ist.",
     "typing": "schreibt…",
     "send": "Senden"
   },
@@ -2546,21 +2603,21 @@
     }
   },
   "tools": {
-    "badge": "KI-Assistenten",
-    "title": "Deine",
-    "titleHighlight": "KI-Assistenten",
-    "subtitle": "Persönliche KI-Assistenten für dein Leben in München. Jeder ist auf einen anderen Teil deiner Reise in Deutschland spezialisiert.",
-    "roster": "Das Team",
-    "liveLabel": "live",
-    "capabilities": "Was er übernimmt",
+    "badge": "Hilfe holen",
+    "title": "Hilfe bei",
+    "titleHighlight": "den schweren Teilen",
+    "subtitle": "Vier Leute, die München kennen, jeder für einen anderen Teil des Ankommens. Frag in deinen eigenen Worten, in welcher Sprache du willst.",
+    "roster": "Wer helfen kann",
+    "liveLabel": "bereit",
+    "capabilities": "Worum es geht",
     "tryAsking": "Frag zum Beispiel",
     "tools": {
       "housing": {
-        "title": "Wohnungsbewerbungs-Assistent",
-        "description": "Füge ein WG- oder Wohnungsinserat ein und Riad schreibt dir eine versandfertige Bewerbung, die Antworten auf Münchens wettbewerbsintensivem Markt bekommt.",
-        "status": "Aktiv",
-        "cta": "Tool starten",
-        "poweredBy": "KI-gestützt von Riad",
+        "title": "Eine Wohnung finden",
+        "description": "Riad liest eine WG- oder Wohnungsanzeige und schreibt dir eine Bewerbung, die auf dem Münchner Markt wirklich Antworten bekommt.",
+        "status": "Bereit",
+        "cta": "Hier starten",
+        "poweredBy": "Beantwortet von Riad",
         "tags": [
           "WG-Bewerbungen",
           "Wohnungsinserate",
@@ -2568,10 +2625,10 @@
         ]
       },
       "events": {
-        "title": "Event-Planer",
-        "description": "Plane Treffen, Lernsessions und Community-Events mit Freunden in München. Teile Pläne, stimme über Orte ab und koordiniere mühelos.",
-        "status": "Demnächst",
-        "cta": "Demnächst",
+        "title": "Etwas zu tun finden",
+        "description": "Plane Treffen, Lerngruppen und Community-Events mit Freunden in München. Pläne teilen, über Orte abstimmen, klären wer kommt.",
+        "status": "Noch nicht",
+        "cta": "Noch nicht",
         "comingSoonNote": "Wir bauen dieses Tool, bleib dran!",
         "tags": [
           "Events planen",
@@ -2585,11 +2642,11 @@
         ]
       },
       "dalilah": {
-        "title": "Behörden-Navigator",
-        "description": "Anmeldung, Aufenthaltserlaubnis, KVR, Krankenversicherung und deutsche Formulare, Dalilah führt dich durch jeden Schritt ohne verpasste Fristen.",
-        "status": "Aktiv",
-        "cta": "Tool starten",
-        "poweredBy": "KI-gestützt von Dalilah",
+        "title": "Sich anmelden",
+        "description": "Dalilah führt dich Schritt für Schritt durch Anmeldung, Aufenthaltstitel, KVR und Krankenversicherung, ohne dass eine Frist verstreicht.",
+        "status": "Bereit",
+        "cta": "Hier starten",
+        "poweredBy": "Beantwortet von Dalilah",
         "tags": [
           "Anmeldung",
           "Aufenthaltstitel",
@@ -2597,11 +2654,11 @@
         ]
       },
       "ilham": {
-        "title": "Akademischer Forschungsbegleiter",
-        "description": "Ilham hilft dir bei Forschungsfragen, Papiergliederung, wissenschaftlichem Schreiben und Thesis-Vorbereitung an TUM oder LMU, mit vollständiger akademischer Integrität.",
-        "status": "Aktiv",
-        "cta": "Tool starten",
-        "poweredBy": "KI-gestützt von Ilham",
+        "title": "Schreiben und forschen",
+        "description": "Ilham hilft dir, eine Forschungsfrage zu entwickeln, eine Arbeit zu strukturieren und dein wissenschaftliches Schreiben an TUM oder LMU zu schärfen, ohne dir das Denken abzunehmen.",
+        "status": "Bereit",
+        "cta": "Hier starten",
+        "poweredBy": "Beantwortet von Ilham",
         "tags": [
           "Forschung & Literatur",
           "Wissenschaftliches Schreiben",
@@ -2609,11 +2666,11 @@
         ]
       },
       "loubna": {
-        "title": "Gesundheitsnavigatorin & Medizinische Übersetzerin",
-        "description": "Loubna hilft dir beim Verständnis der deutschen Krankenversicherung, bei der Arztsuche, der Symptomübersetzung und dem Verständnis von Rezepten, damit nichts verloren geht.",
-        "status": "Aktiv",
-        "cta": "Tool starten",
-        "poweredBy": "KI-gestützt von Loubna",
+        "title": "Krankenversicherung klären",
+        "description": "Loubna erklärt die deutsche Krankenversicherung, hilft dir, eine englischsprachige Praxis zu finden, und übersetzt Symptome und Rezepte.",
+        "status": "Bereit",
+        "cta": "Hier starten",
+        "poweredBy": "Beantwortet von Loubna",
         "tags": [
           "Krankenversicherung",
           "Arztsuche",
@@ -2621,9 +2678,9 @@
         ]
       }
     },
-    "moreComing": "Weitere Assistenten kommen bald. Hast du eine Idee? Trage auf",
+    "moreComing": "Mehr Hilfe kommt. Eine Idee? Trag bei auf",
     "designedBy": "Entworfen und erstellt von",
-    "howItWorks": "So funktioniert's"
+    "howItWorks": "So funktioniert es"
   },
   "academic": {
     "badge": "Akademischer Begleiter",
@@ -2703,7 +2760,7 @@
       "step1Title": "Inserat einfügen",
       "step1Desc": "Kopiere ein WG- oder Wohnungsinserat von ImmobilienScout24, WG-Gesucht oder anderen Plattformen.",
       "step2Title": "Riad schreibt deine Nachricht",
-      "step2Desc": "Unsere KI erstellt eine personalisierte, überzeugende Bewerbung in perfektem Deutsch, die auf das Inserat abgestimmt ist.",
+      "step2Desc": "Riad schreibt eine persönliche, überzeugende Bewerbung in perfektem Deutsch, fertig zum Absenden.",
       "step3Title": "Absenden & Antworten erhalten",
       "step3Desc": "Kopiere die fertige Nachricht und füge sie direkt auf der Plattform ein. Hebe dich von Hunderten von Bewerbern ab."
     },
@@ -2800,6 +2857,66 @@
       "title": "Du machst das nicht",
       "titleHighlight": "allein",
       "subtitle": "Marokkanische Studierende und Berufstätige, die schon in München sind, eine Nachricht entfernt."
+    }
+  },
+  "tree": {
+    "_heading": "In vier Wörtern finden",
+    "_hint": "Öffne ein Thema, um zu sehen, was darin steckt.",
+    "_expand": "Inhalt von {label} anzeigen",
+    "_collapse": "Inhalt von {label} ausblenden",
+    "find-apartment-munich": {
+      "_": "Wohnung finden",
+      "the-munich-market": "Der Markt",
+      "where-to-search": "Wo suchen",
+      "wg-vs-private": "WG oder allein",
+      "your-application": "Deine Bewerbung",
+      "viewing-and-deciding": "Besichtigungen",
+      "your-rental-contract": "Der Mietvertrag"
+    },
+    "anmeldung-city-registration": {
+      "_": "Adresse anmelden",
+      "what-is-anmeldung": "Was das ist",
+      "when-to-register": "Wann hingehen",
+      "what-you-need": "Was mitbringen",
+      "the-appointment": "Der Termin",
+      "online-option": "Online erledigen",
+      "after-registration": "Danach"
+    },
+    "residence-permit-students": {
+      "_": "Aufenthaltstitel",
+      "do-you-need-one": "Brauchst du einen",
+      "permit-types": "Arten von Titeln",
+      "documents-needed": "Unterlagen",
+      "application-process": "Antrag stellen",
+      "working-as-student": "Arbeitsgrenzen",
+      "renewing-permit": "Verlängern"
+    },
+    "student-life-munich": {
+      "_": "Studentenleben",
+      "enrollment-and-id": "Einschreibung und Ausweis",
+      "semester-ticket": "Semesterticket",
+      "libraries-and-study": "Bibliotheken",
+      "moodle-campus-online": "Moodle und Portale",
+      "student-services": "Studierendenwerk",
+      "academic-culture": "Akademische Kultur"
+    },
+    "find-werkstudent-job": {
+      "_": "Karriere und Jobs",
+      "what-is-werkstudent": "Werkstudent",
+      "where-to-find-jobs": "Jobsuche",
+      "german-application": "Bewerbungen",
+      "application-tips": "Tipps fürs Gespräch",
+      "work-hours-rules": "Stunden und Visum",
+      "taxes-and-insurance": "Steuer und Versicherung"
+    },
+    "essential-apps-munich": {
+      "_": "Apps für den Alltag",
+      "transport-apps": "Verkehr",
+      "banking-apps": "Banking",
+      "food-apps": "Essenslieferung",
+      "communication-apps": "Telefon und Internet",
+      "mobile-contracts": "Mobilfunkverträge",
+      "admin-and-study": "Behörden und Studium"
     }
   }
 }

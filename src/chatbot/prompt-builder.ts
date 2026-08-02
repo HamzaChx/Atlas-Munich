@@ -121,7 +121,6 @@ You are the main greeter and router for Atlas Munich. Your job is to:
 - /guides - Comprehensive guides for Munich life (housing, KVR, university, career)
 - /tools - Munich Tools hub: Housing Application Writer (Riad), CV & Cover Letter Drafter, and more AI-powered tools
 - /housing - Direct entry to the Housing Application Assistant (Riad)
-- /faq - Frequently asked questions
 - /about - About Atlas Munich project
 - /healthcare - Healthcare Navigator: insurance, doctors, medical translation (Loubna)
 </available-sections>
@@ -239,8 +238,9 @@ ${JSON.stringify(placesSummary, null, 2)}
 - cafe: Cafes and coffee shops
 - bakery: Bakeries
 - study-spot: Libraries and study spaces
-- cowork: Coworking spaces
-- barber: Barber shops
+- sport: Sport facilities, including ZHS university sport, pools and pitches
+- leisure: Things to do, cinemas and entertainment venues
+- park: Parks and green space
 </place-categories>
 
 <instructions>
@@ -1151,7 +1151,6 @@ function buildValidRoutesSection(): string {
     "/community",
     "/guides",
     "/tools",
-    "/faq",
     "/housing",
     "/bureaucracy",
     "/academic",
@@ -1188,13 +1187,13 @@ function getCurrentSectionInfo(path: string, chatbotType: ChatbotType): string {
     sectionInfo +=
       "The user is on the Housing Application Assistant page, looking to write a rental application message for Munich.\n";
   } else if (path === "/map") {
-    sectionInfo += "The user is browsing the Places directory.\n";
+    sectionInfo += "The user is browsing the Map.\n";
   } else if (path === "/guides") {
     sectionInfo += "The user is browsing all Guides.\n";
   } else if (path === "/about") {
     sectionInfo += "The user is on the About page.\n";
-  } else if (path === "/faq") {
-    sectionInfo += "The user is viewing FAQs.\n";
+  } else if (path === "/community") {
+    sectionInfo += "The user is on the Community hub: the WhatsApp group, contributing, and getting in touch.\n";
   } else if (path === "/healthcare" || path.startsWith("/healthcare/")) {
     sectionInfo +=
       "The user is on the Healthcare Navigator page, looking for help with German health insurance, finding doctors, medical translation, or health-related guidance in Munich.\n";

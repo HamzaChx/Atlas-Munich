@@ -13,7 +13,7 @@
 
 import * as React from "react";
 import { Link } from "@/i18n/navigation";
-import { BadgeCheck, Clock, Globe, Instagram, MapPin, Navigation, Phone, Star } from "lucide-react";
+import { BadgeCheck, Check, Clock, Globe, Instagram, MapPin, Navigation, Phone, Route, Star } from "lucide-react";
 import { useTranslations, useLocale } from "next-intl";
 import { track } from "@vercel/analytics";
 
@@ -21,7 +21,7 @@ import { Place, PlaceCategory } from "@/types";
 import { BottomSheet, BottomSheetContent } from "@/components/ui/bottom-sheet";
 import { cn } from "@/lib/utils";
 import { placeDirectionsUrl } from "@/lib/maps";
-import { formatDistanceKm } from "@/lib/geo";
+import { formatDistanceKm, travelEta } from "@/lib/geo";
 import { fallbackAccent, placeAccents, placeIcons } from "./place-accents";
 import { ZELLIGE_MOTIF_MASK } from "./zellige-motif";
 
@@ -29,6 +29,11 @@ interface PlacesBrowserProps {
   places: Place[];
   /** Category order and labels, mirroring the filter bar */
   categories: { key: PlaceCategory; label: string }[];
+  /** Slugs currently in the planned trip. */
+  tripSlugs?: string[];
+  onToggleTrip?: (slug: string) => void;
+  /** At the stop cap, so adding is disabled but removing is not. */
+  tripFull?: boolean;
   className?: string;
 }
 
@@ -71,8 +76,21 @@ function IconAction({
 }
 
 /** The selected place, shown large. */
-function Spotlight({ place, className }: { place: Place; className?: string }) {
+function Spotlight({
+  place,
+  className,
+  inTrip = false,
+  onToggleTrip,
+  tripFull = false,
+}: {
+  place: Place;
+  className?: string;
+  inTrip?: boolean;
+  onToggleTrip?: (slug: string) => void;
+  tripFull?: boolean;
+}) {
   const t = useTranslations("places");
+  const tTrip = useTranslations("places.trip");
   const locale = useLocale();
   const accent = placeAccents[place.category] ?? fallbackAccent;
   const Icon = placeIcons[place.category] ?? MapPin;
@@ -143,9 +161,18 @@ function Spotlight({ place, className }: { place: Place; className?: string }) {
           </span>
           {place.price && <span className={cn("font-bold", accent.text)}>{place.price}</span>}
           {place.distanceKm !== undefined && (
-            <span className={cn("font-semibold", accent.text)}>
-              {t("location.away", { distance: formatDistanceKm(place.distanceKm, locale) })}
-            </span>
+            <>
+              <span className={cn("font-semibold", accent.text)}>
+                {t("location.away", { distance: formatDistanceKm(place.distanceKm, locale) })}
+              </span>
+              {/* Distance answers "how far"; the estimate answers the question
+                  behind it, which is whether this fits before a lecture. */}
+              <span className="text-zinc-500 dark:text-zinc-400">
+                {t(`location.eta.${travelEta(place.distanceKm).mode}`, {
+                  minutes: travelEta(place.distanceKm).minutes,
+                })}
+              </span>
+            </>
           )}
           {place.verified && (
             <span className="flex items-center gap-1 font-semibold text-zellige">
@@ -204,13 +231,40 @@ function Spotlight({ place, className }: { place: Place; className?: string }) {
           {place.phone && (
             <IconAction href={`tel:${place.phone}`} label={t("card.call")} icon={Phone} />
           )}
+          {/* Adding a stop is a secondary action beside Directions: most
+              readers still want one place, not a route. */}
+          {onToggleTrip && (
+            <button
+              type="button"
+              onClick={() => onToggleTrip(place.slug)}
+              disabled={!inTrip && tripFull}
+              aria-pressed={inTrip}
+              className={cn(
+                "flex h-11 w-11 shrink-0 items-center justify-center rounded-full outline-none transition-colors focus-visible:ring-2 focus-visible:ring-zellige/50 disabled:cursor-not-allowed disabled:opacity-40",
+                inTrip
+                  ? "bg-zellige-soft text-zellige"
+                  : "bg-muted text-zinc-500 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
+              )}
+              title={inTrip ? tTrip("remove") : tTrip("add")}
+              aria-label={inTrip ? tTrip("remove") : tTrip("add")}
+            >
+              {inTrip ? <Check className="h-4 w-4" /> : <Route className="h-4 w-4" />}
+            </button>
+          )}
         </div>
       </div>
     </div>
   );
 }
 
-export function PlacesBrowser({ places, categories, className }: PlacesBrowserProps) {
+export function PlacesBrowser({
+  places,
+  categories,
+  tripSlugs = [],
+  onToggleTrip,
+  tripFull = false,
+  className,
+}: PlacesBrowserProps) {
   const t = useTranslations("places");
   const locale = useLocale();
 
@@ -364,7 +418,10 @@ export function PlacesBrowser({ places, categories, className }: PlacesBrowserPr
                             <span className="mt-0.5 block truncate text-[11.5px] text-zinc-400 dark:text-zinc-500">
                               {locality(place)}
                               {place.distanceKm !== undefined &&
-                                ` · ${formatDistanceKm(place.distanceKm, locale)}`}
+                                ` · ${formatDistanceKm(place.distanceKm, locale)} · ${t(
+                                  `location.eta.${travelEta(place.distanceKm).mode}`,
+                                  { minutes: travelEta(place.distanceKm).minutes }
+                                )}`}
                             </span>
                           </span>
                           {place.rating && (
@@ -394,6 +451,9 @@ export function PlacesBrowser({ places, categories, className }: PlacesBrowserPr
           key={selected.slug}
           place={selected}
           className="animate-in fade-in duration-300"
+          inTrip={tripSlugs.includes(selected.slug)}
+          onToggleTrip={onToggleTrip}
+          tripFull={tripFull}
         />
       </div>
 
@@ -402,7 +462,13 @@ export function PlacesBrowser({ places, categories, className }: PlacesBrowserPr
         <BottomSheetContent title={selected.name} hideTitle className="lg:hidden">
           {/* The sheet already supplies the rounded plate and the padding, so
               the card sheds its own ring and sits flush inside it. */}
-          <Spotlight place={selected} className="ring-0 dark:ring-0" />
+          <Spotlight
+            place={selected}
+            className="ring-0 dark:ring-0"
+            inTrip={tripSlugs.includes(selected.slug)}
+            onToggleTrip={onToggleTrip}
+            tripFull={tripFull}
+          />
         </BottomSheetContent>
       </BottomSheet>
     </div>

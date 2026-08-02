@@ -1,4 +1,7 @@
+"use client";
+
 import { Link } from "@/i18n/navigation";
+import { useTranslations } from "next-intl";
 import { cn } from "@/lib/utils";
 import { ArrowRight } from "lucide-react";
 import { Guide } from "@/types";
@@ -18,6 +21,7 @@ interface GuideCardProps {
 }
 
 export function GuideCard({ guide, className, showCategory = true }: GuideCardProps) {
+  const t = useTranslations("guidePage");
   const hoverColor =
     categoryStyles[guide.categoryKey] || "group-hover:text-zinc-600 dark:group-hover:text-zinc-300";
 
@@ -37,7 +41,9 @@ export function GuideCard({ guide, className, showCategory = true }: GuideCardPr
               <span className="h-1 w-1 rounded-full bg-zinc-300 dark:bg-zinc-700" />
             </>
           )}
-          <span>{guide.readingTime} MIN READ</span>
+          <span>
+            {guide.readingTime} {t("minRead")}
+          </span>
         </div>
 
         {/* Separator Line */}

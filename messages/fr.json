@@ -10,8 +10,8 @@
     "searchOrAsk": "Rechercher ou demander",
     "searchPlaceholder": "Rechercher des guides, lieux, FAQ",
     "noResultsFor": "Aucun résultat pour « {query} »",
-    "askAtlasAi": "Demander à Atlas AI",
-    "askAtlasAiDesc": "Obtenez une réponse personnalisée de l'assistant",
+    "askAtlasAi": "Demander à Atlas",
+    "askAtlasAiDesc": "Obtenez une réponse personnelle",
     "closeSearch": "Fermer la recherche",
     "toggleTheme": "Changer de thème",
     "tools": "Outils",
@@ -34,7 +34,7 @@
   "home": {
     "heroTitle": "Nouveau à Munich ?",
     "heroTitleHighlight": "On est là pour vous.",
-    "heroSubtitle": "Guides, adresses et assistants IA pour les Marocains qui s'installent à Munich.",
+    "heroSubtitle": "Des guides, une carte, et des gens qui l'ont déjà fait, pour les Marocains qui s'installent à Munich.",
     "heroCommunity": "Hamza Chaouki",
     "stats": {
       "guides": "Guides",
@@ -50,18 +50,18 @@
       "browseAll": "Parcourir tous les guides"
     },
     "toolsSpotlight": {
-      "badge": "IA agentique",
-      "title": "Des assistants qui font la paperasse",
-      "subtitle": "Des agents IA conçus pour rédiger vos candidatures de logement, CV allemands et démarches, pour que vous puissiez vivre votre vie.",
-      "cta": "Découvrir les assistants",
-      "housingTool": "Rédacteur de candidature logement",
-      "housingToolDesc": "Collez une annonce, obtenez un message WG qui obtient des réponses",
+      "badge": "Se faire aider",
+      "title": "De l'aide pour les moments difficiles",
+      "subtitle": "Quatre personnes qui connaissent Munich. Collez une annonce, décrivez votre situation, demandez avec vos mots.",
+      "cta": "Découvrir les aides",
+      "housingTool": "Trouver un logement",
+      "housingToolDesc": "Collez une annonce, obtenez une candidature en allemand qui obtient des réponses",
       "housingToolStatus": "Disponible",
-      "bureaucracyTool": "Bureaucracy Navigator",
-      "bureaucracyToolDesc": "Navigate Anmeldung and KVR step by step",
+      "bureaucracyTool": "Faire ses démarches",
+      "bureaucracyToolDesc": "La déclaration de domicile et le KVR, étape par étape",
       "bureaucracyToolStatus": "Live",
-      "academicTool": "Academic Companion",
-      "academicToolDesc": "Research and structure your TUM or LMU thesis",
+      "academicTool": "Écrire et faire de la recherche",
+      "academicToolDesc": "Structurer un mémoire ou une thèse à la TUM ou la LMU",
       "academicToolStatus": "Live"
     },
     "community": {
@@ -155,8 +155,9 @@
       "studySpots": "Espaces d'étude",
       "groceries": "Épiceries",
       "bakeries": "Boulangeries",
-      "coworking": "Coworking",
-      "barbers": "Coiffeurs"
+      "sport": "Sport",
+      "leisure": "Loisirs",
+      "parks": "Parcs"
     },
     "advancedFilters": {
       "button": "Filtres",
@@ -181,7 +182,11 @@
       "errorDenied": "L'accès à la position a été refusé. Activez-le dans les paramètres du site de votre navigateur pour utiliser cette fonctionnalité.",
       "errorUnavailable": "La position n'est pas disponible sur cet appareil ou ce navigateur.",
       "errorTimeout": "La recherche de votre position a pris trop de temps. Réessayez.",
-      "errorGeneric": "Une erreur s'est produite lors de la recherche de votre position. Réessayez."
+      "errorGeneric": "Une erreur s'est produite lors de la recherche de votre position. Réessayez.",
+      "eta": {
+        "walk": "~{minutes} min à pied",
+        "transit": "~{minutes} min en transport"
+      }
     },
     "cuisines": {
       "turkish": "Turque",
@@ -248,7 +253,22 @@
       "call": "Appeler"
     },
     "loadingMap": "Chargement de la carte…",
-    "attribution": "Données des lieux © <osm>contributeurs d'OpenStreetMap</osm>, <odbl>ODbL</odbl>. Les notes et le nombre d'avis, lorsqu'ils sont affichés, proviennent de Google."
+    "attribution": "Données des lieux © <osm>contributeurs d'OpenStreetMap</osm>, <odbl>ODbL</odbl>. Les notes et le nombre d'avis, lorsqu'ils sont affichés, proviennent de Google.",
+    "trip": {
+      "title": "Planifier un parcours",
+      "hint": "Choisissez jusqu'à {max} lieux et nous les mettrons dans un ordre logique.",
+      "add": "Ajouter au parcours",
+      "remove": "Retirer du parcours",
+      "inTrip": "Dans votre parcours",
+      "clear": "Effacer le parcours",
+      "stops": "{count} étapes",
+      "oneStop": "1 étape",
+      "total": "{distance} au total, environ {minutes} min de trajet",
+      "openInMaps": "Ouvrir l'itinéraire dans Maps",
+      "empty": "Aucune étape pour l'instant. Ajoutez un lieu pour commencer.",
+      "estimate": "Les durées sont des estimations, pas un calcul d'itinéraire en direct.",
+      "leg": "{distance} · environ {minutes} min"
+    }
   },
   "guides": {
     "badge": "Guides communautaires",
@@ -312,7 +332,8 @@
       "contactUs": "Nous contacter"
     },
     "noResults": "Aucune question trouvée",
-    "noResultsDescription": "Essayez une autre recherche ou parcourez toutes les catégories."
+    "noResultsDescription": "Essayez une autre recherche ou parcourez toutes les catégories.",
+    "movedDescription": "Les questions ont été déplacées. Chacune se trouve désormais avec l'étape à laquelle elle répond."
   },
   "about": {
     "badge": "Projet communautaire",
@@ -473,7 +494,7 @@
       "contact": "Contact",
       "privacy": "Politique de confidentialité",
       "terms": "Conditions d'utilisation",
-      "aiTools": "Outils IA"
+      "aiTools": "Se faire aider"
     }
   },
   "search": {
@@ -1619,6 +1640,42 @@
       "antep-kabap": {
         "name": "Antep Kabap",
         "description": "Antep Kabap est un restaurant rapide à Munich proposant des options halal et une cuisine kebab."
+      },
+      "zhs-olympiapark": {
+        "name": "ZHS Sport universitaire (Olympiapark)",
+        "description": "Le centre sportif principal de toutes les universités de Munich. Un seul abonnement semestriel donne accès à des centaines de cours, du football à la natation en passant par l'escalade et les arts martiaux. Les inscriptions ouvrent chaque semestre et les cours populaires se remplissent en quelques minutes."
+      },
+      "olympia-schwimmhalle": {
+        "name": "Olympia-Schwimmhalle",
+        "description": "Piscine couverte olympique dans l'Olympiapark, ouverte au public. Tarifs étudiants disponibles, et les cours de natation du ZHS s'y déroulent."
+      },
+      "olympiapark-sportanlagen": {
+        "name": "Terrains de sport de l'Olympiapark",
+        "description": "Pelouses ouvertes, parcours de course et terrains publics dans tout l'Olympiapark. Il est facile de rejoindre un match de football improvisé lors des soirées chaudes."
+      },
+      "englischer-garten": {
+        "name": "Englischer Garten",
+        "description": "L'un des plus grands parcs urbains au monde, plus vaste que Central Park. Des brasseries en plein air à la Chinesischer Turm, des surfeurs sur la vague de l'Eisbach, et assez d'espace pour disparaître tout un après-midi."
+      },
+      "olympiapark": {
+        "name": "Olympiapark",
+        "description": "L'ancien site olympique de 1972, devenu un parc avec un lac, une colline qui vaut la montée pour la vue sur les Alpes par temps clair, et des concerts en plein air tout l'été."
+      },
+      "westpark": {
+        "name": "Westpark",
+        "description": "Plus calme que l'Englischer Garten et apprécié des étudiants du sud-ouest. On y trouve des pavillons de jardin thaïlandais et chinois, un lac, et un cinéma en plein air l'été."
+      },
+      "hirschgarten": {
+        "name": "Hirschgarten",
+        "description": "Un parc avec un enclos à cerfs et la plus grande brasserie en plein air de Munich, environ 8 000 places. Apporter sa propre nourriture est autorisé aux tables en libre-service, ce qui en fait l'une des sorties les moins chères de la ville."
+      },
+      "mathaeser-filmpalast": {
+        "name": "Mathäser Filmpalast",
+        "description": "Le plus grand cinéma du centre-ville, à quelques minutes à pied de la Hauptbahnhof. Il projette des films en version originale (signalés OV ou OmU) en plus des versions doublées en allemand."
+      },
+      "museum-lichtspiele": {
+        "name": "Museum Lichtspiele",
+        "description": "Petit cinéma indépendant près de l'Isartor, très axé sur les projections en version originale. Moins cher que les multiplexes et bien plus de caractère."
       }
     }
   },
@@ -1698,7 +1755,7 @@
     "redirecting": "Redirection vers",
     "typeMessage": "Écris ton message…",
     "aiBadge": "IA",
-    "aiDisclaimer": "Assistant IA, les réponses peuvent contenir des erreurs. Vérifie les informations importantes.",
+    "aiDisclaimer": "Les réponses sont générées et peuvent être fausses. Vérifiez ce qui compte.",
     "typing": "écrit…",
     "send": "Envoyer"
   },
@@ -2568,21 +2625,21 @@
     }
   },
   "tools": {
-    "badge": "Assistants IA",
-    "title": "Vos",
-    "titleHighlight": "Assistants IA",
-    "subtitle": "Des assistants IA personnels conçus pour votre parcours à Munich. Chacun se spécialise dans un aspect de la vie en Allemagne.",
-    "roster": "L'équipe",
-    "liveLabel": "en ligne",
-    "capabilities": "Ce qu'il gère",
+    "badge": "Se faire aider",
+    "title": "Se faire aider pour",
+    "titleHighlight": "les moments difficiles",
+    "subtitle": "Quatre personnes qui connaissent Munich, chacune pour une étape différente de votre installation. Posez vos questions avec vos mots, dans la langue que vous voulez.",
+    "roster": "Qui peut aider",
+    "liveLabel": "disponible",
+    "capabilities": "Ce que ça couvre",
     "tryAsking": "Essayez de demander",
     "tools": {
       "housing": {
-        "title": "Rédacteur de candidature logement",
-        "description": "Collez une annonce WG ou appartement et Riad rédigera un message de candidature prêt à envoyer qui obtient des réponses sur le marché locatif compétitif de Munich.",
+        "title": "Trouver un logement",
+        "description": "Riad lit une annonce de WG ou d'appartement et vous rédige une candidature qui obtient vraiment des réponses sur le marché munichois.",
         "status": "Disponible",
-        "cta": "Lancer l'outil",
-        "poweredBy": "Propulsé par IA via Riad",
+        "cta": "Commencer ici",
+        "poweredBy": "Répondu par Riad",
         "tags": [
           "Candidatures WG",
           "Annonces appartement",
@@ -2590,10 +2647,10 @@
         ]
       },
       "events": {
-        "title": "Planificateur d'événements",
-        "description": "Planifiez des sorties, des sessions d'étude et des événements communautaires avec vos amis à Munich. Partagez des plans, votez pour des lieux et coordonnez sans effort.",
-        "status": "Bientôt disponible",
-        "cta": "Bientôt disponible",
+        "title": "Trouver quoi faire",
+        "description": "Organisez des sorties, des sessions de révision et des événements avec vos amis à Munich. Partagez, votez pour un lieu, sachez qui vient.",
+        "status": "Pas encore",
+        "cta": "Pas encore",
         "comingSoonNote": "Nous construisons cet outil, restez connecté !",
         "tags": [
           "Planifier des événements",
@@ -2607,11 +2664,11 @@
         ]
       },
       "dalilah": {
-        "title": "Navigateur Bureaucratie Allemande",
-        "description": "Anmeldung, permis de séjour, KVR, assurance maladie et formulaires allemands, Dalilah vous guide à travers chaque étape sans délai manqué.",
+        "title": "Faire ses démarches",
+        "description": "Dalilah vous accompagne pas à pas dans la déclaration de domicile, le titre de séjour, le KVR et l'assurance santé, sans rater une échéance.",
         "status": "Disponible",
-        "cta": "Lancer l'outil",
-        "poweredBy": "Optimisé par IA via Dalilah",
+        "cta": "Commencer ici",
+        "poweredBy": "Répondu par Dalilah",
         "tags": [
           "Anmeldung",
           "Permis de séjour",
@@ -2619,11 +2676,11 @@
         ]
       },
       "ilham": {
-        "title": "Compagnon de Recherche Académique",
-        "description": "Ilham vous aide à développer des questions de recherche, structurer des articles, affiner l'écriture scientifique et préparer votre thèse à la TUM ou LMU, avec intégrité académique.",
+        "title": "Écrire et faire de la recherche",
+        "description": "Ilham vous aide à formuler une question de recherche, structurer un mémoire et affiner votre écriture académique à la TUM ou la LMU, sans réfléchir à votre place.",
         "status": "Disponible",
-        "cta": "Lancer l'outil",
-        "poweredBy": "Optimisé par IA via Ilham",
+        "cta": "Commencer ici",
+        "poweredBy": "Répondu par Ilham",
         "tags": [
           "Recherche & Littérature",
           "Écriture scientifique",
@@ -2631,11 +2688,11 @@
         ]
       },
       "loubna": {
-        "title": "Navigatrice Santé & Traductrice Médicale",
-        "description": "Loubna vous aide à comprendre l'assurance maladie allemande, trouver des médecins anglophones, traduire vos symptômes et comprendre vos ordonnances, pour que rien ne se perde dans la traduction.",
+        "title": "S'assurer et se soigner",
+        "description": "Loubna explique l'assurance maladie allemande, vous aide à trouver un médecin anglophone, et traduit symptômes et ordonnances.",
         "status": "Disponible",
-        "cta": "Lancer l'outil",
-        "poweredBy": "Optimisé par IA via Loubna",
+        "cta": "Commencer ici",
+        "poweredBy": "Répondu par Loubna",
         "tags": [
           "Assurance Maladie",
           "Recherche Médecin",
@@ -2643,7 +2700,7 @@
         ]
       }
     },
-    "moreComing": "D'autres assistants arrivent bientôt. Une idée ? Contribuez sur",
+    "moreComing": "D'autres aides arrivent. Une idée ? Contribuez sur",
     "designedBy": "Conçu et créé par",
     "howItWorks": "Comment ça marche"
   },
@@ -2725,7 +2782,7 @@
       "step1Title": "Collez l'annonce",
       "step1Desc": "Copiez une annonce WG ou appartement depuis ImmobilienScout24, WG-Gesucht ou d'autres plateformes.",
       "step2Title": "Riad rédige votre message",
-      "step2Desc": "Notre IA crée un message personnalisé et percutant en allemand parfait, adapté à l'annonce.",
+      "step2Desc": "Riad rédige une candidature personnelle et percutante en allemand impeccable, prête à envoyer.",
       "step3Title": "Envoyez & recevez des réponses",
       "step3Desc": "Copiez le message prêt à envoyer et collez-le directement sur la plateforme. Démarquez-vous parmi des centaines de candidats."
     },
@@ -2822,6 +2879,66 @@
       "title": "Vous n'êtes pas",
       "titleHighlight": "seul",
       "subtitle": "Des étudiants et professionnels marocains déjà à Munich, à un message près."
+    }
+  },
+  "tree": {
+    "_heading": "Trouvez en quatre mots",
+    "_hint": "Ouvrez un sujet pour voir ce qu'il contient.",
+    "_expand": "Afficher le contenu de {label}",
+    "_collapse": "Masquer le contenu de {label}",
+    "find-apartment-munich": {
+      "_": "Trouver un logement",
+      "the-munich-market": "Le marché",
+      "where-to-search": "Où chercher",
+      "wg-vs-private": "WG ou seul",
+      "your-application": "Votre dossier",
+      "viewing-and-deciding": "Les visites",
+      "your-rental-contract": "Le contrat"
+    },
+    "anmeldung-city-registration": {
+      "_": "Déclarer son adresse",
+      "what-is-anmeldung": "De quoi il s'agit",
+      "when-to-register": "Quand y aller",
+      "what-you-need": "Quoi apporter",
+      "the-appointment": "Le rendez-vous",
+      "online-option": "Le faire en ligne",
+      "after-registration": "Ensuite"
+    },
+    "residence-permit-students": {
+      "_": "Titre de séjour",
+      "do-you-need-one": "En avez-vous besoin",
+      "permit-types": "Types de titres",
+      "documents-needed": "Documents",
+      "application-process": "La demande",
+      "working-as-student": "Limites de travail",
+      "renewing-permit": "Renouveler"
+    },
+    "student-life-munich": {
+      "_": "Vie étudiante",
+      "enrollment-and-id": "Inscription et carte",
+      "semester-ticket": "Ticket de semestre",
+      "libraries-and-study": "Bibliothèques",
+      "moodle-campus-online": "Moodle et portails",
+      "student-services": "Services étudiants",
+      "academic-culture": "Culture académique"
+    },
+    "find-werkstudent-job": {
+      "_": "Carrière et emplois",
+      "what-is-werkstudent": "Emploi étudiant",
+      "where-to-find-jobs": "Recherche d'emploi",
+      "german-application": "Candidatures",
+      "application-tips": "Conseils d'entretien",
+      "work-hours-rules": "Heures et visa",
+      "taxes-and-insurance": "Impôts et assurance"
+    },
+    "essential-apps-munich": {
+      "_": "Applications du quotidien",
+      "transport-apps": "Transports",
+      "banking-apps": "Banque",
+      "food-apps": "Livraison de repas",
+      "communication-apps": "Appels et internet",
+      "mobile-contracts": "Forfaits mobiles",
+      "admin-and-study": "Démarches et études"
     }
   }
 }

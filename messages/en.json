@@ -10,8 +10,8 @@
     "searchOrAsk": "Search or ask",
     "searchPlaceholder": "Search guides, places, FAQs",
     "noResultsFor": "No results for \"{query}\"",
-    "askAtlasAi": "Ask Atlas AI",
-    "askAtlasAiDesc": "Get a personal answer from the assistant",
+    "askAtlasAi": "Ask Atlas",
+    "askAtlasAiDesc": "Get a personal answer from a helper",
     "closeSearch": "Close search",
     "toggleTheme": "Toggle Theme",
     "tools": "Tools",
@@ -34,7 +34,7 @@
   "home": {
     "heroTitle": "New in Munich?",
     "heroTitleHighlight": "We've got you.",
-    "heroSubtitle": "Guides, places, and AI helpers for Moroccans making a home in Munich.",
+    "heroSubtitle": "Guides, a map, and people who have done it, for Moroccans making a home in Munich.",
     "stats": {
       "guides": "Guides",
       "places": "Places",
@@ -49,18 +49,18 @@
       "browseAll": "Browse All Guides"
     },
     "toolsSpotlight": {
-      "badge": "Agentic AI",
-      "title": "Helpers that do the busywork",
-      "subtitle": "Purpose-built AI agents that draft your rental applications, German CVs, and paperwork, so you can get on with living.",
+      "badge": "Get help",
+      "title": "Help with the hard parts",
+      "subtitle": "Four helpers who know Munich. Paste a listing, describe your situation, ask in your own words.",
       "cta": "Meet the helpers",
-      "housingTool": "Housing Application Writer",
-      "housingToolDesc": "Paste a listing, get a WG message that gets replies",
+      "housingTool": "Finding a place to live",
+      "housingToolDesc": "Paste a listing, get a German application that gets replies",
       "housingToolStatus": "Live",
-      "bureaucracyTool": "Bureaucracy Navigator",
-      "bureaucracyToolDesc": "Navigate Anmeldung and KVR step by step",
+      "bureaucracyTool": "Getting registered",
+      "bureaucracyToolDesc": "Anmeldung and the KVR, step by step",
       "bureaucracyToolStatus": "Live",
-      "academicTool": "Academic Companion",
-      "academicToolDesc": "Research and structure your TUM or LMU thesis",
+      "academicTool": "Writing and researching",
+      "academicToolDesc": "Structure a paper or thesis at TUM or LMU",
       "academicToolStatus": "Live"
     },
     "community": {
@@ -132,8 +132,9 @@
       "studySpots": "Study Spots",
       "groceries": "Groceries",
       "bakeries": "Bakeries",
-      "coworking": "Coworking",
-      "barbers": "Barbers"
+      "sport": "Sport",
+      "leisure": "Leisure",
+      "parks": "Parks"
     },
     "advancedFilters": {
       "button": "Filters",
@@ -158,7 +159,11 @@
       "errorDenied": "Location access was denied. Enable it in your browser's site settings to use this.",
       "errorUnavailable": "Location isn't available on this device or browser.",
       "errorTimeout": "Finding your location took too long. Try again.",
-      "errorGeneric": "Something went wrong finding your location. Try again."
+      "errorGeneric": "Something went wrong finding your location. Try again.",
+      "eta": {
+        "walk": "~{minutes} min walk",
+        "transit": "~{minutes} min by transit"
+      }
     },
     "cuisines": {
       "turkish": "Turkish",
@@ -225,7 +230,22 @@
       "call": "Call"
     },
     "loadingMap": "Loading map…",
-    "attribution": "Place data © <osm>OpenStreetMap contributors</osm>, <odbl>ODbL</odbl>. Ratings and review counts, where shown, are provided by Google."
+    "attribution": "Place data © <osm>OpenStreetMap contributors</osm>, <odbl>ODbL</odbl>. Ratings and review counts, where shown, are provided by Google.",
+    "trip": {
+      "title": "Plan a trip",
+      "hint": "Pick up to {max} places and we will put them in a sensible order.",
+      "add": "Add to trip",
+      "remove": "Remove from trip",
+      "inTrip": "In your trip",
+      "clear": "Clear trip",
+      "stops": "{count} stops",
+      "oneStop": "1 stop",
+      "total": "{distance} total, about {minutes} min travelling",
+      "openInMaps": "Open route in Maps",
+      "empty": "No stops yet. Add a place to start planning.",
+      "estimate": "Times are rough estimates, not live routing.",
+      "leg": "{distance} · about {minutes} min"
+    }
   },
   "guides": {
     "badge": "Community Guides",
@@ -289,7 +309,8 @@
       "contactUs": "Contact Us"
     },
     "noResults": "No questions found",
-    "noResultsDescription": "Try another search or browse all categories."
+    "noResultsDescription": "Try another search or browse all categories.",
+    "movedDescription": "The questions moved. Each one now sits with the part of your move it answers."
   },
   "about": {
     "badge": "Community Project",
@@ -450,7 +471,7 @@
       "contact": "Contact",
       "privacy": "Privacy Policy",
       "terms": "Terms & Conditions",
-      "aiTools": "AI Tools"
+      "aiTools": "Get help"
     }
   },
   "search": {
@@ -1596,6 +1617,42 @@
       "antep-kabap": {
         "name": "Antep Kabap",
         "description": "Antep Kabap is a halal-friendly fast food in Munich serving kebab cuisine."
+      },
+      "zhs-olympiapark": {
+        "name": "ZHS Zentraler Hochschulsport (Olympiapark)",
+        "description": "The main university sports centre for all Munich universities. One semester ticket covers hundreds of courses, from football and swimming to bouldering and martial arts. Sign-up opens each semester and popular courses fill within minutes."
+      },
+      "olympia-schwimmhalle": {
+        "name": "Olympia-Schwimmhalle",
+        "description": "Olympic-size indoor pool in the Olympiapark, open to the public. Student discounts apply, and ZHS swim courses run here."
+      },
+      "olympiapark-sportanlagen": {
+        "name": "Olympiapark Sports Grounds",
+        "description": "Open lawns, running routes and public pitches across the Olympiapark. Informal football games are easy to join on warm evenings."
+      },
+      "englischer-garten": {
+        "name": "Englischer Garten",
+        "description": "One of the largest city parks in the world, bigger than Central Park. Beer gardens at the Chinesischer Turm, surfers on the Eisbach wave, and enough space to disappear for an afternoon."
+      },
+      "olympiapark": {
+        "name": "Olympiapark",
+        "description": "The 1972 Olympic grounds, now a park with a lake, a hill worth climbing for the view over the Alps on clear days, and open-air concerts through the summer."
+      },
+      "westpark": {
+        "name": "Westpark",
+        "description": "Quieter than the Englischer Garten and popular with students living in the south west. Has Thai and Chinese garden pavilions, a lake, and a summer open-air cinema."
+      },
+      "hirschgarten": {
+        "name": "Hirschgarten",
+        "description": "Park with a deer enclosure and the largest beer garden in Munich, around 8,000 seats. Bringing your own food is allowed at the self-service tables, which makes it one of the cheapest evenings out in the city."
+      },
+      "mathaeser-filmpalast": {
+        "name": "Mathäser Filmpalast",
+        "description": "The biggest cinema in the city centre, a short walk from Hauptbahnhof. Shows films in the original language (marked OV or OmU) alongside the German dubs."
+      },
+      "museum-lichtspiele": {
+        "name": "Museum Lichtspiele",
+        "description": "Small independent cinema near Isartor that leans heavily on original-language screenings. Cheaper than the multiplexes and far more character."
       }
     }
   },
@@ -1675,7 +1732,7 @@
     "redirecting": "Redirecting you to",
     "typeMessage": "Type your message…",
     "aiBadge": "AI",
-    "aiDisclaimer": "AI assistant, responses can be inaccurate. Verify anything important.",
+    "aiDisclaimer": "Answers are generated and can be wrong. Check anything that matters.",
     "typing": "typing…",
     "send": "Send"
   },
@@ -2544,21 +2601,21 @@
     }
   },
   "tools": {
-    "badge": "AI Assistants",
-    "title": "Meet Your",
-    "titleHighlight": "AI Assistants",
-    "subtitle": "Personal AI assistants built for your Munich journey. Each one specializes in a different part of life in Germany.",
-    "roster": "The roster",
-    "liveLabel": "live",
-    "capabilities": "What it handles",
+    "badge": "Get help",
+    "title": "Get help with",
+    "titleHighlight": "the hard parts",
+    "subtitle": "Four helpers who know Munich, each one for a different part of settling in. Ask in your own words, in any language.",
+    "roster": "Who can help",
+    "liveLabel": "ready",
+    "capabilities": "What it covers",
     "tryAsking": "Try asking",
     "tools": {
       "housing": {
-        "title": "Housing Application Writer",
-        "description": "Paste a WG or apartment listing and Riad will craft a ready-to-send application that gets replies in Munich's competitive rental market.",
-        "status": "Live",
-        "cta": "Launch Tool",
-        "poweredBy": "AI-powered by Riad",
+        "title": "Finding a place to live",
+        "description": "Riad reads a WG or apartment listing and writes you an application that actually gets replies in Munich's brutal rental market.",
+        "status": "Ready",
+        "cta": "Start here",
+        "poweredBy": "Answered by Riad",
         "tags": [
           "WG Applications",
           "Apartment Listings",
@@ -2566,10 +2623,10 @@
         ]
       },
       "events": {
-        "title": "Event Planner",
-        "description": "Plan hangouts, study sessions, and community events with friends in Munich. Share plans, vote on spots, and coordinate effortlessly.",
-        "status": "Coming Soon",
-        "cta": "Coming Soon",
+        "title": "Finding things to do",
+        "description": "Plan hangouts, study sessions and community events with friends in Munich. Share plans, vote on spots, sort out who is coming.",
+        "status": "Not yet",
+        "cta": "Not yet",
         "comingSoonNote": "We're building this tool, stay tuned!",
         "tags": [
           "Plan Events",
@@ -2583,11 +2640,11 @@
         ]
       },
       "dalilah": {
-        "title": "German Bureaucracy Navigator",
-        "description": "Navigating Anmeldung, residence permits, KVR, health insurance, and German paperwork doesn't have to be scary. Let Dalilah guide you through every step with zero missed deadlines.",
-        "status": "Live",
-        "cta": "Launch Tool",
-        "poweredBy": "AI-powered by Dalilah",
+        "title": "Getting registered",
+        "description": "Dalilah walks you through Anmeldung, residence permits, the KVR and health insurance, one step at a time, so no deadline gets missed.",
+        "status": "Ready",
+        "cta": "Start here",
+        "poweredBy": "Answered by Dalilah",
         "tags": [
           "Anmeldung",
           "Residence Permits",
@@ -2595,11 +2652,11 @@
         ]
       },
       "ilham": {
-        "title": "Academic Research Companion",
-        "description": "Ilham helps you develop research questions, structure papers, refine scientific writing, and prepare thesis work at TUM or LMU, with full academic integrity.",
-        "status": "Live",
-        "cta": "Launch Tool",
-        "poweredBy": "AI-powered by Ilham",
+        "title": "Writing and researching",
+        "description": "Ilham helps you shape a research question, structure a paper and sharpen your academic writing at TUM or LMU, without doing the thinking for you.",
+        "status": "Ready",
+        "cta": "Start here",
+        "poweredBy": "Answered by Ilham",
         "tags": [
           "Research & Literature",
           "Academic Writing",
@@ -2607,11 +2664,11 @@
         ]
       },
       "loubna": {
-        "title": "Healthcare Navigator & Medical Translator",
-        "description": "Loubna helps you navigate German health insurance, find English-speaking doctors, translate symptoms, and understand prescriptions, so nothing gets lost in translation.",
-        "status": "Live",
-        "cta": "Launch Tool",
-        "poweredBy": "AI-powered by Loubna",
+        "title": "Getting health cover",
+        "description": "Loubna explains German health insurance, helps you find an English-speaking doctor, and translates symptoms and prescriptions.",
+        "status": "Ready",
+        "cta": "Start here",
+        "poweredBy": "Answered by Loubna",
         "tags": [
           "Health Insurance",
           "Doctor Search",
@@ -2619,7 +2676,7 @@
         ]
       }
     },
-    "moreComing": "More assistants coming soon. Have an idea? Contribute on",
+    "moreComing": "More help on the way. Have an idea? Contribute on",
     "designedBy": "Designed and created by",
     "howItWorks": "How it works"
   },
@@ -2701,7 +2758,7 @@
       "step1Title": "Paste the Listing",
       "step1Desc": "Copy any WG or apartment listing from ImmobilienScout24, WG-Gesucht, or other platforms.",
       "step2Title": "Riad Writes Your Message",
-      "step2Desc": "Our AI crafts a personalized, high-conversion application in flawless German tailored to the listing.",
+      "step2Desc": "Riad drafts a personal, high-conversion application in flawless German, ready to send.",
       "step3Title": "Send & Get Replies",
       "step3Desc": "Copy the ready-to-send message and paste it directly into the platform. Stand out from hundreds of applicants."
     },
@@ -2798,6 +2855,66 @@
       "title": "You are not doing this",
       "titleHighlight": "alone",
       "subtitle": "Moroccan students and professionals already in Munich, one message away."
+    }
+  },
+  "tree": {
+    "_heading": "Find it in four words",
+    "_hint": "Open a topic to see what is inside.",
+    "_expand": "Show what is inside {label}",
+    "_collapse": "Hide what is inside {label}",
+    "find-apartment-munich": {
+      "_": "Finding a flat",
+      "the-munich-market": "The market",
+      "where-to-search": "Where to look",
+      "wg-vs-private": "WG or private",
+      "your-application": "Your application",
+      "viewing-and-deciding": "Viewings",
+      "your-rental-contract": "The contract"
+    },
+    "anmeldung-city-registration": {
+      "_": "Registering your address",
+      "what-is-anmeldung": "What it is",
+      "when-to-register": "When to go",
+      "what-you-need": "What to bring",
+      "the-appointment": "The appointment",
+      "online-option": "Doing it online",
+      "after-registration": "Afterwards"
+    },
+    "residence-permit-students": {
+      "_": "Residence permit",
+      "do-you-need-one": "Do you need one",
+      "permit-types": "Permit types",
+      "documents-needed": "Documents",
+      "application-process": "Applying",
+      "working-as-student": "Working limits",
+      "renewing-permit": "Renewing"
+    },
+    "student-life-munich": {
+      "_": "Student life",
+      "enrollment-and-id": "Enrolment and ID",
+      "semester-ticket": "Semester ticket",
+      "libraries-and-study": "Libraries",
+      "moodle-campus-online": "Moodle and portals",
+      "student-services": "Student services",
+      "academic-culture": "Academic culture"
+    },
+    "find-werkstudent-job": {
+      "_": "Career and jobs",
+      "what-is-werkstudent": "Working student",
+      "where-to-find-jobs": "Job search",
+      "german-application": "Applications",
+      "application-tips": "Interview tips",
+      "work-hours-rules": "Hours and visa",
+      "taxes-and-insurance": "Tax and insurance"
+    },
+    "essential-apps-munich": {
+      "_": "Everyday apps",
+      "transport-apps": "Transport",
+      "banking-apps": "Banking",
+      "food-apps": "Food delivery",
+      "communication-apps": "Calls and internet",
+      "mobile-contracts": "Mobile contracts",
+      "admin-and-study": "Admin and study"
     }
   }
 }

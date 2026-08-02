@@ -7,6 +7,10 @@ import { getHub } from "@/data/hubs";
 import { getAssistantsForHub, isLive } from "@/data/assistants";
 import { guides } from "@/data/guides";
 import { localizeGuides } from "@/data/guides-i18n";
+import { getGuideTree } from "@/lib/guide-tree-server";
+import { GuideTree, FAQAccordion } from "@/components/shared";
+import { getFaqsByHub } from "@/data/faqs";
+import { faqPageJsonLd } from "@/lib/structured-data";
 import type { HubKey } from "@/types";
 
 /**
@@ -15,8 +19,7 @@ import type { HubKey } from "@/types";
  * A hub answers one stage of the move. It gathers the guides, the helpers and
  * (from phase three) the questions that belong to that stage, so a reader
  * never has to work out whether their answer is filed under "Guides", "Tools"
- * or "FAQ". The guide list here is a flat index for now; the expanding tree
- * replaces it once `buildGuideTree` lands.
+ * or "FAQ".
  */
 export async function HubPage({ hubKey, locale }: { hubKey: HubKey; locale: string }) {
   const hub = getHub(hubKey);
@@ -28,9 +31,22 @@ export async function HubPage({ hubKey, locale }: { hubKey: HubKey; locale: stri
     locale
   );
   const helpers = getAssistantsForHub(hubKey).filter(isLive);
+  /* The same tree as /guides, scoped to this hub's guides. */
+  const treeNodes = await getGuideTree(locale, hubKey);
+  /* The questions that belong to this stage of the move. They used to live on
+     a single /faq page where a reader had to know to look for them. */
+  const hubFaqs = getFaqsByHub(hubKey);
+  const faqSchema = faqPageJsonLd(hubFaqs);
 
   return (
     <div className="min-h-screen bg-background">
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
+
       <section className="mx-auto flex max-w-2xl flex-col items-center px-5 pb-10 pt-14 text-center sm:pb-14 sm:pt-20 2xl:max-w-3xl">
         <span className="eyebrow">{t(`${hubKey}.badge`)}</span>
         <h1 className="rise rise-1 mt-3 font-display text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-5xl 2xl:text-6xl">
@@ -57,24 +73,13 @@ export async function HubPage({ hubKey, locale }: { hubKey: HubKey; locale: stri
               </Link>
             </div>
 
-            <div className="mt-5 grid grid-cols-1 gap-3 sm:grid-cols-2">
-              {hubGuides.map((guide) => (
-                <Link
-                  key={guide.slug}
-                  href={`/guides/${guide.slug}`}
-                  className={`group flex flex-col rounded-2xl px-5 py-5 outline-none transition-all duration-300 hover:-translate-y-1 focus-visible:ring-2 focus-visible:ring-zellige focus-visible:ring-offset-2 focus-visible:ring-offset-background ${hub.tint}`}
-                >
-                  <span className="flex items-start justify-between gap-3">
-                    <span className="font-display text-base font-bold leading-snug text-zinc-900 dark:text-zinc-50">
-                      {guide.title}
-                    </span>
-                    <ArrowRight className="mt-0.5 h-4 w-4 shrink-0 text-zinc-400/70 transition-transform duration-200 group-hover:translate-x-0.5" />
-                  </span>
-                  <span className="mt-2 line-clamp-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-                    {guide.summary}
-                  </span>
-                </Link>
-              ))}
+            {/* The tree, scoped to this hub. First topic open so the page
+                never lands as a wall of closed rows. */}
+            <div className="mt-5 rounded-[1.75rem] bg-card p-4 shadow-[0_2px_20px_rgb(0_0_0/0.06)] sm:p-6 dark:shadow-none dark:ring-1 dark:ring-border">
+              <GuideTree
+                nodes={treeNodes}
+                defaultOpenIds={treeNodes[0] ? [treeNodes[0].id] : []}
+              />
             </div>
           </section>
         )}
@@ -114,6 +119,17 @@ export async function HubPage({ hubKey, locale }: { hubKey: HubKey; locale: stri
                   <ArrowRight className="h-4 w-4 shrink-0 text-zinc-300 transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-zinc-500 dark:text-zinc-600 dark:group-hover:text-zinc-300" />
                 </Link>
               ))}
+            </div>
+          </section>
+        )}
+
+        {hubFaqs.length > 0 && (
+          <section id="questions" className="reveal mt-14 scroll-mt-24">
+            <h2 className="font-display text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-2xl">
+              {t("questionsTitle")}
+            </h2>
+            <div className="mt-5">
+              <FAQAccordion faqs={hubFaqs} />
             </div>
           </section>
         )}

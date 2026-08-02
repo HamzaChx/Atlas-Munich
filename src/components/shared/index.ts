@@ -16,3 +16,5 @@ export { PageTransition, StaggerChildren, RevealSection } from "./PageTransition
 export { LanguageSwitcher } from "./LanguageSwitcher";
 export { SettingsMenu } from "./SettingsMenu";
 export { ReadingProgress } from "./ReadingProgress";
+export { TripPlanner } from "./TripPlanner";
+export { GuideTree } from "./GuideTree";

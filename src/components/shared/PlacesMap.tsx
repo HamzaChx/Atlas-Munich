@@ -15,6 +15,12 @@ interface PlacesMapProps {
   categoryNames?: Record<string, string>;
   /** The visitor's opted-in position, shown as a marker. Never sent anywhere. */
   userLocation?: Coordinates | null;
+  /** Ordered stop coordinates for a planned trip, drawn as a route line. */
+  routePath?: [number, number][];
+  /** Slugs already in the trip, so the popup can offer add or remove. */
+  tripSlugs?: string[];
+  onToggleTrip?: (slug: string) => void;
+  tripFull?: boolean;
   className?: string;
 }
 
@@ -46,6 +52,10 @@ export function PlacesMap({
   categoryLabels,
   categoryNames,
   userLocation,
+  routePath,
+  tripSlugs,
+  onToggleTrip,
+  tripFull,
   className,
 }: PlacesMapProps) {
   return (
@@ -54,6 +64,10 @@ export function PlacesMap({
       categoryLabels={categoryLabels}
       categoryNames={categoryNames}
       userLocation={userLocation}
+      routePath={routePath}
+      tripSlugs={tripSlugs}
+      onToggleTrip={onToggleTrip}
+      tripFull={tripFull}
       className={cn("h-[60vh] min-h-[26rem] sm:h-[38rem]", className)}
     />
   );

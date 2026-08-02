@@ -2,6 +2,7 @@ import { setRequestLocale } from "next-intl/server";
 
 import { guides } from "@/data/guides";
 import { localizeGuides } from "@/data/guides-i18n";
+import { getGuideTree } from "@/lib/guide-tree-server";
 
 import { GuidesBrowser } from "./GuidesBrowser";
 
@@ -21,6 +22,7 @@ export default async function GuidesPage({
   const { locale } = await params;
   setRequestLocale(locale);
   const localizedGuides = await localizeGuides(guides, locale);
+  const treeNodes = await getGuideTree(locale);
 
-  return <GuidesBrowser guides={localizedGuides} />;
+  return <GuidesBrowser guides={localizedGuides} treeNodes={treeNodes} />;
 }

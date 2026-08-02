@@ -22,24 +22,32 @@ import {
   MapContainer,
   Marker,
   Popup,
+  Polyline,
   TileLayer,
+  Tooltip,
   useMap,
   useMapEvents,
 } from "react-leaflet";
 import { useTheme } from "next-themes";
 import { useTranslations, useLocale } from "next-intl";
-import { ExternalLink, Maximize, MapPin, Minus, Plus, Star, LocateFixed } from "lucide-react";
+import { Check, ExternalLink, Maximize, MapPin, Minus, Plus, Route, Star, LocateFixed } from "lucide-react";
 
 import type { Place } from "@/types";
 import { placeAccents } from "./place-accents";
 import { cn } from "@/lib/utils";
 import { placeDirectionsUrl } from "@/lib/maps";
-import { formatDistanceKm, type Coordinates } from "@/lib/geo";
+import { formatDistanceKm, travelEta, type Coordinates } from "@/lib/geo";
 
 const MUNICH_CENTER: [number, number] = [48.1372, 11.5756];
 
 /* Pixel radius used to decide when two places collapse into one cluster */
 const CLUSTER_RADIUS = 66;
+
+/* Below this, every pin wearing its name turns the city into soup: at zoom 12
+   the whole of Munich is on screen and the labels overlap into a grey band.
+   From 14 up you are looking at a district or a street, where the names are
+   what make the map readable without clicking every pin. */
+const LABEL_MIN_ZOOM = 14;
 
 /* Category glyphs, lucide path data drawn in a 24x24 box */
 const CATEGORY_GLYPHS: Record<string, string> = {
@@ -56,10 +64,12 @@ const CATEGORY_GLYPHS: Record<string, string> = {
     '<path d="M18 5h4"/><path d="M20 3v4"/><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/>',
   "study-spot":
     '<path d="M12 7v14"/><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/>',
-  cowork:
-    '<path d="M18 5a2 2 0 0 1 2 2v8.526a2 2 0 0 0 .212.897l1.068 2.127a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45l1.068-2.127A2 2 0 0 0 4 15.526V7a2 2 0 0 1 2-2z"/><path d="M20.054 15.987H3.946"/>',
-  barber:
-    '<circle cx="6" cy="6" r="3"/><path d="M8.12 8.12 12 12"/><path d="M20 4 8.12 15.88"/><circle cx="6" cy="18" r="3"/><path d="M14.8 14.8 20 20"/>',
+  sport:
+    '<path d="M14.4 14.4 9.6 9.6"/><path d="M18.657 21.485a2 2 0 1 1-2.829-2.828l-1.767 1.768a2 2 0 1 1-2.829-2.829l6.364-6.364a2 2 0 1 1 2.829 2.829l-1.768 1.767a2 2 0 1 1 2.828 2.829z"/><path d="m21.5 21.5-1.4-1.4"/><path d="M3.9 3.9 2.5 2.5"/><path d="M6.404 12.768a2 2 0 1 1-2.829-2.829l1.768-1.767a2 2 0 1 1-2.828-2.829l2.828-2.828a2 2 0 1 1 2.829 2.828l1.767-1.768a2 2 0 1 1 2.829 2.829z"/>',
+  leisure:
+    '<path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>',
+  park:
+    '<path d="M10 10v.2A3 3 0 0 1 8.9 16H5a3 3 0 0 1-1-5.8V10a3 3 0 0 1 6 0Z"/><path d="M7 16v6"/><path d="M13 19v3"/><path d="M12 19h8.3a1 1 0 0 0 .7-1.7L18 14h.3a1 1 0 0 0 .7-1.7L16 9h.2a1 1 0 0 0 .8-1.7L13 3l-1.4 1.5"/>',
 };
 
 const FALLBACK_GLYPH = '<circle cx="12" cy="12" r="3.5"/>';
@@ -209,15 +219,30 @@ function MarkerLayer({ places, selected, onSelect }: MarkerLayerProps) {
       {clusters.map((cluster) => {
         if (cluster.items.length === 1) {
           const place = cluster.items[0];
+          const isSelected = selected?.slug === place.slug;
           return (
             <Marker
               key={place.slug}
               position={[place.lat!, place.lng!]}
-              icon={pinIcon(place.category, selected?.slug === place.slug)}
+              icon={pinIcon(place.category, isSelected)}
               title={place.name}
-              zIndexOffset={selected?.slug === place.slug ? 1000 : 0}
+              zIndexOffset={isSelected ? 1000 : 0}
               eventHandlers={{ click: () => onSelect(place) }}
-            />
+            >
+              {/* The name, on the map, once there is room for it. The selected
+                  pin keeps its label at any zoom so it stays identifiable
+                  after a search or a jump from the list. */}
+              {(zoom >= LABEL_MIN_ZOOM || isSelected) && (
+                <Tooltip
+                  permanent
+                  direction="right"
+                  offset={[12, -12]}
+                  className={cn("atlas-label", isSelected && "atlas-label--active")}
+                >
+                  {place.name}
+                </Tooltip>
+              )}
+            </Marker>
           );
         }
 
@@ -259,8 +284,21 @@ function coreBounds(places: Place[]) {
   );
 }
 
-function PlacePopupCard({ place, label }: { place: Place; label: string }) {
+function PlacePopupCard({
+  place,
+  label,
+  inTrip = false,
+  onToggleTrip,
+  tripFull = false,
+}: {
+  place: Place;
+  label: string;
+  inTrip?: boolean;
+  onToggleTrip?: (slug: string) => void;
+  tripFull?: boolean;
+}) {
   const t = useTranslations("places");
+  const tTrip = useTranslations("places.trip");
   const locale = useLocale();
   const color = accentColor(place.category);
   const directions = placeDirectionsUrl(place);
@@ -301,7 +339,10 @@ function PlacePopupCard({ place, label }: { place: Place; label: string }) {
         <span>
           {place.address}
           {place.distanceKm !== undefined &&
-            ` · ${t("location.away", { distance: formatDistanceKm(place.distanceKm, locale) })}`}
+            ` · ${t("location.away", { distance: formatDistanceKm(place.distanceKm, locale) })} · ${t(
+              `location.eta.${travelEta(place.distanceKm).mode}`,
+              { minutes: travelEta(place.distanceKm).minutes }
+            )}`}
         </span>
       </p>
 
@@ -331,6 +372,21 @@ function PlacePopupCard({ place, label }: { place: Place; label: string }) {
             <ExternalLink className="h-3.5 w-3.5" />
             {t("card.website")}
           </a>
+        )}
+        {/* Building a route without leaving the map: the browse view is not
+            where most people are when they spot a second place they want. */}
+        {onToggleTrip && (
+          <button
+            type="button"
+            onClick={() => onToggleTrip(place.slug)}
+            disabled={!inTrip && tripFull}
+            aria-pressed={inTrip}
+            title={inTrip ? tTrip("remove") : tTrip("add")}
+            aria-label={inTrip ? tTrip("remove") : tTrip("add")}
+            className="atlas-popup__ghost disabled:cursor-not-allowed disabled:opacity-40"
+          >
+            {inTrip ? <Check className="h-3.5 w-3.5" /> : <Route className="h-3.5 w-3.5" />}
+          </button>
         )}
       </div>
     </div>
@@ -407,6 +463,12 @@ export interface PlacesMapCanvasProps {
   categoryNames?: Record<string, string>;
   /** The visitor's opted-in position, shown as a marker. Never sent anywhere. */
   userLocation?: Coordinates | null;
+  /** Ordered stop coordinates for a planned trip, drawn as a route line. */
+  routePath?: [number, number][];
+  /** Slugs already in the trip, so the popup can offer add or remove. */
+  tripSlugs?: string[];
+  onToggleTrip?: (slug: string) => void;
+  tripFull?: boolean;
   className?: string;
 }
 
@@ -415,6 +477,10 @@ export default function PlacesMapCanvas({
   categoryLabels,
   categoryNames,
   userLocation,
+  routePath,
+  tripSlugs = [],
+  onToggleTrip,
+  tripFull = false,
   className,
 }: PlacesMapCanvasProps) {
   const t = useTranslations("places");
@@ -510,6 +576,23 @@ export default function PlacesMapCanvas({
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
           />
 
+          {/* The planned route, under the pins so it never hides one. A
+              straight line between stops, matching how the time is estimated:
+              drawing turn-by-turn geometry we did not compute would claim a
+              precision this does not have. */}
+          {routePath && routePath.length > 1 && (
+            <Polyline
+              positions={routePath}
+              pathOptions={{
+                color: "var(--zellige)",
+                weight: 3,
+                opacity: 0.75,
+                dashArray: "1 7",
+                lineCap: "round",
+              }}
+            />
+          )}
+
           <MarkerLayer places={mapped} selected={selected} onSelect={setSelected} />
 
           {userLocation && (
@@ -535,6 +618,9 @@ export default function PlacesMapCanvas({
               <PlacePopupCard
                 place={selected}
                 label={categoryNames?.[selected.category] ?? selected.category.replace(/-/g, " ")}
+                inTrip={tripSlugs.includes(selected.slug)}
+                onToggleTrip={onToggleTrip}
+                tripFull={tripFull}
               />
             </Popup>
           )}

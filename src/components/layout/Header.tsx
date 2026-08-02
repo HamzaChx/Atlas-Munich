@@ -42,6 +42,15 @@ export function Header({ locale, translations }: HeaderProps) {
   const pathname = usePathname();
   const [scrolled, setScrolled] = React.useState(false);
 
+  React.useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const navItems = [
     { label: translations.map, href: "/map" },
     { label: translations.studies, href: "/studies" },
@@ -50,23 +59,21 @@ export function Header({ locale, translations }: HeaderProps) {
     { label: translations.tools, href: "/tools" },
   ];
 
+  /* Transparent at the top of the homepage, over the dark photo hero;
+     solid once the reader scrolls past it (or on any other page, which has
+     no dark hero to sit on). Only the wordmark and nav labels need a white
+     variant here — the About and Settings controls are each already an
+     opaque bg-card circle, so they read fine on the photo without one. */
   const isHomePage = pathname === "/";
-
-  React.useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  const isGlass = isHomePage && !scrolled;
 
   const headerBg = scrolled
     ? "bg-background border-b border-border shadow-[0_1px_3px_0_rgb(0_0_0_/_0.05)] dark:shadow-none"
-    : isHomePage
-      ? "bg-transparent border-b border-transparent"
-      : "bg-background border-b border-border";
+    : "bg-transparent border-b border-transparent";
 
   return (
     <header
-      className={cn("fixed top-0 z-50 w-full transition-all duration-300 safe-area-top", headerBg)}
+      className={cn("fixed top-0 z-50 w-full transition-all duration-500 safe-area-top", headerBg)}
     >
       {/* Three tracks with equal-weight sides, so the nav sits on the page's
           centre line rather than wherever justify-between leaves it. */}
@@ -80,14 +87,14 @@ export function Header({ locale, translations }: HeaderProps) {
             alt=""
             width={36}
             height={36}
-            className="h-8 w-8 rounded-full transition-transform duration-300 group-hover:scale-105 sm:h-9 sm:w-9"
+            className="h-8 w-8 rounded-full transition-transform duration-300 group-hover:scale-105 sm:h-9 sm:w-9 shadow-sm"
           />
-          <span className="font-display text-lg sm:text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
-            <span className="text-zellige dark:text-zellige">Atlas</span> Munich
+          <span className={cn("font-display text-lg sm:text-xl font-bold tracking-tight transition-colors duration-300", isGlass ? "text-white" : "text-zinc-900 dark:text-zinc-50")}>
+            <span className={cn("transition-colors duration-300", isGlass ? "text-white" : "text-zellige dark:text-zellige")}>Atlas</span> Munich
           </span>
         </Link>
 
-        <nav className="hidden items-center gap-0.5 md:flex">
+        <nav className="hidden items-center gap-1 md:flex">
           {navItems.map((item) => {
             const isActive = pathname.startsWith(item.href);
             return (
@@ -95,10 +102,14 @@ export function Header({ locale, translations }: HeaderProps) {
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  "relative rounded-full px-3.5 py-2 text-sm font-medium transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-zellige/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+                  "relative rounded-full px-4 py-2 text-sm font-medium transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-zellige/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                   isActive
-                    ? "bg-zinc-100 text-zinc-900 dark:bg-foreground/10 dark:text-zinc-50"
-                    : "text-zinc-500 dark:text-zinc-400 hover:bg-zinc-100/70 hover:text-zinc-900 dark:hover:bg-foreground/[0.075] dark:hover:text-zinc-50"
+                    ? isGlass
+                      ? "bg-white/20 text-white"
+                      : "bg-zinc-100 text-zinc-900 dark:bg-foreground/10 dark:text-zinc-50"
+                    : isGlass
+                      ? "text-white/85 hover:bg-white/10 hover:text-white"
+                      : "text-zinc-500 dark:text-zinc-400 hover:bg-zinc-100/70 hover:text-zinc-900 dark:hover:bg-foreground/[0.075] dark:hover:text-zinc-50"
                 )}
               >
                 {item.label}
@@ -115,8 +126,8 @@ export function Header({ locale, translations }: HeaderProps) {
             aria-label={translations.aboutAria}
             title={translations.about}
             className={cn(
-              "hidden h-9 w-9 items-center justify-center rounded-full border border-border/50 bg-card text-zinc-600 shadow-sm transition-colors duration-200 md:flex",
-              "hover:bg-muted hover:text-zinc-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-zellige/50 dark:text-zinc-300 dark:hover:text-zinc-50",
+              "hidden h-9 w-9 items-center justify-center rounded-full border border-border/50 bg-card text-zinc-600 shadow-sm transition-colors duration-200 md:flex focus:outline-none focus-visible:ring-2 focus-visible:ring-zellige/50",
+              "hover:bg-muted hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-zinc-50",
               pathname.startsWith("/about") && "border-zellige/50 bg-zellige-soft text-zellige"
             )}
           >

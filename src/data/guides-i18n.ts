@@ -12,6 +12,7 @@
 // ============================================
 
 import type { Guide, GuideTranslation } from "@/types";
+import { withReadingTime } from "@/lib/reading-time";
 
 type Overlay = Record<string, GuideTranslation>;
 
@@ -89,13 +90,17 @@ function applyOverlay(guide: Guide, translation?: GuideTranslation): Guide {
   };
 }
 
+/* Reading time is computed here rather than authored, so it is measured
+   against the prose the reader is actually getting. The hardcoded values in
+   guides.ts were English-only, which meant French and German pages quoted the
+   English figure for 15 to 20 percent more text. */
 export async function localizeGuide(guide: Guide, locale: string): Promise<Guide> {
   const overlay = await loadOverlay(locale);
-  return applyOverlay(guide, overlay?.[guide.slug]);
+  return withReadingTime(applyOverlay(guide, overlay?.[guide.slug]));
 }
 
 export async function localizeGuides(guides: Guide[], locale: string): Promise<Guide[]> {
   const overlay = await loadOverlay(locale);
-  if (!overlay) return guides;
-  return guides.map((guide) => applyOverlay(guide, overlay[guide.slug]));
+  if (!overlay) return guides.map(withReadingTime);
+  return guides.map((guide) => withReadingTime(applyOverlay(guide, overlay[guide.slug])));
 }

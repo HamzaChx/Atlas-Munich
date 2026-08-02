@@ -3,12 +3,13 @@ import {
   Beef,
   Coffee,
   Croissant,
-  Laptop,
+  Dumbbell,
   LucideIcon,
   MoonStar,
-  Scissors,
   ShoppingBasket,
+  Trees,
   Utensils,
+  Music,
 } from "lucide-react";
 
 /* The five brand hues, one per place category family */
@@ -66,8 +67,11 @@ export const placeAccents: Record<string, PlaceAccentStyles> = {
   grocery: green,
   mosque: green,
   "study-spot": blue,
-  barber: blue,
-  cowork: plum,
+  /* The leisure family shares plum, so "somewhere to go and do something"
+     reads as one group against the food, faith and study hues. */
+  sport: plum,
+  leisure: plum,
+  park: green,
 };
 
 export const fallbackAccent: PlaceAccentStyles = {
@@ -86,6 +90,7 @@ export const placeIcons: Record<string, LucideIcon> = {
   grocery: ShoppingBasket,
   mosque: MoonStar,
   "study-spot": BookOpen,
-  cowork: Laptop,
-  barber: Scissors,
+  sport: Dumbbell,
+  leisure: Music,
+  park: Trees,
 };

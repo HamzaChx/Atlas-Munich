@@ -652,6 +652,14 @@
     .zellige-turn {
       animation: none;
     }
+    /* .rise opens at opacity 0, so it cannot simply have its animation
+       removed the way the others can: that would leave the whole hero
+       invisible. It has to be switched to its finished state instead. */
+    .rise {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
   }
 
   .skeleton {
@@ -985,6 +993,38 @@
 
 .atlas-marker:hover .atlas-cluster {
   transform: scale(1.08);
+}
+
+/* Place labels: the name sitting beside its pin from zoom 14 up, so a street
+   or district reads without clicking anything. Leaflet's own tooltip chrome
+   (white box, border, arrow) is stripped back to plain type on a soft plate,
+   which stays legible over both the light and dark CARTO basemaps. */
+.leaflet-tooltip.atlas-label {
+  background: color-mix(in oklab, var(--card) 88%, transparent);
+  color: var(--foreground);
+  border: none;
+  border-radius: 7px;
+  padding: 2px 7px;
+  font-size: 11.5px;
+  font-weight: 600;
+  line-height: 1.35;
+  max-width: 148px;
+  white-space: normal;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.16);
+  /* Labels are decoration for the pin, which already handles the click. */
+  pointer-events: none;
+}
+
+/* Leaflet draws a little arrow on every tooltip; these are plates, not
+   callouts, so it has to go for each direction it can point. */
+.leaflet-tooltip.atlas-label::before {
+  display: none;
+}
+
+.leaflet-tooltip.atlas-label--active {
+  background: var(--zellige);
+  color: var(--card);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 0.24);
 }
 
 /* "You are here": the visitor's opted-in position, distinct from every

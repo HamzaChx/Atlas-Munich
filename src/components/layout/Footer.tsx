@@ -17,7 +17,7 @@ const linkColumns = [
     titleKey: "resources",
     links: [
       { labelKey: "links.halalPlaces", href: "/map" },
-      { labelKey: "links.faq", href: "/faq" },
+      { labelKey: "links.faq", href: "/studies#questions" },
       { labelKey: "links.usefulApps", href: "/career" },
       { labelKey: "links.aiTools", href: "/tools" },
     ],
@@ -26,7 +26,7 @@ const linkColumns = [
     titleKey: "community",
     links: [
       { labelKey: "links.aboutUs", href: "/about" },
-      { labelKey: "links.contribute", href: "/about#contribute" },
+      { labelKey: "links.contribute", href: "/community#contribute" },
       { labelKey: "links.contact", href: "/about#contact" },
     ],
   },
@@ -80,7 +80,7 @@ export function Footer() {
               </h3>
               <ul className="mt-3 space-y-2">
                 {column.links.map((link) => (
-                  <li key={link.href}>
+                  <li key={link.labelKey}>
                     <Link
                       href={link.href}
                       className="inline-block py-1 -my-1 text-sm text-zinc-500 transition-colors duration-200 hover:text-zellige dark:text-zinc-400 outline-none focus-visible:text-zellige"

@@ -12,8 +12,9 @@ const SCHEMA_TYPE_BY_CATEGORY: Record<PlaceCategory, string> = {
   butcher: "Store",
   mosque: "PlaceOfWorship",
   "study-spot": "LocalBusiness",
-  cowork: "LocalBusiness",
-  barber: "HairSalon",
+  sport: "SportsActivityLocation",
+  leisure: "EntertainmentBusiness",
+  park: "Park",
 };
 
 export const metadata: Metadata = {

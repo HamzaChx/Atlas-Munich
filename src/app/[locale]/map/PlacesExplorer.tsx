@@ -8,11 +8,11 @@
 // the ~46 KB `placesData` namespace never has to reach the browser.
 // ============================================
 
-import { Suspense, useEffect, useState, useMemo } from "react";
+import { Suspense, useCallback, useEffect, useState, useMemo } from "react";
 import { Link } from "@/i18n/navigation";
 import { useSearchParams } from "next/navigation";
 import { track } from "@vercel/analytics";
-import { PlacesBrowser, EmptyState, PlacesMap, LocationControl } from "@/components/shared";
+import { PlacesBrowser, EmptyState, PlacesMap, LocationControl, TripPlanner } from "@/components/shared";
 import { placeAccents } from "@/components/shared/place-accents";
 
 import { Place, PlaceCategory, PriceLevel } from "@/types";
@@ -29,6 +29,7 @@ import {
 } from "@/components/ui/select";
 import { useGeolocation } from "@/hooks/useGeolocation";
 import { haversineDistanceKm } from "@/lib/geo";
+import { planItinerary, itineraryPath, MAX_STOPS } from "@/lib/itinerary";
 
 const PRICE_LEVELS: PriceLevel[] = ["€", "€€", "€€€"];
 
@@ -245,12 +246,19 @@ const PLACE_CATEGORIES: PlaceCategory[] = [
   "butcher",
   "mosque",
   "study-spot",
-  "cowork",
-  "barber",
+  "sport",
+  "leisure",
+  "park",
 ];
 
-const readCategory = (raw: string | null): PlaceCategory | null =>
-  raw && (PLACE_CATEGORIES as string[]).includes(raw) ? (raw as PlaceCategory) : null;
+/* There is no "all" any more. 100+ pins of every kind at once was a wall,
+   not a view: nothing could be compared and the map was unreadable at city
+   zoom. A category is always selected, and restaurants are the default
+   because they are what most people arrive looking for. */
+const DEFAULT_CATEGORY: PlaceCategory = "restaurant";
+
+const readCategory = (raw: string | null): PlaceCategory =>
+  raw && (PLACE_CATEGORIES as string[]).includes(raw) ? (raw as PlaceCategory) : DEFAULT_CATEGORY;
 
 /* `?category=` lets the homepage intent chips and the search palette land here
    already filtered. Reading it in the client behind a boundary keeps this page
@@ -270,7 +278,7 @@ function PlacesExplorerInner({ places }: { places: Place[] }) {
 
   const queryParam = searchParams.get("q") ?? "";
   const [searchQuery, setSearchQuery] = useState(queryParam);
-  const [selectedCategory, setSelectedCategory] = useState<PlaceCategory | null>(() =>
+  const [selectedCategory, setSelectedCategory] = useState<PlaceCategory>(() =>
     readCategory(categoryParam)
   );
 
@@ -294,6 +302,7 @@ function PlacesExplorerInner({ places }: { places: Place[] }) {
   const geolocation = useGeolocation();
   const [locationPopoverOpen, setLocationPopoverOpen] = useState(false);
   const [radiusKm, setRadiusKm] = useState<number | null>(null);
+
 
   const handleLocationRequest = () => {
     track("places_location_request");
@@ -327,6 +336,44 @@ function PlacesExplorerInner({ places }: { places: Place[] }) {
     );
   }, [places, geolocation.coords]);
 
+  /* Trip stops are held as slugs, not Place objects, so toggling one does not
+     depend on which filtered list it came from. */
+  const [tripSlugs, setTripSlugs] = useState<string[]>([]);
+
+  const toggleTripStop = useCallback((slug: string) => {
+    setTripSlugs((current) =>
+      current.includes(slug)
+        ? current.filter((s) => s !== slug)
+        : current.length >= MAX_STOPS
+          ? current
+          : [...current, slug]
+    );
+  }, []);
+
+  const tripStops = useMemo(
+    () =>
+      tripSlugs
+        .map((slug) => places.find((place) => place.slug === slug))
+        .filter((place): place is Place => Boolean(place)),
+    [tripSlugs, places]
+  );
+
+  /* Stops carry their distance from the reader so the planner can order from
+     where they actually are, not from the first thing they tapped. */
+  const tripStopsWithDistance = useMemo(
+    () =>
+      tripStops.map(
+        (stop) => placesWithDistance.find((p) => p.slug === stop.slug) ?? stop
+      ),
+    [tripStops, placesWithDistance]
+  );
+
+  const routePath = useMemo(() => {
+    if (tripStopsWithDistance.length === 0) return undefined;
+    const itinerary = planItinerary(tripStopsWithDistance, geolocation.coords);
+    return itineraryPath(itinerary, geolocation.coords);
+  }, [tripStopsWithDistance, geolocation.coords]);
+
   const filterMeta: { key: PlaceCategory; label: string }[] = [
     { key: "restaurant", label: t("filters.restaurants") },
     { key: "cafe", label: t("filters.cafes") },
@@ -335,8 +382,9 @@ function PlacesExplorerInner({ places }: { places: Place[] }) {
     { key: "butcher", label: t("filters.butchers") },
     { key: "mosque", label: t("filters.mosques") },
     { key: "study-spot", label: t("filters.studySpots") },
-    { key: "cowork", label: t("filters.coworking") },
-    { key: "barber", label: t("filters.barbers") },
+    { key: "sport", label: t("filters.sport") },
+    { key: "leisure", label: t("filters.leisure") },
+    { key: "park", label: t("filters.parks") },
   ];
 
   const countByCategory = useMemo(() => {
@@ -378,9 +426,7 @@ function PlacesExplorerInner({ places }: { places: Place[] }) {
   const filteredPlaces = useMemo(() => {
     let result = placesWithDistance;
 
-    if (selectedCategory) {
-      result = result.filter((place) => place.category === selectedCategory);
-    }
+    result = result.filter((place) => place.category === selectedCategory);
 
     if (priceFilter) {
       result = result.filter((place) => place.price === priceFilter);
@@ -430,7 +476,11 @@ function PlacesExplorerInner({ places }: { places: Place[] }) {
   ]);
 
   const activeFilterCount = [priceFilter, districtFilter, cuisineFilter].filter(Boolean).length;
-  const isFiltering = Boolean(selectedCategory || searchQuery.trim() || activeFilterCount > 0);
+  /* A category is always selected now, so it no longer counts as "filtering";
+     only the things a reader added on top of the default do. */
+  const isFiltering = Boolean(
+    selectedCategory !== DEFAULT_CATEGORY || searchQuery.trim() || activeFilterCount > 0
+  );
 
   return (
     <>
@@ -443,6 +493,22 @@ function PlacesExplorerInner({ places }: { places: Place[] }) {
           {/* Row 1: search, advanced filters, view toggle */}
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex flex-wrap items-center gap-2">
+              {/* Opt-in location, first and primary: sorting by distance is
+                  the point of the page. Nothing about the visitor's position
+                  is requested, computed, or shown until they explicitly allow
+                  it here, see LocationControl and useGeolocation. */}
+              <LocationControl
+                prominent
+                status={geolocation.status}
+                isSupported={geolocation.isSupported}
+                onRequest={handleLocationRequest}
+                onClear={handleLocationClear}
+                radiusKm={radiusKm}
+                onRadiusChange={setRadiusKm}
+                open={locationPopoverOpen}
+                onOpenChange={setLocationPopoverOpen}
+              />
+
               {/* Search */}
               <div className="relative sm:w-64 lg:w-72">
                 <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-400 dark:text-zinc-500" />
@@ -477,19 +543,6 @@ function PlacesExplorerInner({ places }: { places: Place[] }) {
                 activeCount={activeFilterCount}
               />
 
-              {/* Opt-in location: nothing about the visitor's position is
-                  requested, computed, or shown until they explicitly allow it
-                  here — see LocationControl and useGeolocation. */}
-              <LocationControl
-                status={geolocation.status}
-                isSupported={geolocation.isSupported}
-                onRequest={handleLocationRequest}
-                onClear={handleLocationClear}
-                radiusKm={radiusKm}
-                onRadiusChange={setRadiusKm}
-                open={locationPopoverOpen}
-                onOpenChange={setLocationPopoverOpen}
-              />
               {geolocation.coords && radiusKm && (
                 <FilterChip
                   label={t("location.radiusUpTo", { km: radiusKm })}
@@ -500,7 +553,7 @@ function PlacesExplorerInner({ places }: { places: Place[] }) {
               {isFiltering && (
                 <button
                   onClick={() => {
-                    setSelectedCategory(null);
+                    setSelectedCategory(DEFAULT_CATEGORY);
                     setSearchQuery("");
                     setPriceFilter(null);
                     setDistrictFilter(null);
@@ -547,39 +600,18 @@ function PlacesExplorerInner({ places }: { places: Place[] }) {
           {/* Row 2: category pills with live counts */}
           <div className="-mx-4 overflow-x-auto px-4 hide-scrollbar-mobile sm:mx-0 sm:px-0">
             <div className="flex min-w-max items-center gap-1.5 sm:flex-wrap">
-              <button
-                onClick={() => setSelectedCategory(null)}
-                className={cn(
-                  "flex min-h-11 items-center gap-1.5 rounded-full px-3.5 text-[13px] font-semibold transition-all duration-200 sm:min-h-0 sm:py-2",
-                  selectedCategory === null
-                    ? "bg-zinc-900 text-white dark:bg-zinc-50 dark:text-zinc-900"
-                    : "text-zinc-500 hover:bg-card hover:text-zinc-900 hover:shadow-sm dark:text-zinc-400 dark:hover:bg-foreground/[0.075] dark:hover:text-zinc-50"
-                )}
-              >
-                {t("filters.all")}
-                <span
-                  className={cn(
-                    "text-xs tabular-nums",
-                    selectedCategory === null
-                      ? "text-white/60 dark:text-zinc-900/60"
-                      : "text-zinc-400 dark:text-zinc-500"
-                  )}
-                >
-                  {places.length}
-                </span>
-              </button>
-
               {categoryFilters.map((filter) => {
                 const active = selectedCategory === filter.key;
                 const accent = placeAccents[filter.key];
                 return (
                   <button
                     key={filter.key}
-                    onClick={() => setSelectedCategory(active ? null : filter.key)}
+                    onClick={() => setSelectedCategory(filter.key)}
+                    aria-pressed={active}
                     className={cn(
                       "flex min-h-11 items-center gap-1.5 rounded-full px-3.5 text-[13px] font-semibold transition-all duration-200 sm:min-h-0 sm:py-2",
                       active
-                        ? "bg-zinc-900 text-white dark:bg-zinc-50 dark:text-zinc-900"
+                        ? cn(accent?.tint, accent?.text)
                         : "text-zinc-500 hover:bg-card hover:text-zinc-900 hover:shadow-sm dark:text-zinc-400 dark:hover:bg-foreground/[0.075] dark:hover:text-zinc-50"
                     )}
                   >
@@ -590,10 +622,8 @@ function PlacesExplorerInner({ places }: { places: Place[] }) {
                     {filter.label}
                     <span
                       className={cn(
-                        "text-xs tabular-nums",
-                        active
-                          ? "text-white/60 dark:text-zinc-900/60"
-                          : "text-zinc-400 dark:text-zinc-500"
+                        "text-xs tabular-nums opacity-70",
+                        active ? accent?.text : "text-zinc-400 dark:text-zinc-500"
                       )}
                     >
                       {countByCategory[filter.key]}
@@ -608,12 +638,29 @@ function PlacesExplorerInner({ places }: { places: Place[] }) {
 
       {/* ========== DIRECTORY ========== */}
       <section className="mx-auto max-w-7xl 2xl:max-w-[96rem] px-4 pb-16 pt-6 sm:px-6 sm:pb-24 lg:px-8 2xl:px-12">
+        {/* The planned trip, above whichever view is showing, because it is
+            the thing the reader is actively building. */}
+        {tripStops.length > 0 && (
+          <div className="mb-5 sm:max-w-md">
+            <TripPlanner
+              stops={tripStopsWithDistance}
+              origin={geolocation.coords}
+              onRemove={toggleTripStop}
+              onClear={() => setTripSlugs([])}
+            />
+          </div>
+        )}
+
         {/* Map view */}
         {viewMode === "map" && (
           <PlacesMap
             places={filteredPlaces}
             categoryLabels={categoryLabelMap}
             userLocation={geolocation.coords}
+            routePath={routePath}
+            tripSlugs={tripSlugs}
+            onToggleTrip={toggleTripStop}
+            tripFull={tripSlugs.length >= MAX_STOPS}
           />
         )}
 
@@ -627,15 +674,11 @@ function PlacesExplorerInner({ places }: { places: Place[] }) {
                     {filteredPlaces.length}
                   </span>{" "}
                   {filteredPlaces.length === 1 ? t("results.place") : t("results.places")}
-                  {selectedCategory && (
-                    <>
-                      {" "}
-                      {t("results.in")}{" "}
-                      <span className="font-medium text-zellige">
-                        {categoryFilters.find((c) => c.key === selectedCategory)?.label}
-                      </span>
-                    </>
-                  )}
+                  {" "}
+                  {t("results.in")}{" "}
+                  <span className="font-medium text-zellige">
+                    {categoryFilters.find((c) => c.key === selectedCategory)?.label}
+                  </span>
                   {searchQuery && (
                     <>
                       {" "}
@@ -648,7 +691,13 @@ function PlacesExplorerInner({ places }: { places: Place[] }) {
                   )}
                 </p>
               )}
-              <PlacesBrowser places={filteredPlaces} categories={categoryFilters} />
+              <PlacesBrowser
+                places={filteredPlaces}
+                categories={categoryFilters}
+                tripSlugs={tripSlugs}
+                onToggleTrip={toggleTripStop}
+                tripFull={tripSlugs.length >= MAX_STOPS}
+              />
             </>
           ) : (
             <EmptyState

@@ -35,6 +35,13 @@ interface LocationControlProps {
   onRadiusChange: (km: number | null) => void;
   open: boolean;
   onOpenChange: (open: boolean) => void;
+  /**
+   * Renders the trigger as a primary control rather than one more grey pill.
+   * Sorting by distance is the single most useful thing this page does, and
+   * it was previously indistinguishable from the price and district filters
+   * sitting beside it.
+   */
+  prominent?: boolean;
 }
 
 export function LocationControl({
@@ -46,6 +53,7 @@ export function LocationControl({
   onRadiusChange,
   open,
   onOpenChange,
+  prominent = false,
 }: LocationControlProps) {
   const t = useTranslations("places");
   const active = status === "granted";
@@ -70,19 +78,29 @@ export function LocationControl({
           aria-pressed={active}
           disabled={locating}
           className={cn(
-            "flex min-h-11 shrink-0 items-center gap-1.5 rounded-full px-3.5 text-[13px] font-semibold shadow-sm outline-none transition-all focus-visible:ring-2 focus-visible:ring-zellige/50 sm:min-h-0 sm:py-2",
+            "flex items-center gap-2 rounded-full font-semibold shadow-sm outline-none transition-all focus-visible:ring-2 focus-visible:ring-zellige/50",
+            prominent
+              ? "min-h-12 w-full justify-center px-6 text-[15px] sm:w-auto"
+              : "min-h-11 shrink-0 gap-1.5 px-3.5 text-[13px] sm:min-h-0 sm:py-2",
             active
-              ? "bg-zinc-900 text-white dark:bg-zinc-50 dark:text-zinc-900"
-              : "bg-card text-zinc-500 hover:text-zinc-900 dark:bg-foreground/[0.075] dark:text-zinc-400 dark:shadow-none dark:hover:text-zinc-50",
+              ? "bg-zellige-soft text-zellige ring-1 ring-zellige/30"
+              : prominent
+                ? "bg-zellige text-white hover:brightness-110 dark:text-zinc-50"
+                : "bg-card text-zinc-500 hover:text-zinc-900 dark:bg-foreground/[0.075] dark:text-zinc-400 dark:shadow-none dark:hover:text-zinc-50",
             locating && "cursor-wait opacity-70"
           )}
         >
           {locating ? (
-            <Loader2 className="h-3.5 w-3.5 animate-spin" />
+            <Loader2 className={cn("animate-spin", prominent ? "h-4 w-4" : "h-3.5 w-3.5")} />
           ) : (
-            <LocateFixed className="h-3.5 w-3.5" />
+            <LocateFixed className={prominent ? "h-4 w-4" : "h-3.5 w-3.5"} />
           )}
           {locating ? t("location.locating") : t("location.button")}
+          {active && radiusKm && (
+            <span className="text-[13px] font-medium opacity-70">
+              {t("location.radiusUpTo", { km: radiusKm })}
+            </span>
+          )}
         </button>
       </PopoverTrigger>
 
@@ -103,7 +121,7 @@ export function LocationControl({
                 className={cn(
                   "min-h-9 rounded-lg px-3 text-[13px] font-semibold transition-colors",
                   radiusKm === null
-                    ? "bg-zinc-900 text-white dark:bg-zinc-50 dark:text-zinc-900"
+                    ? "bg-zellige-soft text-zellige"
                     : "bg-zinc-100 text-zinc-500 hover:bg-zinc-200 dark:bg-foreground/[0.09] dark:text-zinc-400 dark:hover:bg-foreground/[0.14]"
                 )}
               >
@@ -117,7 +135,7 @@ export function LocationControl({
                   className={cn(
                     "min-h-9 rounded-lg px-3 text-[13px] font-semibold transition-colors",
                     radiusKm === km
-                      ? "bg-zinc-900 text-white dark:bg-zinc-50 dark:text-zinc-900"
+                      ? "bg-zellige-soft text-zellige"
                       : "bg-zinc-100 text-zinc-500 hover:bg-zinc-200 dark:bg-foreground/[0.09] dark:text-zinc-400 dark:hover:bg-foreground/[0.14]"
                   )}
                 >

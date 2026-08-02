@@ -1509,6 +1509,134 @@ export const places: Place[] = [
       "On sunny days, the lawns around Kleinhesselohersee become an unofficial outdoor study spot for LMU/TUM students — free, green, and quiet on weekday mornings.",
     verified: false,
   },
+
+  // ─── SPORT ───────────────────────────────────────────────────────────────
+  // ZHS (Zentraler Hochschulsport München) is the single most useful thing on
+  // this list for a student: one semester fee covers courses across every
+  // Munich university. Only the sites whose address is unambiguous are listed;
+  // ZHS runs many more halls that need local confirmation before being added.
+  {
+    slug: "zhs-olympiapark",
+    name: "ZHS Zentraler Hochschulsport (Olympiapark)",
+    category: "sport",
+    address: "Connollystraße 32, 80809 München",
+    district: "Milbertshofen-Am Hart",
+    lat: 48.1793,
+    lng: 11.5487,
+    tags: ["student", "sport", "courses", "budget-friendly", "gym"],
+    website: "https://www.zhs-muenchen.de",
+    description:
+      "The main university sports centre for all Munich universities. One semester ticket covers hundreds of courses, from football and swimming to bouldering and martial arts. Sign-up opens each semester and popular courses fill within minutes.",
+    verified: false,
+  },
+  {
+    slug: "olympia-schwimmhalle",
+    name: "Olympia-Schwimmhalle",
+    category: "sport",
+    address: "Coubertinplatz 1, 80809 München",
+    district: "Milbertshofen-Am Hart",
+    lat: 48.1751,
+    lng: 11.5497,
+    tags: ["swimming", "sport", "indoor", "olympiapark"],
+    description:
+      "Olympic-size indoor pool in the Olympiapark, open to the public. Student discounts apply, and ZHS swim courses run here.",
+    verified: false,
+  },
+  {
+    slug: "olympiapark-sportanlagen",
+    name: "Olympiapark Sports Grounds",
+    category: "sport",
+    address: "Spiridon-Louis-Ring 21, 80809 München",
+    district: "Milbertshofen-Am Hart",
+    lat: 48.1728,
+    lng: 11.5466,
+    tags: ["football", "running", "outdoor", "free", "sport"],
+    description:
+      "Open lawns, running routes and public pitches across the Olympiapark. Informal football games are easy to join on warm evenings.",
+    verified: false,
+  },
+
+  // ─── PARKS ───────────────────────────────────────────────────────────────
+  {
+    slug: "englischer-garten",
+    name: "Englischer Garten",
+    category: "park",
+    address: "Englischer Garten, 80538 München",
+    district: "Schwabing-Freimann",
+    lat: 48.1642,
+    lng: 11.6056,
+    tags: ["outdoor", "free", "picnic", "running", "seasonal"],
+    description:
+      "One of the largest city parks in the world, bigger than Central Park. Beer gardens at the Chinesischer Turm, surfers on the Eisbach wave, and enough space to disappear for an afternoon.",
+    verified: true,
+  },
+  {
+    slug: "olympiapark",
+    name: "Olympiapark",
+    category: "park",
+    address: "Spiridon-Louis-Ring 21, 80809 München",
+    district: "Milbertshofen-Am Hart",
+    lat: 48.1755,
+    lng: 11.5516,
+    tags: ["outdoor", "free", "views", "events", "running"],
+    description:
+      "The 1972 Olympic grounds, now a park with a lake, a hill worth climbing for the view over the Alps on clear days, and open-air concerts through the summer.",
+    verified: true,
+  },
+  {
+    slug: "westpark",
+    name: "Westpark",
+    category: "park",
+    address: "Westpark, 81373 München",
+    district: "Sendling-Westpark",
+    lat: 48.1179,
+    lng: 11.5209,
+    tags: ["outdoor", "free", "picnic", "quiet"],
+    description:
+      "Quieter than the Englischer Garten and popular with students living in the south west. Has Thai and Chinese garden pavilions, a lake, and a summer open-air cinema.",
+    verified: true,
+  },
+  {
+    slug: "hirschgarten",
+    name: "Hirschgarten",
+    category: "park",
+    address: "Hirschgarten 1, 80639 München",
+    district: "Neuhausen-Nymphenburg",
+    lat: 48.1489,
+    lng: 11.5155,
+    tags: ["outdoor", "free", "beer-garden", "picnic"],
+    description:
+      "Park with a deer enclosure and the largest beer garden in Munich, around 8,000 seats. Bringing your own food is allowed at the self-service tables, which makes it one of the cheapest evenings out in the city.",
+    verified: true,
+  },
+
+  // ─── LEISURE ─────────────────────────────────────────────────────────────
+  {
+    slug: "mathaeser-filmpalast",
+    name: "Mathäser Filmpalast",
+    category: "leisure",
+    address: "Bayerstraße 3-5, 80335 München",
+    district: "Ludwigsvorstadt-Isarvorstadt",
+    lat: 48.1399,
+    lng: 11.5622,
+    tags: ["cinema", "indoor", "central", "evening"],
+    description:
+      "The biggest cinema in the city centre, a short walk from Hauptbahnhof. Shows films in the original language (marked OV or OmU) alongside the German dubs.",
+    verified: false,
+  },
+  {
+    slug: "museum-lichtspiele",
+    name: "Museum Lichtspiele",
+    category: "leisure",
+    address: "Lilienstraße 2, 81669 München",
+    district: "Au-Haidhausen",
+    lat: 48.1301,
+    lng: 11.5869,
+    tags: ["cinema", "indoor", "original-language", "hidden-gem"],
+    description:
+      "Small independent cinema near Isartor that leans heavily on original-language screenings. Cheaper than the multiplexes and far more character.",
+    verified: false,
+  },
 ];
 
 // Helper functions

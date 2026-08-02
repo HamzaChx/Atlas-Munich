@@ -1,57 +1,23 @@
 import { Metadata } from "next";
-import { getAllFaqs } from "@/data/faqs";
 
+/**
+ * `/faq` is retired. Its 32 questions now sit on the journey hub that answers
+ * them, each with its own `FAQPage` block matching what is visible there.
+ *
+ * The route survives only to rescue deep links. A 301 cannot do that job: a
+ * URL fragment is never sent to the server, so redirecting `/faq#faq-kvr-3`
+ * would silently drop the fragment and drop the reader on a page that does not
+ * contain their question. The page below resolves the hash client-side instead.
+ *
+ * `noindex, follow` keeps it out of the index while still passing link equity
+ * on to the hubs. Once the logs show no traffic, replace the whole thing with
+ * a 308 to /studies.
+ */
 export const metadata: Metadata = {
-  title: "Frequently Asked Questions",
-  description:
-    "Answers to the most common questions about living in Munich as a Moroccan student or professional. Housing, KVR, university, work permits, and more.",
-  keywords: [
-    "Munich FAQ",
-    "Munich student questions",
-    "KVR questions Munich",
-    "housing FAQ Munich",
-    "Anmeldung questions",
-    "residence permit questions",
-    "Moroccan expat Munich questions",
-    "student visa Germany",
-    "halal food Munich FAQ",
-  ],
-  openGraph: {
-    title: "Frequently Asked Questions | Atlas Munich",
-    description:
-      "Answers to the most common questions about living in Munich as a Moroccan student or professional.",
-    type: "website",
-    url: "https://atlasmunich.de/faq",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Frequently Asked Questions | Atlas Munich",
-    description:
-      "Answers to the most common questions about living in Munich as a Moroccan student or professional.",
-  },
+  title: "Questions",
+  robots: { index: false, follow: true },
 };
 
-export default function FAQLayout({ children }: { children: React.ReactNode }) {
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: getAllFaqs().map((faq) => ({
-      "@type": "Question",
-      name: faq.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: faq.answer,
-      },
-    })),
-  };
-
-  return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      {children}
-    </>
-  );
+export default function FaqLayout({ children }: { children: React.ReactNode }) {
+  return children;
 }

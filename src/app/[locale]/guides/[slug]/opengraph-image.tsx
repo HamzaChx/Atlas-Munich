@@ -1,5 +1,6 @@
 import { ImageResponse } from "next/og";
 import { getGuideBySlug } from "@/data/guides";
+import { computeReadingTime } from "@/lib/reading-time";
 import { getCategoryByKey } from "@/data/categories";
 
 export const size = { width: 1200, height: 630 };
@@ -84,7 +85,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
           }}
         >
           <span style={{ fontSize: 20, fontWeight: 700, color: palette.acc }}>
-            {guide?.readingTime ? `${guide.readingTime} min read` : "Guide"}
+            {guide ? `${computeReadingTime(guide)} min read` : "Guide"}
           </span>
         </div>
         <span style={{ fontSize: 26, fontWeight: 800, color: "#1c1c1a" }}>Atlas Munich</span>

@@ -4,7 +4,9 @@ import { Link } from "@/i18n/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { GithubIcon, Mail, MessageCircle, Heart, ArrowRight } from "lucide-react";
 
-import { ShareButton } from "@/components/shared";
+import { ShareButton, FAQAccordion } from "@/components/shared";
+import { getFaqsByHub } from "@/data/faqs";
+import { faqPageJsonLd } from "@/lib/structured-data";
 import { WHATSAPP_COMMUNITY_URL } from "@/lib/site-config";
 import { alternatesFor, localizedUrl } from "@/lib/urls";
 
@@ -43,6 +45,11 @@ export default async function CommunityPage({ params }: PageProps) {
   const t = await getTranslations("hubs");
   const c = await getTranslations("community");
   const a = await getTranslations("about");
+
+  /* The broad "how do I even start" questions, which belong with the people
+     rather than with any one stage of the paperwork. */
+  const hubFaqs = getFaqsByHub("community");
+  const faqSchema = faqPageJsonLd(hubFaqs);
 
   return (
     <div className="min-h-screen bg-background">
@@ -188,7 +195,25 @@ export default async function CommunityPage({ params }: PageProps) {
             </div>
           </section>
         </div>
+
+        {hubFaqs.length > 0 && (
+          <section id="questions" className="reveal mt-5 scroll-mt-24">
+            <h2 className="font-display text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-2xl">
+              {t("questionsTitle")}
+            </h2>
+            <div className="mt-5">
+              <FAQAccordion faqs={hubFaqs} />
+            </div>
+          </section>
+        )}
       </div>
+
+      {faqSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        />
+      )}
     </div>
   );
 }

@@ -244,6 +244,19 @@ export default async function GuidePage({ params }: PageProps) {
         // the one place not pointing at it.
         image: `${guideUrl}/opengraph-image`,
       },
+      /* The guide's own questions were rendered but never marked up. */
+      ...(localizedGuide.faqs?.length
+        ? [
+            {
+              "@type": "FAQPage",
+              mainEntity: localizedGuide.faqs.map((faq) => ({
+                "@type": "Question",
+                name: faq.question,
+                acceptedAnswer: { "@type": "Answer", text: faq.answer },
+              })),
+            },
+          ]
+        : []),
       {
         "@type": "BreadcrumbList",
         itemListElement: [
@@ -303,7 +316,7 @@ export default async function GuidePage({ params }: PageProps) {
             {/* Typographic Meta Row */}
             <div className="mt-12 flex flex-wrap items-center justify-center gap-4 text-[11px] font-bold uppercase tracking-[0.15em] text-zinc-400">
               <span>
-                {guide.readingTime} {t("minRead")}
+                {localizedGuide.readingTime} {t("minRead")}
               </span>
               <span className="h-1 w-1 rounded-full bg-zinc-300 dark:bg-zinc-700" />
               <span>

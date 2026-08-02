@@ -1,12 +1,12 @@
 "use client";
 
-import { Suspense, useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "@/i18n/navigation";
-import { useSearchParams } from "next/navigation";
 import Fuse from "fuse.js";
-import { EmptyState } from "@/components/shared";
+import { EmptyState, GuideTree } from "@/components/shared";
 
 import type { Guide } from "@/types";
+import type { TreeNode } from "@/data/guide-tree";
 import { Search, ArrowRight, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
@@ -71,31 +71,29 @@ const topics: {
 const topicFor = (categoryKey: string) =>
   topics.find((topic) => topic.key === categoryKey) ?? topics[0];
 
-function GuidesPageContent({ guides }: { guides: Guide[] }) {
+function GuidesPageContent({ guides, treeNodes }: { guides: Guide[]; treeNodes: TreeNode[] }) {
   const t = useTranslations("guides");
   const tCat = useTranslations("categories");
   const tHome = useTranslations("home");
+  const tTree = useTranslations("tree");
   const common = useTranslations("common");
-  const searchParams = useSearchParams();
-
-  const [searchQuery, setSearchQuery] = useState(() => searchParams.get("q") ?? "");
+  /* `?q=` is read from the URL after mount rather than through
+     `useSearchParams`. That hook opts the whole subtree out of prerendering
+     and forces a Suspense boundary, which meant every node of the tree below
+     was client-only: 36 guide and section links that never reached the served
+     HTML and were never crawled. Reading `location.search` here keeps the page
+     server-rendered while the deep link still works once hydrated. */
+  const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
-    const paramQuery = searchParams.get("q") ?? "";
-    setSearchQuery((current) => (paramQuery !== current ? paramQuery : current));
-  }, [searchParams]);
+    const paramQuery = new URLSearchParams(window.location.search).get("q") ?? "";
+    if (paramQuery) setSearchQuery(paramQuery);
+  }, []);
 
   const isSearching = searchQuery.trim().length > 0;
 
   const topicLabel = (key: string) => tCat(`${key}.title`);
 
-  const countByTopic = useMemo(() => {
-    const counts: Record<string, number> = {};
-    guides.forEach((guide) => {
-      counts[guide.categoryKey] = (counts[guide.categoryKey] ?? 0) + 1;
-    });
-    return counts;
-  }, [guides]);
 
   const fuse = useMemo(
     () =>
@@ -228,122 +226,17 @@ function GuidesPageContent({ guides }: { guides: Guide[] }) {
             )}
           </div>
         ) : (
-          /* The Atlas Editorial Roadmap */
-          <div className="relative mt-12 animate-in fade-in duration-700 lg:mt-24">
-            {/* The Vertical Path Line */}
-            <div className="absolute bottom-0 left-[21px] top-0 w-px bg-gradient-to-b from-transparent via-zinc-200 to-transparent dark:via-zinc-800 lg:left-1/2 lg:-translate-x-1/2" />
-
-            <div className="space-y-32 lg:space-y-48">
-              {topics.map((topic, index) => {
-                const topicGuides = guides.filter((g) => g.categoryKey === topic.key);
-                if (topicGuides.length === 0) return null;
-
-                const titleOnLeft = index % 2 === 0;
-
-                return (
-                  <div key={topic.key} className="relative flex flex-col lg:flex-row lg:items-start lg:justify-between">
-                    
-                    {/* The Center Timeline Dot (Desktop center, mobile left) */}
-                    <div className="absolute left-[21px] top-8 z-20 h-3 w-3 -translate-x-1/2 -translate-y-1/2 rounded-full border-[2px] border-background bg-zinc-300 ring-4 ring-background dark:border-zinc-950 dark:bg-zinc-600 dark:ring-background lg:left-1/2 lg:top-12 lg:h-4 lg:w-4 lg:border-[3px]" />
-
-                    {/* Milestone Title & Numeral */}
-                    <div
-                      className={cn(
-                        "relative z-10 w-full pl-14 lg:w-1/2 lg:pl-0",
-                        titleOnLeft ? "lg:pr-20 lg:text-right" : "lg:order-last lg:pl-20 lg:text-left"
-                      )}
-                    >
-                      <div
-                        className={cn(
-                          "flex flex-col lg:flex-row lg:items-center",
-                          titleOnLeft ? "lg:justify-end" : "lg:justify-start"
-                        )}
-                      >
-                        <span
-                          className={cn(
-                            "font-display text-[5rem] font-black leading-none tracking-tighter opacity-[0.08] selection:bg-transparent dark:opacity-20 sm:text-[7rem] lg:text-[10rem]",
-                            topic.text,
-                            titleOnLeft ? "lg:order-last lg:ml-6" : "lg:mr-6"
-                          )}
-                        >
-                          {topic.numeral}
-                        </span>
-                        <div className={cn("mt-2 lg:mt-0")}>
-                          <h2 className="font-display text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-4xl lg:text-5xl">
-                            {topicLabel(topic.key)}
-                          </h2>
-                          <p
-                            className={cn(
-                              "mt-4 text-base leading-relaxed text-zinc-500 dark:text-zinc-400 lg:max-w-sm",
-                              titleOnLeft ? "lg:ml-auto" : "lg:mr-auto"
-                            )}
-                          >
-                            {tCat(`${topic.key}.description`)}
-                          </p>
-                          <div
-                            className={cn(
-                              "mt-6 flex items-center gap-2 text-xs font-bold uppercase tracking-widest",
-                              topic.text,
-                              titleOnLeft ? "lg:justify-end" : "lg:justify-start"
-                            )}
-                          >
-                            {countByTopic[topic.key]} {guideNoun(countByTopic[topic.key])}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Guides for this milestone */}
-                    <div
-                      className={cn(
-                        "relative z-10 mt-12 w-full pl-14 lg:mt-0 lg:w-1/2 lg:pl-0",
-                        titleOnLeft ? "lg:pl-20" : "lg:order-first lg:pr-20"
-                      )}
-                    >
-                      <div className="space-y-6 lg:space-y-8">
-                        {topicGuides.map((guide) => (
-                          <Link
-                            key={guide.slug}
-                            href={`/guides/${guide.slug}`}
-                            className={cn(
-                              "group block rounded-[2rem] border bg-card p-6 shadow-sm transition-all duration-500 hover:-translate-y-1 hover:shadow-xl dark:bg-foreground/[0.03] sm:p-8",
-                              topic.border,
-                              topic.glow
-                            )}
-                          >
-                            <div className="mb-4 flex items-center gap-3">
-                              <span className={cn("h-1 w-6 rounded-full", topic.dot)} />
-                              <span className="text-xs font-bold uppercase tracking-wider text-zinc-500">
-                                {guide.readingTime} {tHome("featured.minRead")}
-                              </span>
-                            </div>
-                            <h3
-                              className={cn(
-                                "font-display text-xl font-bold leading-snug text-zinc-900 transition-colors dark:text-zinc-50 sm:text-2xl",
-                                `group-hover:${topic.text}`
-                              )}
-                            >
-                              {guide.title}
-                            </h3>
-                            <p className="mt-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400 sm:text-base">
-                              {guide.summary}
-                            </p>
-                            <div className="mt-6 flex items-center gap-2 font-semibold transition-colors">
-                              <span className={topic.text}>{common("explore")}</span>
-                              <ArrowRight
-                                className={cn(
-                                  "h-4 w-4 transition-transform group-hover:translate-x-1",
-                                  topic.text
-                                )}
-                              />
-                            </div>
-                          </Link>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
+          /* The tree: at most four words to read before a jump into a guide.
+             The old editorial roadmap listed every guide with its full
+             summary, so choosing where to go meant reading a paragraph per
+             option. Every node here is still a real link in the HTML, even
+             while collapsed. */
+          <div className="relative mx-auto mt-10 max-w-3xl animate-in fade-in duration-700">
+            <h2 className="font-display text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-2xl">
+              {tTree("_heading")}
+            </h2>
+            <div className="mt-4 rounded-[1.75rem] bg-card p-4 shadow-[0_2px_20px_rgb(0_0_0/0.06)] sm:p-6 dark:shadow-none dark:ring-1 dark:ring-border">
+              <GuideTree nodes={treeNodes} defaultOpenIds={treeNodes[0] ? [treeNodes[0].id] : []} />
             </div>
           </div>
         )}
@@ -358,13 +251,13 @@ function GuidesPageContent({ guides }: { guides: Guide[] }) {
           </p>
           <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
             <Link
-              href="/faq"
+              href="/studies#questions"
               className="inline-flex items-center gap-2 rounded-full bg-zinc-900 px-6 py-3 text-sm font-semibold text-white shadow-md shadow-zinc-900/15 transition-all hover:bg-zinc-800 dark:bg-zinc-50 dark:text-zinc-900 dark:shadow-none dark:hover:bg-zinc-200"
             >
               {t("cta.browseFaqs")}
             </Link>
             <Link
-              href="/about#contribute"
+              href="/community#contribute"
               className="group inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-zinc-700 transition-colors hover:bg-card dark:text-zinc-300 dark:hover:bg-foreground/10"
             >
               {t("cta.contributeGuide")}
@@ -377,10 +270,6 @@ function GuidesPageContent({ guides }: { guides: Guide[] }) {
   );
 }
 
-export function GuidesBrowser({ guides }: { guides: Guide[] }) {
-  return (
-    <Suspense fallback={null}>
-      <GuidesPageContent guides={guides} />
-    </Suspense>
-  );
+export function GuidesBrowser({ guides, treeNodes }: { guides: Guide[]; treeNodes: TreeNode[] }) {
+  return <GuidesPageContent guides={guides} treeNodes={treeNodes} />;
 }

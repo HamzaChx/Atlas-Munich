@@ -82,6 +82,12 @@ export interface FAQ {
   question: string;
   answer: string;
   categoryKey?: CategoryKey;
+  /**
+   * Which journey hub answers this question. Set explicitly rather than
+   * derived from `categoryKey`, because the food and first-week questions
+   * have no category at all and still have to land somewhere.
+   */
+  hub?: HubKey;
   tags?: ContentTag[];
 }
 
@@ -99,6 +105,9 @@ export interface ResourceLink {
 // ============================================
 // Place (for halal food, mosques, etc.)
 // ============================================
+/* `cowork` and `barber` were declared but never had a single entry, so their
+   filter pills could never appear. Replaced by the three leisure families,
+   which answer the question the map could not: what is there to actually do. */
 export type PlaceCategory =
   | "restaurant"
   | "grocery"
@@ -107,8 +116,9 @@ export type PlaceCategory =
   | "cafe"
   | "bakery"
   | "study-spot"
-  | "cowork"
-  | "barber";
+  | "sport"
+  | "leisure"
+  | "park";
 
 export type PriceLevel = "€" | "€€" | "€€€";
 

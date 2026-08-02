@@ -3,7 +3,7 @@
 // ============================================
 // Atlas Munich – places explorer
 //
-// The interactive half of /places: filters, the view toggle, the map and the
+// The interactive half of /map: filters, the view toggle, the map and the
 // browse grid. Places arrive already localized from the server component, so
 // the ~46 KB `placesData` namespace never has to reach the browser.
 // ============================================
@@ -275,7 +275,7 @@ function PlacesExplorerInner({ places }: { places: Place[] }) {
   );
 
   /* Follow the params when they change under us — arriving from a chip or
-     the mobile search overlay while already on /places is a navigation,
+     the mobile search overlay while already on /map is a navigation,
      not a remount. */
   useEffect(() => {
     setSelectedCategory(readCategory(categoryParam));

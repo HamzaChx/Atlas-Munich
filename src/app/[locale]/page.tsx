@@ -1,42 +1,9 @@
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { Button } from "@/components/ui/button";
-import { ChatLaunchBox } from "@/components/chatbot/ChatLaunchBox";
 import { ZelligeRosette } from "@/components/home";
-import { categories } from "@/data/categories";
-import { getFeaturedGuides } from "@/data/guides";
-import { localizeGuides } from "@/data/guides-i18n";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { HelpCircle, Users, ArrowRight, ArrowUpRight } from "lucide-react";
-
-/* One hue per category — each row wears its own soft color */
-const catStyles: Record<string, { row: string; count: string; dot: string }> = {
-  "rent-housing": {
-    row: "bg-tint-terra hover:shadow-xl hover:shadow-acc-terra/15",
-    count: "text-acc-terra",
-    dot: "bg-acc-terra",
-  },
-  "kvr-residence": {
-    row: "bg-tint-blue hover:shadow-xl hover:shadow-acc-blue/15",
-    count: "text-acc-blue",
-    dot: "bg-acc-blue",
-  },
-  "university-life": {
-    row: "bg-tint-green hover:shadow-xl hover:shadow-acc-green/15",
-    count: "text-acc-green",
-    dot: "bg-acc-green",
-  },
-  career: {
-    row: "bg-tint-plum hover:shadow-xl hover:shadow-acc-plum/15",
-    count: "text-acc-plum",
-    dot: "bg-acc-plum",
-  },
-  "useful-apps": {
-    row: "bg-tint-saffron hover:shadow-xl hover:shadow-acc-saffron/15",
-    count: "text-acc-saffron",
-    dot: "bg-acc-saffron",
-  },
-};
+import { HelpCircle, Users } from "lucide-react";
 
 export default async function Home({
   params,
@@ -48,53 +15,35 @@ export default async function Home({
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations("home");
-  const tCat = await getTranslations("categories");
-  const tChat = await getTranslations("chatbot");
 
-  const featuredGuides = await localizeGuides(getFeaturedGuides(), locale);
-
-  /* An intent router, not a menu. Every chip lands on the surface that does
-     the work — a chat mid-answer or a pre-filtered map — never on another
-     page of choices. */
-  const intents = [
-    {
-      label: t("intents.flat"),
-      href: "/housing/chat",
-      pill: "bg-tint-terra text-acc-terra hover:shadow-acc-terra/20",
-    },
-    {
-      label: t("intents.paperwork"),
-      href: `/bureaucracy/chat?q=${encodeURIComponent(t("intents.paperworkPrompt"))}`,
-      pill: "bg-tint-blue text-acc-blue hover:shadow-acc-blue/20",
-    },
-    {
-      label: t("intents.halalFood"),
-      href: "/places?category=restaurant",
-      pill: "bg-tint-green text-acc-green hover:shadow-acc-green/20",
-    },
-    {
-      label: t("intents.uni"),
-      href: `/academic/chat?q=${encodeURIComponent(t("intents.uniPrompt"))}`,
-      pill: "bg-tint-plum text-acc-plum hover:shadow-acc-plum/20",
-    },
+  const quickAccess = [
+    { label: t("quick.map"), href: "/map" },
+    { label: t("quick.studies"), href: "/studies" },
+    { label: t("quick.career"), href: "/career" },
   ];
 
   return (
     <div className="min-h-screen">
-      {/* ========== HERO — a mosaic ground, floating words, clean center ========== */}
+      {/* ========== HERO — one section now, not two ==========
+          Used to be two stacked "heroes": title-subtitle-CTA over a photo,
+          then a second section repeating that same shape over a mosaic
+          background. Folded into one: the zellij rosettes and floating words
+          frame the title exactly as they did in the old second section, then
+          the photo runs the full width beneath as the hero's main visual,
+          not a side column competing with the text for space. */}
       <section className="relative overflow-hidden">
         {/* Two rosettes, each continuing past the edge of the page */}
         <ZelligeRosette
           uid="zl"
           spin="420s"
-          className="left-0 top-[38%] -translate-x-[46%] -translate-y-1/2 pointer-events-none"
+          className="left-0 top-[30%] -translate-x-[46%] -translate-y-1/2 pointer-events-none"
           svgClassName="w-[70px] sm:w-[280px] lg:w-[400px] opacity-40 sm:opacity-100"
         />
         <ZelligeRosette
           uid="zr"
           spin="530s"
           reverse
-          className="right-0 top-[62%] translate-x-[46%] -translate-y-1/2 pointer-events-none"
+          className="right-0 top-[46%] translate-x-[46%] -translate-y-1/2 pointer-events-none"
           svgClassName="w-[60px] sm:w-[250px] lg:w-[355px] opacity-40 sm:opacity-100"
         />
 
@@ -103,19 +52,19 @@ export default async function Home({
           <span
             dir="rtl"
             lang="ar"
-            className="float-slow absolute left-[18%] top-[20%] hidden text-6xl font-bold text-bloom opacity-[0.25] lg:block xl:left-[20%] dark:opacity-[0.35]"
+            className="float-slow absolute left-[18%] top-[14%] hidden text-6xl font-bold text-bloom opacity-[0.25] lg:block xl:left-[20%] dark:opacity-[0.35]"
             style={{ "--tilt": "-6deg" } as React.CSSProperties}
           >
             مرحبا
           </span>
           <span
-            className="float-slower absolute right-[17%] top-[16%] hidden font-display text-4xl font-extrabold text-zellige/30 lg:block xl:right-[19%]"
+            className="float-slower absolute right-[17%] top-[10%] hidden font-display text-4xl font-extrabold text-zellige/30 lg:block xl:right-[19%]"
             style={{ "--tilt": "5deg" } as React.CSSProperties}
           >
             Servus!
           </span>
           <span
-            className="float-slower absolute left-[20%] top-[66%] hidden font-display text-xl font-bold tracking-wide text-zinc-400/50 xl:block dark:text-zinc-500/50"
+            className="float-slower absolute left-[20%] top-[46%] hidden font-display text-xl font-bold tracking-wide text-zinc-400/50 xl:block dark:text-zinc-500/50"
             style={{ "--tilt": "-4deg" } as React.CSSProperties}
           >
             München
@@ -123,218 +72,57 @@ export default async function Home({
           <span
             dir="rtl"
             lang="ar"
-            className="float-slow absolute right-[20%] top-[64%] hidden text-3xl font-semibold text-saffron opacity-[0.45] xl:block"
+            className="float-slow absolute right-[20%] top-[44%] hidden text-3xl font-semibold text-saffron opacity-[0.45] xl:block"
             style={{ "--tilt": "4deg" } as React.CSSProperties}
           >
             الأطلس
           </span>
         </div>
 
-        <div className="relative z-10 mx-auto flex max-w-2xl flex-col items-center px-5 pb-16 pt-20 text-center sm:pb-24 sm:pt-28 2xl:max-w-3xl 2xl:pb-32 2xl:pt-36">
+        <div className="relative z-10 mx-auto flex max-w-2xl flex-col items-center px-5 pb-10 pt-24 text-center sm:pb-14 sm:pt-32 2xl:max-w-3xl">
           <h1 className="rise rise-1 font-display text-[2.6rem] font-bold leading-[1.06] tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-6xl 2xl:text-7xl">
             {t("heroTitle")}
             <span className="block pb-1 text-bloom">{t("heroTitleHighlight")}</span>
           </h1>
 
-          <p className="rise rise-2 mt-5 max-w-md text-base leading-relaxed text-zinc-500 dark:text-zinc-400 sm:text-lg 2xl:max-w-lg 2xl:text-xl">
-            {t("heroSubtitle")}{" "}
+          <p className="rise rise-2 mx-auto mt-5 max-w-lg text-base leading-relaxed text-zinc-500 dark:text-zinc-400 sm:text-lg 2xl:text-xl">
+            {t("heroSubtitle")}
           </p>
 
-          {/* The single primary action. Paste a listing here and the German
-              application is already being written on the next screen. */}
-          <div className="rise rise-3 mt-9 w-full max-w-lg 2xl:max-w-xl">
-            <ChatLaunchBox
-              chatbot="riad"
-              chatPath="/housing/chat"
-              placeholder={t("launchPlaceholder")}
-              submitLabel={tChat("send")}
-              size="lg"
-            />
-          </div>
-
-          {/* Everything else you might have come for, one tap away */}
-          <div className="rise rise-4 mt-6 flex flex-wrap items-center justify-center gap-2.5">
-            {intents.map((intent) => (
-              <Link
-                key={intent.href}
-                href={intent.href}
-                className={`flex items-center gap-1.5 rounded-full px-4 py-2 text-[13px] font-semibold transition-all duration-200 hover:-translate-y-0.5 hover:shadow-lg ${intent.pill}`}
-              >
-                {intent.label}
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ========== CATEGORIES + GUIDES — one structured spread ========== */}
-      <section className="relative py-16 sm:py-24 2xl:py-28">
-        <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8 2xl:max-w-[96rem] 2xl:px-12">
-          <div className="reveal grid grid-cols-1 gap-12 lg:grid-cols-12 lg:gap-14 2xl:gap-20">
-            {/* Left — find your way */}
-            <div className="lg:col-span-7">
-              <span className="eyebrow">{t("categories.badge")}</span>
-              <h2 className="font-display mt-3 text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-3xl 2xl:text-4xl">
-                {t("categories.title")}
-                <span className="text-bloom">{t("categories.titleHighlight")}</span>
-              </h2>
-              <p className="mt-2.5 max-w-md text-sm text-zinc-500 dark:text-zinc-400 2xl:max-w-lg 2xl:text-base">
-                {t("categories.subtitle")}
-              </p>
-
-              <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
-                {categories.map((category) => {
-                  const style = catStyles[category.key];
-                  return (
-                    <Link
-                      key={category.key}
-                      href={`/category/${category.key}`}
-                      className={`group flex items-center gap-3.5 rounded-2xl px-4.5 py-4 outline-none transition-all duration-300 hover:-translate-y-1 focus-visible:ring-2 focus-visible:ring-zellige focus-visible:ring-offset-2 focus-visible:ring-offset-background ${style.row}`}
-                    >
-                      <span className="min-w-0 flex-1">
-                        <span className="block truncate text-sm font-semibold text-zinc-900 dark:text-zinc-50">
-                          {tCat(`${category.key}.title`)}
-                        </span>
-                        {/* What's inside, not how little of it there is: a
-                            "1 guide" badge reads as an abandoned site. */}
-                        <span className={`block truncate text-xs font-medium ${style.count}`}>
-                          {tCat(`${category.key}.description`)}
-                        </span>
-                      </span>
-                      <ArrowRight className="h-4 w-4 shrink-0 text-zinc-400/70 transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-zinc-600 dark:group-hover:text-zinc-300" />
-                    </Link>
-                  );
-                })}
-
+          <div className="rise rise-3 mt-8">
+            <p className="text-xs font-bold uppercase tracking-[0.12em] text-zinc-400 dark:text-zinc-500">
+              {t("quick.badge")}
+            </p>
+            <div className="mt-3 flex flex-wrap justify-center gap-2.5">
+              {quickAccess.map((item) => (
                 <Link
-                  href="/guides"
-                  className="group flex items-center justify-center gap-2 rounded-2xl border border-dashed border-zinc-300/80 px-4.5 py-4 text-sm font-semibold text-zinc-500 outline-none transition-all duration-300 hover:-translate-y-1 hover:border-zellige/40 hover:text-zellige focus-visible:ring-2 focus-visible:ring-zellige focus-visible:ring-offset-2 focus-visible:ring-offset-background dark:border-zinc-700 dark:text-zinc-400 dark:hover:border-zellige/50 dark:hover:text-zellige"
+                  key={item.href}
+                  href={item.href}
+                  className="rounded-full bg-zinc-900 px-6 py-3 text-sm font-semibold text-white shadow-md shadow-zinc-900/15 transition-all duration-200 hover:-translate-y-0.5 hover:bg-zinc-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zellige focus-visible:ring-offset-2 focus-visible:ring-offset-background dark:bg-zinc-50 dark:text-zinc-900 dark:shadow-none dark:hover:bg-zinc-200"
                 >
-                  {t("categories.browseAll")}
-                  <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
+                  {item.label}
                 </Link>
-              </div>
-            </div>
-
-            {/* Right — most-read guides, on a golden panel */}
-            <div className="lg:col-span-5">
-              <div className="rounded-3xl bg-tint-saffron p-6 shadow-[0_2px_20px_rgb(0_0_0/0.05)] sm:p-7 lg:mt-[4.5rem] dark:shadow-none dark:ring-1 dark:ring-border">
-                <div className="flex items-baseline justify-between gap-4">
-                  <h3 className="font-display text-lg font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
-                    {t("featured.title")}
-                  </h3>
-                  <Link
-                    href="/guides"
-                    className="group flex shrink-0 items-center gap-1 text-sm font-semibold text-acc-saffron transition-opacity hover:opacity-80"
-                  >
-                    {t("featured.viewAll")}
-                    <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                  </Link>
-                </div>
-                <div className="mt-4 space-y-1">
-                  {featuredGuides.map((guide) => (
-                    <Link
-                      key={guide.slug}
-                      href={`/guides/${guide.slug}`}
-                      className="group -mx-2 flex items-center gap-3 rounded-xl px-3 py-3.5 transition-colors duration-200 hover:bg-card/80 dark:hover:bg-foreground/[0.075]"
-                    >
-                      <span
-                        className={`h-2 w-2 shrink-0 rounded-full ${catStyles[guide.categoryKey]?.dot ?? "bg-zellige"}`}
-                        aria-hidden="true"
-                      />
-                      <span className="min-w-0 flex-1 truncate text-sm font-medium text-zinc-800 dark:text-zinc-200">
-                        {guide.title}
-                      </span>
-                      <span className="shrink-0 text-xs text-zinc-400 dark:text-zinc-500">
-                        {guide.readingTime} {t("featured.minRead")}
-                      </span>
-                    </Link>
-                  ))}
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
-      </section>
 
-      {/* ========== AGENTIC AI — the green pavilion ========== */}
-      <section className="px-4 py-6 sm:px-6 sm:py-10 lg:px-8 2xl:px-12">
-        <div className="reveal relative mx-auto max-w-6xl 2xl:max-w-[96rem] overflow-hidden rounded-[2rem] bg-tint-green p-7 shadow-[0_2px_24px_rgb(0_0_0/0.05)] sm:p-12 2xl:p-16 dark:shadow-none dark:ring-1 dark:ring-border">
-          <div className="relative grid grid-cols-1 items-center gap-10 lg:grid-cols-12 lg:gap-12 2xl:gap-16">
-            <div className="lg:col-span-5">
-              <span className="eyebrow">{t("toolsSpotlight.badge")}</span>
-              <h2 className="font-display mt-3 text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-3xl 2xl:text-4xl">
-                {t("toolsSpotlight.title")}
-              </h2>
-              <p className="mt-2 max-w-sm text-sm leading-relaxed text-zinc-500 dark:text-zinc-400 2xl:max-w-md 2xl:text-base">
-                {t("toolsSpotlight.subtitle")}
-              </p>
-              <Button
-                asChild
-                className="mt-5 rounded-full bg-zinc-900 px-6 text-white shadow-md shadow-zinc-900/15 hover:bg-zinc-800 dark:bg-zinc-50 dark:text-zinc-900 dark:shadow-none dark:hover:bg-zinc-200"
-              >
-                <Link href="/tools">
-                  {t("toolsSpotlight.cta")}
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
-
-            <div className="flex flex-col gap-2.5 lg:col-span-7">
-              <Link
-                href="/housing/chat"
-                className="group flex items-center gap-4 rounded-xl bg-card px-4 py-3.5 shadow-[0_1px_8px_rgb(0_0_0/0.05)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgb(0_0_0/0.1)] dark:shadow-none dark:ring-1 dark:ring-border dark:hover:bg-zinc-800/60"
-              >
-                <span className="flex h-10 w-10 shrink-0 overflow-hidden rounded-lg shadow-sm">
-                  <Image src="/riad.webp" alt="Riad" width={40} height={40} className="h-full w-full object-cover" />
-                </span>
-                <span className="min-w-0 flex-1">
-                  <span className="block truncate text-sm font-semibold text-zinc-900 dark:text-zinc-50">
-                    {t("toolsSpotlight.housingTool")}
-                  </span>
-                  <span className="block truncate text-xs text-zinc-500 dark:text-zinc-400">
-                    {t("toolsSpotlight.housingToolDesc")}
-                  </span>
-                </span>
-                <ArrowRight className="h-4 w-4 shrink-0 text-zinc-300 transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-zinc-500 dark:text-zinc-600 dark:group-hover:text-zinc-300" />
-              </Link>
-
-              <Link
-                href="/bureaucracy/chat"
-                className="group relative flex items-center gap-4 rounded-xl bg-card px-4 py-3.5 shadow-[0_1px_8px_rgb(0_0_0/0.05)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgb(0_0_0/0.1)] dark:shadow-none dark:ring-1 dark:ring-border dark:hover:bg-zinc-800/60"
-              >
-                <span className="flex h-10 w-10 shrink-0 overflow-hidden rounded-lg shadow-sm">
-                  <Image src="/dalilah.webp" alt="Dalilah" width={40} height={40} className="h-full w-full object-cover" />
-                </span>
-                <span className="min-w-0 flex-1">
-                  <span className="block truncate text-sm font-semibold text-zinc-900 dark:text-zinc-50">
-                    {t("toolsSpotlight.bureaucracyTool")}
-                  </span>
-                  <span className="block truncate text-xs text-zinc-500 dark:text-zinc-400">
-                    {t("toolsSpotlight.bureaucracyToolDesc")}
-                  </span>
-                </span>
-                <ArrowRight className="h-4 w-4 shrink-0 text-zinc-300 transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-zinc-500 dark:text-zinc-600 dark:group-hover:text-zinc-300" />
-              </Link>
-
-              <Link
-                href="/academic/chat"
-                className="group flex items-center gap-4 rounded-xl bg-card/60 px-4 py-3.5 shadow-[0_1px_8px_rgb(0_0_0/0.03)] transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgb(0_0_0/0.1)] hover:bg-card dark:shadow-none dark:ring-1 dark:ring-border/70 dark:hover:bg-zinc-800/60"
-              >
-                <span className="flex h-10 w-10 shrink-0 overflow-hidden rounded-lg shadow-sm">
-                  <Image src="/ilham.webp" alt="Ilham" width={40} height={40} className="h-full w-full object-cover" />
-                </span>
-                <span className="min-w-0 flex-1">
-                  <span className="block truncate text-sm font-semibold text-zinc-900 dark:text-zinc-50">
-                    {t("toolsSpotlight.academicTool")}
-                  </span>
-                  <span className="block truncate text-xs text-zinc-500 dark:text-zinc-400">
-                    {t("toolsSpotlight.academicToolDesc")}
-                  </span>
-                </span>
-                <ArrowRight className="h-4 w-4 shrink-0 text-zinc-300 transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-zinc-500 dark:text-zinc-600 dark:group-hover:text-zinc-300" />
-              </Link>
-            </div>
+        {/* The photo: the hero's main visual, full width and uncropped in
+            proportion (the source is a 2.36:1 panorama with people standing
+            along both edges, so a tighter crop would cut the group rather
+            than just the background). Contained to max-w-6xl rather than the
+            viewport edge because upscaling a 1024px-wide source past that
+            softens it. */}
+        <div className="relative z-10 mx-auto w-full max-w-6xl px-4 pb-16 sm:px-6 sm:pb-24 lg:px-8">
+          <div className="rise rise-4 relative aspect-[5/4] w-full overflow-hidden rounded-[1.75rem] shadow-[0_12px_40px_rgb(0_0_0/0.12)] sm:aspect-[1024/434] dark:shadow-none dark:ring-1 dark:ring-border">
+            <Image
+              src="/atlas-hero.jpeg"
+              alt={t("heroImageAlt")}
+              fill
+              priority
+              sizes="(max-width: 1152px) 100vw, 1152px"
+              className="object-cover object-center"
+            />
           </div>
         </div>
       </section>
@@ -375,7 +163,7 @@ export default async function Home({
                   variant="ghost"
                   className="rounded-full px-6 text-zinc-600 hover:bg-card hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/60 dark:hover:text-zinc-50"
                 >
-                  <Link href="/faq">
+                  <Link href="/community">
                     <HelpCircle className="mr-2 h-4 w-4" />
                     {t("community.commonQuestions")}
                   </Link>
@@ -383,11 +171,14 @@ export default async function Home({
               </div>
             </div>
 
-            <div className="hidden flex-col items-center text-center lg:col-span-5 lg:flex">
+            {/* The greeting, back beside the community copy. It stacks under
+                the text on small screens rather than disappearing, which is
+                what the old `hidden lg:flex` did to every phone. */}
+            <div className="flex flex-col items-center text-center lg:col-span-5">
               <p
                 dir="rtl"
                 lang="ar"
-                className="float-slower text-6xl font-bold leading-snug text-bloom"
+                className="float-slower text-5xl font-bold leading-snug text-bloom lg:text-6xl"
               >
                 مرحبا بيك
               </p>

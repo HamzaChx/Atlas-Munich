@@ -36,6 +36,15 @@ export interface Category {
 }
 
 // ============================================
+// Journey hub
+//
+// The four steps the top bar tells as a story. Every category, guide and
+// helper belongs to exactly one of them, so a reader picks a stage of their
+// move rather than picking a kind of page.
+// ============================================
+export type HubKey = "map" | "studies" | "career" | "community";
+
+// ============================================
 // Guide / Article
 // ============================================
 export interface GuideSection {
@@ -168,10 +177,16 @@ export interface AppRecommendation {
 // ============================================
 // Guide Translation (locale overlay)
 // ============================================
+// Every entry carries the `id` of the English entry it translates. The overlay
+// is matched on that id, never on array position, so reordering or inserting a
+// section in guides.ts can no longer slide the French and German prose onto the
+// wrong heading.
 export interface GuideSectionTranslation {
+  id: string;
   title: string;
   content: string;
   subsections?: {
+    id: string;
     title: string;
     content: string;
   }[];
@@ -182,10 +197,12 @@ export interface GuideTranslation {
   summary: string;
   sections: GuideSectionTranslation[];
   faqs?: {
+    id: string;
     question: string;
     answer: string;
   }[];
   resources?: {
+    id: string;
     title: string;
     description?: string;
   }[];

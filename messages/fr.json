@@ -24,7 +24,12 @@
     "installApp": "Installer Atlas Munich",
     "installDesc": "Ajoutez-le à votre écran d'accueil et utilisez-le hors ligne.",
     "install": "Installer",
-    "notNow": "Plus tard"
+    "notNow": "Plus tard",
+    "map": "Carte",
+    "studies": "Études",
+    "career": "Carrière",
+    "settings": "Paramètres",
+    "aboutAria": "À propos d'Atlas Munich"
   },
   "home": {
     "heroTitle": "Nouveau à Munich ?",
@@ -122,7 +127,18 @@
       "halalFood": "Nourriture halal",
       "uni": "Vie étudiante",
       "uniPrompt": "Comment bien démarrer mes études à Munich ?"
-    }
+    },
+    "quick": {
+      "badge": "Par où voulez-vous commencer ?",
+      "map": "Trouver des lieux",
+      "studies": "S'installer",
+      "career": "Trouver un travail"
+    },
+    "welcome": {
+      "title": "Vous êtes les bienvenus",
+      "subtitle": "Créé par des Marocains à Munich, pour ceux qui arriveront ensuite."
+    },
+    "heroImageAlt": "Des étudiants marocains à Munich regardent un match de football ensemble"
   },
   "places": {
     "badge": "Lieux vérifiés",
@@ -2776,5 +2792,36 @@
     "tryAgain": "Réessayer",
     "globalErrorTitle": "Atlas Munich a rencontré un problème.",
     "globalErrorDescription": "L'application n'a pas pu se charger. Recharger la page résout généralement le problème."
+  },
+  "hubs": {
+    "guidesTitle": "Guides",
+    "helpersTitle": "Se faire aider pour",
+    "questionsTitle": "Questions fréquentes",
+    "allGuides": "Tous les guides",
+    "openMap": "Ouvrir la carte",
+    "map": {
+      "badge": "Étape un",
+      "title": "Repérez-vous dans",
+      "titleHighlight": "Munich",
+      "subtitle": "Où vivre, où manger, où travailler. Une seule carte, triée selon la distance qui vous en sépare."
+    },
+    "studies": {
+      "badge": "Étape deux",
+      "title": "Installez-vous et",
+      "titleHighlight": "étudiez",
+      "subtitle": "Déclaration de domicile, titre de séjour, et tout ce que personne ne vous explique avant votre arrivée."
+    },
+    "career": {
+      "badge": "Étape trois",
+      "title": "Lancez votre",
+      "titleHighlight": "carrière",
+      "subtitle": "Emplois étudiants, stages, et les applications qui simplifient les démarches du quotidien."
+    },
+    "community": {
+      "badge": "Étape quatre",
+      "title": "Vous n'êtes pas",
+      "titleHighlight": "seul",
+      "subtitle": "Des étudiants et professionnels marocains déjà à Munich, à un message près."
+    }
   }
 }

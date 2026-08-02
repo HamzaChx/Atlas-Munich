@@ -6,6 +6,7 @@
 import { ChatbotType, CHATBOT_CONFIG } from "./types";
 import { guides } from "@/data/guides";
 import { places } from "@/data/places";
+import { hubs } from "@/data/hubs";
 import { categories } from "@/data/categories";
 import { faqs } from "@/data/faqs";
 import { WHATSAPP_COMMUNITY_URL } from "@/lib/site-config";
@@ -36,7 +37,7 @@ const BASE_SYSTEM_PROMPT = `You are a helpful assistant for Atlas Munich, a comp
 - LISTS: use "-" for options and "1." for anything that happens in order. Keep each item to one or two lines. Do not nest deeper than two levels.
 - BOLD: use "**text**" only for the things a user would highlight with a marker, meaning deadlines, amounts, document names, German terms, and hard warnings. Aim for 3 to 6 bold spans in a normal answer. NEVER bold a whole sentence, a whole list item, or a paragraph. Bold everywhere means bold nowhere.
 - LINKS: every URL MUST use markdown link syntax with a human label, "[Munich appointment booking](https://stadt.muenchen.de/service/terminvereinbarung.html)". Never paste a naked URL, never write "(see website)" without a link, never invent a URL you were not given.
-- INTERNAL PAGES: link to Atlas Munich pages by path with the same syntax, "[our Anmeldung guide](/guides/anmeldung-city-registration)", "[the places directory](/places)". Use only paths that exist in your context.
+- INTERNAL PAGES: link to Atlas Munich pages by path with the same syntax, "[our Anmeldung guide](/guides/anmeldung-city-registration)", "[the map](/map)". Use only paths that exist in your context.
 - PHONE NUMBERS: make them dialable, "[112](tel:112)", "[116 117](tel:116117)". Emails likewise: "[name@example.de](mailto:name@example.de)".
 - CODE BLOCKS: put anything the user will copy verbatim in a triple-backtick fenced block with a language tag. German email and message templates use \`\`\`text, LaTeX uses \`\`\`latex, commands use \`\`\`bash. Never wrap ordinary prose in a code block.
 - TABLES: only for genuine comparisons of 3+ rows across 2 or 3 columns, for example insurance providers or districts by price. Otherwise use a list.
@@ -113,8 +114,11 @@ You are the main greeter and router for Atlas Munich. Your job is to:
 </description>
 
 <available-sections>
+- /map - Munich on a map: housing and districts, halal restaurants, mosques, groceries, study spots
+- /studies - Getting settled and studying: Anmeldung, residence permits, university life
+- /career - Working student jobs, internships, job search, and everyday apps
+- /community - The WhatsApp group, how to contribute, and how to reach us
 - /guides - Comprehensive guides for Munich life (housing, KVR, university, career)
-- /places - Directory of halal restaurants, mosques, groceries, study spots
 - /tools - Munich Tools hub: Housing Application Writer (Riad), CV & Cover Letter Drafter, and more AI-powered tools
 - /housing - Direct entry to the Housing Application Assistant (Riad)
 - /faq - Frequently asked questions
@@ -131,7 +135,7 @@ When routing to a specialist, use this format in your response:
 [ROUTE:section_path:chatbot_name]
 
 Examples:
-- For places questions: [ROUTE:/places:jmila]
+- For places questions: [ROUTE:/map:jmila]
 - For guides questions: [ROUTE:/guides:hamid]
 - For about questions: [ROUTE:/about:hamza]
 - For writing a WG/apartment application message: [ROUTE:/housing:riad]
@@ -1141,8 +1145,11 @@ ${localeInstruction}`;
 function buildValidRoutesSection(): string {
   const guideRoutes = guides.map((g) => `/guides/${g.slug}`);
   const hubRoutes = [
+    "/map",
+    "/studies",
+    "/career",
+    "/community",
     "/guides",
-    "/places",
     "/tools",
     "/faq",
     "/housing",
@@ -1170,17 +1177,17 @@ function getCurrentSectionInfo(path: string, chatbotType: ChatbotType): string {
       sectionInfo += `Category: ${guide.categoryKey}\n`;
       sectionInfo += `Summary: ${guide.summary}\n`;
     }
-  } else if (path.startsWith("/category/")) {
-    const categoryKey = path.replace("/category/", "");
-    const category = categories.find((c) => c.key === categoryKey);
-    if (category) {
-      sectionInfo += `The user is viewing the category: "${category.title}"\n`;
-      sectionInfo += `Description: ${category.description}\n`;
-    }
+  } else if (path === "/studies" || path === "/career") {
+    const hubKey = path.slice(1) as "studies" | "career";
+    const hub = hubs.find((h) => h.key === hubKey);
+    const titles = (hub?.categoryKeys ?? [])
+      .map((key) => categories.find((c) => c.key === key)?.title)
+      .filter(Boolean);
+    sectionInfo += `The user is on the "${hubKey}" hub, which covers: ${titles.join(", ")}\n`;
   } else if (path === "/housing" || path.startsWith("/housing/")) {
     sectionInfo +=
       "The user is on the Housing Application Assistant page, looking to write a rental application message for Munich.\n";
-  } else if (path === "/places") {
+  } else if (path === "/map") {
     sectionInfo += "The user is browsing the Places directory.\n";
   } else if (path === "/guides") {
     sectionInfo += "The user is browsing all Guides.\n";

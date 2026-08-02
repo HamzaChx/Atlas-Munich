@@ -3,7 +3,33 @@ import createNextIntlPlugin from "next-intl/plugin";
 
 const withNextIntl = createNextIntlPlugin("./src/i18n/request.ts");
 
-// Map tiles (Leaflet, /places) are the only third-party images loaded
+/**
+ * URLs that moved when the directory nav became a journey.
+ *
+ * These live in `redirects()` rather than in proxy.ts because config redirects
+ * run BEFORE next-intl's middleware, at the platform's routing layer, without
+ * invoking a function. The consequence is that the locale prefix is still on
+ * the path and next-intl has not touched it yet, so a bare `source: "/places"`
+ * would never match `/fr/places`. Each prefix has to be enumerated.
+ *
+ * `en` is folded straight to the unprefixed target instead of being left to
+ * next-intl's own /en -> / hop, which would cost a second round trip.
+ *
+ * Shipping as 307/308-temporary first. Flip `permanent` to true once the
+ * destinations have been verified in a real deployment, since a 308 is cached
+ * by browsers more or less forever.
+ */
+const PERMANENT_MOVES = false;
+
+function moved(from: string, to: string) {
+  return [
+    { source: `/:locale(fr|de)${from}`, destination: `/:locale${to}`, permanent: PERMANENT_MOVES },
+    { source: `/en${from}`, destination: to, permanent: PERMANENT_MOVES },
+    { source: from, destination: to, permanent: PERMANENT_MOVES },
+  ];
+}
+
+// Map tiles (Leaflet, /map) are the only third-party images loaded
 // client-side outside of Next's own image optimizer; the WhatsApp QR code
 // goes through /_next/image, so it doesn't need its own img-src entry.
 // Vercel Analytics/Speed Insights load and beacon through same-origin
@@ -44,6 +70,22 @@ const nextConfig: NextConfig = {
         pathname: "/v1/create-qr-code/**",
       },
     ],
+  },
+  async redirects() {
+    return [
+      ...moved("/places", "/map"),
+      /* The five thin /category pages fold into the hub that now owns them.
+         Google will canonicalize these to the hub itself, which is the point:
+         five pages listing one to three guides each become two real ones. */
+      ...moved("/category/rent-housing", "/map"),
+      ...moved("/category/kvr-residence", "/studies"),
+      ...moved("/category/university-life", "/studies"),
+      ...moved("/category/career", "/career"),
+      ...moved("/category/useful-apps", "/career"),
+      // Anything else under /category, including keys added later, lands on the
+      // full index rather than a 404. Must stay last.
+      ...moved("/category/:slug*", "/guides"),
+    ];
   },
   async headers() {
     return [

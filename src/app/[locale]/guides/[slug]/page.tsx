@@ -14,15 +14,15 @@ import {
 import { guides, getGuideBySlug, getRelatedGuides } from "@/data/guides";
 import { localizeGuide, localizeGuides } from "@/data/guides-i18n";
 import { getCategoryByKey } from "@/data/categories";
+import { hubRouteForCategory } from "@/data/hubs";
 import { ArrowLeft, ExternalLink, ArrowRight } from "lucide-react";
 import { fmtUpdated } from "@/lib/date";
-import { getLocale } from "next-intl/server";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { cn } from "@/lib/utils";
-
-const BASE_URL = "https://atlasmunich.de";
+import { BASE_URL, localizedUrl, alternatesFor } from "@/lib/urls";
 
 interface PageProps {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ locale: string; slug: string }>;
 }
 
 export async function generateStaticParams() {
@@ -32,18 +32,24 @@ export async function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { slug } = await params;
+  const { locale, slug } = await params;
   const guide = getGuideBySlug(slug);
 
   if (!guide) {
     return { title: "Guide Not Found" };
   }
 
+  // The overlay has to be applied here too. Without it the French and German
+  // pages carried English titles and descriptions, which is what a crawler and
+  // a link preview both read first.
+  const localized = await localizeGuide(guide, locale);
   const category = getCategoryByKey(guide.categoryKey);
+  const path = `/guides/${guide.slug}`;
 
   return {
-    title: guide.title,
-    description: guide.summary,
+    title: localized.title,
+    description: localized.summary,
+    alternates: alternatesFor(locale, path),
     keywords: [
       ...guide.tags,
       guide.categoryKey.replace(/-/g, " "),
@@ -52,18 +58,18 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       ...(category ? [category.title] : []),
     ],
     openGraph: {
-      title: `${guide.title} | Atlas Munich`,
-      description: guide.summary,
+      title: `${localized.title} | Atlas Munich`,
+      description: localized.summary,
       type: "article",
-      url: `https://atlasmunich.de/guides/${guide.slug}`,
+      url: localizedUrl(locale, path),
       publishedTime: guide.lastUpdated,
       authors: guide.author ? [guide.author] : ["Atlas Munich Team"],
       tags: guide.tags,
     },
     twitter: {
       card: "summary_large_image",
-      title: `${guide.title} | Atlas Munich`,
-      description: guide.summary,
+      title: `${localized.title} | Atlas Munich`,
+      description: localized.summary,
     },
   };
 }
@@ -77,26 +83,22 @@ const categoryNumerals: Record<string, string> = {
 };
 
 export default async function GuidePage({ params }: PageProps) {
-  const { slug } = await params;
+  const { locale, slug } = await params;
+  setRequestLocale(locale);
+
   const guide = getGuideBySlug(slug);
 
   if (!guide) {
     notFound();
   }
 
-  const locale = await getLocale();
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const messages: any = (await import(`../../../../../messages/${locale}.json`)).default;
-  const getMessage = (path: string) => {
-    const parts = path.split(".");
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    let res: any = messages;
-    for (const p of parts) {
-      res = res?.[p];
-      if (res == null) break;
-    }
-    return res ?? undefined;
-  };
+  /* Three scoped namespaces rather than a `messages/${locale}.json` import.
+     The template-literal import matched all three locale files, so every one
+     of them (~150 KB each) was pulled into this route's bundle to read a
+     handful of nav and guidePage strings. */
+  const t = await getTranslations("guidePage");
+  const tNav = await getTranslations("nav");
+  const tCategories = await getTranslations("categories");
 
   const category = getCategoryByKey(guide.categoryKey);
 
@@ -208,16 +210,18 @@ export default async function GuidePage({ params }: PageProps) {
   const numeral = categoryNumerals[guide.categoryKey] || "00";
 
   const localizedCategoryTitle = category
-    ? (getMessage(`categories.${category.key}.title`) ?? category.title)
+    ? tCategories(`${category.key}.title`)
     : guide.categoryKey;
 
   const breadcrumbs = [
-    { label: getMessage("nav.guides") ?? "Guides", href: "/guides" },
-    { label: localizedCategoryTitle, href: `/category/${guide.categoryKey}` },
+    { label: tNav("guides"), href: "/guides" },
+    { label: localizedCategoryTitle, href: hubRouteForCategory(guide.categoryKey) },
     { label: localizedGuide.title },
   ];
 
-  const guideUrl = `${BASE_URL}/guides/${guide.slug}`;
+  /* Locale-aware, so the French page does not declare the English URL as its
+     own main entity. */
+  const guideUrl = localizedUrl(locale, `/guides/${guide.slug}`);
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
@@ -236,6 +240,9 @@ export default async function GuidePage({ params }: PageProps) {
         },
         publisher: { "@id": `${BASE_URL}/#organization` },
         mainEntityOfPage: guideUrl,
+        // The per-guide OG route already renders this; the Article schema was
+        // the one place not pointing at it.
+        image: `${guideUrl}/opengraph-image`,
       },
       {
         "@type": "BreadcrumbList",
@@ -244,7 +251,7 @@ export default async function GuidePage({ params }: PageProps) {
             "@type": "ListItem",
             position: index + 1,
             name: crumb.label,
-            item: crumb.href ? `${BASE_URL}${crumb.href}` : guideUrl,
+            item: crumb.href ? localizedUrl(locale, crumb.href) : guideUrl,
           })),
         ],
       },
@@ -271,7 +278,7 @@ export default async function GuidePage({ params }: PageProps) {
           <div className="max-w-4xl mx-auto text-center">
             {/* Category Pill */}
             <Link
-              href={`/category/${guide.categoryKey}`}
+              href={hubRouteForCategory(guide.categoryKey)}
               className={cn(
                 "mb-8 inline-flex items-center justify-center gap-3 transition-opacity hover:opacity-80",
                 theme.text
@@ -296,20 +303,20 @@ export default async function GuidePage({ params }: PageProps) {
             {/* Typographic Meta Row */}
             <div className="mt-12 flex flex-wrap items-center justify-center gap-4 text-[11px] font-bold uppercase tracking-[0.15em] text-zinc-400">
               <span>
-                {guide.readingTime} {getMessage("guidePage.minRead") ?? "min read"}
+                {guide.readingTime} {t("minRead")}
               </span>
               <span className="h-1 w-1 rounded-full bg-zinc-300 dark:bg-zinc-700" />
               <span>
-                {getMessage("guidePage.updatedLabel") ?? "Updated"}{" "}
+                {t("updatedLabel")}{" "}
                 {fmtUpdated(guide.lastUpdated).toUpperCase()}
               </span>
               {guide.author && (
                 <>
                   <span className="h-1 w-1 rounded-full bg-zinc-300 dark:bg-zinc-700" />
                   <span>
-                    {getMessage("guidePage.by") ?? "by"}{" "}
+                    {t("by")}{" "}
                     {(guide.author === "Atlas Munich Team"
-                      ? (getMessage("guidePage.atlasMunichTeam") ?? guide.author)
+                      ? (t("atlasMunichTeam") ?? guide.author)
                       : guide.author
                     ).toUpperCase()}
                   </span>
@@ -330,12 +337,12 @@ export default async function GuidePage({ params }: PageProps) {
               {localizedGuide.sections.length > 0 && (
                 <div className="lg:hidden mb-12">
                   <h3 className="mb-4 text-xs font-bold uppercase tracking-widest text-zinc-400">
-                    {getMessage("guidePage.tableOfContents") ?? "In this guide"}
+                    {t("tableOfContents")}
                   </h3>
                   <div className="pl-4 border-l border-zinc-100 dark:border-zinc-800">
                     <TableOfContents
                       sections={localizedGuide.sections}
-                      label={getMessage("guidePage.onThisPage") ?? "On this page"}
+                      label={t("onThisPage")}
                     />
                   </div>
                 </div>
@@ -421,7 +428,7 @@ export default async function GuidePage({ params }: PageProps) {
               {localizedGuide.faqs && localizedGuide.faqs.length > 0 && (
                 <section className="mb-16">
                   <h2 className="font-display text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-3xl mb-8 text-center">
-                    {getMessage("guidePage.frequentlyAsked") ?? "Frequently Asked Questions"}
+                    {t("frequentlyAsked")}
                   </h2>
                   <div className="mx-auto max-w-3xl">
                     <FAQAccordion faqs={localizedGuide.faqs} />
@@ -433,7 +440,7 @@ export default async function GuidePage({ params }: PageProps) {
               {localizedGuide.resources && localizedGuide.resources.length > 0 && (
                 <section className="mb-16 lg:hidden">
                   <h2 className="font-display text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 mb-6">
-                    {getMessage("guidePage.helpfulResources") ?? "Helpful Resources"}
+                    {t("helpfulResources")}
                   </h2>
                   <div className="space-y-4 pl-4 border-l border-zinc-100 dark:border-zinc-800">
                     {localizedGuide.resources.map((resource) => (
@@ -463,7 +470,7 @@ export default async function GuidePage({ params }: PageProps) {
               {relatedGuides.length > 0 && (
                 <section className="mt-20">
                   <h2 className="font-display text-2xl font-bold text-zinc-900 dark:text-zinc-50 sm:text-3xl mb-8 text-center">
-                    {getMessage("guidePage.continueLearning") ?? "Continue Reading"}
+                    {t("continueLearning")}
                   </h2>
                   <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                     {relatedGuides.slice(0, 4).map((related) => (
@@ -476,15 +483,14 @@ export default async function GuidePage({ params }: PageProps) {
               {/* Bottom CTA - Editorial Minimal */}
               <div className="mt-20 flex flex-col items-center justify-center gap-6 text-center">
                 <h3 className="font-display text-2xl font-bold text-zinc-900 dark:text-zinc-50 sm:text-3xl">
-                  {getMessage("guidePage.bottomCTATitle") ?? "Explore More Guides"}
+                  {t("bottomCTATitle")}
                 </h3>
                 <p className="text-base text-zinc-500 dark:text-zinc-400 max-w-md">
-                  {getMessage("guidePage.bottomCTADesc") ??
-                    "Discover more resources in this category or browse the full collection."}
+                  {t("bottomCTADesc")}
                 </p>
                 <div className="flex flex-wrap justify-center gap-4 mt-2">
                   <Link
-                    href={`/category/${guide.categoryKey}`}
+                    href={hubRouteForCategory(guide.categoryKey)}
                     className={cn(
                       "group inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest transition-colors",
                       theme.text
@@ -498,7 +504,7 @@ export default async function GuidePage({ params }: PageProps) {
                     href="/guides"
                     className="group inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-zinc-900 dark:text-zinc-100 transition-colors hover:opacity-70"
                   >
-                    {getMessage("guidePage.bottomCTAAllGuides") ?? "All Guides"}
+                    {t("bottomCTAAllGuides")}
                     <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Link>
                 </div>
@@ -512,12 +518,12 @@ export default async function GuidePage({ params }: PageProps) {
                 {localizedGuide.sections.length > 0 && (
                   <div>
                     <h3 className="mb-6 text-xs font-bold uppercase tracking-[0.15em] text-zinc-400">
-                      {getMessage("guidePage.tableOfContents") ?? "In this guide"}
+                      {t("tableOfContents")}
                     </h3>
                     <div className="pl-4 border-l border-zinc-100 dark:border-zinc-800">
                       <TableOfContents
                       sections={localizedGuide.sections}
-                      label={getMessage("guidePage.onThisPage") ?? "On this page"}
+                      label={t("onThisPage")}
                     />
                     </div>
                   </div>
@@ -527,7 +533,7 @@ export default async function GuidePage({ params }: PageProps) {
                 {localizedGuide.resources && localizedGuide.resources.length > 0 && (
                   <div>
                     <h3 className="mb-6 text-xs font-bold uppercase tracking-[0.15em] text-zinc-400">
-                      {getMessage("guidePage.resources") ?? "Resources"}
+                      {t("resources")}
                     </h3>
                     <div className="space-y-6 pl-4 border-l border-zinc-100 dark:border-zinc-800">
                       {localizedGuide.resources.map((resource) => (
@@ -561,7 +567,7 @@ export default async function GuidePage({ params }: PageProps) {
                 {/* Share - Text Based Minimal */}
                 <div>
                   <h3 className="mb-4 text-xs font-bold uppercase tracking-[0.15em] text-zinc-400">
-                    {getMessage("guidePage.shareThisGuide") ?? "Share this guide"}
+                    {t("shareThisGuide")}
                   </h3>
                   <ShareButton
                     className={cn(

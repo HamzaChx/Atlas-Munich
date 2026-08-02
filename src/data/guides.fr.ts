@@ -7,6 +7,7 @@ export const guideTranslations: Record<string, GuideTranslation> = {
       "Munich est l'un des marchés locatifs les plus compétitifs d'Allemagne. Ce guide vous accompagne tout au long du processus, de la recherche sur les plateformes jusqu'à la signature de votre contrat, pour que vous puissiez aborder cette étape avec confiance.",
     sections: [
       {
+        id: "the-munich-market",
         title: "Comprendre le marché munichois",
         content: `Munich figure régulièrement parmi les villes les plus chères d'Allemagne en matière de location. La demande dépasse largement l'offre, en particulier pour les appartements meublés près des universités ou du centre-ville. Le loyer moyen d'un appartement d'une chambre en centre de Munich se situe entre 1 400 et 1 800 euros par mois, et même les chambres en colocation (appelées WG-Zimmer) peuvent coûter entre 600 et 1 000 euros.
 
@@ -15,6 +16,7 @@ La bonne nouvelle, c'est qu'avec de la préparation et la bonne stratégie, il e
 Un point important à connaître dès le départ : en Allemagne, la plupart des propriétaires s'attendent à recevoir trois mois de relevés bancaires, une preuve de revenus ou une attestation d'inscription universitaire, un rapport de crédit SCHUFA, et une Selbstauskunft remplie (un formulaire de déclaration personnelle). Avoir ces documents prêts avant même de commencer vos recherches vous évitera beaucoup de stress.`,
       },
       {
+        id: "where-to-search",
         title: "Où chercher un appartement",
         content: `Il existe plusieurs plateformes à utiliser en parallèle, car les annonces disparaissent souvent dans les heures qui suivent leur mise en ligne.
 
@@ -27,6 +29,7 @@ Un point important à connaître dès le départ : en Allemagne, la plupart des 
 Au-delà des principaux portails, les tableaux d'affichage des universités (physiques et numériques) proposent souvent des chambres publiées par des étudiants quittant Munich. Les bureaux de logement étudiant de la TUM et de la LMU tiennent également des listes d'attente pour leurs résidences étudiantes, nettement moins chères. Ces listes peuvent être longues, alors inscrivez-vous le plus tôt possible, idéalement plusieurs mois avant votre arrivée.`,
         subsections: [
           {
+            id: "wg-vs-private",
             title: "Colocation ou appartement privé",
             content: `Une WG (Wohngemeinschaft) est un appartement partagé où vous louez une chambre privée et partagez la cuisine, la salle de bain et les espaces communs avec d'autres personnes. C'est de loin l'option la plus abordable et la plus conviviale pour les étudiants et les jeunes professionnels nouvellement arrivés à Munich. Les coûts sont moins élevés, vous avez généralement une communauté immédiate, et beaucoup de colocataires sont heureux de vous aider à vous repérer dans la vie de la ville.
 
@@ -35,6 +38,7 @@ Un appartement privé vous offre plus d'indépendance et d'intimité. C'est la m
         ],
       },
       {
+        id: "your-application",
         title: "Constituer un dossier solide",
         content: `À Munich, votre candidature est votre première impression. La plupart des propriétaires reçoivent des dizaines de réponses pour chaque annonce, alors se démarquer est essentiel. Les meilleures candidatures sont complètes, soignées et personnalisées.
 
@@ -45,6 +49,7 @@ Avec votre message, joignez vos documents sous forme d'un seul PDF bien présent
 La rapidité compte. Configurez des notifications sur les plateformes que vous utilisez et visez à répondre dans les deux premières heures suivant la mise en ligne d'une nouvelle annonce.`,
       },
       {
+        id: "viewing-and-deciding",
         title: "Les visites et votre décision",
         content: `Si vous êtes invité à une visite (Besichtigung), traitez-la comme un entretien dans les deux sens. Le propriétaire vous évalue, mais vous évaluez aussi le logement. Arrivez à l'heure, soyez présentable et soyez prêt à confirmer clairement votre situation.
 
@@ -55,6 +60,7 @@ Si vous postulez depuis l'étranger et ne pouvez pas assister aux visites en per
 Ne vous sentez pas obligé d'accepter un appartement sur lequel vous avez des doutes simplement parce que le marché est compétitif. Faites confiance à votre intuition, surtout si quelque chose dans l'annonce vous semble inhabituel.`,
       },
       {
+        id: "your-rental-contract",
         title: "Comprendre votre contrat de location",
         content: `Votre Mietvertrag (contrat de location) est un document juridiquement contraignant. Prenez le temps de le lire attentivement avant de signer, idéalement avec l'aide d'un germanophone ou d'un outil de traduction pour les sections dont vous n'êtes pas sûr.
 
@@ -69,21 +75,25 @@ Une fois que vous avez signé et emménagé, vous devrez enregistrer votre adres
     ],
     faqs: [
       {
+        id: "faq-apartment-1",
         question: "Ai-je besoin d'un rapport SCHUFA et comment en obtenir un ?",
         answer:
           "La SCHUFA est le principal organisme de crédit en Allemagne. De nombreux propriétaires demandent un rapport SCHUFA pour confirmer que vous n'avez pas de dettes impayées. Vous pouvez en demander un exemplaire gratuit une fois par an sur le site de la SCHUFA. Si vous êtes nouveau en Allemagne et n'avez pas d'historique SCHUFA, certains propriétaires accepteront un relevé bancaire montrant des fonds suffisants à la place. Être transparent à ce sujet dans votre candidature vaut toujours mieux que de ne pas le mentionner.",
       },
       {
+        id: "faq-apartment-2",
         question: "Qu'est-ce qu'une Selbstauskunft et dois-je la remplir ?",
         answer:
           "Une Selbstauskunft est un formulaire de déclaration personnelle dans lequel vous fournissez des informations sur vos revenus, votre emploi et votre historique locatif. De nombreux propriétaires l'exigent dans le cadre du processus de candidature. Vous pouvez généralement télécharger une version standard sur WG-Gesucht ou demander au propriétaire de vous envoyer sa version. Remplissez-la toujours honnêtement.",
       },
       {
+        id: "faq-apartment-3",
         question: "Est-il sûr de payer une caution avant de voir l'appartement ?",
         answer:
           "Non. Ne transférez jamais d'argent à un propriétaire avant d'avoir physiquement vu l'appartement ou, au minimum, de l'avoir vérifié via un appel vidéo avec une personne de confiance sur place. Si quelqu'un vous presse de payer une caution pour « sécuriser » un logement sans visite, c'est un signal d'alarme majeur d'une arnaque à la location.",
       },
       {
+        id: "faq-apartment-4",
         question: "Combien de temps à l'avance dois-je commencer mes recherches ?",
         answer:
           "Commencez à chercher au moins deux à trois mois avant votre date d'emménagement souhaitée si possible. Le marché munichois est rapide et compétitif, et ce délai vous donne le temps de postuler à plusieurs logements sans vous sentir pressé. Si vous déménagez depuis l'étranger, rejoindre des groupes d'étudiants marocains à Munich peut également vous aider à trouver des sous-locations ou un hébergement temporaire pendant que vous cherchez sur place.",
@@ -91,18 +101,22 @@ Une fois que vous avez signé et emménagé, vous devrez enregistrer votre adres
     ],
     resources: [
       {
+        id: "res-apartment-1",
         title: "ImmobilienScout24",
         description: "Le plus grand portail immobilier d'Allemagne",
       },
       {
+        id: "res-apartment-2",
         title: "WG-Gesucht",
         description: "La meilleure plateforme pour les chambres en colocation et logements étudiants",
       },
       {
+        id: "res-apartment-3",
         title: "Studentenwerk Munich",
         description: "Bureau officiel du logement étudiant de la TUM et de la LMU",
       },
       {
+        id: "res-apartment-4",
         title: "SCHUFA Free Report",
         description: "Demandez votre rapport de crédit SCHUFA annuel gratuit",
       },
@@ -115,6 +129,7 @@ Une fois que vous avez signé et emménagé, vous devrez enregistrer votre adres
       "L'Anmeldung est votre enregistrement officiel auprès de la ville de Munich. C'est l'une des premières choses à faire après votre arrivée, et presque tout le reste en dépend. Voici exactement comment procéder.",
     sections: [
       {
+        id: "what-is-anmeldung",
         title: "Qu'est-ce que l'Anmeldung et pourquoi est-elle importante ?",
         content: `L'Anmeldung est l'enregistrement obligatoire de votre adresse auprès des autorités municipales allemandes. Il ne s'agit pas d'une simple formalité administrative : c'est une obligation légale pour toute personne résidant en Allemagne, qu'elle soit citoyenne allemande, ressortissante de l'UE ou étrangère venant de pays tiers.
 
@@ -123,6 +138,7 @@ Une fois l'Anmeldung complétée, vous recevez un document officiel appelé Meld
 Sans Meldebescheinigung, vous vous retrouverez bloqué à chaque étape administrative. C'est pourquoi cette démarche doit figurer en tête de votre liste dès votre arrivée à Munich.`,
       },
       {
+        id: "when-to-register",
         title: "Quand s'enregistrer",
         content: `La loi allemande vous impose d'effectuer votre Anmeldung dans les **14 jours** suivant votre installation à une adresse permanente. Attention : votre séjour à l'hôtel, dans un Airbnb ou dans une auberge de jeunesse ne compte pas comme adresse permanente. C'est uniquement à partir du moment où vous occupez un logement fixe, une chambre en WG, un appartement en location, ou une résidence universitaire, que le délai de 14 jours commence à courir.
 
@@ -131,6 +147,7 @@ Pour procéder à l'enregistrement, votre propriétaire ou le gestionnaire de vo
 Pensez à demander la Wohnungsgeberbestätigung à votre propriétaire dès que vous emménagez, idéalement le jour même ou le lendemain. La plupart des propriétaires sont habitués à cette procédure, mais certains peuvent avoir besoin d'un rappel ou d'une explication.`,
       },
       {
+        id: "what-you-need",
         title: "Ce que vous devez apporter au KVR",
         content: `Avant de vous rendre au rendez-vous, assurez-vous d'avoir tous les documents suivants avec vous :
 
@@ -145,6 +162,7 @@ Pensez à demander la Wohnungsgeberbestätigung à votre propriétaire dès que 
 Vérifiez toujours sur le site officiel muenchen.de la liste actualisée des documents requis, car les exigences peuvent légèrement varier selon votre situation.`,
       },
       {
+        id: "the-appointment",
         title: "Prendre rendez-vous et ce qui vous attend",
         content: `L'Anmeldung se fait au KVR (Kreisverwaltungsreferat), l'autorité administrative centrale de Munich. Vous pouvez prendre rendez-vous en ligne directement sur le site muenchen.de, dans la section dédiée à l'Anmeldung. Les créneaux partent vite, surtout en début de semestre, donc réservez le plus tôt possible.
 
@@ -153,6 +171,7 @@ Munich dispose de plusieurs Bürgerbüros (antennes administratives) répartis d
 Le rendez-vous lui-même est rapide : comptez entre 10 et 15 minutes. L'agent vérifiera vos documents, saisira vos informations dans le système, et vous remettra votre **Meldebescheinigung** directement sur place. Conservez ce document précieusement, vous en aurez besoin à de nombreuses reprises dans les semaines et mois à venir.`,
         subsections: [
           {
+            id: "online-option",
             title: "Peut-on s'enregistrer en ligne ?",
             content: `Depuis 2024, Munich expérimente un système d'Anmeldung en ligne dans le cadre d'un programme pilote. Cependant, cette option n'est pas encore disponible pour tous les profils et toutes les situations. Pour les nouveaux arrivants non-européens ou pour les premières inscriptions, la présence en personne reste la procédure standard et la plus fiable.
 
@@ -161,6 +180,7 @@ Si vous souhaitez vérifier si vous êtes éligible à l'option en ligne, consul
         ],
       },
       {
+        id: "after-registration",
         title: "Après votre enregistrement",
         content: `Une fois votre Anmeldung effectuée, deux à quatre semaines plus tard vous recevrez par courrier postal votre **Steueridentifikationsnummer** (numéro d'identification fiscale). Ce numéro à 11 chiffres est attribué automatiquement par le fisc allemand (Bundeszentralamt für Steuern) à toute personne enregistrée en Allemagne. Vous devrez le communiquer à votre employeur si vous travaillez, et il sera nécessaire pour votre déclaration fiscale.
 
@@ -171,16 +191,19 @@ Si vous quittez définitivement l'Allemagne, vous devez effectuer une **Abmeldun
     ],
     faqs: [
       {
+        id: "faq-anmeldung-1",
         question: "Que se passe-t-il si je dépasse le délai de 14 jours ?",
         answer:
           "En théorie, un dépassement du délai de 14 jours peut entraîner une amende. En pratique, cette sanction est rarement appliquée, surtout pour les nouveaux arrivants qui rencontrent des difficultés logistiques. L'essentiel est de régulariser votre situation dès que possible. Si vous avez dépassé le délai, enregistrez-vous simplement sans attendre, les agents du KVR sont généralement compréhensifs avec les personnes de bonne foi.",
       },
       {
+        id: "faq-anmeldung-2",
         question: "Mon propriétaire refuse de me donner la Wohnungsgeberbestätigung. Que puis-je faire ?",
         answer:
           "En droit allemand, votre propriétaire est légalement tenu de vous fournir la Wohnungsgeberbestätigung dans un délai de deux semaines suivant votre emménagement. Si votre propriétaire refuse ou tarde, contactez directement le KVR pour signaler la situation, ils peuvent intervenir. Si vous logez dans une résidence universitaire, l'administration de la résidence est chargée de vous fournir ce document et connaît bien la procédure.",
       },
       {
+        id: "faq-anmeldung-3",
         question: "Puis-je m'enregistrer à l'adresse d'un ami temporairement ?",
         answer:
           "Oui, c'est possible, mais uniquement si votre ami (ou le propriétaire de son logement) accepte et signe la Wohnungsgeberbestätigung en votre faveur. Utiliser une adresse sans le consentement signé du propriétaire ou du locataire principal est invalide et peut poser des problèmes administratifs. Cette solution temporaire est utile en attendant de trouver votre propre logement, à condition qu'elle soit faite dans les règles.",
@@ -188,10 +211,12 @@ Si vous quittez définitivement l'Allemagne, vous devez effectuer une **Abmeldun
     ],
     resources: [
       {
+        id: "res-anmeldung-1",
         title: "Munich KVR Official Portal",
         description: "Prenez rendez-vous pour votre Anmeldung ici",
       },
       {
+        id: "res-anmeldung-2",
         title: "Wohnungsgeberbestätigung Form",
         description: "Formulaire officiel de confirmation du propriétaire",
       },
@@ -204,6 +229,7 @@ Si vous quittez définitivement l'Allemagne, vous devez effectuer une **Abmeldun
       "Si vous êtes un étudiant non-européen en Allemagne, vous avez besoin d'un titre de séjour valide pour y rester et étudier légalement. Ce guide explique les différents types de permis, les documents requis et le processus complet de demande au KVR de Munich.",
     sections: [
       {
+        id: "do-you-need-one",
         title: "Qui a besoin d'un titre de séjour ?",
         content: `**Les ressortissants de l'UE** n'ont pas besoin de titre de séjour pour vivre et étudier en Allemagne. La libre circulation des personnes s'applique pleinement, et une simple Anmeldung suffit pour régulariser votre présence administrative.
 
@@ -212,6 +238,7 @@ Si vous quittez définitivement l'Allemagne, vous devez effectuer une **Abmeldun
 Si vous êtes arrivé en Allemagne avec un visa national (type D) à des fins d'études, ce visa vous autorise à séjourner en Allemagne pendant la durée de sa validité, généralement trois mois. Avant son expiration, vous devez impérativement déposer une demande d'Aufenthaltserlaubnis auprès du KVR. Ne laissez jamais votre visa expirer sans avoir pris rendez-vous ou sans être en possession d'une Fiktionsbescheinigung, cela pourrait avoir de graves conséquences sur votre statut légal.`,
       },
       {
+        id: "permit-types",
         title: "Les différents types de titres de séjour",
         content: `Il existe plusieurs types d'autorisations de séjour adaptées aux différentes situations des étudiants étrangers :
 
@@ -224,6 +251,7 @@ Si vous êtes arrivé en Allemagne avec un visa national (type D) à des fins d'
 **Visa de recherche d'emploi post-études**: Après l'obtention de votre diplôme, vous pouvez demander un visa de 18 mois pour chercher un emploi qualifié en Allemagne. C'est une opportunité précieuse pour rester à Munich et décrocher un poste dans votre domaine.`,
       },
       {
+        id: "documents-needed",
         title: "Documents nécessaires pour votre demande",
         content: `Préparez l'ensemble des documents suivants avant votre rendez-vous à l'Ausländerbehörde. Se présenter avec un dossier incomplet peut entraîner un report de votre rendez-vous.
 
@@ -242,6 +270,7 @@ Si vous êtes arrivé en Allemagne avec un visa national (type D) à des fins d'
 **Formulaire de demande** rempli, Disponible sur le site du KVR de Munich à télécharger et à remplir avant le rendez-vous.`,
       },
       {
+        id: "application-process",
         title: "Le processus de demande étape par étape",
         content: `L'Ausländerbehörde (service des étrangers) est un département distinct au sein du KVR, spécifiquement chargé des demandes de titres de séjour et des questions d'immigration. Ne confondez pas ce service avec le Bürgerbüro qui gère l'Anmeldung.
 
@@ -256,6 +285,7 @@ Si vous êtes arrivé en Allemagne avec un visa national (type D) à des fins d'
 Lorsque vous récupérez votre titre de séjour, vérifiez la mention **Beschäftigung erlaubt** (emploi autorisé) ou les conditions spécifiques sur votre carte. Ces mentions déterminent si et dans quelles conditions vous êtes autorisé à travailler.`,
         subsections: [
           {
+            id: "working-as-student",
             title: "Combien pouvez-vous travailler en tant qu'étudiant ?",
             content: `En tant qu'étudiant non-européen en Allemagne, vous êtes autorisé à travailler **120 jours complets ou 240 demi-journées par an**. Cela correspond environ à 20 heures par semaine pendant le semestre, avec la possibilité de travailler davantage pendant les vacances universitaires.
 
@@ -266,6 +296,7 @@ La mention **Beschäftigung erlaubt** sur votre titre de séjour confirme que vo
         ],
       },
       {
+        id: "renewing-permit",
         title: "Renouveler votre titre de séjour",
         content: `Le renouvellement de votre titre de séjour est une démarche à planifier bien en amont. **Commencez à vous en occuper six à huit semaines avant la date d'expiration** de votre permis actuel, idéalement, notez un rappel dans votre calendrier trois mois avant cette date pour être certain de ne pas être pris de court.
 
@@ -278,16 +309,19 @@ Ne tardez jamais à entamer ce processus : les délais d'attente pour les rendez
     ],
     faqs: [
       {
+        id: "faq-permit-1",
         question: "Qu'est-ce qu'un compte bloqué (Sperrkonto) et en ai-je besoin ?",
         answer:
           "Un Sperrkonto est un compte bancaire bloqué sur lequel vous déposez un montant forfaitaire, actuellement environ 11 208 euros par an, pour prouver que vous disposez de ressources suffisantes pour vivre en Allemagne sans aide sociale. Chaque mois, vous pouvez débloquer et utiliser une tranche mensuelle de ce montant. Fintiba et Expatrio sont les prestataires les plus populaires auprès des étudiants internationaux, car leurs procédures sont rapides et entièrement en ligne. Si vous bénéficiez d'une bourse couvrant vos frais de vie, une lettre officielle de l'organisme attributaire peut remplacer le Sperrkonto. Vérifiez auprès du KVR quels justificatifs sont acceptés dans votre cas.",
       },
       {
+        id: "faq-permit-2",
         question: "Puis-je voyager au Maroc pendant le renouvellement de mon titre de séjour ?",
         answer:
           "C'est un point crucial : la Fiktionsbescheinigung que vous recevez en attendant le renouvellement de votre titre de séjour est valable sur le territoire allemand et dans l'espace Schengen, mais elle ne vous autorise pas à quitter l'espace Schengen et à y revenir. Si vous voyagez au Maroc avec une Fiktionsbescheinigung et sans titre de séjour valide, vous risquez de ne pas pouvoir rentrer en Allemagne. Attendez d'avoir votre nouveau titre de séjour en main avant tout voyage hors Schengen, et consultez l'Ausländerbehörde si vous avez un doute sur votre situation spécifique.",
       },
       {
+        id: "faq-permit-3",
         question: "Quelle est la différence entre le KVR et l'Ausländerbehörde ?",
         answer:
           "Le KVR (Kreisverwaltungsreferat) est l'autorité administrative centrale de Munich, qui couvre un large éventail de démarches municipales, dont l'Anmeldung, les permis de conduire, les passeports, et bien d'autres. L'Ausländerbehörde est un département spécifique du KVR chargé exclusivement des questions d'immigration, de titres de séjour et de tout ce qui concerne le statut des ressortissants étrangers. Pour votre titre de séjour, vous devez vous adresser à l'Ausländerbehörde, pas au Bürgerbüro de quartier.",
@@ -295,14 +329,17 @@ Ne tardez jamais à entamer ce processus : les délais d'attente pour les rendez
     ],
     resources: [
       {
+        id: "res-permit-1",
         title: "Munich KVR Ausländerbehörde",
         description: "Prenez rendez-vous pour votre titre de séjour ici",
       },
       {
+        id: "res-permit-2",
         title: "Fintiba Blocked Account",
         description: "Ouvrez rapidement un Sperrkonto pour votre demande de visa",
       },
       {
+        id: "res-permit-3",
         title: "TU Munich International Office",
         description: "Conseils pour les démarches d'immigration des étudiants TUM",
       },
@@ -315,6 +352,7 @@ Ne tardez jamais à entamer ce processus : les délais d'attente pour les rendez
       "S'adapter à une nouvelle université dans un nouveau pays peut sembler difficile au départ. Ce guide couvre tout, de l'inscription et l'activation de votre carte étudiante à la recherche de salles d'étude et à la façon de tirer le meilleur parti de votre temps dans l'une des meilleures universités d'Allemagne.",
     sections: [
       {
+        id: "enrollment-and-id",
         title: "Inscription et carte étudiante",
         content: `Une fois admis à la TUM ou à la LMU, vous devrez procéder à votre **Immatrikulation** (inscription officielle). Ce processus se fait en ligne et nécessite de fournir les documents demandés par votre université : relevés de notes, diplômes, preuve d'assurance maladie, et parfois justificatif de résidence.
 
@@ -323,6 +361,7 @@ Dans le cadre de l'inscription, vous devrez régler le **Semesterbeitrag**: les 
 Après votre inscription, vous recevrez votre **TUMcard** (à la TUM) ou votre **LMU Card** (à la LMU). Cette carte est multi-usage : elle sert de carte d'identité universitaire, de carte de bibliothèque, de ticket de transport (une fois chargée pour le semestre), et permet l'accès aux bâtiments et équipements du campus. Ayez-la toujours avec vous.`,
       },
       {
+        id: "semester-ticket",
         title: "Le ticket semestriel et les transports à Munich",
         content: `L'un des grands avantages inclus dans votre Semesterbeitrag est le **ticket de transport semestriel**. Il vous permet d'utiliser librement l'ensemble du réseau MVV (Münchner Verkehrsgesellschaft) pendant toute la durée du semestre, métro (U-Bahn), tramway, bus et trains de banlieue (S-Bahn).
 
@@ -331,6 +370,7 @@ Ce ticket est chargé directement sur votre carte étudiante et couvre une zone 
 Pour les voyages régionaux hors du réseau MVV, par exemple pour vous rendre à Nuremberg, Augsbourg ou Salzbourg, pensez au **Bayern-Ticket**, un billet journalier à tarif réduit valable dans tout le réseau régional de Bavière. Il est particulièrement intéressant à partager entre plusieurs personnes. Vous pouvez l'acheter via l'application DB Navigator ou aux distributeurs automatiques des gares.`,
       },
       {
+        id: "libraries-and-study",
         title: "Bibliothèques, espaces d'étude et ressources du campus",
         content: `Tant la TUM que la LMU disposent de nombreuses antennes de bibliothèques réparties sur leurs différents campus. Les horaires sont souvent étendus en période d'examens. Avec votre carte étudiante, vous pouvez emprunter des livres, accéder à des revues scientifiques numériques et réserver des salles d'étude individuelles ou en groupe.
 
@@ -339,6 +379,7 @@ La **Bayerische Staatsbibliothek** (Bibliothèque nationale de Bavière), situé
 En dehors des bibliothèques, les **Mensen** (restaurants universitaires) peuvent servir d'espace de travail aux heures creuses. Les principaux campus, TUM Arcisstrasse et TUM Garching côté TUM, Geschwister-Scholl-Platz côté LMU, offrent aussi des espaces communs et des salles de groupe à réserver. Explorez votre campus dès les premières semaines pour repérer les endroits qui vous conviennent le mieux.`,
         subsections: [
           {
+            id: "moodle-campus-online",
             title: "TUM Moodle, TUMOnline et LMU Campus Online",
             content: `À la **TUM**, vous utiliserez principalement deux plateformes numériques. **TUMOnline** est le portail officiel pour gérer votre inscription aux cours, consulter vos notes, accéder à vos documents officiels (Immatrikulationsbescheinigung, relevés de notes) et gérer votre compte étudiant. **Moodle** est la plateforme d'apprentissage où vos professeurs publient les supports de cours, les devoirs et les annonces importantes. Consultez Moodle régulièrement, c'est là que se passe l'essentiel de la communication pédagogique.
 
@@ -349,6 +390,7 @@ Inscrivez-vous à vos cours sur ces portails dès que l'inscription est ouverte.
         ],
       },
       {
+        id: "student-services",
         title: "Services de soutien aux étudiants",
         content: `Les deux universités disposent d'un **Bureau des Relations Internationales** (International Office) qui accompagne spécifiquement les étudiants internationaux. Ce bureau peut vous aider pour des questions liées à votre inscription, à la reconnaissance de diplômes étrangers, aux démarches administratives, et à l'intégration académique et sociale. N'hésitez pas à les contacter dès votre arrivée.
 
@@ -359,6 +401,7 @@ Le **Sprachenzentrum** (centre de langues) de la TUM et de la LMU propose des co
 Enfin, les **Hochschulgruppen** (associations et clubs étudiants) sont un excellent moyen de se socialiser, de rencontrer des personnes partageant vos intérêts, et de s'intégrer à la vie du campus. Des groupes marocains et nord-africains existent également au sein des deux universités.`,
       },
       {
+        id: "academic-culture",
         title: "La culture académique et ce qui vous attend",
         content: `Le système universitaire allemand peut être différent de ce à quoi vous êtes habitué. Voici quelques points importants à comprendre dès le départ.
 
@@ -373,16 +416,19 @@ L'honnêteté académique est prise très au sérieux en Allemagne. Le plagiat, 
     ],
     faqs: [
       {
+        id: "faq-student-1",
         question: "Puis-je travailler tout en étudiant à la TUM ou à la LMU ?",
         answer:
           "Oui, les étudiants non-européens sont autorisés à travailler jusqu'à 120 jours complets ou 240 demi-journées par an, ce qui correspond environ à 20 heures par semaine pendant le semestre. La forme d'emploi la plus adaptée aux étudiants est le poste de **Werkstudent**, un contrat à temps partiel qui offre des avantages fiscaux et d'assurance spécifiques. Vérifiez toujours les conditions inscrites sur votre titre de séjour avant d'accepter un emploi.",
       },
       {
+        id: "faq-student-2",
         question: "Qu'est-ce que la Mensa et est-ce vraiment abordable ?",
         answer:
           "La Mensa est le restaurant universitaire géré par le **Studentenwerk München**. C'est l'option de restauration la plus économique du campus : un repas complet y coûte entre 2 et 4 euros avec votre carte étudiante, ce qui est extrêmement abordable comparé aux prix pratiqués à Munich en dehors de l'université. Plusieurs Mensen sont réparties sur les différents campus de la TUM et de la LMU, avec des menus variés changeant chaque jour. Les heures de pointe se situent entre 12h et 14h, arrivez un peu avant ou après pour éviter les files d'attente.",
       },
       {
+        id: "faq-student-3",
         question: "L'enseignement est-il en allemand ou en anglais ?",
         answer:
           "Cela dépend de votre programme. De nombreux masters à la TUM et à la LMU sont enseignés entièrement en anglais, notamment dans les domaines de l'ingénierie, de l'informatique, de la gestion et des sciences naturelles. En revanche, les licences (Bachelor) sont souvent dispensées en allemand, et une bonne maîtrise de l'allemand est généralement requise pour y être admis. Les démarches administratives, avec les bureaux universitaires, les services du KVR, les propriétaires, se font presque toujours en allemand. Un niveau intermédiaire en allemand vous sera donc utile dans tous les cas.",
@@ -390,18 +436,22 @@ L'honnêteté académique est prise très au sérieux en Allemagne. Le plagiat, 
     ],
     resources: [
       {
+        id: "res-student-1",
         title: "TUM International Students",
         description: "Page officielle de la TUM pour les étudiants internationaux",
       },
       {
+        id: "res-student-2",
         title: "LMU International Office",
         description: "Soutien de la LMU pour les étudiants internationaux",
       },
       {
+        id: "res-student-3",
         title: "Studentenwerk München",
         description: "Logement, Mensa, accompagnement et aide financière",
       },
       {
+        id: "res-student-4",
         title: "MVV Semester Ticket Info",
         description: "Informations sur le ticket de transport semestriel",
       },
@@ -414,6 +464,7 @@ L'honnêteté académique est prise très au sérieux en Allemagne. Le plagiat, 
       "Un poste Werkstudent vous permet de gagner un revenu, d'acquérir de l'expérience professionnelle et de rester légalement en Allemagne tout en étudiant. Ce guide explique comment trouver de bonnes opportunités, rédiger une candidature à l'allemande, et comprendre les règles relatives aux heures de travail et aux impôts.",
     sections: [
       {
+        id: "what-is-werkstudent",
         title: "Qu'est-ce qu'un poste Werkstudent ?",
         content: `Un poste **Werkstudent** est un contrat de travail étudiant destiné aux personnes régulièrement inscrites dans un établissement d'enseignement supérieur. C'est la forme d'emploi la plus courante et la plus avantageuse pour les étudiants en Allemagne.
 
@@ -424,6 +475,7 @@ Le principal avantage financier de ce statut est le **Werkstudentenprivileg** : 
 Munich regorge d'employeurs qui recrutent activement des Werkstudenten : de grandes entreprises comme BMW, Siemens, MAN et Allianz, mais aussi de nombreuses startups technologiques et des cabinets de conseil qui apprécient la flexibilité et le profil international de nombreux étudiants des grandes universités.`,
       },
       {
+        id: "where-to-find-jobs",
         title: "Où trouver des offres d'emploi Werkstudent",
         content: `Plusieurs canaux sont efficaces pour trouver un poste Werkstudent à Munich. Utilisez-les en parallèle pour maximiser vos chances.
 
@@ -436,6 +488,7 @@ Munich regorge d'employeurs qui recrutent activement des Werkstudenten : de gran
 Enfin, ne sous-estimez pas le **réseau informel** : les foires aux emplois organisées par les universités, les événements de networking sectoriels, et les groupes d'étudiants marocains ou nord-africains à Munich peuvent vous ouvrir des portes que vous ne trouveriez pas en ligne.`,
       },
       {
+        id: "german-application",
         title: "Rédiger une candidature à l'allemande",
         content: `La candidature à l'allemande a ses propres codes, assez différents de ce qui se pratique dans d'autres pays. La respecter montre que vous comprenez la culture professionnelle locale et augmente significativement vos chances.
 
@@ -446,6 +499,7 @@ L'**Anschreiben** (lettre de motivation) doit faire exactement une page. Elle do
 Rédigez votre candidature dans la **langue de l'offre d'emploi** : si l'annonce est en allemand, répondez en allemand ; si elle est en anglais, répondez en anglais. Envoyez toujours vos documents sous forme d'un **seul PDF bien nommé** (par exemple : NomPrenom_Lebenslauf_Werkstudent_TUM.pdf).`,
         subsections: [
           {
+            id: "application-tips",
             title: "Conseils pratiques qui font la différence",
             content: `**Personnalisez chaque candidature.** Les recruteurs repèrent immédiatement les candidatures copiées-collées. Même un ajustement mineur de l'Anschreiben pour mentionner un projet spécifique de l'entreprise ou un aspect précis du poste fait une grande différence.
 
@@ -456,6 +510,7 @@ Rédigez votre candidature dans la **langue de l'offre d'emploi** : si l'annonce
         ],
       },
       {
+        id: "work-hours-rules",
         title: "Heures de travail, règles académiques et conditions de visa",
         content: `La règle fondamentale à retenir est que les étudiants non-européens sont autorisés à travailler **120 jours complets ou 240 demi-journées par an**. En pratique, cela revient à environ 20 heures par semaine pendant les semestres universitaires. Pendant les vacances (congés de Noël, semaine de Pâques, etc.) ou en dehors du semestre, vous pouvez temporairement augmenter votre nombre d'heures.
 
@@ -464,6 +519,7 @@ Gardez un suivi rigoureux de vos heures de travail chaque semaine. Il est de vot
 Votre **titre de séjour** doit mentionner la mention **Beschäftigung erlaubt** (emploi autorisé) pour que vous puissiez légalement travailler. Si vous avez des doutes sur les conditions figurant sur votre permis, consultez l'Ausländerbehörde avant de signer un contrat de travail. Travailler sans autorisation adéquate peut mettre en danger votre statut légal en Allemagne.`,
       },
       {
+        id: "taxes-and-insurance",
         title: "Impôts, assurances et votre fiche de paie",
         content: `Avant de commencer à travailler, vous devrez fournir à votre employeur deux numéros essentiels : votre **Steueridentifikationsnummer** (numéro d'identification fiscale à 11 chiffres, reçu par courrier après votre Anmeldung) et votre **Sozialversicherungsnummer** (numéro de sécurité sociale, attribué par votre caisse d'assurance maladie).
 
@@ -476,16 +532,19 @@ Conservez précieusement toutes vos fiches de paie. Elles vous seront utiles pou
     ],
     faqs: [
       {
+        id: "faq-werk-1",
         question: "Puis-je simultanément avoir un poste Werkstudent et un mini-job (450 euros) ?",
         answer:
           "C'est une situation complexe. Cumuler un poste Werkstudent avec un mini-job peut, dans certains cas, vous faire perdre le bénéfice du Werkstudentenprivileg, car les heures des deux contrats sont potentiellement additionnées pour apprécier votre temps de travail total. Les règles dépendent de la nature des postes et du nombre d'heures combiné. Avant d'accepter deux emplois simultanément, consultez un conseiller fiscal (Steuerberater) ou le service de conseil aux étudiants de votre université pour éviter toute mauvaise surprise.",
       },
       {
+        id: "faq-werk-2",
         question: "Combien peut-on réalistement gagner en tant que Werkstudent à Munich ?",
         answer:
           "Les salaires horaires varient généralement entre 12 et 25 euros brut selon le secteur et le niveau d'études. Les domaines de la tech, de l'ingénierie et de la finance tendent à proposer les rémunérations les plus élevées, parfois au-delà de 20 euros de l'heure pour des profils en master avec des compétences techniques spécifiques. À titre indicatif, à 15 euros de l'heure et 20 heures par semaine, vous pouvez dégager environ 1 200 euros brut par mois, un complément très confortable qui couvre une grande partie du coût de la vie à Munich.",
       },
       {
+        id: "faq-werk-3",
         question: "Faut-il parler allemand pour trouver un poste Werkstudent ?",
         answer:
           "Pas nécessairement. De nombreuses entreprises internationales à Munich, dans la tech, le conseil, la finance et les startups, recrutent des Werkstudenten en anglais et travaillent dans un environnement entièrement anglophone. Cependant, pour les postes orientés vers le marché allemand, la communication avec des clients allemands, ou des rôles dans des entreprises très traditionnelles, un niveau minimum de B2 en allemand est souvent requis. En règle générale, plus votre domaine est international, moins l'allemand est indispensable.",
@@ -493,14 +552,17 @@ Conservez précieusement toutes vos fiches de paie. Elles vous seront utiles pou
     ],
     resources: [
       {
+        id: "res-werk-1",
         title: "TUM TalentBridge",
         description: "Portail officiel de carrière pour les étudiants TUM",
       },
       {
+        id: "res-werk-2",
         title: "Stepstone Jobs",
         description: "Recherchez 'Werkstudent Munich' pour les offres actuelles",
       },
       {
+        id: "res-werk-3",
         title: "LinkedIn Jobs",
         description: "Trouvez des postes Werkstudent auprès des entreprises munichoise",
       },
@@ -513,6 +575,7 @@ Conservez précieusement toutes vos fiches de paie. Elles vous seront utiles pou
       "Les bonnes applications rendent l'installation à Munich bien plus fluide. Ce guide présente les outils que les étudiants et professionnels marocains utilisent réellement au quotidien, des transports et de la banque à la livraison de repas et à la communication.",
     sections: [
       {
+        id: "transport-apps",
         title: "Se déplacer à Munich",
         content: `**MVV App**: C'est l'application officielle du réseau de transports en commun de Munich (U-Bahn, S-Bahn, tramway, bus). Elle vous permet d'acheter vos tickets directement depuis votre téléphone, de consulter les horaires en temps réel, et de planifier vos trajets avec des options de correspondance détaillées. Si vous avez le ticket semestriel, votre carte étudiante fait office de titre de transport, mais l'application MVV reste utile pour les trajets en dehors de votre zone ou pour les visiteurs.
 
@@ -523,6 +586,7 @@ Conservez précieusement toutes vos fiches de paie. Elles vous seront utiles pou
 **MVG Rad**: Le système de vélos en libre-service de Munich, géré par la MVG. Des stations de vélos à quai sont réparties dans toute la ville, complétées par des vélos électriques disponibles pour les trajets plus longs ou en pente. Une option pratique et économique pour les petits trajets que les transports en commun ne couvrent pas directement.`,
       },
       {
+        id: "banking-apps",
         title: "Banque et finances",
         content: `**N26**: Une banque entièrement en ligne, très populaire auprès des étudiants et expatriés à Munich. Son application est disponible en anglais, l'ouverture de compte se fait en quelques minutes depuis votre téléphone, sans avoir à vous rendre en agence. Le compte de base est gratuit, et la carte Mastercard associée est acceptée partout. C'est souvent le premier compte que les nouveaux arrivants ouvrent à leur arrivée en Allemagne.
 
@@ -533,6 +597,7 @@ Conservez précieusement toutes vos fiches de paie. Elles vous seront utiles pou
 **Wise**: L'application incontournable pour les transferts internationaux. Si vous envoyez de l'argent au Maroc ou en recevez, Wise pratique des taux de change proches du taux réel et des frais bien inférieurs à ceux des virements bancaires classiques. Beaucoup d'étudiants l'utilisent pour communiquer avec leur famille au Maroc ou pour gérer leurs finances entre deux pays.`,
       },
       {
+        id: "food-apps",
         title: "Livraison de repas et courses",
         content: `**Lieferando**: C'est la plateforme de livraison dominante en Allemagne, l'équivalent local de Deliveroo ou Uber Eats. Elle couvre la grande majorité des restaurants de Munich et dispose d'un filtre **halal** qui vous permet de trier les restaurants proposant des options halal. C'est un outil pratique pour les soirs où vous ne souhaitez pas cuisiner, avec une sélection de cuisine marocaine, orientale et du Moyen-Orient dans plusieurs quartiers.
 
@@ -545,6 +610,7 @@ Conservez précieusement toutes vos fiches de paie. Elles vous seront utiles pou
 **Penny / Lidl**: Ces enseignes de hard discount proposent des applications avec des promotions hebdomadaires et des coupons numériques. Activez les offres chaque semaine pour réduire sensiblement votre budget courses.`,
       },
       {
+        id: "communication-apps",
         title: "Rester connecté",
         content: `**WhatsApp**: Restez connecté avec votre famille et vos amis au Maroc via WhatsApp, qui est universellement utilisé dans les deux pays. À Munich, les groupes WhatsApp de la communauté marocaine et des étudiants internationaux sont très actifs pour partager des conseils, des annonces de logement, des offres d'emploi, et organiser des événements.
 
@@ -555,6 +621,7 @@ Conservez précieusement toutes vos fiches de paie. Elles vous seront utiles pou
 **DeepL**: L'outil de traduction le plus précis disponible pour l'allemand. Indispensable pour déchiffrer vos courriers officiels, vos contrats, ou vos formulaires administratifs. La version gratuite est amplement suffisante pour un usage quotidien, mais l'application mobile facilite les traductions rapides en déplacement.`,
         subsections: [
           {
+            id: "mobile-contracts",
             title: "Choisir un forfait mobile",
             content: `Pour votre ligne téléphonique en Allemagne, vous avez le choix entre plusieurs opérateurs selon votre budget et vos besoins.
 
@@ -567,6 +634,7 @@ Pour les budgets plus serrés, des opérateurs virtuels (MVNO) utilisent les ré
         ],
       },
       {
+        id: "admin-and-study",
         title: "Administration, études et productivité",
         content: `**Adobe Scan / Microsoft Lens**: Deux applications gratuites de numérisation de documents indispensables pour la vie administrative en Allemagne. Elles transforment votre téléphone en scanner et génèrent des fichiers PDF de qualité professionnelle. Vous en aurez besoin très régulièrement pour envoyer des copies de documents officiels, des formulaires remplis, ou des justificatifs à des administrations ou des propriétaires.
 
@@ -579,16 +647,19 @@ Pour les budgets plus serrés, des opérateurs virtuels (MVNO) utilisent les ré
     ],
     faqs: [
       {
+        id: "faq-essential-1",
         question: "Peut-on utiliser Apple Pay ou Google Pay à Munich ?",
         answer:
           "Oui, les paiements sans contact sont de plus en plus acceptés à Munich, notamment dans les supermarchés, les transports, et les grandes enseignes. N26 et DKB prennent tous deux en charge Apple Pay et Google Pay. Cependant, Munich reste une ville où le **paiement en espèces** est encore très courant, notamment dans les petits commerces, les marchés, les restaurants de quartier et certaines administrations. Gardez toujours quelques billets sur vous pour éviter les mauvaises surprises.",
       },
       {
+        id: "faq-essential-2",
         question: "Y a-t-il une option de livraison de repas marocains ou arabes à Munich ?",
         answer:
           "Oui. Sur Lieferando et Wolt, vous pouvez filtrer les restaurants par cuisine marocaine (Marokkanisch), orientale ou halal. Les quartiers de **Schwabing**, **Neuhausen** et **Maxvorstadt** concentrent une bonne partie des restaurants marocains, moyen-orientaux et nord-africains de la ville. Certains de ces restaurants proposent aussi la livraison à domicile. Pour les produits de base, semoule, épices, légumineuses, viande halal, des épiceries et supermarchés spécialisés sont disponibles dans ces mêmes quartiers.",
       },
       {
+        id: "faq-essential-3",
         question: "Quelle est la meilleure application pour apprendre l'allemand ?",
         answer:
           "Duolingo est un bon point de départ pour vous familiariser avec les bases de l'allemand, mais il ne suffit pas seul pour atteindre un niveau opérationnel. Pour progresser efficacement, combinez-le avec les cours en ligne gratuits de **Deutsche Welle** (DW Deutsch), particulièrement bien structurés pour les niveaux A1 à B2, et utilisez **Anki** pour mémoriser le vocabulaire clé. Pour une progression plus rapide et plus structurée, les **centres de langues de la TUM et de la LMU** proposent des cours d'allemand intensifs spécialement conçus pour les étudiants internationaux, souvent gratuits ou à tarif très réduit.",
@@ -596,18 +667,22 @@ Pour les budgets plus serrés, des opérateurs virtuels (MVNO) utilisent les ré
     ],
     resources: [
       {
+        id: "res-apps-1",
         title: "MVV App",
         description: "Application officielle des transports en commun de Munich",
       },
       {
+        id: "res-apps-2",
         title: "N26 Online Bank",
         description: "Banque en ligne en anglais, très appréciée des étudiants",
       },
       {
+        id: "res-apps-3",
         title: "Wise International Transfers",
         description: "Transferts internationaux à faible coût",
       },
       {
+        id: "res-apps-4",
         title: "Deutsche Welle German Courses",
         description: "Cours d'allemand gratuits et structurés pour tous les niveaux",
       },

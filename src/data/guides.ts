@@ -723,19 +723,19 @@ For non-emergency communication with German authorities, companies, or landlords
     ],
     faqs: [
       {
-        id: "faq-apps-1",
+        id: "faq-essential-1",
         question: "Can I use Apple Pay or Google Pay in Munich?",
         answer:
           "Yes, both Apple Pay and Google Pay are widely accepted in Munich. Most supermarkets, restaurants, and retail shops support contactless payment. N26 and DKB both support Apple Pay and Google Pay. Cash is still used frequently in Germany, especially at smaller shops and local markets, so it is worth keeping some on you.",
       },
       {
-        id: "faq-apps-2",
+        id: "faq-essential-2",
         question: "Is there a Moroccan or Arabic food delivery option in Munich?",
         answer:
           "Several Moroccan and oriental restaurants in Munich deliver via Lieferando and Wolt. Searching for 'Marokkanisch', 'Oriental', or 'Halal' in these apps will show nearby options. The community around Schwabing, Neuhausen, and Maxvorstadt also has physical shops and restaurants worth visiting.",
       },
       {
-        id: "faq-apps-3",
+        id: "faq-essential-3",
         question: "What is the best app for learning German?",
         answer:
           "Duolingo is a fun starting point but insufficient on its own for serious progress. Combining it with a structured course (like the free Deutsche Welle learner resources) and using Anki for vocabulary retention works well. The university language centres at TUM and LMU also offer free or cheap German courses which are more structured than self-study apps.",

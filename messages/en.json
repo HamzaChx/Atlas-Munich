@@ -24,7 +24,12 @@
     "installApp": "Install Atlas Munich",
     "installDesc": "Add it to your home screen and use it offline.",
     "install": "Install",
-    "notNow": "Not now"
+    "notNow": "Not now",
+    "map": "Map",
+    "studies": "Studies",
+    "career": "Career",
+    "settings": "Settings",
+    "aboutAria": "About Atlas Munich"
   },
   "home": {
     "heroTitle": "New in Munich?",
@@ -99,7 +104,18 @@
       "halalFood": "Halal food",
       "uni": "Uni stuff",
       "uniPrompt": "How do I get started with my studies in Munich?"
-    }
+    },
+    "quick": {
+      "badge": "Where do you want to start?",
+      "map": "Find places",
+      "studies": "Get settled",
+      "career": "Find work"
+    },
+    "welcome": {
+      "title": "You are welcome here",
+      "subtitle": "Built by Moroccans in Munich, for whoever arrives next."
+    },
+    "heroImageAlt": "Moroccan students in Munich watching a football match together"
   },
   "places": {
     "badge": "Verified Places",
@@ -2752,5 +2768,36 @@
     "tryAgain": "Try again",
     "globalErrorTitle": "Atlas Munich hit a snag.",
     "globalErrorDescription": "The app failed to load. Reloading usually fixes it."
+  },
+  "hubs": {
+    "guidesTitle": "Guides",
+    "helpersTitle": "Get help with",
+    "questionsTitle": "Common questions",
+    "allGuides": "All guides",
+    "openMap": "Open the map",
+    "map": {
+      "badge": "Step one",
+      "title": "Find your way around",
+      "titleHighlight": "Munich",
+      "subtitle": "Where to live, where to eat, where to study. One map, sorted by how far things are from you."
+    },
+    "studies": {
+      "badge": "Step two",
+      "title": "Get settled and",
+      "titleHighlight": "study",
+      "subtitle": "Registration, residence permits, and the parts of student life nobody explains before you arrive."
+    },
+    "career": {
+      "badge": "Step three",
+      "title": "Start your",
+      "titleHighlight": "career",
+      "subtitle": "Working student roles, internships, and the apps that make daily admin quick."
+    },
+    "community": {
+      "badge": "Step four",
+      "title": "You are not doing this",
+      "titleHighlight": "alone",
+      "subtitle": "Moroccan students and professionals already in Munich, one message away."
+    }
   }
 }

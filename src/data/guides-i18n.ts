@@ -3,7 +3,8 @@
 //
 // `guides.ts` is the English source of truth and owns every non-text field
 // (slug, category, tags, reading time). `guides.fr.ts` / `guides.de.ts` carry
-// only the prose, keyed by slug, and are laid over it here.
+// only the prose, keyed by slug and then by section/faq/resource id, and are
+// laid over it here.
 //
 // The import is dynamic so a locale's translations, ~50KB each, load on the
 // server for the request that needs them and never reach the client bundle.
@@ -25,33 +26,65 @@ async function loadOverlay(locale: string): Promise<Overlay | null> {
   }
 }
 
+function byId<T extends { id: string }>(entries: readonly T[] | undefined): Map<string, T> {
+  return new Map((entries ?? []).map((entry) => [entry.id, entry]));
+}
+
+/* An overlay id with no English counterpart means that translation is being
+   dropped on the floor, which is exactly what happens when a section id is
+   renamed in guides.ts and the locale files are not followed up. Silent in
+   production, loud in development. */
+function warnOrphans(slug: string, kind: string, overlay: Map<string, unknown>, sourceIds: string[]) {
+  if (process.env.NODE_ENV === "production") return;
+  for (const id of overlay.keys()) {
+    if (!sourceIds.includes(id)) {
+      console.warn(`[guides-i18n] ${slug}: translated ${kind} "${id}" matches nothing in guides.ts`);
+    }
+  }
+}
+
 function applyOverlay(guide: Guide, translation?: GuideTranslation): Guide {
   if (!translation) return guide;
+
+  // Matched on id rather than array position. Position matching used to mean
+  // that inserting one section into guides.ts silently shifted every later
+  // French and German section onto the wrong heading, with no type or runtime
+  // error to catch it. An id that has no counterpart just falls back to English.
+  const sections = byId(translation.sections);
+  const faqs = byId(translation.faqs);
+  const resources = byId(translation.resources);
+
+  warnOrphans(guide.slug, "section", sections, guide.sections.map((s) => s.id));
+  warnOrphans(guide.slug, "faq", faqs, guide.faqs?.map((f) => f.id) ?? []);
+  warnOrphans(guide.slug, "resource", resources, guide.resources?.map((r) => r.id) ?? []);
 
   return {
     ...guide,
     title: translation.title ?? guide.title,
     summary: translation.summary ?? guide.summary,
-    // Sections are matched by position, the shape both files are written in.
-    sections: guide.sections.map((section, i) => ({
-      ...section,
-      title: translation.sections?.[i]?.title ?? section.title,
-      content: translation.sections?.[i]?.content ?? section.content,
-      subsections: section.subsections?.map((sub, j) => ({
-        ...sub,
-        title: translation.sections?.[i]?.subsections?.[j]?.title ?? sub.title,
-        content: translation.sections?.[i]?.subsections?.[j]?.content ?? sub.content,
-      })),
-    })),
-    faqs: guide.faqs?.map((faq, i) => ({
+    sections: guide.sections.map((section) => {
+      const t = sections.get(section.id);
+      const subs = byId(t?.subsections);
+      return {
+        ...section,
+        title: t?.title ?? section.title,
+        content: t?.content ?? section.content,
+        subsections: section.subsections?.map((sub) => ({
+          ...sub,
+          title: subs.get(sub.id)?.title ?? sub.title,
+          content: subs.get(sub.id)?.content ?? sub.content,
+        })),
+      };
+    }),
+    faqs: guide.faqs?.map((faq) => ({
       ...faq,
-      question: translation.faqs?.[i]?.question ?? faq.question,
-      answer: translation.faqs?.[i]?.answer ?? faq.answer,
+      question: faqs.get(faq.id)?.question ?? faq.question,
+      answer: faqs.get(faq.id)?.answer ?? faq.answer,
     })),
-    resources: guide.resources?.map((resource, i) => ({
+    resources: guide.resources?.map((resource) => ({
       ...resource,
-      title: translation.resources?.[i]?.title ?? resource.title,
-      description: translation.resources?.[i]?.description ?? resource.description,
+      title: resources.get(resource.id)?.title ?? resource.title,
+      description: resources.get(resource.id)?.description ?? resource.description,
     })),
   };
 }

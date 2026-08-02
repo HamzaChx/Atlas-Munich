@@ -29,13 +29,9 @@ export const faqs: FAQ[] = [
     categoryKey: "rent-housing",
     tags: ["newcomer", "urgent"],
   },
-  {
-    id: "faq-housing-2",
-    question: "What is a Wohnungsgeberbestätigung?",
-    answer: "It's a landlord confirmation form required for Anmeldung. Your landlord must provide it - it confirms you live at that address. Without it, you cannot complete city registration.",
-    categoryKey: "rent-housing",
-    tags: ["documents", "official"],
-  },
+  // "What is a Wohnungsgeberbestätigung?" lived here and again as faq-kvr-5.
+  // The KVR copy has the fuller answer and sits with the rest of the Anmeldung
+  // material, so that is the one that survives.
   {
     id: "faq-housing-3",
     question: "How much deposit (Kaution) is normal?",

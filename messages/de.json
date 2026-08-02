@@ -24,7 +24,12 @@
     "installApp": "Atlas Munich installieren",
     "installDesc": "Zum Startbildschirm hinzufügen und offline nutzen.",
     "install": "Installieren",
-    "notNow": "Später"
+    "notNow": "Später",
+    "map": "Karte",
+    "studies": "Studium",
+    "career": "Karriere",
+    "settings": "Einstellungen",
+    "aboutAria": "Über Atlas Munich"
   },
   "home": {
     "heroTitle": "Neu in München?",
@@ -100,7 +105,18 @@
       "halalFood": "Halal-Essen",
       "uni": "Uni-Kram",
       "uniPrompt": "Wie starte ich mein Studium in München?"
-    }
+    },
+    "quick": {
+      "badge": "Wo möchtest du anfangen?",
+      "map": "Orte finden",
+      "studies": "Ankommen",
+      "career": "Arbeit finden"
+    },
+    "welcome": {
+      "title": "Du bist hier willkommen",
+      "subtitle": "Von Marokkanern in München gebaut, für alle, die als Nächstes ankommen."
+    },
+    "heroImageAlt": "Marokkanische Studierende in München schauen gemeinsam ein Fußballspiel"
   },
   "places": {
     "badge": "Verifizierte Orte",
@@ -2754,5 +2770,36 @@
     "tryAgain": "Erneut versuchen",
     "globalErrorTitle": "Atlas Munich hatte ein Problem.",
     "globalErrorDescription": "Die App konnte nicht geladen werden. Ein Neuladen behebt das meist."
+  },
+  "hubs": {
+    "guidesTitle": "Guides",
+    "helpersTitle": "Hilfe bekommen bei",
+    "questionsTitle": "Häufige Fragen",
+    "allGuides": "Alle Guides",
+    "openMap": "Karte öffnen",
+    "map": {
+      "badge": "Schritt eins",
+      "title": "Finde dich zurecht in",
+      "titleHighlight": "München",
+      "subtitle": "Wo wohnen, wo essen, wo lernen. Eine Karte, sortiert danach, wie weit alles von dir entfernt ist."
+    },
+    "studies": {
+      "badge": "Schritt zwei",
+      "title": "Ankommen und",
+      "titleHighlight": "studieren",
+      "subtitle": "Anmeldung, Aufenthaltstitel und die Seiten des Studentenlebens, die dir vorher niemand erklärt."
+    },
+    "career": {
+      "badge": "Schritt drei",
+      "title": "Starte deine",
+      "titleHighlight": "Karriere",
+      "subtitle": "Werkstudentenjobs, Praktika und die Apps, die den Alltagspapierkram schnell machen."
+    },
+    "community": {
+      "badge": "Schritt vier",
+      "title": "Du machst das nicht",
+      "titleHighlight": "allein",
+      "subtitle": "Marokkanische Studierende und Berufstätige, die schon in München sind, eine Nachricht entfernt."
+    }
   }
 }

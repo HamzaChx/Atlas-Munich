@@ -1,23 +1,32 @@
 "use client";
 
+// ============================================
+// Atlas Munich – header
+//
+// The bar used to be a directory: Home, Guides, Places, Tools, FAQ, About.
+// Six destinations named after kinds of page, which asked the reader to work
+// out which kind held their answer before they could go anywhere.
+//
+// It tells the journey now: Map, Studies, Career, Community. Four stages of
+// actually moving here. "Home" is gone because the logo has always done that
+// job, and About and settings sit apart from the story as chrome.
+// ============================================
+
 import * as React from "react";
-import { Link } from "@/i18n/navigation";
-import { usePathname } from "next/navigation";
+import { Link, usePathname } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import { ThemeToggle, LanguageSwitcher } from "@/components/shared";
+import { HelpCircle } from "lucide-react";
+import { SettingsMenu } from "@/components/shared";
 import { Locale } from "@/i18n";
 
 interface NavTranslations {
-  home: string;
-  guides: string;
-  places: string;
+  map: string;
+  studies: string;
+  career: string;
   community: string;
-  faq: string;
   about: string;
-  search: string;
-  toggleTheme: string;
-  tools: string;
+  aboutAria: string;
 }
 
 interface HeaderProps {
@@ -26,24 +35,23 @@ interface HeaderProps {
 }
 
 export function Header({ locale, translations }: HeaderProps) {
+  /* From @/i18n/navigation, so the path arrives locale-stripped. The previous
+     import from next/navigation meant `/fr/studies` never matched `/studies`
+     and no nav item ever highlighted outside English. */
   const pathname = usePathname();
   const [scrolled, setScrolled] = React.useState(false);
 
   const navItems = [
-    { label: translations.home, href: "/" },
-    { label: translations.guides, href: "/guides" },
-    { label: translations.places, href: "/places" },
-    { label: translations.tools, href: "/tools" },
-    { label: translations.faq, href: "/faq" },
-    { label: translations.about, href: "/about" },
+    { label: translations.map, href: "/map" },
+    { label: translations.studies, href: "/studies" },
+    { label: translations.career, href: "/career" },
+    { label: translations.community, href: "/community" },
   ];
 
   const isHomePage = pathname === "/";
 
   React.useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 50);
-    };
+    const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -77,10 +85,9 @@ export function Header({ locale, translations }: HeaderProps) {
           </span>
         </Link>
 
-        {/* Desktop Navigation */}
         <nav className="hidden items-center gap-0.5 md:flex">
           {navItems.map((item) => {
-            const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href);
+            const isActive = pathname.startsWith(item.href);
             return (
               <Link
                 key={item.href}
@@ -98,11 +105,22 @@ export function Header({ locale, translations }: HeaderProps) {
           })}
         </nav>
 
-        {/* Right Side Actions — desktop only. On mobile, language and theme
-            live in the tab bar's More sheet, so the header carries no menu. */}
+        {/* Chrome, not journey: what the site is, and how you like it served.
+            Desktop only; on mobile both live in the More sheet. */}
         <div className="col-start-3 flex items-center justify-self-end gap-1 sm:gap-2">
-          <LanguageSwitcher currentLocale={locale} className="hidden md:block" />
-          <ThemeToggle className="hidden md:flex" />
+          <Link
+            href="/about"
+            aria-label={translations.aboutAria}
+            title={translations.about}
+            className={cn(
+              "hidden h-9 w-9 items-center justify-center rounded-full border border-border/50 bg-card text-zinc-600 shadow-sm transition-colors duration-200 md:flex",
+              "hover:bg-muted hover:text-zinc-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-zellige/50 dark:text-zinc-300 dark:hover:text-zinc-50",
+              pathname.startsWith("/about") && "border-zellige/50 bg-zellige-soft text-zellige"
+            )}
+          >
+            <HelpCircle className="h-4.5 w-4.5" aria-hidden="true" />
+          </Link>
+          <SettingsMenu currentLocale={locale} className="hidden md:block" />
         </div>
       </div>
     </header>

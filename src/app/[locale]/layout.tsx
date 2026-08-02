@@ -167,23 +167,21 @@ export default async function RootLayout({
   // needed by exactly one part of the site, yet a single provider here would
   // embed both in the HTML of every page — twice, since the RSC payload
   // repeats it. They are supplied closer to where they're read instead:
-  //   placesData → resolved on the server in /places, never sent to the client
+  //   placesData → resolved on the server in /map, never sent to the client
   //   legal      → a nested provider in the /privacy and /terms layouts
   const clientMessages = { ...messages };
   delete clientMessages.placesData;
   delete clientMessages.legal;
 
-  // Extract nav translations for the header
+  // The four journey steps plus the About affordance, handed to the header as
+  // props so it does not have to pull the whole nav namespace client-side.
   const navTranslations = messages.nav as {
-    home: string;
-    guides: string;
-    places: string;
+    map: string;
+    studies: string;
+    career: string;
     community: string;
-    faq: string;
     about: string;
-    search: string;
-    toggleTheme: string;
-    tools: string;
+    aboutAria: string;
   };
 
   const jsonLd = {

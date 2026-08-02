@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node /tmp/claude-1000/-home-hamzini-projects-Atlas-Munich/02931dd4-3cbc-4f87-9f15-0b32ed19bd09/scratchpad/add-ids.mjs)",
+      "Bash(npx tsc *)",
+      "Bash(npx eslint *)"
+    ]
+  }
+}

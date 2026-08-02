@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     description:
       "Discover halal restaurants, mosques, Moroccan butchers, cafés, and study spots in Munich. Community-verified places with interactive map.",
     type: "website",
-    url: "https://atlasmunich.de/places",
+    url: "https://atlasmunich.de/map",
   },
   twitter: {
     card: "summary_large_image",
@@ -51,7 +51,7 @@ export default function PlacesLayout({ children }: { children: React.ReactNode }
     "@context": "https://schema.org",
     "@graph": places.map((place) => ({
       "@type": SCHEMA_TYPE_BY_CATEGORY[place.category],
-      "@id": `${BASE_URL}/places#${place.slug}`,
+      "@id": `${BASE_URL}/map#${place.slug}`,
       name: place.name,
       address: {
         "@type": "PostalAddress",

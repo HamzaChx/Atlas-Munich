@@ -1,15 +1,7 @@
 import { MetadataRoute } from "next";
 import { guides } from "@/data/guides";
-import { categories } from "@/data/categories";
 import { locales, defaultLocale } from "@/i18n";
-
-const BASE_URL = "https://atlasmunich.de";
-
-/** `as-needed` prefixing: English keeps the bare path, the others are prefixed. */
-function localizedUrl(locale: string, path: string) {
-  const prefix = locale === defaultLocale ? "" : `/${locale}`;
-  return `${BASE_URL}${prefix}${path === "/" ? "" : path}` || BASE_URL;
-}
+import { localizedUrl } from "@/lib/urls";
 
 /**
  * Every page is emitted once per locale, and each entry declares the full set
@@ -52,11 +44,15 @@ export default function sitemap(): MetadataRoute.Sitemap {
   // lastModified rather than lie about it. Only guide/category pages have a
   // real date to report, derived from content in `guides.ts`.
 
-  // Core pages — highest priority, change frequently
+  // The journey: the four steps the top bar tells, and the highest-intent
+  // landing pages on the site now that /category is gone.
   const corePages = [
     ...entry("/", { changeFrequency: "weekly", priority: 1.0 }),
-    ...entry("/guides", { changeFrequency: "weekly", priority: 0.95 }),
-    ...entry("/places", { changeFrequency: "weekly", priority: 0.9 }),
+    ...entry("/map", { changeFrequency: "weekly", priority: 0.95 }),
+    ...entry("/studies", { changeFrequency: "weekly", priority: 0.95 }),
+    ...entry("/career", { changeFrequency: "weekly", priority: 0.95 }),
+    ...entry("/community", { changeFrequency: "monthly", priority: 0.8 }),
+    ...entry("/guides", { changeFrequency: "weekly", priority: 0.9 }),
     ...entry("/faq", { changeFrequency: "weekly", priority: 0.9 }),
   ];
 
@@ -76,21 +72,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...entry("/terms", { changeFrequency: "yearly", priority: 0.2 }),
   ];
 
-  // Category pages — grouped topic indexes. Real freshness signal: the most
-  // recently updated guide within that category, when there is one.
-  const categoryPages = categories.flatMap((category) => {
-    const categoryGuideDates = guides
-      .filter((guide) => guide.categoryKey === category.key)
-      .map((guide) => new Date(guide.lastUpdated).getTime());
-    const lastModified =
-      categoryGuideDates.length > 0 ? new Date(Math.max(...categoryGuideDates)) : undefined;
-
-    return entry(`/category/${category.key}`, {
-      changeFrequency: "weekly",
-      priority: 0.82,
-      lastModified,
-    });
-  });
 
   // Individual guide pages — most valuable content pieces. Slugs are shared
   // across locales; only the prose differs (see guides.fr.ts / guides.de.ts).
@@ -102,5 +83,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     })
   );
 
-  return [...corePages, ...topicPages, ...categoryPages, ...guidePages, ...secondaryPages];
+  return [...corePages, ...topicPages, ...guidePages, ...secondaryPages];
 }

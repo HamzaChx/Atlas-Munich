@@ -33,7 +33,7 @@ export default function manifest(): MetadataRoute.Manifest {
       { src: "/apple-icon.png", sizes: "180x180", type: "image/png" },
     ],
     shortcuts: [
-      { name: "Places", short_name: "Places", url: "/places" },
+      { name: "Map", short_name: "Map", url: "/map" },
       { name: "Guides", short_name: "Guides", url: "/guides" },
     ],
   };

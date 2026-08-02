@@ -196,7 +196,7 @@ export function MobileSearchOverlay({ open, onOpenChange, locale }: MobileSearch
             {results.places.map((place) => (
               <Link
                 key={place.slug}
-                href={`/places?q=${encodeURIComponent(place.name)}`}
+                href={`/map?q=${encodeURIComponent(place.name)}`}
                 onClick={() => onOpenChange(false)}
                 className={ROW}
               >

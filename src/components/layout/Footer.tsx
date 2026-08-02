@@ -7,18 +7,18 @@ const linkColumns = [
   {
     titleKey: "guides",
     links: [
-      { labelKey: "links.housingRent", href: "/category/rent-housing" },
-      { labelKey: "links.kvrResidence", href: "/category/kvr-residence" },
-      { labelKey: "links.universityLife", href: "/category/university-life" },
-      { labelKey: "links.careerJobs", href: "/category/career" },
+      { labelKey: "links.housingRent", href: "/map" },
+      { labelKey: "links.kvrResidence", href: "/studies" },
+      { labelKey: "links.universityLife", href: "/studies" },
+      { labelKey: "links.careerJobs", href: "/career" },
     ],
   },
   {
     titleKey: "resources",
     links: [
-      { labelKey: "links.halalPlaces", href: "/places" },
+      { labelKey: "links.halalPlaces", href: "/map" },
       { labelKey: "links.faq", href: "/faq" },
-      { labelKey: "links.usefulApps", href: "/category/useful-apps" },
+      { labelKey: "links.usefulApps", href: "/career" },
       { labelKey: "links.aiTools", href: "/tools" },
     ],
   },

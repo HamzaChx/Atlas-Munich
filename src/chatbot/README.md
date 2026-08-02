@@ -29,7 +29,7 @@ A modular, multi-persona chatbot system integrated into the Atlas Munich website
 ### 3. **Jmila** (Places Specialist)
 
 - **Avatar**: `jmila.png`
-- **Section**: Places (`/places`)
+- **Section**: Map (`/map`)
 - **Personality**: Smart, concise, relaxing
 - **Role**: Helpful camel who knows all Munich spots
 - **Features**:

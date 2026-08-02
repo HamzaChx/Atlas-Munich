@@ -12,10 +12,18 @@
 
 import * as React from "react";
 import { createPortal } from "react-dom";
-import { Link } from "@/i18n/navigation";
-import { usePathname } from "next/navigation";
+import { Link, usePathname } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
-import { Download, Home, BookOpen, MapPin, Wrench, HelpCircle, Info, X, type LucideIcon } from "lucide-react";
+import {
+  Download,
+  MapPin,
+  GraduationCap,
+  Briefcase,
+  Users,
+  Info,
+  X,
+  type LucideIcon,
+} from "lucide-react";
 
 import { LanguageSwitcher, ThemeToggle } from "@/components/shared";
 import { useInstallPrompt } from "@/components/pwa/use-install-prompt";
@@ -61,12 +69,13 @@ export function MobileMenu({ open, onOpenChange, locale }: MobileMenuProps) {
 
   if (!open || typeof document === "undefined") return null;
 
+  /* The same four journey steps as the desktop bar, then About as chrome.
+     "Home" is gone: the wordmark at the top of this sheet does that job. */
   const links: MenuLink[] = [
-    { label: t("home"), href: "/", icon: Home, exact: true },
-    { label: t("guides"), href: "/guides", icon: BookOpen },
-    { label: t("places"), href: "/places", icon: MapPin },
-    { label: t("tools"), href: "/tools", icon: Wrench },
-    { label: t("faq"), href: "/faq", icon: HelpCircle },
+    { label: t("map"), href: "/map", icon: MapPin },
+    { label: t("studies"), href: "/studies", icon: GraduationCap },
+    { label: t("career"), href: "/career", icon: Briefcase },
+    { label: t("community"), href: "/community", icon: Users },
     { label: t("about"), href: "/about", icon: Info },
   ];
 
@@ -84,9 +93,13 @@ export function MobileMenu({ open, onOpenChange, locale }: MobileMenuProps) {
         className="flex items-center justify-between px-5 pb-2"
         style={{ paddingTop: "max(1rem, calc(env(safe-area-inset-top, 0) + 0.75rem))" }}
       >
-        <span className="font-display text-lg font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
+        <Link
+          href="/"
+          onClick={() => onOpenChange(false)}
+          className="font-display text-lg font-bold tracking-tight text-zinc-900 outline-none focus-visible:ring-2 focus-visible:ring-zellige/50 dark:text-zinc-50"
+        >
           <span className="text-zellige dark:text-zellige">Atlas</span> Munich
-        </span>
+        </Link>
         <button
           type="button"
           onClick={() => onOpenChange(false)}

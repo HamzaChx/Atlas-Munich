@@ -8,7 +8,7 @@ import { getAssistantsForHub, isLive } from "@/data/assistants";
 import { guides } from "@/data/guides";
 import { localizeGuides } from "@/data/guides-i18n";
 import { getGuideTree } from "@/lib/guide-tree-server";
-import { GuideTree, FAQAccordion } from "@/components/shared";
+import { GuideGraph, FaqTopicGrid } from "@/components/shared";
 import { getFaqsByHub } from "@/data/faqs";
 import { faqPageJsonLd } from "@/lib/structured-data";
 import type { HubKey } from "@/types";
@@ -76,7 +76,7 @@ export async function HubPage({ hubKey, locale }: { hubKey: HubKey; locale: stri
             {/* The tree, scoped to this hub. First topic open so the page
                 never lands as a wall of closed rows. */}
             <div className="mt-5 rounded-[1.75rem] bg-card p-4 shadow-[0_2px_20px_rgb(0_0_0/0.06)] sm:p-6 dark:shadow-none dark:ring-1 dark:ring-border">
-              <GuideTree
+              <GuideGraph
                 nodes={treeNodes}
                 defaultOpenIds={treeNodes[0] ? [treeNodes[0].id] : []}
               />
@@ -129,7 +129,7 @@ export async function HubPage({ hubKey, locale }: { hubKey: HubKey; locale: stri
               {t("questionsTitle")}
             </h2>
             <div className="mt-5">
-              <FAQAccordion faqs={hubFaqs} />
+              <FaqTopicGrid faqs={hubFaqs} hub={hub} />
             </div>
           </section>
         )}

@@ -49,7 +49,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const corePages = [
     ...entry("/", { changeFrequency: "weekly", priority: 1.0 }),
     ...entry("/map", { changeFrequency: "weekly", priority: 0.95 }),
-    ...entry("/studies", { changeFrequency: "weekly", priority: 0.95 }),
+    ...entry("/essentials", { changeFrequency: "weekly", priority: 0.95 }),
     ...entry("/career", { changeFrequency: "weekly", priority: 0.95 }),
     ...entry("/community", { changeFrequency: "monthly", priority: 0.8 }),
     ...entry("/guides", { changeFrequency: "weekly", priority: 0.9 }),

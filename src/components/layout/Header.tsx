@@ -22,7 +22,7 @@ import { Locale } from "@/i18n";
 
 interface NavTranslations {
   map: string;
-  studies: string;
+  essentials: string;
   career: string;
   community: string;
   tools: string;
@@ -37,7 +37,7 @@ interface HeaderProps {
 
 export function Header({ locale, translations }: HeaderProps) {
   /* From @/i18n/navigation, so the path arrives locale-stripped. The previous
-     import from next/navigation meant `/fr/studies` never matched `/studies`
+     import from next/navigation meant `/fr/essentials` never matched `/essentials`
      and no nav item ever highlighted outside English. */
   const pathname = usePathname();
   const [scrolled, setScrolled] = React.useState(false);
@@ -53,7 +53,7 @@ export function Header({ locale, translations }: HeaderProps) {
 
   const navItems = [
     { label: translations.map, href: "/map" },
-    { label: translations.studies, href: "/studies" },
+    { label: translations.essentials, href: "/essentials" },
     { label: translations.career, href: "/career" },
     { label: translations.community, href: "/community" },
     { label: translations.tools, href: "/tools" },

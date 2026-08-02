@@ -23,7 +23,7 @@ import { cn } from "@/lib/utils";
 import { placeDirectionsUrl } from "@/lib/maps";
 import { formatDistanceKm, travelEta } from "@/lib/geo";
 import { fallbackAccent, placeAccents, placeIcons } from "./place-accents";
-import { ZELLIGE_MOTIF_MASK } from "./zellige-motif";
+import { ZELLIGE_MOTIF_MASK, motifAngle } from "./zellige-motif";
 
 interface PlacesBrowserProps {
   places: Place[];
@@ -35,13 +35,6 @@ interface PlacesBrowserProps {
   /** At the stop cap, so adding is disabled but removing is not. */
   tripFull?: boolean;
   className?: string;
-}
-
-/** Which slice of the rosette a place shows, stable per slug (no hydration drift). */
-function motifAngle(slug: string) {
-  let hash = 0;
-  for (let i = 0; i < slug.length; i++) hash = (hash * 31 + slug.charCodeAt(i)) % 360;
-  return hash;
 }
 
 /** "Munich" is the catch-all district in the data, so prefer the street line. */

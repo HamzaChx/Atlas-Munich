@@ -6,7 +6,7 @@ import remarkGfm from "remark-gfm";
 import {
   Breadcrumbs,
   TableOfContents,
-  FAQAccordion,
+  GuideFaqEntry,
   GuideCard,
   ShareButton,
   ReadingProgress,
@@ -207,6 +207,9 @@ export default async function GuidePage({ params }: PageProps) {
   };
 
   const theme = themeMap[guide.categoryKey] || themeMap["kvr-residence"];
+  // The FAQ entry card's tinted plate: the same flat tint `theme.hoverBg`
+  // already defines for hover states, just always-on rather than triggered.
+  const faqPlate = theme.hoverBg.replace(/hover:/g, "");
   const numeral = categoryNumerals[guide.categoryKey] || "00";
 
   const localizedCategoryTitle = category
@@ -444,7 +447,13 @@ export default async function GuidePage({ params }: PageProps) {
                     {t("frequentlyAsked")}
                   </h2>
                   <div className="mx-auto max-w-3xl">
-                    <FAQAccordion faqs={localizedGuide.faqs} />
+                    <GuideFaqEntry
+                      faqs={localizedGuide.faqs}
+                      guideSlug={guide.slug}
+                      title={localizedCategoryTitle}
+                      accentText={theme.text}
+                      accentPlate={faqPlate}
+                    />
                   </div>
                 </section>
               )}

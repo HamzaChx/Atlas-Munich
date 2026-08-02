@@ -30,13 +30,25 @@ import {
 } from "react-leaflet";
 import { useTheme } from "next-themes";
 import { useTranslations, useLocale } from "next-intl";
-import { Check, ExternalLink, Maximize, MapPin, Minus, Plus, Route, Star, LocateFixed } from "lucide-react";
+import {
+  Check,
+  ExternalLink,
+  Maximize,
+  Maximize2,
+  Minimize2,
+  MapPin,
+  Minus,
+  Plus,
+  Route,
+  Star,
+  LocateFixed,
+} from "lucide-react";
 
 import type { Place } from "@/types";
 import { placeAccents } from "./place-accents";
 import { cn } from "@/lib/utils";
 import { placeDirectionsUrl } from "@/lib/maps";
-import { formatDistanceKm, travelEta, type Coordinates } from "@/lib/geo";
+import { formatDistanceKm, haversineDistanceKm, travelEta, type Coordinates } from "@/lib/geo";
 
 const MUNICH_CENTER: [number, number] = [48.1372, 11.5756];
 
@@ -80,23 +92,53 @@ function accentColor(category: string) {
   return key ? `var(--acc-${key})` : "var(--zellige)";
 }
 
+/** Escapes the handful of characters that matter inside a DivIcon's HTML
+    string. Tag data is ours, not user input, but the icon is built by string
+    concatenation so this keeps it inert regardless. */
+function escapeHtml(value: string) {
+  return value.replace(
+    /[&<>"']/g,
+    (ch) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[ch] ?? ch
+  );
+}
+
+/** A one- or two-word keyword floating over a pin — the place's first tag,
+    title-cased — so a glance at the map says "halal", "vegan", "library"
+    without opening a popup. The category itself would say the same thing on
+    every pin at once, since the map only ever shows one category. */
+function keywordFor(place: Place): string | null {
+  const tag = place.tags?.[0];
+  if (!tag) return null;
+  return tag
+    .split("-")
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(" ");
+}
+
 /* ---------------------------------------------------------------- markers */
 
 const iconCache = new Map<string, L.DivIcon>();
 
-function pinIcon(category: string, active: boolean) {
-  const cacheKey = `${category}:${active ? "on" : "off"}`;
+function pinIcon(category: string, active: boolean, keyword: string | null) {
+  const cacheKey = `${category}:${active ? "on" : "off"}:${keyword ?? ""}`;
   const cached = iconCache.get(cacheKey);
   if (cached) return cached;
 
   const glyph = CATEGORY_GLYPHS[category] ?? FALLBACK_GLYPH;
+  const color = accentColor(category);
+  const badge = keyword
+    ? `<span class="atlas-pin__keyword" style="--pin:${color}">${escapeHtml(keyword)}</span>`
+    : "";
   const icon = L.divIcon({
     className: "atlas-marker",
-    html: `<div class="atlas-pin${active ? " atlas-pin--active" : ""}" style="--pin:${accentColor(category)}">
-      <svg viewBox="0 0 32 40" width="32" height="40" aria-hidden="true">
-        <path class="atlas-pin__body" d="M16 38.5C16 38.5 28.5 24.6 28.5 15A12.5 12.5 0 1 0 3.5 15C3.5 24.6 16 38.5 16 38.5Z"/>
-        <g class="atlas-pin__glyph" transform="translate(8.5 7.5) scale(0.625)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">${glyph}</g>
-      </svg>
+    html: `<div class="atlas-pin-wrap">
+      ${badge}
+      <div class="atlas-pin${active ? " atlas-pin--active" : ""}" style="--pin:${color}">
+        <svg viewBox="0 0 32 40" width="32" height="40" aria-hidden="true">
+          <path class="atlas-pin__body" d="M16 38.5C16 38.5 28.5 24.6 28.5 15A12.5 12.5 0 1 0 3.5 15C3.5 24.6 16 38.5 16 38.5Z"/>
+          <g class="atlas-pin__glyph" transform="translate(8.5 7.5) scale(0.625)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">${glyph}</g>
+        </svg>
+      </div>
     </div>`,
     iconSize: [32, 40],
     iconAnchor: [16, 40],
@@ -224,7 +266,7 @@ function MarkerLayer({ places, selected, onSelect }: MarkerLayerProps) {
             <Marker
               key={place.slug}
               position={[place.lat!, place.lng!]}
-              icon={pinIcon(place.category, isSelected)}
+              icon={pinIcon(place.category, isSelected, keywordFor(place))}
               title={place.name}
               zIndexOffset={isSelected ? 1000 : 0}
               eventHandlers={{ click: () => onSelect(place) }}
@@ -484,6 +526,7 @@ export default function PlacesMapCanvas({
   className,
 }: PlacesMapCanvasProps) {
   const t = useTranslations("places");
+  const locale = useLocale();
   const { resolvedTheme } = useTheme();
   const isDark = resolvedTheme === "dark";
 
@@ -494,6 +537,35 @@ export default function PlacesMapCanvas({
   // the map. Touch devices zoom by pinch regardless, via Leaflet's default
   // touchZoom, so this only affects desktop cursor behaviour.
   const [scrollZoomActive, setScrollZoomActive] = useState(false);
+
+  /* Fullscreen is a CSS-driven overlay rather than the Fullscreen API: iOS
+     Safari doesn't support requestFullscreen on arbitrary elements, so a
+     fixed, full-viewport wrapper is what actually works everywhere,
+     including mobile. */
+  const [isFullscreen, setIsFullscreen] = useState(false);
+
+  useEffect(() => {
+    if (!isFullscreen) return;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsFullscreen(false);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener("keydown", onKeyDown);
+    };
+  }, [isFullscreen]);
+
+  // Leaflet caches its container size at construction; toggling fullscreen
+  // resizes that container without firing a window resize event, so the tile
+  // grid has to be told explicitly once the new layout has painted.
+  useEffect(() => {
+    if (!map) return;
+    const id = requestAnimationFrame(() => map.invalidateSize());
+    return () => cancelAnimationFrame(id);
+  }, [map, isFullscreen]);
 
   const mapped = useMemo(
     () => places.filter((place) => typeof place.lat === "number" && typeof place.lng === "number"),
@@ -548,9 +620,14 @@ export default function PlacesMapCanvas({
   }, [map, scrollZoomActive]);
 
   return (
-    <div className="atlas-map overflow-hidden rounded-[2rem] bg-card shadow-[0_2px_24px_rgb(0_0_0/0.08)] dark:shadow-none dark:ring-1 dark:ring-border">
+    <div
+      className={cn(
+        "atlas-map flex flex-col overflow-hidden bg-card shadow-[0_2px_24px_rgb(0_0_0/0.08)] dark:shadow-none dark:ring-1 dark:ring-border",
+        isFullscreen ? "fixed inset-0 z-[100] rounded-none" : "rounded-[2rem]"
+      )}
+    >
       <div
-        className={cn("relative w-full", className)}
+        className={cn("relative w-full", isFullscreen ? "min-h-0 flex-1" : className)}
         onClick={() => setScrollZoomActive(true)}
         onMouseLeave={() => setScrollZoomActive(false)}
       >
@@ -593,6 +670,47 @@ export default function PlacesMapCanvas({
             />
           )}
 
+          {/* A live line from "you" to whatever pin is open, so tapping a
+              place answers "how far, and how do I get a feel for that" in
+              one glance, without waiting on the popup's text. */}
+          {userLocation &&
+            selected &&
+            typeof selected.lat === "number" &&
+            typeof selected.lng === "number" &&
+            (() => {
+              const distanceKm =
+                selected.distanceKm ??
+                haversineDistanceKm(userLocation, { lat: selected.lat, lng: selected.lng });
+              const eta = travelEta(distanceKm);
+              return (
+                <Polyline
+                  key={`live-route-${selected.slug}`}
+                  positions={[
+                    [userLocation.lat, userLocation.lng],
+                    [selected.lat, selected.lng],
+                  ]}
+                  pathOptions={{
+                    color: "var(--acc-blue)",
+                    weight: 3.5,
+                    opacity: 0.85,
+                    dashArray: "1 10",
+                    lineCap: "round",
+                    className: "atlas-route-live",
+                  }}
+                >
+                  <Tooltip
+                    permanent
+                    direction="center"
+                    className="atlas-route-label"
+                    interactive={false}
+                  >
+                    {formatDistanceKm(distanceKm, locale)} ·{" "}
+                    {t(`location.eta.${eta.mode}`, { minutes: eta.minutes })}
+                  </Tooltip>
+                </Polyline>
+              );
+            })()}
+
           <MarkerLayer places={mapped} selected={selected} onSelect={setSelected} />
 
           {userLocation && (
@@ -628,15 +746,34 @@ export default function PlacesMapCanvas({
 
         {/* Legend, desktop only: the bar under the map covers small screens */}
         {legendRows.length > 0 && (
-          <div className="pointer-events-none absolute left-4 top-4 z-10 hidden md:block">
+          <div
+            className={cn(
+              "pointer-events-none absolute left-4 z-10 hidden md:block",
+              isFullscreen ? "top-[max(1rem,env(safe-area-inset-top))]" : "top-4"
+            )}
+          >
             <div className="pointer-events-auto">
               <Legend rows={legendRows} total={mapped.length} variant="card" />
             </div>
           </div>
         )}
 
-        {/* Zoom and framing controls, kept clear of the legend and the attribution */}
-        <div className="absolute right-4 top-4 z-10 flex flex-col gap-1 rounded-2xl bg-card p-1 shadow-[0_8px_30px_rgb(0_0_0/0.10)] dark:shadow-none dark:ring-1 dark:ring-border">
+        {/* Zoom, framing and fullscreen controls, kept clear of the legend and the attribution */}
+        <div
+          className={cn(
+            "absolute right-4 z-10 flex flex-col gap-1 rounded-2xl bg-card p-1 shadow-[0_8px_30px_rgb(0_0_0/0.10)] dark:shadow-none dark:ring-1 dark:ring-border",
+            isFullscreen ? "top-[max(1rem,env(safe-area-inset-top))]" : "top-4"
+          )}
+        >
+          <button
+            type="button"
+            onClick={() => setIsFullscreen((current) => !current)}
+            aria-label={isFullscreen ? t("map.fullscreenExit") : t("map.fullscreenEnter")}
+            aria-pressed={isFullscreen}
+            className="flex h-10 w-10 items-center justify-center rounded-xl text-zinc-600 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-foreground/10 dark:hover:text-zinc-50 sm:h-9 sm:w-9"
+          >
+            {isFullscreen ? <Minimize2 className="h-4 w-4" /> : <Maximize2 className="h-4 w-4" />}
+          </button>
           <button
             type="button"
             onClick={() => map?.zoomIn()}
@@ -696,7 +833,12 @@ export default function PlacesMapCanvas({
       </div>
 
       {/* Footer bar: legend on small screens, usage note on all */}
-      <div className="flex flex-col gap-2 px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:gap-6">
+      <div
+        className={cn(
+          "flex shrink-0 flex-col gap-2 px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:gap-6",
+          isFullscreen && "pb-[max(1rem,env(safe-area-inset-bottom))]"
+        )}
+      >
         <div className="md:hidden">
           <Legend rows={legendRows} total={mapped.length} variant="bar" />
         </div>

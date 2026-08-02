@@ -26,7 +26,7 @@
     "install": "Installer",
     "notNow": "Plus tard",
     "map": "Carte",
-    "studies": "Études",
+    "essentials": "L'essentiel",
     "career": "Carrière",
     "settings": "Paramètres",
     "aboutAria": "À propos d'Atlas Munich"
@@ -131,7 +131,7 @@
     "quick": {
       "badge": "Par où voulez-vous commencer ?",
       "map": "Trouver des lieux",
-      "studies": "S'installer",
+      "essentials": "S'installer",
       "career": "Trouver un travail"
     },
     "welcome": {
@@ -235,7 +235,9 @@
       "zoomIn": "Zoom avant",
       "zoomOut": "Zoom arrière",
       "fit": "Ajuster aux résultats",
-      "scrollHint": "Cliquez sur la carte, puis défilez pour zoomer"
+      "scrollHint": "Cliquez sur la carte, puis défilez pour zoomer",
+      "fullscreenEnter": "Agrandir la carte",
+      "fullscreenExit": "Quitter le plein écran"
     },
     "noResults": "Aucun lieu trouvé",
     "noResultsDescription": "Essayez d'ajuster votre recherche ou vos filtres.",
@@ -2854,6 +2856,10 @@
     "guidesTitle": "Guides",
     "helpersTitle": "Se faire aider pour",
     "questionsTitle": "Questions fréquentes",
+    "faqGeneralTopic": "Général",
+    "faqTopicCount": "{count} questions",
+    "faqSearchPlaceholder": "Rechercher dans ce sujet",
+    "faqNoResults": "Aucune question ne correspond à votre recherche.",
     "allGuides": "Tous les guides",
     "openMap": "Ouvrir la carte",
     "map": {
@@ -2862,10 +2868,10 @@
       "titleHighlight": "Munich",
       "subtitle": "Où vivre, où manger, où travailler. Une seule carte, triée selon la distance qui vous en sépare."
     },
-    "studies": {
+    "essentials": {
       "badge": "Étape deux",
-      "title": "Installez-vous et",
-      "titleHighlight": "étudiez",
+      "title": "L'essentiel,",
+      "titleHighlight": "réglé",
       "subtitle": "Déclaration de domicile, titre de séjour, et tout ce que personne ne vous explique avant votre arrivée."
     },
     "career": {

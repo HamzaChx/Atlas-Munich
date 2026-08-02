@@ -12,21 +12,21 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "hubs" });
 
-  const title = `${t("studies.title")} ${t("studies.titleHighlight")}`;
+  const title = `${t("essentials.title")} ${t("essentials.titleHighlight")}`;
   return {
     title,
-    description: t("studies.subtitle"),
-    alternates: alternatesFor(locale, "/studies"),
+    description: t("essentials.subtitle"),
+    alternates: alternatesFor(locale, "/essentials"),
     openGraph: {
       title: `${title} | Atlas Munich`,
-      description: t("studies.subtitle"),
-      url: localizedUrl(locale, "/studies"),
+      description: t("essentials.subtitle"),
+      url: localizedUrl(locale, "/essentials"),
     },
   };
 }
 
-export default async function StudiesPage({ params }: PageProps) {
+export default async function EssentialsPage({ params }: PageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
-  return <HubPage hubKey="studies" locale={locale} />;
+  return <HubPage hubKey="essentials" locale={locale} />;
 }

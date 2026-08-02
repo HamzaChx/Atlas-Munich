@@ -2,8 +2,9 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { places } from "@/data/places";
 import { getFaqsByHub } from "@/data/faqs";
+import { getHub } from "@/data/hubs";
 import { faqPageJsonLd } from "@/lib/structured-data";
-import { FAQAccordion } from "@/components/shared";
+import { FaqTopicGrid } from "@/components/shared";
 import { PlacesExplorer } from "./PlacesExplorer";
 
 /**
@@ -16,7 +17,6 @@ export default async function PlacesPage({ params }: { params: Promise<{ locale:
   const { locale } = await params;
   setRequestLocale(locale);
 
-  const t = await getTranslations("places");
   const tHubs = await getTranslations("hubs");
   const placesData = await getTranslations("placesData");
 
@@ -46,16 +46,6 @@ export default async function PlacesPage({ params }: { params: Promise<{ locale:
 
   return (
     <div className="min-h-screen bg-background">
-      {/* ========== HERO ========== */}
-      <section className="mx-auto flex max-w-2xl flex-col items-center px-5 pb-8 pt-14 text-center sm:pb-10 sm:pt-20 2xl:max-w-3xl">
-        <h1 className="rise rise-1 font-display text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-5xl 2xl:text-6xl">
-          {t("title")} <span className="text-bloom">{t("titleHighlight")}</span>
-        </h1>
-        <p className="rise rise-2 mt-4 max-w-md text-base leading-relaxed text-zinc-500 dark:text-zinc-400 sm:text-lg 2xl:max-w-lg 2xl:text-xl">
-          {t("subtitle")}
-        </p>
-      </section>
-
       <PlacesExplorer places={localizedPlaces} />
 
       {hubFaqs.length > 0 && (
@@ -67,7 +57,7 @@ export default async function PlacesPage({ params }: { params: Promise<{ locale:
             {tHubs("questionsTitle")}
           </h2>
           <div className="mt-5">
-            <FAQAccordion faqs={hubFaqs} />
+            <FaqTopicGrid faqs={hubFaqs} hub={getHub("map")} />
           </div>
         </section>
       )}

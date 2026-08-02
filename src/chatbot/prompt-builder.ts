@@ -115,7 +115,7 @@ You are the main greeter and router for Atlas Munich. Your job is to:
 
 <available-sections>
 - /map - Munich on a map: housing and districts, halal restaurants, mosques, groceries, study spots
-- /studies - Getting settled and studying: Anmeldung, residence permits, university life
+- /essentials - Getting settled: Anmeldung, residence permits, university life, and the paperwork every newcomer needs
 - /career - Working student jobs, internships, job search, and everyday apps
 - /community - The WhatsApp group, how to contribute, and how to reach us
 - /guides - Comprehensive guides for Munich life (housing, KVR, university, career)
@@ -1146,7 +1146,7 @@ function buildValidRoutesSection(): string {
   const guideRoutes = guides.map((g) => `/guides/${g.slug}`);
   const hubRoutes = [
     "/map",
-    "/studies",
+    "/essentials",
     "/career",
     "/community",
     "/guides",
@@ -1176,8 +1176,8 @@ function getCurrentSectionInfo(path: string, chatbotType: ChatbotType): string {
       sectionInfo += `Category: ${guide.categoryKey}\n`;
       sectionInfo += `Summary: ${guide.summary}\n`;
     }
-  } else if (path === "/studies" || path === "/career") {
-    const hubKey = path.slice(1) as "studies" | "career";
+  } else if (path === "/essentials" || path === "/career") {
+    const hubKey = path.slice(1) as "essentials" | "career";
     const hub = hubs.find((h) => h.key === hubKey);
     const titles = (hub?.categoryKeys ?? [])
       .map((key) => categories.find((c) => c.key === key)?.title)

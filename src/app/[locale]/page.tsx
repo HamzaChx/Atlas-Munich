@@ -32,7 +32,7 @@ export default async function Home({
 
   const quickAccess = [
     { label: t("quick.map"), href: "/map" },
-    { label: t("quick.studies"), href: "/studies" },
+    { label: t("quick.essentials"), href: "/essentials" },
     { label: t("quick.career"), href: "/career" },
   ];
 

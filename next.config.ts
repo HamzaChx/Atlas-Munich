@@ -78,13 +78,16 @@ const nextConfig: NextConfig = {
          Google will canonicalize these to the hub itself, which is the point:
          five pages listing one to three guides each become two real ones. */
       ...moved("/category/rent-housing", "/map"),
-      ...moved("/category/kvr-residence", "/studies"),
-      ...moved("/category/university-life", "/studies"),
+      ...moved("/category/kvr-residence", "/essentials"),
+      ...moved("/category/university-life", "/essentials"),
       ...moved("/category/career", "/career"),
       ...moved("/category/useful-apps", "/career"),
       // Anything else under /category, including keys added later, lands on the
       // full index rather than a 404. Must stay last.
       ...moved("/category/:slug*", "/guides"),
+      // Studies was renamed to Essentials to broaden it beyond a student-only
+      // audience; the content and route ownership are otherwise unchanged.
+      ...moved("/studies", "/essentials"),
     ];
   },
   async headers() {

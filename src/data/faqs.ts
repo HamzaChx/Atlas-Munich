@@ -63,7 +63,7 @@ export const faqs: FAQ[] = [
   // KVR & Immigration FAQs
   {
     id: "faq-kvr-1",
-    hub: "studies",
+    hub: "essentials",
     question: "What is the KVR?",
     answer: "KVR (Kreisverwaltungsreferat) is Munich's main city office handling address registration, residence permits for non-EU students, and emergency cases. You'll mainly deal with: Bürgerbüro (citizen's office) for address registration, and Ausländerbehörde/Service Centre for Immigration at Ruppertstraße 19 for residence permits and extensions.",
     categoryKey: "kvr-residence",
@@ -71,7 +71,7 @@ export const faqs: FAQ[] = [
   },
   {
     id: "faq-kvr-2",
-    hub: "studies",
+    hub: "essentials",
     question: "How do I book a KVR/Bürgerbüro appointment for Anmeldung?",
     answer: "Book online at muenchen.de/termin. Appointments are required - no walk-ins allowed. Tip: Appointments are released 2 weeks in advance around midnight. Set an alarm for 23:59 and refresh at 00:00 for best availability. Multiple Bürgerbüro locations exist: Pasing, Orleansplatz, Scheidplatz, etc.",
     categoryKey: "kvr-residence",
@@ -79,7 +79,7 @@ export const faqs: FAQ[] = [
   },
   {
     id: "faq-kvr-3",
-    hub: "studies",
+    hub: "essentials",
     question: "What happens if I miss the 14-day Anmeldung deadline?",
     answer: "You could face a fine up to €1000. However, for short delays (few days/weeks), they're usually understanding. Register as soon as possible. Important: You need Anmeldung for university enrollment, bank accounts, mobile contracts, and receiving your Tax ID.",
     categoryKey: "kvr-residence",
@@ -87,7 +87,7 @@ export const faqs: FAQ[] = [
   },
   {
     id: "faq-kvr-4",
-    hub: "studies",
+    hub: "essentials",
     question: "What documents do I need for Anmeldung?",
     answer: "Required: 1) Passport (and visa if applicable), 2) Wohnungsgeberbestätigung (landlord confirmation form - essential!), 3) Registration form (available online or at office). Optional: rental contract. Without the Wohnungsgeberbestätigung, you cannot register. After registration, you receive a Meldebescheinigung - keep this safe!",
     categoryKey: "kvr-residence",
@@ -95,7 +95,7 @@ export const faqs: FAQ[] = [
   },
   {
     id: "faq-kvr-5",
-    hub: "studies",
+    hub: "essentials",
     question: "What is a Wohnungsgeberbestätigung?",
     answer: "It's a mandatory landlord confirmation form for Anmeldung. Your landlord/dorm must sign it to confirm you live at that address. Without it, you absolutely cannot complete city registration. Make sure to get it before your KVR appointment!",
     categoryKey: "kvr-residence",
@@ -103,7 +103,7 @@ export const faqs: FAQ[] = [
   },
   {
     id: "faq-kvr-6",
-    hub: "studies",
+    hub: "essentials",
     question: "How do I apply for a student residence permit?",
     answer: "Apply online through the Munich Immigration website (not in person). Steps: 1) Fill out online form, 2) Upload documents (PDF/JPG), 3) Submit and save confirmation PDF, 4) Wait for KVR to process, 5) Get appointment invitation for fingerprints/photo/pickup. Apply before your visa or 90-day period expires!",
     categoryKey: "kvr-residence",
@@ -111,7 +111,7 @@ export const faqs: FAQ[] = [
   },
   {
     id: "faq-kvr-7",
-    hub: "studies",
+    hub: "essentials",
     question: "What documents do I need for a residence permit?",
     answer: "Required: Application form, passport + visa, biometric photo, university admission/enrollment certificate, proof of health insurance, proof of sufficient funds (blocked account, scholarship, Verpflichtungserklärung, or parents' guarantee with financial evidence), and proof of address registration (Meldebescheinigung).",
     categoryKey: "kvr-residence",
@@ -119,7 +119,7 @@ export const faqs: FAQ[] = [
   },
   {
     id: "faq-kvr-8",
-    hub: "studies",
+    hub: "essentials",
     question: "How long does a residence permit take and what does it cost?",
     answer: "Processing: Usually 4-8 weeks. Validity: Typically 2-3 years based on study program length. Costs: First permit ~€100, extension ~€93-96. Some scholarships = no fee. Payment: Cash or EC card only (no credit cards). You'll get a Fiktionsbescheinigung while waiting if you applied in time.",
     categoryKey: "kvr-residence",
@@ -127,7 +127,7 @@ export const faqs: FAQ[] = [
   },
   {
     id: "faq-kvr-9",
-    hub: "studies",
+    hub: "essentials",
     question: "What is a Fiktionsbescheinigung?",
     answer: "It's a temporary document stating your previous residence permit remains valid while your new application is processed. It allows legal stay, usually permits travel, and confirms work rights (if your previous permit allowed work). You need it when your card expires before the new one is ready, when traveling soon, or when employers need updated proof.",
     categoryKey: "kvr-residence",
@@ -135,7 +135,7 @@ export const faqs: FAQ[] = [
   },
   {
     id: "faq-kvr-10",
-    hub: "studies",
+    hub: "essentials",
     question: "When should I extend my residence permit?",
     answer: "Apply 3-4 months BEFORE expiry. Required documents: Passport, current permit, biometric photo, new enrollment certificate, health insurance proof, proof of funds. After ~4th semester, you also need study progress proof (transcript or certificate confirming active progress). If you changed universities/programs, bring exmatriculation letter and new enrollment certificate.",
     categoryKey: "kvr-residence",
@@ -143,7 +143,7 @@ export const faqs: FAQ[] = [
   },
   {
     id: "faq-kvr-11",
-    hub: "studies",
+    hub: "essentials",
     question: "How do I get an emergency KVR appointment?",
     answer: "Emergency slots appear online same day (early morning) and disappear quickly. Valid emergencies: permit expiring/expired, urgent travel within 7 days, risk of losing job or benefits (BAföG, scholarship). Bring proof of emergency (employer letter, travel docs, medical/funeral docs) plus passport and application confirmation. Do NOT show up without an appointment.",
     categoryKey: "kvr-residence",
@@ -151,7 +151,7 @@ export const faqs: FAQ[] = [
   },
   {
     id: "faq-kvr-12",
-    hub: "studies",
+    hub: "essentials",
     question: "Do I need to register if staying in temporary housing (Airbnb/hotel)?",
     answer: "For stays under 3 months, generally no. For longer stays or if starting university/work, you need to register at your permanent address. Remember: You have 14 days to register once you move into permanent housing.",
     categoryKey: "kvr-residence",
@@ -159,7 +159,7 @@ export const faqs: FAQ[] = [
   },
   {
     id: "faq-kvr-13",
-    hub: "studies",
+    hub: "essentials",
     question: "What is the Immigration Office contact info?",
     answer: "Ausländerbehörde (Immigration Office): KVR, Ruppertstraße 19, 80337 Munich. Phone: +49 89 233-96010. Always requires appointment - never show up without one. For Bürgerbüros (address registration): Multiple locations throughout Munich, all requiring appointments.",
     categoryKey: "kvr-residence",
@@ -169,7 +169,7 @@ export const faqs: FAQ[] = [
   // University FAQs
   {
     id: "faq-uni-1",
-    hub: "studies",
+    hub: "essentials",
     question: "How does the semester ticket work?",
     answer: "It's included in your semester fee and gives you unlimited travel on all MVV transport (U-Bahn, S-Bahn, tram, bus) for 6 months. Activate it via the MVGO app linked to your student account.",
     categoryKey: "university-life",
@@ -177,7 +177,7 @@ export const faqs: FAQ[] = [
   },
   {
     id: "faq-uni-2",
-    hub: "studies",
+    hub: "essentials",
     question: "When should I enroll at university?",
     answer: "Immediately after receiving your admission letter! There are enrollment deadlines, typically 2-4 weeks before semester starts. You need Anmeldung, health insurance, and visa (non-EU) before enrolling.",
     categoryKey: "university-life",
@@ -185,7 +185,7 @@ export const faqs: FAQ[] = [
   },
   {
     id: "faq-uni-3",
-    hub: "studies",
+    hub: "essentials",
     question: "What is a Studierendenwerk?",
     answer: "The Studentenwerk München provides services for students: affordable cafeterias (Mensa), student housing, counseling, financial aid (BAföG), and more. Very helpful for budget living!",
     categoryKey: "university-life",

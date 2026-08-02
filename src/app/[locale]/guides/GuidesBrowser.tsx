@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "@/i18n/navigation";
 import Fuse from "fuse.js";
-import { EmptyState, GuideTree } from "@/components/shared";
+import { EmptyState, GuideGraph } from "@/components/shared";
 
 import type { Guide } from "@/types";
 import type { TreeNode } from "@/data/guide-tree";
@@ -236,7 +236,7 @@ function GuidesPageContent({ guides, treeNodes }: { guides: Guide[]; treeNodes: 
               {tTree("_heading")}
             </h2>
             <div className="mt-4 rounded-[1.75rem] bg-card p-4 shadow-[0_2px_20px_rgb(0_0_0/0.06)] sm:p-6 dark:shadow-none dark:ring-1 dark:ring-border">
-              <GuideTree nodes={treeNodes} defaultOpenIds={treeNodes[0] ? [treeNodes[0].id] : []} />
+              <GuideGraph nodes={treeNodes} defaultOpenIds={treeNodes[0] ? [treeNodes[0].id] : []} />
             </div>
           </div>
         )}
@@ -251,7 +251,7 @@ function GuidesPageContent({ guides, treeNodes }: { guides: Guide[]; treeNodes: 
           </p>
           <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
             <Link
-              href="/studies#questions"
+              href="/essentials#questions"
               className="inline-flex items-center gap-2 rounded-full bg-zinc-900 px-6 py-3 text-sm font-semibold text-white shadow-md shadow-zinc-900/15 transition-all hover:bg-zinc-800 dark:bg-zinc-50 dark:text-zinc-900 dark:shadow-none dark:hover:bg-zinc-200"
             >
               {t("cta.browseFaqs")}

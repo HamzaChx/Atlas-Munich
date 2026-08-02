@@ -177,7 +177,7 @@ export default async function RootLayout({
   // props so it does not have to pull the whole nav namespace client-side.
   const navTranslations = messages.nav as {
     map: string;
-    studies: string;
+    essentials: string;
     career: string;
     community: string;
     tools: string;

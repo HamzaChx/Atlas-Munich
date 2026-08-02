@@ -8,8 +8,8 @@ const linkColumns = [
     titleKey: "guides",
     links: [
       { labelKey: "links.housingRent", href: "/map" },
-      { labelKey: "links.kvrResidence", href: "/studies" },
-      { labelKey: "links.universityLife", href: "/studies" },
+      { labelKey: "links.kvrResidence", href: "/essentials" },
+      { labelKey: "links.universityLife", href: "/essentials" },
       { labelKey: "links.careerJobs", href: "/career" },
     ],
   },
@@ -17,7 +17,7 @@ const linkColumns = [
     titleKey: "resources",
     links: [
       { labelKey: "links.halalPlaces", href: "/map" },
-      { labelKey: "links.faq", href: "/studies#questions" },
+      { labelKey: "links.faq", href: "/essentials#questions" },
       { labelKey: "links.usefulApps", href: "/career" },
       { labelKey: "links.aiTools", href: "/tools" },
     ],

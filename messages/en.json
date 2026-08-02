@@ -26,7 +26,7 @@
     "install": "Install",
     "notNow": "Not now",
     "map": "Map",
-    "studies": "Studies",
+    "essentials": "Essentials",
     "career": "Career",
     "settings": "Settings",
     "aboutAria": "About Atlas Munich"
@@ -108,7 +108,7 @@
     "quick": {
       "badge": "Where do you want to start?",
       "map": "Find places",
-      "studies": "Get settled",
+      "essentials": "Get settled",
       "career": "Find work"
     },
     "welcome": {
@@ -212,7 +212,9 @@
       "zoomIn": "Zoom in",
       "zoomOut": "Zoom out",
       "fit": "Fit to results",
-      "scrollHint": "Click the map, then scroll to zoom"
+      "scrollHint": "Click the map, then scroll to zoom",
+      "fullscreenEnter": "Expand map",
+      "fullscreenExit": "Exit fullscreen"
     },
     "noResults": "No places found",
     "noResultsDescription": "Try adjusting your search or filters.",
@@ -2830,6 +2832,10 @@
     "guidesTitle": "Guides",
     "helpersTitle": "Get help with",
     "questionsTitle": "Common questions",
+    "faqGeneralTopic": "General",
+    "faqTopicCount": "{count} questions",
+    "faqSearchPlaceholder": "Search this topic",
+    "faqNoResults": "No questions match your search.",
     "allGuides": "All guides",
     "openMap": "Open the map",
     "map": {
@@ -2838,11 +2844,11 @@
       "titleHighlight": "Munich",
       "subtitle": "Where to live, where to eat, where to study. One map, sorted by how far things are from you."
     },
-    "studies": {
+    "essentials": {
       "badge": "Step two",
-      "title": "Get settled and",
-      "titleHighlight": "study",
-      "subtitle": "Registration, residence permits, and the parts of student life nobody explains before you arrive."
+      "title": "The essentials,",
+      "titleHighlight": "handled",
+      "subtitle": "Registration, residence permits, and the parts of daily life nobody explains before you arrive."
     },
     "career": {
       "badge": "Step three",

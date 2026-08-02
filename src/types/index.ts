@@ -42,7 +42,7 @@ export interface Category {
 // helper belongs to exactly one of them, so a reader picks a stage of their
 // move rather than picking a kind of page.
 // ============================================
-export type HubKey = "map" | "studies" | "career" | "community";
+export type HubKey = "map" | "essentials" | "career" | "community";
 
 // ============================================
 // Guide / Article

@@ -49,7 +49,7 @@ export const assistants: Assistant[] = [
   {
     key: "dalilah",
     name: "Dalilah",
-    hub: "studies",
+    hub: "essentials",
     chatbot: "dalilah",
     avatar: "/dalilah.webp",
     href: "/bureaucracy",
@@ -59,7 +59,7 @@ export const assistants: Assistant[] = [
   {
     key: "ilham",
     name: "Ilham",
-    hub: "studies",
+    hub: "essentials",
     chatbot: "ilham",
     avatar: "/ilham.webp",
     href: "/academic",
@@ -69,7 +69,7 @@ export const assistants: Assistant[] = [
   {
     key: "loubna",
     name: "Loubna",
-    hub: "studies",
+    hub: "essentials",
     chatbot: "loubna",
     avatar: "/loubna.webp",
     href: "/healthcare",

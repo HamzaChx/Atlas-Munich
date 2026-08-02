@@ -17,7 +17,7 @@ import { useTranslations } from "next-intl";
 import {
   Download,
   MapPin,
-  GraduationCap,
+  ClipboardList,
   Briefcase,
   Users,
   Wrench,
@@ -74,7 +74,7 @@ export function MobileMenu({ open, onOpenChange, locale }: MobileMenuProps) {
      "Home" is gone: the wordmark at the top of this sheet does that job. */
   const links: MenuLink[] = [
     { label: t("map"), href: "/map", icon: MapPin },
-    { label: t("studies"), href: "/studies", icon: GraduationCap },
+    { label: t("essentials"), href: "/essentials", icon: ClipboardList },
     { label: t("career"), href: "/career", icon: Briefcase },
     { label: t("community"), href: "/community", icon: Users },
     { label: t("tools"), href: "/tools", icon: Wrench },

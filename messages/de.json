@@ -26,7 +26,7 @@
     "install": "Installieren",
     "notNow": "Später",
     "map": "Karte",
-    "studies": "Studium",
+    "essentials": "Alltag",
     "career": "Karriere",
     "settings": "Einstellungen",
     "aboutAria": "Über Atlas Munich"
@@ -109,7 +109,7 @@
     "quick": {
       "badge": "Wo möchtest du anfangen?",
       "map": "Orte finden",
-      "studies": "Ankommen",
+      "essentials": "Ankommen",
       "career": "Arbeit finden"
     },
     "welcome": {
@@ -213,7 +213,9 @@
       "zoomIn": "Vergrößern",
       "zoomOut": "Verkleinern",
       "fit": "An Ergebnisse anpassen",
-      "scrollHint": "Karte anklicken, dann scrollen zum Zoomen"
+      "scrollHint": "Karte anklicken, dann scrollen zum Zoomen",
+      "fullscreenEnter": "Karte vergrößern",
+      "fullscreenExit": "Vollbild verlassen"
     },
     "noResults": "Keine Orte gefunden",
     "noResultsDescription": "Versuche, deine Suche oder Filter anzupassen.",
@@ -2832,6 +2834,10 @@
     "guidesTitle": "Guides",
     "helpersTitle": "Hilfe bekommen bei",
     "questionsTitle": "Häufige Fragen",
+    "faqGeneralTopic": "Allgemein",
+    "faqTopicCount": "{count} Fragen",
+    "faqSearchPlaceholder": "In diesem Thema suchen",
+    "faqNoResults": "Keine Fragen gefunden.",
     "allGuides": "Alle Guides",
     "openMap": "Karte öffnen",
     "map": {
@@ -2840,11 +2846,11 @@
       "titleHighlight": "München",
       "subtitle": "Wo wohnen, wo essen, wo lernen. Eine Karte, sortiert danach, wie weit alles von dir entfernt ist."
     },
-    "studies": {
+    "essentials": {
       "badge": "Schritt zwei",
-      "title": "Ankommen und",
-      "titleHighlight": "studieren",
-      "subtitle": "Anmeldung, Aufenthaltstitel und die Seiten des Studentenlebens, die dir vorher niemand erklärt."
+      "title": "Alles Wichtige,",
+      "titleHighlight": "erledigt",
+      "subtitle": "Anmeldung, Aufenthaltstitel und die Seiten des Alltags, die dir vorher niemand erklärt."
     },
     "career": {
       "badge": "Schritt drei",

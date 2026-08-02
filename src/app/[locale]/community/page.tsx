@@ -4,8 +4,9 @@ import { Link } from "@/i18n/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { GithubIcon, Mail, MessageCircle, Heart, ArrowRight } from "lucide-react";
 
-import { ShareButton, FAQAccordion } from "@/components/shared";
+import { ShareButton, FaqTopicGrid } from "@/components/shared";
 import { getFaqsByHub } from "@/data/faqs";
+import { getHub } from "@/data/hubs";
 import { faqPageJsonLd } from "@/lib/structured-data";
 import { WHATSAPP_COMMUNITY_URL } from "@/lib/site-config";
 import { alternatesFor, localizedUrl } from "@/lib/urls";
@@ -202,7 +203,7 @@ export default async function CommunityPage({ params }: PageProps) {
               {t("questionsTitle")}
             </h2>
             <div className="mt-5">
-              <FAQAccordion faqs={hubFaqs} />
+              <FaqTopicGrid faqs={hubFaqs} hub={getHub("community")} />
             </div>
           </section>
         )}

@@ -180,6 +180,7 @@ export default async function RootLayout({
     studies: string;
     career: string;
     community: string;
+    tools: string;
     about: string;
     aboutAria: string;
   };

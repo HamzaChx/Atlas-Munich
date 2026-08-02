@@ -25,6 +25,7 @@ interface NavTranslations {
   studies: string;
   career: string;
   community: string;
+  tools: string;
   about: string;
   aboutAria: string;
 }
@@ -46,6 +47,7 @@ export function Header({ locale, translations }: HeaderProps) {
     { label: translations.studies, href: "/studies" },
     { label: translations.career, href: "/career" },
     { label: translations.community, href: "/community" },
+    { label: translations.tools, href: "/tools" },
   ];
 
   const isHomePage = pathname === "/";

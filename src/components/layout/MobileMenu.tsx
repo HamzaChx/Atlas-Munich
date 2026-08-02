@@ -20,6 +20,7 @@ import {
   GraduationCap,
   Briefcase,
   Users,
+  Wrench,
   Info,
   X,
   type LucideIcon,
@@ -76,6 +77,7 @@ export function MobileMenu({ open, onOpenChange, locale }: MobileMenuProps) {
     { label: t("studies"), href: "/studies", icon: GraduationCap },
     { label: t("career"), href: "/career", icon: Briefcase },
     { label: t("community"), href: "/community", icon: Users },
+    { label: t("tools"), href: "/tools", icon: Wrench },
     { label: t("about"), href: "/about", icon: Info },
   ];
 

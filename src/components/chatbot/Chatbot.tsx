@@ -559,8 +559,8 @@ export function Chatbot() {
       </div>
 
       {/* =================== Launcher ===================
-          Desktop only: on mobile the tab bar's centre "Ask" opens this same
-          widget, and a corner button there would sit on top of the tabs. */}
+          Desktop only: on mobile the floating "Search or ask" control opens
+          this same widget, and a corner button there would sit on top of it. */}
       <div
         className={cn(
           "fixed bottom-5 right-5 z-[10000]",

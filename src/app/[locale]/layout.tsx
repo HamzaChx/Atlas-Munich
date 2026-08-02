@@ -5,7 +5,7 @@ import { SerwistProvider } from "@serwist/next/react";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { Header, ConditionalFooter, MobileTabBar } from "@/components/layout";
+import { Header, ConditionalFooter, MobileNav } from "@/components/layout";
 import { ThemeProvider } from "@/components/shared";
 import { ChatbotWrapper } from "@/components/chatbot";
 import { InstallBanner } from "@/components/pwa/InstallBanner";
@@ -263,7 +263,7 @@ export default async function RootLayout({
                 {children}
               </main>
               <ConditionalFooter />
-              <MobileTabBar locale={locale} />
+              <MobileNav locale={locale} />
               <InstallBanner />
               <ChatbotWrapper />
             </ThemeProvider>

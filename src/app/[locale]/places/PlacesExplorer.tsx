@@ -268,16 +268,22 @@ function PlacesExplorerInner({ places }: { places: Place[] }) {
   const searchParams = useSearchParams();
   const categoryParam = searchParams.get("category");
 
-  const [searchQuery, setSearchQuery] = useState("");
+  const queryParam = searchParams.get("q") ?? "";
+  const [searchQuery, setSearchQuery] = useState(queryParam);
   const [selectedCategory, setSelectedCategory] = useState<PlaceCategory | null>(() =>
     readCategory(categoryParam)
   );
 
-  /* Follow the param when it changes under us — arriving from a chip while
-     already on /places is a navigation, not a remount. */
+  /* Follow the params when they change under us — arriving from a chip or
+     the mobile search overlay while already on /places is a navigation,
+     not a remount. */
   useEffect(() => {
     setSelectedCategory(readCategory(categoryParam));
   }, [categoryParam]);
+
+  useEffect(() => {
+    setSearchQuery((current) => (queryParam !== current ? queryParam : current));
+  }, [queryParam]);
   const [priceFilter, setPriceFilter] = useState<PriceLevel | null>(null);
   const [districtFilter, setDistrictFilter] = useState<string | null>(null);
   const [cuisineFilter, setCuisineFilter] = useState<CuisineTag | null>(null);

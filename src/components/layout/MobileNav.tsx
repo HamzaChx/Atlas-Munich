@@ -4,12 +4,11 @@
 // Atlas Munich – mobile nav
 //
 // Not a native tab bar: two flat, floating controls sit in the thumb zone
-// instead of a full-width five-icon strip. "Search or ask" is one button
-// because the assistant already answers questions about places, guides and
-// bureaucracy, so it doubles as the site's search; folding it into a menu
-// item would bury the thing this site has that a search engine doesn't. The
-// hamburger opens every other destination as a plain full-screen list
-// (MobileMenu), not a drawer.
+// instead of a full-width five-icon strip. "Search or ask" opens a real
+// search overlay (MobileSearchOverlay) that live-filters guides/places/FAQ;
+// asking the assistant is a separate, explicit row inside it, never
+// triggered just by opening the overlay. The hamburger opens every other
+// destination as a plain full-screen list (MobileMenu), not a drawer.
 // ============================================
 
 import * as React from "react";
@@ -18,6 +17,7 @@ import { useTranslations } from "next-intl";
 import { Menu, Search } from "lucide-react";
 
 import { MobileMenu } from "./MobileMenu";
+import { MobileSearchOverlay } from "./MobileSearchOverlay";
 import type { Locale } from "@/i18n";
 import { cn } from "@/lib/utils";
 
@@ -35,14 +35,18 @@ export function MobileNav({ locale }: { locale: Locale }) {
   const t = useTranslations("nav");
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = React.useState(false);
+  const [searchOpen, setSearchOpen] = React.useState(false);
+  const overlayOpen = menuOpen || searchOpen;
 
   // The dedicated chat pages own the full viewport and put their composer
   // exactly where this control sits.
   const isChatRoute = /\/chat\/?$/.test(pathname);
 
-  // Close the menu on navigation, since the route change happens underneath it.
+  // Close whichever overlay is open on navigation, since the route change
+  // happens underneath it.
   React.useEffect(() => {
     setMenuOpen(false);
+    setSearchOpen(false);
   }, [pathname]);
 
   if (isChatRoute) return null;
@@ -50,19 +54,19 @@ export function MobileNav({ locale }: { locale: Locale }) {
   return (
     <>
       <div
-        aria-hidden={menuOpen}
+        aria-hidden={overlayOpen}
         className={cn(
           "fixed inset-x-4 z-[60] flex items-stretch gap-2 md:hidden",
-          menuOpen && "pointer-events-none opacity-0"
+          overlayOpen && "pointer-events-none opacity-0"
         )}
         style={{ bottom: "max(1rem, calc(env(safe-area-inset-bottom, 0) + 0.75rem))" }}
       >
         <button
           type="button"
-          tabIndex={menuOpen ? -1 : 0}
+          tabIndex={overlayOpen ? -1 : 0}
           onClick={() => {
             haptic();
-            window.dispatchEvent(new Event("open-chatbot"));
+            setSearchOpen(true);
           }}
           className={cn(CONTROL, "flex-1 gap-2.5 px-4 text-[15px] font-medium text-zinc-500 dark:text-zinc-400")}
         >
@@ -72,7 +76,7 @@ export function MobileNav({ locale }: { locale: Locale }) {
 
         <button
           type="button"
-          tabIndex={menuOpen ? -1 : 0}
+          tabIndex={overlayOpen ? -1 : 0}
           onClick={() => {
             haptic();
             setMenuOpen(true);
@@ -86,6 +90,7 @@ export function MobileNav({ locale }: { locale: Locale }) {
       </div>
 
       <MobileMenu open={menuOpen} onOpenChange={setMenuOpen} locale={locale} />
+      <MobileSearchOverlay open={searchOpen} onOpenChange={setSearchOpen} locale={locale} />
     </>
   );
 }

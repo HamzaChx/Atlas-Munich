@@ -559,8 +559,9 @@ export function Chatbot() {
       </div>
 
       {/* =================== Launcher ===================
-          Desktop only: on mobile the floating "Search or ask" control opens
-          this same widget, and a corner button there would sit on top of it. */}
+          Desktop only: on mobile "Ask Atlas AI" inside the search overlay
+          opens this same widget, and a corner button here would sit on top
+          of the floating nav controls. */}
       <div
         className={cn(
           "fixed bottom-5 right-5 z-[10000]",

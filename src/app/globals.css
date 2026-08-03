@@ -1106,6 +1106,81 @@
   }
 }
 
+/* Destination pin: where a trip stop lives on the map. Bigger than a
+   category pin, zellige rather than a category hue so it visually ties
+   back to the route line ending at it, and rendered outside the clustering
+   system (see `clusterablePlaces` in PlacesMapCanvas) so it always stays
+   its own legible point, never a number buried inside a cluster bubble. */
+.atlas-destination-wrap {
+  position: relative;
+  display: block;
+}
+
+.atlas-destination-pulse {
+  position: absolute;
+  left: 50%;
+  top: 39%;
+  width: 30px;
+  height: 30px;
+  transform: translate(-50%, -50%);
+  border-radius: 9999px;
+  background: color-mix(in oklab, var(--zellige) 32%, transparent);
+  animation: atlas-destination-pulse 2.6s ease-out infinite;
+  pointer-events: none;
+}
+
+@keyframes atlas-destination-pulse {
+  0% {
+    transform: translate(-50%, -50%) scale(0.55);
+    opacity: 0.85;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2);
+    opacity: 0;
+  }
+}
+
+.atlas-destination-pin {
+  position: relative;
+  display: block;
+  transform-origin: 50% 100%;
+  filter: drop-shadow(0 3px 5px rgb(0 0 0 / 0.32));
+  transition: transform 0.2s var(--ease-out-expo);
+}
+
+.atlas-destination-pin svg {
+  display: block;
+}
+
+.atlas-destination-pin__body {
+  fill: var(--zellige);
+  stroke: var(--card);
+  stroke-width: 2;
+}
+
+.atlas-destination-pin__number {
+  position: absolute;
+  left: 50%;
+  top: 39%;
+  transform: translate(-50%, -50%);
+  font-size: 13px;
+  font-weight: 800;
+  line-height: 1;
+  color: var(--pin-ink);
+  pointer-events: none;
+}
+
+.atlas-destination-pin--active,
+.atlas-marker:hover .atlas-destination-pin,
+.atlas-marker:focus-visible .atlas-destination-pin {
+  transform: scale(1.1);
+}
+
+.atlas-marker:focus-visible .atlas-destination-pin__body {
+  stroke: var(--foreground);
+  stroke-width: 3;
+}
+
 /* Per-leg distance pill on the itinerary line — zellige, not blue, so it
    reads as "part of the planned trip" rather than the live "you are here"
    connector. Centered on its point via transform, since the divIcon itself

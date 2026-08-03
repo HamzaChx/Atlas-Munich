@@ -215,6 +215,38 @@ function getUserLocationIcon() {
   return userLocationIcon;
 }
 
+/** The pin for a place in the current trip: rendered outside the clustering
+    system entirely (see `clusterablePlaces` below), so it never collapses
+    into a numbered cluster bubble the way an ordinary pin would — the whole
+    point is staying a legible, individual point at any zoom, including
+    fully zoomed out. Bigger than a category pin, zellige rather than a
+    category hue so it visually ties back to the route line it sits at the
+    end of, and numbered to match its stop order in the Trip Planner list. */
+const destinationIconCache = new Map<string, L.DivIcon>();
+function destinationIcon(order: number, active: boolean) {
+  const cacheKey = `${order}:${active ? "on" : "off"}`;
+  const cached = destinationIconCache.get(cacheKey);
+  if (cached) return cached;
+
+  const icon = L.divIcon({
+    className: "atlas-marker",
+    html: `<div class="atlas-destination-wrap">
+      <div class="atlas-destination-pulse"></div>
+      <div class="atlas-destination-pin${active ? " atlas-destination-pin--active" : ""}">
+        <svg viewBox="0 0 36 46" width="36" height="46" aria-hidden="true">
+          <path class="atlas-destination-pin__body" d="M18 44.5C18 44.5 32 28.9 32 18A14 14 0 1 0 4 18C4 28.9 18 44.5 18 44.5Z"/>
+        </svg>
+        <span class="atlas-destination-pin__number">${order}</span>
+      </div>
+    </div>`,
+    iconSize: [36, 46],
+    iconAnchor: [18, 46],
+  });
+
+  destinationIconCache.set(cacheKey, icon);
+  return icon;
+}
+
 function clusterIcon(count: number, color: string | null) {
   const size = count < 10 ? 34 : count < 50 ? 40 : 46;
   const style = color ? `--pin:${color}` : "";
@@ -675,6 +707,12 @@ export interface PlacesMapCanvasProps {
   onRetryTripRoute?: () => void;
   /** Slugs already in the trip. */
   tripSlugs?: string[];
+  /** The trip's stops, in the same order the Trip Planner numbers them,
+      independent of whatever category filter the browse view currently
+      has applied — a stop added while browsing "cafes" must not vanish
+      from the map the moment the filter switches to "restaurants". Each
+      one gets its own dedicated destination pin, see `destinationIcon`. */
+  tripDestinations?: Place[];
   /** Real road distance per stop (slug -> km), so the popup for a place
       already in the trip shows the same number as the Trip Planner and the
       drawn route, instead of the straight-line "near me" distance. */
@@ -706,6 +744,7 @@ export default function PlacesMapCanvas({
   tripRouteError = null,
   onRetryTripRoute,
   tripSlugs = [],
+  tripDestinations = [],
   tripLegDistanceKm = null,
   onAddToTrip,
   tripFull = false,
@@ -806,6 +845,20 @@ export default function PlacesMapCanvas({
   const mapped = useMemo(
     () => places.filter((place) => typeof place.lat === "number" && typeof place.lng === "number"),
     [places]
+  );
+
+  const tripDestinationSlugs = useMemo(
+    () => new Set(tripDestinations.map((place) => place.slug)),
+    [tripDestinations]
+  );
+
+  /* Trip stops get their own dedicated destination pin (below) and must
+     never also fold into a proximity cluster with their neighbours — that
+     would occasionally hide the very pin this feature exists to keep
+     visible. Everything else still clusters as normal. */
+  const clusterablePlaces = useMemo(
+    () => mapped.filter((place) => !tripDestinationSlugs.has(place.slug)),
+    [mapped, tripDestinationSlugs]
   );
 
   /* Real street geometry when routing answered, the straight line between
@@ -962,7 +1015,37 @@ export default function PlacesMapCanvas({
             </>
           )}
 
-          <MarkerLayer places={mapped} selected={selected} onSelect={setSelected} />
+          <MarkerLayer places={clusterablePlaces} selected={selected} onSelect={setSelected} />
+
+          {/* Destination pins: one per trip stop, numbered to match the Trip
+              Planner list. Rendered on their own rather than through
+              MarkerLayer, so they never collapse into a cluster bubble and
+              their name label never waits for a zoom threshold — the whole
+              point is staying a legible, individually identifiable point at
+              any zoom, including fully zoomed out. */}
+          {tripDestinations.map((place, index) => {
+            if (typeof place.lat !== "number" || typeof place.lng !== "number") return null;
+            const isSelected = selected?.slug === place.slug;
+            return (
+              <Marker
+                key={`destination-${place.slug}`}
+                position={[place.lat, place.lng]}
+                icon={destinationIcon(index + 1, isSelected)}
+                title={place.name}
+                zIndexOffset={2000 + (isSelected ? 1000 : 0)}
+                eventHandlers={{ click: () => setSelected(place) }}
+              >
+                <Tooltip
+                  permanent
+                  direction="right"
+                  offset={[16, -30]}
+                  className={cn("atlas-label", isSelected && "atlas-label--active")}
+                >
+                  {place.name}
+                </Tooltip>
+              </Marker>
+            );
+          })}
 
           {userLocation && (
             <Marker

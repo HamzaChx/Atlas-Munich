@@ -35,6 +35,11 @@ import { multiStopDirectionsUrl } from "@/lib/maps";
 
 const PRICE_LEVELS: PriceLevel[] = ["€", "€€", "€€€"];
 
+// A stable reference for "no trip stops", so the map's clustering memo
+// (keyed on this array's identity) does not recompute every render just
+// because an empty trip produces a fresh `[]` literal each time.
+const NO_TRIP_DESTINATIONS: Place[] = [];
+
 // Cuisine tags found on restaurant entries, used to power the cuisine filter
 const CUISINE_TAGS = [
   "turkish",
@@ -731,6 +736,7 @@ function PlacesExplorerInner({ places }: { places: Place[] }) {
             tripRouteError={tripRouteError}
             onRetryTripRoute={retryTripRoute}
             tripSlugs={tripSlugs}
+            tripDestinations={tripItinerary?.stops ?? NO_TRIP_DESTINATIONS}
             tripLegDistanceKm={tripLegDistanceKm}
             onAddToTrip={addTripStop}
             tripFull={tripSlugs.length >= MAX_STOPS}

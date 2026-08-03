@@ -28,6 +28,10 @@ interface PlacesMapProps {
   onRetryTripRoute?: () => void;
   /** Slugs already in the trip. */
   tripSlugs?: string[];
+  /** The trip's stops, in the same order the Trip Planner numbers them,
+      independent of the current category filter. Each gets its own
+      destination pin, always visible, never absorbed into a cluster. */
+  tripDestinations?: Place[];
   /** Real road distance per stop (slug -> km), so a place already in the
       trip shows the same number here as it does in the Trip Planner and on
       the drawn route, instead of the straight-line "near me" distance. */
@@ -79,6 +83,7 @@ export function PlacesMap({
   tripRouteError,
   onRetryTripRoute,
   tripSlugs,
+  tripDestinations,
   tripLegDistanceKm,
   onAddToTrip,
   tripFull,
@@ -100,6 +105,7 @@ export function PlacesMap({
       tripRouteError={tripRouteError}
       onRetryTripRoute={onRetryTripRoute}
       tripSlugs={tripSlugs}
+      tripDestinations={tripDestinations}
       tripLegDistanceKm={tripLegDistanceKm}
       onAddToTrip={onAddToTrip}
       tripFull={tripFull}

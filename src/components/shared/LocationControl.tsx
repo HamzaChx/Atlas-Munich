@@ -78,10 +78,8 @@ export function LocationControl({
           aria-pressed={active}
           disabled={locating}
           className={cn(
-            "flex items-center gap-2 rounded-full font-semibold shadow-sm outline-none transition-all focus-visible:ring-2 focus-visible:ring-zellige/50",
-            prominent
-              ? "min-h-12 w-full justify-center px-6 text-[15px] sm:w-auto"
-              : "min-h-11 shrink-0 gap-1.5 px-3.5 text-[13px] sm:min-h-0 sm:py-2",
+            "flex min-h-11 shrink-0 items-center gap-1.5 rounded-full px-3.5 text-[13px] font-semibold shadow-sm outline-none transition-all focus-visible:ring-2 focus-visible:ring-zellige/50 sm:min-h-0 sm:py-2",
+            prominent && "px-4",
             active
               ? "bg-zellige-soft text-zellige ring-1 ring-zellige/30"
               : prominent
@@ -91,9 +89,9 @@ export function LocationControl({
           )}
         >
           {locating ? (
-            <Loader2 className={cn("animate-spin", prominent ? "h-4 w-4" : "h-3.5 w-3.5")} />
+            <Loader2 className="h-3.5 w-3.5 animate-spin" />
           ) : (
-            <LocateFixed className={prominent ? "h-4 w-4" : "h-3.5 w-3.5"} />
+            <LocateFixed className="h-3.5 w-3.5" />
           )}
           {locating ? t("location.locating") : t("location.button")}
           {active && radiusKm && (

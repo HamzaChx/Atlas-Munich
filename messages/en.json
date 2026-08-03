@@ -148,7 +148,7 @@
     "location": {
       "button": "Near me",
       "locating": "Locating…",
-      "consentDescription": "Used only in your browser to sort and filter places by distance. It's never sent to our servers or stored — turn it off any time.",
+      "consentDescription": "Used in your browser to sort and filter places by distance, which never leaves your device. If you ask for directions, the start and end points are sent through our server to a routing service to draw the road route. They are never stored or linked to you, and you can turn this off any time.",
       "allow": "Allow location",
       "notNow": "Not now",
       "turnOff": "Turn off",
@@ -230,9 +230,11 @@
     "directions": {
       "locationNeeded": "Turn on location to draw the route here.",
       "enableLocation": "Enable location",
+      "tripFull": "Your trip is full. Remove a stop to add this place.",
       "error": "Couldn't load the route.",
-      "retry": "Try again",
-      "openInMaps": "Open in Google Maps"
+      "outOfArea": "Routing only covers the Munich area.",
+      "noRoute": "No road route found to this place.",
+      "retry": "Try again"
     },
     "loadingMap": "Loading map…",
     "attribution": "Place data © <osm>OpenStreetMap contributors</osm>, <odbl>ODbL</odbl>. Ratings and review counts, where shown, are provided by Google.",
@@ -248,6 +250,7 @@
       "total": "{distance} total",
       "openInMaps": "Open route in Maps",
       "empty": "No stops yet. Add a place to start planning.",
+      "liveRouting": "Distances follow the actual roads.",
       "estimate": "Distances are straight-line estimates, not live routing.",
       "leg": "{distance}"
     }
@@ -1860,6 +1863,14 @@
               "x": "If you write to us, your address and the content of your message are processed to answer you and, where a legal record is required, kept as correspondence. Nothing you send us is used for any other purpose."
             },
             {
+              "t": "h",
+              "x": "Location and route planning"
+            },
+            {
+              "t": "p",
+              "x": "The places map can sort by distance and draw a route. Your position is read only after you explicitly allow it, never on page load. Sorting, filtering and straight line distances are calculated entirely in your browser and your position is not transmitted for them. Only when you ask for directions to a place are coordinates sent, as a POST body so they never appear in any URL or log: your position and the place or places involved, up to five stops if you are planning a multi-stop trip, go to our server, which forwards them to the routing service and returns the road geometry. We do not log, store or retain those coordinates, and because the request is relayed by our server the routing service never receives your IP address and cannot connect the request to you. Your position and your planned stops are held in the page only, are never written to storage or a cookie, and disappear when you reload the page or turn location off."
+            },
+            {
               "t": "table",
               "head": [
                 "Data",
@@ -1885,6 +1896,12 @@
                   "Generating the answer you asked for",
                   "Art. 6(1)(b) and (f) GDPR, performing the service you requested",
                   "Not stored by us. Held by the AI processor for up to 30 days for abuse monitoring, then deleted"
+                ],
+                [
+                  "Location for directions",
+                  "Drawing a road route you asked for",
+                  "Art. 6(1)(a) GDPR, your consent, withdrawable at any time",
+                  "Not stored. Held in memory for the length of the request only"
                 ],
                 [
                   "Rate limit counters (IP)",
@@ -2070,6 +2087,12 @@
                   "European Union and United States"
                 ],
                 [
+                  "FOSSGIS e.V. (OSRM routing)",
+                  "Processor: computing the road route",
+                  "Only the start and end coordinates, relayed by our server. It does not receive your IP address, cookies or any identifier",
+                  "Germany"
+                ],
+                [
                   "Email provider",
                   "Processor for correspondence",
                   "Whatever you choose to write to us",
@@ -2213,7 +2236,7 @@
               "x": [
                 "Transport encryption: the whole site is served exclusively over HTTPS with modern TLS, and plain HTTP requests are redirected.",
                 "A strict Content Security Policy restricting scripts, styles, images, fonts and network connections to known origins, with framing, plugins and cross-origin form submission disabled.",
-                "Security response headers on every route: X-Content-Type-Options, X-Frame-Options, a strict referrer policy, and a Permissions Policy that switches off the camera, microphone, geolocation and interest cohort APIs.",
+                "Security response headers on every route: X-Content-Type-Options, X-Frame-Options, a strict referrer policy, and a Permissions Policy that switches off the camera, microphone and interest cohort APIs entirely, and restricts geolocation to this site itself, where the places map only reads it after your explicit consent.",
                 "Input hardening on the assistant endpoint: payload size limits, message count and length caps, strict role separation between user and assistant turns so that instructions cannot be spoofed, and per client rate limiting.",
                 "Data minimisation by design: no accounts, no stored passwords, no payment data, no advertising identifiers, and no database of visitor data that could be breached.",
                 "Secrets such as API keys are held in the hosting platform's encrypted environment configuration, never in the source repository, and can be rotated at any time.",

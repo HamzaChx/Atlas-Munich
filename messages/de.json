@@ -149,7 +149,7 @@
     "location": {
       "button": "In meiner Nähe",
       "locating": "Standort wird ermittelt…",
-      "consentDescription": "Wird nur in deinem Browser verwendet, um Orte nach Entfernung zu sortieren und zu filtern. Wird nie an unsere Server gesendet oder gespeichert — jederzeit abschaltbar.",
+      "consentDescription": "Wird in deinem Browser verwendet, um Orte nach Entfernung zu sortieren und zu filtern, was dein Gerät nie verlässt. Wenn du eine Route anforderst, werden Start- und Zielpunkt über unseren Server an einen Routing-Dienst gesendet, um die Straßenroute zu zeichnen. Sie werden nie gespeichert oder mit dir verknüpft, und du kannst dies jederzeit abschalten.",
       "allow": "Standort erlauben",
       "notNow": "Nicht jetzt",
       "turnOff": "Ausschalten",
@@ -231,9 +231,11 @@
     "directions": {
       "locationNeeded": "Aktiviere den Standort, um die Route hier einzuzeichnen.",
       "enableLocation": "Standort aktivieren",
+      "tripFull": "Deine Route ist voll. Entferne eine Station, um diesen Ort hinzuzufügen.",
       "error": "Route konnte nicht geladen werden.",
-      "retry": "Erneut versuchen",
-      "openInMaps": "In Google Maps öffnen"
+      "outOfArea": "Routing deckt nur den Raum München ab.",
+      "noRoute": "Keine Straßenroute zu diesem Ort gefunden.",
+      "retry": "Erneut versuchen"
     },
     "loadingMap": "Karte wird geladen…",
     "attribution": "Ortsdaten © <osm>OpenStreetMap-Mitwirkende</osm>, <odbl>ODbL</odbl>. Bewertungen und Rezensionszahlen, sofern angezeigt, stammen von Google.",
@@ -249,6 +251,7 @@
       "total": "{distance} insgesamt",
       "openInMaps": "Route in Maps öffnen",
       "empty": "Noch keine Stopps. Füge einen Ort hinzu, um zu planen.",
+      "liveRouting": "Die Entfernungen folgen den tatsächlichen Straßen.",
       "estimate": "Die Entfernungen sind grobe Luftlinien-Schätzungen, keine Live-Routenberechnung.",
       "leg": "{distance}"
     }
@@ -1862,6 +1865,14 @@
               "x": "Wenn Sie uns schreiben, verarbeiten wir Ihre Adresse und den Inhalt Ihrer Nachricht, um Ihnen zu antworten, und bewahren die Korrespondenz auf, soweit eine gesetzliche Aufbewahrungspflicht besteht. Für andere Zwecke wird nichts davon verwendet."
             },
             {
+              "t": "h",
+              "x": "Standort und Routenplanung"
+            },
+            {
+              "t": "p",
+              "x": "Die Ortskarte kann nach Entfernung sortieren und eine Route zeichnen. Dein Standort wird erst nach deiner ausdrücklichen Erlaubnis ausgelesen, nie beim Laden der Seite. Sortierung, Filterung und Luftlinienentfernungen werden vollständig in deinem Browser berechnet, dafür wird dein Standort nicht übertragen. Nur wenn du eine Route zu einem Ort anforderst, werden Koordinaten übermittelt, als POST-Body, damit sie in keiner URL und keinem Protokoll erscheinen: dein Standort und der oder die betroffenen Orte, bis zu fünf Stationen bei einer mehrteiligen Route, gehen an unseren Server, der sie an den Routing-Dienst weiterleitet und die Straßengeometrie zurückgibt. Wir protokollieren, speichern und bewahren diese Koordinaten nicht auf, und da die Anfrage über unseren Server läuft, erhält der Routing-Dienst nie deine IP-Adresse und kann die Anfrage nicht mit dir verknüpfen. Dein Standort und deine geplanten Stationen verbleiben ausschließlich in der Seite, werden nie in einen Speicher oder ein Cookie geschrieben und verschwinden beim Neuladen der Seite oder beim Abschalten des Standorts."
+            },
+            {
               "t": "table",
               "head": [
                 "Daten",
@@ -1887,6 +1898,12 @@
                   "Erzeugung der von Ihnen angefragten Antwort",
                   "Art. 6 Abs. 1 lit. b und f DSGVO, Erbringung der von Ihnen angeforderten Leistung",
                   "Von uns nicht gespeichert. Beim KI-Auftragsverarbeiter bis zu 30 Tage zur Missbrauchskontrolle, danach gelöscht"
+                ],
+                [
+                  "Standort für Routen",
+                  "Zeichnen einer von dir angeforderten Straßenroute",
+                  "Art. 6(1)(a) DSGVO, deine Einwilligung, jederzeit widerrufbar",
+                  "Nicht gespeichert. Nur für die Dauer der Anfrage im Speicher gehalten"
                 ],
                 [
                   "Zähler zur Ratenbegrenzung (IP)",
@@ -2072,6 +2089,12 @@
                   "Europäische Union und Vereinigte Staaten"
                 ],
                 [
+                  "FOSSGIS e.V. (OSRM-Routing)",
+                  "Auftragsverarbeiter: Berechnung der Straßenroute",
+                  "Nur Start- und Zielkoordinaten, über unseren Server weitergeleitet. Er erhält weder deine IP-Adresse noch Cookies oder eine Kennung",
+                  "Deutschland"
+                ],
+                [
                   "E-Mail-Anbieter",
                   "Auftragsverarbeiter für Korrespondenz",
                   "Was immer Sie uns schreiben",
@@ -2215,7 +2238,7 @@
               "x": [
                 "Transportverschlüsselung: die gesamte Seite wird ausschließlich über HTTPS mit aktuellem TLS ausgeliefert, unverschlüsselte Anfragen werden umgeleitet.",
                 "Eine strikte Content Security Policy, die Skripte, Stile, Bilder, Schriften und Netzwerkverbindungen auf bekannte Quellen beschränkt und Einbettung in Frames, Plugins sowie Formularversand an fremde Ziele unterbindet.",
-                "Sicherheits-Header auf jeder Route: X-Content-Type-Options, X-Frame-Options, eine strikte Referrer-Policy und eine Permissions-Policy, die Kamera, Mikrofon, Standort und Interest-Cohort-Schnittstellen abschaltet.",
+                "Sicherheits-Header auf jeder Route: X-Content-Type-Options, X-Frame-Options, eine strikte Referrer-Policy und eine Permissions-Policy, die Kamera, Mikrofon und Interest-Cohort-Schnittstellen vollständig abschaltet und den Standortzugriff auf diese Website selbst beschränkt, wo die Ortskarte ihn nur nach deiner ausdrücklichen Einwilligung ausliest.",
                 "Härtung der Eingaben am Assistenten-Endpunkt: Begrenzung der Nutzlast, der Nachrichtenzahl und der Nachrichtenlänge, strikte Rollentrennung zwischen Nutzer- und Assistentenbeiträgen, sodass Anweisungen nicht vorgetäuscht werden können, sowie eine Ratenbegrenzung je Client.",
                 "Datenminimierung von Anfang an: keine Konten, keine gespeicherten Passwörter, keine Zahlungsdaten, keine Werbekennungen und keine Besucherdatenbank, die kompromittiert werden könnte.",
                 "Geheimnisse wie API-Schlüssel liegen in der verschlüsselten Umgebungskonfiguration der Hosting-Plattform, nie im Quellcode-Repository, und sind jederzeit austauschbar.",

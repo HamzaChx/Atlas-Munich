@@ -171,7 +171,7 @@
     "location": {
       "button": "Près de moi",
       "locating": "Localisation…",
-      "consentDescription": "Utilisé uniquement dans votre navigateur pour trier et filtrer les lieux par distance. Jamais envoyé à nos serveurs ni stocké — désactivable à tout moment.",
+      "consentDescription": "Utilisée dans votre navigateur pour trier et filtrer les lieux par distance, ce qui ne quitte jamais votre appareil. Si vous demandez un itinéraire, les points de départ et d'arrivée transitent par notre serveur vers un service de calcul d'itinéraire pour tracer la route. Ils ne sont jamais conservés ni associés à vous, et vous pouvez désactiver cette option à tout moment.",
       "allow": "Autoriser la localisation",
       "notNow": "Pas maintenant",
       "turnOff": "Désactiver",
@@ -253,9 +253,11 @@
     "directions": {
       "locationNeeded": "Activez la localisation pour tracer l'itinéraire ici.",
       "enableLocation": "Activer la localisation",
+      "tripFull": "Votre parcours est complet. Retirez une étape pour ajouter ce lieu.",
       "error": "Impossible de charger l'itinéraire.",
-      "retry": "Réessayer",
-      "openInMaps": "Ouvrir dans Google Maps"
+      "outOfArea": "Le calcul d'itinéraire ne couvre que la région de Munich.",
+      "noRoute": "Aucun itinéraire routier trouvé vers ce lieu.",
+      "retry": "Réessayer"
     },
     "loadingMap": "Chargement de la carte…",
     "attribution": "Données des lieux © <osm>contributeurs d'OpenStreetMap</osm>, <odbl>ODbL</odbl>. Les notes et le nombre d'avis, lorsqu'ils sont affichés, proviennent de Google.",
@@ -271,6 +273,7 @@
       "total": "{distance} au total",
       "openInMaps": "Ouvrir l'itinéraire dans Maps",
       "empty": "Aucune étape pour l'instant. Ajoutez un lieu pour commencer.",
+      "liveRouting": "Les distances suivent les routes réelles.",
       "estimate": "Les distances sont des estimations à vol d'oiseau, pas un calcul d'itinéraire en direct.",
       "leg": "{distance}"
     }
@@ -1884,6 +1887,14 @@
               "x": "Si vous nous écrivez, votre adresse et le contenu de votre message sont traités pour vous répondre et, lorsqu'une conservation légale s'impose, conservés au titre de la correspondance. Rien de ce que vous nous envoyez n'est utilisé à d'autres fins."
             },
             {
+              "t": "h",
+              "x": "Localisation et calcul d'itinéraire"
+            },
+            {
+              "t": "p",
+              "x": "La carte des lieux peut trier par distance et tracer un itinéraire. Votre position n'est lue qu'après votre autorisation explicite, jamais au chargement de la page. Le tri, le filtrage et les distances à vol d'oiseau sont calculés entièrement dans votre navigateur et votre position n'est pas transmise pour cela. Ce n'est que lorsque vous demandez un itinéraire vers un lieu que des coordonnées sont envoyées, dans un corps de requête POST afin qu'elles n'apparaissent dans aucune URL ni journal : votre position et le ou les lieux concernés, jusqu'à cinq étapes si vous planifiez un parcours à plusieurs arrêts, sont transmis à notre serveur, qui les relaie au service de calcul d'itinéraire et renvoie le tracé routier. Nous ne journalisons, ne stockons ni ne conservons ces coordonnées, et comme la requête est relayée par notre serveur, le service de calcul d'itinéraire ne reçoit jamais votre adresse IP et ne peut pas rattacher la requête à vous. Votre position et vos étapes planifiées restent uniquement dans la page, ne sont jamais écrites dans un stockage ou un cookie, et disparaissent lorsque vous rechargez la page ou désactivez la localisation."
+            },
+            {
               "t": "table",
               "head": [
                 "Données",
@@ -1909,6 +1920,12 @@
                   "Produire la réponse que vous avez demandée",
                   "Art. 6, § 1, b) et f) RGPD, exécution du service demandé",
                   "Non conservés par nous. Conservés jusqu'à 30 jours par le sous-traitant IA à des fins de contrôle des abus, puis supprimés"
+                ],
+                [
+                  "Position pour l'itinéraire",
+                  "Tracer un itinéraire routier que vous avez demandé",
+                  "Art. 6(1)(a) RGPD, votre consentement, révocable à tout moment",
+                  "Non conservée. Gardée en mémoire uniquement pendant la durée de la requête"
                 ],
                 [
                   "Compteurs de limitation de débit (IP)",
@@ -2094,6 +2111,12 @@
                   "Union européenne et États-Unis"
                 ],
                 [
+                  "FOSSGIS e.V. (calcul d'itinéraire OSRM)",
+                  "Sous-traitant : calcul de l'itinéraire routier",
+                  "Uniquement les coordonnées de départ et d'arrivée, relayées par notre serveur. Il ne reçoit ni votre adresse IP, ni cookies, ni aucun identifiant",
+                  "Allemagne"
+                ],
+                [
                   "Fournisseur de messagerie",
                   "Sous-traitant pour la correspondance",
                   "Ce que vous choisissez de nous écrire",
@@ -2237,7 +2260,7 @@
               "x": [
                 "Chiffrement du transport : l'ensemble du site est servi exclusivement en HTTPS avec un TLS moderne, les requêtes en clair étant redirigées.",
                 "Une politique de sécurité du contenu stricte limitant scripts, styles, images, polices et connexions réseau à des origines connues, avec interdiction de l'inclusion en cadre, des greffons et de l'envoi de formulaires vers des tiers.",
-                "Des en-têtes de sécurité sur chaque route : X-Content-Type-Options, X-Frame-Options, une politique de référent stricte et une politique de permissions désactivant la caméra, le micro, la géolocalisation et les interfaces de cohortes d'intérêt.",
+                "Des en-têtes de sécurité sur chaque route : X-Content-Type-Options, X-Frame-Options, une politique de référent stricte et une politique de permissions désactivant entièrement la caméra, le micro et les interfaces de cohortes d'intérêt, et restreignant la géolocalisation à ce site lui-même, où la carte des lieux ne la lit qu'après votre consentement explicite.",
                 "Un durcissement des entrées du point d'accès de l'assistant : limitation de la taille des charges utiles, plafonds sur le nombre et la longueur des messages, séparation stricte des rôles entre tours utilisateur et assistant afin qu'aucune instruction ne puisse être usurpée, et limitation de débit par client.",
                 "Une minimisation des données dès la conception : aucun compte, aucun mot de passe stocké, aucune donnée de paiement, aucun identifiant publicitaire et aucune base de données de visiteurs susceptible d'être compromise.",
                 "Les secrets tels que les clés d'API sont conservés dans la configuration d'environnement chiffrée de la plateforme d'hébergement, jamais dans le dépôt de code, et restent révocables à tout moment.",

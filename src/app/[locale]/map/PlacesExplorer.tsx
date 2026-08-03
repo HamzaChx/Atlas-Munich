@@ -28,8 +28,10 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { useGeolocation } from "@/hooks/useGeolocation";
+import { useRoadRoute } from "@/hooks/useRoadRoute";
 import { haversineDistanceKm } from "@/lib/geo";
 import { planItinerary, itineraryPath, MAX_STOPS } from "@/lib/itinerary";
+import { multiStopDirectionsUrl } from "@/lib/maps";
 
 const PRICE_LEVELS: PriceLevel[] = ["€", "€€", "€€€"];
 
@@ -350,6 +352,15 @@ function PlacesExplorerInner({ places }: { places: Place[] }) {
     );
   }, []);
 
+  /* Tapping "Directions" is now what builds the trip: it should never remove
+     a stop that is already there, only ever add one, and do nothing (rather
+     than silently drop the oldest stop) once the trip is full. */
+  const addTripStop = useCallback((slug: string) => {
+    setTripSlugs((current) =>
+      current.includes(slug) || current.length >= MAX_STOPS ? current : [...current, slug]
+    );
+  }, []);
+
   const tripStops = useMemo(
     () =>
       tripSlugs
@@ -368,11 +379,41 @@ function PlacesExplorerInner({ places }: { places: Place[] }) {
     [tripStops, placesWithDistance]
   );
 
-  const routePath = useMemo(() => {
-    if (tripStopsWithDistance.length === 0) return undefined;
-    const itinerary = planItinerary(tripStopsWithDistance, geolocation.coords);
-    return itineraryPath(itinerary, geolocation.coords);
+  /* Ordering comes from a straight-line nearest-neighbour walk, computed once
+     here and reused for the map's fallback path, the real-route request, and
+     the Google Maps hand-off, so all three always agree on stop order. */
+  const tripItinerary = useMemo(() => {
+    if (tripStopsWithDistance.length === 0) return null;
+    return planItinerary(tripStopsWithDistance, geolocation.coords);
   }, [tripStopsWithDistance, geolocation.coords]);
+
+  const routePath = useMemo(
+    () => (tripItinerary ? itineraryPath(tripItinerary, geolocation.coords) : undefined),
+    [tripItinerary, geolocation.coords]
+  );
+
+  /* The same stops as real street geometry. What gets drawn follows actual
+     roads; `routePath` above is only the fallback the map falls back to
+     while this is loading or if routing is unavailable. */
+  const tripWaypoints = useMemo(
+    () => (routePath && routePath.length > 1
+      ? routePath.map(([lat, lng]) => ({ lat, lng }))
+      : null),
+    [routePath]
+  );
+  const {
+    route: tripRoute,
+    status: tripRouteStatus,
+    error: tripRouteError,
+    retry: retryTripRoute,
+  } = useRoadRoute(tripWaypoints);
+
+  /* A single-tap hand-off to real turn-by-turn navigation for the trip as it
+     stands right now, reachable straight from a place's popup. */
+  const tripMapsUrl = useMemo(
+    () => (tripItinerary ? multiStopDirectionsUrl(tripItinerary.stops, geolocation.coords) : null),
+    [tripItinerary, geolocation.coords]
+  );
 
   const filterMeta: { key: PlaceCategory; label: string }[] = [
     { key: "restaurant", label: t("filters.restaurants") },
@@ -647,6 +688,8 @@ function PlacesExplorerInner({ places }: { places: Place[] }) {
               origin={geolocation.coords}
               onRemove={toggleTripStop}
               onClear={() => setTripSlugs([])}
+              tripRoute={tripRoute}
+              tripRouteStatus={tripRouteStatus}
             />
           </div>
         )}
@@ -658,9 +701,14 @@ function PlacesExplorerInner({ places }: { places: Place[] }) {
             categoryLabels={categoryLabelMap}
             userLocation={geolocation.coords}
             routePath={routePath}
+            tripRoute={tripRoute}
+            tripRouteStatus={tripRouteStatus}
+            tripRouteError={tripRouteError}
+            onRetryTripRoute={retryTripRoute}
             tripSlugs={tripSlugs}
-            onToggleTrip={toggleTripStop}
+            onAddToTrip={addTripStop}
             tripFull={tripSlugs.length >= MAX_STOPS}
+            tripMapsUrl={tripMapsUrl}
             locationStatus={geolocation.status}
             isLocationSupported={geolocation.isSupported}
             onRequestLocation={handleLocationRequest}

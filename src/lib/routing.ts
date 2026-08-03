@@ -1,56 +1,88 @@
 // ============================================
-// Real, street-following directions for the places map
+// Atlas Munich – street-following routes for the places map
 //
-// Every other distance on this page (haversine.ts) is straight-line and
-// never leaves the browser. Turn-by-turn geometry cannot be computed
-// locally, so this is the one path in the app that sends coordinates to a
-// third party — and only ever after someone explicitly taps "Directions",
-// never automatically.
+// Every distance elsewhere in the app (see geo.ts) is straight-line and
+// computed in the browser against coordinates that already ship in the page.
+// Drawing a route that follows actual roads cannot be done locally, so this
+// is the one path that leaves the device — and only ever after someone taps
+// "Directions", never on selection, never on load.
+//
+// It posts to our own /api/directions rather than to a routing service
+// directly: the request body keeps coordinates out of URLs and logs, and the
+// routing service never sees the visitor's IP address. See the route handler
+// for the full reasoning.
 // ============================================
 
 import type { Coordinates } from "./geo";
 
-export interface RouteResult {
+export interface RouteLeg {
+  distanceKm: number;
+  durationMin: number;
+  /** Geometry for this hop alone, so it can carry its own label. */
+  path: [number, number][];
+}
+
+export interface RoadRoute {
   /** Ordered [lat, lng] pairs tracing the actual street network. */
   path: [number, number][];
   distanceKm: number;
   durationMin: number;
+  legs: RouteLeg[];
 }
 
-/** OSRM's public demo server: free, no key, fine for light use. */
-const OSRM_DRIVING_ENDPOINT = "https://router.project-osrm.org/route/v1/driving";
+/** Why a route could not be drawn, in the terms the UI needs to explain it. */
+export type RouteErrorReason = "out_of_area" | "no_route" | "unavailable";
+
+export class RouteError extends Error {
+  reason: RouteErrorReason;
+  constructor(reason: RouteErrorReason) {
+    super(reason);
+    this.name = "RouteError";
+    this.reason = reason;
+  }
+}
+
+/** Maps the handler's error codes onto the three cases worth distinguishing. */
+function reasonFor(status: number, code: string | undefined): RouteErrorReason {
+  if (status === 422 || code === "out_of_area") return "out_of_area";
+  if (status === 404 || code === "no_route") return "no_route";
+  return "unavailable";
+}
 
 /**
- * The shortest driving route between two points, via OSRM. Throws on any
- * network failure, non-OK response, or empty result so the caller can show
- * a retry state rather than silently falling back to a straight line.
+ * The shortest driving route through the given waypoints, following real
+ * roads. Throws `RouteError` on any failure so the caller can tell "you are
+ * outside Munich" apart from "the routing service is down".
  */
-export async function fetchDrivingRoute(
-  origin: Coordinates,
-  destination: Coordinates,
+export async function fetchRoadRoute(
+  waypoints: Coordinates[],
   signal?: AbortSignal
-): Promise<RouteResult> {
-  const coords = `${origin.lng},${origin.lat};${destination.lng},${destination.lat}`;
-  const url = `${OSRM_DRIVING_ENDPOINT}/${coords}?overview=full&geometries=geojson`;
+): Promise<RoadRoute> {
+  if (waypoints.length < 2) throw new RouteError("no_route");
 
-  const response = await fetch(url, { signal });
+  let response: Response;
+  try {
+    response = await fetch("/api/directions", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ waypoints }),
+      signal,
+    });
+  } catch (error) {
+    // An aborted request is a superseded one, not a failure to report.
+    if (error instanceof DOMException && error.name === "AbortError") throw error;
+    throw new RouteError("unavailable");
+  }
+
   if (!response.ok) {
-    throw new Error(`Routing request failed with status ${response.status}`);
+    const code = await response
+      .json()
+      .then((body) => body?.error as string | undefined)
+      .catch(() => undefined);
+    throw new RouteError(reasonFor(response.status, code));
   }
 
-  const data = await response.json();
-  const route = data.routes?.[0];
-  if (!route?.geometry?.coordinates?.length) {
-    throw new Error("No route returned");
-  }
-
-  const path: [number, number][] = route.geometry.coordinates.map(
-    ([lng, lat]: [number, number]) => [lat, lng]
-  );
-
-  return {
-    path,
-    distanceKm: route.distance / 1000,
-    durationMin: route.duration / 60,
-  };
+  const data = (await response.json()) as RoadRoute;
+  if (!data?.path?.length) throw new RouteError("no_route");
+  return data;
 }

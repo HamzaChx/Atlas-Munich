@@ -7,6 +7,7 @@ import { Place } from "@/types";
 import { cn } from "@/lib/utils";
 import type { Coordinates } from "@/lib/geo";
 import type { GeolocationStatus } from "@/hooks/useGeolocation";
+import type { RoadRoute, RouteErrorReason } from "@/lib/routing";
 
 interface PlacesMapProps {
   places: Place[];
@@ -16,12 +17,22 @@ interface PlacesMapProps {
   categoryNames?: Record<string, string>;
   /** The visitor's opted-in position, shown as a marker. Never sent anywhere. */
   userLocation?: Coordinates | null;
-  /** Ordered stop coordinates for a planned trip, drawn as a route line. */
+  /** Ordered stop coordinates for a planned trip. Straight-line fallback,
+      used only when the road route could not be fetched. */
   routePath?: [number, number][];
-  /** Slugs already in the trip, so the popup can offer add or remove. */
+  /** The planned trip as real street geometry, when routing succeeded. */
+  tripRoute?: RoadRoute | null;
+  tripRouteStatus?: "idle" | "loading" | "error";
+  tripRouteError?: RouteErrorReason | null;
+  /** Re-runs the trip route fetch after a failure. */
+  onRetryTripRoute?: () => void;
+  /** Slugs already in the trip. */
   tripSlugs?: string[];
-  onToggleTrip?: (slug: string) => void;
+  /** Adds a place to the trip if it is not already there and there is room. */
+  onAddToTrip?: (slug: string) => void;
   tripFull?: boolean;
+  /** One-tap hand-off to real navigation for the trip as it stands. */
+  tripMapsUrl?: string | null;
   /** Status of the visitor's opt-in geolocation, to explain a stalled route. */
   locationStatus?: GeolocationStatus;
   isLocationSupported?: boolean;
@@ -59,9 +70,14 @@ export function PlacesMap({
   categoryNames,
   userLocation,
   routePath,
+  tripRoute,
+  tripRouteStatus,
+  tripRouteError,
+  onRetryTripRoute,
   tripSlugs,
-  onToggleTrip,
+  onAddToTrip,
   tripFull,
+  tripMapsUrl,
   locationStatus,
   isLocationSupported,
   onRequestLocation,
@@ -74,9 +90,14 @@ export function PlacesMap({
       categoryNames={categoryNames}
       userLocation={userLocation}
       routePath={routePath}
+      tripRoute={tripRoute}
+      tripRouteStatus={tripRouteStatus}
+      tripRouteError={tripRouteError}
+      onRetryTripRoute={onRetryTripRoute}
       tripSlugs={tripSlugs}
-      onToggleTrip={onToggleTrip}
+      onAddToTrip={onAddToTrip}
       tripFull={tripFull}
+      tripMapsUrl={tripMapsUrl}
       locationStatus={locationStatus}
       isLocationSupported={isLocationSupported}
       onRequestLocation={onRequestLocation}

@@ -40,7 +40,6 @@ import {
   MapPin,
   Minus,
   Plus,
-  Route,
   Star,
   LocateFixed,
 } from "lucide-react";
@@ -48,9 +47,8 @@ import {
 import type { Place } from "@/types";
 import { placeAccents } from "./place-accents";
 import { cn } from "@/lib/utils";
-import { placeDirectionsUrl } from "@/lib/maps";
 import { formatDistanceKm, haversineDistanceKm, type Coordinates } from "@/lib/geo";
-import { fetchDrivingRoute, type RouteResult } from "@/lib/routing";
+import type { RoadRoute, RouteErrorReason } from "@/lib/routing";
 import type { GeolocationStatus } from "@/hooks/useGeolocation";
 
 const MUNICH_CENTER: [number, number] = [48.1372, 11.5756];
@@ -388,10 +386,13 @@ function PlacePopupCard({
   place,
   label,
   inTrip = false,
-  onToggleTrip,
   tripFull = false,
+  tripMapsUrl = null,
+  pendingSlug,
   onDirections,
   directionsStatus,
+  directionsError,
+  onRetryDirections,
   awaitingLocation,
   locationStatus,
   isLocationSupported,
@@ -400,10 +401,17 @@ function PlacePopupCard({
   place: Place;
   label: string;
   inTrip?: boolean;
-  onToggleTrip?: (slug: string) => void;
   tripFull?: boolean;
+  /** One-tap hand-off to real navigation for the trip as it stands, not
+      just this one place — shown whenever any trip exists. */
+  tripMapsUrl?: string | null;
+  /** The slug "Directions" was last tapped for, so a loading/error state
+      never bleeds onto a pin that never asked for one. */
+  pendingSlug: string | null;
   onDirections: (place: Place) => void;
   directionsStatus: "idle" | "loading" | "error";
+  directionsError: RouteErrorReason | null;
+  onRetryDirections: () => void;
   awaitingLocation: boolean;
   locationStatus: GeolocationStatus;
   isLocationSupported: boolean;
@@ -413,8 +421,7 @@ function PlacePopupCard({
   const tTrip = useTranslations("places.trip");
   const locale = useLocale();
   const color = accentColor(place.category);
-  // Fallback hand-off, only ever surfaced if the in-app route fetch fails.
-  const directionsUrl = placeDirectionsUrl(place);
+  const isPending = pendingSlug === place.slug;
 
   const locationErrorKey = !isLocationSupported
     ? "location.errorUnavailable"
@@ -427,6 +434,19 @@ function PlacePopupCard({
           : locationStatus === "error"
             ? "location.errorGeneric"
             : null;
+
+  /* Exactly one status row under the button at a time, in the order a
+     visitor needs to resolve them: a stalled prompt outranks a stale error,
+     which outranks quietly celebrating that the trip grew. */
+  const notice = awaitingLocation
+    ? "location"
+    : isPending && tripFull && !inTrip
+      ? "tripFull"
+      : isPending && directionsStatus === "error"
+        ? "error"
+        : inTrip || tripMapsUrl
+          ? "success"
+          : null;
 
   return (
     <div className="p-4">
@@ -468,6 +488,21 @@ function PlacePopupCard({
         </span>
       </p>
 
+      {/* A plain link, not a second button: the website is a tangential,
+          occasional action, not something that should compete for weight
+          with the one thing this popup exists to do. */}
+      {place.website && (
+        <a
+          href={place.website}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-1 inline-flex items-center gap-1 pl-5 text-[12.5px] font-semibold text-zinc-500 hover:text-zellige hover:underline dark:text-zinc-400"
+        >
+          {t("card.website")}
+          <ExternalLink className="h-3 w-3" aria-hidden="true" />
+        </a>
+      )}
+
       {place.description && (
         <p className="mt-2 line-clamp-3 text-[13px] leading-relaxed text-zinc-500 dark:text-zinc-400">
           {place.description}
@@ -475,15 +510,16 @@ function PlacePopupCard({
       )}
 
       <div className="mt-4 flex flex-col gap-2">
-        {/* The only action this popup leads with: drawing the real route on
-            the map itself, never a hand-off to another app. */}
+        {/* The one button this popup offers. Adding the place to the trip
+            and drawing its real route both happen as a side effect of this
+            single tap — never a separate "add to trip" step. */}
         <button
           type="button"
           onClick={() => onDirections(place)}
-          disabled={directionsStatus === "loading"}
+          disabled={isPending && directionsStatus === "loading"}
           className="atlas-popup__cta disabled:cursor-wait disabled:opacity-70"
         >
-          {directionsStatus === "loading" ? (
+          {isPending && directionsStatus === "loading" ? (
             <Loader2 className="h-3.5 w-3.5 animate-spin" aria-hidden="true" />
           ) : (
             <MapPin className="h-3.5 w-3.5" aria-hidden="true" />
@@ -491,7 +527,7 @@ function PlacePopupCard({
           {t("card.directions")}
         </button>
 
-        {awaitingLocation &&
+        {notice === "location" &&
           (locationErrorKey ? (
             <p className="text-[12px] leading-relaxed text-acc-terra">{t(locationErrorKey)}</p>
           ) : locationStatus === "locating" ? (
@@ -511,57 +547,52 @@ function PlacePopupCard({
             </p>
           ))}
 
-        {directionsStatus === "error" && (
+        {notice === "tripFull" && (
+          <p className="text-[12px] leading-relaxed text-acc-terra">{t("directions.tripFull")}</p>
+        )}
+
+        {notice === "error" && (
           <p className="text-[12px] leading-relaxed text-acc-terra">
-            {t("directions.error")}{" "}
-            <button
-              type="button"
-              onClick={() => onDirections(place)}
-              className="font-semibold underline underline-offset-2"
-            >
-              {t("directions.retry")}
-            </button>
-            {" · "}
-            <a
-              href={directionsUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-semibold underline underline-offset-2"
-            >
-              {t("directions.openInMaps")}
-            </a>
+            {directionsError === "out_of_area"
+              ? t("directions.outOfArea")
+              : directionsError === "no_route"
+                ? t("directions.noRoute")
+                : t("directions.error")}{" "}
+            {/* Retrying an out-of-area or no-route answer just repeats it;
+                only a service failure is worth asking about again. */}
+            {directionsError === "unavailable" && (
+              <button
+                type="button"
+                onClick={onRetryDirections}
+                className="font-semibold underline underline-offset-2"
+              >
+                {t("directions.retry")}
+              </button>
+            )}
           </p>
         )}
 
-        {(place.website || onToggleTrip) && (
-          <div className="flex flex-wrap items-center gap-2">
-            {place.website && (
+        {notice === "success" && (
+          <p className="flex items-center justify-between gap-2 text-[12px] leading-relaxed">
+            {inTrip ? (
+              <span className="flex items-center gap-1 font-semibold text-zellige">
+                <Check className="h-3.5 w-3.5" aria-hidden="true" />
+                {tTrip("inTrip")}
+              </span>
+            ) : (
+              <span />
+            )}
+            {tripMapsUrl && (
               <a
-                href={place.website}
+                href={tripMapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="atlas-popup__ghost"
+                className="font-semibold text-zellige hover:underline"
               >
-                <ExternalLink className="h-3.5 w-3.5" />
-                {t("card.website")}
+                {tTrip("openInMaps")}
               </a>
             )}
-            {/* Building a trip without leaving the map: the browse view is not
-                where most people are when they spot a second place they want. */}
-            {onToggleTrip && (
-              <button
-                type="button"
-                onClick={() => onToggleTrip(place.slug)}
-                disabled={!inTrip && tripFull}
-                aria-pressed={inTrip}
-                title={inTrip ? tTrip("remove") : tTrip("add")}
-                aria-label={inTrip ? tTrip("remove") : tTrip("add")}
-                className="atlas-popup__ghost atlas-popup__ghost--icon disabled:cursor-not-allowed disabled:opacity-40"
-              >
-                {inTrip ? <Check className="h-3.5 w-3.5" /> : <Route className="h-3.5 w-3.5" />}
-              </button>
-            )}
-          </div>
+          </p>
         )}
       </div>
     </div>
@@ -638,12 +669,25 @@ export interface PlacesMapCanvasProps {
   categoryNames?: Record<string, string>;
   /** The visitor's opted-in position, shown as a marker. Never sent anywhere. */
   userLocation?: Coordinates | null;
-  /** Ordered stop coordinates for a planned trip, drawn as a route line. */
+  /** Ordered stop coordinates for a planned trip. Straight-line fallback,
+      used only when the road route could not be fetched. */
   routePath?: [number, number][];
-  /** Slugs already in the trip, so the popup can offer add or remove. */
+  /** The planned trip as real street geometry, when routing succeeded. */
+  tripRoute?: RoadRoute | null;
+  tripRouteStatus?: "idle" | "loading" | "error";
+  tripRouteError?: RouteErrorReason | null;
+  /** Re-runs the trip route fetch after a failure. */
+  onRetryTripRoute?: () => void;
+  /** Slugs already in the trip. */
   tripSlugs?: string[];
-  onToggleTrip?: (slug: string) => void;
+  /** Adds a place to the trip if it is not already there and there is room.
+      Never removes: "Directions" only ever grows the trip, it does not
+      toggle a place back out. Removing a stop is a Trip Planner action. */
+  onAddToTrip?: (slug: string) => void;
   tripFull?: boolean;
+  /** One-tap hand-off to real navigation for the trip as it stands, shown
+      from any pin's popup once the trip has at least one stop. */
+  tripMapsUrl?: string | null;
   /** Status of the visitor's opt-in geolocation, to explain a stalled route. */
   locationStatus?: GeolocationStatus;
   isLocationSupported?: boolean;
@@ -658,9 +702,14 @@ export default function PlacesMapCanvas({
   categoryNames,
   userLocation,
   routePath,
+  tripRoute,
+  tripRouteStatus = "idle",
+  tripRouteError = null,
+  onRetryTripRoute,
   tripSlugs = [],
-  onToggleTrip,
+  onAddToTrip,
   tripFull = false,
+  tripMapsUrl = null,
   locationStatus = "idle",
   isLocationSupported = true,
   onRequestLocation,
@@ -674,74 +723,51 @@ export default function PlacesMapCanvas({
   const [map, setMap] = useState<L.Map | null>(null);
   const [selected, setSelected] = useState<Place | null>(null);
 
-  // The real, driven route to whichever pin is open — fetched on demand when
-  // "Directions" is tapped, never automatically. Cleared whenever the
-  // selection changes so a stale route never lingers on the wrong pin.
-  const [route, setRoute] = useState<RouteResult | null>(null);
-  const [routeStatus, setRouteStatus] = useState<"idle" | "loading" | "error">("idle");
+  /* Which place "Directions" was last tapped for, so the popup's loading and
+     error states (driven by the shared trip route below) only ever apply to
+     the pin that actually asked for one. */
+  const [pendingSlug, setPendingSlug] = useState<string | null>(null);
   const [awaitingLocation, setAwaitingLocation] = useState(false);
-  const routeRequestRef = useRef<AbortController | null>(null);
-
-  const requestRoute = useCallback(
-    async (place: Place) => {
-      if (!userLocation || typeof place.lat !== "number" || typeof place.lng !== "number") return;
-      routeRequestRef.current?.abort();
-      const controller = new AbortController();
-      routeRequestRef.current = controller;
-      setRoute(null);
-      setRouteStatus("loading");
-      try {
-        const result = await fetchDrivingRoute(
-          userLocation,
-          { lat: place.lat, lng: place.lng },
-          controller.signal
-        );
-        if (controller.signal.aborted) return;
-        setRoute(result);
-        setRouteStatus("idle");
-      } catch {
-        if (controller.signal.aborted) return;
-        setRouteStatus("error");
-      }
-    },
-    [userLocation]
-  );
 
   const handleDirections = useCallback(
     (place: Place) => {
+      setPendingSlug(place.slug);
       if (!userLocation) {
         setAwaitingLocation(true);
         return;
       }
-      void requestRoute(place);
+      setAwaitingLocation(false);
+      if (!tripSlugs.includes(place.slug) && !tripFull) {
+        onAddToTrip?.(place.slug);
+      }
     },
-    [userLocation, requestRoute]
+    [userLocation, tripSlugs, tripFull, onAddToTrip]
   );
 
-  // Clear any in-flight or drawn route the moment the selection changes, so
-  // "Directions" always has to be asked for again on the newly opened pin.
+  // A newly opened pin starts clean: no stale pending request or location
+  // prompt carried over from whatever popup was open before it.
   useEffect(() => {
-    routeRequestRef.current?.abort();
-    setRoute(null);
-    setRouteStatus("idle");
+    setPendingSlug(null);
     setAwaitingLocation(false);
   }, [selected?.slug]);
 
   // Once location is granted after a prompt from the popup, pick the pending
   // directions request back up automatically instead of making them tap twice.
   useEffect(() => {
-    if (awaitingLocation && userLocation && selected) {
-      setAwaitingLocation(false);
-      void requestRoute(selected);
+    if (!awaitingLocation || !userLocation || !pendingSlug) return;
+    setAwaitingLocation(false);
+    if (!tripSlugs.includes(pendingSlug) && !tripFull) {
+      onAddToTrip?.(pendingSlug);
     }
-  }, [awaitingLocation, userLocation, selected, requestRoute]);
+  }, [awaitingLocation, userLocation, pendingSlug, tripSlugs, tripFull, onAddToTrip]);
 
-  // Frame the whole route once it is drawn, so the destination is not left
-  // waiting just outside the viewport.
+  // Frame the whole trip whenever its geometry changes, so a newly added
+  // stop — or the first one — is never left just outside the viewport.
   useEffect(() => {
-    if (!map || !route) return;
-    map.fitBounds(L.latLngBounds(route.path), { padding: [64, 64], maxZoom: 16, animate: true });
-  }, [map, route]);
+    const path = tripRoute?.path ?? routePath;
+    if (!map || !path || path.length < 2) return;
+    map.fitBounds(L.latLngBounds(path), { padding: [64, 64], maxZoom: 16, animate: true });
+  }, [map, tripRoute, routePath]);
   // Scroll-to-zoom is opt-in (activated by a click on the map) so a mouse
   // wheel scrolling the page doesn't get trapped the moment it passes over
   // the map. Touch devices zoom by pinch regardless, via Leaflet's default
@@ -781,6 +807,37 @@ export default function PlacesMapCanvas({
     () => places.filter((place) => typeof place.lat === "number" && typeof place.lng === "number"),
     [places]
   );
+
+  /* Real street geometry when routing answered, the straight line between
+     stops when it did not. */
+  const tripPolyline = tripRoute?.path ?? routePath;
+
+  /* One distance pill per leg, placed at the midpoint of the geometry it
+     describes — the middle of the drawn road for a real route, the middle of
+     the straight hop for the fallback. */
+  const tripLegLabels = useMemo(() => {
+    if (tripRoute?.legs?.length) {
+      return tripRoute.legs
+        .filter((leg) => leg.path.length > 0)
+        .map((leg, index) => ({
+          key: `leg-${index}`,
+          position: leg.path[Math.floor(leg.path.length / 2)],
+          distanceKm: leg.distanceKm,
+        }));
+    }
+    if (!routePath || routePath.length < 2) return [];
+    return routePath.slice(1).map((to, index) => {
+      const from = routePath[index];
+      return {
+        key: `leg-${index}`,
+        position: [(from[0] + to[0]) / 2, (from[1] + to[1]) / 2] as [number, number],
+        distanceKm: haversineDistanceKm(
+          { lat: from[0], lng: from[1] },
+          { lat: to[0], lng: to[1] }
+        ),
+      };
+    });
+  }, [tripRoute, routePath]);
 
   const legendRows = useMemo<LegendRow[]>(() => {
     const counts = new Map<string, number>();
@@ -863,79 +920,46 @@ export default function PlacesMapCanvas({
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>'
           />
 
-          {/* The planned route, under the pins so it never hides one. A
-              straight line between stops, matching how the distance is
-              estimated: drawing turn-by-turn geometry we did not compute
-              would claim a precision this does not have. A soft casing under
-              a crisp, flowing dash reads as a highlighted road rather than a
-              flat stroke, and each leg carries its own straight-line
-              distance so the shape of the trip is legible at a glance. */}
-          {routePath && routePath.length > 1 && (
+          {/* The planned route, under the pins so it never hides one. Real
+              street geometry whenever the routing service answered; the
+              straight line between stops only as a fallback, which is the
+              honest shape to show when we could not compute the real one. A
+              solid core over a soft, wider casing reads as a highlighted
+              road, the way a real navigation app draws one — no dashing, so
+              it never breaks up into a trail of dots at low zoom or on a
+              long trip. Each leg still carries its own distance pill. */}
+          {tripPolyline && tripPolyline.length > 1 && (
             <>
               <Polyline
-                positions={routePath}
+                positions={tripPolyline}
                 pathOptions={{
                   color: "var(--zellige)",
-                  weight: 8,
-                  opacity: 0.14,
+                  weight: 9,
+                  opacity: 0.16,
                   lineCap: "round",
                   lineJoin: "round",
                 }}
               />
               <Polyline
-                positions={routePath}
+                positions={tripPolyline}
                 pathOptions={{
                   color: "var(--zellige)",
-                  weight: 3.5,
-                  opacity: 0.95,
-                  dashArray: "1 9",
+                  weight: 4,
+                  opacity: 1,
                   lineCap: "round",
                   lineJoin: "round",
-                  className: "atlas-route-live",
                 }}
               />
-              {routePath.slice(1).map((to, index) => {
-                const from = routePath[index];
-                const legKm = haversineDistanceKm(
-                  { lat: from[0], lng: from[1] },
-                  { lat: to[0], lng: to[1] }
-                );
-                const mid: [number, number] = [(from[0] + to[0]) / 2, (from[1] + to[1]) / 2];
-                return (
-                  <Marker
-                    key={`leg-${index}`}
-                    position={mid}
-                    icon={legDistanceIcon(formatDistanceKm(legKm, locale))}
-                    interactive={false}
-                    zIndexOffset={900}
-                  />
-                );
-              })}
+              {tripLegLabels.map((leg) => (
+                <Marker
+                  key={leg.key}
+                  position={leg.position}
+                  icon={legDistanceIcon(formatDistanceKm(leg.distanceKm, locale))}
+                  interactive={false}
+                  zIndexOffset={900}
+                />
+              ))}
             </>
-          )}
-
-          {/* The real, driven route to whatever pin is open — only ever drawn
-              on request (see the popup's "Directions" button), never
-              automatically for every pin someone happens to tap. Follows the
-              actual street network via OSRM rather than a straight line. */}
-          {route && selected && (
-            <Polyline
-              key={`live-route-${selected.slug}`}
-              positions={route.path}
-              pathOptions={{
-                color: "var(--acc-blue)",
-                weight: 4,
-                opacity: 0.85,
-                dashArray: "1 10",
-                lineCap: "round",
-                lineJoin: "round",
-                className: "atlas-route-live",
-              }}
-            >
-              <Tooltip permanent direction="center" className="atlas-route-label" interactive={false}>
-                {formatDistanceKm(route.distanceKm, locale)}
-              </Tooltip>
-            </Polyline>
           )}
 
           <MarkerLayer places={mapped} selected={selected} onSelect={setSelected} />
@@ -964,10 +988,13 @@ export default function PlacesMapCanvas({
                 place={selected}
                 label={categoryNames?.[selected.category] ?? selected.category.replace(/-/g, " ")}
                 inTrip={tripSlugs.includes(selected.slug)}
-                onToggleTrip={onToggleTrip}
                 tripFull={tripFull}
+                tripMapsUrl={tripMapsUrl}
+                pendingSlug={pendingSlug}
                 onDirections={handleDirections}
-                directionsStatus={routeStatus}
+                directionsStatus={pendingSlug === selected.slug ? tripRouteStatus : "idle"}
+                directionsError={pendingSlug === selected.slug ? tripRouteError : null}
+                onRetryDirections={() => onRetryTripRoute?.()}
                 awaitingLocation={awaitingLocation}
                 locationStatus={locationStatus}
                 isLocationSupported={isLocationSupported}

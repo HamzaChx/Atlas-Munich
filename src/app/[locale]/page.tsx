@@ -38,37 +38,15 @@ export default async function Home({
 
   return (
     <div className="min-h-screen">
-      {/* ========== HERO ==========
-          Full-bleed conceptual illustration (Frauenkirche/Allianz Arena
-          paired with Hassan II Mosque/Burj Mohammed 6 Tower), the same
-          image used in the Community section below.
-
-          The text sits in a solid opaque card, not a translucent wash over
-          the whole hero: at any wash opacity short of fully hiding the
-          artwork, dark text crossing the illustration's own ink hatching
-          (the Frauenkirche roof especially) reads as broken, letterforms
-          and hatch lines visually merge. A flat card behind just the text
-          removes the hatching from behind the letters entirely, and lets
-          the illustration show at full clarity everywhere else, which is
-          the point of using it. Still no gradients/blur, per house rules,
-          just a solid fill and a box-shadow for lift. */}
+      {/* ========== HERO ==========*/}
       {/* `main` carries a global `pt-(--header-h)` so sticky offsets on every
           other page line up under the bar; that same padding would leave
           this hero's photo starting below the header instead of behind it.
           Pulling the section up by that exact height (and no more, so nothing
           else on the page shifts) is the fix, not touching the shared spacer. */}
       <section className="relative isolate -mt-(--header-h) flex min-h-[78vh] w-full flex-col justify-center overflow-hidden sm:min-h-screen">
-        <Image
-          src="/atlas-hero-2.jpg"
-          alt={t("heroImageAlt")}
-          fill
-          priority
-          quality={90}
-          sizes="100vw"
-          className="absolute inset-0 -z-10 object-cover object-center"
-        />
 
-        <div className="relative z-10 mx-auto flex max-w-2xl flex-col items-center rounded-[2rem] bg-zinc-50 px-6 py-10 text-center shadow-[0_20px_60px_rgba(40,30,20,0.18)] sm:rounded-[2.5rem] sm:px-14 sm:py-14 lg:px-16">
+        <div className="relative z-10 mx-auto flex max-w-2xl flex-col items-center px-5 pt-32 pb-16 text-center sm:px-6 sm:pt-40 sm:pb-24 lg:px-8 lg:pt-44">
           <h1 className="rise rise-1 display-wide font-display text-balance text-[2.75rem] font-bold leading-[0.98] tracking-[-0.02em] text-zinc-950 sm:text-6xl lg:text-7xl">
             {t("heroTitle")}
             <span className="block pb-1 text-[oklch(0.54_0.19_25)]">
@@ -86,8 +64,9 @@ export default async function Home({
           </span>
 
           {/* Same two-CTA grammar as the Community and Tools sections below
-              (dark ink pill + ghost): the card behind them is solid, so
-              this can just use the site's normal light-surface colors. */}
+              (dark ink pill + ghost), fixed rather than theme-reactive,
+              because the hero background is always light regardless of
+              which theme the reader is on. */}
           <div className="rise rise-4 mt-5 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
             {quickAccess.map((item, idx) => (
               <Link

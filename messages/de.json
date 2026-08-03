@@ -228,6 +228,13 @@
       "instagram": "Instagram",
       "call": "Anrufen"
     },
+    "directions": {
+      "locationNeeded": "Aktiviere den Standort, um die Route hier einzuzeichnen.",
+      "enableLocation": "Standort aktivieren",
+      "error": "Route konnte nicht geladen werden.",
+      "retry": "Erneut versuchen",
+      "openInMaps": "In Google Maps öffnen"
+    },
     "loadingMap": "Karte wird geladen…",
     "attribution": "Ortsdaten © <osm>OpenStreetMap-Mitwirkende</osm>, <odbl>ODbL</odbl>. Bewertungen und Rezensionszahlen, sofern angezeigt, stammen von Google.",
     "trip": {

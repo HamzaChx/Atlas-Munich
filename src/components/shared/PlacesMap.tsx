@@ -6,6 +6,7 @@ import { useTranslations } from "next-intl";
 import { Place } from "@/types";
 import { cn } from "@/lib/utils";
 import type { Coordinates } from "@/lib/geo";
+import type { GeolocationStatus } from "@/hooks/useGeolocation";
 
 interface PlacesMapProps {
   places: Place[];
@@ -21,6 +22,11 @@ interface PlacesMapProps {
   tripSlugs?: string[];
   onToggleTrip?: (slug: string) => void;
   tripFull?: boolean;
+  /** Status of the visitor's opt-in geolocation, to explain a stalled route. */
+  locationStatus?: GeolocationStatus;
+  isLocationSupported?: boolean;
+  /** Triggers the browser's location prompt. Only ever called from a click. */
+  onRequestLocation?: () => void;
   className?: string;
 }
 
@@ -56,6 +62,9 @@ export function PlacesMap({
   tripSlugs,
   onToggleTrip,
   tripFull,
+  locationStatus,
+  isLocationSupported,
+  onRequestLocation,
   className,
 }: PlacesMapProps) {
   return (
@@ -68,6 +77,9 @@ export function PlacesMap({
       tripSlugs={tripSlugs}
       onToggleTrip={onToggleTrip}
       tripFull={tripFull}
+      locationStatus={locationStatus}
+      isLocationSupported={isLocationSupported}
+      onRequestLocation={onRequestLocation}
       className={cn("h-[60vh] min-h-[26rem] sm:h-[38rem]", className)}
     />
   );

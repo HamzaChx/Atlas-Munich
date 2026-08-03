@@ -227,6 +227,13 @@
       "instagram": "Instagram",
       "call": "Call"
     },
+    "directions": {
+      "locationNeeded": "Turn on location to draw the route here.",
+      "enableLocation": "Enable location",
+      "error": "Couldn't load the route.",
+      "retry": "Try again",
+      "openInMaps": "Open in Google Maps"
+    },
     "loadingMap": "Loading map…",
     "attribution": "Place data © <osm>OpenStreetMap contributors</osm>, <odbl>ODbL</odbl>. Ratings and review counts, where shown, are provided by Google.",
     "trip": {

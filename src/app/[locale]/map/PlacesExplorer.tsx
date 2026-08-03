@@ -661,6 +661,9 @@ function PlacesExplorerInner({ places }: { places: Place[] }) {
             tripSlugs={tripSlugs}
             onToggleTrip={toggleTripStop}
             tripFull={tripSlugs.length >= MAX_STOPS}
+            locationStatus={geolocation.status}
+            isLocationSupported={geolocation.isSupported}
+            onRequestLocation={handleLocationRequest}
           />
         )}
 

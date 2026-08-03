@@ -408,6 +408,30 @@ function PlacesExplorerInner({ places }: { places: Place[] }) {
     retry: retryTripRoute,
   } = useRoadRoute(tripWaypoints);
 
+  /* One source of truth for "real road distance to this stop", read by both
+     the Trip Planner panel and the map's popup. `tripRoute.legs` carries no
+     place identifiers of its own, but it was fetched from the exact ordered
+     waypoints `tripItinerary` produces, so leg `i` here is leg `i` there —
+     the length check is what guards against pairing a stale route with a
+     itinerary that has since gained or lost a stop. Computing this once and
+     handing both consumers the same map, rather than each zipping legs to
+     stops on its own, is what keeps the pin popup and the trip panel from
+     ever quoting two different distances for the same place again. */
+  const tripLegDistanceKm = useMemo(() => {
+    if (!tripItinerary || !tripRoute || tripRoute.legs.length !== tripItinerary.legs.length) {
+      return null;
+    }
+    const bySlug: Record<string, number> = {};
+    tripItinerary.legs.forEach((leg, index) => {
+      bySlug[leg.to.slug] = tripRoute.legs[index].distanceKm;
+    });
+    return bySlug;
+  }, [tripItinerary, tripRoute]);
+
+  // `tripLegDistanceKm` is only ever non-null when it was built from this
+  // exact `tripRoute`, so its presence alone is enough to trust the total.
+  const totalRoadKm = tripLegDistanceKm && tripRoute ? tripRoute.distanceKm : null;
+
   /* A single-tap hand-off to real turn-by-turn navigation for the trip as it
      stands right now, reachable straight from a place's popup. */
   const tripMapsUrl = useMemo(
@@ -681,14 +705,15 @@ function PlacesExplorerInner({ places }: { places: Place[] }) {
       <section className="mx-auto max-w-7xl 2xl:max-w-[96rem] px-4 pb-16 pt-6 sm:px-6 sm:pb-24 lg:px-8 2xl:px-12">
         {/* The planned trip, above whichever view is showing, because it is
             the thing the reader is actively building. */}
-        {tripStops.length > 0 && (
+        {tripItinerary && (
           <div className="mb-5 sm:max-w-md">
             <TripPlanner
-              stops={tripStopsWithDistance}
-              origin={geolocation.coords}
+              itinerary={tripItinerary}
               onRemove={toggleTripStop}
               onClear={() => setTripSlugs([])}
-              tripRoute={tripRoute}
+              tripLegDistanceKm={tripLegDistanceKm}
+              totalRoadKm={totalRoadKm}
+              tripMapsUrl={tripMapsUrl}
               tripRouteStatus={tripRouteStatus}
             />
           </div>
@@ -706,6 +731,7 @@ function PlacesExplorerInner({ places }: { places: Place[] }) {
             tripRouteError={tripRouteError}
             onRetryTripRoute={retryTripRoute}
             tripSlugs={tripSlugs}
+            tripLegDistanceKm={tripLegDistanceKm}
             onAddToTrip={addTripStop}
             tripFull={tripSlugs.length >= MAX_STOPS}
             tripMapsUrl={tripMapsUrl}

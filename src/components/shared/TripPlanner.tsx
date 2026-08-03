@@ -11,50 +11,47 @@
 import { useTranslations, useLocale } from "next-intl";
 import { Loader2, Route, X, ExternalLink } from "lucide-react";
 
-import type { Place } from "@/types";
-import type { Coordinates } from "@/lib/geo";
+import type { Itinerary } from "@/lib/itinerary";
 import { formatDistanceKm } from "@/lib/geo";
-import { planItinerary, MAX_STOPS } from "@/lib/itinerary";
-import { multiStopDirectionsUrl } from "@/lib/maps";
-import type { RoadRoute } from "@/lib/routing";
+import { MAX_STOPS } from "@/lib/itinerary";
 import { placeAccents, fallbackAccent } from "./place-accents";
 import { cn } from "@/lib/utils";
 
 interface TripPlannerProps {
-  stops: Place[];
-  origin: Coordinates | null;
+  /** Computed once in PlacesExplorer and shared with the map's popup, so
+      the two never show a different order or a different distance for the
+      same stop. */
+  itinerary: Itinerary;
   onRemove: (slug: string) => void;
   onClear: () => void;
-  /** Real street geometry for these same stops, when routing succeeded.
-      `stops` and `origin` here must be the exact inputs used to fetch it —
-      see PlacesExplorer, where both come from one shared itinerary — or the
-      leg-by-leg zip below will pair the wrong distance with the wrong stop. */
-  tripRoute?: RoadRoute | null;
+  /** Real road distance per stop (slug of the leg's destination -> km), from
+      the same source the map's popup reads. Null while routing hasn't
+      resolved yet or is unavailable, in which case every number here falls
+      back to the straight-line itinerary distance instead. */
+  tripLegDistanceKm: Record<string, number> | null;
+  /** Real road total, paired with `tripLegDistanceKm` — always both or
+      neither, so the per-stop numbers and the total never mix sources. */
+  totalRoadKm: number | null;
+  tripMapsUrl: string | null;
   tripRouteStatus?: "idle" | "loading" | "error";
 }
 
 export function TripPlanner({
-  stops,
-  origin,
+  itinerary,
   onRemove,
   onClear,
-  tripRoute,
+  tripLegDistanceKm,
+  totalRoadKm,
+  tripMapsUrl,
   tripRouteStatus = "idle",
 }: TripPlannerProps) {
   const t = useTranslations("places.trip");
   const locale = useLocale();
 
-  if (stops.length === 0) return null;
+  if (itinerary.stops.length === 0) return null;
 
-  const itinerary = planItinerary(stops, origin);
-  const mapsUrl = multiStopDirectionsUrl(itinerary.stops, origin);
-
-  /* `tripRoute.legs` has no place identifiers of its own, but it was fetched
-     from the exact same ordered waypoints this itinerary produces, so leg
-     `i` here is leg `i` there. Zipping by index is what lets each stop show
-     a real road distance instead of the straight-line one. */
-  const usingRoadDistances = Boolean(tripRoute) && tripRoute!.legs.length === itinerary.legs.length;
-  const totalKm = usingRoadDistances ? tripRoute!.distanceKm : itinerary.totalKm;
+  const usingRoadDistances = tripLegDistanceKm !== null && totalRoadKm !== null;
+  const totalKm = usingRoadDistances ? totalRoadKm : itinerary.totalKm;
 
   return (
     <aside className="rounded-2xl bg-card p-4 shadow-[0_2px_20px_rgb(0_0_0/0.06)] dark:shadow-none dark:ring-1 dark:ring-border">
@@ -84,10 +81,8 @@ export function TripPlanner({
       <ol className="mt-3 space-y-1">
         {itinerary.stops.map((stop, index) => {
           const accent = placeAccents[stop.category] ?? fallbackAccent;
-          const legIndex = itinerary.legs.findIndex((l) => l.to.slug === stop.slug);
-          const leg = legIndex >= 0 ? itinerary.legs[legIndex] : undefined;
-          const legDistanceKm =
-            usingRoadDistances && legIndex >= 0 ? tripRoute!.legs[legIndex].distanceKm : leg?.distanceKm;
+          const leg = itinerary.legs.find((l) => l.to.slug === stop.slug);
+          const legDistanceKm = tripLegDistanceKm?.[stop.slug] ?? leg?.distanceKm;
           return (
             <li key={stop.slug} className="flex items-center gap-3 rounded-xl px-2 py-2">
               <span
@@ -128,9 +123,9 @@ export function TripPlanner({
         </p>
       )}
 
-      {mapsUrl && (
+      {tripMapsUrl && (
         <a
-          href={mapsUrl}
+          href={tripMapsUrl}
           target="_blank"
           rel="noopener noreferrer"
           className="mt-3 flex min-h-11 w-full items-center justify-center gap-2 rounded-full bg-zellige px-5 text-[13px] font-semibold text-white transition-all hover:brightness-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zellige/50"
@@ -146,7 +141,7 @@ export function TripPlanner({
         {usingRoadDistances ? t("liveRouting") : t("estimate")}
       </p>
 
-      {stops.length >= MAX_STOPS && (
+      {itinerary.stops.length >= MAX_STOPS && (
         <p className="mt-1 text-center text-[11px] leading-relaxed text-zinc-400 dark:text-zinc-500">
           {t("hint", { max: MAX_STOPS })}
         </p>

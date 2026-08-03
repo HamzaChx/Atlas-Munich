@@ -28,6 +28,10 @@ interface PlacesMapProps {
   onRetryTripRoute?: () => void;
   /** Slugs already in the trip. */
   tripSlugs?: string[];
+  /** Real road distance per stop (slug -> km), so a place already in the
+      trip shows the same number here as it does in the Trip Planner and on
+      the drawn route, instead of the straight-line "near me" distance. */
+  tripLegDistanceKm?: Record<string, number> | null;
   /** Adds a place to the trip if it is not already there and there is room. */
   onAddToTrip?: (slug: string) => void;
   tripFull?: boolean;
@@ -75,6 +79,7 @@ export function PlacesMap({
   tripRouteError,
   onRetryTripRoute,
   tripSlugs,
+  tripLegDistanceKm,
   onAddToTrip,
   tripFull,
   tripMapsUrl,
@@ -95,6 +100,7 @@ export function PlacesMap({
       tripRouteError={tripRouteError}
       onRetryTripRoute={onRetryTripRoute}
       tripSlugs={tripSlugs}
+      tripLegDistanceKm={tripLegDistanceKm}
       onAddToTrip={onAddToTrip}
       tripFull={tripFull}
       tripMapsUrl={tripMapsUrl}

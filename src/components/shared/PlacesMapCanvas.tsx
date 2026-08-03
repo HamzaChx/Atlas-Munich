@@ -32,7 +32,6 @@ import { useTheme } from "next-themes";
 import { useTranslations, useLocale } from "next-intl";
 import {
   Check,
-  ExternalLink,
   Loader2,
   Maximize,
   Maximize2,
@@ -386,6 +385,7 @@ function PlacePopupCard({
   place,
   label,
   inTrip = false,
+  roadDistanceKm,
   tripFull = false,
   tripMapsUrl = null,
   pendingSlug,
@@ -401,6 +401,11 @@ function PlacePopupCard({
   place: Place;
   label: string;
   inTrip?: boolean;
+  /** Real road distance to this stop, when it is part of the trip and
+      routing has resolved. Takes over from `place.distanceKm` (straight
+      line) so this card never quotes a different number than the drawn
+      route or the Trip Planner do for the exact same place. */
+  roadDistanceKm?: number;
   tripFull?: boolean;
   /** One-tap hand-off to real navigation for the trip as it stands, not
       just this one place — shown whenever any trip exists. */
@@ -483,25 +488,15 @@ function PlacePopupCard({
         <MapPin className="mt-[3px] h-3.5 w-3.5 shrink-0" />
         <span>
           {place.address}
-          {place.distanceKm !== undefined &&
-            ` · ${t("location.away", { distance: formatDistanceKm(place.distanceKm, locale) })}`}
+          {(() => {
+            const distanceKm = roadDistanceKm ?? place.distanceKm;
+            return (
+              distanceKm !== undefined &&
+              ` · ${t("location.away", { distance: formatDistanceKm(distanceKm, locale) })}`
+            );
+          })()}
         </span>
       </p>
-
-      {/* A plain link, not a second button: the website is a tangential,
-          occasional action, not something that should compete for weight
-          with the one thing this popup exists to do. */}
-      {place.website && (
-        <a
-          href={place.website}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-1 inline-flex items-center gap-1 pl-5 text-[12.5px] font-semibold text-zinc-500 hover:text-zellige hover:underline dark:text-zinc-400"
-        >
-          {t("card.website")}
-          <ExternalLink className="h-3 w-3" aria-hidden="true" />
-        </a>
-      )}
 
       {place.description && (
         <p className="mt-2 line-clamp-3 text-[13px] leading-relaxed text-zinc-500 dark:text-zinc-400">
@@ -680,6 +675,10 @@ export interface PlacesMapCanvasProps {
   onRetryTripRoute?: () => void;
   /** Slugs already in the trip. */
   tripSlugs?: string[];
+  /** Real road distance per stop (slug -> km), so the popup for a place
+      already in the trip shows the same number as the Trip Planner and the
+      drawn route, instead of the straight-line "near me" distance. */
+  tripLegDistanceKm?: Record<string, number> | null;
   /** Adds a place to the trip if it is not already there and there is room.
       Never removes: "Directions" only ever grows the trip, it does not
       toggle a place back out. Removing a stop is a Trip Planner action. */
@@ -707,6 +706,7 @@ export default function PlacesMapCanvas({
   tripRouteError = null,
   onRetryTripRoute,
   tripSlugs = [],
+  tripLegDistanceKm = null,
   onAddToTrip,
   tripFull = false,
   tripMapsUrl = null,
@@ -988,6 +988,7 @@ export default function PlacesMapCanvas({
                 place={selected}
                 label={categoryNames?.[selected.category] ?? selected.category.replace(/-/g, " ")}
                 inTrip={tripSlugs.includes(selected.slug)}
+                roadDistanceKm={tripLegDistanceKm?.[selected.slug]}
                 tripFull={tripFull}
                 tripMapsUrl={tripMapsUrl}
                 pendingSlug={pendingSlug}

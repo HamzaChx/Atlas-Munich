@@ -137,13 +137,11 @@
       "parks": "Parks"
     },
     "advancedFilters": {
-      "button": "Filters",
       "price": "Price",
       "district": "District",
       "allDistricts": "All districts",
       "cuisine": "Cuisine",
-      "allCuisines": "All cuisines",
-      "clear": "Clear filters"
+      "allCuisines": "All cuisines"
     },
     "location": {
       "button": "Near me",

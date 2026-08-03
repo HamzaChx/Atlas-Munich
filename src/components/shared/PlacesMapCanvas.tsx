@@ -49,6 +49,8 @@ import { cn } from "@/lib/utils";
 import { formatDistanceKm, haversineDistanceKm, type Coordinates } from "@/lib/geo";
 import type { RoadRoute, RouteErrorReason } from "@/lib/routing";
 import type { GeolocationStatus } from "@/hooks/useGeolocation";
+import type { Itinerary } from "@/lib/itinerary";
+import { TripPlanner } from "./TripPlanner";
 
 const MUNICH_CENTER: [number, number] = [48.1372, 11.5756];
 
@@ -730,7 +732,25 @@ export interface PlacesMapCanvasProps {
   isLocationSupported?: boolean;
   /** Triggers the browser's location prompt. Only ever called from a click. */
   onRequestLocation?: () => void;
+  /** The planned trip, shown as a compact panel inside the map itself
+      (under the legend) so seeing the route never means leaving the map. */
+  tripItinerary?: Itinerary | null;
+  onRemoveTripStop?: (slug: string) => void;
+  onClearTrip?: () => void;
+  /** Real road total distance, paired with `tripLegDistanceKm`. */
+  totalRoadKm?: number | null;
   className?: string;
+}
+
+/** A tap anywhere on the base map that isn't a pin, popup, or overlay control
+    clears the planned route — Leaflet markers, popups, and vector layers all
+    disable click bubbling by default, so this only ever fires for genuine
+    empty-map clicks. */
+function ClearRouteOnMapClick({ onClear }: { onClear: () => void }) {
+  useMapEvents({
+    click: () => onClear(),
+  });
+  return null;
 }
 
 export default function PlacesMapCanvas({
@@ -752,6 +772,10 @@ export default function PlacesMapCanvas({
   locationStatus = "idle",
   isLocationSupported = true,
   onRequestLocation,
+  tripItinerary = null,
+  onRemoveTripStop,
+  onClearTrip,
+  totalRoadKm = null,
   className,
 }: PlacesMapCanvasProps) {
   const t = useTranslations("places");
@@ -1015,6 +1039,12 @@ export default function PlacesMapCanvas({
             </>
           )}
 
+          {/* Clicking empty map is how a planned route gets cleared without
+              leaving the map — only wired up while a trip actually exists. */}
+          {tripDestinations.length > 0 && onClearTrip && (
+            <ClearRouteOnMapClick onClear={onClearTrip} />
+          )}
+
           <MarkerLayer places={clusterablePlaces} selected={selected} onSelect={setSelected} />
 
           {/* Destination pins: one per trip stop, numbered to match the Trip
@@ -1088,17 +1118,34 @@ export default function PlacesMapCanvas({
           )}
         </MapContainer>
 
-        {/* Legend, desktop only: the bar under the map covers small screens */}
-        {legendRows.length > 0 && (
+        {/* Legend (desktop only, the bar under the map covers small screens)
+            and, right under it, the planned trip — so seeing the route
+            never means leaving the map. */}
+        {(legendRows.length > 0 || (tripItinerary && tripItinerary.stops.length > 0)) && (
           <div
             className={cn(
-              "pointer-events-none absolute left-4 z-10 hidden md:block",
+              "pointer-events-none absolute left-4 z-10 flex max-h-[calc(100%-2rem)] flex-col items-start gap-3",
               isFullscreen ? "top-[max(1rem,env(safe-area-inset-top))]" : "top-4"
             )}
           >
-            <div className="pointer-events-auto">
-              <Legend rows={legendRows} total={mapped.length} variant="card" />
-            </div>
+            {legendRows.length > 0 && (
+              <div className="pointer-events-auto hidden shrink-0 md:block">
+                <Legend rows={legendRows} total={mapped.length} variant="card" />
+              </div>
+            )}
+            {tripItinerary && tripItinerary.stops.length > 0 && (
+              <div className="pointer-events-auto min-h-0 w-[13rem] min-w-0 overflow-y-auto sm:w-72">
+                <TripPlanner
+                  itinerary={tripItinerary}
+                  onRemove={(slug) => onRemoveTripStop?.(slug)}
+                  onClear={() => onClearTrip?.()}
+                  tripLegDistanceKm={tripLegDistanceKm}
+                  totalRoadKm={totalRoadKm}
+                  tripMapsUrl={tripMapsUrl}
+                  tripRouteStatus={tripRouteStatus}
+                />
+              </div>
+            )}
           </div>
         )}
 

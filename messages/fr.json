@@ -160,13 +160,11 @@
       "parks": "Parcs"
     },
     "advancedFilters": {
-      "button": "Filtres",
       "price": "Prix",
       "district": "Quartier",
       "allDistricts": "Tous les quartiers",
       "cuisine": "Cuisine",
-      "allCuisines": "Toutes les cuisines",
-      "clear": "Effacer les filtres"
+      "allCuisines": "Toutes les cuisines"
     },
     "location": {
       "button": "Près de moi",

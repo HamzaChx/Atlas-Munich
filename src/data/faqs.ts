@@ -27,7 +27,7 @@ export const faqs: FAQ[] = [
   // Housing FAQs
   {
     id: "faq-housing-1",
-    hub: "map",
+    hub: "essentials",
     question: "How hard is it to find an apartment in Munich?",
     answer: "Very competitive - Munich has less than 1% vacancy rate. Start searching 3-4 months early, prepare all documents in advance, and be ready to act fast. Consider temporary housing (Zwischenmiete) while searching.",
     categoryKey: "rent-housing",
@@ -38,7 +38,7 @@ export const faqs: FAQ[] = [
   // material, so that is the one that survives.
   {
     id: "faq-housing-3",
-    hub: "map",
+    hub: "essentials",
     question: "How much deposit (Kaution) is normal?",
     answer: "Typically 2-3 months cold rent (Kaltmiete). It must be returned after you move out, minus any damages. The landlord must keep it in a separate account.",
     categoryKey: "rent-housing",
@@ -46,14 +46,14 @@ export const faqs: FAQ[] = [
   },
   {
     id: "faq-housing-4",
-    hub: "map",
+    hub: "essentials",
     question: "What is the difference between Kaltmiete and Warmmiete?",
     answer: "Kaltmiete (cold rent) is the base rent. Warmmiete (warm rent) includes heating and basic utilities. Always clarify what's included - electricity and internet are usually separate.",
     categoryKey: "rent-housing",
   },
   {
     id: "faq-housing-5",
-    hub: "map",
+    hub: "essentials",
     question: "Can I rent without a SCHUFA?",
     answer: "Yes but it doesn't hurt to have one since most landlords require SCHUFA (credit report). If you're new to Germany, get a SCHUFA showing 'no negative entries' - this is actually good for newcomers.",
     categoryKey: "rent-housing",
@@ -194,7 +194,7 @@ export const faqs: FAQ[] = [
   // Halal Food FAQs (categorized as general since there's a dedicated Places page)
   {
     id: "faq-food-1",
-    hub: "map",
+    hub: "essentials",
     question: "Where can I find halal meat in Munich?",
     answer: "Main areas: Around Munich Hauptbahnhof, Giesing, Neuperlach, and Moosach. Look for Turkish/Arabic butchers (Metzger) or supermarkets like Turkish markets. See our Places directory for verified spots.",
     categoryKey: undefined,
@@ -202,7 +202,7 @@ export const faqs: FAQ[] = [
   },
   {
     id: "faq-food-2",
-    hub: "map",
+    hub: "essentials",
     question: "Are there Moroccan restaurants in Munich?",
     answer: "Yes! There are several Moroccan and North African restaurants. Check our Places directory for recommendations. Also, the Arab community often organizes food events.",
     categoryKey: undefined,
@@ -210,7 +210,7 @@ export const faqs: FAQ[] = [
   },
   {
     id: "faq-food-3",
-    hub: "map",
+    hub: "essentials",
     question: "Where can I find Moroccan spices and ingredients?",
     answer: "Turkish and Arabic grocery stores usually have most spices, couscous, and ingredients. Check stores around Hauptbahnhof, Giesing, and in Neuperlach.",
     categoryKey: undefined,

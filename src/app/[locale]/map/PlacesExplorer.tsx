@@ -16,10 +16,9 @@ import { PlacesBrowser, EmptyState, PlacesMap, LocationControl, TripPlanner } fr
 import { placeAccents } from "@/components/shared/place-accents";
 
 import { Place, PlaceCategory, PriceLevel } from "@/types";
-import { Search, ArrowRight, Map, Columns2, X, SlidersHorizontal } from "lucide-react";
+import { Search, ArrowRight, Map, Columns2, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useTranslations } from "next-intl";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import {
   Select,
   SelectContent,
@@ -62,20 +61,7 @@ const CUISINE_TAGS = [
 ] as const;
 type CuisineTag = (typeof CUISINE_TAGS)[number];
 
-interface FiltersPopoverProps {
-  price: PriceLevel | null;
-  onPriceChange: (value: PriceLevel | null) => void;
-  district: string | null;
-  onDistrictChange: (value: string | null) => void;
-  districts: string[];
-  cuisine: CuisineTag | null;
-  onCuisineChange: (value: CuisineTag | null) => void;
-  cuisines: CuisineTag[];
-  activeCount: number;
-}
-
-/** A removable summary chip for one active filter, shown next to the
-    Filters button so the applied state is visible without opening it. */
+/** A removable summary chip for one active filter. */
 function FilterChip({ label, onRemove }: { label: string; onRemove: () => void }) {
   return (
     <span className="flex shrink-0 items-center gap-1 rounded-full bg-zellige-soft py-1 pl-3 pr-1.5 text-[12.5px] font-semibold text-zellige">
@@ -89,158 +75,6 @@ function FilterChip({ label, onRemove }: { label: string; onRemove: () => void }
         <X className="h-3 w-3" />
       </button>
     </span>
-  );
-}
-
-/** Price, district, and cuisine filters, tucked behind one button so
-    the sticky toolbar doesn't turn into a wall of pills. Built on shadcn's
-    Popover and Select so positioning, focus trapping, and keyboard nav
-    (including outside-click and Escape dismissal) come from Radix instead
-    of a hand-rolled listener. */
-function FiltersPopover({
-  price,
-  onPriceChange,
-  district,
-  onDistrictChange,
-  districts,
-  cuisine,
-  onCuisineChange,
-  cuisines,
-  activeCount,
-}: FiltersPopoverProps) {
-  const t = useTranslations("places");
-  const [open, setOpen] = useState(false);
-
-  return (
-    <div className="flex min-w-0 shrink-0 items-center gap-1.5">
-      <Popover open={open} onOpenChange={setOpen}>
-        <PopoverTrigger asChild>
-          <button
-            type="button"
-            aria-expanded={open}
-            className={cn(
-              "flex min-h-11 shrink-0 items-center gap-1.5 rounded-full px-3.5 text-[13px] font-semibold shadow-sm outline-none transition-all focus-visible:ring-2 focus-visible:ring-zellige/50 sm:min-h-0 sm:py-2",
-              activeCount > 0
-                ? "bg-zinc-900 text-white dark:bg-zinc-50 dark:text-zinc-900"
-                : "bg-card text-zinc-500 hover:text-zinc-900 dark:bg-foreground/[0.075] dark:text-zinc-400 dark:shadow-none dark:hover:text-zinc-50"
-            )}
-          >
-            <SlidersHorizontal className="h-3.5 w-3.5" />
-            {t("advancedFilters.button")}
-            {activeCount > 0 && (
-              <span className="flex h-4 min-w-4 items-center justify-center rounded-full bg-white/20 px-1 text-[10px] tabular-nums dark:bg-zinc-900/15">
-                {activeCount}
-              </span>
-            )}
-          </button>
-        </PopoverTrigger>
-
-        <PopoverContent
-          align="start"
-          sideOffset={8}
-          className="w-72 rounded-2xl border-0 bg-card p-4 shadow-[0_12px_40px_rgb(0_0_0/0.14)] ring-1 ring-zinc-900/[0.05] dark:ring-border"
-        >
-          <div>
-            <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-zinc-400 dark:text-zinc-500">
-              {t("advancedFilters.price")}
-            </p>
-            <div className="mt-2 flex items-center gap-1.5">
-              {PRICE_LEVELS.map((level) => {
-                const active = price === level;
-                return (
-                  <button
-                    key={level}
-                    type="button"
-                    onClick={() => onPriceChange(active ? null : level)}
-                    className={cn(
-                      "min-h-11 flex-1 rounded-lg text-[13px] font-semibold transition-colors sm:min-h-0 sm:py-1.5",
-                      active
-                        ? "bg-zinc-900 text-white dark:bg-zinc-50 dark:text-zinc-900"
-                        : "bg-zinc-100 text-zinc-500 hover:bg-zinc-200 dark:bg-foreground/[0.09] dark:text-zinc-400 dark:hover:bg-foreground/[0.14]"
-                    )}
-                  >
-                    {level}
-                  </button>
-                );
-              })}
-            </div>
-          </div>
-
-          <div className="mt-4">
-            <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-zinc-400 dark:text-zinc-500">
-              {t("advancedFilters.district")}
-            </p>
-            <Select
-              value={district ?? "all"}
-              onValueChange={(value) => onDistrictChange(value === "all" ? null : value)}
-            >
-              <SelectTrigger
-                size="sm"
-                className="mt-2 h-11 w-full rounded-lg border-0 bg-zinc-100 px-3 text-[13px] font-semibold text-zinc-700 shadow-none hover:bg-zinc-200 sm:h-9 dark:bg-foreground/[0.09] dark:text-zinc-200 dark:hover:bg-foreground/[0.14]"
-              >
-                <SelectValue placeholder={t("advancedFilters.allDistricts")} />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">{t("advancedFilters.allDistricts")}</SelectItem>
-                {districts.map((d) => (
-                  <SelectItem key={d} value={d}>
-                    {d}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-
-          <div className="mt-4">
-            <p className="text-[11px] font-bold uppercase tracking-[0.12em] text-zinc-400 dark:text-zinc-500">
-              {t("advancedFilters.cuisine")}
-            </p>
-            <Select
-              value={cuisine ?? "all"}
-              onValueChange={(value) =>
-                onCuisineChange(value === "all" ? null : (value as CuisineTag))
-              }
-            >
-              <SelectTrigger
-                size="sm"
-                className="mt-2 h-11 w-full rounded-lg border-0 bg-zinc-100 px-3 text-[13px] font-semibold text-zinc-700 shadow-none hover:bg-zinc-200 sm:h-9 dark:bg-foreground/[0.09] dark:text-zinc-200 dark:hover:bg-foreground/[0.14]"
-              >
-                <SelectValue placeholder={t("advancedFilters.allCuisines")} />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">{t("advancedFilters.allCuisines")}</SelectItem>
-                {cuisines.map((c) => (
-                  <SelectItem key={c} value={c}>
-                    {t(`cuisines.${c}`)}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-
-          {activeCount > 0 && (
-            <button
-              type="button"
-              onClick={() => {
-                onPriceChange(null);
-                onDistrictChange(null);
-                onCuisineChange(null);
-              }}
-              className="mt-4 min-h-11 w-full text-center text-[13px] font-semibold text-zellige hover:underline sm:min-h-0"
-            >
-              {t("advancedFilters.clear")}
-            </button>
-          )}
-        </PopoverContent>
-      </Popover>
-
-      {/* Applied filters, visible and individually removable without reopening the popover */}
-      {price && <FilterChip label={price} onRemove={() => onPriceChange(null)} />}
-      {district && <FilterChip label={district} onRemove={() => onDistrictChange(null)} />}
-      {cuisine && (
-        <FilterChip label={t(`cuisines.${cuisine}`)} onRemove={() => onCuisineChange(null)} />
-      )}
-    </div>
   );
 }
 
@@ -493,6 +327,27 @@ function PlacesExplorerInner({ places }: { places: Place[] }) {
     return CUISINE_TAGS.filter((c) => present.has(c));
   }, [places]);
 
+  /* Filters shown inline are scoped to the selected type instead of hidden
+     behind one generic "Filters" button: price only means something where
+     places actually carry one (restaurants, butchers), and cuisine only
+     ever applies to restaurants. Checked against the full, unfiltered
+     dataset so the control doesn't flicker away the moment another filter
+     narrows the results to zero. */
+  const showPriceFilter = useMemo(
+    () => places.some((p) => p.category === selectedCategory && p.price),
+    [places, selectedCategory]
+  );
+  const showCuisineFilter = selectedCategory === "restaurant" && cuisines.length > 0;
+
+  // A filter that no longer applies to the selected type shouldn't linger
+  // invisibly in state — the moment its control disappears, its value clears.
+  useEffect(() => {
+    if (!showPriceFilter) setPriceFilter(null);
+  }, [showPriceFilter]);
+  useEffect(() => {
+    if (!showCuisineFilter) setCuisineFilter(null);
+  }, [showCuisineFilter]);
+
   const filteredPlaces = useMemo(() => {
     let result = placesWithDistance;
 
@@ -563,22 +418,6 @@ function PlacesExplorerInner({ places }: { places: Place[] }) {
           {/* Row 1: search, advanced filters, view toggle */}
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex flex-wrap items-center gap-2">
-              {/* Opt-in location, first and primary: sorting by distance is
-                  the point of the page. Nothing about the visitor's position
-                  is requested, computed, or shown until they explicitly allow
-                  it here, see LocationControl and useGeolocation. */}
-              <LocationControl
-                prominent
-                status={geolocation.status}
-                isSupported={geolocation.isSupported}
-                onRequest={handleLocationRequest}
-                onClear={handleLocationClear}
-                radiusKm={radiusKm}
-                onRadiusChange={setRadiusKm}
-                open={locationPopoverOpen}
-                onOpenChange={setLocationPopoverOpen}
-              />
-
               {/* Search */}
               <div className="relative sm:w-64 lg:w-72">
                 <Search className="absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-400 dark:text-zinc-500" />
@@ -600,17 +439,20 @@ function PlacesExplorerInner({ places }: { places: Place[] }) {
                 )}
               </div>
 
-              {/* Advanced filters, with applied filters shown as removable chips */}
-              <FiltersPopover
-                price={priceFilter}
-                onPriceChange={setPriceFilter}
-                district={districtFilter}
-                onDistrictChange={setDistrictFilter}
-                districts={districts}
-                cuisine={cuisineFilter}
-                onCuisineChange={setCuisineFilter}
-                cuisines={cuisines}
-                activeCount={activeFilterCount}
+              {/* Opt-in location, right of search: sorting by distance is
+                  the point of the page. Nothing about the visitor's position
+                  is requested, computed, or shown until they explicitly allow
+                  it here, see LocationControl and useGeolocation. */}
+              <LocationControl
+                prominent
+                status={geolocation.status}
+                isSupported={geolocation.isSupported}
+                onRequest={handleLocationRequest}
+                onClear={handleLocationClear}
+                radiusKm={radiusKm}
+                onRadiusChange={setRadiusKm}
+                open={locationPopoverOpen}
+                onOpenChange={setLocationPopoverOpen}
               />
 
               {geolocation.coords && radiusKm && (
@@ -703,14 +545,89 @@ function PlacesExplorerInner({ places }: { places: Place[] }) {
               })}
             </div>
           </div>
+
+          {/* Row 3: filters scoped to the selected type — district always
+              applies, price and cuisine only surface where they mean
+              something (see showPriceFilter / showCuisineFilter above). */}
+          <div className="flex flex-wrap items-center gap-2">
+            <Select
+              value={districtFilter ?? "all"}
+              onValueChange={(value) => setDistrictFilter(value === "all" ? null : value)}
+            >
+              <SelectTrigger
+                size="sm"
+                className="h-9 w-auto min-w-[8.5rem] rounded-full border-0 bg-card px-3.5 text-[13px] font-semibold text-zinc-600 shadow-sm dark:bg-foreground/[0.075] dark:text-zinc-300 dark:shadow-none"
+              >
+                <SelectValue placeholder={t("advancedFilters.allDistricts")} />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">{t("advancedFilters.allDistricts")}</SelectItem>
+                {districts.map((d) => (
+                  <SelectItem key={d} value={d}>
+                    {d}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+
+            {showPriceFilter && (
+              <div className="flex items-center gap-1 rounded-full bg-card p-1 shadow-sm dark:bg-foreground/[0.075] dark:shadow-none">
+                {PRICE_LEVELS.map((level) => {
+                  const active = priceFilter === level;
+                  return (
+                    <button
+                      key={level}
+                      type="button"
+                      onClick={() => setPriceFilter(active ? null : level)}
+                      aria-pressed={active}
+                      className={cn(
+                        "min-h-9 rounded-full px-3 text-[13px] font-semibold transition-colors sm:min-h-0 sm:py-1",
+                        active
+                          ? "bg-zinc-900 text-white dark:bg-zinc-50 dark:text-zinc-900"
+                          : "text-zinc-500 hover:bg-zinc-100 dark:text-zinc-400 dark:hover:bg-foreground/[0.09]"
+                      )}
+                    >
+                      {level}
+                    </button>
+                  );
+                })}
+              </div>
+            )}
+
+            {showCuisineFilter && (
+              <Select
+                value={cuisineFilter ?? "all"}
+                onValueChange={(value) =>
+                  setCuisineFilter(value === "all" ? null : (value as CuisineTag))
+                }
+              >
+                <SelectTrigger
+                  size="sm"
+                  className="h-9 w-auto min-w-[8.5rem] rounded-full border-0 bg-card px-3.5 text-[13px] font-semibold text-zinc-600 shadow-sm dark:bg-foreground/[0.075] dark:text-zinc-300 dark:shadow-none"
+                >
+                  <SelectValue placeholder={t("advancedFilters.allCuisines")} />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">{t("advancedFilters.allCuisines")}</SelectItem>
+                  {cuisines.map((c) => (
+                    <SelectItem key={c} value={c}>
+                      {t(`cuisines.${c}`)}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            )}
+          </div>
         </div>
       </div>
 
       {/* ========== DIRECTORY ========== */}
       <section className="mx-auto max-w-7xl 2xl:max-w-[96rem] px-4 pb-16 pt-6 sm:px-6 sm:pb-24 lg:px-8 2xl:px-12">
-        {/* The planned trip, above whichever view is showing, because it is
-            the thing the reader is actively building. */}
-        {tripItinerary && (
+        {/* In map view the planned trip is shown inside the map itself (see
+            PlacesMapCanvas), right under the legend, so seeing the route
+            never means leaving the map. In browse view there is no map on
+            screen to hold it, so it surfaces here instead. */}
+        {tripItinerary && viewMode === "browse" && (
           <div className="mb-5 sm:max-w-md">
             <TripPlanner
               itinerary={tripItinerary}
@@ -744,6 +661,10 @@ function PlacesExplorerInner({ places }: { places: Place[] }) {
             locationStatus={geolocation.status}
             isLocationSupported={geolocation.isSupported}
             onRequestLocation={handleLocationRequest}
+            tripItinerary={tripItinerary}
+            onRemoveTripStop={toggleTripStop}
+            onClearTrip={() => setTripSlugs([])}
+            totalRoadKm={totalRoadKm}
           />
         )}
 

@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import type { Coordinates } from "@/lib/geo";
 import type { GeolocationStatus } from "@/hooks/useGeolocation";
 import type { RoadRoute, RouteErrorReason } from "@/lib/routing";
+import type { Itinerary } from "@/lib/itinerary";
 
 interface PlacesMapProps {
   places: Place[];
@@ -46,6 +47,13 @@ interface PlacesMapProps {
   isLocationSupported?: boolean;
   /** Triggers the browser's location prompt. Only ever called from a click. */
   onRequestLocation?: () => void;
+  /** The planned trip, shown as a compact panel inside the map itself
+      (under the legend) so seeing the route never means leaving the map. */
+  tripItinerary?: Itinerary | null;
+  onRemoveTripStop?: (slug: string) => void;
+  onClearTrip?: () => void;
+  /** Real road total distance, paired with `tripLegDistanceKm`. */
+  totalRoadKm?: number | null;
   className?: string;
 }
 
@@ -91,6 +99,10 @@ export function PlacesMap({
   locationStatus,
   isLocationSupported,
   onRequestLocation,
+  tripItinerary,
+  onRemoveTripStop,
+  onClearTrip,
+  totalRoadKm,
   className,
 }: PlacesMapProps) {
   return (
@@ -113,6 +125,10 @@ export function PlacesMap({
       locationStatus={locationStatus}
       isLocationSupported={isLocationSupported}
       onRequestLocation={onRequestLocation}
+      tripItinerary={tripItinerary}
+      onRemoveTripStop={onRemoveTripStop}
+      onClearTrip={onClearTrip}
+      totalRoadKm={totalRoadKm}
       className={cn("h-[60vh] min-h-[26rem] sm:h-[38rem]", className)}
     />
   );

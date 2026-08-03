@@ -138,13 +138,11 @@
       "parks": "Parks"
     },
     "advancedFilters": {
-      "button": "Filter",
       "price": "Preis",
       "district": "Stadtviertel",
       "allDistricts": "Alle Stadtviertel",
       "cuisine": "Küche",
-      "allCuisines": "Alle Küchen",
-      "clear": "Filter löschen"
+      "allCuisines": "Alle Küchen"
     },
     "location": {
       "button": "In meiner Nähe",

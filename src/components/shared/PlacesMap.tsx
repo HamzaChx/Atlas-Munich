@@ -67,9 +67,6 @@ function MapSkeleton({ className }: { className?: string }) {
           <span className="text-sm text-zinc-500 dark:text-zinc-400">{t("loadingMap")}</span>
         </div>
       </div>
-      <div className="px-5 py-4">
-        <p className="text-[13px] text-zinc-500 dark:text-zinc-400">{t("mapNote")}</p>
-      </div>
     </div>
   );
 }

@@ -1223,18 +1223,19 @@ export default function PlacesMapCanvas({
         )}
       </div>
 
-      {/* Footer bar: legend on small screens, usage note on all */}
-      <div
-        className={cn(
-          "flex shrink-0 flex-col gap-2 px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:gap-6",
-          isFullscreen && "pb-[max(1rem,env(safe-area-inset-bottom))]"
-        )}
-      >
-        <div className="md:hidden">
+      {/* Legend bar: small screens only (desktop shows it as a floating
+          card over the map instead), so the map runs full-bleed everywhere
+          else instead of leaving an empty strip under it. */}
+      {legendRows.length > 0 && (
+        <div
+          className={cn(
+            "shrink-0 px-5 py-4 md:hidden",
+            isFullscreen && "pb-[max(1rem,env(safe-area-inset-bottom))]"
+          )}
+        >
           <Legend rows={legendRows} total={mapped.length} variant="bar" />
         </div>
-        <p className="text-[13px] text-zinc-500 dark:text-zinc-400 md:ml-auto">{t("mapNote")}</p>
-      </div>
+      )}
     </div>
   );
 }

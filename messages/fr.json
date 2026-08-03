@@ -212,7 +212,6 @@
       "map": "Carte",
       "browse": "Parcourir"
     },
-    "mapNote": "Cliquez sur un marqueur pour les détails ou sur un groupe pour zoomer. Faites glisser pour explorer la ville.",
     "category": {
       "restaurant": "Restaurant",
       "cafe": "Café",

@@ -189,7 +189,6 @@
       "map": "Map",
       "browse": "Browse"
     },
-    "mapNote": "Click a marker for details, or a cluster to zoom in. Drag to explore the city.",
     "category": {
       "restaurant": "Restaurant",
       "cafe": "Café",

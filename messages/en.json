@@ -402,6 +402,36 @@
       "description": "Essential apps for transport, banking, communication, and daily life in Munich."
     }
   },
+  "jobs": {
+    "badge": "Atlas opportunities",
+    "metadataTitle": "Werkstudent & Job Board",
+    "metadataDescription": "Curated Werkstudent jobs, internships, and early-career opportunities in Munich.",
+    "title": "Find your next",
+    "titleHighlight": "opportunity",
+    "subtitle": "A focused board of opportunities selected for students and early-career professionals in Munich.",
+    "ctaTitle": "Fresh opportunities, in one place",
+    "ctaDescription": "Browse curated Werkstudent roles, internships, and entry-level jobs without leaving Atlas Munich.",
+    "cta": "Browse jobs",
+    "apply": "View & apply",
+    "closes": "Closes {date}",
+    "emptyTitle": "No open roles right now",
+    "emptyDescription": "New opportunities are reviewed and added regularly. Check back soon.",
+    "setupTitle": "The jobs board is on its way",
+    "setupDescription": "We are preparing the first curated opportunities. Check back soon.",
+    "employment": {
+      "werkstudent": "Werkstudent",
+      "internship": "Internship",
+      "part_time": "Part-time",
+      "full_time": "Full-time",
+      "graduate_program": "Graduate programme",
+      "other": "Other"
+    },
+    "workplace": {
+      "on_site": "On-site",
+      "hybrid": "Hybrid",
+      "remote": "Remote"
+    }
+  },
   "categoryPage": {
     "categoryLabel": "Category",
     "guidesSingular": "Guide",
@@ -1869,12 +1899,7 @@
             },
             {
               "t": "table",
-              "head": [
-                "Data",
-                "Purpose",
-                "Legal basis",
-                "Retention"
-              ],
+              "head": ["Data", "Purpose", "Legal basis", "Retention"],
               "rows": [
                 [
                   "Access and server logs",
@@ -1977,12 +2002,7 @@
             },
             {
               "t": "table",
-              "head": [
-                "Name",
-                "Type",
-                "Purpose",
-                "Lifetime"
-              ],
+              "head": ["Name", "Type", "Purpose", "Lifetime"],
               "rows": [
                 [
                   "theme",
@@ -2058,12 +2078,7 @@
             },
             {
               "t": "table",
-              "head": [
-                "Provider",
-                "Role",
-                "What it receives",
-                "Where"
-              ],
+              "head": ["Provider", "Role", "What it receives", "Where"],
               "rows": [
                 [
                   "Vercel Inc. and Vercel GmbH",
@@ -2641,11 +2656,7 @@
         "status": "Ready",
         "cta": "Start here",
         "poweredBy": "Answered by Riad",
-        "tags": [
-          "WG Applications",
-          "Apartment Listings",
-          "Flawless German"
-        ]
+        "tags": ["WG Applications", "Apartment Listings", "Flawless German"]
       },
       "events": {
         "title": "Finding things to do",
@@ -2653,11 +2664,7 @@
         "status": "Not yet",
         "cta": "Not yet",
         "comingSoonNote": "We're building this tool, stay tuned!",
-        "tags": [
-          "Plan Events",
-          "Invite Friends",
-          "Munich Spots"
-        ],
+        "tags": ["Plan Events", "Invite Friends", "Munich Spots"],
         "prompts": [
           "Find a spot for a study session",
           "Plan a weekend hangout",
@@ -2670,11 +2677,7 @@
         "status": "Ready",
         "cta": "Start here",
         "poweredBy": "Answered by Dalilah",
-        "tags": [
-          "Anmeldung",
-          "Residence Permits",
-          "KVR & Deadlines"
-        ]
+        "tags": ["Anmeldung", "Residence Permits", "KVR & Deadlines"]
       },
       "ilham": {
         "title": "Writing and researching",
@@ -2682,11 +2685,7 @@
         "status": "Ready",
         "cta": "Start here",
         "poweredBy": "Answered by Ilham",
-        "tags": [
-          "Research & Literature",
-          "Academic Writing",
-          "Thesis & LaTeX"
-        ]
+        "tags": ["Research & Literature", "Academic Writing", "Thesis & LaTeX"]
       },
       "loubna": {
         "title": "Getting health cover",
@@ -2694,11 +2693,7 @@
         "status": "Ready",
         "cta": "Start here",
         "poweredBy": "Answered by Loubna",
-        "tags": [
-          "Health Insurance",
-          "Doctor Search",
-          "Medical Translation"
-        ]
+        "tags": ["Health Insurance", "Doctor Search", "Medical Translation"]
       }
     },
     "moreComing": "More help on the way. Have an idea? Contribute on",

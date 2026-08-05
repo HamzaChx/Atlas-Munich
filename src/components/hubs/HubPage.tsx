@@ -24,6 +24,7 @@ import type { HubKey } from "@/types";
 export async function HubPage({ hubKey, locale }: { hubKey: HubKey; locale: string }) {
   const hub = getHub(hubKey);
   const t = await getTranslations("hubs");
+  const tJobs = await getTranslations("jobs");
   const tTools = await getTranslations("tools");
 
   const hubGuides = await localizeGuides(
@@ -119,6 +120,29 @@ export async function HubPage({ hubKey, locale }: { hubKey: HubKey; locale: stri
                   <ArrowRight className="h-4 w-4 shrink-0 text-zinc-300 transition-all duration-200 group-hover:translate-x-0.5 group-hover:text-zinc-500 dark:text-zinc-600 dark:group-hover:text-zinc-300" />
                 </Link>
               ))}
+            </div>
+          </section>
+        )}
+
+        {hubKey === "career" && (
+          <section className="reveal mt-14 rounded-[1.75rem] bg-tint-plum p-6 dark:ring-1 dark:ring-border sm:p-8">
+            <span className="eyebrow">{tJobs("badge")}</span>
+            <div className="mt-3 flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+              <div className="max-w-xl">
+                <h2 className="font-display text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-2xl">
+                  {tJobs("ctaTitle")}
+                </h2>
+                <p className="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">
+                  {tJobs("ctaDescription")}
+                </p>
+              </div>
+              <Link
+                href="/jobs"
+                className="inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-xl bg-zinc-900 px-4 text-sm font-semibold text-white transition-transform hover:-translate-y-0.5 dark:bg-zinc-50 dark:text-zinc-900"
+              >
+                {tJobs("cta")}
+                <ArrowRight className="h-4 w-4" aria-hidden="true" />
+              </Link>
             </div>
           </section>
         )}

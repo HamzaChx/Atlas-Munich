@@ -27,6 +27,7 @@ Built by Hamza Chaouki, for the Moroccan community. Everything you need to navig
 - [Features](#features)
 - [Tech Stack](#tech-stack)
 - [Getting Started](#getting-started)
+- [Database & Job Board](#database--job-board)
 - [Project Structure](#project-structure)
 - [Internationalization](#internationalization)
 - [Contributing](#contributing)
@@ -42,6 +43,7 @@ Atlas Munich is a comprehensive web platform designed to help members of the Mor
 - 🗺️ **Places & Services** - Community-recommended locations
 - ❓ **FAQs** - Answers to frequently asked questions
 - 💬 **AI Chat Guides** - Persona-driven assistants for housing, bureaucracy, academics, and healthcare
+- 💼 **Curated Job Board** - Admin-published Werkstudent, internship, and early-career opportunities
 
 ## ✨ Features
 
@@ -66,6 +68,7 @@ Atlas Munich is a comprehensive web platform designed to help members of the Mor
 - **Search:** [Fuse.js](https://fusejs.io/)
 - **Content:** [react-markdown](https://github.com/remarkjs/react-markdown)
 - **Icons:** [Lucide React](https://lucide.dev/)
+- **Database:** [Neon Postgres](https://neon.com/) with [Drizzle ORM](https://orm.drizzle.team/)
 - **Code Quality:** ESLint, Prettier, Husky, lint-staged
 
 ## 🚀 Getting Started
@@ -110,7 +113,96 @@ npm run lint          # Check for linting errors
 npm run lint:fix      # Auto-fix linting errors
 npm run format        # Format code with Prettier
 npm run format:check  # Check code formatting
+npm run db:generate   # Generate a migration after changing src/db/schema.ts
+npm run db:migrate    # Apply pending migrations to DIRECT_DATABASE_URL
 ```
+
+## 🗄️ Database & Job Board
+
+Atlas Munich uses Neon Postgres as the persistent store for places, anonymous device profiles,
+push subscriptions, and curated jobs. It uses two server-only connection strings:
+
+- `DIRECT_DATABASE_URL` is the owner connection for local migrations and manual administration.
+- `DATABASE_URL` is the restricted `atlas_app` runtime connection for Vercel. Never prefix either
+  variable with `NEXT_PUBLIC_`, and never add `DIRECT_DATABASE_URL` to Vercel.
+
+### Connect Neon and Vercel
+
+1. Create a Neon project in a region close to the Vercel deployment and copy its pooled connection string.
+2. Add the owner string locally as `DIRECT_DATABASE_URL`; it is used only for `npm run db:migrate`
+   and trusted administration.
+3. Run `npm run db:migrate`. This creates the restricted `atlas_app` Postgres role and enables
+   forced row-level security on every Atlas table.
+4. In the Neon SQL Editor, still connected as the owner, assign the app role a unique password:
+
+   ```sql
+   ALTER ROLE atlas_app WITH LOGIN PASSWORD 'a-unique-long-secret-from-your-password-manager';
+   ```
+
+5. In Neon’s **Connect** dialog, select `atlas_app` and copy its connection string. Add that string
+   as `DATABASE_URL` in Vercel for Preview and Production, then deploy.
+
+The application rejects a `DATABASE_URL` whose role is not `atlas_app`, preventing an owner or
+`BYPASSRLS` credential from being deployed accidentally.
+
+### Database Security
+
+The RLS migration takes a default-deny approach: places, device profiles, and push subscriptions
+have no runtime policies or grants, so the Vercel role cannot read or write them. The only exception
+is a read-only policy for jobs that exposes rows only when they are published, already live, and not
+expired. No public job write route or API exists.
+
+Do not create `atlas_app` in the Neon Console: console-created roles inherit Neon's
+`neon_superuser` membership, which can bypass RLS. The migration creates the role through SQL with
+`NOBYPASSRLS` instead. Do not enable Neon’s Data API or any browser-to-database connection while
+this app uses server-side access only.
+
+Verify the deployment role and policies in the Neon SQL Editor:
+
+```sql
+SELECT rolname, rolbypassrls
+FROM pg_roles
+WHERE rolname = 'atlas_app';
+
+SELECT relname, relrowsecurity, relforcerowsecurity
+FROM pg_class
+WHERE relname IN ('places', 'device_profiles', 'push_subscriptions', 'jobs');
+```
+
+When onboarding and push write APIs are added, introduce a table-specific RLS policy and a narrowly
+validated server route in the same change. Never grant `atlas_app` broad access to those tables.
+
+The legacy `src/data/places.ts` list remains active until the places migration is deliberately
+completed, so introducing the database does not remove map content during rollout.
+
+### Publish a Job
+
+There is intentionally no public job creation UI or API. Add, edit, publish, or archive listings
+through `DIRECT_DATABASE_URL` in the Neon SQL Editor (or another trusted backend tool). Only rows
+with `status = 'published'`, a `published_at` in the past, and no expired `expires_at` appear on the site.
+
+```sql
+INSERT INTO jobs (
+  slug, title, company, location, employment_type, workplace,
+  description, apply_url, tags, status, published_at, expires_at
+) VALUES (
+  'werkstudent-data-analytics-example',
+  'Werkstudent Data Analytics',
+  'Example GmbH',
+  'Munich',
+  'werkstudent',
+  'hybrid',
+  'Support the analytics team with reporting and data quality.',
+  'https://example.com/careers/123',
+  '["data", "english", "student"]'::jsonb,
+  'published',
+  now(),
+  now() + interval '30 days'
+);
+```
+
+Use `status = 'draft'` to prepare a listing or `status = 'archived'` to remove it immediately.
+The allowed values are defined in `src/db/schema.ts`.
 
 ## 🧹 Code Quality & Linting
 
@@ -186,6 +278,7 @@ Atlas-Munich/
 │   │   ├── shared/       # Shared/reusable components
 │   │   └── ui/           # shadcn/ui components
 │   ├── data/             # Static data (guides, places, categories, etc.)
+│   ├── db/               # Neon connection, schema, and server-side queries
 │   ├── i18n/             # Internationalization configuration
 │   ├── lib/              # Utility functions
 │   └── types/            # TypeScript type definitions

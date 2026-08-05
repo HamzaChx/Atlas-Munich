@@ -425,6 +425,36 @@
       "description": "Applications essentielles pour les transports, la banque, la communication et la vie quotidienne à Munich."
     }
   },
+  "jobs": {
+    "badge": "Opportunités Atlas",
+    "metadataTitle": "Offres Werkstudent & emploi",
+    "metadataDescription": "Des offres Werkstudent, stages et opportunités de début de carrière sélectionnées à Munich.",
+    "title": "Trouvez votre prochaine",
+    "titleHighlight": "opportunité",
+    "subtitle": "Une sélection ciblée d'opportunités pour les étudiants et jeunes professionnels à Munich.",
+    "ctaTitle": "De nouvelles opportunités au même endroit",
+    "ctaDescription": "Parcourez des postes Werkstudent, stages et premiers emplois sélectionnés sans quitter Atlas Munich.",
+    "cta": "Voir les offres",
+    "apply": "Voir & postuler",
+    "closes": "Clôture le {date}",
+    "emptyTitle": "Aucune offre ouverte pour le moment",
+    "emptyDescription": "De nouvelles opportunités sont régulièrement vérifiées et ajoutées. Revenez bientôt.",
+    "setupTitle": "Le tableau des offres arrive bientôt",
+    "setupDescription": "Nous préparons les premières opportunités sélectionnées. Revenez bientôt.",
+    "employment": {
+      "werkstudent": "Werkstudent",
+      "internship": "Stage",
+      "part_time": "Temps partiel",
+      "full_time": "Temps plein",
+      "graduate_program": "Programme diplômé",
+      "other": "Autre"
+    },
+    "workplace": {
+      "on_site": "Sur site",
+      "hybrid": "Hybride",
+      "remote": "À distance"
+    }
+  },
   "categoryPage": {
     "categoryLabel": "Catégorie",
     "guidesSingular": "Guide",
@@ -1721,11 +1751,7 @@
         "Où puis-je étudier ?",
         "Des endroits marocains pour manger"
       ],
-      "hamza": [
-        "À propos de ce projet",
-        "Comment contribuer ?",
-        "Quel est le stack technique ?"
-      ],
+      "hamza": ["À propos de ce projet", "Comment contribuer ?", "Quel est le stack technique ?"],
       "riad": [
         "Rédige une candidature WG pour moi",
         "Rédige une candidature formelle",
@@ -1893,12 +1919,7 @@
             },
             {
               "t": "table",
-              "head": [
-                "Données",
-                "Finalité",
-                "Base légale",
-                "Conservation"
-              ],
+              "head": ["Données", "Finalité", "Base légale", "Conservation"],
               "rows": [
                 [
                   "Journaux d'accès et serveur",
@@ -2001,12 +2022,7 @@
             },
             {
               "t": "table",
-              "head": [
-                "Nom",
-                "Type",
-                "Finalité",
-                "Durée"
-              ],
+              "head": ["Nom", "Type", "Finalité", "Durée"],
               "rows": [
                 [
                   "theme",
@@ -2082,12 +2098,7 @@
             },
             {
               "t": "table",
-              "head": [
-                "Prestataire",
-                "Rôle",
-                "Ce qu'il reçoit",
-                "Où"
-              ],
+              "head": ["Prestataire", "Rôle", "Ce qu'il reçoit", "Où"],
               "rows": [
                 [
                   "Vercel Inc. et Vercel GmbH",
@@ -2665,11 +2676,7 @@
         "status": "Disponible",
         "cta": "Commencer ici",
         "poweredBy": "Répondu par Riad",
-        "tags": [
-          "Candidatures WG",
-          "Annonces appartement",
-          "Allemand parfait"
-        ]
+        "tags": ["Candidatures WG", "Annonces appartement", "Allemand parfait"]
       },
       "events": {
         "title": "Trouver quoi faire",
@@ -2677,11 +2684,7 @@
         "status": "Pas encore",
         "cta": "Pas encore",
         "comingSoonNote": "Nous construisons cet outil, restez connecté !",
-        "tags": [
-          "Planifier des événements",
-          "Inviter des amis",
-          "Lieux à Munich"
-        ],
+        "tags": ["Planifier des événements", "Inviter des amis", "Lieux à Munich"],
         "prompts": [
           "Trouver un lieu pour une session d'étude",
           "Organiser une sortie le week-end",
@@ -2694,11 +2697,7 @@
         "status": "Disponible",
         "cta": "Commencer ici",
         "poweredBy": "Répondu par Dalilah",
-        "tags": [
-          "Anmeldung",
-          "Permis de séjour",
-          "KVR & Délais"
-        ]
+        "tags": ["Anmeldung", "Permis de séjour", "KVR & Délais"]
       },
       "ilham": {
         "title": "Écrire et faire de la recherche",
@@ -2706,11 +2705,7 @@
         "status": "Disponible",
         "cta": "Commencer ici",
         "poweredBy": "Répondu par Ilham",
-        "tags": [
-          "Recherche & Littérature",
-          "Écriture scientifique",
-          "Thèse & LaTeX"
-        ]
+        "tags": ["Recherche & Littérature", "Écriture scientifique", "Thèse & LaTeX"]
       },
       "loubna": {
         "title": "S'assurer et se soigner",
@@ -2718,11 +2713,7 @@
         "status": "Disponible",
         "cta": "Commencer ici",
         "poweredBy": "Répondu par Loubna",
-        "tags": [
-          "Assurance Maladie",
-          "Recherche Médecin",
-          "Traduction Médicale"
-        ]
+        "tags": ["Assurance Maladie", "Recherche Médecin", "Traduction Médicale"]
       }
     },
     "moreComing": "D'autres aides arrivent. Une idée ? Contribuez sur",

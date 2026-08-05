@@ -403,6 +403,36 @@
       "description": "Unverzichtbare Apps für Transport, Banking, Kommunikation und Alltag in München."
     }
   },
+  "jobs": {
+    "badge": "Atlas Chancen",
+    "metadataTitle": "Werkstudent- & Jobbörse",
+    "metadataDescription": "Kuratiere Werkstudentenjobs, Praktika und Einstiegsmöglichkeiten in München.",
+    "title": "Finde deine nächste",
+    "titleHighlight": "Chance",
+    "subtitle": "Eine fokussierte Auswahl an Möglichkeiten für Studierende und Berufseinsteiger:innen in München.",
+    "ctaTitle": "Neue Chancen an einem Ort",
+    "ctaDescription": "Entdecke kuratierte Werkstudentenstellen, Praktika und Einstiegsjobs direkt bei Atlas Munich.",
+    "cta": "Jobs entdecken",
+    "apply": "Ansehen & bewerben",
+    "closes": "Endet am {date}",
+    "emptyTitle": "Aktuell keine offenen Stellen",
+    "emptyDescription": "Neue Möglichkeiten werden regelmäßig geprüft und hinzugefügt. Schau bald wieder vorbei.",
+    "setupTitle": "Die Jobbörse kommt bald",
+    "setupDescription": "Wir bereiten die ersten kuratierten Stellen vor. Schau bald wieder vorbei.",
+    "employment": {
+      "werkstudent": "Werkstudent:in",
+      "internship": "Praktikum",
+      "part_time": "Teilzeit",
+      "full_time": "Vollzeit",
+      "graduate_program": "Traineeprogramm",
+      "other": "Sonstiges"
+    },
+    "workplace": {
+      "on_site": "Vor Ort",
+      "hybrid": "Hybrid",
+      "remote": "Remote"
+    }
+  },
   "categoryPage": {
     "categoryLabel": "Kategorie",
     "guidesSingular": "Ratgeber",
@@ -1871,12 +1901,7 @@
             },
             {
               "t": "table",
-              "head": [
-                "Daten",
-                "Zweck",
-                "Rechtsgrundlage",
-                "Speicherdauer"
-              ],
+              "head": ["Daten", "Zweck", "Rechtsgrundlage", "Speicherdauer"],
               "rows": [
                 [
                   "Zugriffs- und Server-Logs",
@@ -1979,12 +2004,7 @@
             },
             {
               "t": "table",
-              "head": [
-                "Name",
-                "Art",
-                "Zweck",
-                "Dauer"
-              ],
+              "head": ["Name", "Art", "Zweck", "Dauer"],
               "rows": [
                 [
                   "theme",
@@ -2060,12 +2080,7 @@
             },
             {
               "t": "table",
-              "head": [
-                "Anbieter",
-                "Rolle",
-                "Was übermittelt wird",
-                "Wo"
-              ],
+              "head": ["Anbieter", "Rolle", "Was übermittelt wird", "Wo"],
               "rows": [
                 [
                   "Vercel Inc. und Vercel GmbH",
@@ -2643,11 +2658,7 @@
         "status": "Bereit",
         "cta": "Hier starten",
         "poweredBy": "Beantwortet von Riad",
-        "tags": [
-          "WG-Bewerbungen",
-          "Wohnungsinserate",
-          "Perfektes Deutsch"
-        ]
+        "tags": ["WG-Bewerbungen", "Wohnungsinserate", "Perfektes Deutsch"]
       },
       "events": {
         "title": "Etwas zu tun finden",
@@ -2655,11 +2666,7 @@
         "status": "Noch nicht",
         "cta": "Noch nicht",
         "comingSoonNote": "Wir bauen dieses Tool, bleib dran!",
-        "tags": [
-          "Events planen",
-          "Freunde einladen",
-          "Münchner Orte"
-        ],
+        "tags": ["Events planen", "Freunde einladen", "Münchner Orte"],
         "prompts": [
           "Einen Ort für eine Lernsession finden",
           "Ein Treffen am Wochenende planen",
@@ -2672,11 +2679,7 @@
         "status": "Bereit",
         "cta": "Hier starten",
         "poweredBy": "Beantwortet von Dalilah",
-        "tags": [
-          "Anmeldung",
-          "Aufenthaltstitel",
-          "KVR & Fristen"
-        ]
+        "tags": ["Anmeldung", "Aufenthaltstitel", "KVR & Fristen"]
       },
       "ilham": {
         "title": "Schreiben und forschen",
@@ -2684,11 +2687,7 @@
         "status": "Bereit",
         "cta": "Hier starten",
         "poweredBy": "Beantwortet von Ilham",
-        "tags": [
-          "Forschung & Literatur",
-          "Wissenschaftliches Schreiben",
-          "Thesis & LaTeX"
-        ]
+        "tags": ["Forschung & Literatur", "Wissenschaftliches Schreiben", "Thesis & LaTeX"]
       },
       "loubna": {
         "title": "Krankenversicherung klären",
@@ -2696,11 +2695,7 @@
         "status": "Bereit",
         "cta": "Hier starten",
         "poweredBy": "Beantwortet von Loubna",
-        "tags": [
-          "Krankenversicherung",
-          "Arztsuche",
-          "Medizinische Übersetzung"
-        ]
+        "tags": ["Krankenversicherung", "Arztsuche", "Medizinische Übersetzung"]
       }
     },
     "moreComing": "Mehr Hilfe kommt. Eine Idee? Trag bei auf",

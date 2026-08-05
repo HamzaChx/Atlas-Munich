@@ -51,6 +51,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...entry("/map", { changeFrequency: "weekly", priority: 0.95 }),
     ...entry("/essentials", { changeFrequency: "weekly", priority: 0.95 }),
     ...entry("/career", { changeFrequency: "weekly", priority: 0.95 }),
+    ...entry("/jobs", { changeFrequency: "daily", priority: 0.9 }),
     ...entry("/community", { changeFrequency: "monthly", priority: 0.8 }),
     ...entry("/guides", { changeFrequency: "weekly", priority: 0.9 }),
   ];
@@ -70,7 +71,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...entry("/privacy", { changeFrequency: "yearly", priority: 0.2 }),
     ...entry("/terms", { changeFrequency: "yearly", priority: 0.2 }),
   ];
-
 
   // Individual guide pages — most valuable content pieces. Slugs are shared
   // across locales; only the prose differs (see guides.fr.ts / guides.de.ts).

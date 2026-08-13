@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef } from "react";
 import type { CSSProperties, ReactNode } from "react";
+import { ChevronDown } from "lucide-react";
 
 const clamp = (v: number, a: number, b: number): number => (v < a ? a : v > b ? b : v);
 
@@ -29,6 +30,11 @@ export interface ScrollExpandProps {
   poster?: string;
   alt?: string;
   title?: string;
+  /** Always-visible content, unclipped by the expanding frame and
+   *  unaffected by scroll — for callers that want the caption/CTAs on
+   *  screen from the very first paint instead of revealed via `title`
+   *  (fades out) or `children` (fades in near full expansion). */
+  staticOverlay?: ReactNode;
   scrollHint?: string;
   startWidth?: number;
   startHeight?: number;
@@ -53,6 +59,7 @@ const ScrollExpand: React.FC<ScrollExpandProps> = ({
   poster = "",
   alt = "",
   title = "",
+  staticOverlay,
   scrollHint = "",
   startWidth = 42,
   startHeight = 58,
@@ -163,7 +170,7 @@ const ScrollExpand: React.FC<ScrollExpandProps> = ({
       track.style.height = `${stageH * (1 + Math.max(0, c.scrollDistance) + Math.max(0, c.holdDistance))}px`;
 
       const w = root.clientWidth || stageH;
-      stage.style.setProperty("--se-title-size", `${clamp(w * 0.075, 20, 84)}px`);
+      stage.style.setProperty("--se-title-size", `${clamp(w * 0.11, 32, 112)}px`);
     };
 
     const readProgress = () => {
@@ -261,7 +268,7 @@ const ScrollExpand: React.FC<ScrollExpandProps> = ({
       {...rest}
     >
       <div ref={trackRef} className="relative w-full">
-        <div ref={stageRef} className="sticky top-0 w-full overflow-hidden [--se-title-size:4rem]">
+        <div ref={stageRef} className="sticky top-0 w-full overflow-hidden [--se-title-size:5rem]">
           <div
             ref={frameRef}
             className="absolute inset-0 [clip-path:inset(21%_29%_21%_29%_round_24px)] [will-change:clip-path]"
@@ -288,12 +295,18 @@ const ScrollExpand: React.FC<ScrollExpandProps> = ({
               {title}
             </div>
           ) : null}
+          {staticOverlay ? (
+            <div className="absolute inset-0 flex items-center justify-center px-[6%] text-center">
+              {staticOverlay}
+            </div>
+          ) : null}
           {scrollHint ? (
             <div
               ref={hintRef}
-              className="absolute inset-x-0 bottom-5 text-center text-[0.8125rem] tracking-[0.02em] text-white/55 pointer-events-none [will-change:opacity,transform]"
+              className="absolute inset-x-0 bottom-5 flex flex-col items-center gap-1 text-center text-[0.8125rem] tracking-[0.02em] text-white/70 pointer-events-none [will-change:opacity,transform]"
             >
-              {scrollHint}
+              <span>{scrollHint}</span>
+              <ChevronDown className="h-4 w-4 animate-bounce" aria-hidden="true" />
             </div>
           ) : null}
         </div>

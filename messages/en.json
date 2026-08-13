@@ -35,6 +35,7 @@
     "heroTitle": "New in Munich?",
     "heroTitleHighlight": "We've got you.",
     "heroSubtitle": "Guides, a map, and people who have done it, for Moroccans making a home in Munich.",
+    "heroScrollHint": "Scroll",
     "stats": {
       "guides": "Guides",
       "places": "Places",

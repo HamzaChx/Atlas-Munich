@@ -1,6 +1,7 @@
 import { Link } from "@/i18n/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { LandingMasonrySection } from "@/components/home";
+import ScrollExpand from "@/components/ui/scroll-expand";
 
 export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
   // Required for static rendering: without it next-intl falls back to reading
@@ -22,46 +23,58 @@ export default async function Home({ params }: { params: Promise<{ locale: strin
           other page line up under the bar; that same padding would leave
           this hero's photo starting below the header instead of behind it.
           Pulling the section up by that exact height (and no more, so nothing
-          else on the page shifts) is the fix, not touching the shared spacer. */}
-      <section className="relative isolate -mt-(--header-h) flex min-h-[78vh] w-full flex-col justify-center overflow-hidden sm:min-h-screen">
-        <div className="relative z-10 mx-auto flex max-w-2xl flex-col items-center px-5 pt-32 pb-16 text-center sm:px-6 sm:pt-40 sm:pb-24 lg:px-8 lg:pt-44">
-          <h1 className="rise rise-1 display-wide font-display text-balance text-[2.75rem] font-bold leading-[0.98] tracking-[-0.02em] text-zinc-950 sm:text-6xl lg:text-7xl">
-            {t("heroTitle")}
-            <span className="block pb-1 text-[oklch(0.54_0.19_25)]">{t("heroTitleHighlight")}</span>
-          </h1>
+          else on the page shifts) is the fix, not touching the shared spacer.
+          The full message is passed as `staticOverlay` rather than `title`
+          (fades out) or `children` (fades in near full expansion): it's
+          meant to be completely visible from the first paint, unclipped by
+          the small resting frame, while the photo itself still does its own
+          scroll-driven expand from thumbnail to full-bleed underneath it. */}
+      <ScrollExpand
+        src="/hero.webp"
+        alt={t("heroTitle")}
+        scrollHint={t("heroScrollHint")}
+        overlayScrim={0.6}
+        useWindowScroll
+        className="relative isolate -mt-(--header-h)"
+        staticOverlay={
+          <div className="flex flex-col items-center rounded-[2rem] bg-black/35 px-6 py-10 backdrop-blur-sm sm:px-12 sm:py-12">
+            <h1 className="display-wide font-display text-balance text-center text-[2.75rem] font-bold leading-[0.98] tracking-[-0.02em] text-white sm:text-6xl lg:text-7xl">
+              {t("heroTitle")}
+              <span className="block pb-1 text-[oklch(0.74_0.14_45)]">
+                {t("heroTitleHighlight")}
+              </span>
+            </h1>
 
-          <p className="rise rise-2 mx-auto mt-6 max-w-lg text-balance text-lg leading-relaxed text-zinc-700 sm:text-xl">
-            {t("heroSubtitle")}
-          </p>
+            <p className="mx-auto mt-6 max-w-lg text-balance text-center text-lg leading-relaxed text-white/90 sm:text-xl">
+              {t("heroSubtitle")}
+            </p>
 
-          <span className="rise rise-3 mt-12 inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-zinc-900/70">
-            <span
-              className="h-1.5 w-1.5 rounded-full bg-[oklch(0.54_0.19_25)]"
-              aria-hidden="true"
-            />
-            {t("quick.badge")}
-          </span>
+            <p className="mt-8 text-balance text-center text-lg font-semibold text-white sm:text-xl">
+              {t("quick.badge")}
+            </p>
 
-          {/* Dark ink pill + ghost pairing, fixed rather than theme-reactive,
-              because the hero background is always light regardless of
-              which theme the reader is on. */}
-          <div className="rise rise-4 mt-5 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
-            {quickAccess.map((item, idx) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={`inline-flex h-10 items-center justify-center rounded-full px-6 text-sm font-medium transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-background focus-visible:ring-zinc-900 ${
-                  idx === 0
-                    ? "bg-zinc-900 text-zinc-50 shadow-md shadow-zinc-900/15 hover:bg-zinc-800"
-                    : "text-zinc-700 hover:bg-zinc-900/5 hover:text-zinc-900"
-                }`}
-              >
-                {item.label}
-              </Link>
-            ))}
+            {/* Solid-white + ghost-on-glass pairing: the dark ink pill from the
+                old light hero would disappear against this photo, so the
+                primary CTA flips to a light pill and the secondary one becomes
+                an outlined glass button instead. */}
+            <div className="mt-4 flex w-full flex-col gap-3 sm:w-auto sm:flex-row">
+              {quickAccess.map((item, idx) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={`inline-flex h-10 items-center justify-center rounded-full px-6 text-sm font-medium transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-black/40 focus-visible:ring-white ${
+                    idx === 0
+                      ? "bg-white text-zinc-900 shadow-md shadow-black/20 hover:bg-zinc-100"
+                      : "border border-white/30 text-white/90 hover:bg-white/10 hover:text-white"
+                  }`}
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        }
+      />
 
       {/* ========== CATEGORIES + FEATURED GUIDES (Replaced with Masonry Section) ========== */}
       <LandingMasonrySection />

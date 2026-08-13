@@ -42,6 +42,28 @@
       "free": "Kostenlos",
       "browseAll": "Alle Ratgeber durchsuchen"
     },
+    "categories": {
+      "badge": "Finde deinen Weg",
+      "title": "Alles was du brauchst,",
+      "titleHighlight": " an einem Ort",
+      "subtitle": "Echte Leitfäden für genau die Themen, die wirklich schwer sind – geschrieben von denen, die es schon geschafft haben.",
+      "browseAll": "Alle Leitfäden durchsuchen"
+    },
+    "toolsSpotlight": {
+      "badge": "Hilfe erhalten",
+      "title": "Hilfe bei den schwierigen Themen",
+      "subtitle": "Vier Helfer, die München kennen. Füge ein Inserat ein, beschreibe deine Situation, frage in deinen eigenen Worten.",
+      "cta": "Helfer kennenlernen",
+      "housingTool": "Wohnung finden",
+      "housingToolDesc": "Füge ein Inserat ein, erhalte eine deutsche Bewerbung, die Antworten bekommt",
+      "housingToolStatus": "Live",
+      "bureaucracyTool": "Anmeldung & KVR",
+      "bureaucracyToolDesc": "Anmeldung und das KVR, Schritt für Schritt erklärt",
+      "bureaucracyToolStatus": "Live",
+      "academicTool": "Schreiben & Recherchieren",
+      "academicToolDesc": "Strukturiere eine Haus- oder Abschlussarbeit an TUM oder LMU",
+      "academicToolStatus": "Live"
+    },
     "community": {
       "badge": "Unsere Geschichte",
       "title": "München zu einem",
@@ -1871,12 +1893,7 @@
             },
             {
               "t": "table",
-              "head": [
-                "Daten",
-                "Zweck",
-                "Rechtsgrundlage",
-                "Speicherdauer"
-              ],
+              "head": ["Daten", "Zweck", "Rechtsgrundlage", "Speicherdauer"],
               "rows": [
                 [
                   "Zugriffs- und Server-Logs",
@@ -1979,12 +1996,7 @@
             },
             {
               "t": "table",
-              "head": [
-                "Name",
-                "Art",
-                "Zweck",
-                "Dauer"
-              ],
+              "head": ["Name", "Art", "Zweck", "Dauer"],
               "rows": [
                 [
                   "theme",
@@ -2060,12 +2072,7 @@
             },
             {
               "t": "table",
-              "head": [
-                "Anbieter",
-                "Rolle",
-                "Was übermittelt wird",
-                "Wo"
-              ],
+              "head": ["Anbieter", "Rolle", "Was übermittelt wird", "Wo"],
               "rows": [
                 [
                   "Vercel Inc. und Vercel GmbH",
@@ -2643,11 +2650,7 @@
         "status": "Bereit",
         "cta": "Hier starten",
         "poweredBy": "Beantwortet von Riad",
-        "tags": [
-          "WG-Bewerbungen",
-          "Wohnungsinserate",
-          "Perfektes Deutsch"
-        ]
+        "tags": ["WG-Bewerbungen", "Wohnungsinserate", "Perfektes Deutsch"]
       },
       "events": {
         "title": "Etwas zu tun finden",
@@ -2655,11 +2658,7 @@
         "status": "Noch nicht",
         "cta": "Noch nicht",
         "comingSoonNote": "Wir bauen dieses Tool, bleib dran!",
-        "tags": [
-          "Events planen",
-          "Freunde einladen",
-          "Münchner Orte"
-        ],
+        "tags": ["Events planen", "Freunde einladen", "Münchner Orte"],
         "prompts": [
           "Einen Ort für eine Lernsession finden",
           "Ein Treffen am Wochenende planen",
@@ -2672,11 +2671,7 @@
         "status": "Bereit",
         "cta": "Hier starten",
         "poweredBy": "Beantwortet von Dalilah",
-        "tags": [
-          "Anmeldung",
-          "Aufenthaltstitel",
-          "KVR & Fristen"
-        ]
+        "tags": ["Anmeldung", "Aufenthaltstitel", "KVR & Fristen"]
       },
       "ilham": {
         "title": "Schreiben und forschen",
@@ -2684,11 +2679,7 @@
         "status": "Bereit",
         "cta": "Hier starten",
         "poweredBy": "Beantwortet von Ilham",
-        "tags": [
-          "Forschung & Literatur",
-          "Wissenschaftliches Schreiben",
-          "Thesis & LaTeX"
-        ]
+        "tags": ["Forschung & Literatur", "Wissenschaftliches Schreiben", "Thesis & LaTeX"]
       },
       "loubna": {
         "title": "Krankenversicherung klären",
@@ -2696,11 +2687,7 @@
         "status": "Bereit",
         "cta": "Hier starten",
         "poweredBy": "Beantwortet von Loubna",
-        "tags": [
-          "Krankenversicherung",
-          "Arztsuche",
-          "Medizinische Übersetzung"
-        ]
+        "tags": ["Krankenversicherung", "Arztsuche", "Medizinische Übersetzung"]
       }
     },
     "moreComing": "Mehr Hilfe kommt. Eine Idee? Trag bei auf",

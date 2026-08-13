@@ -12,7 +12,13 @@ import { Suspense, useCallback, useEffect, useState, useMemo } from "react";
 import { Link } from "@/i18n/navigation";
 import { useSearchParams } from "next/navigation";
 import { track } from "@vercel/analytics";
-import { PlacesBrowser, EmptyState, PlacesMap, LocationControl, TripPlanner } from "@/components/shared";
+import {
+  PlacesBrowser,
+  EmptyState,
+  PlacesMap,
+  LocationControl,
+  TripPlanner,
+} from "@/components/shared";
 import { placeAccents } from "@/components/shared/place-accents";
 
 import { Place, PlaceCategory, PriceLevel } from "@/types";
@@ -144,7 +150,6 @@ function PlacesExplorerInner({ places }: { places: Place[] }) {
   const [locationPopoverOpen, setLocationPopoverOpen] = useState(false);
   const [radiusKm, setRadiusKm] = useState<number | null>(null);
 
-
   const handleLocationRequest = () => {
     track("places_location_request");
     geolocation.request();
@@ -211,10 +216,7 @@ function PlacesExplorerInner({ places }: { places: Place[] }) {
   /* Stops carry their distance from the reader so the planner can order from
      where they actually are, not from the first thing they tapped. */
   const tripStopsWithDistance = useMemo(
-    () =>
-      tripStops.map(
-        (stop) => placesWithDistance.find((p) => p.slug === stop.slug) ?? stop
-      ),
+    () => tripStops.map((stop) => placesWithDistance.find((p) => p.slug === stop.slug) ?? stop),
     [tripStops, placesWithDistance]
   );
 
@@ -235,9 +237,8 @@ function PlacesExplorerInner({ places }: { places: Place[] }) {
      roads; `routePath` above is only the fallback the map falls back to
      while this is loading or if routing is unavailable. */
   const tripWaypoints = useMemo(
-    () => (routePath && routePath.length > 1
-      ? routePath.map(([lat, lng]) => ({ lat, lng }))
-      : null),
+    () =>
+      routePath && routePath.length > 1 ? routePath.map(([lat, lng]) => ({ lat, lng })) : null,
     [routePath]
   );
   const {
@@ -677,8 +678,7 @@ function PlacesExplorerInner({ places }: { places: Place[] }) {
                   <span className="text-base font-bold text-zinc-900 dark:text-zinc-50">
                     {filteredPlaces.length}
                   </span>{" "}
-                  {filteredPlaces.length === 1 ? t("results.place") : t("results.places")}
-                  {" "}
+                  {filteredPlaces.length === 1 ? t("results.place") : t("results.places")}{" "}
                   {t("results.in")}{" "}
                   <span className="font-medium text-zellige">
                     {categoryFilters.find((c) => c.key === selectedCategory)?.label}

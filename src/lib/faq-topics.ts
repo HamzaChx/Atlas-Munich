@@ -9,7 +9,15 @@
 // all and still need somewhere to land.
 // ============================================
 
-import { Home, FileText, GraduationCap, Briefcase, Smartphone, HelpCircle, type LucideIcon } from "lucide-react";
+import {
+  Home,
+  FileText,
+  GraduationCap,
+  Briefcase,
+  Smartphone,
+  HelpCircle,
+  type LucideIcon,
+} from "lucide-react";
 
 import type { CategoryKey, FAQ } from "@/types";
 

@@ -4,8 +4,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "Atlas Munich",
     short_name: "Atlas",
-    description:
-      "The complete starter guide for Moroccan students and professionals in Munich.",
+    description: "The complete starter guide for Moroccan students and professionals in Munich.",
     start_url: "/",
     scope: "/",
     display: "standalone",

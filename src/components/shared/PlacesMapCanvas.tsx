@@ -82,8 +82,7 @@ const CATEGORY_GLYPHS: Record<string, string> = {
     '<path d="M14.4 14.4 9.6 9.6"/><path d="M18.657 21.485a2 2 0 1 1-2.829-2.828l-1.767 1.768a2 2 0 1 1-2.829-2.829l6.364-6.364a2 2 0 1 1 2.829 2.829l-1.768 1.767a2 2 0 1 1 2.828 2.829z"/><path d="m21.5 21.5-1.4-1.4"/><path d="M3.9 3.9 2.5 2.5"/><path d="M6.404 12.768a2 2 0 1 1-2.829-2.829l1.768-1.767a2 2 0 1 1-2.828-2.829l2.828-2.828a2 2 0 1 1 2.829 2.828l1.767-1.768a2 2 0 1 1 2.829 2.829z"/>',
   leisure:
     '<path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/>',
-  park:
-    '<path d="M10 10v.2A3 3 0 0 1 8.9 16H5a3 3 0 0 1-1-5.8V10a3 3 0 0 1 6 0Z"/><path d="M7 16v6"/><path d="M13 19v3"/><path d="M12 19h8.3a1 1 0 0 0 .7-1.7L18 14h.3a1 1 0 0 0 .7-1.7L16 9h.2a1 1 0 0 0 .8-1.7L13 3l-1.4 1.5"/>',
+  park: '<path d="M10 10v.2A3 3 0 0 1 8.9 16H5a3 3 0 0 1-1-5.8V10a3 3 0 0 1 6 0Z"/><path d="M7 16v6"/><path d="M13 19v3"/><path d="M12 19h8.3a1 1 0 0 0 .7-1.7L18 14h.3a1 1 0 0 0 .7-1.7L16 9h.2a1 1 0 0 0 .8-1.7L13 3l-1.4 1.5"/>',
 };
 
 const FALLBACK_GLYPH = '<circle cx="12" cy="12" r="3.5"/>';
@@ -409,10 +408,7 @@ function coreBounds(places: Place[]) {
     values[Math.min(values.length - 1, Math.max(0, Math.round((values.length - 1) * ratio)))];
 
   const trim = places.length >= 20 ? 0.1 : 0;
-  return L.latLngBounds(
-    [at(lats, trim), at(lngs, trim)],
-    [at(lats, 1 - trim), at(lngs, 1 - trim)]
-  );
+  return L.latLngBounds([at(lats, trim), at(lngs, trim)], [at(lats, 1 - trim), at(lngs, 1 - trim)]);
 }
 
 function PlacePopupCard({
@@ -637,7 +633,15 @@ interface LegendRow {
   color: string;
 }
 
-function Legend({ rows, total, variant }: { rows: LegendRow[]; total: number; variant: "card" | "bar" }) {
+function Legend({
+  rows,
+  total,
+  variant,
+}: {
+  rows: LegendRow[];
+  total: number;
+  variant: "card" | "bar";
+}) {
   const t = useTranslations("places");
 
   if (variant === "bar") {
@@ -908,10 +912,7 @@ export default function PlacesMapCanvas({
       return {
         key: `leg-${index}`,
         position: [(from[0] + to[0]) / 2, (from[1] + to[1]) / 2] as [number, number],
-        distanceKm: haversineDistanceKm(
-          { lat: from[0], lng: from[1] },
-          { lat: to[0], lng: to[1] }
-        ),
+        distanceKm: haversineDistanceKm({ lat: from[0], lng: from[1] }, { lat: to[0], lng: to[1] }),
       };
     });
   }, [tripRoute, routePath]);
@@ -1192,7 +1193,9 @@ export default function PlacesMapCanvas({
           {userLocation && (
             <button
               type="button"
-              onClick={() => map?.setView([userLocation.lat, userLocation.lng], 15, { animate: true })}
+              onClick={() =>
+                map?.setView([userLocation.lat, userLocation.lng], 15, { animate: true })
+              }
               aria-label={t("location.button")}
               className="flex h-10 w-10 items-center justify-center rounded-xl text-zinc-600 transition-colors hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-300 dark:hover:bg-foreground/10 dark:hover:text-zinc-50 sm:h-9 sm:w-9"
             >

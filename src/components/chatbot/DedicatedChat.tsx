@@ -28,7 +28,6 @@ import { takePendingMessage } from "./chat-seed";
 import {
   Send,
   Loader2,
-  RefreshCcw,
   ArrowLeft,
   ArrowDown,
   ArrowUpRight,

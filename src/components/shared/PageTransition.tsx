@@ -26,9 +26,7 @@ export function PageTransition({ children, className }: PageTransitionProps) {
     <div
       className={cn(
         "transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]",
-        isVisible 
-          ? "opacity-100 translate-y-0" 
-          : "opacity-0 translate-y-2",
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2",
         className
       )}
     >
@@ -46,19 +44,15 @@ interface StaggerChildrenProps {
   staggerDelay?: number; // ms between each child animation
 }
 
-export function StaggerChildren({ 
-  children, 
-  className,
-  staggerDelay = 50 
-}: StaggerChildrenProps) {
+export function StaggerChildren({ children, className, staggerDelay = 50 }: StaggerChildrenProps) {
   return (
     <div className={className}>
       {React.Children.map(children, (child, index) => (
         <div
           className="animate-in fade-in slide-in-from-bottom-2"
-          style={{ 
+          style={{
             animationDelay: `${index * staggerDelay}ms`,
-            animationFillMode: "backwards"
+            animationFillMode: "backwards",
           }}
         >
           {child}
@@ -103,9 +97,7 @@ export function RevealSection({ children, className }: RevealSectionProps) {
       ref={ref}
       className={cn(
         "transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]",
-        isVisible 
-          ? "opacity-100 translate-y-0" 
-          : "opacity-0 translate-y-8",
+        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8",
         className
       )}
     >

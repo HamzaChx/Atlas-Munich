@@ -32,9 +32,7 @@ export interface Itinerary {
 }
 
 const coordsOf = (place: Place): Coordinates | null =>
-  place.lat !== undefined && place.lng !== undefined
-    ? { lat: place.lat, lng: place.lng }
-    : null;
+  place.lat !== undefined && place.lng !== undefined ? { lat: place.lat, lng: place.lng } : null;
 
 /**
  * Order stops by repeatedly hopping to the closest one not yet visited.
@@ -87,7 +85,10 @@ export function planItinerary(places: Place[], origin: Coordinates | null): Itin
 }
 
 /** The ordered stop coordinates, for drawing the route on the map. */
-export function itineraryPath(itinerary: Itinerary, origin: Coordinates | null): [number, number][] {
+export function itineraryPath(
+  itinerary: Itinerary,
+  origin: Coordinates | null
+): [number, number][] {
   const points: [number, number][] = [];
   if (origin) points.push([origin.lat, origin.lng]);
   itinerary.stops.forEach((stop) => {

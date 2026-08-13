@@ -123,9 +123,7 @@ export async function POST(request: NextRequest) {
     return jsonError("out_of_area", 422);
   }
 
-  const coordinates = waypoints
-    .map((point) => `${round(point.lng)},${round(point.lat)}`)
-    .join(";");
+  const coordinates = waypoints.map((point) => `${round(point.lng)},${round(point.lat)}`).join(";");
 
   let data: {
     code?: string;

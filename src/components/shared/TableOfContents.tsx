@@ -10,7 +10,11 @@ interface TableOfContentsProps {
   label?: string;
 }
 
-export function TableOfContents({ sections, className, label = "On this page" }: TableOfContentsProps) {
+export function TableOfContents({
+  sections,
+  className,
+  label = "On this page",
+}: TableOfContentsProps) {
   const [activeId, setActiveId] = React.useState<string>("");
 
   React.useEffect(() => {

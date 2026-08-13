@@ -1193,7 +1193,8 @@ function getCurrentSectionInfo(path: string, chatbotType: ChatbotType): string {
   } else if (path === "/about") {
     sectionInfo += "The user is on the About page.\n";
   } else if (path === "/community") {
-    sectionInfo += "The user is on the Community hub: the WhatsApp group, contributing, and getting in touch.\n";
+    sectionInfo +=
+      "The user is on the Community hub: the WhatsApp group, contributing, and getting in touch.\n";
   } else if (path === "/healthcare" || path.startsWith("/healthcare/")) {
     sectionInfo +=
       "The user is on the Healthcare Navigator page, looking for help with German health insurance, finding doctors, medical translation, or health-related guidance in Munich.\n";

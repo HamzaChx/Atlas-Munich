@@ -6,8 +6,6 @@ import {
   ClipboardList,
   CheckCircle2,
   ShieldCheck,
-  Heart,
-  AlertCircle,
   Shield,
   Hospital,
   Stethoscope,
@@ -75,11 +73,7 @@ const CONFIG: AssistantLandingConfig = {
   ],
 };
 
-export default async function HealthcarePage({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}) {
+export default async function HealthcarePage({ params }: { params: Promise<{ locale: string }> }) {
   // Required for static rendering: without it next-intl falls back to reading
   // the locale from headers, which opts this page back into rendering on demand.
   const { locale } = await params;

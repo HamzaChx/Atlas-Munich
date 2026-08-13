@@ -5,7 +5,8 @@ export const categories: Category[] = [
     id: 1,
     key: "rent-housing",
     title: "Rent & Housing",
-    description: "Find apartments, understand rental contracts, navigate the Munich housing market, and avoid scams.",
+    description:
+      "Find apartments, understand rental contracts, navigate the Munich housing market, and avoid scams.",
     icon: "Home",
     color: "from-blue-500 to-cyan-500",
   },
@@ -13,7 +14,8 @@ export const categories: Category[] = [
     id: 2,
     key: "kvr-residence",
     title: "KVR & Residence Permit",
-    description: "City registration (Anmeldung), residence permits, visa extensions, and all bureaucratic procedures.",
+    description:
+      "City registration (Anmeldung), residence permits, visa extensions, and all bureaucratic procedures.",
     icon: "FileText",
     color: "from-emerald-500 to-teal-500",
   },
@@ -21,7 +23,8 @@ export const categories: Category[] = [
     id: 3,
     key: "university-life",
     title: "University Life",
-    description: "Student ID, semester tickets, course registration, libraries, and campus resources.",
+    description:
+      "Student ID, semester tickets, course registration, libraries, and campus resources.",
     icon: "GraduationCap",
     color: "from-purple-500 to-pink-500",
   },

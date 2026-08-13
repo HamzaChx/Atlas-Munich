@@ -164,7 +164,10 @@ function Blocks({
                     className="rounded-xl bg-card p-3.5 shadow-[0_1px_6px_rgb(0_0_0/0.04)] dark:bg-foreground/[0.05] dark:shadow-none"
                   >
                     <dt
-                      className={cn("text-[13px] font-semibold uppercase tracking-wide", accent.text)}
+                      className={cn(
+                        "text-[13px] font-semibold uppercase tracking-wide",
+                        accent.text
+                      )}
                     >
                       {fillLegalTokens(row.k)}
                     </dt>
@@ -312,9 +315,7 @@ export function LegalDocument({
 
         <div className="rise rise-3 mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-sm text-zinc-500 dark:text-zinc-400">
           <span>
-            <span className="font-semibold text-zinc-800 dark:text-zinc-100">
-              {labels.version}
-            </span>{" "}
+            <span className="font-semibold text-zinc-800 dark:text-zinc-100">{labels.version}</span>{" "}
             {version}
           </span>
           <span className="h-1 w-1 rounded-full bg-zinc-300 dark:bg-zinc-600" aria-hidden="true" />

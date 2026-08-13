@@ -323,8 +323,7 @@ export default async function GuidePage({ params }: PageProps) {
               </span>
               <span className="h-1 w-1 rounded-full bg-zinc-300 dark:bg-zinc-700" />
               <span>
-                {t("updatedLabel")}{" "}
-                {fmtUpdated(guide.lastUpdated).toUpperCase()}
+                {t("updatedLabel")} {fmtUpdated(guide.lastUpdated).toUpperCase()}
               </span>
               {guide.author && (
                 <>
@@ -356,10 +355,7 @@ export default async function GuidePage({ params }: PageProps) {
                     {t("tableOfContents")}
                   </h3>
                   <div className="pl-4 border-l border-zinc-100 dark:border-zinc-800">
-                    <TableOfContents
-                      sections={localizedGuide.sections}
-                      label={t("onThisPage")}
-                    />
+                    <TableOfContents sections={localizedGuide.sections} label={t("onThisPage")} />
                   </div>
                 </div>
               )}
@@ -543,10 +539,7 @@ export default async function GuidePage({ params }: PageProps) {
                       {t("tableOfContents")}
                     </h3>
                     <div className="pl-4 border-l border-zinc-100 dark:border-zinc-800">
-                      <TableOfContents
-                      sections={localizedGuide.sections}
-                      label={t("onThisPage")}
-                    />
+                      <TableOfContents sections={localizedGuide.sections} label={t("onThisPage")} />
                     </div>
                   </div>
                 )}

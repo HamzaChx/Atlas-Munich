@@ -87,7 +87,6 @@ export default async function AboutPage({ params }: PageProps) {
     },
   ];
 
-
   return (
     <div className="min-h-screen bg-background">
       {/* ========== HERO ========== */}

@@ -136,7 +136,9 @@ export function MobileMenu({ open, onOpenChange, locale }: MobileMenuProps) {
 
         {canInstall && (
           <div className="mx-1 mt-5 rounded-2xl bg-tint-green p-4 dark:ring-1 dark:ring-border">
-            <p className="text-sm font-semibold text-zinc-900 dark:text-zinc-50">{t("installApp")}</p>
+            <p className="text-sm font-semibold text-zinc-900 dark:text-zinc-50">
+              {t("installApp")}
+            </p>
             <p className="mt-1 text-[13px] leading-relaxed text-zinc-600 dark:text-zinc-400">
               {t("installDesc")}
             </p>
@@ -166,7 +168,9 @@ export function MobileMenu({ open, onOpenChange, locale }: MobileMenuProps) {
           </p>
           <div className="mt-2.5 flex min-h-12 items-center gap-3 rounded-xl bg-zinc-100 px-4 dark:bg-foreground/[0.075]">
             <ThemeToggle />
-            <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300">{t("toggleTheme")}</span>
+            <span className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
+              {t("toggleTheme")}
+            </span>
           </div>
         </div>
       </nav>

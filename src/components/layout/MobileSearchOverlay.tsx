@@ -13,7 +13,15 @@
 import * as React from "react";
 import { createPortal } from "react-dom";
 import { useTranslations } from "next-intl";
-import { BookOpen, HelpCircle, MapPin, MessageCircle, Search, X, type LucideIcon } from "lucide-react";
+import {
+  BookOpen,
+  HelpCircle,
+  MapPin,
+  MessageCircle,
+  Search,
+  X,
+  type LucideIcon,
+} from "lucide-react";
 
 import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n";
@@ -106,7 +114,8 @@ export function MobileSearchOverlay({ open, onOpenChange, locale }: MobileSearch
         .then((res) => res.json())
         .then((data: SearchResults) => setResults(data))
         .catch((err: unknown) => {
-          if (!(err instanceof DOMException && err.name === "AbortError")) setResults(EMPTY_RESULTS);
+          if (!(err instanceof DOMException && err.name === "AbortError"))
+            setResults(EMPTY_RESULTS);
         })
         .finally(() => setLoading(false));
     }, 250);
@@ -172,7 +181,9 @@ export function MobileSearchOverlay({ open, onOpenChange, locale }: MobileSearch
         )}
 
         {hasQuery && loading && (
-          <p className="px-2 pt-8 text-center text-sm text-zinc-400 dark:text-zinc-500">{common("loading")}</p>
+          <p className="px-2 pt-8 text-center text-sm text-zinc-400 dark:text-zinc-500">
+            {common("loading")}
+          </p>
         )}
 
         {hasQuery && !loading && results.guides.length > 0 && (
@@ -185,7 +196,9 @@ export function MobileSearchOverlay({ open, onOpenChange, locale }: MobileSearch
                 className={ROW}
               >
                 <span className="line-clamp-1 text-[15px] font-semibold">{guide.title}</span>
-                <span className="line-clamp-1 text-sm text-zinc-500 dark:text-zinc-400">{guide.summary}</span>
+                <span className="line-clamp-1 text-sm text-zinc-500 dark:text-zinc-400">
+                  {guide.summary}
+                </span>
               </Link>
             ))}
           </ResultGroup>
@@ -202,7 +215,9 @@ export function MobileSearchOverlay({ open, onOpenChange, locale }: MobileSearch
               >
                 <span className="line-clamp-1 text-[15px] font-semibold">{place.name}</span>
                 {place.district && (
-                  <span className="line-clamp-1 text-sm text-zinc-500 dark:text-zinc-400">{place.district}</span>
+                  <span className="line-clamp-1 text-sm text-zinc-500 dark:text-zinc-400">
+                    {place.district}
+                  </span>
                 )}
               </Link>
             ))}
@@ -212,7 +227,12 @@ export function MobileSearchOverlay({ open, onOpenChange, locale }: MobileSearch
         {hasQuery && !loading && results.faqs.length > 0 && (
           <ResultGroup label={t("faq")} icon={HelpCircle}>
             {results.faqs.map((faq) => (
-              <Link key={faq.id} href={`/faq#${faq.id}`} onClick={() => onOpenChange(false)} className={ROW}>
+              <Link
+                key={faq.id}
+                href={`/faq#${faq.id}`}
+                onClick={() => onOpenChange(false)}
+                className={ROW}
+              >
                 <span className="line-clamp-2 text-[15px] font-semibold">{faq.question}</span>
               </Link>
             ))}
@@ -232,7 +252,9 @@ export function MobileSearchOverlay({ open, onOpenChange, locale }: MobileSearch
           </span>
           <span className="min-w-0">
             <span className="block text-[15px] font-semibold text-zellige">{t("askAtlasAi")}</span>
-            <span className="block text-[13px] text-zinc-600 dark:text-zinc-400">{t("askAtlasAiDesc")}</span>
+            <span className="block text-[13px] text-zinc-600 dark:text-zinc-400">
+              {t("askAtlasAiDesc")}
+            </span>
           </span>
         </button>
       </div>

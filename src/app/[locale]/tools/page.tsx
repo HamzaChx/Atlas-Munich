@@ -97,7 +97,9 @@ const ASSISTANTS: Assistant[] = [
 
 /** i18n gives suggestion sets as objects and prompt sets as arrays. */
 const asList = (value: unknown): string[] =>
-  Array.isArray(value) ? (value as string[]) : Object.values((value ?? {}) as Record<string, string>);
+  Array.isArray(value)
+    ? (value as string[])
+    : Object.values((value ?? {}) as Record<string, string>);
 
 /* ------------------------------------------------------------------ */
 /*  Pieces                                                             */
@@ -281,7 +283,10 @@ export default function ToolsPage() {
           </aside>
 
           {/* The dossiers: all rendered, one shown */}
-          <div key={selected} className="animate-in fade-in slide-in-from-bottom-2 duration-300 lg:col-span-8">
+          <div
+            key={selected}
+            className="animate-in fade-in slide-in-from-bottom-2 duration-300 lg:col-span-8"
+          >
             {ASSISTANTS.map((assistant) => {
               const live = Boolean(assistant.href);
               const tags = asList(t.raw(`tools.${assistant.key}.tags`));
@@ -313,7 +318,10 @@ export default function ToolsPage() {
                             )}
                           >
                             {live ? (
-                              <span className="h-1.5 w-1.5 rounded-full bg-acc-green" aria-hidden="true" />
+                              <span
+                                className="h-1.5 w-1.5 rounded-full bg-acc-green"
+                                aria-hidden="true"
+                              />
                             ) : (
                               <span
                                 className="h-1.5 w-1.5 rounded-full border border-current"

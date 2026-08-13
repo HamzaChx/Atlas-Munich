@@ -94,7 +94,6 @@ function GuidesPageContent({ guides, treeNodes }: { guides: Guide[]; treeNodes: 
 
   const topicLabel = (key: string) => tCat(`${key}.title`);
 
-
   const fuse = useMemo(
     () =>
       new Fuse(
@@ -236,7 +235,10 @@ function GuidesPageContent({ guides, treeNodes }: { guides: Guide[]; treeNodes: 
               {tTree("_heading")}
             </h2>
             <div className="mt-4 rounded-[1.75rem] bg-card p-4 shadow-[0_2px_20px_rgb(0_0_0/0.06)] sm:p-6 dark:shadow-none dark:ring-1 dark:ring-border">
-              <GuideGraph nodes={treeNodes} defaultOpenIds={treeNodes[0] ? [treeNodes[0].id] : []} />
+              <GuideGraph
+                nodes={treeNodes}
+                defaultOpenIds={treeNodes[0] ? [treeNodes[0].id] : []}
+              />
             </div>
           </div>
         )}

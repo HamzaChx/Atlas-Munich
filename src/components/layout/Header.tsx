@@ -91,8 +91,21 @@ export function Header({ locale, translations }: HeaderProps) {
             height={36}
             className="h-8 w-8 rounded-full transition-transform duration-300 group-hover:scale-105 sm:h-9 sm:w-9 shadow-sm"
           />
-          <span className={cn("font-display text-lg sm:text-xl font-bold tracking-tight transition-colors duration-300", isGlass ? "text-zinc-900" : "text-zinc-900 dark:text-zinc-50")}>
-            <span className={cn("transition-colors duration-300", isGlass ? "text-zellige" : "text-zellige dark:text-zellige")}>Atlas</span> Munich
+          <span
+            className={cn(
+              "font-display text-lg sm:text-xl font-bold tracking-tight transition-colors duration-300",
+              isGlass ? "text-zinc-900" : "text-zinc-900 dark:text-zinc-50"
+            )}
+          >
+            <span
+              className={cn(
+                "transition-colors duration-300",
+                isGlass ? "text-zellige" : "text-zellige dark:text-zellige"
+              )}
+            >
+              Atlas
+            </span>{" "}
+            Munich
           </span>
         </Link>
 

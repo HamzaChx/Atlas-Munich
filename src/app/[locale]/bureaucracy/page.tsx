@@ -5,10 +5,6 @@ import {
   MessageSquareText,
   ClipboardList,
   CheckCircle2,
-  Clock,
-  FileCheck,
-  ShieldCheck,
-  AlertCircle,
   Landmark,
   FileText,
   Radio,
@@ -78,11 +74,7 @@ const CONFIG: AssistantLandingConfig = {
   ],
 };
 
-export default async function BureaucracyPage({
-  params,
-}: {
-  params: Promise<{ locale: string }>;
-}) {
+export default async function BureaucracyPage({ params }: { params: Promise<{ locale: string }> }) {
   // Required for static rendering: without it next-intl falls back to reading
   // the locale from headers, which opts this page back into rendering on demand.
   const { locale } = await params;

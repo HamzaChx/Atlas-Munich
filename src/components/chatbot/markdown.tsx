@@ -111,8 +111,7 @@ function parseInline(text: string, linkClass: string, depth = 0): ReactNode[] {
 
     // Nested emphasis is parsed one level deep, which covers every shape a
     // model realistically emits without risking runaway recursion.
-    const inner = (value: string) =>
-      depth < 2 ? parseInline(value, linkClass, depth + 1) : value;
+    const inner = (value: string) => (depth < 2 ? parseInline(value, linkClass, depth + 1) : value);
 
     if (g.code) {
       result.push(
@@ -535,10 +534,7 @@ export function ChatMarkdown({
       {tldr && (
         <div className="mt-3 rounded-xl border border-black/[0.06] bg-white/60 px-3 py-2 dark:border-border dark:bg-foreground/[0.08]">
           <p
-            className={cn(
-              "mb-0.5 text-[0.72em] font-bold tracking-[0.12em] uppercase",
-              linkClass
-            )}
+            className={cn("mb-0.5 text-[0.72em] font-bold tracking-[0.12em] uppercase", linkClass)}
           >
             TL;DR
           </p>

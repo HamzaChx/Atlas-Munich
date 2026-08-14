@@ -47,7 +47,8 @@ export async function GET(request: NextRequest) {
     }));
 
   const matchedPlaces = searchPlaces(query).slice(0, LIMIT_PER_TYPE);
-  const placesData = matchedPlaces.length > 0 ? await getTranslations({ locale, namespace: "placesData" }) : null;
+  const placesData =
+    matchedPlaces.length > 0 ? await getTranslations({ locale, namespace: "placesData" }) : null;
   const localizedPlaces = matchedPlaces.map((place) => {
     const nameKey = `places.${place.slug}.name`;
     const translatedName = placesData?.(nameKey) ?? place.name;
@@ -61,7 +62,11 @@ export async function GET(request: NextRequest) {
 
   const matchedFaqs = searchFaqs(query)
     .slice(0, LIMIT_PER_TYPE)
-    .map((faq) => ({ id: faq.id, question: faq.question, categoryKey: faq.categoryKey ?? "general" }));
+    .map((faq) => ({
+      id: faq.id,
+      question: faq.question,
+      categoryKey: faq.categoryKey ?? "general",
+    }));
 
   return NextResponse.json({ guides: matchedGuides, places: localizedPlaces, faqs: matchedFaqs });
 }

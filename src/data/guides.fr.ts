@@ -108,7 +108,8 @@ Une fois que vous avez signé et emménagé, vous devrez enregistrer votre adres
       {
         id: "res-apartment-2",
         title: "WG-Gesucht",
-        description: "La meilleure plateforme pour les chambres en colocation et logements étudiants",
+        description:
+          "La meilleure plateforme pour les chambres en colocation et logements étudiants",
       },
       {
         id: "res-apartment-3",
@@ -198,7 +199,8 @@ Si vous quittez définitivement l'Allemagne, vous devez effectuer une **Abmeldun
       },
       {
         id: "faq-anmeldung-2",
-        question: "Mon propriétaire refuse de me donner la Wohnungsgeberbestätigung. Que puis-je faire ?",
+        question:
+          "Mon propriétaire refuse de me donner la Wohnungsgeberbestätigung. Que puis-je faire ?",
         answer:
           "En droit allemand, votre propriétaire est légalement tenu de vous fournir la Wohnungsgeberbestätigung dans un délai de deux semaines suivant votre emménagement. Si votre propriétaire refuse ou tarde, contactez directement le KVR pour signaler la situation, ils peuvent intervenir. Si vous logez dans une résidence universitaire, l'administration de la résidence est chargée de vous fournir ce document et connaît bien la procédure.",
       },

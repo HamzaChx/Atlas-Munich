@@ -76,15 +76,13 @@ Wichtig: Vergiss nach der Unterschrift nicht, die Anmeldung zu erledigen. Du has
       },
       {
         id: "faq-apartment-2",
-        question:
-          "Was ist eine Selbstauskunft und muss ich sie ausfüllen?",
+        question: "Was ist eine Selbstauskunft und muss ich sie ausfüllen?",
         answer:
           "Eine Selbstauskunft ist ein Formular, auf dem du Angaben zu deinem Einkommen, deinem Arbeitsverhältnis und deiner Miethistorie machst. Die meisten Vermieter verlangen sie. Du kannst das Formular auf WG-Gesucht herunterladen oder direkt beim Vermieter anfragen. Fülle es ehrlich aus – falsche Angaben können zur Kündigung führen.",
       },
       {
         id: "faq-apartment-3",
-        question:
-          "Ist es sicher, eine Kaution zu überweisen, ohne die Wohnung gesehen zu haben?",
+        question: "Ist es sicher, eine Kaution zu überweisen, ohne die Wohnung gesehen zu haben?",
         answer:
           "Nein – überweise niemals Geld, bevor du die Wohnung entweder persönlich besichtigt oder zumindest einen Video-Call gemacht hast. Wer dich unter Druck setzt, schnell Geld zu überweisen, ist mit großer Wahrscheinlichkeit ein Betrug. Das ist eines der häufigsten Warnzeichen auf Wohnungsportalen.",
       },
@@ -104,20 +102,17 @@ Wichtig: Vergiss nach der Unterschrift nicht, die Anmeldung zu erledigen. Du has
       {
         id: "res-apartment-2",
         title: "WG-Gesucht",
-        description:
-          "Die beste Plattform für WG-Zimmer und studentisches Wohnen",
+        description: "Die beste Plattform für WG-Zimmer und studentisches Wohnen",
       },
       {
         id: "res-apartment-3",
         title: "Studentenwerk München",
-        description:
-          "Offizielles Studentenwohnheim-Büro für TUM und LMU",
+        description: "Offizielles Studentenwohnheim-Büro für TUM und LMU",
       },
       {
         id: "res-apartment-4",
         title: "SCHUFA Kostenlose Auskunft",
-        description:
-          "Kostenlose jährliche SCHUFA-Bonitätsauskunft anfordern",
+        description: "Kostenlose jährliche SCHUFA-Bonitätsauskunft anfordern",
       },
     ],
   },
@@ -187,15 +182,13 @@ Wenn du München dauerhaft verlässt, musst du dich offiziell abmelden (Abmeldun
     faqs: [
       {
         id: "faq-anmeldung-1",
-        question:
-          "Was passiert, wenn ich die 14-Tage-Frist versäume?",
+        question: "Was passiert, wenn ich die 14-Tage-Frist versäume?",
         answer:
           "Theoretisch kann eine verspätete Anmeldung mit einem Bußgeld belegt werden, in der Praxis passiert das aber selten, besonders bei Studierenden. Melde dich trotzdem so bald wie möglich an – je länger du wartest, desto mehr verzögert sich alles andere (Konto, Aufenthaltstitel, Steuernummer).",
       },
       {
         id: "faq-anmeldung-2",
-        question:
-          "Was, wenn mein Vermieter mir keine Wohnungsgeberbestätigung ausstellt?",
+        question: "Was, wenn mein Vermieter mir keine Wohnungsgeberbestätigung ausstellt?",
         answer:
           "Der Vermieter ist gesetzlich verpflichtet, dir dieses Formular innerhalb von zwei Wochen nach deinem Einzug auszustellen. Wenn er sich weigert, kannst du das Bürgerbüro oder die KVR kontaktieren – sie können dabei helfen, die Situation zu klären.",
       },
@@ -322,14 +315,12 @@ Tipp: Setz dir eine Erinnerung im Kalender drei Monate vor Ablauf. So hast du au
       {
         id: "res-permit-2",
         title: "Fintiba Sperrkonto",
-        description:
-          "Schnell ein Sperrkonto für deine Visumsbeantragung eröffnen",
+        description: "Schnell ein Sperrkonto für deine Visumsbeantragung eröffnen",
       },
       {
         id: "res-permit-3",
         title: "TU München International Office",
-        description:
-          "Einwanderungsberatung speziell für TUM-Studierende",
+        description: "Einwanderungsberatung speziell für TUM-Studierende",
       },
     ],
   },
@@ -429,14 +420,12 @@ Nutze die **Sprechstunden** (Office Hours) deiner Professorinnen und Professoren
       {
         id: "res-student-2",
         title: "LMU International Office",
-        description:
-          "Unterstützung von LMU für internationale Studierende",
+        description: "Unterstützung von LMU für internationale Studierende",
       },
       {
         id: "res-student-3",
         title: "Studentenwerk München",
-        description:
-          "Wohnen, Mensa, Beratung und finanzielle Unterstützung",
+        description: "Wohnen, Mensa, Beratung und finanzielle Unterstützung",
       },
       {
         id: "res-student-4",
@@ -521,8 +510,7 @@ Heb alle deine Gehaltsabrechnungen auf – du brauchst sie für die Steuererklä
     faqs: [
       {
         id: "faq-werk-1",
-        question:
-          "Kann ich gleichzeitig ein Werkstudentenverhältnis und einen Minijob haben?",
+        question: "Kann ich gleichzeitig ein Werkstudentenverhältnis und einen Minijob haben?",
         answer:
           "Das ist rechtlich komplex. Ein Minijob zusätzlich zum Werkstudentenverhältnis kann dazu führen, dass du das Werkstudentenprivileg verlierst und normale Sozialversicherungsbeiträge zahlen musst. Wende dich im Zweifel an einen Steuerberater oder die Studierendenberatung der Uni.",
       },
@@ -534,8 +522,7 @@ Heb alle deine Gehaltsabrechnungen auf – du brauchst sie für die Steuererklä
       },
       {
         id: "faq-werk-3",
-        question:
-          "Brauche ich Deutschkenntnisse, um einen Werkstudenten-Job zu finden?",
+        question: "Brauche ich Deutschkenntnisse, um einen Werkstudenten-Job zu finden?",
         answer:
           "Nicht zwingend. In internationalen Tech-Unternehmen, Beratungsfirmen und Start-ups wird oft auf Englisch gearbeitet, und viele Stellen erfordern kein Deutsch. Für Rollen mit Kundenkontakt oder in deutschen Unternehmen mit deutschsprachigem Umfeld ist jedoch mindestens B2-Niveau empfehlenswert.",
       },
@@ -549,14 +536,12 @@ Heb alle deine Gehaltsabrechnungen auf – du brauchst sie für die Steuererklä
       {
         id: "res-werk-2",
         title: "Stepstone Jobs",
-        description:
-          "Suche nach 'Werkstudent München' für aktuelle Stellen",
+        description: "Suche nach 'Werkstudent München' für aktuelle Stellen",
       },
       {
         id: "res-werk-3",
         title: "LinkedIn Jobs",
-        description:
-          "Werkstudenten-Stellen bei Münchner Unternehmen finden",
+        description: "Werkstudenten-Stellen bei Münchner Unternehmen finden",
       },
     ],
   },
@@ -638,15 +623,13 @@ Für Notizen und Organisation nutzen viele Münchner Studierende **Notion** oder
     faqs: [
       {
         id: "faq-essential-1",
-        question:
-          "Funktionieren Apple Pay und Google Pay in München?",
+        question: "Funktionieren Apple Pay und Google Pay in München?",
         answer:
           "Ja, Apple Pay und Google Pay werden in München mittlerweile weit verbreitet akzeptiert – in Supermärkten, Restaurants, Verkehrsmittel-Automaten und vielen Geschäften. N26 und DKB unterstützen beide Dienste. Trotzdem ist Bargeld an kleineren Läden, auf Märkten und in manchen Lokalen noch notwendig. Hab immer etwas Bargeld dabei.",
       },
       {
         id: "faq-essential-2",
-        question:
-          "Gibt es Apps für marokkanisches oder arabisches Essen in München?",
+        question: "Gibt es Apps für marokkanisches oder arabisches Essen in München?",
         answer:
           "Ja, auf Lieferando und Wolt findest du marokkanische und halal-freundliche Optionen. Filtere nach „Marokkanisch“, „Oriental“ oder „Halal“. Besonders in den Stadtteilen Schwabing, Neuhausen und Maxvorstadt gibt es eine gute Auswahl. Für frische Zutaten lohnen sich auch arabische Supermärkte, die du am besten über Google Maps findest.",
       },
@@ -666,8 +649,7 @@ Für Notizen und Organisation nutzen viele Münchner Studierende **Notion** oder
       {
         id: "res-apps-2",
         title: "N26 Online-Bank",
-        description:
-          "Englischsprachige Online-Bank, bei Studierenden sehr beliebt",
+        description: "Englischsprachige Online-Bank, bei Studierenden sehr beliebt",
       },
       {
         id: "res-apps-3",
@@ -677,8 +659,7 @@ Für Notizen und Organisation nutzen viele Münchner Studierende **Notion** oder
       {
         id: "res-apps-4",
         title: "Deutsche Welle Deutschkurse",
-        description:
-          "Kostenlose strukturierte Deutschkurse für alle Niveaus",
+        description: "Kostenlose strukturierte Deutschkurse für alle Niveaus",
       },
     ],
   },

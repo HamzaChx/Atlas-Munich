@@ -13,7 +13,18 @@
 
 import * as React from "react";
 import { Link } from "@/i18n/navigation";
-import { BadgeCheck, Check, Clock, Globe, Instagram, MapPin, Navigation, Phone, Route, Star } from "lucide-react";
+import {
+  BadgeCheck,
+  Check,
+  Clock,
+  Globe,
+  Instagram,
+  MapPin,
+  Navigation,
+  Phone,
+  Route,
+  Star,
+} from "lucide-react";
 import { useTranslations, useLocale } from "next-intl";
 import { track } from "@vercel/analytics";
 
@@ -412,7 +423,6 @@ export function PlacesBrowser({
                             </span>
                           )}
                         </button>
-
                       </React.Fragment>
                     );
                   })}

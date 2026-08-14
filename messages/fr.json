@@ -1721,11 +1721,7 @@
         "Où puis-je étudier ?",
         "Des endroits marocains pour manger"
       ],
-      "hamza": [
-        "À propos de ce projet",
-        "Comment contribuer ?",
-        "Quel est le stack technique ?"
-      ],
+      "hamza": ["À propos de ce projet", "Comment contribuer ?", "Quel est le stack technique ?"],
       "riad": [
         "Rédige une candidature WG pour moi",
         "Rédige une candidature formelle",
@@ -1893,12 +1889,7 @@
             },
             {
               "t": "table",
-              "head": [
-                "Données",
-                "Finalité",
-                "Base légale",
-                "Conservation"
-              ],
+              "head": ["Données", "Finalité", "Base légale", "Conservation"],
               "rows": [
                 [
                   "Journaux d'accès et serveur",
@@ -2001,12 +1992,7 @@
             },
             {
               "t": "table",
-              "head": [
-                "Nom",
-                "Type",
-                "Finalité",
-                "Durée"
-              ],
+              "head": ["Nom", "Type", "Finalité", "Durée"],
               "rows": [
                 [
                   "theme",
@@ -2082,12 +2068,7 @@
             },
             {
               "t": "table",
-              "head": [
-                "Prestataire",
-                "Rôle",
-                "Ce qu'il reçoit",
-                "Où"
-              ],
+              "head": ["Prestataire", "Rôle", "Ce qu'il reçoit", "Où"],
               "rows": [
                 [
                   "Vercel Inc. et Vercel GmbH",
@@ -2665,11 +2646,7 @@
         "status": "Disponible",
         "cta": "Commencer ici",
         "poweredBy": "Répondu par Riad",
-        "tags": [
-          "Candidatures WG",
-          "Annonces appartement",
-          "Allemand parfait"
-        ]
+        "tags": ["Candidatures WG", "Annonces appartement", "Allemand parfait"]
       },
       "events": {
         "title": "Trouver quoi faire",
@@ -2677,11 +2654,7 @@
         "status": "Pas encore",
         "cta": "Pas encore",
         "comingSoonNote": "Nous construisons cet outil, restez connecté !",
-        "tags": [
-          "Planifier des événements",
-          "Inviter des amis",
-          "Lieux à Munich"
-        ],
+        "tags": ["Planifier des événements", "Inviter des amis", "Lieux à Munich"],
         "prompts": [
           "Trouver un lieu pour une session d'étude",
           "Organiser une sortie le week-end",
@@ -2694,11 +2667,7 @@
         "status": "Disponible",
         "cta": "Commencer ici",
         "poweredBy": "Répondu par Dalilah",
-        "tags": [
-          "Anmeldung",
-          "Permis de séjour",
-          "KVR & Délais"
-        ]
+        "tags": ["Anmeldung", "Permis de séjour", "KVR & Délais"]
       },
       "ilham": {
         "title": "Écrire et faire de la recherche",
@@ -2706,11 +2675,7 @@
         "status": "Disponible",
         "cta": "Commencer ici",
         "poweredBy": "Répondu par Ilham",
-        "tags": [
-          "Recherche & Littérature",
-          "Écriture scientifique",
-          "Thèse & LaTeX"
-        ]
+        "tags": ["Recherche & Littérature", "Écriture scientifique", "Thèse & LaTeX"]
       },
       "loubna": {
         "title": "S'assurer et se soigner",
@@ -2718,11 +2683,7 @@
         "status": "Disponible",
         "cta": "Commencer ici",
         "poweredBy": "Répondu par Loubna",
-        "tags": [
-          "Assurance Maladie",
-          "Recherche Médecin",
-          "Traduction Médicale"
-        ]
+        "tags": ["Assurance Maladie", "Recherche Médecin", "Traduction Médicale"]
       }
     },
     "moreComing": "D'autres aides arrivent. Une idée ? Contribuez sur",

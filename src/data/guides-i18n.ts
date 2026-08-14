@@ -35,11 +35,18 @@ function byId<T extends { id: string }>(entries: readonly T[] | undefined): Map<
    dropped on the floor, which is exactly what happens when a section id is
    renamed in guides.ts and the locale files are not followed up. Silent in
    production, loud in development. */
-function warnOrphans(slug: string, kind: string, overlay: Map<string, unknown>, sourceIds: string[]) {
+function warnOrphans(
+  slug: string,
+  kind: string,
+  overlay: Map<string, unknown>,
+  sourceIds: string[]
+) {
   if (process.env.NODE_ENV === "production") return;
   for (const id of overlay.keys()) {
     if (!sourceIds.includes(id)) {
-      console.warn(`[guides-i18n] ${slug}: translated ${kind} "${id}" matches nothing in guides.ts`);
+      console.warn(
+        `[guides-i18n] ${slug}: translated ${kind} "${id}" matches nothing in guides.ts`
+      );
     }
   }
 }
@@ -55,7 +62,12 @@ function applyOverlay(guide: Guide, translation?: GuideTranslation): Guide {
   const faqs = byId(translation.faqs);
   const resources = byId(translation.resources);
 
-  warnOrphans(guide.slug, "section", sections, guide.sections.map((s) => s.id));
+  warnOrphans(
+    guide.slug,
+    "section",
+    sections,
+    guide.sections.map((s) => s.id)
+  );
   warnOrphans(guide.slug, "faq", faqs, guide.faqs?.map((f) => f.id) ?? []);
   warnOrphans(guide.slug, "resource", resources, guide.resources?.map((r) => r.id) ?? []);
 

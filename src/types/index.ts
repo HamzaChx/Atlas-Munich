@@ -174,7 +174,14 @@ export interface AppRecommendation {
   slug: string;
   name: string;
   description: string;
-  category: "transport" | "banking" | "communication" | "food" | "learning" | "utilities" | "housing";
+  category:
+    | "transport"
+    | "banking"
+    | "communication"
+    | "food"
+    | "learning"
+    | "utilities"
+    | "housing";
   platforms: ("ios" | "android" | "web")[];
   icon?: string;
   iosLink?: string;

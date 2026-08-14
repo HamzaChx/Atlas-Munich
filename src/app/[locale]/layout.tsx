@@ -40,89 +40,91 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale: rawLocale } = await params;
-  const locale = (hasLocale(routing.locales, rawLocale) ? rawLocale : routing.defaultLocale) as Locale;
+  const locale = (
+    hasLocale(routing.locales, rawLocale) ? rawLocale : routing.defaultLocale
+  ) as Locale;
   const localeUrl = locale === routing.defaultLocale ? BASE_URL : `${BASE_URL}/${locale}`;
 
   return {
-  metadataBase: new URL(BASE_URL),
-  title: {
-    default: "Atlas Munich | Your Guide to Thriving in Munich",
-    template: "%s | Atlas Munich",
-  },
-  description:
-    "The complete starter guide for Moroccan students and professionals in Munich. Housing, KVR, university, halal food, and more. Built by the community, for the community.",
-  manifest: "/manifest.webmanifest",
-  keywords: [
-    "Atlas Munich",
-    "Munich guide",
-    "Morocco Munich",
-    "Moroccan students Munich",
-    "Moroccan expats Germany",
-    "student life Munich",
-    "living in Munich",
-    "Munich newcomer guide",
-    "Anmeldung Munich",
-    "KVR Munich",
-    "residence permit Munich",
-    "halal food Munich",
-    "housing Munich",
-    "WG Munich",
-    "apartment Munich",
-    "TUM students",
-    "LMU students",
-    "university Munich",
-    "Werkstudent Munich",
-    "internship Munich",
-    "MVV Munich transport",
-    "München",
-    "German bureaucracy guide",
-    "expat Munich",
-  ],
-  authors: [{ name: "Atlas Munich Team", url: BASE_URL }],
-  creator: "Atlas Munich Team",
-  publisher: "Atlas Munich",
-  category: "Community Guide",
-  openGraph: {
-    title: "Atlas Munich | Your Guide to Thriving in Munich",
+    metadataBase: new URL(BASE_URL),
+    title: {
+      default: "Atlas Munich | Your Guide to Thriving in Munich",
+      template: "%s | Atlas Munich",
+    },
     description:
-      "The complete starter guide for Moroccan students and professionals in Munich. Housing, KVR, university, halal food, and more.",
-    type: "website",
-    locale: OG_LOCALE[locale],
-    // Every translation is declared, so a share in one language surfaces the
-    // right variant rather than always advertising the English page.
-    alternateLocale: routing.locales.filter((l) => l !== locale).map((l) => OG_LOCALE[l]),
-    url: localeUrl,
-    siteName: "Atlas Munich",
-    images: [
-      {
-        url: "/atlas.png",
-        width: 1200,
-        height: 630,
-        alt: "Atlas Munich - Your Guide to Thriving in Munich",
-      },
+      "The complete starter guide for Moroccan students and professionals in Munich. Housing, KVR, university, halal food, and more. Built by the community, for the community.",
+    manifest: "/manifest.webmanifest",
+    keywords: [
+      "Atlas Munich",
+      "Munich guide",
+      "Morocco Munich",
+      "Moroccan students Munich",
+      "Moroccan expats Germany",
+      "student life Munich",
+      "living in Munich",
+      "Munich newcomer guide",
+      "Anmeldung Munich",
+      "KVR Munich",
+      "residence permit Munich",
+      "halal food Munich",
+      "housing Munich",
+      "WG Munich",
+      "apartment Munich",
+      "TUM students",
+      "LMU students",
+      "university Munich",
+      "Werkstudent Munich",
+      "internship Munich",
+      "MVV Munich transport",
+      "München",
+      "German bureaucracy guide",
+      "expat Munich",
     ],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Atlas Munich | Your Guide to Thriving in Munich",
-    description:
-      "The complete starter guide for Moroccan students and professionals in Munich. Housing, KVR, university, halal food, and more.",
-    images: ["/atlas.png"],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
+    authors: [{ name: "Atlas Munich Team", url: BASE_URL }],
+    creator: "Atlas Munich Team",
+    publisher: "Atlas Munich",
+    category: "Community Guide",
+    openGraph: {
+      title: "Atlas Munich | Your Guide to Thriving in Munich",
+      description:
+        "The complete starter guide for Moroccan students and professionals in Munich. Housing, KVR, university, halal food, and more.",
+      type: "website",
+      locale: OG_LOCALE[locale],
+      // Every translation is declared, so a share in one language surfaces the
+      // right variant rather than always advertising the English page.
+      alternateLocale: routing.locales.filter((l) => l !== locale).map((l) => OG_LOCALE[l]),
+      url: localeUrl,
+      siteName: "Atlas Munich",
+      images: [
+        {
+          url: "/atlas.png",
+          width: 1200,
+          height: 630,
+          alt: "Atlas Munich - Your Guide to Thriving in Munich",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Atlas Munich | Your Guide to Thriving in Munich",
+      description:
+        "The complete starter guide for Moroccan students and professionals in Munich. Housing, KVR, university, halal food, and more.",
+      images: ["/atlas.png"],
+    },
+    robots: {
       index: true,
       follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
+      googleBot: {
+        index: true,
+        follow: true,
+        "max-video-preview": -1,
+        "max-image-preview": "large",
+        "max-snippet": -1,
+      },
     },
-  },
-  verification: {
-    google: "-GZmYKhOD0IyzbpHSEwRSyH0FVDFivjMcv-lCJWFlRI",
-  },
+    verification: {
+      google: "-GZmYKhOD0IyzbpHSEwRSyH0FVDFivjMcv-lCJWFlRI",
+    },
   };
 }
 
@@ -236,7 +238,7 @@ export default async function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body className="min-h-screen bg-background transition-colors">
+      <body className="min-h-screen bg-background transition-colors" suppressHydrationWarning>
         {/* The worker is emitted by `serwist build`, which only runs on a
             production build, so there is nothing to register in dev. */}
         <SerwistProvider swUrl="/sw.js" disable={process.env.NODE_ENV !== "production"}>

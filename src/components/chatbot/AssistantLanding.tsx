@@ -38,7 +38,6 @@ export interface AssistantLandingConfig {
   links: AssistantLink[];
 }
 
-
 const INK_PILL =
   "inline-flex items-center gap-2 rounded-full bg-zinc-900 px-6 py-3 text-sm font-semibold text-white shadow-md shadow-zinc-900/10 transition-colors hover:bg-zinc-800 dark:bg-zinc-50 dark:text-zinc-900 dark:shadow-none dark:hover:bg-zinc-200";
 
@@ -152,28 +151,28 @@ export async function AssistantLanding({ config }: { config: AssistantLandingCon
           {config.links.map((link) => {
             const LinkIcon = link.icon;
             return (
-            <a
-              key={link.name}
-              href={link.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex items-center gap-4 px-5 py-4 transition-colors hover:bg-muted sm:px-7 sm:py-5"
-            >
-              <span
-                className={`flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl ${accent.tint} ${accent.acc}`}
+              <a
+                key={link.name}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-4 px-5 py-4 transition-colors hover:bg-muted sm:px-7 sm:py-5"
               >
-                <LinkIcon className="h-4 w-4" />
-              </span>
-              <div className="min-w-0 flex-1">
-                <p className="font-display text-base font-bold text-zinc-900 dark:text-zinc-50">
-                  {link.name}
-                </p>
-                <p className="truncate text-sm text-zinc-500 dark:text-zinc-400">{link.label}</p>
-              </div>
-              <ArrowUpRight
-                className={`h-4 w-4 flex-shrink-0 text-zinc-400 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 ${accent.accHover}`}
-              />
-            </a>
+                <span
+                  className={`flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl ${accent.tint} ${accent.acc}`}
+                >
+                  <LinkIcon className="h-4 w-4" />
+                </span>
+                <div className="min-w-0 flex-1">
+                  <p className="font-display text-base font-bold text-zinc-900 dark:text-zinc-50">
+                    {link.name}
+                  </p>
+                  <p className="truncate text-sm text-zinc-500 dark:text-zinc-400">{link.label}</p>
+                </div>
+                <ArrowUpRight
+                  className={`h-4 w-4 flex-shrink-0 text-zinc-400 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 ${accent.accHover}`}
+                />
+              </a>
             );
           })}
         </div>

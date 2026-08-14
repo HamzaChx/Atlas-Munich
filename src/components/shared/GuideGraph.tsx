@@ -107,7 +107,12 @@ function collectVisibleEdges(
       const walk = (node: TreeNode, level: 1 | 2) => {
         if (!node.children.length || !openIds.has(node.id)) return;
         for (const child of node.children) {
-          edges.push({ parentId: node.id, childId: child.id, color, width: level === 1 ? 2.5 : 1.75 });
+          edges.push({
+            parentId: node.id,
+            childId: child.id,
+            color,
+            width: level === 1 ? 2.5 : 1.75,
+          });
         }
         for (const child of node.children) walk(child, 2);
       };
@@ -252,10 +257,13 @@ function TreeRow({
   return (
     <li
       className={cn(
-        isCascading && "transition-[opacity,transform] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]",
+        isCascading &&
+          "transition-[opacity,transform] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]",
         isCascading && (revealed ? "translate-x-0 opacity-100" : "-translate-x-1.5 opacity-0")
       )}
-      style={isCascading ? { transitionDelay: revealed ? `${staggerIndex * 45}ms` : "0ms" } : undefined}
+      style={
+        isCascading ? { transitionDelay: revealed ? `${staggerIndex * 45}ms` : "0ms" } : undefined
+      }
     >
       <div
         className={cn(
@@ -294,7 +302,9 @@ function TreeRow({
             onClick={() => onToggle(node.id)}
             aria-expanded={open}
             aria-controls={panelId}
-            aria-label={open ? t("_collapse", { label: node.label }) : t("_expand", { label: node.label })}
+            aria-label={
+              open ? t("_collapse", { label: node.label }) : t("_expand", { label: node.label })
+            }
             className="mr-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-zinc-400 outline-none transition-colors hover:bg-card hover:text-zinc-700 focus-visible:ring-2 focus-visible:ring-zellige/50 dark:hover:bg-foreground/10 dark:hover:text-zinc-200"
           >
             <ChevronRight
@@ -366,7 +376,10 @@ export function GuideGraph({ nodes, defaultOpenIds = [], className }: GuideGraph
       const el = nodeRefs.current.get(id);
       if (!el) return null;
       const r = el.getBoundingClientRect();
-      return { x: r.left + r.width / 2 - containerRect.left, y: r.top + r.height / 2 - containerRect.top };
+      return {
+        x: r.left + r.width / 2 - containerRect.left,
+        y: r.top + r.height / 2 - containerRect.top,
+      };
     };
 
     const pairs = [

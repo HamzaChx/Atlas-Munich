@@ -19,14 +19,11 @@ import {
   Send,
   Loader2,
   ChevronDown,
-  RefreshCcw,
   Maximize2,
   Minimize2,
   ArrowUpRight,
   AlertCircle,
   MessageCircle,
-  Copy,
-  Check,
   Trash2,
 } from "lucide-react";
 import { ChatMarkdown } from "./markdown";

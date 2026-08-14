@@ -1,12 +1,6 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import {
-  AlertCircle,
-  CheckCircle2,
-  Info,
-  AlertTriangle,
-  LucideIcon,
-} from "lucide-react";
+import { AlertCircle, CheckCircle2, Info, AlertTriangle, LucideIcon } from "lucide-react";
 
 type CalloutVariant = "info" | "warning" | "success" | "error";
 
@@ -17,10 +11,7 @@ interface CalloutProps {
   className?: string;
 }
 
-const variantStyles: Record<
-  CalloutVariant,
-  { icon: LucideIcon; classes: string }
-> = {
+const variantStyles: Record<CalloutVariant, { icon: LucideIcon; classes: string }> = {
   info: {
     icon: Info,
     classes:
@@ -43,23 +34,11 @@ const variantStyles: Record<
   },
 };
 
-export function Callout({
-  variant = "info",
-  title,
-  children,
-  className,
-}: CalloutProps) {
+export function Callout({ variant = "info", title, children, className }: CalloutProps) {
   const { icon: Icon, classes } = variantStyles[variant];
 
   return (
-    <div
-      className={cn(
-        "my-4 flex gap-3 rounded-lg border p-4",
-        classes,
-        className
-      )}
-      role="alert"
-    >
+    <div className={cn("my-4 flex gap-3 rounded-lg border p-4", classes, className)} role="alert">
       <Icon className="mt-0.5 h-5 w-5 shrink-0" />
       <div className="flex-1 space-y-1">
         {title && <p className="font-semibold">{title}</p>}

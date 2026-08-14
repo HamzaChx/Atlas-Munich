@@ -68,7 +68,10 @@ export function MobileNav({ locale }: { locale: Locale }) {
             haptic();
             setSearchOpen(true);
           }}
-          className={cn(CONTROL, "flex-1 gap-2.5 px-4 text-[15px] font-medium text-zinc-500 dark:text-zinc-400")}
+          className={cn(
+            CONTROL,
+            "flex-1 gap-2.5 px-4 text-[15px] font-medium text-zinc-500 dark:text-zinc-400"
+          )}
         >
           <Search className="h-[18px] w-[18px] shrink-0" aria-hidden="true" />
           {t("searchOrAsk")}

@@ -59,7 +59,8 @@ export function FaqTopicGrid({ faqs, hub, className }: FaqTopicGridProps) {
   if (!faqs.length) return null;
 
   const activeGroup = groups.find((g) => g.topic.key === displayedKey);
-  const topicLabel = (key: FaqTopicKey) => (key === "general" ? tHubs("faqGeneralTopic") : t(`${key}.title`));
+  const topicLabel = (key: FaqTopicKey) =>
+    key === "general" ? tHubs("faqGeneralTopic") : t(`${key}.title`);
 
   return (
     <div className={className}>
@@ -147,7 +148,10 @@ export function FaqTopicGrid({ faqs, hub, className }: FaqTopicGridProps) {
         }}
       >
         {activeGroup && (
-          <BottomSheetContent title={topicLabel(activeGroup.topic.key)} className="sm:mx-auto sm:max-w-lg">
+          <BottomSheetContent
+            title={topicLabel(activeGroup.topic.key)}
+            className="sm:mx-auto sm:max-w-lg"
+          >
             <FaqTopicSheet faqs={activeGroup.faqs} deepLinkFaqId={deepLinkFaqId} />
           </BottomSheetContent>
         )}

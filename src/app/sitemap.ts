@@ -71,7 +71,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...entry("/terms", { changeFrequency: "yearly", priority: 0.2 }),
   ];
 
-
   // Individual guide pages — most valuable content pieces. Slugs are shared
   // across locales; only the prose differs (see guides.fr.ts / guides.de.ts).
   const guidePages = guides.flatMap((guide) =>

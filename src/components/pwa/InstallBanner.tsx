@@ -49,7 +49,9 @@ export function InstallBanner() {
         <X className="h-4 w-4" />
       </button>
 
-      <p className="pr-8 text-sm font-semibold text-zinc-900 dark:text-zinc-50">{t("installApp")}</p>
+      <p className="pr-8 text-sm font-semibold text-zinc-900 dark:text-zinc-50">
+        {t("installApp")}
+      </p>
       <p className="mt-1 pr-8 text-[13px] leading-relaxed text-zinc-500 dark:text-zinc-400">
         {t("installDesc")}
       </p>

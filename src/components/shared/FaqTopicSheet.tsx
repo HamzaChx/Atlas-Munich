@@ -32,7 +32,9 @@ export function FaqTopicSheet({ faqs, deepLinkFaqId }: FaqTopicSheetProps) {
     if (!deepLinkFaqId) return;
     setOpen(deepLinkFaqId);
     const timer = window.setTimeout(() => {
-      document.getElementById(deepLinkFaqId)?.scrollIntoView({ behavior: "smooth", block: "center" });
+      document
+        .getElementById(deepLinkFaqId)
+        ?.scrollIntoView({ behavior: "smooth", block: "center" });
     }, 120);
     return () => window.clearTimeout(timer);
   }, [deepLinkFaqId]);
@@ -48,7 +50,10 @@ export function FaqTopicSheet({ faqs, deepLinkFaqId }: FaqTopicSheetProps) {
   return (
     <div className="flex flex-col gap-4">
       <div className="relative">
-        <Search className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-400" aria-hidden="true" />
+        <Search
+          className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-400"
+          aria-hidden="true"
+        />
         <Input
           type="search"
           value={query}
@@ -59,7 +64,9 @@ export function FaqTopicSheet({ faqs, deepLinkFaqId }: FaqTopicSheetProps) {
       </div>
 
       {filtered.length === 0 ? (
-        <p className="py-8 text-center text-sm text-zinc-500 dark:text-zinc-400">{t("faqNoResults")}</p>
+        <p className="py-8 text-center text-sm text-zinc-500 dark:text-zinc-400">
+          {t("faqNoResults")}
+        </p>
       ) : (
         <Accordion
           type="single"
@@ -80,7 +87,9 @@ export function FaqTopicSheet({ faqs, deepLinkFaqId }: FaqTopicSheetProps) {
               className="scroll-mt-6 border border-zinc-200 dark:border-border rounded-xl overflow-hidden bg-white dark:bg-zinc-900/50 transition-all duration-200 ease-[cubic-bezier(0.16,1,0.3,1)] data-[state=open]:border-zellige/30 data-[state=open]:shadow-md data-[state=open]:shadow-zinc-200/50 dark:data-[state=open]:shadow-none hover:border-zinc-300 dark:hover:border-input"
             >
               <AccordionTrigger className="text-left text-zinc-900 dark:text-zinc-50 hover:no-underline px-5 py-4 transition-colors duration-200 data-[state=open]:text-zellige [&>svg]:text-zinc-400 [&>svg]:transition-transform [&>svg]:duration-200 data-[state=open]:[&>svg]:text-zellige">
-                <span className="pr-4 font-semibold text-[15px] leading-relaxed">{faq.question}</span>
+                <span className="pr-4 font-semibold text-[15px] leading-relaxed">
+                  {faq.question}
+                </span>
               </AccordionTrigger>
               <AccordionContent className="text-zinc-600 dark:text-zinc-300 px-5 pb-5">
                 <div className="prose prose-sm dark:prose-invert max-w-none text-zinc-600 dark:text-zinc-300 prose-strong:text-zinc-900 dark:prose-strong:text-white prose-a:text-zellige prose-a:no-underline hover:prose-a:opacity-80 prose-p:leading-relaxed prose-li:leading-relaxed">

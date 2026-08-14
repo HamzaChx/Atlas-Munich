@@ -80,7 +80,11 @@ export function LanguageSwitcher({
 
   if (variant === "inline") {
     return (
-      <div className={cn("flex items-center gap-1.5", className)} role="group" aria-label={common("language")}>
+      <div
+        className={cn("flex items-center gap-1.5", className)}
+        role="group"
+        aria-label={common("language")}
+      >
         {languages.map((language) => {
           const isSelected = language.code === currentLocale;
           return (

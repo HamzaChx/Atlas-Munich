@@ -23,8 +23,7 @@ export function haversineDistanceKm(a: Coordinates, b: Coordinates): number {
   const lat1 = toRadians(a.lat);
   const lat2 = toRadians(b.lat);
 
-  const h =
-    Math.sin(dLat / 2) ** 2 + Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLng / 2) ** 2;
+  const h = Math.sin(dLat / 2) ** 2 + Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLng / 2) ** 2;
 
   return EARTH_RADIUS_KM * 2 * Math.atan2(Math.sqrt(h), Math.sqrt(1 - h));
 }
@@ -38,4 +37,3 @@ export function formatDistanceKm(km: number, locale: string): string {
   const rounded = km < 10 ? Math.round(km * 10) / 10 : Math.round(km);
   return `${new Intl.NumberFormat(locale, { maximumFractionDigits: 1 }).format(rounded)} km`;
 }
-

@@ -41,8 +41,8 @@ export const hubs: Hub[] = [
     dot: "bg-acc-terra",
   },
   {
-    key: "essentials",
-    route: "/essentials",
+    key: "guide",
+    route: "/chat",
     categoryKeys: ["kvr-residence", "university-life"],
     assistants: ["dalilah", "ilham", "loubna"],
     tint: "bg-tint-blue",

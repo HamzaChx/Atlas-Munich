@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "@/i18n/navigation";
-import Fuse from "fuse.js";
+import { searchGuides } from "@/data/guides-search";
 import { EmptyState, GuideGraph } from "@/components/shared";
 
 import type { Guide } from "@/types";
@@ -94,29 +94,16 @@ function GuidesPageContent({ guides, treeNodes }: { guides: Guide[]; treeNodes: 
 
   const topicLabel = (key: string) => tCat(`${key}.title`);
 
-  const fuse = useMemo(
-    () =>
-      new Fuse(
-        guides.map((guide) => ({ ...guide, topicLabel: topicLabel(guide.categoryKey) })),
-        {
-          keys: [
-            { name: "title", weight: 2 },
-            { name: "summary", weight: 1 },
-            { name: "topicLabel", weight: 1 },
-            { name: "tags", weight: 0.5 },
-          ],
-          threshold: 0.35,
-          ignoreLocation: true,
-        }
-      ),
+  const labeledGuides = useMemo(
+    () => guides.map((guide) => ({ ...guide, topicLabel: topicLabel(guide.categoryKey) })),
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [guides, t, tCat]
   );
 
   const searchResults = useMemo(() => {
     if (!isSearching) return [];
-    return fuse.search(searchQuery.trim()).map((result) => result.item);
-  }, [searchQuery, isSearching, fuse]);
+    return searchGuides(labeledGuides, searchQuery);
+  }, [searchQuery, isSearching, labeledGuides]);
 
   const guideNoun = (count: number) => (count === 1 ? common("guide") : common("guides"));
 
@@ -253,7 +240,7 @@ function GuidesPageContent({ guides, treeNodes }: { guides: Guide[]; treeNodes: 
           </p>
           <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
             <Link
-              href="/essentials#questions"
+              href="/faq"
               className="inline-flex items-center gap-2 rounded-full bg-zinc-900 px-6 py-3 text-sm font-semibold text-white shadow-md shadow-zinc-900/15 transition-all hover:bg-zinc-800 dark:bg-zinc-50 dark:text-zinc-900 dark:shadow-none dark:hover:bg-zinc-200"
             >
               {t("cta.browseFaqs")}

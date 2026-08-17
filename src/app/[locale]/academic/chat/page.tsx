@@ -12,7 +12,7 @@ export default function AcademicChatPage() {
   return (
     <>
       <link rel="preload" href="/ilham.webp" as="image" type="image/webp" />
-      <DedicatedChat theme={CHAT_THEMES.academic} backPath="/academic" />
+      <DedicatedChat theme={CHAT_THEMES.academic} backPath="/chat" />
     </>
   );
 }

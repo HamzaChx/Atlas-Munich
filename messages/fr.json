@@ -32,8 +32,8 @@
     "aboutAria": "À propos d'Atlas Munich"
   },
   "home": {
-    "heroTitle": "Nouveau à Munich ?",
-    "heroTitleHighlight": "On est là pour vous.",
+    "heroTitle": "Tout ce qu'on a dû apprendre à la dure,",
+    "heroTitleHighlight": "pour vous l'épargner.",
     "heroSubtitle": "Des guides, une carte, et des gens qui l'ont déjà fait, pour les Marocains qui s'installent à Munich.",
     "heroCommunity": "Hamza Chaouki",
     "stats": {
@@ -131,7 +131,7 @@
     "quick": {
       "badge": "Par où voulez-vous commencer ?",
       "map": "Trouver des lieux",
-      "essentials": "S'installer",
+      "ask": "Poser des questions",
       "career": "Trouver un travail"
     },
     "welcome": {
@@ -387,6 +387,8 @@
       "contactUs": "Nous contacter",
       "spreadTheWord": "Faites passer le mot",
       "spreadTheWordDesc": "Partagez Atlas Munich avec d'autres Marocains venant à Munich. Le bouche-à-oreille aide !",
+      "github": "GitHub",
+      "githubDesc": "Mettez une étoile au dépôt, signalez un bug ou ouvrez une pull request.",
       "share": "Partager"
     },
     "contributors": {
@@ -395,12 +397,6 @@
       "you": "Vous ?",
       "joinTeam": "Rejoignez l'équipe !",
       "contributeOnGithub": "Contribuer sur GitHub"
-    },
-    "contact": {
-      "title": "Nous contacter",
-      "description": "Vous avez des questions, des suggestions ou juste envie de dire bonjour ? Nous serions ravis de vous entendre !",
-      "github": "GitHub",
-      "emailUs": "Nous envoyer un email"
     }
   },
   "categories": {
@@ -1758,7 +1754,8 @@
     "aiBadge": "IA",
     "aiDisclaimer": "Les réponses sont générées et peuvent être fausses. Vérifiez ce qui compte.",
     "typing": "écrit…",
-    "send": "Envoyer"
+    "send": "Envoyer",
+    "browseGuidesCue": "Vous pouvez aussi parcourir notre catalogue de guides"
   },
   "legal": {
     "privacy": {
@@ -1861,7 +1858,15 @@
             },
             {
               "t": "p",
-              "x": "Si vous ouvrez un assistant, les messages que vous écrivez, l'assistant choisi, la langue de l'interface et le chemin de la page où vous vous trouviez sont transmis à notre sous-traitant IA afin qu'une réponse soit produite. Les conversations ne sont enregistrées dans aucune base de données de notre côté et ne sont reliées à aucun profil. Le détail technique figure à la section 6."
+              "x": "Si vous ouvrez un assistant, les messages que vous écrivez, l'assistant choisi, la langue de l'interface et le chemin de la page où vous vous trouviez sont transmis à notre sous-traitant IA afin qu'une réponse soit produite. Les conversations ne sont enregistrées dans aucune base de données de notre côté et ne sont reliées à aucun profil : elles sont stockées uniquement dans le stockage local de votre navigateur, sur votre propre appareil, jusqu'à ce que vous les effaciez ou que votre navigateur le fasse. Le détail technique figure à la section 6."
+            },
+            {
+              "t": "h",
+              "x": "Signal de lacune de contenu"
+            },
+            {
+              "t": "p",
+              "x": "Lorsqu'un assistant ne trouve rien de pertinent dans nos propres guides ou questions fréquentes pour répondre à votre question, nous enregistrons que cela s'est produit : quel assistant, si une correspondance a été trouvée, et à quel moment. Nous n'enregistrons jamais la question elle-même, la réponse, ni aucun autre élément de la conversation. Cela sert uniquement à repérer les sujets qui manquent à nos guides."
             },
             {
               "t": "h",
@@ -1923,7 +1928,7 @@
                 ],
                 [
                   "Stockage local sur votre appareil",
-                  "Mémoriser l'apparence choisie et le fait que l'assistant a déjà été ouvert",
+                  "Mémoriser l'apparence choisie, le fait que l'assistant a déjà été ouvert, vos conversations avec les assistants, et les mises en relation que vous avez refusées",
                   "§ 25 al. 2 n° 2 TDDDG, strictement nécessaire, et art. 6, § 1, f) RGPD",
                   "Jusqu'à ce que vous effaciez le stockage de votre navigateur"
                 ],
@@ -1988,7 +1993,7 @@
             },
             {
               "t": "p",
-              "x": "Deux entrées sont écrites dans le stockage local de votre navigateur. Toutes deux sont strictement nécessaires à la fourniture du service que vous avez expressément demandé et sont donc dispensées de consentement au titre du § 25 al. 2 n° 2 TDDDG. Elles restent sur votre appareil, ne sont lisibles que par ce site et ne nous sont jamais transmises."
+              "x": "Une petite famille d'entrées est écrite dans le stockage local de votre navigateur. Toutes sont strictement nécessaires à la fourniture du service que vous avez expressément demandé et sont donc dispensées de consentement au titre du § 25 al. 2 n° 2 TDDDG. Elles restent sur votre appareil, ne sont lisibles que par ce site et ne nous sont jamais transmises."
             },
             {
               "t": "table",
@@ -2004,6 +2009,12 @@
                   "atlas-chatbot-interacted",
                   "Stockage local",
                   "Évite que l'assistant répète son introduction une fois que vous l'avez utilisé",
+                  "Jusqu'à effacement par vos soins"
+                ],
+                [
+                  "atlas-chat:*",
+                  "Stockage local",
+                  "Stocke votre historique de conversation avec chaque assistant, et les mises en relation avec un spécialiste que vous avez déjà refusées, afin qu'ils persistent d'une visite à l'autre",
                   "Jusqu'à effacement par vos soins"
                 ]
               ]
@@ -2033,7 +2044,7 @@
             },
             {
               "t": "p",
-              "x": "Nous ne conservons pas vos conversations. Elles vivent dans votre onglet tant qu'il reste ouvert et disparaissent dès que vous le fermez ou le rechargez. Selon les conditions d'API applicables, les entrées et les sorties ne servent pas à entraîner les modèles du fournisseur et ne sont conservées que trente jours au plus aux seules fins de détection des abus, avant suppression, sauf durée plus longue imposée par la loi."
+              "x": "Nous ne conservons pas vos conversations sur nos serveurs. Elles sont enregistrées uniquement dans le stockage local de votre navigateur, sur cet appareil, et persistent d'une visite à l'autre jusqu'à ce que vous effaciez les données de site de votre navigateur ou la conversation elle-même. Elles ne nous sont jamais transmises ni lisibles par nous en dehors de la seule requête nécessaire à la génération de chaque réponse. Selon les conditions d'API applicables, les entrées et les sorties ne servent pas à entraîner les modèles du fournisseur et sont conservées par ce dernier trente jours au plus aux seules fins de détection des abus, avant suppression, sauf durée plus longue imposée par la loi."
             },
             {
               "t": "p",
@@ -2153,7 +2164,7 @@
               "x": [
                 "Journaux serveur : conservés par l'hébergeur pendant une courte fenêtre d'exploitation, en règle générale au plus trente jours, sauf incident de sécurité précis nécessitant un examen plus long.",
                 "Statistiques : seuls des indicateurs agrégés survivent à la visite, il ne reste donc rien à rattacher à une personne.",
-                "Conversations avec les assistants : nullement conservées par nous, et conservées jusqu'à trente jours par le sous-traitant IA pour la détection des abus.",
+                "Conversations avec les assistants : nullement conservées sur nos serveurs. Elles persistent dans le stockage local de votre navigateur, sur votre propre appareil, jusqu'à ce que vous les effaciez, et sont séparément conservées jusqu'à trente jours par le sous-traitant IA pour la détection des abus.",
                 "Compteurs de limitation de débit : mémoire volatile uniquement, dix minutes au plus, perdus à chaque déploiement ou redémarrage.",
                 "Stockage local : entièrement sous votre contrôle et supprimable à tout moment.",
                 "Courriels : supprimés une fois l'affaire réglée, sauf obligation de conservation commerciale ou fiscale, auquel cas le traitement est limité jusqu'à l'expiration du délai."
@@ -2400,7 +2411,7 @@
             },
             {
               "t": "p",
-              "x": "Le service n'héberge ni comptes ni contenus créés par les utilisateurs : vous n'y avez donc rien à perdre. Ce que vous souhaitez conserver, conservez-le vous-même."
+              "x": "Le service n'héberge aucun compte utilisateur. Les conversations avec les assistants sont enregistrées uniquement dans le stockage local de votre propre navigateur, jamais sur nos serveurs : effacer les données de site de votre navigateur ou changer d'appareil repart donc de zéro. Ce que vous souhaitez conserver au-delà, conservez-le vous-même."
             }
           ]
         },
@@ -2857,6 +2868,12 @@
       "title": "L'essentiel,",
       "titleHighlight": "réglé",
       "subtitle": "Déclaration de domicile, titre de séjour, et tout ce que personne ne vous explique avant votre arrivée."
+    },
+    "guide": {
+      "badge": "Demandez",
+      "title": "Demandez à",
+      "titleHighlight": "Zellija",
+      "subtitle": "Guides, FAQ, et les spécialistes qui peuvent vous aider — un seul endroit où demander, plutôt que six pages à chercher."
     },
     "career": {
       "badge": "Étape trois",

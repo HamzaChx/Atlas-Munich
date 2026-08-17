@@ -22,10 +22,9 @@ import { Locale } from "@/i18n";
 
 interface NavTranslations {
   map: string;
-  essentials: string;
+  ask: string;
   career: string;
   community: string;
-  tools: string;
   about: string;
   aboutAria: string;
 }
@@ -37,7 +36,7 @@ interface HeaderProps {
 
 export function Header({ locale, translations }: HeaderProps) {
   /* From @/i18n/navigation, so the path arrives locale-stripped. The previous
-     import from next/navigation meant `/fr/essentials` never matched `/essentials`
+     import from next/navigation meant `/fr/chat` never matched `/chat`
      and no nav item ever highlighted outside English. */
   const pathname = usePathname();
   const [scrolled, setScrolled] = React.useState(false);
@@ -52,23 +51,18 @@ export function Header({ locale, translations }: HeaderProps) {
   }, []);
 
   const navItems = [
+    { label: translations.ask, href: "/chat" },
     { label: translations.map, href: "/map" },
-    { label: translations.essentials, href: "/essentials" },
     { label: translations.career, href: "/career" },
     { label: translations.community, href: "/community" },
-    { label: translations.tools, href: "/tools" },
   ];
 
-  /* Transparent at the top of the homepage, over the light illustration
-     hero; solid once the reader scrolls past it (or on any other page,
-     which has no hero to sit on). The hero background is a permanently
-     light surface regardless of site theme, so glass mode uses dark ink
-     text here, not white. The About and Settings controls are each
-     already an opaque bg-card circle, so they read fine over the hero
-     without needing a variant. */
-  const isHomePage = pathname === "/";
-  const isGlass = isHomePage && !scrolled;
-
+  /* Transparent at the top of the homepage, over the woven-thread hero;
+     solid once the reader scrolls past it (or on any other page, which
+     has no hero to sit on). The hero sits on the same --background token
+     as the rest of the site, so no separate "glass" text treatment is
+     needed here — the normal light/dark classes already read fine over
+     it, same as they do once the header goes solid. */
   const headerBg = scrolled
     ? "bg-background border-b border-border shadow-[0_1px_3px_0_rgb(0_0_0_/_0.05)] dark:shadow-none"
     : "bg-transparent border-b border-transparent";
@@ -91,21 +85,12 @@ export function Header({ locale, translations }: HeaderProps) {
             height={36}
             className="h-8 w-8 rounded-full transition-transform duration-300 group-hover:scale-105 sm:h-9 sm:w-9 shadow-sm"
           />
-          <span
-            className={cn(
-              "font-display text-lg sm:text-xl font-bold tracking-tight transition-colors duration-300",
-              isGlass ? "text-zinc-900" : "text-zinc-900 dark:text-zinc-50"
-            )}
-          >
-            <span
-              className={cn(
-                "transition-colors duration-300",
-                isGlass ? "text-zellige" : "text-zellige dark:text-zellige"
-              )}
-            >
-              Atlas
-            </span>{" "}
-            Munich
+          {/* drop-shadow is a safety net for the transparent-header state on
+              the homepage: it sits over the animated hero threads, and a
+              bright thread swooping through can otherwise wash the
+              wordmark out even with the hero's own scrim in place. */}
+          <span className="font-display text-lg sm:text-xl font-bold tracking-tight text-zinc-900 drop-shadow-[0_1px_6px_rgba(0,0,0,0.35)] dark:text-zinc-50 dark:drop-shadow-[0_1px_8px_rgba(0,0,0,0.7)]">
+            <span className="text-zellige">Atlas</span> Munich
           </span>
         </Link>
 
@@ -119,12 +104,8 @@ export function Header({ locale, translations }: HeaderProps) {
                 className={cn(
                   "relative rounded-full px-4 py-2 text-sm font-medium transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-zellige/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                   isActive
-                    ? isGlass
-                      ? "bg-zinc-900/10 text-zinc-900"
-                      : "bg-zinc-100 text-zinc-900 dark:bg-foreground/10 dark:text-zinc-50"
-                    : isGlass
-                      ? "text-zinc-700 hover:bg-zinc-900/5 hover:text-zinc-900"
-                      : "text-zinc-500 dark:text-zinc-400 hover:bg-zinc-100/70 hover:text-zinc-900 dark:hover:bg-foreground/[0.075] dark:hover:text-zinc-50"
+                    ? "bg-zinc-100 text-zinc-900 dark:bg-foreground/10 dark:text-zinc-50"
+                    : "text-zinc-500 dark:text-zinc-400 hover:bg-zinc-100/70 hover:text-zinc-900 dark:hover:bg-foreground/[0.075] dark:hover:text-zinc-50"
                 )}
               >
                 {item.label}

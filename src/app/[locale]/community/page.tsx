@@ -2,12 +2,9 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
-import { GithubIcon, Mail, MessageCircle, Heart, ArrowRight } from "lucide-react";
+import { GithubIcon, MessageCircle, Heart, ArrowRight } from "lucide-react";
 
-import { ShareButton, FaqTopicGrid } from "@/components/shared";
-import { getFaqsByHub } from "@/data/faqs";
-import { getHub } from "@/data/hubs";
-import { faqPageJsonLd } from "@/lib/structured-data";
+import { ShareButton } from "@/components/shared";
 import { WHATSAPP_COMMUNITY_URL } from "@/lib/site-config";
 import { alternatesFor, localizedUrl } from "@/lib/urls";
 
@@ -46,11 +43,6 @@ export default async function CommunityPage({ params }: PageProps) {
   const t = await getTranslations("hubs");
   const c = await getTranslations("community");
   const a = await getTranslations("about");
-
-  /* The broad "how do I even start" questions, which belong with the people
-     rather than with any one stage of the paperwork. */
-  const hubFaqs = getFaqsByHub("community");
-  const faqSchema = faqPageJsonLd(hubFaqs);
 
   return (
     <div className="min-h-screen bg-background">
@@ -163,58 +155,33 @@ export default async function CommunityPage({ params }: PageProps) {
                     />
                   </div>
                 </div>
-              </div>
-            </div>
-          </section>
 
-          {/* ========== GET IN TOUCH ========== */}
-          <section id="contact" className="scroll-mt-24 lg:col-span-12">
-            <div className="rounded-[2rem] bg-tint-saffron p-8 text-center sm:p-10 dark:ring-1 dark:ring-border">
-              <h2 className="font-display text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-3xl">
-                {a("contact.title")}
-              </h2>
-              <p className="mx-auto mt-3 max-w-xl text-sm text-zinc-600 dark:text-zinc-300">
-                {a("contact.description")}
-              </p>
-              <div className="mt-6 flex flex-wrap items-center justify-center gap-3">
-                <Link
-                  href="https://github.com/HamzaChx/Atlas-Munich"
-                  target="_blank"
-                  className="inline-flex items-center gap-2 rounded-full bg-zinc-900 px-6 py-3 text-sm font-semibold text-white shadow-md shadow-zinc-900/15 transition-all hover:bg-zinc-800 dark:bg-zinc-50 dark:text-zinc-900 dark:shadow-none dark:hover:bg-zinc-200"
-                >
-                  <GithubIcon className="h-4 w-4" />
-                  {a("contact.github")}
-                </Link>
-                <Link
-                  href="mailto:hamza.chaouki@tum.de"
-                  className="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-semibold text-zinc-700 transition-colors hover:bg-card dark:text-zinc-300 dark:hover:bg-foreground/10"
-                >
-                  <Mail className="h-4 w-4" />
-                  {a("contact.emailUs")}
-                </Link>
+                <div className="flex items-start gap-4">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-tint-green">
+                    <GithubIcon className="h-4 w-4 text-acc-green" />
+                  </span>
+                  <div>
+                    <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-50">
+                      {a("contribute.github")}
+                    </h3>
+                    <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
+                      {a("contribute.githubDesc")}
+                    </p>
+                    <Link
+                      href="https://github.com/HamzaChx/Atlas-Munich"
+                      target="_blank"
+                      className="mt-2 inline-flex items-center gap-1.5 text-sm font-semibold text-zellige transition-opacity hover:opacity-80"
+                    >
+                      {a("contribute.github")}
+                      <ArrowRight className="h-3 w-3" />
+                    </Link>
+                  </div>
+                </div>
               </div>
             </div>
           </section>
         </div>
-
-        {hubFaqs.length > 0 && (
-          <section id="questions" className="reveal mt-5 scroll-mt-24">
-            <h2 className="font-display text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-2xl">
-              {t("questionsTitle")}
-            </h2>
-            <div className="mt-5">
-              <FaqTopicGrid faqs={hubFaqs} hub={getHub("community")} />
-            </div>
-          </section>
-        )}
       </div>
-
-      {faqSchema && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
-        />
-      )}
     </div>
   );
 }

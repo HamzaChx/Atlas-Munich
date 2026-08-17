@@ -32,8 +32,8 @@
     "aboutAria": "Über Atlas Munich"
   },
   "home": {
-    "heroTitle": "Neu in München?",
-    "heroTitleHighlight": "Wir sind für dich da.",
+    "heroTitle": "Wir haben alles auf die harte Tour gelernt,",
+    "heroTitleHighlight": "damit du es nicht musst.",
     "heroSubtitle": "Guides, eine Karte und Leute, die es schon gemacht haben, für Marokkaner, die in München ankommen.",
     "stats": {
       "guides": "Ratgeber",
@@ -131,7 +131,7 @@
     "quick": {
       "badge": "Wo möchtest du anfangen?",
       "map": "Orte finden",
-      "essentials": "Ankommen",
+      "ask": "Fragen stellen",
       "career": "Arbeit finden"
     },
     "welcome": {
@@ -387,6 +387,8 @@
       "contactUs": "Kontaktiere uns",
       "spreadTheWord": "Verbreite die Nachricht",
       "spreadTheWordDesc": "Teile Atlas München mit anderen Marokkanern, die nach München kommen. Mundpropaganda hilft!",
+      "github": "GitHub",
+      "githubDesc": "Gib dem Repo einen Stern, melde einen Fehler oder öffne einen Pull Request.",
       "share": "Teilen"
     },
     "contributors": {
@@ -395,12 +397,6 @@
       "you": "Du?",
       "joinTeam": "Tritt dem Team bei!",
       "contributeOnGithub": "Auf GitHub beitragen"
-    },
-    "contact": {
-      "title": "Kontakt aufnehmen",
-      "description": "Hast du Fragen, Vorschläge oder möchtest einfach Hallo sagen? Wir würden uns freuen, von dir zu hören!",
-      "github": "GitHub",
-      "emailUs": "E-Mail an uns"
     }
   },
   "categories": {
@@ -1762,7 +1758,8 @@
     "aiBadge": "KI",
     "aiDisclaimer": "Antworten werden generiert und können falsch sein. Prüfe, was wichtig ist.",
     "typing": "schreibt…",
-    "send": "Senden"
+    "send": "Senden",
+    "browseGuidesCue": "Alternativ kannst du unseren Guide-Katalog durchstöbern"
   },
   "legal": {
     "privacy": {
@@ -1865,7 +1862,15 @@
             },
             {
               "t": "p",
-              "x": "Wenn Sie einen Assistenten öffnen, werden Ihre Nachrichten, der gewählte Assistent, Ihre Oberflächensprache und der Pfad der Seite, auf der Sie sich befanden, an unseren KI-Auftragsverarbeiter übermittelt, damit eine Antwort erzeugt werden kann. Gespräche werden von uns in keiner Datenbank gespeichert und mit keinem Profil verknüpft. Die technischen Einzelheiten stehen in Abschnitt 6."
+              "x": "Wenn Sie einen Assistenten öffnen, werden Ihre Nachrichten, der gewählte Assistent, Ihre Oberflächensprache und der Pfad der Seite, auf der Sie sich befanden, an unseren KI-Auftragsverarbeiter übermittelt, damit eine Antwort erzeugt werden kann. Gespräche werden von uns in keiner Datenbank gespeichert und mit keinem Profil verknüpft: Sie werden ausschließlich im lokalen Speicher Ihres Browsers, auf Ihrem eigenen Gerät, abgelegt, bis Sie sie oder Ihr Browser sie löschen. Die technischen Einzelheiten stehen in Abschnitt 6."
+            },
+            {
+              "t": "h",
+              "x": "Signal für Wissenslücken"
+            },
+            {
+              "t": "p",
+              "x": "Findet ein Assistent in unseren eigenen Ratgebern oder häufigen Fragen nichts Passendes zu Ihrer Frage, protokollieren wir, dass dies geschehen ist: welcher Assistent, ob ein Treffer gefunden wurde, und wann. Wir protokollieren niemals die Frage selbst, die Antwort oder sonstige Inhalte des Gesprächs. Das dient allein dazu, zu erkennen, welche Themen unseren Ratgebern fehlen."
             },
             {
               "t": "h",
@@ -1927,7 +1932,7 @@
                 ],
                 [
                   "Lokaler Speicher auf Ihrem Gerät",
-                  "Merken der gewählten Darstellung und ob der Assistent bereits geöffnet wurde",
+                  "Merken der gewählten Darstellung, ob der Assistent bereits geöffnet wurde, Ihrer Gespräche mit den Assistenten und der von Ihnen abgelehnten Vermittlungen",
                   "§ 25 Abs. 2 Nr. 2 TDDDG, unbedingt erforderlich, und Art. 6 Abs. 1 lit. f DSGVO",
                   "Bis Sie den Browserspeicher leeren"
                 ],
@@ -1992,7 +1997,7 @@
             },
             {
               "t": "p",
-              "x": "Zwei Einträge werden im lokalen Speicher Ihres Browsers abgelegt. Beide sind unbedingt erforderlich, um den von Ihnen ausdrücklich gewünschten Dienst bereitzustellen, und daher nach § 25 Abs. 2 Nr. 2 TDDDG einwilligungsfrei. Sie verbleiben auf Ihrem Gerät, sind nur für diese Seite lesbar und werden nie an uns übertragen."
+              "x": "Eine kleine Gruppe von Einträgen wird im lokalen Speicher Ihres Browsers abgelegt. Alle sind unbedingt erforderlich, um den von Ihnen ausdrücklich gewünschten Dienst bereitzustellen, und daher nach § 25 Abs. 2 Nr. 2 TDDDG einwilligungsfrei. Sie verbleiben auf Ihrem Gerät, sind nur für diese Seite lesbar und werden nie an uns übertragen."
             },
             {
               "t": "table",
@@ -2008,6 +2013,12 @@
                   "atlas-chatbot-interacted",
                   "Lokaler Speicher",
                   "Verhindert, dass der Assistent seine Einführung wiederholt, nachdem Sie ihn genutzt haben",
+                  "Bis Sie ihn löschen"
+                ],
+                [
+                  "atlas-chat:*",
+                  "Lokaler Speicher",
+                  "Speichert Ihren Gesprächsverlauf mit jedem Assistenten sowie bereits abgelehnte Vermittlungen an einen Spezialisten, damit sie über Besuche hinweg erhalten bleiben",
                   "Bis Sie ihn löschen"
                 ]
               ]
@@ -2037,7 +2048,7 @@
             },
             {
               "t": "p",
-              "x": "Wir speichern Ihre Gespräche nicht. Sie bestehen nur, solange der Browser-Tab geöffnet bleibt, und sind nach dem Schließen oder Neuladen verschwunden. Nach den geltenden API-Bedingungen werden Ein- und Ausgaben nicht zum Training der Modelle des Anbieters verwendet und ausschließlich zur Missbrauchserkennung bis zu dreißig Tage vorgehalten und danach gelöscht, sofern nicht gesetzlich eine längere Frist gilt."
+              "x": "Wir speichern Ihre Gespräche nicht auf unseren Servern. Sie werden ausschließlich im lokalen Speicher Ihres Browsers auf diesem Gerät abgelegt und bleiben über Besuche hinweg erhalten, bis Sie die Websitedaten Ihres Browsers oder das Gespräch selbst löschen. Sie werden uns außerhalb der einzelnen, zur Erzeugung jeder Antwort nötigen Anfrage nie übermittelt oder von uns gelesen. Nach den geltenden API-Bedingungen werden Ein- und Ausgaben nicht zum Training der Modelle des Anbieters verwendet und vom Anbieter ausschließlich zur Missbrauchserkennung bis zu dreißig Tage vorgehalten und danach gelöscht, sofern nicht gesetzlich eine längere Frist gilt."
             },
             {
               "t": "p",
@@ -2157,7 +2168,7 @@
               "x": [
                 "Server-Logs: beim Hosting-Anbieter für einen kurzen Betriebszeitraum, in der Regel nicht länger als dreißig Tage, sofern nicht ein konkreter Sicherheitsvorfall eine längere Prüfung erfordert.",
                 "Statistik: über den Besuch hinaus bestehen nur aggregierte Kennzahlen, denen sich niemand mehr zuordnen lässt.",
-                "Assistenten-Gespräche: von uns gar nicht gespeichert, beim KI-Auftragsverarbeiter bis zu dreißig Tage zur Missbrauchserkennung.",
+                "Assistenten-Gespräche: von uns überhaupt nicht auf unseren Servern gespeichert. Sie bleiben im lokalen Speicher Ihres Browsers auf Ihrem eigenen Gerät erhalten, bis Sie sie löschen, und werden gesondert beim KI-Auftragsverarbeiter bis zu dreißig Tage zur Missbrauchserkennung vorgehalten.",
                 "Zähler zur Ratenbegrenzung: nur im flüchtigen Speicher, höchstens zehn Minuten, und bei jeder Bereitstellung oder jedem Neustart verloren.",
                 "Lokaler Speicher: vollständig in Ihrer Hand und jederzeit entfernbar.",
                 "E-Mail: gelöscht, sobald der Vorgang erledigt ist, sofern nicht handels- oder steuerrechtliche Pflichten die Aufbewahrung verlangen, in welchem Fall die Verarbeitung bis zum Fristablauf eingeschränkt wird."
@@ -2404,7 +2415,7 @@
             },
             {
               "t": "p",
-              "x": "Der Dienst führt keine Nutzerkonten und speichert keine von Nutzenden erstellten Inhalte, es kann hier also nichts von Ihnen verloren gehen. Was Sie behalten möchten, bewahren Sie bitte selbst auf."
+              "x": "Der Dienst führt keine Nutzerkonten. Gespräche mit den Assistenten werden ausschließlich im lokalen Speicher Ihres eigenen Browsers abgelegt, niemals auf unseren Servern: Löschen Sie die Websitedaten Ihres Browsers oder wechseln Sie das Gerät, beginnen Sie neu. Was Sie darüber hinaus behalten möchten, bewahren Sie bitte selbst auf."
             }
           ]
         },
@@ -2861,6 +2872,12 @@
       "title": "Alles Wichtige,",
       "titleHighlight": "erledigt",
       "subtitle": "Anmeldung, Aufenthaltstitel und die Seiten des Alltags, die dir vorher niemand erklärt."
+    },
+    "guide": {
+      "badge": "Frag einfach",
+      "title": "Frag",
+      "titleHighlight": "Zellija",
+      "subtitle": "Guides, FAQ und die Fachleute, die dir helfen können — ein Ort zum Fragen, statt sechs Seiten zum Suchen."
     },
     "career": {
       "badge": "Schritt drei",

@@ -12,7 +12,7 @@ export default function HealthcareChatPage() {
   return (
     <>
       <link rel="preload" href="/loubna.webp" as="image" type="image/webp" />
-      <DedicatedChat theme={CHAT_THEMES.healthcare} backPath="/healthcare" />
+      <DedicatedChat theme={CHAT_THEMES.healthcare} backPath="/chat" />
     </>
   );
 }

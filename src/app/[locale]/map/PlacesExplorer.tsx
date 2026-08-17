@@ -35,6 +35,7 @@ import {
 import { useGeolocation } from "@/hooks/useGeolocation";
 import { useRoadRoute } from "@/hooks/useRoadRoute";
 import { haversineDistanceKm } from "@/lib/geo";
+import { filterPlaces } from "@/data/places-search";
 import { planItinerary, itineraryPath, MAX_STOPS } from "@/lib/itinerary";
 import { multiStopDirectionsUrl } from "@/lib/maps";
 
@@ -349,57 +350,29 @@ function PlacesExplorerInner({ places }: { places: Place[] }) {
     if (!showCuisineFilter) setCuisineFilter(null);
   }, [showCuisineFilter]);
 
-  const filteredPlaces = useMemo(() => {
-    let result = placesWithDistance;
-
-    result = result.filter((place) => place.category === selectedCategory);
-
-    if (priceFilter) {
-      result = result.filter((place) => place.price === priceFilter);
-    }
-
-    if (districtFilter) {
-      result = result.filter((place) => place.district === districtFilter);
-    }
-
-    if (cuisineFilter) {
-      result = result.filter(
-        (place) => place.category === "restaurant" && place.tags.includes(cuisineFilter)
-      );
-    }
-
-    if (searchQuery.trim()) {
-      const query = searchQuery.toLowerCase();
-      result = result.filter(
-        (place) =>
-          place.name.toLowerCase().includes(query) ||
-          place.address.toLowerCase().includes(query) ||
-          place.tags.some((tag) => tag.toLowerCase().includes(query)) ||
-          place.description?.toLowerCase().includes(query)
-      );
-    }
-
-    if (geolocation.coords) {
-      if (radiusKm) {
-        result = result.filter(
-          (place) => place.distanceKm !== undefined && place.distanceKm <= radiusKm
-        );
-      }
-      // "Near me" implies proximity order is the point of turning it on.
-      result = [...result].sort((a, b) => (a.distanceKm ?? Infinity) - (b.distanceKm ?? Infinity));
-    }
-
-    return result;
-  }, [
-    placesWithDistance,
-    selectedCategory,
-    priceFilter,
-    districtFilter,
-    cuisineFilter,
-    searchQuery,
-    geolocation.coords,
-    radiusKm,
-  ]);
+  const filteredPlaces = useMemo(
+    () =>
+      filterPlaces(places, {
+        category: selectedCategory,
+        price: priceFilter ?? undefined,
+        district: districtFilter ?? undefined,
+        cuisineTag: cuisineFilter ?? undefined,
+        query: searchQuery,
+        near: geolocation.coords
+          ? { ...geolocation.coords, radiusKm: radiusKm ?? undefined }
+          : undefined,
+      }),
+    [
+      places,
+      selectedCategory,
+      priceFilter,
+      districtFilter,
+      cuisineFilter,
+      searchQuery,
+      geolocation.coords,
+      radiusKm,
+    ]
+  );
 
   const activeFilterCount = [priceFilter, districtFilter, cuisineFilter].filter(Boolean).length;
   /* A category is always selected now, so it no longer counts as "filtering";

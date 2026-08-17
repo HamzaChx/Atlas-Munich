@@ -49,19 +49,20 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const corePages = [
     ...entry("/", { changeFrequency: "weekly", priority: 1.0 }),
     ...entry("/map", { changeFrequency: "weekly", priority: 0.95 }),
-    ...entry("/essentials", { changeFrequency: "weekly", priority: 0.95 }),
+    ...entry("/chat", { changeFrequency: "weekly", priority: 0.95 }),
     ...entry("/career", { changeFrequency: "weekly", priority: 0.95 }),
     ...entry("/community", { changeFrequency: "monthly", priority: 0.8 }),
     ...entry("/guides", { changeFrequency: "weekly", priority: 0.9 }),
   ];
 
-  // Topic hub pages — high-intent landing pages per domain
+  // Topic hub pages — high-intent landing pages per domain. /chat/housing is
+  // deliberately not here: it's chat UI only now, same as the other three
+  // specialists' /x/chat pages, none of which carry standalone SEO value
+  // (see robots.ts).
   const topicPages = [
-    ...entry("/housing", { changeFrequency: "weekly", priority: 0.88 }),
     ...entry("/bureaucracy", { changeFrequency: "weekly", priority: 0.88 }),
     ...entry("/academic", { changeFrequency: "weekly", priority: 0.88 }),
     ...entry("/healthcare", { changeFrequency: "weekly", priority: 0.85 }),
-    ...entry("/tools", { changeFrequency: "monthly", priority: 0.8 }),
   ];
 
   // Secondary / informational pages

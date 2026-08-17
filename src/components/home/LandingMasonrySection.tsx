@@ -25,14 +25,6 @@ export function LandingMasonrySection() {
       category: "Map & Halal Spots",
     },
     {
-      id: "essentials",
-      img: "/masonry/essentials.png",
-      url: "/essentials",
-      height: 420,
-      title: "Rent & Housing Essentials",
-      category: "Apartments & Anmeldung",
-    },
-    {
       id: "bureaucracy",
       img: "/masonry/bureaucracy.png",
       url: "/bureaucracy",
@@ -73,12 +65,15 @@ export function LandingMasonrySection() {
       category: "Universities & Research",
     },
     {
-      id: "tools",
+      // Stale preview image: this was captured for the old /tools assistant
+      // roster grid, which folded into the chat-first /chat experience along
+      // with /essentials. Needs a fresh screenshot of /chat once it's live.
+      id: "chat",
       img: "/masonry/tools.png",
-      url: "/tools",
+      url: "/chat",
       height: 520,
-      title: "AI Bureaucracy & Housing Helpers",
-      category: "Smart AI Tools",
+      title: "Ask Zellija Anything",
+      category: "Guides, Housing & AI Help",
     },
     {
       id: "guides",
@@ -113,7 +108,7 @@ export function LandingMasonrySection() {
               `align-items: stretch`) to the masonry's actual rendered height,
               then split top/bottom internally so the greeting anchors level
               with the bottom of the grid instead of floating mid-page. ── */}
-          <div className="w-full lg:col-span-5 flex flex-col">
+          <div className="w-full lg:col-span-5 flex flex-col items-center text-center">
             <span className="eyebrow">{tCommunity("badge")}</span>
             <h2 className="font-display mt-3 text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-3xl 2xl:text-5xl">
               {tCommunity("title")}
@@ -130,7 +125,7 @@ export function LandingMasonrySection() {
               {tCommunity("description3")}
             </p>
 
-            <div className="mt-6 flex flex-col gap-2.5 sm:flex-row sm:gap-3">
+            <div className="mt-6 flex flex-col items-center gap-2.5 sm:flex-row sm:justify-center sm:gap-3">
               <Button
                 asChild
                 className="rounded-full bg-zinc-900 px-6 text-white shadow-md shadow-zinc-900/15 hover:bg-zinc-800 dark:bg-zinc-50 dark:text-zinc-900 dark:shadow-none dark:hover:bg-zinc-200"

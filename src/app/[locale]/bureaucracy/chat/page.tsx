@@ -12,7 +12,7 @@ export default function BureaucracyChatPage() {
   return (
     <>
       <link rel="preload" href="/dalilah.webp" as="image" type="image/webp" />
-      <DedicatedChat theme={CHAT_THEMES.bureaucracy} backPath="/bureaucracy" />
+      <DedicatedChat theme={CHAT_THEMES.bureaucracy} backPath="/chat" />
     </>
   );
 }

@@ -32,8 +32,8 @@ export const LEGAL = {
   repo: "https://github.com/HamzaChx/Atlas-Munich",
 
   /** Versioning. Bump both values whenever the text changes materially. */
-  privacy: { version: "2.0", effective: "2026-07-31" },
-  terms: { version: "2.0", effective: "2026-07-31" },
+  privacy: { version: "2.1", effective: "2026-08-17" },
+  terms: { version: "2.1", effective: "2026-08-17" },
 
   /**
    * Lead supervisory authority for a controller established in Bavaria

@@ -2,6 +2,8 @@
 // Atlas Munich Chatbot - Type Definitions
 // ============================================
 
+import type { Place } from "@/types";
+
 export type ChatbotType =
   | "zellija"
   | "hamid"
@@ -32,14 +34,42 @@ export interface ChatbotPersonality {
   traits: string[];
 }
 
+// ============================================
+// Response blocks
+//
+// A chat turn is an ordered list of these, not a string. `text` covers plain
+// prose (rendered as markdown); the rest are tool outputs — structured data a
+// real component renders, not something scraped out of the model's prose.
+// ============================================
+export type ChatBlock =
+  | { type: "text"; text: string }
+  | { type: "guide-citation"; slug: string; title: string; summary: string }
+  | { type: "map-result"; places: Place[] }
+  | {
+      type: "handoff-to-specialized-agent";
+      chatbot: ChatbotType;
+      reason: string;
+      status: "pending" | "confirmed" | "declined";
+    }
+  | { type: "display-whatsapp-qr"; reason: "zero-confidence" | "static" }
+  | {
+      type: "request-location";
+      reason: string;
+      status: "pending" | "granted" | "denied";
+    };
+
 export interface ChatMessage {
   id: string;
   role: "user" | "assistant";
-  content: string;
+  blocks: ChatBlock[];
   timestamp: Date;
   chatbot?: ChatbotType;
   /** True while the answer is still streaming in */
   isStreaming?: boolean;
+  /** Named status while a tool call is in flight and there's no visible
+      block yet, e.g. "Checking the map with Jmila…". Only meaningful
+      alongside isStreaming — always cleared once streaming ends. */
+  statusLabel?: string;
 }
 
 export interface ChatState {
@@ -65,14 +95,6 @@ export interface ChatbotNotification {
   duration: number; // milliseconds
 }
 
-export interface RedirectCountdown {
-  isActive: boolean;
-  secondsRemaining: number;
-  targetPath: string;
-  targetChatbot: ChatbotType;
-  message: string;
-}
-
 export interface ChatRequest {
   messages: Array<{
     role: "user" | "assistant";
@@ -81,6 +103,11 @@ export interface ChatRequest {
   chatbotType: ChatbotType;
   locale: string;
   currentPath?: string;
+  /** Personas the reader has already declined a handoff to — don't re-propose them. */
+  declinedHandoffs?: ChatbotType[];
+  /** The reader's opted-in coordinates, if they've granted a requestLocation
+      card. Never persisted server-side beyond this one request. */
+  userLocation?: { lat: number; lng: number };
 }
 
 export interface ChatResponse {
@@ -277,23 +304,23 @@ End successful health navigation moments with: "You advocated for your health in
 };
 
 // Map sections to chatbots
+// "hamid" is no longer routed to: Zellija's own retrieval (searchGuidesAndFaqs)
+// covers his old guides+FAQ domain. See the comment on buildHamidContext in
+// prompt-builder.ts.
 export const SECTION_TO_CHATBOT: Record<string, ChatbotType> = {
   "/": "zellija",
-  "/guides": "hamid",
-  "/guides/": "hamid",
-  "/category": "hamid",
-  "/essentials": "hamid",
-  "/career": "hamid",
+  "/chat": "zellija",
+  "/chat/housing": "riad",
+  "/guides": "zellija",
+  "/guides/": "zellija",
+  "/category": "zellija",
+  "/career": "zellija",
   "/community": "zellija",
   "/map": "jmila",
   "/map/": "jmila",
   "/about": "hamza",
   "/about/": "hamza",
-  "/faq/": "hamid",
-  "/housing": "riad",
-  "/housing/": "riad",
-  "/tools": "zellija",
-  "/tools/": "zellija",
+  "/faq/": "zellija",
   "/bureaucracy": "dalilah",
   "/bureaucracy/": "dalilah",
   "/academic": "ilham",

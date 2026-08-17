@@ -16,6 +16,7 @@
 import "leaflet/dist/leaflet.css";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import L from "leaflet";
 import {
   AttributionControl,
@@ -964,7 +965,14 @@ export default function PlacesMapCanvas({
     }
   }, [map, scrollZoomActive]);
 
-  return (
+  // A fixed-position fullscreen overlay only escapes to the real viewport
+  // when nothing between it and <body> creates a CSS containing block (a
+  // transform, filter, backdrop-filter, or contain). Chat message bubbles
+  // animate in with a `transform`, which traps `fixed inset-0` inside the
+  // bubble's own box instead of covering the screen. Portalling straight to
+  // <body> while fullscreen sidesteps that regardless of where this
+  // component is embedded.
+  const mapNode = (
     <div
       className={cn(
         "atlas-map flex flex-col overflow-hidden bg-card shadow-[0_2px_24px_rgb(0_0_0/0.08)] dark:shadow-none dark:ring-1 dark:ring-border",
@@ -1241,4 +1249,6 @@ export default function PlacesMapCanvas({
       )}
     </div>
   );
+
+  return isFullscreen ? createPortal(mapNode, document.body) : mapNode;
 }

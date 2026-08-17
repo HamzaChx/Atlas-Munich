@@ -9,6 +9,7 @@ import { Header, ConditionalFooter, MobileNav } from "@/components/layout";
 import { ThemeProvider } from "@/components/shared";
 import { ChatbotWrapper } from "@/components/chatbot";
 import { InstallBanner } from "@/components/pwa/InstallBanner";
+import { DevServiceWorkerCleanup } from "@/components/pwa/DevServiceWorkerCleanup";
 import { routing, type Locale } from "@/i18n";
 import { hasLocale } from "next-intl";
 import { notFound } from "next/navigation";
@@ -179,10 +180,9 @@ export default async function RootLayout({
   // props so it does not have to pull the whole nav namespace client-side.
   const navTranslations = messages.nav as {
     map: string;
-    essentials: string;
+    ask: string;
     career: string;
     community: string;
-    tools: string;
     about: string;
     aboutAria: string;
   };
@@ -267,6 +267,7 @@ export default async function RootLayout({
               <MobileNav locale={locale} />
               <InstallBanner />
               <ChatbotWrapper />
+              <DevServiceWorkerCleanup />
             </ThemeProvider>
           </NextIntlClientProvider>
         </SerwistProvider>

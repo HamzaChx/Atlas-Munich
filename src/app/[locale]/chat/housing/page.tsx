@@ -13,7 +13,7 @@ export default function HousingChatPage() {
     <>
       {/* Preload the avatar so there's zero delay when the chat UI mounts */}
       <link rel="preload" href="/riad.webp" as="image" type="image/webp" />
-      <DedicatedChat theme={CHAT_THEMES.housing} backPath="/housing" />
+      <DedicatedChat theme={CHAT_THEMES.housing} backPath="/chat" />
     </>
   );
 }

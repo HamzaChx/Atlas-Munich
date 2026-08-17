@@ -22,7 +22,8 @@ import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { useChatbot } from "@/chatbot/use-chatbot";
+import { useChatbot, blocksToText } from "@/chatbot/use-chatbot";
+import type { ChatBlock } from "@/chatbot/types";
 import { cn } from "@/lib/utils";
 import { takePendingMessage } from "./chat-seed";
 import {
@@ -35,9 +36,14 @@ import {
   Copy,
   Check,
   Trash2,
+  HelpCircle,
+  BookOpen,
 } from "lucide-react";
-import { ChatMarkdown } from "./markdown";
-import { HandoffToast, RedirectCountdownToast, SuccessToast } from "./notifications";
+import { ChatBlocks } from "./blocks";
+import { HandoffToast, SuccessToast } from "./notifications";
+import { Tooltip, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
+import { BottomSheet, BottomSheetContent } from "@/components/ui/bottom-sheet";
+import { ASSISTANT_RESOURCES } from "@/data/assistant-resources";
 import {
   ASSISTANT_ACCENTS,
   type AssistantAccent,
@@ -58,15 +64,22 @@ function formatTimestamp(date: Date): string {
 }
 
 function ChatBubble({
-  message,
+  blocks,
+  messageId,
   isUser,
   avatar,
   accent,
   timestamp,
   showAvatar,
   streaming = false,
+  statusLabel,
+  onConfirmHandoff,
+  onDenyHandoff,
+  onConfirmLocationRequest,
+  onDenyLocationRequest,
 }: {
-  message: string;
+  blocks: ChatBlock[];
+  messageId: string;
   isUser: boolean;
   avatar: string;
   accent: AssistantAccent;
@@ -75,14 +88,19 @@ function ChatBubble({
   showAvatar: boolean;
   /** True while the answer is still arriving */
   streaming?: boolean;
+  statusLabel?: string;
+  onConfirmHandoff: (messageId: string) => void;
+  onDenyHandoff: (messageId: string) => void;
+  onConfirmLocationRequest: (messageId: string) => void;
+  onDenyLocationRequest: (messageId: string) => void;
 }) {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = useCallback(() => {
-    navigator.clipboard.writeText(message);
+    navigator.clipboard.writeText(blocksToText(blocks));
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
-  }, [message]);
+  }, [blocks]);
 
   return (
     <div className={cn("group flex gap-3", isUser ? "flex-row-reverse" : "flex-row")}>
@@ -105,10 +123,17 @@ function ChatBubble({
               : cn("rounded-bl-md text-foreground", accent.tint)
           )}
         >
-          <ChatMarkdown
-            text={message}
+          <ChatBlocks
+            blocks={blocks}
+            messageId={messageId}
             linkClass={isUser ? "text-background" : accent.acc}
+            accent={accent}
             streaming={streaming}
+            statusLabel={statusLabel}
+            onConfirmHandoff={onConfirmHandoff}
+            onDenyHandoff={onDenyHandoff}
+            onConfirmLocationRequest={onConfirmLocationRequest}
+            onDenyLocationRequest={onDenyLocationRequest}
           />
         </div>
 
@@ -180,6 +205,15 @@ function TypingIndicator({
 /*  Welcome screen                                                     */
 /* ------------------------------------------------------------------ */
 
+export interface QuickAction {
+  name: string;
+  avatar: string;
+  href: string;
+  accent: AssistantAccent;
+  /** Shown as a tooltip on hover, e.g. "Housing application writer" */
+  tagline?: string;
+}
+
 function WelcomeScreen({
   avatar,
   name,
@@ -189,6 +223,7 @@ function WelcomeScreen({
   accent,
   aiBadge,
   aiDisclaimer,
+  quickActions,
   onSend,
 }: {
   avatar: string;
@@ -199,6 +234,8 @@ function WelcomeScreen({
   accent: AssistantAccent;
   aiBadge: string;
   aiDisclaimer: string;
+  /** Direct links to specialist chats, shown only on Zellija's own page. */
+  quickActions?: QuickAction[];
   onSend: (msg: string) => void;
 }) {
   return (
@@ -256,6 +293,38 @@ function WelcomeScreen({
           </button>
         ))}
       </div>
+
+      {quickActions && quickActions.length > 0 && (
+        <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
+          {quickActions.map((action) => {
+            const chip = (
+              <Link
+                key={action.href}
+                href={action.href}
+                className={cn(
+                  "flex items-center gap-2 rounded-full py-1.5 pl-1.5 pr-3.5 text-sm font-semibold text-zinc-700 outline-none transition-transform duration-200 hover:-translate-y-0.5 dark:text-zinc-200",
+                  action.accent.tint,
+                  action.accent.focus
+                )}
+              >
+                <span className="relative block h-6 w-6 overflow-hidden rounded-full">
+                  <Image src={action.avatar} alt="" fill sizes="24px" className="object-cover" />
+                </span>
+                {action.name}
+              </Link>
+            );
+
+            if (!action.tagline) return chip;
+
+            return (
+              <Tooltip key={action.href}>
+                <TooltipTrigger asChild>{chip}</TooltipTrigger>
+                <TooltipContent>{action.tagline}</TooltipContent>
+              </Tooltip>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }
@@ -268,6 +337,8 @@ interface DedicatedChatProps {
   theme: DedicatedChatTheme;
   /** Path of the parent tool page, e.g. "/healthcare" */
   backPath: string;
+  /** Direct links to specialist chats, shown only on Zellija's own page. */
+  quickActions?: QuickAction[];
 }
 
 /** Matches the canvas below, so the boundary costs no layout shift. */
@@ -284,7 +355,7 @@ export function DedicatedChat(props: DedicatedChatProps) {
   );
 }
 
-function DedicatedChatInner({ theme, backPath }: DedicatedChatProps) {
+function DedicatedChatInner({ theme, backPath, quickActions }: DedicatedChatProps) {
   const {
     messages,
     isLoading,
@@ -292,14 +363,15 @@ function DedicatedChatInner({ theme, backPath }: DedicatedChatProps) {
     chatbotConfig,
     currentChatbot,
     notification,
-    redirectCountdown,
     showSuccessNotification,
     sendMessage,
     clearMessages,
     dismissNotification,
-    cancelRedirect,
-    goNow,
     dismissSuccessNotification,
+    confirmHandoff,
+    denyHandoff,
+    confirmLocationRequest,
+    denyLocationRequest,
   } = useChatbot({ initialChatbot: theme.chatbotType });
 
   const t = useTranslations("chatbot");
@@ -307,7 +379,13 @@ function DedicatedChatInner({ theme, backPath }: DedicatedChatProps) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
+  // Undefined for assistants with no outbound-resources entry (Zellija, and
+  // anyone not yet live) — that absence is exactly what hides the "?" button.
+  const resources = ASSISTANT_RESOURCES[currentChatbot];
+  const tResources = useTranslations(resources?.namespace ?? "chatbot");
+
   const [input, setInput] = useState("");
+  const [infoOpen, setInfoOpen] = useState(false);
   const [showScrollFab, setShowScrollFab] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const messagesContainerRef = useRef<HTMLDivElement>(null);
@@ -434,26 +512,17 @@ function DedicatedChatInner({ theme, backPath }: DedicatedChatProps) {
 
   const hasMessages = messages.length > 0;
   const canSend = input.trim().length > 0 && !isLoading;
+  // Once the streaming placeholder message exists, its own bubble shows a
+  // status ("Thinking…" or a named tool status) — this indicator is only for
+  // the brief window before that placeholder appears, so the two never show
+  // at once.
+  const showTypingIndicator = isLoading && !messages.some((msg) => msg.isStreaming);
 
   const quietButton =
     "flex h-9 w-9 flex-shrink-0 cursor-pointer items-center justify-center rounded-full bg-card/70 text-zinc-600 transition-colors hover:bg-card dark:text-zinc-300";
 
   return (
     <>
-      {redirectCountdown &&
-        typeof document !== "undefined" &&
-        createPortal(
-          <RedirectCountdownToast
-            message="Redirecting you to"
-            secondsRemaining={redirectCountdown.secondsRemaining}
-            targetChatbot={redirectCountdown.targetChatbot}
-            accClass={accent.acc}
-            onCancel={cancelRedirect}
-            onGoNow={goNow}
-          />,
-          document.body
-        )}
-
       {showSuccessNotification &&
         typeof document !== "undefined" &&
         createPortal(
@@ -511,6 +580,28 @@ function DedicatedChatInner({ theme, backPath }: DedicatedChatProps) {
               </p>
             </div>
 
+            {resources && (
+              <button
+                onClick={() => setInfoOpen(true)}
+                className={quietButton}
+                title={`About ${chatbotConfig.name}`}
+                aria-label={`About ${chatbotConfig.name}`}
+              >
+                <HelpCircle className="h-4 w-4" />
+              </button>
+            )}
+
+            {currentChatbot === "zellija" && (
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Link href="/guides" className={quietButton} aria-label={t("browseGuidesCue")}>
+                    <BookOpen className="h-4 w-4" />
+                  </Link>
+                </TooltipTrigger>
+                <TooltipContent>{t("browseGuidesCue")}</TooltipContent>
+              </Tooltip>
+            )}
+
             <button
               onClick={clearMessages}
               className={cn(
@@ -524,6 +615,62 @@ function DedicatedChatInner({ theme, backPath }: DedicatedChatProps) {
             </button>
           </div>
         </header>
+
+        {resources && (
+          <BottomSheet open={infoOpen} onOpenChange={setInfoOpen}>
+            <BottomSheetContent title={chatbotConfig.name} description={tagline}>
+              <p className="text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">
+                {tResources("intro")}
+              </p>
+
+              <p className="mt-6 text-[11px] font-bold uppercase tracking-[0.12em] text-zinc-400 dark:text-zinc-500">
+                {tResources(`${resources.linksKey}.title`)}
+              </p>
+              <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
+                {tResources(`${resources.linksKey}.subtitle`)}
+              </p>
+
+              <div className="mb-2 mt-4 divide-y divide-border overflow-hidden rounded-2xl bg-muted/40">
+                {resources.links.map((link) => {
+                  const LinkIcon = link.icon;
+                  return (
+                    <a
+                      key={link.name}
+                      href={link.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group flex items-center gap-3 px-4 py-3 transition-colors hover:bg-muted"
+                    >
+                      <span
+                        className={cn(
+                          "flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl",
+                          accent.tint,
+                          accent.acc
+                        )}
+                      >
+                        <LinkIcon className="h-4 w-4" />
+                      </span>
+                      <div className="min-w-0 flex-1">
+                        <p className="text-sm font-semibold text-zinc-900 dark:text-zinc-50">
+                          {link.name}
+                        </p>
+                        <p className="truncate text-xs text-zinc-500 dark:text-zinc-400">
+                          {link.label}
+                        </p>
+                      </div>
+                      <ArrowUpRight
+                        className={cn(
+                          "h-4 w-4 flex-shrink-0 text-zinc-400 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5",
+                          accent.accHover
+                        )}
+                      />
+                    </a>
+                  );
+                })}
+              </div>
+            </BottomSheetContent>
+          </BottomSheet>
+        )}
 
         {/* ---- Messages ---- */}
         <div
@@ -549,6 +696,7 @@ function DedicatedChatInner({ theme, backPath }: DedicatedChatProps) {
                 accent={accent}
                 aiBadge={aiBadge}
                 aiDisclaimer={aiDisclaimer}
+                quickActions={quickActions}
                 onSend={sendMessage}
               />
             )}
@@ -556,17 +704,23 @@ function DedicatedChatInner({ theme, backPath }: DedicatedChatProps) {
             {messages.map((msg, i) => (
               <ChatBubble
                 key={msg.id}
-                message={msg.content}
+                blocks={msg.blocks}
+                messageId={msg.id}
                 isUser={msg.role === "user"}
                 avatar={chatbotConfig.avatar}
                 accent={accent}
                 timestamp={msg.timestamp}
                 showAvatar={i === 0 || messages[i - 1].role !== msg.role}
                 streaming={msg.isStreaming}
+                statusLabel={msg.statusLabel}
+                onConfirmHandoff={confirmHandoff}
+                onDenyHandoff={denyHandoff}
+                onConfirmLocationRequest={confirmLocationRequest}
+                onDenyLocationRequest={denyLocationRequest}
               />
             ))}
 
-            {isLoading && (
+            {showTypingIndicator && (
               <TypingIndicator avatar={chatbotConfig.avatar} accent={accent} label={typingLabel} />
             )}
 

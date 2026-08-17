@@ -96,6 +96,7 @@ export interface DedicatedChatTheme extends AssistantAccent {
 
 /** Keyed by the tool section that owns the chat route. */
 export const CHAT_THEMES = {
+  zellija: { chatbotType: "zellija", ...BLUE },
   housing: { chatbotType: "riad", ...TERRA },
   bureaucracy: { chatbotType: "dalilah", ...BLUE },
   academic: { chatbotType: "ilham", ...GREEN },

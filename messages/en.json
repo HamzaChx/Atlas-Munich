@@ -32,8 +32,8 @@
     "aboutAria": "About Atlas Munich"
   },
   "home": {
-    "heroTitle": "New in Munich?",
-    "heroTitleHighlight": "We've got you.",
+    "heroTitle": "Everything we had to learn the hard way,",
+    "heroTitleHighlight": "so you don't.",
     "heroSubtitle": "Guides, a map, and people who have done it, for Moroccans making a home in Munich.",
     "stats": {
       "guides": "Guides",
@@ -108,7 +108,7 @@
     "quick": {
       "badge": "Where do you want to start?",
       "map": "Find places",
-      "essentials": "Get settled",
+      "ask": "Ask questions",
       "career": "Find work"
     },
     "welcome": {
@@ -364,6 +364,8 @@
       "contactUs": "Contact Us",
       "spreadTheWord": "Spread the Word",
       "spreadTheWordDesc": "Share Atlas Munich with other Moroccans coming to Munich. Word of mouth helps!",
+      "github": "GitHub",
+      "githubDesc": "Star the repo, report a bug, or open a pull request.",
       "share": "Share"
     },
     "contributors": {
@@ -372,12 +374,6 @@
       "you": "You?",
       "joinTeam": "Join the team!",
       "contributeOnGithub": "Contribute on GitHub"
-    },
-    "contact": {
-      "title": "Get in Touch",
-      "description": "Have questions, suggestions, or just want to say hello? We'd love to hear from you!",
-      "github": "GitHub",
-      "emailUs": "Email Us"
     }
   },
   "categories": {
@@ -1739,7 +1735,8 @@
     "aiBadge": "AI",
     "aiDisclaimer": "Answers are generated and can be wrong. Check anything that matters.",
     "typing": "typing…",
-    "send": "Send"
+    "send": "Send",
+    "browseGuidesCue": "Alternatively, you can browse our guide catalogue"
   },
   "legal": {
     "privacy": {
@@ -1841,7 +1838,15 @@
             },
             {
               "t": "p",
-              "x": "If you open one of the assistants, the messages you type, the assistant you selected, your interface language and the path of the page you were on are transmitted to our AI processor so that a reply can be generated. Conversations are not written to any database of ours and are not linked to a profile. The technical detail is in section 6."
+              "x": "If you open one of the assistants, the messages you type, the assistant you selected, your interface language and the path of the page you were on are transmitted to our AI processor so that a reply can be generated. Conversations are not written to any database of ours and are not linked to a profile: they are stored only in your browser's local storage, on your own device, until you clear them or your browser does. The technical detail is in section 6."
+            },
+            {
+              "t": "h",
+              "x": "Content-gap signal"
+            },
+            {
+              "t": "p",
+              "x": "When an assistant cannot find anything relevant in our own guides or FAQs to answer your question, we log that this happened: which assistant, whether a match was found, and when. We never log the question itself, the answer, or anything else about the conversation. This is used only to see which topics our guides are missing."
             },
             {
               "t": "h",
@@ -1903,7 +1908,7 @@
                 ],
                 [
                   "Local storage on your device",
-                  "Remembering your appearance choice and whether the assistant was already opened",
+                  "Remembering your appearance choice, whether the assistant was already opened, your conversations with the assistants, and which handoffs you have declined",
                   "Section 25(2) no. 2 TDDDG, strictly necessary, and Art. 6(1)(f) GDPR",
                   "Until you clear your browser storage"
                 ],
@@ -1968,7 +1973,7 @@
             },
             {
               "t": "p",
-              "x": "Two entries are written to your browser local storage. Both are strictly necessary to provide the service you explicitly requested and are therefore exempt from consent under section 25(2) no. 2 TDDDG. They remain on your device, are readable only by this site, and are never transmitted to us."
+              "x": "A small family of entries is written to your browser local storage. All of them are strictly necessary to provide the service you explicitly requested and are therefore exempt from consent under section 25(2) no. 2 TDDDG. They remain on your device, are readable only by this site, and are never transmitted to us."
             },
             {
               "t": "table",
@@ -1984,6 +1989,12 @@
                   "atlas-chatbot-interacted",
                   "Local storage",
                   "Stops the assistant from repeating its introduction once you have used it",
+                  "Until you clear it"
+                ],
+                [
+                  "atlas-chat:*",
+                  "Local storage",
+                  "Stores your conversation history with each assistant, and which handoffs to a specialist you have already declined, so they persist between visits",
                   "Until you clear it"
                 ]
               ]
@@ -2013,7 +2024,7 @@
             },
             {
               "t": "p",
-              "x": "We do not store your conversations. They live in your browser tab for as long as it stays open and are gone when you close or reload it. Under the applicable API terms, inputs and outputs are not used to train the provider's models, and they are retained for up to thirty days solely to detect abuse before being deleted, unless a longer period is required by law."
+              "x": "We do not store your conversations on our servers. They are saved only in your browser's local storage, on this device, and persist across visits until you clear your browser's site data or clear the conversation yourself. They are never transmitted to us or readable by us outside the single request needed to generate each reply. Under the applicable API terms, inputs and outputs are not used to train the provider's models, and they are retained by the provider for up to thirty days solely to detect abuse before being deleted, unless a longer period is required by law."
             },
             {
               "t": "p",
@@ -2133,7 +2144,7 @@
               "x": [
                 "Server logs: held by the hosting provider for a short operational window, as a rule no longer than thirty days, unless a specific security incident requires a longer look.",
                 "Analytics: only aggregated figures survive the visit, so there is nothing left to attribute to an individual.",
-                "Assistant conversations: not stored by us at all, and held by the AI processor for up to thirty days for abuse detection.",
+                "Assistant conversations: not stored on our servers at all. They persist in your browser's local storage on your own device until you clear them, and are separately held by the AI processor for up to thirty days for abuse detection.",
                 "Rate limit counters: volatile memory only, at most ten minutes, and lost on every deployment or restart.",
                 "Local storage: entirely under your control and removable at any time.",
                 "Email: deleted once the matter is settled, unless commercial or tax law requires the correspondence to be kept, in which case it is restricted until the period expires."
@@ -2380,7 +2391,7 @@
             },
             {
               "t": "p",
-              "x": "The service hosts no user accounts and no user generated content, so there is nothing stored here for you to lose. Anything you want to keep, please keep yourself."
+              "x": "The service hosts no user accounts. Conversations with the assistants are saved only in your own browser's local storage, never on our servers, so clearing your browser's site data or switching devices starts you fresh. Anything you want to keep beyond that, please keep yourself."
             }
           ]
         },
@@ -2837,6 +2848,12 @@
       "title": "The essentials,",
       "titleHighlight": "handled",
       "subtitle": "Registration, residence permits, and the parts of daily life nobody explains before you arrive."
+    },
+    "guide": {
+      "badge": "Ask anything",
+      "title": "Ask",
+      "titleHighlight": "Zellija",
+      "subtitle": "Guides, FAQs, and the specialists who can help — one place to ask, instead of six pages to search."
     },
     "career": {
       "badge": "Step three",

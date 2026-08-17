@@ -10,7 +10,7 @@ export default function robots(): MetadataRoute.Robots {
           // Internal API routes — never index
           "/api/",
           // Chatbot UI pages — no standalone SEO value
-          "/housing/chat",
+          "/chat/housing",
           "/bureaucracy/chat",
           "/academic/chat",
           "/healthcare/chat",

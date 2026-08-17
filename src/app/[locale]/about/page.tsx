@@ -99,7 +99,7 @@ export default async function AboutPage({ params }: PageProps) {
             variant="ghost"
             className="rounded-full px-6 text-zinc-600 hover:bg-card hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-zinc-800/60 dark:hover:text-zinc-50"
           >
-            <Link href="/community#contact">
+            <Link href="/community#contribute">
               <Mail className="mr-2 h-4 w-4" />
               {t("getInTouch")}
             </Link>

@@ -13,6 +13,7 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useChatbot } from "@/chatbot/use-chatbot";
+import type { ChatBlock } from "@/chatbot/types";
 import { cn } from "@/lib/utils";
 import {
   X,
@@ -26,8 +27,8 @@ import {
   MessageCircle,
   Trash2,
 } from "lucide-react";
-import { ChatMarkdown } from "./markdown";
-import { HandoffToast, RedirectCountdownToast, SuccessToast } from "./notifications";
+import { ChatBlocks } from "./blocks";
+import { HandoffToast, SuccessToast } from "./notifications";
 import { ASSISTANT_ACCENTS, type AssistantAccent } from "./chat-themes";
 
 /* ------------------------------------------------------------------ */
@@ -39,15 +40,22 @@ function formatTimestamp(date: Date): string {
 }
 
 function ChatBubble({
-  message,
+  blocks,
+  messageId,
   isUser,
   avatar,
   accent,
   timestamp,
   showAvatar,
   streaming = false,
+  statusLabel,
+  onConfirmHandoff,
+  onDenyHandoff,
+  onConfirmLocationRequest,
+  onDenyLocationRequest,
 }: {
-  message: string;
+  blocks: ChatBlock[];
+  messageId: string;
   isUser: boolean;
   avatar: string;
   accent: AssistantAccent;
@@ -56,6 +64,11 @@ function ChatBubble({
   showAvatar: boolean;
   /** True while the answer is still arriving */
   streaming?: boolean;
+  statusLabel?: string;
+  onConfirmHandoff: (messageId: string) => void;
+  onDenyHandoff: (messageId: string) => void;
+  onConfirmLocationRequest: (messageId: string) => void;
+  onDenyLocationRequest: (messageId: string) => void;
 }) {
   return (
     <div className={cn("group flex gap-2.5", isUser ? "flex-row-reverse" : "flex-row")}>
@@ -77,10 +90,17 @@ function ChatBubble({
               : cn("rounded-bl-md text-foreground", accent.tint)
           )}
         >
-          <ChatMarkdown
-            text={message}
+          <ChatBlocks
+            blocks={blocks}
+            messageId={messageId}
             linkClass={isUser ? "text-background" : accent.acc}
+            accent={accent}
             streaming={streaming}
+            statusLabel={statusLabel}
+            onConfirmHandoff={onConfirmHandoff}
+            onDenyHandoff={onDenyHandoff}
+            onConfirmLocationRequest={onConfirmLocationRequest}
+            onDenyLocationRequest={onDenyLocationRequest}
           />
         </div>
         <span className="px-1 text-[10px] font-medium tabular-nums text-zinc-400 opacity-0 transition-opacity duration-200 group-hover:opacity-100 dark:text-zinc-500">
@@ -141,16 +161,17 @@ export function Chatbot() {
     chatbotConfig,
     notification,
     isOpen,
-    redirectCountdown,
     showSuccessNotification,
     sendMessage,
     clearMessages,
     toggleOpen,
     setIsOpen,
     dismissNotification,
-    cancelRedirect,
-    goNow,
     dismissSuccessNotification,
+    confirmHandoff,
+    denyHandoff,
+    confirmLocationRequest,
+    denyLocationRequest,
   } = useChatbot();
 
   const t = useTranslations("chatbot");
@@ -172,7 +193,7 @@ export function Chatbot() {
     pathname.startsWith("/faq/") ||
     pathname === "/community" ||
     pathname.startsWith("/community/") ||
-    pathname.startsWith("/housing") ||
+    pathname.startsWith("/chat") ||
     pathname.startsWith("/bureaucracy") ||
     pathname.startsWith("/academic") ||
     pathname.startsWith("/healthcare");
@@ -265,26 +286,17 @@ export function Chatbot() {
   const typingLabel = `${chatbotConfig.name} ${t("typing")}`;
 
   const canSend = input.trim().length > 0 && !isLoading;
+  // Once the streaming placeholder message exists, its own bubble shows a
+  // status ("Thinking…" or a named tool status) — this indicator is only for
+  // the brief window before that placeholder appears, so the two never show
+  // at once.
+  const showTypingIndicator = isLoading && !messages.some((msg) => msg.isStreaming);
 
   const quietButton =
     "flex h-9 w-9 cursor-pointer items-center justify-center rounded-full bg-card/70 text-zinc-600 transition-colors hover:bg-card active:scale-90 dark:text-zinc-300";
 
   return (
     <div className="chatbot-container">
-      {redirectCountdown &&
-        typeof document !== "undefined" &&
-        createPortal(
-          <RedirectCountdownToast
-            message="Redirecting you to"
-            secondsRemaining={redirectCountdown.secondsRemaining}
-            targetChatbot={redirectCountdown.targetChatbot}
-            accClass={accent.acc}
-            onCancel={cancelRedirect}
-            onGoNow={goNow}
-          />,
-          document.body
-        )}
-
       {showSuccessNotification &&
         typeof document !== "undefined" &&
         createPortal(
@@ -473,17 +485,23 @@ export function Chatbot() {
             {messages.map((msg, i) => (
               <ChatBubble
                 key={msg.id}
-                message={msg.content}
+                blocks={msg.blocks}
+                messageId={msg.id}
                 isUser={msg.role === "user"}
                 avatar={chatbotConfig.avatar}
                 accent={accent}
                 timestamp={msg.timestamp}
                 showAvatar={i === 0 || messages[i - 1].role !== msg.role}
                 streaming={msg.isStreaming}
+                statusLabel={msg.statusLabel}
+                onConfirmHandoff={confirmHandoff}
+                onDenyHandoff={denyHandoff}
+                onConfirmLocationRequest={confirmLocationRequest}
+                onDenyLocationRequest={denyLocationRequest}
               />
             ))}
 
-            {isLoading && (
+            {showTypingIndicator && (
               <TypingIndicator avatar={chatbotConfig.avatar} accent={accent} label={typingLabel} />
             )}
 

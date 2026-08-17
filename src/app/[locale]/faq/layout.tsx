@@ -11,7 +11,7 @@ import { Metadata } from "next";
  *
  * `noindex, follow` keeps it out of the index while still passing link equity
  * on to the hubs. Once the logs show no traffic, replace the whole thing with
- * a 308 to /essentials.
+ * a 308 to /chat.
  */
 export const metadata: Metadata = {
   title: "Questions",

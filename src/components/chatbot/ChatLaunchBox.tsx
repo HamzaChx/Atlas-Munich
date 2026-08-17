@@ -23,7 +23,7 @@ import { setPendingMessage } from "./chat-seed";
 
 interface ChatLaunchBoxProps {
   chatbot: ChatbotType;
-  /** Where the conversation continues, e.g. "/housing/chat" */
+  /** Where the conversation continues, e.g. "/chat/housing" */
   chatPath: string;
   placeholder: string;
   /** Accessible name for the send button */

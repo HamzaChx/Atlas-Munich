@@ -17,10 +17,9 @@ import { useTranslations } from "next-intl";
 import {
   Download,
   MapPin,
-  ClipboardList,
+  MessageCircle,
   Briefcase,
   Users,
-  Wrench,
   Info,
   X,
   type LucideIcon,
@@ -73,11 +72,10 @@ export function MobileMenu({ open, onOpenChange, locale }: MobileMenuProps) {
   /* The same four journey steps as the desktop bar, then About as chrome.
      "Home" is gone: the wordmark at the top of this sheet does that job. */
   const links: MenuLink[] = [
+    { label: t("ask"), href: "/chat", icon: MessageCircle },
     { label: t("map"), href: "/map", icon: MapPin },
-    { label: t("essentials"), href: "/essentials", icon: ClipboardList },
     { label: t("career"), href: "/career", icon: Briefcase },
     { label: t("community"), href: "/community", icon: Users },
-    { label: t("tools"), href: "/tools", icon: Wrench },
     { label: t("about"), href: "/about", icon: Info },
   ];
 

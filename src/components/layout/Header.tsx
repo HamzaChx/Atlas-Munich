@@ -57,26 +57,27 @@ export function Header({ locale, translations }: HeaderProps) {
     { label: translations.community, href: "/community" },
   ];
 
-  /* Transparent at the top of the homepage, over the woven-thread hero;
-     solid once the reader scrolls past it (or on any other page, which
-     has no hero to sit on). The hero sits on the same --background token
-     as the rest of the site, so no separate "glass" text treatment is
-     needed here — the normal light/dark classes already read fine over
-     it, same as they do once the header goes solid. */
-  const headerBg = scrolled
-    ? "bg-background border-b border-border shadow-[0_1px_3px_0_rgb(0_0_0_/_0.05)] dark:shadow-none"
-    : "bg-transparent border-b border-transparent";
+  /* The homepage starts on a quiet, header-safe surface, so the bar can stay
+     transparent there. As soon as the reader scrolls—or on any other page—
+     the regular theme surface gives the navigation a stable backdrop. */
+  const overHomeHero = pathname === "/" && !scrolled;
+  const headerBg = overHomeHero
+    ? "bg-transparent border-b border-transparent"
+    : "bg-background border-b border-border shadow-[0_1px_3px_0_rgb(0_0_0_/_0.05)] dark:shadow-none";
 
   return (
     <header
-      className={cn("fixed top-0 z-50 w-full transition-all duration-500 safe-area-top", headerBg)}
+      className={cn(
+        "safe-area-top fixed top-0 z-50 w-full transition-[background-color,border-color,box-shadow] duration-500",
+        headerBg
+      )}
     >
       {/* Three tracks with equal-weight sides, so the nav sits on the page's
           centre line rather than wherever justify-between leaves it. */}
       <div className="mx-auto grid h-14 sm:h-16 max-w-[1280px] 2xl:max-w-[96rem] grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center px-3 sm:px-6 lg:px-8 2xl:px-12">
         <Link
           href="/"
-          className="group flex w-fit items-center gap-2 sm:gap-2.5 outline-none focus-visible:ring-2 focus-visible:ring-zellige/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-lg"
+          className="group flex w-fit items-center gap-2 rounded-lg outline-none focus-visible:ring-2 focus-visible:ring-zellige/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:gap-2.5"
         >
           <Image
             src="/logo.png"
@@ -85,11 +86,7 @@ export function Header({ locale, translations }: HeaderProps) {
             height={36}
             className="h-8 w-8 rounded-full transition-transform duration-300 group-hover:scale-105 sm:h-9 sm:w-9 shadow-sm"
           />
-          {/* drop-shadow is a safety net for the transparent-header state on
-              the homepage: it sits over the animated hero threads, and a
-              bright thread swooping through can otherwise wash the
-              wordmark out even with the hero's own scrim in place. */}
-          <span className="font-display text-lg sm:text-xl font-bold tracking-tight text-zinc-900 drop-shadow-[0_1px_6px_rgba(0,0,0,0.35)] dark:text-zinc-50 dark:drop-shadow-[0_1px_8px_rgba(0,0,0,0.7)]">
+          <span className="font-display text-lg font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-xl">
             <span className="text-zellige">Atlas</span> Munich
           </span>
         </Link>
@@ -105,7 +102,7 @@ export function Header({ locale, translations }: HeaderProps) {
                   "relative rounded-full px-4 py-2 text-sm font-medium transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-zellige/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                   isActive
                     ? "bg-zinc-100 text-zinc-900 dark:bg-foreground/10 dark:text-zinc-50"
-                    : "text-zinc-500 dark:text-zinc-400 hover:bg-zinc-100/70 hover:text-zinc-900 dark:hover:bg-foreground/[0.075] dark:hover:text-zinc-50"
+                    : "text-zinc-500 hover:bg-zinc-100/70 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-foreground/[0.075] dark:hover:text-zinc-50"
                 )}
               >
                 {item.label}
@@ -122,8 +119,7 @@ export function Header({ locale, translations }: HeaderProps) {
             aria-label={translations.aboutAria}
             title={translations.about}
             className={cn(
-              "hidden h-9 w-9 items-center justify-center rounded-full border border-border/50 bg-card text-zinc-600 shadow-sm transition-colors duration-200 md:flex focus:outline-none focus-visible:ring-2 focus-visible:ring-zellige/50",
-              "hover:bg-muted hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-zinc-50",
+              "hidden h-9 w-9 items-center justify-center rounded-full border border-border/50 bg-card text-zinc-600 shadow-sm transition-colors duration-200 hover:bg-muted hover:text-zinc-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-zellige/50 md:flex dark:text-zinc-300 dark:hover:text-zinc-50",
               pathname.startsWith("/about") && "border-zellige/50 bg-zellige-soft text-zellige"
             )}
           >

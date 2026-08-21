@@ -518,6 +518,37 @@
   }
 }
 
+/* Homepage hero — warm plaster rather than a neutral grey. The very soft
+   color fields keep the page recognisably Atlas without competing with the
+   headline, actions, or arrival photograph. */
+.home-hero {
+  background-color: #fbf6ec;
+  background-image:
+    radial-gradient(circle at 82% 24%, rgb(224 169 65 / 0.1), transparent 29%),
+    radial-gradient(circle at 4% 72%, rgb(197 43 48 / 0.045), transparent 27%);
+}
+
+.dark .home-hero {
+  background-color: #191816;
+  background-image:
+    radial-gradient(circle at 82% 24%, rgb(224 169 65 / 0.055), transparent 29%),
+    radial-gradient(circle at 4% 72%, rgb(197 43 48 / 0.04), transparent 27%);
+}
+
+.hero-visual-in {
+  opacity: 0;
+  transform: translateY(20px) scale(0.965);
+  transform-origin: center bottom;
+  animation: hero-visual-in 0.75s var(--ease-out-expo) 0.18s forwards;
+}
+
+@keyframes hero-visual-in {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 @layer utilities {
   /* Section label: quiet uppercase with a sunset dot */
   .eyebrow {

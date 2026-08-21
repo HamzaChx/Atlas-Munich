@@ -38,7 +38,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 const contributors: Contributor[] = [
   {
     name: "Hamza Chaouki",
-    role: "Founder & Developer",
+    role: "Founder & Community Lead",
     photo: "/hamzafounder.png",
     url: "https://hamzachaouki.com/",
     focalY: 55,
@@ -47,7 +47,7 @@ const contributors: Contributor[] = [
   },
   {
     name: "Mohamed Nejjar",
-    role: "Founder & AI Specialist",
+    role: "AI & Technology Lead",
     photo: "/mohamedfounder.png",
     url: "https://mohamednejjar.com/",
     tint: "bg-tint-blue",

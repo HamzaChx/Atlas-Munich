@@ -1,5 +1,4 @@
 import Image from "next/image";
-import { ArrowRight, Briefcase, MapPin, MessageCircle } from "lucide-react";
 import { getTranslations } from "next-intl/server";
 
 import { Link } from "@/i18n/navigation";
@@ -11,19 +10,16 @@ export async function ArrivalHero() {
     {
       label: t("quick.ask"),
       href: "/chat",
-      icon: MessageCircle,
       primary: true,
     },
     {
       label: t("quick.map"),
       href: "/map",
-      icon: MapPin,
       primary: false,
     },
     {
       label: t("quick.career"),
       href: "/career",
-      icon: Briefcase,
       primary: false,
     },
   ];
@@ -43,32 +39,29 @@ export async function ArrivalHero() {
 
           <nav
             aria-label={t("quick.badge")}
-            className="rise rise-3 mt-9 grid max-w-2xl grid-cols-2 gap-3 sm:flex sm:flex-wrap"
+            className="rise rise-3 mt-9 flex max-w-[38rem] flex-col gap-2.5 sm:flex-row sm:flex-wrap"
           >
-            {quickAccess.map((item) => {
-              const Icon = item.icon;
-
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={
-                    item.primary
-                      ? "group col-span-2 inline-flex min-h-12 items-center justify-center gap-2.5 rounded-full bg-zinc-950 px-6 text-sm font-bold text-zinc-50 shadow-[0_10px_28px_rgba(32,29,24,0.16)] transition-[background-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:bg-zinc-800 hover:shadow-[0_14px_34px_rgba(32,29,24,0.2)] dark:bg-zinc-50 dark:text-zinc-950 dark:hover:bg-zinc-200 sm:col-span-1"
-                      : "group inline-flex min-h-12 items-center justify-center gap-2.5 rounded-full border border-border/80 bg-card/70 px-4 text-sm font-semibold text-zinc-700 shadow-sm transition-[background-color,border-color,transform] duration-200 hover:-translate-y-0.5 hover:border-zinc-300 hover:bg-card dark:text-zinc-200 dark:hover:border-zinc-600"
-                  }
+            {quickAccess.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`group relative isolate inline-flex min-h-13 items-center justify-between gap-5 overflow-hidden rounded-full border px-5 py-3 text-sm font-bold tracking-[-0.01em] backdrop-blur-xl transition-[background-color,border-color,box-shadow,transform] duration-200 before:pointer-events-none before:absolute before:inset-x-4 before:top-0 before:h-px before:bg-white/80 before:content-[''] hover:-translate-y-0.5 focus-visible:ring-offset-[#fbf6ec] dark:focus-visible:ring-offset-[#191816] sm:min-w-[10.5rem] ${
+                  item.primary
+                    ? "border-bloom/20 bg-white/[0.55] text-zinc-950 shadow-[0_10px_30px_rgba(93,57,33,0.11),inset_0_1px_0_rgba(255,255,255,0.8)] hover:border-bloom/35 hover:bg-white/[0.72] hover:shadow-[0_14px_34px_rgba(93,57,33,0.15),inset_0_1px_0_rgba(255,255,255,0.9)] dark:border-bloom/25 dark:bg-white/[0.09] dark:text-zinc-50 dark:shadow-[0_10px_30px_rgba(0,0,0,0.22),inset_0_1px_0_rgba(255,255,255,0.1)] dark:hover:bg-white/[0.14]"
+                    : "border-white/70 bg-white/[0.32] text-zinc-700 shadow-[0_8px_24px_rgba(93,57,33,0.07),inset_0_1px_0_rgba(255,255,255,0.75)] hover:border-white hover:bg-white/[0.58] hover:text-zinc-950 hover:shadow-[0_12px_30px_rgba(93,57,33,0.11),inset_0_1px_0_rgba(255,255,255,0.9)] dark:border-white/10 dark:bg-white/[0.055] dark:text-zinc-200 dark:shadow-[0_8px_24px_rgba(0,0,0,0.18),inset_0_1px_0_rgba(255,255,255,0.07)] dark:hover:border-white/[0.18] dark:hover:bg-white/[0.1] dark:hover:text-zinc-50"
+                }`}
+              >
+                <span className="relative z-10">{item.label}</span>
+                <span
+                  className={`relative z-10 text-base font-medium transition-transform duration-200 group-hover:translate-x-0.5 ${
+                    item.primary ? "text-bloom" : "text-zinc-400 dark:text-zinc-500"
+                  }`}
+                  aria-hidden="true"
                 >
-                  <Icon className="h-[18px] w-[18px]" aria-hidden="true" />
-                  {item.label}
-                  {item.primary && (
-                    <ArrowRight
-                      className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5"
-                      aria-hidden="true"
-                    />
-                  )}
-                </Link>
-              );
-            })}
+                  →
+                </span>
+              </Link>
+            ))}
           </nav>
         </div>
 

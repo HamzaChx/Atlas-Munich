@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { GithubIcon, MessageCircle, Heart, ArrowRight } from "lucide-react";
 
 import { ShareButton } from "@/components/shared";
+import { JoinOptions } from "@/components/community/JoinOptions";
 import { WHATSAPP_COMMUNITY_URL } from "@/lib/site-config";
 import { alternatesFor, localizedUrl } from "@/lib/urls";
 
@@ -60,46 +60,22 @@ export default async function CommunityPage({ params }: PageProps) {
         <div className="reveal grid grid-cols-1 gap-5 lg:grid-cols-12">
           {/* ========== JOIN THE GROUP ========== */}
           <section className="lg:col-span-7">
-            <div className="h-full rounded-[2rem] bg-tint-green p-7 sm:p-9 dark:ring-1 dark:ring-border">
-              <div className="flex flex-col items-center gap-8 sm:flex-row sm:items-start">
-                <div className="flex-1 text-center sm:text-left">
-                  <span className="eyebrow">{c("badge")}</span>
-                  <h2 className="font-display mt-3 text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-3xl">
-                    {c("title")} <span className="text-bloom">{c("titleHighlight")}</span>
-                  </h2>
-                  <p className="mt-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">
-                    {c("subtitle")}
-                  </p>
-                  <p className="mt-4 text-sm text-zinc-500 dark:text-zinc-400">
-                    <span className="font-semibold text-zinc-800 dark:text-zinc-50">100+</span>{" "}
-                    {c("stats.members")}
-                  </p>
-                  <a
-                    href={WHATSAPP_COMMUNITY_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="mt-6 inline-flex items-center gap-2 rounded-full bg-zinc-900 px-7 py-3.5 text-sm font-semibold text-white shadow-md shadow-zinc-900/15 transition-all hover:bg-zinc-800 dark:bg-zinc-50 dark:text-zinc-900 dark:shadow-none dark:hover:bg-zinc-200"
-                  >
-                    <MessageCircle className="h-4 w-4" />
-                    {c("joinButton")}
-                  </a>
-                </div>
-
-                <div className="shrink-0">
-                  <div className="rounded-2xl bg-card p-3.5 shadow-[0_8px_30px_rgb(0_0_0/0.1)] dark:shadow-none dark:ring-1 dark:ring-border">
-                    <Image
-                      src={`https://api.qrserver.com/v1/create-qr-code/?size=400x400&data=${encodeURIComponent(WHATSAPP_COMMUNITY_URL)}&bgcolor=ffffff&color=000000&margin=16`}
-                      alt="WhatsApp Community QR Code"
-                      width={180}
-                      height={180}
-                      className="h-36 w-36 rounded-lg"
-                    />
-                  </div>
-                  <p className="mx-auto mt-3 max-w-36 text-center text-[11px] leading-relaxed text-zinc-500 dark:text-zinc-400">
-                    {c("qrInstructions")}
-                  </p>
-                </div>
+            <div className="flex h-full flex-col justify-center rounded-[2rem] bg-tint-green p-7 sm:p-9 dark:ring-1 dark:ring-border">
+              <div className="text-center sm:text-left">
+                <span className="eyebrow">{c("badge")}</span>
+                <h2 className="font-display mt-3 text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-3xl">
+                  {c("title")} <span className="text-bloom">{c("titleHighlight")}</span>
+                </h2>
+                <p className="mt-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">
+                  {c("subtitle")}
+                </p>
+                <p className="mt-4 text-sm text-zinc-500 dark:text-zinc-400">
+                  <span className="font-semibold text-zinc-800 dark:text-zinc-50">100+</span>{" "}
+                  {c("stats.members")}
+                </p>
               </div>
+
+              <JoinOptions whatsappUrl={WHATSAPP_COMMUNITY_URL} />
             </div>
           </section>
 

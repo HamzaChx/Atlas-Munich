@@ -520,6 +520,13 @@
       "cultures": "Two Cultures, One Community"
     },
     "qrInstructions": "Scan with your phone camera or WhatsApp to join instantly",
+    "whatsappOption": "Open WhatsApp",
+    "whatsappOptionSub": "Tap to join instantly",
+    "qrOption": "Scan the code",
+    "qrOptionSub": "Same link, no typing",
+    "qrModalTitle": "Scan to join",
+    "closeQr": "Close",
+    "or": "or",
     "joinTitle": "Ready to Join?",
     "joinDescription": "One scan connects you to a network of people who understand exactly what you're going through. Ask questions, share tips, and make friends.",
     "joinButton": "Join WhatsApp Community",

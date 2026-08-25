@@ -54,14 +54,30 @@ export function recordVisit(): number {
 
 export function useInstallPrompt() {
   const [canInstall, setCanInstall] = React.useState(false);
+  const [isIos, setIsIos] = React.useState(false);
+  const [isInstalled, setIsInstalled] = React.useState(false);
 
   React.useEffect(() => {
     startListening();
-    const sync = () => setCanInstall(deferredEvent !== null);
+    const standaloneQuery = window.matchMedia("(display-mode: standalone)");
+    const navigatorWithStandalone = window.navigator as Navigator & { standalone?: boolean };
+
+    const sync = () => {
+      const iosDevice =
+        /iPad|iPhone|iPod/i.test(navigator.userAgent) ||
+        (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+
+      setCanInstall(deferredEvent !== null);
+      setIsIos(iosDevice);
+      setIsInstalled(standaloneQuery.matches || navigatorWithStandalone.standalone === true);
+    };
+
     subscribers.add(sync);
+    standaloneQuery.addEventListener("change", sync);
     sync();
     return () => {
       subscribers.delete(sync);
+      standaloneQuery.removeEventListener("change", sync);
     };
   }, []);
 
@@ -76,7 +92,7 @@ export function useInstallPrompt() {
     return outcome;
   }, []);
 
-  return { canInstall, promptInstall };
+  return { canInstall, promptInstall, isIos, isInstalled };
 }
 
 export function isInstallDismissed() {

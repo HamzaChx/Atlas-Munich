@@ -547,6 +547,13 @@
       "cultures": "Zwei Kulturen, eine Community"
     },
     "qrInstructions": "Scanne mit deiner Handykamera oder WhatsApp, um sofort beizutreten",
+    "whatsappOption": "WhatsApp öffnen",
+    "whatsappOptionSub": "Sofort beitreten",
+    "qrOption": "Code scannen",
+    "qrOptionSub": "Gleicher Link, kein Tippen",
+    "qrModalTitle": "Zum Beitreten scannen",
+    "closeQr": "Schließen",
+    "or": "oder",
     "joinTitle": "Bereit beizutreten?",
     "joinDescription": "Ein Scan verbindet dich mit einem Netzwerk von Menschen, die genau verstehen, was du durchmachst. Stelle Fragen, teile Tipps und schließe Freundschaften.",
     "joinButton": "WhatsApp Community beitreten",

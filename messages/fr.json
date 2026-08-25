@@ -547,6 +547,13 @@
       "cultures": "Deux cultures, une communauté"
     },
     "qrInstructions": "Scannez avec l'appareil photo de votre téléphone ou WhatsApp pour rejoindre instantanément",
+    "whatsappOption": "Ouvrir WhatsApp",
+    "whatsappOptionSub": "Rejoindre en un instant",
+    "qrOption": "Scanner le code",
+    "qrOptionSub": "Même lien, sans rien taper",
+    "qrModalTitle": "Scannez pour rejoindre",
+    "closeQr": "Fermer",
+    "or": "ou",
     "joinTitle": "Prêt à rejoindre ?",
     "joinDescription": "Un scan vous connecte à un réseau de personnes qui comprennent exactement ce que vous vivez. Posez des questions, partagez des conseils et faites-vous des amis.",
     "joinButton": "Rejoindre la communauté WhatsApp",

@@ -181,7 +181,7 @@ export default async function RootLayout({
   const navTranslations = messages.nav as {
     map: string;
     ask: string;
-    career: string;
+    lifestyle: string;
     community: string;
     about: string;
     aboutAria: string;

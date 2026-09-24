@@ -33,12 +33,12 @@ export function LandingMasonrySection() {
       category: "Bureaucracy & Visa",
     },
     {
-      id: "career",
+      id: "lifestyle",
       img: "/masonry/career.png",
-      url: "/career",
+      url: "/lifestyle",
       height: 560,
-      title: "Werkstudent & TUM/LMU",
-      category: "Career & Studies",
+      title: "Every guide, one tree",
+      category: "Lifestyle",
     },
     {
       id: "healthcare",

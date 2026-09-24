@@ -21,6 +21,12 @@ export interface Hub {
   categoryKeys: CategoryKey[];
   /** Helpers offered here. */
   assistants: ChatbotType[];
+  /**
+   * How the hub draws its guides. "graph" is the collapsible index shared with
+   * /guides; "explorer" is a topic tree beside a detail pane, built to stay
+   * calm as a broad hub collects many guides.
+   */
+  guidesLayout?: "graph" | "explorer";
   /** Flat brand tokens, no gradients. */
   tint: string;
   acc: string;
@@ -31,10 +37,10 @@ export const hubs: Hub[] = [
   {
     key: "map",
     route: "/map",
-    /* Housing sits here rather than under Studies because it is a "where"
-       question first: which district, what rent, how far from campus. The map
-       already answers that, and Riad belongs on the same page as it. */
-    categoryKeys: ["rent-housing"],
+    /* The map answers "where" (districts, rent, distance from campus) and
+       Riad lives here, but the housing guide is read in the Lifestyle tree
+       with every other guide: this page never listed it. */
+    categoryKeys: [],
     assistants: ["riad"],
     tint: "bg-tint-terra",
     acc: "text-acc-terra",
@@ -43,17 +49,23 @@ export const hubs: Hub[] = [
   {
     key: "guide",
     route: "/chat",
-    categoryKeys: ["kvr-residence", "university-life"],
+    /* Chat-first: the helpers answer here, the guides are browsed in the
+       Lifestyle tree. */
+    categoryKeys: [],
     assistants: ["dalilah", "ilham", "loubna"],
     tint: "bg-tint-blue",
     acc: "text-acc-blue",
     dot: "bg-acc-blue",
   },
   {
-    key: "career",
-    route: "/career",
-    categoryKeys: ["career", "useful-apps"],
+    /* Was "career". Now the home of every guide: each category is a topic
+       in the tree on this page, in the order a newcomer meets them. A new
+       category added here grows a new branch, nothing else to wire up. */
+    key: "lifestyle",
+    route: "/lifestyle",
+    categoryKeys: ["rent-housing", "kvr-residence", "university-life", "career", "useful-apps"],
     assistants: [],
+    guidesLayout: "explorer",
     tint: "bg-tint-plum",
     acc: "text-acc-plum",
     dot: "bg-acc-plum",
@@ -83,7 +95,13 @@ export function getHubForCategory(categoryKey: CategoryKey): Hub | undefined {
   return hubs.find((hub) => hub.categoryKeys.includes(categoryKey));
 }
 
-/** Where a category's old /category/<key> page now lives. */
-export function hubRouteForCategory(categoryKey: CategoryKey): string {
-  return getHubForCategory(categoryKey)?.route ?? "/guides";
+/**
+ * Where to browse a category's guides: the owning hub, opened on that topic
+ * when the hub draws the explorer tree (`/lifestyle#kvr-residence`). For
+ * visible links; structured data wants the plain route without the hash.
+ */
+export function categoryHref(categoryKey: CategoryKey): string {
+  const hub = getHubForCategory(categoryKey);
+  if (!hub) return "/guides";
+  return hub.guidesLayout === "explorer" ? `${hub.route}#${categoryKey}` : hub.route;
 }

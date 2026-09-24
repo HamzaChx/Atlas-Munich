@@ -245,7 +245,7 @@ Nach dem Abschluss hast du Anspruch auf eine **18-monatige Aufenthaltserlaubnis 
 
 **Immatrikulationsbescheinigung** – ausgestellt von deiner Universität (TUM oder LMU), nicht älter als ein Semester.
 
-**Nachweis der finanziellen Absicherung** – entweder ein aktives Sperrkonto mit dem Mindestbetrag (derzeit ca. 11.208 Euro pro Jahr) oder ein Stipendiennachweis, zum Beispiel von DAAD oder einem anderen anerkannten Förderprogramm.
+**Nachweis der finanziellen Absicherung** – entweder ein aktives Sperrkonto mit dem Mindestbetrag (11.904 Euro pro Jahr bzw. 992 Euro pro Monat, Stand 2026) oder ein Stipendiennachweis, zum Beispiel von DAAD oder einem anderen anerkannten Förderprogramm.
 
 **Krankenversicherungsnachweis** – eine gesetzliche Krankenversicherung wie TK, AOK oder Barmer ist in der Regel erforderlich.
 
@@ -267,7 +267,7 @@ Prüfe unbedingt, ob auf deiner Aufenthaltserlaubnis **Beschäftigung erlaubt** 
           {
             id: "working-as-student",
             title: "Als Student arbeiten – was ist erlaubt?",
-            content: `Mit einer gültigen Aufenthaltserlaubnis zu Studienzwecken darfst du **120 volle Tage oder 240 halbe Tage** pro Jahr arbeiten. In der Praxis entspricht das etwa 20 Stunden pro Woche während des Semesters. In Semesterferien kannst du auch mehr arbeiten, ohne dass dies auf dein Kontingent angerechnet wird, wenn du es richtig planst – informiere dich dazu bei deiner Ausländerbehörde.
+            content: `Mit einer gültigen Aufenthaltserlaubnis zu Studienzwecken darfst du **140 volle Tage oder 280 halbe Tage pro Kalenderjahr** arbeiten (§ 16b Abs. 3 AufenthG, seit März 2024 angehoben von 120/240 Tagen). Arbeit in den Semesterferien wird auf dasselbe Arbeitstagekonto angerechnet. Studentische Nebentätigkeiten an deiner Hochschule (HiWi, Tutorium) und Pflichtpraktika zählen nicht mit.
 
 Den Vermerk zur Arbeitserlaubnis findest du direkt auf deiner Aufenthaltserlaubnis unter „Beschäftigung erlaubt". Zeig diesen deinem Arbeitgeber bei Vertragsabschluss.`,
           },
@@ -290,7 +290,7 @@ Tipp: Setz dir eine Erinnerung im Kalender drei Monate vor Ablauf. So hast du au
         id: "faq-permit-1",
         question: "Was genau ist ein Sperrkonto und wie richte ich eines ein?",
         answer:
-          "Ein Sperrkonto ist ein spezielles Bankkonto, auf dem du einen bestimmten Betrag hinterlegst, der beweist, dass du deinen Lebensunterhalt in Deutschland finanzieren kannst. Derzeit ist der Richtwert ca. 11.208 Euro pro Jahr (934 Euro pro Monat). Das Geld wird schrittweise monatlich freigegeben. Beliebte Anbieter sind Fintiba und Expatrio, die den Prozess auf Englisch begleiten. Wenn du ein Stipendium hast, das den Lebensunterhalt abdeckt, kann dieses das Sperrkonto ersetzen.",
+          "Ein Sperrkonto ist ein spezielles Bankkonto, auf dem du einen bestimmten Betrag hinterlegst, der beweist, dass du deinen Lebensunterhalt in Deutschland finanzieren kannst. Für 2026 liegt der Betrag bei 11.904 Euro pro Jahr (992 Euro pro Monat). Das Geld wird schrittweise monatlich freigegeben. Beliebte Anbieter sind Fintiba und Expatrio, die den Prozess auf Englisch begleiten. Wenn du ein Stipendium hast, das den Lebensunterhalt abdeckt, kann dieses das Sperrkonto ersetzen.",
       },
       {
         id: "faq-permit-2",
@@ -396,7 +396,7 @@ Nutze die **Sprechstunden** (Office Hours) deiner Professorinnen und Professoren
         id: "faq-student-1",
         question: "Darf ich neben dem Studium arbeiten?",
         answer:
-          "Ja, als Nicht-EU-Studierender darfst du bis zu 120 volle Tage oder 240 halbe Tage pro Jahr arbeiten. Das entspricht in etwa 20 Stunden pro Woche während des Semesters. Ein Werkstudenten-Vertrag ist die gängige Form für diese Art von Beschäftigung.",
+          "Ja, als Nicht-EU-Studierender darfst du bis zu 140 volle Tage oder 280 halbe Tage pro Kalenderjahr arbeiten, Arbeit in den Semesterferien eingeschlossen. Ein Werkstudenten-Vertrag ist die gängige Form für diese Art von Beschäftigung.",
       },
       {
         id: "faq-student-2",
@@ -445,7 +445,9 @@ Nutze die **Sprechstunden** (Office Hours) deiner Professorinnen und Professoren
         title: "Was ist ein Werkstudenten-Vertrag?",
         content: `Ein Werkstudent ist ein eingeschriebener Studierender, der während des Studiums in einem Unternehmen arbeitet – in der Regel bis zu 20 Stunden pro Woche im Semester. Diese Arbeitsform ist in Deutschland gesetzlich definiert und bringt besondere Vorteile.
 
-Dank des sogenannten **Werkstudentenprivilegs** zahlst du als Werkstudent keine Beiträge zur Kranken-, Pflege- und Rentenversicherung – im Gegensatz zu regulären Arbeitnehmern. Das macht Werkstudenten-Stellen für Unternehmen attraktiver und für dich günstiger.
+Dank des sogenannten **Werkstudentenprivilegs** zahlst du als Werkstudent keine Beiträge zur Kranken-, Pflege- und Arbeitslosenversicherung, solange du die 20-Stunden-Grenze einhältst. Nur deinen Anteil zur Rentenversicherung zahlst du weiterhin. Das macht Werkstudenten-Stellen für Unternehmen attraktiver und für dich günstiger.
+
+Als Nicht-EU-Studierender wird ein Werkstudenten-Job außerdem auf das jährliche Arbeitstagekonto deiner Aufenthaltserlaubnis angerechnet. Wie das funktioniert, erklärt der Abschnitt zu Arbeitszeiten weiter unten.
 
 München bietet ein breites Spektrum an Werkstudenten-Stellen, vor allem bei großen Arbeitgebern wie BMW, Siemens, MAN, Allianz sowie in der wachsenden Start-up-Szene rund um Schwabing und den Technologiepark Garching.`,
       },
@@ -456,7 +458,7 @@ München bietet ein breites Spektrum an Werkstudenten-Stellen, vor allem bei gro
 
 **LinkedIn** ist die wichtigste Plattform für Werkstudenten-Stellen im Tech- und Unternehmensbereich. Erstell ein vollständiges Profil und such aktiv nach „Werkstudent München". **Stepstone** und **Indeed** bieten ebenfalls eine große Auswahl. **Xing** wird in Deutschland noch genutzt, verliert aber an Bedeutung im Vergleich zu LinkedIn.
 
-Die **TUM TalentBridge** und das **LMU Career Centre** sind offizielle Jobportale deiner Universität, auf denen Unternehmen direkt an Studierende herantreten. Diese Stellen sind oft auf internationale Studierende zugeschnitten.
+Das Jobportal des **TUM Career Service** und der **LMU Career Service** sind offizielle Jobportale deiner Universität, auf denen Unternehmen direkt an Studierende herantreten. Diese Stellen sind oft auf internationale Studierende zugeschnitten.
 
 Besuche außerdem Karrieremessen wie die **MUN:IQ** an der TUM oder ähnliche Events an der LMU. Knüpfe Kontakte in marokkanischen und nordafrikanischen Netzwerken in München – Mundpropaganda und persönliche Empfehlungen funktionieren oft besser als jede Bewerbungsplattform.`,
       },
@@ -487,11 +489,18 @@ Bereite dich auf Vorstellungsgespräche vor, indem du das Unternehmen recherchie
       {
         id: "work-hours-rules",
         title: "Arbeitszeiten und rechtliche Grenzen",
-        content: `Als Nicht-EU-Studierender darfst du während deines Studiums **120 volle Tage oder 240 halbe Tage** pro Jahr arbeiten. Das entspricht in etwa 20 Stunden pro Woche während des Semesters.
+        content: `Als Nicht-EU-Studierender darfst du während deines Studiums **140 volle Tage oder 280 halbe Tage pro Kalenderjahr** arbeiten (§ 16b Abs. 3 AufenthG, das sogenannte Arbeitstagekonto). Die Grenze wurde am 1. März 2024 von 120/240 Tagen angehoben. Ein Tag mit bis zu vier Stunden Arbeit zählt als halber Tag, alles darüber als voller Tag.
 
-In den Semesterferien darfst du mehr arbeiten, ohne dass dies zwingend auf das Kontingent angerechnet wird – aber informiere dich dazu bei der Ausländerbehörde oder deiner Universität, da die Regelung von der Lage deines Arbeitsverhältnisses abhängt.
+**Auch Arbeit in den Semesterferien zählt.** Außerhalb der Vorlesungszeit darfst du mehr Stunden arbeiten, auch in Vollzeit, aber jeder Arbeitstag wird vom selben Konto über 140 Tage abgezogen. Ein separates, unbegrenztes Kontingent für die Ferien gibt es nicht.
 
-Führe immer eine eigene Aufzeichnung deiner Arbeitsstunden. Dein Arbeitgeber ist dazu ebenfalls verpflichtet, aber es schadet nicht, es selbst zu tracken.
+Es gibt eine zweite Zählweise, und die Behörde wendet Woche für Woche die für dich günstigere an. Nach dieser Wochenregel zählt eine Woche mit bis zu 20 Stunden in der Vorlesungszeit als zweieinhalb Arbeitstage. Außerhalb der Vorlesungszeit zählt eine Woche ebenfalls als zweieinhalb Arbeitstage, unabhängig davon, wie die Stunden verteilt sind. Wenn dein Arbeitsmodell ungewöhnlich ist, frag vor Vertragsabschluss bei der Ausländerbehörde nach, wie es angerechnet wird.
+
+**Nicht** auf die 140 Tage angerechnet werden:
+
+- **studentische Nebentätigkeiten** an deiner Hochschule (zum Beispiel als HiWi oder Tutor), die zeitlich unbegrenzt erlaubt sind;
+- **Pflichtpraktika**, die vorgeschriebener Teil deines Studiums sind.
+
+Das Konto beginnt jeden Januar neu, egal wann du eingereist bist. Führe eine eigene Aufzeichnung deiner Arbeitstage, denn den Nachweis musst du selbst erbringen. Wer das Konto ohne gesonderte Erlaubnis überschreitet, handelt ordnungswidrig: Es droht ein Bußgeld von bis zu 5.000 Euro, und die Aufenthaltserlaubnis kann gefährdet sein.
 
 Deine Berechtigung zur Arbeit findest du auf deiner Aufenthaltserlaubnis unter dem Vermerk **Beschäftigung erlaubt**. Zeig diesen deinem Arbeitgeber bei Vertragsabschluss – er ist rechtlich verpflichtet, das zu prüfen.`,
       },
@@ -500,9 +509,9 @@ Deine Berechtigung zur Arbeit findest du auf deiner Aufenthaltserlaubnis unter d
         title: "Steuern und Sozialversicherung verstehen",
         content: `Bevor du anfängst zu arbeiten, brauchst du deine **Steueridentifikationsnummer**, die du nach der Anmeldung per Post erhältst. Außerdem brauchst du eine **Sozialversicherungsnummer**, die dir bei deiner ersten Beschäftigung automatisch ausgestellt wird.
 
-Das **Werkstudentenprivileg** bedeutet konkret: Du zahlst keine Beiträge zur Kranken-, Pflege- und Rentenversicherung – solange du unter der 20-Stunden-Grenze bleibst. Das spart dir und deinem Arbeitgeber Geld.
+Das **Werkstudentenprivileg** bedeutet konkret: Solange du in der Vorlesungszeit höchstens 20 Stunden pro Woche arbeitest, zahlst du keine Beiträge zur Kranken-, Pflege- und Arbeitslosenversicherung. Deinen Anteil zur Rentenversicherung zahlst du weiterhin. Das spart dir und deinem Arbeitgeber Geld.
 
-Einkommensteuer fällt erst ab einem Jahreseinkommen von ca. 11.600 Euro an. Wenn du weniger verdienst, bekommst du eventuell bereits einbehaltene Steuern über die Steuererklärung zurück.
+Einkommensteuer fällt erst an, wenn dein zu versteuerndes Jahreseinkommen den Grundfreibetrag übersteigt, der **2026 bei 12.348 Euro** liegt. Wenn du weniger verdienst, bekommst du eventuell bereits einbehaltene Steuern über die Steuererklärung zurück.
 
 Heb alle deine Gehaltsabrechnungen auf – du brauchst sie für die Steuererklärung und manchmal auch für die Verlängerung deiner Aufenthaltserlaubnis.`,
       },
@@ -510,15 +519,16 @@ Heb alle deine Gehaltsabrechnungen auf – du brauchst sie für die Steuererklä
     faqs: [
       {
         id: "faq-werk-1",
-        question: "Kann ich gleichzeitig ein Werkstudentenverhältnis und einen Minijob haben?",
+        question:
+          "Kann ich gleichzeitig ein Werkstudentenverhältnis und einen Minijob (603 Euro) haben?",
         answer:
-          "Das ist rechtlich komplex. Ein Minijob zusätzlich zum Werkstudentenverhältnis kann dazu führen, dass du das Werkstudentenprivileg verlierst und normale Sozialversicherungsbeiträge zahlen musst. Wende dich im Zweifel an einen Steuerberater oder die Studierendenberatung der Uni.",
+          "Das ist rechtlich komplex. Ein Minijob (2026 bis 603 Euro im Monat) zusätzlich zum Werkstudentenverhältnis kann dazu führen, dass du das Werkstudentenprivileg verlierst und normale Sozialversicherungsbeiträge zahlen musst. Als Nicht-EU-Studierender zählen außerdem beide Jobs auf dasselbe Arbeitstagekonto von 140 Tagen. Wende dich im Zweifel an einen Steuerberater oder die Studierendenberatung der Uni.",
       },
       {
         id: "faq-werk-2",
         question: "Wie viel kann ich als Werkstudent realistisch verdienen?",
         answer:
-          "Der Stundenlohn liegt je nach Bereich zwischen 12 und 25 Euro. Tech, Engineering und Finance zahlen in der Regel am meisten. Bei 15 Euro pro Stunde und 20 Stunden pro Woche kommst du auf ca. 1.200 Euro monatlich – das deckt Miete und Lebenshaltungskosten in München zu einem guten Teil.",
+          "Der gesetzliche Mindestlohn liegt 2026 bei 13,90 Euro pro Stunde, Werkstudenten-Stellen in München zahlen meist mehr, typischerweise 15 bis 25 Euro je nach Bereich. Tech, Engineering und Finance zahlen in der Regel am meisten. Bei 16 Euro pro Stunde und 20 Stunden pro Woche kommst du auf ca. 1.380 Euro brutto im Monat – das deckt Miete und Lebenshaltungskosten in München zu einem guten Teil.",
       },
       {
         id: "faq-werk-3",
@@ -530,7 +540,7 @@ Heb alle deine Gehaltsabrechnungen auf – du brauchst sie für die Steuererklä
     resources: [
       {
         id: "res-werk-1",
-        title: "TUM TalentBridge",
+        title: "TUM Career Service",
         description: "Das offizielle Karriere-Portal für TUM-Studierende",
       },
       {

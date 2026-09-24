@@ -3,14 +3,16 @@ import Image from "next/image";
 import { Github, Mail } from "lucide-react";
 import { useTranslations } from "next-intl";
 
+/* Topic links go to the guide itself, not to the hub it sits on: a reader
+   who clicks "Housing & Rent" expects the housing guide, not the map. */
 const linkColumns = [
   {
     titleKey: "guides",
     links: [
-      { labelKey: "links.housingRent", href: "/map" },
-      { labelKey: "links.kvrResidence", href: "/chat" },
-      { labelKey: "links.universityLife", href: "/chat" },
-      { labelKey: "links.careerJobs", href: "/career" },
+      { labelKey: "links.housingRent", href: "/guides/find-apartment-munich" },
+      { labelKey: "links.kvrResidence", href: "/guides/residence-permit-students" },
+      { labelKey: "links.universityLife", href: "/guides/student-life-munich" },
+      { labelKey: "links.careerJobs", href: "/lifestyle#find-werkstudent-job" },
     ],
   },
   {
@@ -18,7 +20,7 @@ const linkColumns = [
     links: [
       { labelKey: "links.halalPlaces", href: "/map" },
       { labelKey: "links.faq", href: "/faq" },
-      { labelKey: "links.usefulApps", href: "/career" },
+      { labelKey: "links.usefulApps", href: "/guides/essential-apps-munich" },
       { labelKey: "links.aiTools", href: "/chat" },
     ],
   },

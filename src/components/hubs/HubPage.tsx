@@ -7,10 +7,12 @@ import { getHub } from "@/data/hubs";
 import { getAssistantsForHub, isLive } from "@/data/assistants";
 import { guides } from "@/data/guides";
 import { localizeGuides } from "@/data/guides-i18n";
-import { getGuideTree } from "@/lib/guide-tree-server";
+import { getGuideExplorer, getGuideTree } from "@/lib/guide-tree-server";
 import { GuideGraph, FaqTopicGrid } from "@/components/shared";
 import { getFaqsByHub } from "@/data/faqs";
 import { faqPageJsonLd } from "@/lib/structured-data";
+import { cn } from "@/lib/utils";
+import { GuideExplorer } from "./GuideExplorer";
 import type { HubKey } from "@/types";
 
 /**
@@ -31,8 +33,11 @@ export async function HubPage({ hubKey, locale }: { hubKey: HubKey; locale: stri
     locale
   );
   const helpers = getAssistantsForHub(hubKey).filter(isLive);
-  /* The same tree as /guides, scoped to this hub's guides. */
-  const treeNodes = await getGuideTree(locale, hubKey);
+  const explorerLayout = hub.guidesLayout === "explorer";
+  /* The same tree as /guides, scoped to this hub's guides, or the explorer
+     when the hub asks for it. Only the one in use is built. */
+  const treeNodes = explorerLayout ? [] : await getGuideTree(locale, hubKey);
+  const explorerTopics = explorerLayout ? await getGuideExplorer(locale, hubKey) : [];
   /* The questions that belong to this stage of the move. They used to live on
      a single /faq page where a reader had to know to look for them. */
   const hubFaqs = getFaqsByHub(hubKey);
@@ -57,7 +62,14 @@ export async function HubPage({ hubKey, locale }: { hubKey: HubKey; locale: stri
         </p>
       </section>
 
-      <div className="mx-auto max-w-6xl px-4 pb-20 sm:px-6 lg:px-8 2xl:max-w-[96rem] 2xl:px-12">
+      {/* The explorer is drawn as a tree with its trunk up the middle and
+          topics on both sides, so it takes the same width as other hubs. */}
+      <div
+        className={cn(
+          "mx-auto px-4 pb-20 sm:px-6 lg:px-8",
+          explorerLayout ? "max-w-6xl" : "max-w-6xl 2xl:max-w-[96rem] 2xl:px-12"
+        )}
+      >
         {hubGuides.length > 0 && (
           <section className="reveal">
             <div className="flex items-baseline justify-between gap-4">
@@ -73,14 +85,26 @@ export async function HubPage({ hubKey, locale }: { hubKey: HubKey; locale: stri
               </Link>
             </div>
 
-            {/* The tree, scoped to this hub. First topic open so the page
-                never lands as a wall of closed rows. */}
-            <div className="mt-5 rounded-[1.75rem] bg-card p-4 shadow-[0_2px_20px_rgb(0_0_0/0.06)] sm:p-6 dark:shadow-none dark:ring-1 dark:ring-border">
-              <GuideGraph
-                nodes={treeNodes}
-                defaultOpenIds={treeNodes[0] ? [treeNodes[0].id] : []}
-              />
-            </div>
+            {explorerLayout ? (
+              /* Straight on the page, no tinted panel: each topic brings its
+                 own colour to its branch, and a coloured ground would fight
+                 all five of them. */
+              <div className="mt-2">
+                <p className="mb-7 max-w-xl text-sm leading-relaxed text-zinc-500 dark:text-zinc-400">
+                  {t("explorer.hint")}
+                </p>
+                <GuideExplorer topics={explorerTopics} />
+              </div>
+            ) : (
+              /* The tree, scoped to this hub. First topic open so the page
+                 never lands as a wall of closed rows. */
+              <div className="mt-5 rounded-[1.75rem] bg-card p-4 shadow-[0_2px_20px_rgb(0_0_0/0.06)] sm:p-6 dark:shadow-none dark:ring-1 dark:ring-border">
+                <GuideGraph
+                  nodes={treeNodes}
+                  defaultOpenIds={treeNodes[0] ? [treeNodes[0].id] : []}
+                />
+              </div>
+            )}
           </section>
         )}
 

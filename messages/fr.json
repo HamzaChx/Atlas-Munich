@@ -31,7 +31,7 @@
     "notNow": "Plus tard",
     "map": "Carte",
     "essentials": "L'essentiel",
-    "career": "Carrière",
+    "lifestyle": "Vie quotidienne",
     "settings": "Paramètres",
     "aboutAria": "À propos d'Atlas Munich"
   },
@@ -277,6 +277,10 @@
       "liveRouting": "Les distances suivent les routes réelles.",
       "estimate": "Les distances sont des estimations à vol d'oiseau, pas un calcul d'itinéraire en direct.",
       "leg": "{distance}"
+    },
+    "directory": {
+      "title": "Tous les lieux de la carte",
+      "subtitle": "Les {count} lieux, classés par type. Choisissez un nom pour le retrouver sur la carte."
     }
   },
   "guides": {
@@ -342,7 +346,7 @@
     },
     "noResults": "Aucune question trouvée",
     "noResultsDescription": "Essayez une autre recherche ou parcourez toutes les catégories.",
-    "movedDescription": "Les questions ont été déplacées. Chacune se trouve désormais avec l'étape à laquelle elle répond."
+    "openGuides": "Voir les guides"
   },
   "about": {
     "badge": "Projet communautaire",
@@ -477,7 +481,13 @@
     "minRead": "min de lecture",
     "by": "par",
     "onThisPage": "Sur cette page",
-    "atlasMunichTeam": "l'équipe Atlas Munich"
+    "atlasMunichTeam": "l'équipe Atlas Munich",
+    "lastVerified": "Vérifié le {date}",
+    "officialSource": "Source officielle",
+    "staleTitle": "Dernière vérification il y a {months} mois",
+    "staleBody": "Les règles, les frais et les délais changent souvent en Allemagne, certaines parties de ce guide peuvent donc être dépassées. Vérifiez tout point important avant d'agir.",
+    "checkSource": "Consulter la source officielle",
+    "checkedAgo": "Vérifié il y a {months} mois"
   },
   "footer": {
     "description": "Votre guide complet pour réussir à Munich en tant qu'étudiant ou jeune professionnel marocain.",
@@ -2886,17 +2896,34 @@
       "titleHighlight": "Zellija",
       "subtitle": "Guides, FAQ, et les spécialistes qui peuvent vous aider — un seul endroit où demander, plutôt que six pages à chercher."
     },
-    "career": {
+    "lifestyle": {
       "badge": "Étape trois",
-      "title": "Lancez votre",
-      "titleHighlight": "carrière",
-      "subtitle": "Emplois étudiants, stages, et les applications qui simplifient les démarches du quotidien."
+      "title": "Installez-vous,",
+      "titleHighlight": "une étape à la fois",
+      "subtitle": "Logement, démarches, études, travail et les applis qui font tenir le tout. Ouvrez un sujet et n'approfondissez que ce qui vous concerne."
     },
     "community": {
       "badge": "Étape quatre",
       "title": "Vous n'êtes pas",
       "titleHighlight": "seul",
       "subtitle": "Des étudiants et professionnels marocains déjà à Munich, à un message près."
+    },
+    "explorer": {
+      "root": "Vie quotidienne",
+      "label": "Guides du quotidien",
+      "hint": "Ouvrez un sujet, choisissez un guide, jetez un œil à une étape. Une branche à la fois, pour que rien ne déborde.",
+      "search": "Rechercher un sujet ou une section",
+      "clear": "Effacer la recherche",
+      "topics": "{count, plural, one {# sujet} other {# sujets}}",
+      "guides": "{count, plural, one {# guide} other {# guides}}",
+      "minutes": "{count} min",
+      "results": "{count, plural, one {# résultat} other {# résultats}}",
+      "readGuide": "Lire le guide complet",
+      "readSection": "Lire cette section",
+      "noMatches": "Rien ne correspond à « {query} » pour l'instant.",
+      "noMatchesHint": "Essayez un autre mot, ou demandez à Zellija.",
+      "askZellija": "Demander à Zellija",
+      "steps": "{count, plural, one {# étape} other {# étapes}}"
     }
   },
   "tree": {

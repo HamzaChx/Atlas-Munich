@@ -12,21 +12,21 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "hubs" });
 
-  const title = `${t("career.title")} ${t("career.titleHighlight")}`;
+  const title = `${t("lifestyle.title")} ${t("lifestyle.titleHighlight")}`;
   return {
     title,
-    description: t("career.subtitle"),
-    alternates: alternatesFor(locale, "/career"),
+    description: t("lifestyle.subtitle"),
+    alternates: alternatesFor(locale, "/lifestyle"),
     openGraph: {
       title: `${title} | Atlas Munich`,
-      description: t("career.subtitle"),
-      url: localizedUrl(locale, "/career"),
+      description: t("lifestyle.subtitle"),
+      url: localizedUrl(locale, "/lifestyle"),
     },
   };
 }
 
-export default async function CareerPage({ params }: PageProps) {
+export default async function LifestylePage({ params }: PageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
-  return <HubPage hubKey="career" locale={locale} />;
+  return <HubPage hubKey="lifestyle" locale={locale} />;
 }

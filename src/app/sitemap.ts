@@ -50,7 +50,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...entry("/", { changeFrequency: "weekly", priority: 1.0 }),
     ...entry("/map", { changeFrequency: "weekly", priority: 0.95 }),
     ...entry("/chat", { changeFrequency: "weekly", priority: 0.95 }),
-    ...entry("/career", { changeFrequency: "weekly", priority: 0.95 }),
+    ...entry("/lifestyle", { changeFrequency: "weekly", priority: 0.95 }),
     ...entry("/community", { changeFrequency: "monthly", priority: 0.8 }),
     ...entry("/guides", { changeFrequency: "weekly", priority: 0.9 }),
   ];
@@ -67,6 +67,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   // Secondary / informational pages
   const secondaryPages = [
+    ...entry("/faq", { changeFrequency: "monthly", priority: 0.7 }),
     ...entry("/about", { changeFrequency: "monthly", priority: 0.55 }),
     ...entry("/privacy", { changeFrequency: "yearly", priority: 0.2 }),
     ...entry("/terms", { changeFrequency: "yearly", priority: 0.2 }),

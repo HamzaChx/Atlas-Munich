@@ -31,7 +31,7 @@
     "notNow": "Not now",
     "map": "Map",
     "essentials": "Essentials",
-    "career": "Career",
+    "lifestyle": "Lifestyle",
     "settings": "Settings",
     "aboutAria": "About Atlas Munich"
   },
@@ -254,6 +254,10 @@
       "liveRouting": "Distances follow the actual roads.",
       "estimate": "Distances are straight-line estimates, not live routing.",
       "leg": "{distance}"
+    },
+    "directory": {
+      "title": "Every place on the map",
+      "subtitle": "All {count} places, grouped by type. Pick a name to find it on the map."
     }
   },
   "guides": {
@@ -319,7 +323,7 @@
     },
     "noResults": "No questions found",
     "noResultsDescription": "Try another search or browse all categories.",
-    "movedDescription": "The questions moved. Each one now sits with the part of your move it answers."
+    "openGuides": "Browse the guides"
   },
   "about": {
     "badge": "Community Project",
@@ -454,7 +458,13 @@
     "minRead": "min read",
     "by": "by",
     "onThisPage": "On this page",
-    "atlasMunichTeam": "Atlas Munich Team"
+    "atlasMunichTeam": "Atlas Munich Team",
+    "lastVerified": "Last verified {date}",
+    "officialSource": "Official source",
+    "staleTitle": "Last checked {months, plural, one {# month} other {# months}} ago",
+    "staleBody": "Rules, fees, and deadlines in Germany change often, so parts of this guide may be out of date. Confirm anything important before you act on it.",
+    "checkSource": "Check the official source",
+    "checkedAgo": "Checked {months, plural, one {# month} other {# months}} ago"
   },
   "footer": {
     "description": "Your complete guide to thriving in Munich as a Moroccan student or young professional.",
@@ -2866,17 +2876,34 @@
       "titleHighlight": "Zellija",
       "subtitle": "Guides, FAQs, and the specialists who can help — one place to ask, instead of six pages to search."
     },
-    "career": {
+    "lifestyle": {
       "badge": "Step three",
-      "title": "Start your",
-      "titleHighlight": "career",
-      "subtitle": "Working student roles, internships, and the apps that make daily admin quick."
+      "title": "Settle in,",
+      "titleHighlight": "one branch at a time",
+      "subtitle": "Housing, paperwork, studies, work and the apps that hold it all together. Open a topic and go only as deep as you need."
     },
     "community": {
       "badge": "Step four",
       "title": "You are not doing this",
       "titleHighlight": "alone",
       "subtitle": "Moroccan students and professionals already in Munich, one message away."
+    },
+    "explorer": {
+      "root": "Lifestyle",
+      "label": "Lifestyle guides",
+      "hint": "Open a topic, pick a guide, preview any step. One branch at a time, so it never gets crowded.",
+      "search": "Search topics and sections",
+      "clear": "Clear search",
+      "topics": "{count, plural, one {# topic} other {# topics}}",
+      "guides": "{count, plural, one {# guide} other {# guides}}",
+      "minutes": "{count} min",
+      "results": "{count, plural, one {# match} other {# matches}}",
+      "readGuide": "Read the full guide",
+      "readSection": "Read this section",
+      "noMatches": "Nothing matches “{query}” yet.",
+      "noMatchesHint": "Try another word, or ask Zellija.",
+      "askZellija": "Ask Zellija",
+      "steps": "{count, plural, one {# step} other {# steps}}"
     }
   },
   "tree": {

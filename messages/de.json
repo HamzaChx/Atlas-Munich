@@ -31,7 +31,7 @@
     "notNow": "Später",
     "map": "Karte",
     "essentials": "Alltag",
-    "career": "Karriere",
+    "lifestyle": "Alltag",
     "settings": "Einstellungen",
     "aboutAria": "Über Atlas Munich"
   },
@@ -145,6 +145,10 @@
     "heroImageAlt": "Ein marokkanischer Neuankömmling geht mit der marokkanischen Flagge über den Schultern in Richtung Münchner Frauenkirche"
   },
   "places": {
+    "directory": {
+      "title": "Alle Orte auf der Karte",
+      "subtitle": "Alle {count} Orte, nach Art sortiert. Wähle einen Namen, um ihn auf der Karte zu finden."
+    },
     "badge": "Verifizierte Orte",
     "title": "Orte",
     "titleHighlight": "Verzeichnis",
@@ -342,7 +346,7 @@
     },
     "noResults": "Keine Fragen gefunden",
     "noResultsDescription": "Versuch eine andere Suche oder stöbere durch alle Kategorien.",
-    "movedDescription": "Die Fragen sind umgezogen. Jede steht jetzt bei dem Schritt, den sie beantwortet."
+    "openGuides": "Zu den Guides"
   },
   "about": {
     "badge": "Community-Projekt",
@@ -447,6 +451,12 @@
     "searchEverything": "Alles durchsuchen"
   },
   "guidePage": {
+    "lastVerified": "Zuletzt geprüft am {date}",
+    "officialSource": "Offizielle Quelle",
+    "staleTitle": "Zuletzt vor {months, plural, one {# Monat} other {# Monaten}} geprüft",
+    "staleBody": "Regeln, Gebühren und Fristen ändern sich in Deutschland oft, daher können Teile dieses Guides veraltet sein. Prüfe alles Wichtige, bevor du danach handelst.",
+    "checkSource": "Offizielle Quelle prüfen",
+    "checkedAgo": "Vor {months, plural, one {# Monat} other {# Monaten}} geprüft",
     "quickOverview": "Schnellübersicht",
     "sections": "Abschnitte",
     "readingTime": "Lesezeit",
@@ -2863,6 +2873,23 @@
     "globalErrorDescription": "Die App konnte nicht geladen werden. Ein Neuladen behebt das meist."
   },
   "hubs": {
+    "explorer": {
+      "root": "Alltag",
+      "label": "Alltags-Guides",
+      "hint": "Öffne ein Thema, wähl einen Guide, schau dir einen Schritt an. Immer nur ein Zweig auf einmal, damit es übersichtlich bleibt.",
+      "search": "Themen und Abschnitte durchsuchen",
+      "clear": "Suche löschen",
+      "topics": "{count, plural, one {# Thema} other {# Themen}}",
+      "guides": "{count, plural, one {# Guide} other {# Guides}}",
+      "minutes": "{count} Min.",
+      "results": "{count, plural, one {# Treffer} other {# Treffer}}",
+      "readGuide": "Ganzen Guide lesen",
+      "readSection": "Diesen Abschnitt lesen",
+      "noMatches": "Zu „{query}“ gibt es noch nichts.",
+      "noMatchesHint": "Probier ein anderes Wort oder frag Zellija.",
+      "askZellija": "Zellija fragen",
+      "steps": "{count, plural, one {# Schritt} other {# Schritte}}"
+    },
     "guidesTitle": "Guides",
     "helpersTitle": "Hilfe bekommen bei",
     "questionsTitle": "Häufige Fragen",
@@ -2890,11 +2917,11 @@
       "titleHighlight": "Zellija",
       "subtitle": "Guides, FAQ und die Fachleute, die dir helfen können — ein Ort zum Fragen, statt sechs Seiten zum Suchen."
     },
-    "career": {
+    "lifestyle": {
       "badge": "Schritt drei",
-      "title": "Starte deine",
-      "titleHighlight": "Karriere",
-      "subtitle": "Werkstudentenjobs, Praktika und die Apps, die den Alltagspapierkram schnell machen."
+      "title": "Ankommen,",
+      "titleHighlight": "Schritt für Schritt",
+      "subtitle": "Wohnen, Behördenkram, Studium, Arbeit und die Apps, die alles zusammenhalten. Öffne ein Thema und geh nur so tief rein, wie du musst."
     },
     "community": {
       "badge": "Schritt vier",

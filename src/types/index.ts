@@ -42,7 +42,7 @@ export interface Category {
 // helper belongs to exactly one of them, so a reader picks a stage of their
 // move rather than picking a kind of page.
 // ============================================
-export type HubKey = "map" | "career" | "community" | "guide";
+export type HubKey = "map" | "lifestyle" | "community" | "guide";
 
 // ============================================
 // Guide / Article
@@ -66,6 +66,15 @@ export interface Guide {
   tags: ContentTag[];
   author?: string;
   lastUpdated: string; // ISO date
+  /**
+   * When the guide's facts were last checked against `primarySource`, which
+   * is not the same as when its prose last changed. Only move this date after
+   * actually re-reading the source; the guide page warns once it is more than
+   * six months old.
+   */
+  lastVerified: string; // ISO date
+  /** The official page or statute the guide's facts rest on. */
+  primarySource: { title: string; url: string };
   readingTime: number; // minutes
   featured?: boolean;
   sections: GuideSection[];

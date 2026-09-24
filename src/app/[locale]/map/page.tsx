@@ -2,6 +2,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 
 import { places } from "@/data/places";
 import { PlacesExplorer } from "./PlacesExplorer";
+import { PlacesDirectory } from "./PlacesDirectory";
 
 /**
  * Server shell for /map. The place names and descriptions are localized
@@ -14,6 +15,7 @@ export default async function PlacesPage({ params }: { params: Promise<{ locale:
   setRequestLocale(locale);
 
   const placesData = await getTranslations("placesData");
+  const tHubs = await getTranslations("hubs");
 
   const localizedPlaces = places.map((p) => {
     const nameKey = `places.${p.slug}.name`;
@@ -36,7 +38,13 @@ export default async function PlacesPage({ params }: { params: Promise<{ locale:
 
   return (
     <div className="min-h-screen bg-background">
+      {/* The page opens straight onto the map, so its heading is for screen
+          readers and crawlers only. */}
+      <h1 className="sr-only">
+        {tHubs("map.title")} {tHubs("map.titleHighlight")}
+      </h1>
       <PlacesExplorer places={localizedPlaces} />
+      <PlacesDirectory places={localizedPlaces} />
     </div>
   );
 }

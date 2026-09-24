@@ -18,7 +18,7 @@ import {
   Download,
   MapPin,
   MessageCircle,
-  Briefcase,
+  Coffee,
   Users,
   Info,
   X,
@@ -74,7 +74,7 @@ export function MobileMenu({ open, onOpenChange, locale }: MobileMenuProps) {
   const links: MenuLink[] = [
     { label: t("ask"), href: "/chat", icon: MessageCircle },
     { label: t("map"), href: "/map", icon: MapPin },
-    { label: t("career"), href: "/career", icon: Briefcase },
+    { label: t("lifestyle"), href: "/lifestyle", icon: Coffee },
     { label: t("community"), href: "/community", icon: Users },
     { label: t("about"), href: "/about", icon: Info },
   ];

@@ -7,7 +7,7 @@
 // Six destinations named after kinds of page, which asked the reader to work
 // out which kind held their answer before they could go anywhere.
 //
-// It tells the journey now: Map, Studies, Career, Community. Four stages of
+// It tells the journey now: Map, Studies, Lifestyle, Community. Four stages of
 // actually moving here. "Home" is gone because the logo has always done that
 // job, and About and settings sit apart from the story as chrome.
 // ============================================
@@ -23,7 +23,7 @@ import { Locale } from "@/i18n";
 interface NavTranslations {
   map: string;
   ask: string;
-  career: string;
+  lifestyle: string;
   community: string;
   about: string;
   aboutAria: string;
@@ -53,7 +53,7 @@ export function Header({ locale, translations }: HeaderProps) {
   const navItems = [
     { label: translations.ask, href: "/chat" },
     { label: translations.map, href: "/map" },
-    { label: translations.career, href: "/career" },
+    { label: translations.lifestyle, href: "/lifestyle" },
     { label: translations.community, href: "/community" },
   ];
 

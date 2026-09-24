@@ -263,7 +263,7 @@ Si vous êtes arrivé en Allemagne avec un visa national (type D) à des fins d'
 
 **Immatrikulationsbescheinigung**: Attestation officielle d'inscription délivrée par votre université (TUM, LMU ou autre). Elle doit être récente, généralement datant de moins de trois mois.
 
-**Preuve de moyens financiers suffisants**: Soit un Sperrkonto (compte bloqué) d'un montant d'environ 11 208 euros par an (montant susceptible d'évoluer), soit une lettre de bourse officielle (DAAD, institution marocaine, etc.) attestant de la prise en charge de vos frais de vie.
+**Preuve de moyens financiers suffisants**: Soit un Sperrkonto (compte bloqué) d'un montant de 11 904 euros par an, soit 992 euros par mois (montant 2026), soit une lettre de bourse officielle (DAAD, institution marocaine, etc.) attestant de la prise en charge de vos frais de vie.
 
 **Assurance maladie**: Une attestation d'assurance maladie valide délivrée par une caisse légale allemande telle que la TK (Techniker Krankenkasse), l'AOK ou la Barmer. Les assurances privées étrangères ne sont généralement pas acceptées.
 
@@ -289,7 +289,7 @@ Lorsque vous récupérez votre titre de séjour, vérifiez la mention **Beschäf
           {
             id: "working-as-student",
             title: "Combien pouvez-vous travailler en tant qu'étudiant ?",
-            content: `En tant qu'étudiant non-européen en Allemagne, vous êtes autorisé à travailler **120 jours complets ou 240 demi-journées par an**. Cela correspond environ à 20 heures par semaine pendant le semestre, avec la possibilité de travailler davantage pendant les vacances universitaires.
+            content: `En tant qu'étudiant non-européen en Allemagne, vous êtes autorisé à travailler **140 jours complets ou 280 demi-journées par année civile** (§ 16b, al. 3 AufenthG, relevé depuis 120/240 jours en mars 2024). Le travail effectué pendant les vacances universitaires est décompté de ce même quota. Les emplois étudiants au sein de votre université (HiWi, tutorat) et les stages obligatoires ne sont pas décomptés.
 
 Cette limite est fixée pour garantir que votre activité principale reste vos études. Le dépasser sans autorisation spéciale constitue une violation de votre titre de séjour et peut avoir de lourdes conséquences.
 
@@ -314,7 +314,7 @@ Ne tardez jamais à entamer ce processus : les délais d'attente pour les rendez
         id: "faq-permit-1",
         question: "Qu'est-ce qu'un compte bloqué (Sperrkonto) et en ai-je besoin ?",
         answer:
-          "Un Sperrkonto est un compte bancaire bloqué sur lequel vous déposez un montant forfaitaire, actuellement environ 11 208 euros par an, pour prouver que vous disposez de ressources suffisantes pour vivre en Allemagne sans aide sociale. Chaque mois, vous pouvez débloquer et utiliser une tranche mensuelle de ce montant. Fintiba et Expatrio sont les prestataires les plus populaires auprès des étudiants internationaux, car leurs procédures sont rapides et entièrement en ligne. Si vous bénéficiez d'une bourse couvrant vos frais de vie, une lettre officielle de l'organisme attributaire peut remplacer le Sperrkonto. Vérifiez auprès du KVR quels justificatifs sont acceptés dans votre cas.",
+          "Un Sperrkonto est un compte bancaire bloqué sur lequel vous déposez un montant forfaitaire, actuellement 11 904 euros par an (992 euros par mois en 2026), pour prouver que vous disposez de ressources suffisantes pour vivre en Allemagne sans aide sociale. Chaque mois, vous pouvez débloquer et utiliser une tranche mensuelle de ce montant. Fintiba et Expatrio sont les prestataires les plus populaires auprès des étudiants internationaux, car leurs procédures sont rapides et entièrement en ligne. Si vous bénéficiez d'une bourse couvrant vos frais de vie, une lettre officielle de l'organisme attributaire peut remplacer le Sperrkonto. Vérifiez auprès du KVR quels justificatifs sont acceptés dans votre cas.",
       },
       {
         id: "faq-permit-2",
@@ -421,7 +421,7 @@ L'honnêteté académique est prise très au sérieux en Allemagne. Le plagiat, 
         id: "faq-student-1",
         question: "Puis-je travailler tout en étudiant à la TUM ou à la LMU ?",
         answer:
-          "Oui, les étudiants non-européens sont autorisés à travailler jusqu'à 120 jours complets ou 240 demi-journées par an, ce qui correspond environ à 20 heures par semaine pendant le semestre. La forme d'emploi la plus adaptée aux étudiants est le poste de **Werkstudent**, un contrat à temps partiel qui offre des avantages fiscaux et d'assurance spécifiques. Vérifiez toujours les conditions inscrites sur votre titre de séjour avant d'accepter un emploi.",
+          "Oui, les étudiants non-européens sont autorisés à travailler jusqu'à 140 jours complets ou 280 demi-journées par année civile, y compris le travail effectué pendant les vacances universitaires. La forme d'emploi la plus adaptée aux étudiants est le poste de **Werkstudent**, un contrat à temps partiel qui offre des avantages fiscaux et d'assurance spécifiques. Vérifiez toujours les conditions inscrites sur votre titre de séjour avant d'accepter un emploi.",
       },
       {
         id: "faq-student-2",
@@ -470,9 +470,11 @@ L'honnêteté académique est prise très au sérieux en Allemagne. Le plagiat, 
         title: "Qu'est-ce qu'un poste Werkstudent ?",
         content: `Un poste **Werkstudent** est un contrat de travail étudiant destiné aux personnes régulièrement inscrites dans un établissement d'enseignement supérieur. C'est la forme d'emploi la plus courante et la plus avantageuse pour les étudiants en Allemagne.
 
-En tant que Werkstudent, vous travaillez généralement **environ 20 heures par semaine** pendant le semestre, avec la possibilité de travailler davantage pendant les vacances universitaires. Le contrat précise clairement votre statut d'étudiant, et il est renouvelable tant que vous restez inscrit dans votre université.
+En tant que Werkstudent, vous travaillez **jusqu'à 20 heures par semaine** pendant la période des cours. Le contrat précise clairement votre statut d'étudiant, et il est renouvelable tant que vous restez inscrit dans votre université.
 
-Le principal avantage financier de ce statut est le **Werkstudentenprivileg** : une exonération des cotisations sociales habituelles (assurance maladie, retraite, assurance dépendance) qui s'applique normalement aux salariés. Cela signifie que vous conservez une part plus importante de votre salaire brut. Seule la cotisation à l'assurance chômage reste due dans certains cas.
+Le principal avantage financier de ce statut est le **Werkstudentenprivileg** : tant que vous respectez la règle des 20 heures, vous êtes exonéré des cotisations d'assurance maladie, d'assurance dépendance et d'assurance chômage. Seule votre part de la cotisation retraite reste due. Vous conservez ainsi une part plus importante de votre salaire brut.
+
+Si vous êtes étudiant non-européen, un poste Werkstudent est aussi décompté du quota annuel de travail autorisé par votre titre de séjour. La section sur les heures de travail ci-dessous explique comment ce quota fonctionne.
 
 Munich regorge d'employeurs qui recrutent activement des Werkstudenten : de grandes entreprises comme BMW, Siemens, MAN et Allianz, mais aussi de nombreuses startups technologiques et des cabinets de conseil qui apprécient la flexibilité et le profil international de nombreux étudiants des grandes universités.`,
       },
@@ -485,7 +487,7 @@ Munich regorge d'employeurs qui recrutent activement des Werkstudenten : de gran
 
 **Stepstone** et **Indeed** sont de bonnes plateformes généralistes qui référencent de nombreuses offres Werkstudent, notamment dans les grandes entreprises. **Xing** est l'équivalent allemand de LinkedIn et reste bien utilisé dans les entreprises traditionnelles allemandes.
 
-**TUM TalentBridge** est le portail de carrière officiel de la TUM, spécifiquement pensé pour connecter étudiants et employeurs partenaires. Le **service de carrière de la LMU** propose un fonctionnement similaire. Ces plateformes internes offrent des offres souvent plus ciblées et de meilleure qualité que les portails généralistes.
+Le **TUM Career Service** et son portail d'offres d'emploi sont spécifiquement pensés pour connecter les étudiants de la TUM et les employeurs partenaires. Le **service de carrière de la LMU** propose un fonctionnement similaire. Ces plateformes internes offrent des offres souvent plus ciblées et de meilleure qualité que les portails généralistes.
 
 Enfin, ne sous-estimez pas le **réseau informel** : les foires aux emplois organisées par les universités, les événements de networking sectoriels, et les groupes d'étudiants marocains ou nord-africains à Munich peuvent vous ouvrir des portes que vous ne trouveriez pas en ligne.`,
       },
@@ -514,9 +516,18 @@ Rédigez votre candidature dans la **langue de l'offre d'emploi** : si l'annonce
       {
         id: "work-hours-rules",
         title: "Heures de travail, règles académiques et conditions de visa",
-        content: `La règle fondamentale à retenir est que les étudiants non-européens sont autorisés à travailler **120 jours complets ou 240 demi-journées par an**. En pratique, cela revient à environ 20 heures par semaine pendant les semestres universitaires. Pendant les vacances (congés de Noël, semaine de Pâques, etc.) ou en dehors du semestre, vous pouvez temporairement augmenter votre nombre d'heures.
+        content: `La règle fondamentale à retenir est que les étudiants non-européens sont autorisés à travailler **140 jours complets ou 280 demi-journées par année civile** (§ 16b, al. 3 AufenthG). Cette limite a été relevée le 1er mars 2024 (elle était auparavant de 120/240 jours). Une journée de travail de quatre heures maximum compte comme une demi-journée ; au-delà, elle compte comme une journée complète.
 
-Gardez un suivi rigoureux de vos heures de travail chaque semaine. Il est de votre responsabilité de ne pas dépasser la limite annuelle. Certains étudiants utilisent un simple tableur pour noter leurs heures ; d'autres se coordonnent avec leur employeur (les RH de grandes entreprises connaissent bien ces contraintes et peuvent vous aider à les respecter).
+**Le travail pendant les vacances universitaires est aussi décompté.** En dehors de la période des cours, vous pouvez travailler davantage, même à temps plein, mais chaque jour travaillé est déduit du même quota de 140 jours. Il n'existe pas de quota séparé et illimité pour les vacances.
+
+Il existe un second mode de calcul, et l'administration retient, semaine par semaine, celui qui vous est le plus favorable. Selon cette règle hebdomadaire, une semaine de 20 heures maximum pendant la période des cours compte pour deux jours et demi. En dehors de la période des cours, une semaine compte également pour deux jours et demi, quelle que soit la répartition des heures. Si votre rythme de travail est inhabituel, demandez à l'Ausländerbehörde comment il sera décompté avant de signer.
+
+Ne sont **pas** décomptés des 140 jours :
+
+- **les emplois étudiants au sein de votre université** (HiWi, tutorat, *studentische Nebentätigkeit*), qui sont illimités ;
+- **les stages obligatoires** prévus par votre cursus.
+
+Le quota repart à zéro chaque mois de janvier, quelle que soit votre date d'arrivée. Gardez un suivi rigoureux de vos jours de travail : c'est à vous d'en apporter la preuve. Dépasser la limite sans autorisation spécifique est une infraction administrative passible d'une amende pouvant aller jusqu'à 5 000 euros, et peut mettre en danger votre titre de séjour. Certains étudiants utilisent un simple tableur pour noter leurs heures ; d'autres se coordonnent avec leur employeur (les RH de grandes entreprises connaissent bien ces contraintes et peuvent vous aider à les respecter).
 
 Votre **titre de séjour** doit mentionner la mention **Beschäftigung erlaubt** (emploi autorisé) pour que vous puissiez légalement travailler. Si vous avez des doutes sur les conditions figurant sur votre permis, consultez l'Ausländerbehörde avant de signer un contrat de travail. Travailler sans autorisation adéquate peut mettre en danger votre statut légal en Allemagne.`,
       },
@@ -525,9 +536,9 @@ Votre **titre de séjour** doit mentionner la mention **Beschäftigung erlaubt**
         title: "Impôts, assurances et votre fiche de paie",
         content: `Avant de commencer à travailler, vous devrez fournir à votre employeur deux numéros essentiels : votre **Steueridentifikationsnummer** (numéro d'identification fiscale à 11 chiffres, reçu par courrier après votre Anmeldung) et votre **Sozialversicherungsnummer** (numéro de sécurité sociale, attribué par votre caisse d'assurance maladie).
 
-Grâce au **Werkstudentenprivileg**, vous êtes exonéré des principales cotisations sociales, assurance maladie, assurance dépendance et assurance retraite, tant que vous respectez les conditions d'éligibilité (inscription universitaire à temps plein, moins de 20 heures par semaine pendant le semestre). C'est un avantage financier significatif.
+Grâce au **Werkstudentenprivileg**, vous êtes exonéré des cotisations d'assurance maladie, d'assurance dépendance et d'assurance chômage tant que vous respectez les conditions d'éligibilité (inscription universitaire, 20 heures par semaine maximum pendant la période des cours). Votre part de la cotisation retraite reste due. C'est un avantage financier significatif.
 
-En ce qui concerne l'**impôt sur le revenu**, vous bénéficiez d'un abattement de base (Grundfreibetrag) d'environ 11 600 euros par an. Si vos revenus annuels totaux restent en dessous de ce seuil, vous ne payez pas d'impôt sur le revenu, et vous pouvez même récupérer les prélèvements effectués à la source via une déclaration fiscale annuelle.
+En ce qui concerne l'**impôt sur le revenu**, vous bénéficiez d'un abattement de base (Grundfreibetrag) de **12 348 euros en 2026**. Si vos revenus annuels totaux restent en dessous de ce seuil, vous ne payez pas d'impôt sur le revenu, et vous pouvez même récupérer les prélèvements effectués à la source via une déclaration fiscale annuelle.
 
 Conservez précieusement toutes vos fiches de paie. Elles vous seront utiles pour votre déclaration fiscale, pour le renouvellement de votre titre de séjour, et pour d'éventuelles démarches bancaires ou administratives.`,
       },
@@ -535,15 +546,15 @@ Conservez précieusement toutes vos fiches de paie. Elles vous seront utiles pou
     faqs: [
       {
         id: "faq-werk-1",
-        question: "Puis-je simultanément avoir un poste Werkstudent et un mini-job (450 euros) ?",
+        question: "Puis-je simultanément avoir un poste Werkstudent et un mini-job (603 euros) ?",
         answer:
-          "C'est une situation complexe. Cumuler un poste Werkstudent avec un mini-job peut, dans certains cas, vous faire perdre le bénéfice du Werkstudentenprivileg, car les heures des deux contrats sont potentiellement additionnées pour apprécier votre temps de travail total. Les règles dépendent de la nature des postes et du nombre d'heures combiné. Avant d'accepter deux emplois simultanément, consultez un conseiller fiscal (Steuerberater) ou le service de conseil aux étudiants de votre université pour éviter toute mauvaise surprise.",
+          "C'est une situation complexe. Cumuler un poste Werkstudent avec un mini-job peut, dans certains cas, vous faire perdre le bénéfice du Werkstudentenprivileg, car les heures des deux contrats sont potentiellement additionnées pour apprécier votre temps de travail total. Les règles dépendent de la nature des postes et du nombre d'heures combiné. Le plafond du mini-job est de 603 euros par mois en 2026. Si vous êtes étudiant non-européen, les deux emplois sont décomptés du même quota annuel de 140 jours. Avant d'accepter deux emplois simultanément, consultez un conseiller fiscal (Steuerberater) ou le service de conseil aux étudiants de votre université pour éviter toute mauvaise surprise.",
       },
       {
         id: "faq-werk-2",
         question: "Combien peut-on réalistement gagner en tant que Werkstudent à Munich ?",
         answer:
-          "Les salaires horaires varient généralement entre 12 et 25 euros brut selon le secteur et le niveau d'études. Les domaines de la tech, de l'ingénierie et de la finance tendent à proposer les rémunérations les plus élevées, parfois au-delà de 20 euros de l'heure pour des profils en master avec des compétences techniques spécifiques. À titre indicatif, à 15 euros de l'heure et 20 heures par semaine, vous pouvez dégager environ 1 200 euros brut par mois, un complément très confortable qui couvre une grande partie du coût de la vie à Munich.",
+          "Le salaire minimum légal est de 13,90 euros brut de l'heure en 2026, et les postes Werkstudent à Munich paient généralement plus, entre 15 et 25 euros brut selon le secteur et le niveau d'études. Les domaines de la tech, de l'ingénierie et de la finance tendent à proposer les rémunérations les plus élevées, parfois au-delà de 20 euros de l'heure pour des profils en master avec des compétences techniques spécifiques. À titre indicatif, à 16 euros de l'heure et 20 heures par semaine, vous pouvez dégager environ 1 380 euros brut par mois, un complément très confortable qui couvre une grande partie du coût de la vie à Munich.",
       },
       {
         id: "faq-werk-3",
@@ -555,7 +566,7 @@ Conservez précieusement toutes vos fiches de paie. Elles vous seront utiles pou
     resources: [
       {
         id: "res-werk-1",
-        title: "TUM TalentBridge",
+        title: "TUM Career Service",
         description: "Portail officiel de carrière pour les étudiants TUM",
       },
       {

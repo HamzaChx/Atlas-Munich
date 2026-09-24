@@ -11,6 +11,11 @@ export const guides: Guide[] = [
     tags: ["newcomer", "urgent", "tips"],
     author: "Atlas Munich Team",
     lastUpdated: "2025-01-15",
+    lastVerified: "2025-01-15",
+    primarySource: {
+      title: "Mietspiegel für München (Landeshauptstadt München)",
+      url: "https://stadt.muenchen.de/infos/mietspiegel.html",
+    },
     readingTime: 12,
     featured: true,
     sections: [
@@ -150,6 +155,11 @@ Once you have signed and moved in, you will need to register your address at the
     tags: ["newcomer", "urgent", "documents", "official"],
     author: "Atlas Munich Team",
     lastUpdated: "2025-01-20",
+    lastVerified: "2025-01-20",
+    primarySource: {
+      title: "Wohnsitzanmeldung (Landeshauptstadt München)",
+      url: "https://stadt.muenchen.de/service/info/wohnsitzanmeldung/1063475/n0/",
+    },
     readingTime: 8,
     featured: true,
     sections: [
@@ -238,14 +248,14 @@ If you move to a new address within Munich, you will need to update your registr
       {
         id: "res-anmeldung-1",
         title: "Munich KVR Official Portal",
-        url: "https://www.muenchen.de/rathaus/Stadtverwaltung/Kreisverwaltungsreferat/Buergerbuero/Wohnen.html",
+        url: "https://stadt.muenchen.de/service/info/wohnsitzanmeldung/1063475/n0/",
         type: "official",
         description: "Book your Anmeldung appointment here",
       },
       {
         id: "res-anmeldung-2",
         title: "Wohnungsgeberbestätigung Form",
-        url: "https://www.muenchen.de/media/lhm/Vordrucke_Buergerbuero/Wohnungsgeberbestaetigung.pdf",
+        url: "https://stadt.muenchen.de/dms/Home/Stadtverwaltung/Kreisverwaltungsreferat/fachspezifisch/HA-II/Buergerbuero/Dokumente/Wohnungsgeberbestaetigung_Internet",
         type: "document",
         description: "Official landlord confirmation form",
       },
@@ -261,7 +271,12 @@ If you move to a new address within Munich, you will need to update your registr
     categoryKey: "kvr-residence",
     tags: ["documents", "official", "urgent", "newcomer"],
     author: "Atlas Munich Team",
-    lastUpdated: "2025-01-18",
+    lastUpdated: "2026-09-24",
+    lastVerified: "2025-01-18",
+    primarySource: {
+      title: "Ausländerbehörde München (KVR)",
+      url: "https://stadt.muenchen.de/infos/auslaenderbehoerde.html",
+    },
     readingTime: 11,
     sections: [
       {
@@ -293,7 +308,7 @@ After your studies, Germany offers a post-study job-seeker visa that gives you u
 
 **Proof of enrollment:** An official enrollment certificate (Immatrikulationsbescheinigung) from your university. This can be downloaded from your student portal.
 
-**Proof of financial means:** You need to show that you can financially support yourself while studying. The standard way is a blocked account (Sperrkonto) at a German bank such as Fintiba, Expatrio, or Deutsche Bank, with the required minimum amount (currently around 11,208 euros per year). Alternatively, a scholarship letter from an organisation like DAAD or your university's financial aid office can serve as proof.
+**Proof of financial means:** You need to show that you can financially support yourself while studying. The standard way is a blocked account (Sperrkonto) at a German bank such as Fintiba, Expatrio, or Deutsche Bank, with the required minimum amount (11,904 euros per year, or 992 euros per month, for 2026). Alternatively, a scholarship letter from an organisation like DAAD or your university's financial aid office can serve as proof.
 
 **Health insurance:** You need valid health insurance in Germany. Public student health insurance (gesetzliche Krankenversicherung) from providers like TK, AOK, or Barmer is the standard for full-time students. Private insurance is accepted in some cases but is less common for student permits.
 
@@ -317,7 +332,7 @@ Once your permit card arrives, check all the details including your name spellin
           {
             id: "working-as-student",
             title: "How Much Can You Work as a Student?",
-            content: `Students on a study residence permit in Germany are generally permitted to work up to 120 full days or 240 half-days per year. This roughly translates to about 20 hours per week during the semester, with more flexibility during semester breaks. Your permit card should note "Beschäftigung erlaubt" (employment permitted) along with the specific conditions.
+            content: `Students on a study residence permit in Germany may work up to 140 full days or 280 half days per calendar year (§ 16b (3) AufenthG, raised from 120/240 in March 2024). Work during semester breaks counts toward the same limit. Student jobs at your university (HiWi or tutor roles) and mandatory internships do not count. Your permit states the exact conditions under which you may work.
 
 Make sure you do not exceed the work limit, as this can jeopardise your residence permit status. If you plan to work more, speak to the International Office at your university or visit the KVR for personalised advice.`,
           },
@@ -357,7 +372,7 @@ It is a good habit to set a calendar reminder three months before your permit ex
       {
         id: "res-permit-1",
         title: "Munich KVR Ausländerbehörde",
-        url: "https://www.muenchen.de/rathaus/Stadtverwaltung/Kreisverwaltungsreferat/Auslaenderwesen.html",
+        url: "https://stadt.muenchen.de/infos/auslaenderbehoerde.html",
         type: "official",
         description: "Book residence permit appointments here",
       },
@@ -388,7 +403,12 @@ It is a good habit to set a calendar reminder three months before your permit ex
     categoryKey: "university-life",
     tags: ["newcomer", "tips", "community-verified"],
     author: "Atlas Munich Team",
-    lastUpdated: "2025-01-10",
+    lastUpdated: "2026-09-24",
+    lastVerified: "2025-01-10",
+    primarySource: {
+      title: "Studierendenwerk München Oberbayern",
+      url: "https://www.studierendenwerk-muenchen-oberbayern.de/en/",
+    },
     readingTime: 10,
     featured: true,
     sections: [
@@ -464,7 +484,7 @@ Academic honesty is taken very seriously. Plagiarism, even unintentional, can ha
         id: "faq-student-1",
         question: "Can I work while studying at TUM or LMU?",
         answer:
-          "Yes, most non-EU students can work up to 120 full days or 240 half days per year on a student visa. This is enough to take on a Werkstudent (working student) position alongside your studies. Make sure your residence permit allows employment and check your specific permit conditions.",
+          "Yes, most non-EU students can work up to 140 full days or 280 half days per calendar year on a student residence permit, including any work during semester breaks. This is enough to take on a Werkstudent (working student) position alongside your studies. Make sure your residence permit allows employment and check your specific permit conditions.",
       },
       {
         id: "faq-student-2",
@@ -490,7 +510,7 @@ Academic honesty is taken very seriously. Plagiarism, even unintentional, can ha
       {
         id: "res-student-2",
         title: "LMU International Office",
-        url: "https://www.en.uni-muenchen.de/students/studying/international_students/index.html",
+        url: "https://www.lmu.de/en/study/important-contacts/international-office/",
         type: "official",
         description: "LMU support for international students",
       },
@@ -504,7 +524,7 @@ Academic honesty is taken very seriously. Plagiarism, even unintentional, can ha
       {
         id: "res-student-4",
         title: "MVV Semester Ticket Info",
-        url: "https://www.mvv-muenchen.de/en/tickets-and-fares/tickets-daytickets/semester-ticket/index.html",
+        url: "https://www.mvv-muenchen.de/tickets-abos-preise/bayerisches-ermaessigungsticket",
         type: "official",
         description: "Information on the student semester transport ticket",
       },
@@ -521,16 +541,23 @@ Academic honesty is taken very seriously. Plagiarism, even unintentional, can ha
     categoryKey: "career",
     tags: ["tips", "community-verified", "budget-friendly"],
     author: "Atlas Munich Team",
-    lastUpdated: "2025-01-12",
+    lastUpdated: "2026-09-24",
+    lastVerified: "2026-09-24",
+    primarySource: {
+      title: "§ 16b AufenthG (Federal Ministry of Justice)",
+      url: "https://www.gesetze-im-internet.de/aufenthg_2004/__16b.html",
+    },
     readingTime: 10,
     featured: true,
     sections: [
       {
         id: "what-is-werkstudent",
         title: "What Is a Werkstudent Position?",
-        content: `A Werkstudent (working student) contract is a specific type of employment designed for students enrolled at a German university. It allows you to work part-time, typically 20 hours per week during the semester, and more during semester breaks, while enjoying reduced social insurance contributions compared to regular employment.
+        content: `A Werkstudent (working student) contract is a specific type of employment designed for students enrolled at a German university. It allows you to work part-time, up to 20 hours per week during the lecture period, while paying far lower social insurance contributions than a regular employee.
 
-The key advantage is that on a Werkstudent contract, both employer and employee pay significantly lower health, nursing care, and pension insurance contributions. This makes hiring students attractive for companies and means you take home a larger proportion of your gross salary than a regular part-time employee would.
+The key advantage is the so-called Werkstudentenprivileg: as long as you stay within the 20-hour rule, you are exempt from health, long-term care, and unemployment insurance contributions, and only pay your share of pension insurance. This makes hiring students attractive for companies and means you take home a larger proportion of your gross salary than a regular part-time employee would.
+
+If you are a non-EU student, a Werkstudent job also counts toward the annual work limit on your residence permit. The section on work hours below explains how that limit works.
 
 Munich's job market is particularly strong for working students. The city is home to major multinational companies (BMW, Siemens, MAN, Allianz), a thriving startup ecosystem, and a large number of consultancies, engineering firms, and tech companies. Opportunities exist across nearly every field from engineering and data science to marketing, finance, law, and design.`,
       },
@@ -539,7 +566,7 @@ Munich's job market is particularly strong for working students. The city is hom
         title: "Where to Find Werkstudent Jobs",
         content: `The most effective search platforms are LinkedIn, Stepstone, Indeed, and Xing (a German professional network similar to LinkedIn that is widely used in the DACH region). Search for "Werkstudent" alongside your field. You will find plenty of results, especially in Munich.
 
-University career portals are also valuable. TUM's TalentBridge and LMU's career centre post verified Werkstudent listings regularly. These companies have already signalled an interest in working with students from those specific institutions, which can give your application an advantage.
+University career portals are also valuable. The TUM Career Service job portal and LMU's career service post verified Werkstudent listings regularly. These companies have already signalled an interest in working with students from those specific institutions, which can give your application an advantage.
 
 Company websites are underestimated. Many large firms list Werkstudent openings directly on their careers pages under tags like "Students" or "Working Students." BMW, Siemens, and many consulting firms hire dozens of working students continuously.
 
@@ -572,18 +599,29 @@ Prepare for interviews by researching the company, understanding their products 
       {
         id: "work-hours-rules",
         title: "Work Hours, Study Rules, and Visa Conditions",
-        content: `As a non-EU student on a study residence permit, you are permitted to work a maximum of 120 full days or 240 half days per year. In practice, this means you can work up to 20 hours per week during the semester without exceeding the annual limit. During semester breaks (usually January to March and July to September), you can often work full-time without it counting against your annual allowance, though this depends on your permit's specific conditions.
+        content: `As a non-EU student on a study residence permit, you may work up to **140 full days or 280 half days per calendar year** (§ 16b (3) AufenthG). This limit was raised from 120/240 days on 1 March 2024. A day with up to four hours of work counts as a half day; anything longer counts as a full day.
 
-Keep track of your hours carefully. Exceeding the work limit can jeopardise your residence permit renewal. If you are unsure whether a specific working arrangement is within the rules, ask the International Office at your university.
+**Semester-break work counts too.** You can work more hours, even full-time, outside the lecture period, but every day you work still comes off the same 140-day account. There is no separate, unlimited allowance for the holidays.
 
-Your residence permit card should state "Beschäftigung erlaubt" (employment permitted) or specify the conditions under which you may work. Always carry a copy of your permit with you when working.`,
+There is a second way to count, and the authority uses whichever is more favourable to you, week by week. Under this weekly rule, a week in which you work up to 20 hours during the lecture period counts as two and a half days. Outside the lecture period, a week also counts as two and a half days regardless of how the hours are spread across it. If your pattern is unusual, ask the Ausländerbehörde how it will be counted before you sign.
+
+A few things do **not** count toward the 140 days:
+
+- **Student jobs at your university** (for example as a HiWi or tutor, a *studentische Nebentätigkeit*). These are unlimited.
+- **Mandatory internships** that are a required part of your degree.
+
+The account resets every January, regardless of when you arrived. Keep a record of the days you work, because it is your job to prove them. Working beyond the limit without a separate permit is an administrative offence that can bring a fine of up to 5,000 euros and put your residence permit at risk.
+
+Your residence permit states the conditions under which you may work, typically "Beschäftigung bis zu 140 Tage ... sowie Ausübung studentischer Nebentätigkeit erlaubt". Always carry a copy of your permit with you when working.`,
       },
       {
         id: "taxes-and-insurance",
         title: "Taxes, Insurance, and Your Payslip",
         content: `Once you start working, your employer will need your tax ID number (Steueridentifikationsnummer) and your social security number (Sozialversicherungsnummer). Your tax ID is sent to your registered address a few weeks after your Anmeldung. Your social security number is assigned the first time you work in Germany and is sent to you by the Deutsche Rentenversicherung.
 
-On a Werkstudent contract, you benefit from the "Werkstudentenprivileg," which means health, nursing care, and pension insurance contributions are waived as long as you work no more than 20 hours per week during the semester. You still pay income tax and solidarity surcharge on your earnings if your annual income exceeds the basic tax allowance (currently around 11,600 euros).
+On a Werkstudent contract, you benefit from the "Werkstudentenprivileg": as long as you work no more than 20 hours per week during the lecture period, you pay no health, long-term care, or unemployment insurance contributions. You do still pay your share of pension insurance. Your own student health insurance continues separately.
+
+Income tax is withheld from your monthly pay, but you only owe it on annual taxable income above the basic tax allowance (Grundfreibetrag), which is **12,348 euros in 2026**. If you earned less than that over the year, filing a tax return usually gets the withheld tax back.
 
 Your monthly payslip will show your gross salary, the deductions applied, and your net take-home pay. Keep all payslips, as you may need them for your residence permit renewal or future visa applications.`,
       },
@@ -591,15 +629,15 @@ Your monthly payslip will show your gross salary, the deductions applied, and yo
     faqs: [
       {
         id: "faq-werk-1",
-        question: "Can I have a Werkstudent job and a mini-job (450 euros) at the same time?",
+        question: "Can I have a Werkstudent job and a mini-job (603 euros) at the same time?",
         answer:
-          "This is possible in some cases but the rules around social insurance become more complex. If combined income pushes you over certain thresholds, you may lose the Werkstudentenprivileg on one of the jobs. It is best to consult your tax advisor or your university's social counselling service before taking on multiple jobs simultaneously.",
+          "This is possible in some cases, but the social insurance rules become more complex. The mini-job ceiling is 603 euros a month in 2026, and if your combined hours or income push you over the Werkstudent thresholds, you may lose the Werkstudentenprivileg on one of the jobs. If you are a non-EU student, remember that both jobs count toward the same 140-day annual limit on your residence permit. Consult your university's social counselling service before taking on multiple jobs.",
       },
       {
         id: "faq-werk-2",
         question: "How much can I realistically earn as a Werkstudent in Munich?",
         answer:
-          "Werkstudent hourly rates in Munich typically range from 12 to 25 euros per hour depending on the field and company. Tech, engineering, and finance roles tend to pay at the higher end. At 20 hours per week and a 15 euro hourly rate, that is around 1,200 euros per month before tax, which can significantly help with rent and living costs.",
+          "The legal minimum wage is 13.90 euros per hour in 2026, and Werkstudent roles in Munich usually pay more, typically 15 to 25 euros per hour depending on the field and company. Tech, engineering, and finance roles tend to pay at the higher end. At 20 hours per week and 16 euros per hour, that is roughly 1,380 euros per month before deductions, which can significantly help with rent and living costs.",
       },
       {
         id: "faq-werk-3",
@@ -611,8 +649,8 @@ Your monthly payslip will show your gross salary, the deductions applied, and yo
     resources: [
       {
         id: "res-werk-1",
-        title: "TUM TalentBridge",
-        url: "https://www.tum.de/en/career",
+        title: "TUM Career Service",
+        url: "https://www.community.tum.de/en/career-service/",
         type: "official",
         description: "TUM's official student career portal",
       },
@@ -644,6 +682,11 @@ Your monthly payslip will show your gross salary, the deductions applied, and yo
     tags: ["tips", "community-verified", "budget-friendly"],
     author: "Atlas Munich Team",
     lastUpdated: "2025-01-08",
+    lastVerified: "2025-01-08",
+    primarySource: {
+      title: "MVV, Munich transport network",
+      url: "https://www.mvv-muenchen.de/en/",
+    },
     readingTime: 9,
     sections: [
       {
@@ -745,7 +788,7 @@ For non-emergency communication with German authorities, companies, or landlords
       {
         id: "res-apps-1",
         title: "MVV App",
-        url: "https://www.mvv-muenchen.de/en/planning/mvv-app/index.html",
+        url: "https://www.mvv-muenchen.de/en/",
         type: "tool",
         description: "Official Munich public transport app",
       },

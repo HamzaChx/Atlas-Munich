@@ -47,3 +47,9 @@ export function computeReadingTime(guide: Guide): number {
 export function withReadingTime(guide: Guide): Guide {
   return { ...guide, readingTime: computeReadingTime(guide) };
 }
+
+/** Minutes for a single stretch of prose, such as one section of a guide. */
+export function minutesToRead(...markdown: string[]): number {
+  const words = markdown.reduce((sum, text) => sum + countWords(text), 0);
+  return Math.max(1, Math.round(words / WORDS_PER_MINUTE));
+}

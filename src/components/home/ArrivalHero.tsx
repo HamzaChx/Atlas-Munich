@@ -19,7 +19,8 @@ export async function ArrivalHero() {
     },
     {
       label: t("quick.career"),
-      href: "/career",
+      // Straight to the work guide inside Lifestyle; the explorer reads the hash.
+      href: "/lifestyle#find-werkstudent-job",
       primary: false,
     },
   ];

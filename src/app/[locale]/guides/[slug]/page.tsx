@@ -11,12 +11,13 @@ import {
   ShareButton,
   ReadingProgress,
 } from "@/components/shared";
+import { GuideFreshness } from "@/components/shared/GuideFreshness";
+import { freshnessAt } from "@/lib/date";
 import { guides, getGuideBySlug, getRelatedGuides } from "@/data/guides";
 import { localizeGuide, localizeGuides } from "@/data/guides-i18n";
 import { getCategoryByKey } from "@/data/categories";
-import { hubRouteForCategory } from "@/data/hubs";
+import { categoryHref } from "@/data/hubs";
 import { ArrowLeft, ExternalLink, ArrowRight } from "lucide-react";
-import { fmtUpdated } from "@/lib/date";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { cn } from "@/lib/utils";
 import { BASE_URL, localizedUrl, alternatesFor } from "@/lib/urls";
@@ -218,7 +219,7 @@ export default async function GuidePage({ params }: PageProps) {
 
   const breadcrumbs = [
     { label: tNav("guides"), href: "/guides" },
-    { label: localizedCategoryTitle, href: hubRouteForCategory(guide.categoryKey) },
+    { label: localizedCategoryTitle, href: categoryHref(guide.categoryKey) },
     { label: localizedGuide.title },
   ];
 
@@ -243,6 +244,7 @@ export default async function GuidePage({ params }: PageProps) {
         },
         publisher: { "@id": `${BASE_URL}/#organization` },
         mainEntityOfPage: guideUrl,
+        isBasedOn: guide.primarySource.url,
         // The per-guide OG route already renders this; the Article schema was
         // the one place not pointing at it.
         image: `${guideUrl}/opengraph-image`,
@@ -267,7 +269,9 @@ export default async function GuidePage({ params }: PageProps) {
             "@type": "ListItem",
             position: index + 1,
             name: crumb.label,
-            item: crumb.href ? localizedUrl(locale, crumb.href) : guideUrl,
+            // Visible crumbs may open a topic via the hash; the schema wants
+            // the page itself.
+            item: crumb.href ? localizedUrl(locale, crumb.href.split("#")[0]) : guideUrl,
           })),
         ],
       },
@@ -294,7 +298,7 @@ export default async function GuidePage({ params }: PageProps) {
           <div className="max-w-4xl mx-auto text-center">
             {/* Category Pill */}
             <Link
-              href={hubRouteForCategory(guide.categoryKey)}
+              href={categoryHref(guide.categoryKey)}
               className={cn(
                 "mb-8 inline-flex items-center justify-center gap-3 transition-opacity hover:opacity-80",
                 theme.text
@@ -322,9 +326,6 @@ export default async function GuidePage({ params }: PageProps) {
                 {localizedGuide.readingTime} {t("minRead")}
               </span>
               <span className="h-1 w-1 rounded-full bg-zinc-300 dark:bg-zinc-700" />
-              <span>
-                {t("updatedLabel")} {fmtUpdated(guide.lastUpdated).toUpperCase()}
-              </span>
               {guide.author && (
                 <>
                   <span className="h-1 w-1 rounded-full bg-zinc-300 dark:bg-zinc-700" />
@@ -338,6 +339,14 @@ export default async function GuidePage({ params }: PageProps) {
                 </>
               )}
             </div>
+
+            {/* When the facts were last checked, and against what. */}
+            <GuideFreshness
+              className="mt-6"
+              verifiedAt={guide.lastVerified}
+              source={guide.primarySource}
+              initial={freshnessAt(guide.lastVerified)}
+            />
           </div>
         </div>
       </section>
@@ -508,14 +517,14 @@ export default async function GuidePage({ params }: PageProps) {
                 </p>
                 <div className="flex flex-wrap justify-center gap-4 mt-2">
                   <Link
-                    href={hubRouteForCategory(guide.categoryKey)}
+                    href={categoryHref(guide.categoryKey)}
                     className={cn(
                       "group inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest transition-colors",
                       theme.text
                     )}
                   >
                     <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
-                    {category?.title || "Category"}
+                    {localizedCategoryTitle}
                   </Link>
                   <span className="text-zinc-300 dark:text-zinc-700">|</span>
                   <Link

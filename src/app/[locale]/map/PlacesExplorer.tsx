@@ -108,38 +108,35 @@ const DEFAULT_CATEGORY: PlaceCategory = "restaurant";
 const readCategory = (raw: string | null): PlaceCategory =>
   raw && (PLACE_CATEGORIES as string[]).includes(raw) ? (raw as PlaceCategory) : DEFAULT_CATEGORY;
 
-/* `?category=` lets the homepage intent chips and the search palette land here
-   already filtered. Reading it in the client behind a boundary keeps this page
-   statically prerendered, which reading it from the server page would not. */
-export function PlacesExplorer(props: { places: Place[] }) {
-  return (
-    <Suspense fallback={null}>
-      <PlacesExplorerInner {...props} />
-    </Suspense>
-  );
+/* `?category=` and `?q=` let the homepage intent chips and the search palette
+   land here already filtered. Only this component reads them, behind its own
+   Suspense boundary. Wrapping the whole explorer in that boundary instead
+   made the static prerender bail out to `fallback={null}`, so /map shipped
+   to crawlers as an empty shell with no toolbar and no places. */
+function UrlFilters({ onChange }: { onChange: (category: string | null, query: string) => void }) {
+  const searchParams = useSearchParams();
+  const category = searchParams.get("category");
+  const query = searchParams.get("q") ?? "";
+
+  /* Also follows the params when they change under us: arriving from a chip
+     or the mobile search overlay while already on /map is a navigation, not
+     a remount. */
+  useEffect(() => {
+    onChange(category, query);
+  }, [category, query, onChange]);
+
+  return null;
 }
 
-function PlacesExplorerInner({ places }: { places: Place[] }) {
+export function PlacesExplorer({ places }: { places: Place[] }) {
   const t = useTranslations("places");
-  const searchParams = useSearchParams();
-  const categoryParam = searchParams.get("category");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState<PlaceCategory>(DEFAULT_CATEGORY);
 
-  const queryParam = searchParams.get("q") ?? "";
-  const [searchQuery, setSearchQuery] = useState(queryParam);
-  const [selectedCategory, setSelectedCategory] = useState<PlaceCategory>(() =>
-    readCategory(categoryParam)
-  );
-
-  /* Follow the params when they change under us — arriving from a chip or
-     the mobile search overlay while already on /map is a navigation,
-     not a remount. */
-  useEffect(() => {
-    setSelectedCategory(readCategory(categoryParam));
-  }, [categoryParam]);
-
-  useEffect(() => {
-    setSearchQuery((current) => (queryParam !== current ? queryParam : current));
-  }, [queryParam]);
+  const applyUrlFilters = useCallback((category: string | null, query: string) => {
+    setSelectedCategory(readCategory(category));
+    setSearchQuery(query);
+  }, []);
   const [priceFilter, setPriceFilter] = useState<PriceLevel | null>(null);
   const [districtFilter, setDistrictFilter] = useState<string | null>(null);
   const [cuisineFilter, setCuisineFilter] = useState<CuisineTag | null>(null);
@@ -383,6 +380,10 @@ function PlacesExplorerInner({ places }: { places: Place[] }) {
 
   return (
     <>
+      <Suspense fallback={null}>
+        <UrlFilters onChange={applyUrlFilters} />
+      </Suspense>
+
       {/* ========== STICKY FILTER TOOLBAR ==========
           Sits directly on the page background (no shadow, no border) so it
           reads as part of the same canvas as the hero above and the

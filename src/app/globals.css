@@ -899,6 +899,602 @@
   }
 }
 
+/* ============================================================
+   Guide explorer: the Lifestyle tree (GuideExplorer.tsx)
+
+   One tree: topics > guides > numbered steps, drawn as a real
+   tree (tree-art.tsx). A trunk rises from its roots to a leafy
+   crown, and each topic card sits at the tip of its own bough,
+   leaved in the topic's colour.
+
+     phones   the trunk hugs the left edge, every bough grows right
+     lg+      the trunk runs up the middle and boughs alternate
+              sides: a three-column grid, two topics per row, the
+              right one set lower, so branches zigzag up the trunk
+
+   Wood (trunk, boughs) is bark. New growth under a topic, the
+   shoots out to its guides and steps, wears the topic's colour:
+   soft for the siblings, full strength along the path to what is
+   open. Shoot geometry is derived from the rows in the component:
+
+     topic card     chip centre 36px down, 38px across
+     guide card     node centre 22px down, 30px across
+     step row       number centre 24px down, 22px across
+
+   Lines are opaque (mixed into the page colour, never made
+   translucent), so overlapping segments cannot darken.
+
+   Motion is transitions keyed on [data-open], not keyframes, so a
+   branch closes by playing its opening in reverse. Opening: the
+   height eases open, shoots draw down and reach out, leaves
+   unfurl, then the cards settle, row after row. Closing: all at
+   once, quickly. The open topic's leaves sway; hovering a closed
+   topic rustles its leaves.
+   ============================================================ */
+
+.vt {
+  --vt-line: color-mix(in oklch, var(--foreground) 14%, var(--background));
+  --vt-bark: oklch(0.6 0.045 58);
+  --vt-grain: oklch(0.5 0.05 52);
+  --vt-w: 2px;
+  --vt-ease: cubic-bezier(0.16, 1, 0.3, 1);
+  --vt-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --vt-gap1: 0.75rem;
+  --vt-gap2: 0.625rem;
+  --vt-gap3: 2px;
+  /* Phones: where the trunk stands, and where the cards start. */
+  --vt-trunk-x: 18px;
+  --vt-trunk-w: 22px;
+  --vt-indent: 3rem;
+  --vt-crown-h: 3.25rem;
+  --vt-roots-h: 18px;
+}
+.dark .vt {
+  --vt-bark: oklch(0.52 0.035 62);
+  --vt-grain: oklch(0.43 0.03 58);
+}
+.vt-topic {
+  --vt-soft: color-mix(in oklch, var(--branch) 34%, var(--background));
+  --vt-leaf-a: var(--branch);
+  --vt-leaf-b: color-mix(in oklch, var(--branch) 55%, var(--background));
+}
+.vt-row {
+  scroll-margin-top: calc(var(--header-h) + 1rem);
+}
+
+.vt-l2 > .vt-item::before,
+.vt-l2 > .vt-item::after,
+.vt-steps::before,
+.vt-step::before {
+  content: "";
+  position: absolute;
+  pointer-events: none;
+  border: 0 solid var(--vt-line);
+}
+
+/* ---------- wood and leaves ---------- */
+.vt-wood {
+  fill: var(--vt-bark);
+}
+.vt-grain {
+  fill: none;
+  stroke: var(--vt-grain);
+  stroke-width: 1.25px;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+}
+.vt-ground {
+  fill: var(--muted);
+}
+/* Both pivot on the stem: .vt-leaf unfurls, .vt-blade sways. */
+.vt-leaf,
+.vt-blade {
+  transform-box: fill-box;
+  transform-origin: 0% 50%;
+}
+.vt-blade {
+  color: var(--vt-leaf-a);
+}
+.vt-blade[data-tone="b"] {
+  color: var(--vt-leaf-b);
+}
+.vt-blade > path:first-child {
+  fill: currentColor;
+}
+.vt-blade > path:last-child {
+  fill: none;
+  stroke: color-mix(in oklch, currentColor 45%, var(--card));
+  stroke-width: 1px;
+  stroke-linecap: round;
+}
+.vt-glyph-rib {
+  stroke: var(--vt-rib, var(--card));
+  stroke-width: 1.5px;
+  stroke-linecap: round;
+}
+.vt-topic[data-open] > .vt-row .vt-glyph,
+.vt-guide[data-open] > .vt-row .vt-glyph {
+  --vt-rib: var(--branch);
+}
+
+/* ---------- the tree: crown, trunk, roots ---------- */
+.vt-tree {
+  position: relative;
+  padding: var(--vt-crown-h) 0 calc(var(--vt-roots-h) + 0.75rem);
+}
+.vt-trunk,
+.vt-crown,
+.vt-roots,
+.vt-bough {
+  position: absolute;
+  overflow: visible;
+  pointer-events: none;
+}
+/* Above the boughs, so they grow out of it; below the cards. */
+.vt-trunk {
+  z-index: 1;
+  top: var(--vt-crown-h);
+  left: calc(var(--vt-trunk-x) - var(--vt-trunk-w) / 2);
+  width: var(--vt-trunk-w);
+  height: calc(100% - var(--vt-crown-h) - var(--vt-roots-h) + 1px);
+}
+.vt-crown {
+  z-index: 1;
+  width: 64px;
+  height: 47px;
+  top: calc(var(--vt-crown-h) - 46px);
+  left: calc(var(--vt-trunk-x) - 31px);
+}
+/* Narrower on phones, so the ground stays inside the page gutter. */
+.vt-roots {
+  z-index: 1;
+  width: 76px;
+  height: var(--vt-roots-h);
+  bottom: 0;
+  left: calc(var(--vt-trunk-x) - 38px);
+}
+
+/* ---------- topics: one bough each ---------- */
+.vt-l1 {
+  position: relative;
+  padding-left: var(--vt-indent);
+}
+.vt-l1 > .vt-item {
+  position: relative;
+}
+.vt-l1 > .vt-item + .vt-item {
+  margin-top: var(--vt-gap1);
+}
+.vt-bough {
+  z-index: 0;
+}
+.vt-bough-wide {
+  display: none;
+}
+/* Tip passes the card's edge level with the topic chip. */
+.vt-bough-short {
+  top: 0;
+  left: calc(var(--vt-trunk-x) - var(--vt-indent));
+}
+
+@media (min-width: 1024px) {
+  .vt {
+    --vt-trunk-x: 50%;
+    --vt-trunk-w: 36px;
+    --vt-gap: 11rem;
+    --vt-crown-h: 4.5rem;
+    --vt-roots-h: 40px;
+  }
+  .vt-crown {
+    width: 92px;
+    height: 68px;
+    top: calc(var(--vt-crown-h) - 67px);
+    left: calc(var(--vt-trunk-x) - 45px);
+  }
+  .vt-roots {
+    width: 168px;
+    left: calc(var(--vt-trunk-x) - 84px);
+  }
+  /* Each side packs on its own: `dense` puts every topic in the first free
+     rows of its column, and each spans rows for its measured height
+     (usePacking in GuideExplorer.tsx; 4px rows, 20px gap). The fallback
+     spans fit a closed topic until that runs. */
+  .vt-l1 {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) var(--vt-gap) minmax(0, 1fr);
+    grid-auto-rows: 4px;
+    grid-auto-flow: row dense;
+    align-items: start;
+    padding-left: 0;
+  }
+  .vt-l1 > .vt-item {
+    grid-column: 1;
+    grid-row-end: span var(--span, 30);
+  }
+  .vt-l1 > .vt-item + .vt-item {
+    margin-top: 0;
+  }
+  .vt-l1 > .vt-item:nth-child(even) {
+    grid-column: 3;
+  }
+  /* The right side starts half a step lower, so boughs alternate. */
+  .vt-l1 > .vt-item:nth-child(2) {
+    margin-top: 4.75rem;
+    grid-row-end: span var(--span, 49);
+  }
+  .vt-bough-short {
+    display: none;
+  }
+  /* Drawn growing right from the trunk: the right column uses it as is,
+     the left column mirrors it back to the trunk. */
+  .vt-bough-wide {
+    display: block;
+    top: -40px;
+    left: calc(var(--vt-gap) / -2);
+  }
+  .vt-l1 > .vt-item:nth-child(odd) > .vt-bough-wide {
+    left: auto;
+    right: calc(var(--vt-gap) / -2);
+    scale: -1 1;
+  }
+}
+
+/* The open topic's foliage moves in the air; a closed one rustles when
+   its card is hovered. */
+.vt-l1 > .vt-item[data-open] > .vt-bough .vt-blade {
+  animation: vt-sway 5.5s ease-in-out infinite;
+  animation-delay: calc(var(--k, 0) * -0.9s);
+}
+.vt-l1 > .vt-item:not([data-open]):has(> .vt-row:hover) > .vt-bough .vt-blade {
+  animation: vt-rustle 0.8s ease-in-out;
+  animation-delay: calc(var(--k, 0) * 40ms);
+}
+
+/* ---------- guides: hang off the topic's chip ---------- */
+.vt-l2 {
+  --e2: 22px; /* elbow lands at the guide node's centre */
+  --r2: 12px;
+  --lead2: 0.75rem;
+  position: relative;
+  margin-left: 37px;
+  padding: var(--lead2) 0 0.375rem 1.25rem;
+}
+.vt-l2 > .vt-item {
+  position: relative;
+}
+.vt-l2 > .vt-item + .vt-item {
+  margin-top: var(--vt-gap2);
+}
+.vt-l2 > .vt-item::before {
+  left: -1.25rem;
+  top: 0;
+  bottom: calc(var(--vt-gap2) * -1);
+  border-left-width: var(--vt-w);
+  border-color: var(--vt-soft);
+}
+.vt-l2 > .vt-item:first-child::before {
+  top: calc(var(--lead2) * -1);
+}
+.vt-l2 > .vt-item:last-child::before {
+  bottom: auto;
+  height: calc(var(--e2) - var(--r2));
+}
+.vt-l2 > .vt-item:first-child:last-child::before {
+  height: calc(var(--lead2) + var(--e2) - var(--r2));
+}
+.vt-l2 > .vt-item::after {
+  left: -1.25rem;
+  top: calc(var(--e2) - var(--r2));
+  width: 1.25rem;
+  height: var(--r2);
+  border-left-width: var(--vt-w);
+  border-bottom-width: var(--vt-w);
+  border-bottom-left-radius: var(--r2);
+  border-color: var(--vt-soft);
+}
+.vt-l2 > .vt-item[data-open]::after {
+  top: 0;
+  height: var(--e2);
+}
+.vt-l2 > .vt-item[data-open]:first-child::after {
+  top: calc(var(--lead2) * -1);
+  height: calc(var(--lead2) + var(--e2));
+}
+.vt-l2 > .vt-item:has(~ .vt-item[data-open])::before,
+.vt-l2 > .vt-item[data-open]::after {
+  border-color: var(--branch);
+}
+.vt-gnode {
+  box-shadow: inset 0 0 0 var(--vt-w) var(--vt-soft);
+}
+.vt-guide[data-open] .vt-gnode {
+  box-shadow: 0 0 0 4px color-mix(in oklch, var(--branch) 20%, transparent);
+}
+/* Leaves on the shoot beside each guide card but the last (where the shoot
+   ends), stems on its centre line, lit with the path they sit on. */
+.vt-sprig {
+  position: absolute;
+  z-index: 1;
+  left: calc(-1.25rem - 37px + var(--vt-w) / 2);
+  top: 34px;
+  overflow: visible;
+  pointer-events: none;
+}
+.vt-l2 > .vt-item:last-child > .vt-sprig {
+  display: none;
+}
+.vt-l2 > .vt-item:has(~ .vt-item[data-open]) > .vt-sprig .vt-blade {
+  color: var(--vt-leaf-a);
+}
+
+/* ---------- steps: a numbered path under the guide's node ---------- */
+.vt-steps {
+  position: relative;
+  margin-left: 8px;
+  padding-top: 0.5rem;
+}
+.vt-steps::before {
+  left: 21px;
+  top: 0;
+  height: calc(0.5rem + 24px);
+  border-left-width: var(--vt-w);
+  border-color: var(--branch);
+}
+.vt-step {
+  position: relative;
+}
+.vt-step + .vt-step {
+  margin-top: var(--vt-gap3);
+}
+.vt-step::before {
+  left: 21px;
+  top: 24px;
+  bottom: calc(-24px - var(--vt-gap3));
+  border-left-width: var(--vt-w);
+  border-color: var(--vt-soft);
+}
+.vt-step:last-child::before {
+  display: none;
+}
+/* The path fills up to the step being previewed. */
+.vt-step[data-reached]:has(+ .vt-step[data-reached])::before {
+  border-color: var(--branch);
+}
+.vt-num {
+  z-index: 1;
+  background: var(--card);
+  color: color-mix(in oklch, var(--foreground) 55%, var(--card));
+  box-shadow: inset 0 0 0 var(--vt-w) var(--vt-soft);
+}
+.vt-step[data-reached] .vt-num {
+  background: var(--branch);
+  color: var(--card);
+  box-shadow: none;
+}
+.vt-step[data-open] .vt-num {
+  box-shadow: 0 0 0 4px color-mix(in oklch, var(--branch) 22%, transparent);
+}
+
+/* ---------- opening and closing ---------- */
+.vt-collapse {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.36s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.vt-collapse[data-open] {
+  grid-template-rows: 1fr;
+  transition: grid-template-rows 0.6s var(--vt-ease);
+}
+/* Clips the growing branch; the side overhang keeps card shadows and focus
+   rings from being cut off, and lets clicks fall through to what is under
+   the overhang. */
+.vt-clip {
+  min-height: 0;
+  overflow: hidden;
+  margin-inline: -14px;
+  padding-inline: 14px;
+  pointer-events: none;
+}
+.vt-clip > * {
+  pointer-events: auto;
+}
+.vt-preview {
+  --i: 0;
+}
+
+/* Closed: lines retracted, elbows folded, cards lifted away. */
+.vt-collapse > .vt-clip > .vt-l2 > .vt-item::before,
+.vt-collapse > .vt-clip > .vt-steps::before,
+.vt-collapse > .vt-clip > .vt-steps > .vt-step::before {
+  transform-origin: top;
+  transform: scaleY(0);
+  transition:
+    transform 0.18s ease,
+    border-color 0.35s ease;
+}
+.vt-collapse > .vt-clip > .vt-l2 > .vt-item::after {
+  clip-path: inset(0 100% 100% 0);
+  transition:
+    clip-path 0.18s ease,
+    border-color 0.35s ease,
+    top 0.4s var(--vt-ease),
+    height 0.4s var(--vt-ease);
+}
+.vt-collapse > .vt-clip > .vt-l2 > .vt-item > .vt-row,
+.vt-collapse > .vt-clip > .vt-steps > .vt-step > .vt-row,
+.vt-collapse > .vt-clip > .vt-foot,
+.vt-collapse > .vt-clip > .vt-preview {
+  opacity: 0;
+  transform: translateY(-6px);
+  transition:
+    opacity 0.16s ease,
+    transform 0.2s ease;
+}
+
+.vt-collapse > .vt-clip > .vt-l2 > .vt-item > .vt-sprig .vt-leaf {
+  scale: 0;
+  transition: scale 0.16s ease;
+}
+
+/* Open: in sequence, row after row. Delays only on the way in. */
+.vt-collapse[data-open] > .vt-clip > .vt-l2 > .vt-item > .vt-sprig .vt-leaf {
+  scale: 1;
+  transition: scale 0.5s var(--vt-spring) calc(200ms + var(--i, 0) * 60ms);
+}
+.vt-collapse[data-open] > .vt-clip > .vt-steps::before {
+  transform: scaleY(1);
+  transition:
+    transform 0.35s var(--vt-ease) 40ms,
+    border-color 0.35s ease;
+}
+.vt-collapse[data-open] > .vt-clip > .vt-l2 > .vt-item::before,
+.vt-collapse[data-open] > .vt-clip > .vt-steps > .vt-step::before {
+  transform: scaleY(1);
+  transition:
+    transform 0.45s var(--vt-ease) calc(40ms + var(--i, 0) * 60ms),
+    border-color 0.35s ease;
+}
+.vt-collapse[data-open] > .vt-clip > .vt-l2 > .vt-item::after {
+  clip-path: inset(0 0 0 0);
+  transition:
+    clip-path 0.45s var(--vt-ease) calc(70ms + var(--i, 0) * 60ms),
+    border-color 0.35s ease,
+    top 0.4s var(--vt-ease),
+    height 0.4s var(--vt-ease);
+}
+.vt-collapse[data-open] > .vt-clip > .vt-l2 > .vt-item > .vt-row,
+.vt-collapse[data-open] > .vt-clip > .vt-steps > .vt-step > .vt-row,
+.vt-collapse[data-open] > .vt-clip > .vt-foot,
+.vt-collapse[data-open] > .vt-clip > .vt-preview {
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity 0.4s ease calc(90ms + var(--i, 0) * 60ms),
+    transform 0.55s var(--vt-ease) calc(90ms + var(--i, 0) * 60ms);
+}
+
+/* Searching re-shapes the tree on every keystroke: no choreography. */
+.vt[data-searching] .vt-collapse,
+.vt[data-searching] .vt-collapse *,
+.vt[data-searching] .vt-collapse *::before,
+.vt[data-searching] .vt-collapse *::after {
+  transition-delay: 0s !important;
+  transition-duration: 0.15s !important;
+}
+
+/* ---------- first paint: the tree draws itself, topics arrive ---------- */
+.vt-crown {
+  transform-origin: 50% 100%;
+  animation: vt-pop 0.5s var(--vt-ease) both;
+}
+.vt-crown .vt-leaf {
+  animation: vt-unfurl 0.55s var(--vt-spring) both;
+  animation-delay: calc(120ms + var(--k, 0) * 60ms);
+}
+.vt-trunk {
+  transform-origin: top;
+  animation: vt-draw 0.9s var(--vt-ease) 80ms both;
+}
+.vt-roots {
+  transform-origin: 50% 0;
+  animation: vt-pop 0.5s var(--vt-ease) 0.6s both;
+}
+.vt-l1 > .vt-item > .vt-bough {
+  animation: vt-extend 0.6s var(--vt-ease) both;
+  animation-delay: calc(200ms + var(--i, 0) * 110ms);
+}
+.vt-l1 > .vt-item > .vt-bough .vt-leaf {
+  animation: vt-unfurl 0.55s var(--vt-spring) both;
+  animation-delay: calc(420ms + var(--i, 0) * 110ms + var(--k, 0) * 45ms);
+}
+.vt-l1 > .vt-item > .vt-row {
+  animation: vt-rise 0.6s var(--vt-ease) both;
+  animation-delay: calc(280ms + var(--i, 0) * 90ms);
+}
+
+@keyframes vt-draw {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+/* Negative insets so the finished bough never clips its own leaves. */
+@keyframes vt-extend {
+  from {
+    clip-path: inset(-40px 100% -40px 0);
+  }
+  to {
+    clip-path: inset(-40px -40px -40px 0);
+  }
+}
+@keyframes vt-unfurl {
+  from {
+    scale: 0;
+    rotate: -30deg;
+  }
+}
+@keyframes vt-sway {
+  0%,
+  100% {
+    rotate: 0deg;
+  }
+  35% {
+    rotate: 6deg;
+  }
+  70% {
+    rotate: -3deg;
+  }
+}
+@keyframes vt-rustle {
+  0%,
+  100% {
+    rotate: 0deg;
+  }
+  25% {
+    rotate: 9deg;
+  }
+  55% {
+    rotate: -6deg;
+  }
+  80% {
+    rotate: 3deg;
+  }
+}
+@keyframes vt-rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes vt-pop {
+  from {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* The shared rule below only shortens motion; these also carry delays,
+   which would leave rows invisible for a moment. */
+@media (prefers-reduced-motion: reduce) {
+  .vt *,
+  .vt *::before,
+  .vt *::after {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
+  }
+}
+
 /* Respect reduced-motion preferences everywhere */
 @media (prefers-reduced-motion: reduce) {
   *,

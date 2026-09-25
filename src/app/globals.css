@@ -1551,16 +1551,13 @@
 /* Shadow and lit side are the body's tone moved in lightness only, so
    they darken and lighten the same way in both themes. */
 .gc-mass {
-  --body: color-mix(in oklch, var(--hue) 30%, var(--pale));
-  fill: var(--body);
+  fill: color-mix(in oklch, var(--hue) 30%, var(--pale));
 }
 .gc-mass[data-tone="shade"] {
   fill: color-mix(in oklch, var(--hue) 42%, var(--pale));
-  fill: oklch(from var(--body) calc(l - 0.065) c h);
 }
 .gc-mass[data-tone="light"] {
   fill: color-mix(in oklch, var(--hue) 21%, var(--pale));
-  fill: oklch(from var(--body) calc(l + 0.045) c h);
 }
 .gc-foliage {
   fill: color-mix(in oklch, var(--hue) 72%, var(--pale));

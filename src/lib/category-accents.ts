@@ -3,14 +3,16 @@ import type { CategoryKey } from "@/types";
 /**
  * One flat hue per guide category, matching the /guides index, so a topic
  * wears the same colour wherever it appears. Literal class strings, so
- * Tailwind can see every one of them; `line` is the raw token for CSS that
- * draws connectors.
+ * Tailwind can see every one of them; `line` and `pale` are the raw tokens
+ * for CSS that draws.
  */
 export interface CategoryAccent {
   tint: string;
   acc: string;
   dot: string;
   line: string;
+  /** The raw tint token, the pale partner of `line`. */
+  pale: string;
 }
 
 const accent = (hue: string): CategoryAccent => ({
@@ -18,6 +20,7 @@ const accent = (hue: string): CategoryAccent => ({
   acc: `text-acc-${hue}`,
   dot: `bg-acc-${hue}`,
   line: `var(--acc-${hue})`,
+  pale: `var(--tint-${hue})`,
 });
 
 /* Spelled out in full below as well: Tailwind only generates classes it can

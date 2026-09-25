@@ -20,8 +20,8 @@ import * as React from "react";
 type LeafSpec = readonly [number, number, number, number, "a" | "b"];
 
 /* One leaf, 20px long, stem at the origin, pointing along +x. */
-const BLADE = "M0 0C4-5.5 12-7.5 20 0C12 7.5 4 5.5 0 0Z";
-const RIB = "M1.5 0Q10-.8 17 0";
+export const BLADE = "M0 0C4-5.5 12-7.5 20 0C12 7.5 4 5.5 0 0Z";
+export const RIB = "M1.5 0Q10-.8 17 0";
 
 function Leaves({ leaves, delay = 0 }: { leaves: readonly LeafSpec[]; delay?: number }) {
   return (
@@ -188,6 +188,10 @@ export function Crown() {
   );
 }
 
+/** Roots flaring from a 28px trunk whose centre is x = 84, top edge y = 0. */
+export const ROOTS_PATH =
+  "M70 0L98 0C99 10 104 18 118 24C132 29 146 30 156 31C140 33 124 33 110 30C102 28 97 25 94 22C94 27 97 31 102 35C94 35 88 31 86 25C84 31 78 35 68 36C74 31 76 27 76 22C71 26 62 30 50 32C38 34 24 33 12 31C26 29 42 27 54 22C64 18 69 10 70 0Z";
+
 export function Roots() {
   return (
     <svg
@@ -199,10 +203,7 @@ export function Roots() {
       viewBox="0 0 168 40"
     >
       <ellipse className="vt-ground" cx="84" cy="30" rx="80" ry="7" />
-      <path
-        className="vt-wood"
-        d="M70 0L98 0C99 10 104 18 118 24C132 29 146 30 156 31C140 33 124 33 110 30C102 28 97 25 94 22C94 27 97 31 102 35C94 35 88 31 86 25C84 31 78 35 68 36C74 31 76 27 76 22C71 26 62 30 50 32C38 34 24 33 12 31C26 29 42 27 54 22C64 18 69 10 70 0Z"
-      />
+      <path className="vt-wood" d={ROOTS_PATH} />
     </svg>
   );
 }

@@ -12,7 +12,7 @@ import { GuideGraph, FaqTopicGrid } from "@/components/shared";
 import { getFaqsByHub } from "@/data/faqs";
 import { faqPageJsonLd } from "@/lib/structured-data";
 import { cn } from "@/lib/utils";
-import { GuideExplorer } from "./GuideExplorer";
+import { LifestyleGuides } from "./LifestyleGuides";
 import type { HubKey } from "@/types";
 
 /**
@@ -62,12 +62,11 @@ export async function HubPage({ hubKey, locale }: { hubKey: HubKey; locale: stri
         </p>
       </section>
 
-      {/* The explorer is drawn as a tree with its trunk up the middle and
-          topics on both sides, so it takes the same width as other hubs. */}
+      {/* The explorer's living tree needs a wide stage beside its panel. */}
       <div
         className={cn(
           "mx-auto px-4 pb-20 sm:px-6 lg:px-8",
-          explorerLayout ? "max-w-6xl" : "max-w-6xl 2xl:max-w-[96rem] 2xl:px-12"
+          explorerLayout ? "max-w-7xl" : "max-w-6xl 2xl:max-w-[96rem] 2xl:px-12"
         )}
       >
         {hubGuides.length > 0 && (
@@ -90,10 +89,7 @@ export async function HubPage({ hubKey, locale }: { hubKey: HubKey; locale: stri
                  own colour to its branch, and a coloured ground would fight
                  all five of them. */
               <div className="mt-2">
-                <p className="mb-7 max-w-xl text-sm leading-relaxed text-zinc-500 dark:text-zinc-400">
-                  {t("explorer.hint")}
-                </p>
-                <GuideExplorer topics={explorerTopics} />
+                <LifestyleGuides topics={explorerTopics} />
               </div>
             ) : (
               /* The tree, scoped to this hub. First topic open so the page

@@ -1483,12 +1483,266 @@
   }
 }
 
+/* ============================================================
+   The Lifestyle tree (GuideCanvas.tsx)
+
+   Flat paint only: bark in two tones with a few lines of grain;
+   each topic's clump in three tones of its colour (body, shadow,
+   lit side) with leaves in three more. A topic's colour arrives as
+   --hue (its accent) and --pale (its tint); every tone is a mix of
+   the two, so dark mode, where accents are light and tints deep,
+   still reads.
+
+   Motion, all transitions so every change plays back in reverse:
+   - first growth, keyed on [data-grown] and delayed per piece (--d):
+     the trunk rises, limbs and clumps scale out of where they join;
+   - opening a clump draws its spray out: stem and twigs are strokes
+     whose dash runs out (--sd staggers them), then each leaf
+     unfurls and its label slides in. Closing runs it all back in,
+     quickly and at once;
+   - the open clump lifts a little, the others settle back and soften.
+   ============================================================ */
+.gc {
+  --gc-bark: oklch(0.57 0.042 58);
+  --gc-bark-shade: oklch(0.49 0.04 55);
+  --gc-grain: oklch(0.45 0.04 52);
+  --gc-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --gc-spring: cubic-bezier(0.34, 1.45, 0.64, 1);
+}
+.dark .gc {
+  --gc-bark: oklch(0.52 0.035 62);
+  --gc-bark-shade: oklch(0.45 0.032 60);
+  --gc-grain: oklch(0.41 0.03 58);
+}
+.gc-stage {
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+.gc-cam,
+.gc-card,
+.gc-chip {
+  transition: transform 0.8s var(--gc-ease);
+}
+
+/* ---------- wood ---------- */
+.gc-wood {
+  fill: var(--gc-bark);
+  transition: fill 0.6s ease;
+}
+/* Mixed in sRGB: in oklch, bark and a blue meet through magenta. */
+.gc-wood[data-lit] {
+  fill: color-mix(in srgb, var(--gc-bark) 45%, var(--hue));
+}
+.gc-shade {
+  fill: var(--gc-bark-shade);
+}
+.gc-grain {
+  fill: none;
+  stroke: var(--gc-grain);
+  stroke-width: 1.6px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.gc-ground {
+  fill: var(--muted);
+}
+
+/* ---------- clumps ---------- */
+/* Shadow and lit side are the body's tone moved in lightness only, so
+   they darken and lighten the same way in both themes. */
+.gc-mass {
+  --body: color-mix(in oklch, var(--hue) 30%, var(--pale));
+  fill: var(--body);
+}
+.gc-mass[data-tone="shade"] {
+  fill: color-mix(in oklch, var(--hue) 42%, var(--pale));
+  fill: oklch(from var(--body) calc(l - 0.065) c h);
+}
+.gc-mass[data-tone="light"] {
+  fill: color-mix(in oklch, var(--hue) 21%, var(--pale));
+  fill: oklch(from var(--body) calc(l + 0.045) c h);
+}
+.gc-foliage {
+  fill: color-mix(in oklch, var(--hue) 72%, var(--pale));
+}
+.gc-foliage[data-tone="0"] {
+  fill: var(--hue);
+}
+.gc-foliage[data-tone="2"] {
+  fill: color-mix(in oklch, var(--hue) 52%, var(--pale));
+}
+.gc-clump {
+  cursor: pointer;
+  transition:
+    transform 0.7s var(--gc-ease),
+    opacity 0.6s ease;
+}
+.gc-clump[data-state="open"] {
+  transform: scale(1.05);
+}
+.gc-clump[data-state="back"] {
+  transform: scale(0.9);
+  opacity: 0.5;
+}
+.gc-card[data-state="back"] .gc-card-face {
+  opacity: 0.72;
+  scale: 0.94;
+}
+
+/* ---------- sprays ---------- */
+.gc-shoot {
+  fill: none;
+  stroke: color-mix(in srgb, var(--gc-bark) 62%, var(--hue));
+  stroke-linecap: round;
+  stroke-dasharray: 1 1;
+  stroke-dashoffset: 1;
+  opacity: 0;
+  transition:
+    stroke-dashoffset 0.28s ease-in,
+    opacity 0s linear 0.28s;
+}
+.gc-stem {
+  stroke-width: 6.5px;
+}
+.gc-twig {
+  stroke-width: 2.8px;
+}
+.gc-spray[data-open] .gc-shoot {
+  stroke-dashoffset: 0;
+  opacity: 1;
+  transition:
+    stroke-dashoffset 0.55s var(--gc-ease) var(--sd, 0s),
+    opacity 0s linear var(--sd, 0s);
+}
+.gc-spray:not([data-open]) {
+  pointer-events: none;
+}
+.gc-rowleaf {
+  cursor: pointer;
+  transform: scale(0) rotate(-40deg);
+  transition: transform 0.22s ease-in;
+}
+.gc-spray[data-open] .gc-rowleaf {
+  transform: none;
+  transition: transform 0.6s var(--gc-spring) var(--sd, 0s);
+}
+.gc-spray[data-open] .gc-rowleaf:is([data-hot], [data-open]) {
+  transform: scale(1.2);
+  transition-delay: 0s;
+}
+.gc-node-blade {
+  fill: var(--hue);
+  stroke: var(--card);
+  stroke-width: 1px;
+}
+.gc-node-rib {
+  fill: none;
+  stroke: color-mix(in oklch, var(--hue) 30%, var(--card));
+  stroke-width: 0.75px;
+  stroke-linecap: round;
+}
+
+/* Labels slide out of their leaf after it has unfurled. */
+.gc-chip-face {
+  opacity: 0;
+  pointer-events: none;
+  translate: calc(var(--side-shift, -8px)) 0;
+  transition:
+    opacity 0.18s ease,
+    translate 0.2s ease-in,
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+.gc-chip[data-side="-1"] .gc-chip-face {
+  --side-shift: 8px;
+}
+.gc-chip[data-shown] .gc-chip-face {
+  opacity: 1;
+  translate: 0 0;
+  pointer-events: auto;
+  transition:
+    opacity 0.4s ease var(--sd, 0s),
+    translate 0.5s var(--gc-ease) var(--sd, 0s),
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+/* ---------- first growth ---------- */
+.gc-grow,
+.gc-pop {
+  transform: scale(0);
+  transition: transform 0.95s var(--gc-ease) var(--d, 0s);
+}
+/* The trunk rises rather than swells. */
+.gc-rise {
+  transform: scale(0.55, 0);
+  transition-duration: 1.1s;
+}
+.gc-pop {
+  transition-timing-function: var(--gc-spring);
+}
+.gc-stage[data-grown] :is(.gc-grow, .gc-pop) {
+  transform: none;
+}
+.gc-stage[data-settled] :is(.gc-grow, .gc-pop) {
+  transition-delay: 0s;
+}
+.gc-card-face {
+  opacity: 0;
+}
+.gc-stage[data-grown] .gc-card-face {
+  opacity: 1;
+  transition-delay: var(--in, 0s);
+}
+.gc-stage[data-settled] .gc-card-face {
+  transition-delay: 0s;
+}
+
+/* ---------- life: clumps sway, and rustle when touched ---------- */
+.gc-sway {
+  animation: gc-sway 8s ease-in-out var(--phase, 0s) infinite;
+}
+.gc-stage[data-paused] .gc-sway {
+  animation-play-state: paused;
+}
+.gc-clump[data-hot] .gc-pop {
+  animation: gc-rustle 0.9s ease-out;
+}
+@keyframes gc-sway {
+  0%,
+  100% {
+    rotate: 0deg;
+  }
+  40% {
+    rotate: 1.3deg;
+  }
+  75% {
+    rotate: -1deg;
+  }
+}
+@keyframes gc-rustle {
+  0%,
+  100% {
+    rotate: 0deg;
+  }
+  25% {
+    rotate: 2.4deg;
+  }
+  55% {
+    rotate: -1.6deg;
+  }
+  80% {
+    rotate: 0.6deg;
+  }
+}
+
 /* The shared rule below only shortens motion; these also carry delays,
    which would leave rows invisible for a moment. */
 @media (prefers-reduced-motion: reduce) {
   .vt *,
   .vt *::before,
-  .vt *::after {
+  .vt *::after,
+  .gc * {
     animation: none !important;
     transition-duration: 0.01ms !important;
     transition-delay: 0s !important;

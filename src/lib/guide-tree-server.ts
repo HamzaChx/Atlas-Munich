@@ -54,6 +54,8 @@ export interface ExplorerSection {
 export interface ExplorerGuide {
   slug: string;
   title: string;
+  /** A few words, from the `tree` message table; the title when missing. */
+  label: string;
   summary: string;
   href: string;
   readingTime: number;
@@ -89,6 +91,7 @@ export async function getGuideExplorer(locale: string, hubKey: HubKey): Promise<
   const toGuide = (guide: Guide): ExplorerGuide => ({
     slug: guide.slug,
     title: guide.title,
+    label: shortLabel(guide.slug) ?? guide.title,
     summary: guide.summary,
     href: `/guides/${guide.slug}`,
     readingTime: guide.readingTime,

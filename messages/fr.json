@@ -2923,7 +2923,18 @@
       "noMatches": "Rien ne correspond à « {query} » pour l'instant.",
       "noMatchesHint": "Essayez un autre mot, ou demandez à Zellija.",
       "askZellija": "Demander à Zellija",
-      "steps": "{count, plural, one {# étape} other {# étapes}}"
+      "steps": "{count, plural, one {# étape} other {# étapes}}",
+      "viewLabel": "Choisir un affichage",
+      "viewTree": "Arbre",
+      "viewOutline": "Plan",
+      "zoomOut": "Dézoomer",
+      "tapHint": "Touchez un thème, sa branche fait pousser ses étapes.",
+      "stepOf": "Étape {n} sur {total}",
+      "prevStep": "Précédente",
+      "nextStep": "Suivante",
+      "treeHint": "Chaque thème est une branche de cet arbre. Ouvrez-en un, il fait pousser ses étapes, puis choisissez celle qu'il vous faut.",
+      "indexTitle": "Tous les guides",
+      "indexHint": "Choisissez-en un ici ou sur l'arbre. Chaque feuille est une étape à ouvrir."
     }
   },
   "tree": {

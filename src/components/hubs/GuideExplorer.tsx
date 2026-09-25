@@ -63,9 +63,9 @@ import type { CategoryKey } from "@/types";
 /* ---------- search ---------- */
 
 /** Case- and accent-insensitive, so "demenagement" finds "déménagement". */
-const fold = (text: string) => text.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
+export const fold = (text: string) => text.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
 
-function Highlight({ text, query }: { text: string; query: string }) {
+export function Highlight({ text, query }: { text: string; query: string }) {
   if (!query) return <>{text}</>;
   const at = fold(text).indexOf(fold(query));
   if (at < 0) return <>{text}</>;
@@ -109,7 +109,7 @@ function search(topics: ExplorerTopic[], query: string): Hits {
 
 /* ---------- page plumbing ---------- */
 
-function writeHash(value: string | null) {
+export function writeHash(value: string | null) {
   try {
     const { pathname, search: query } = window.location;
     window.history.replaceState(

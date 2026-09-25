@@ -2903,7 +2903,18 @@
       "noMatches": "Nothing matches “{query}” yet.",
       "noMatchesHint": "Try another word, or ask Zellija.",
       "askZellija": "Ask Zellija",
-      "steps": "{count, plural, one {# step} other {# steps}}"
+      "steps": "{count, plural, one {# step} other {# steps}}",
+      "viewLabel": "Choose a view",
+      "viewTree": "Tree",
+      "viewOutline": "Outline",
+      "zoomOut": "Zoom out",
+      "tapHint": "Tap a topic and its branch grows its steps.",
+      "stepOf": "Step {n} of {total}",
+      "prevStep": "Previous",
+      "nextStep": "Next",
+      "treeHint": "Every topic is a branch of this tree. Open one and it grows its steps, then pick the step you need.",
+      "indexTitle": "Every guide",
+      "indexHint": "Pick one here or on the tree. Each leaf is a step you can open."
     }
   },
   "tree": {

@@ -31,9 +31,9 @@ import {
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { track } from "@vercel/analytics";
-import { ArrowUp, ArrowUpRight, Loader2, X } from "lucide-react";
+import { ArrowUp, Loader2, X } from "lucide-react";
 
-import { Link, useRouter } from "@/i18n/navigation";
+import { useRouter } from "@/i18n/navigation";
 import type { ChatbotType } from "@/chatbot/types";
 import { cn } from "@/lib/utils";
 import { ASSISTANT_ACCENTS } from "./chat-themes";
@@ -55,7 +55,6 @@ export interface LandingSpecialist {
 /* Darija stays Darija in every locale: it is the voice of the page, the way
    "Servus · مرحبا" is on the homepage. The reader's language sits under it. */
 const DARIJA = {
-  pill: "Zellija AI msawb bach i3awnek",
   title: ["Chno", "darrek"],
   pains: {
     riad: "Lkra m3eddbani",
@@ -63,14 +62,7 @@ const DARIJA = {
     ilham: "Lmémoire ma bghach ysali",
     loubna: "Kayderni rassi",
   } as Partial<Record<ChatbotType, string>>,
-  quick: {
-    food: "Jou3 a sa7bi?",
-    pray: "Fin nsalli?",
-    study: "Fin nraje3?",
-  },
 } as const;
-
-const QUICK_KEYS = ["food", "pray", "study"] as const;
 
 const ZELLIJA_ACCENT = ASSISTANT_ACCENTS.zellija;
 
@@ -338,12 +330,6 @@ export function AskLanding({ specialists }: { specialists: LandingSpecialist[] }
   }, [tl, focusBot]);
   useTypewriter(typeRef, phrases, input.length === 0);
 
-  const suggestions = useMemo(() => {
-    if (!focusBot) return [];
-    const raw = t.raw(`suggestions.${focusBot}`);
-    return raw && typeof raw === "object" ? (Object.values(raw) as string[]) : [];
-  }, [t, focusBot]);
-
   const canSend = input.trim().length > 0 && !leaving;
 
   const select = useCallback(
@@ -361,10 +347,10 @@ export function AskLanding({ specialists }: { specialists: LandingSpecialist[] }
   );
 
   const submit = useCallback(
-    (text: string, source: "composer" | "chip") => {
+    (text: string) => {
       const trimmed = text.trim();
       if (!trimmed || leaving) return;
-      track("ask_landing_send", { chatbot: focus?.chatbot ?? "zellija", source });
+      track("ask_landing_send", { chatbot: focus?.chatbot ?? "zellija", source: "composer" });
 
       if (!focus) {
         send(trimmed);
@@ -382,13 +368,13 @@ export function AskLanding({ specialists }: { specialists: LandingSpecialist[] }
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    submit(input, "composer");
+    submit(input);
   };
 
   const handleKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === "Enter" && !e.shiftKey && !e.nativeEvent.isComposing) {
       e.preventDefault();
-      submit(input, "composer");
+      submit(input);
     } else if (e.key === "Escape" && focusBot) {
       e.preventDefault();
       setFocusBot(null);
@@ -423,26 +409,9 @@ export function AskLanding({ specialists }: { specialists: LandingSpecialist[] }
 
   return (
     <section className="relative mx-auto flex min-h-full w-full max-w-6xl flex-col items-center px-4 pt-8 sm:px-6 sm:pt-12 lg:pt-14">
-      {/* ---- Voice line ---- */}
-      <p className="rise rise-1 inline-flex max-w-full items-center gap-2 rounded-full bg-muted py-1.5 pl-2.5 pr-3.5 text-xs sm:text-[13px]">
-        <span
-          className="dc-online-pulse h-2 w-2 flex-shrink-0 rounded-full bg-acc-green"
-          aria-hidden="true"
-        />
-        <span lang="ary-Latn" className="truncate font-semibold text-zinc-800 dark:text-zinc-100">
-          {DARIJA.pill}
-        </span>
-        <span className="hidden text-zinc-400 sm:inline dark:text-zinc-500" aria-hidden="true">
-          /
-        </span>
-        <span className="hidden truncate text-zinc-500 sm:inline dark:text-zinc-400">
-          {tl("pill")}
-        </span>
-      </p>
-
       {/* ---- The question ---- */}
       <h1
-        className="mt-5 text-center font-display text-[clamp(2.75rem,12.5vw,8.5rem)] font-extrabold leading-[0.92] tracking-[-0.035em] text-zinc-900 sm:mt-6 sm:[font-stretch:112%] dark:text-zinc-50"
+        className="text-center font-display text-[clamp(2.75rem,12.5vw,8.5rem)] font-extrabold leading-[0.92] tracking-[-0.035em] text-zinc-900 sm:[font-stretch:112%] dark:text-zinc-50"
         aria-label={`${DARIJA.title.join(" ")}? ${subtitle}`}
       >
         <span lang="ary-Latn" aria-hidden="true">
@@ -590,82 +559,6 @@ export function AskLanding({ specialists }: { specialists: LandingSpecialist[] }
           </div>
         </ViewTransition>
       </form>
-
-      {/* ---- Starters: Zellija's places trio, or the picked specialist's ---- */}
-      <div
-        key={focusBot ?? "zellija"}
-        className="-mx-4 mt-1 flex w-[calc(100%+2rem)] max-w-none gap-2 overflow-x-auto px-4 pb-1 scrollbar-hide [scrollbar-width:none] sm:mx-0 sm:mt-4 sm:w-full sm:max-w-2xl sm:flex-wrap sm:justify-center sm:overflow-visible sm:px-0 [&::-webkit-scrollbar]:hidden"
-      >
-        {focus
-          ? suggestions.map((s, i) => (
-              <button
-                key={s}
-                type="button"
-                onClick={() => submit(s, "chip")}
-                style={{ animationDelay: `${i * 60}ms` }}
-                className={cn(
-                  "dc-chip-stagger flex-shrink-0 cursor-pointer rounded-full px-3.5 py-2 text-[13px] font-medium text-zinc-700 transition-transform duration-200 hover:-translate-y-0.5 dark:text-zinc-200",
-                  accent.tint
-                )}
-              >
-                {s}
-              </button>
-            ))
-          : QUICK_KEYS.map((key, i) => (
-              <button
-                key={key}
-                type="button"
-                onClick={() => submit(tl(`quick.${key}.prompt`), "chip")}
-                style={{ animationDelay: `${i * 60 + 700}ms` }}
-                className="dc-chip-stagger flex flex-shrink-0 cursor-pointer items-baseline gap-1.5 rounded-full bg-muted px-3.5 py-2 text-[13px] transition-transform duration-200 hover:-translate-y-0.5"
-              >
-                <span lang="ary-Latn" className="font-semibold text-zinc-800 dark:text-zinc-100">
-                  {DARIJA.quick[key]}
-                </span>
-                <span className="text-zinc-500 dark:text-zinc-400">{tl(`quick.${key}.label`)}</span>
-              </button>
-            ))}
-
-        {focus && (
-          <Link
-            href={focus.chatPath}
-            className={cn(
-              "dc-chip-stagger group/open flex flex-shrink-0 items-center gap-1 rounded-full px-3 py-2 text-[13px] font-semibold",
-              accent.acc
-            )}
-            style={{ animationDelay: `${suggestions.length * 60}ms` }}
-          >
-            {tl("openChat", { name: focus.name })}
-            <ArrowUpRight
-              className="h-3.5 w-3.5 transition-transform duration-200 group-hover/open:-translate-y-0.5 group-hover/open:translate-x-0.5"
-              aria-hidden="true"
-            />
-          </Link>
-        )}
-      </div>
-
-      {/* ---- Small print ---- */}
-      <div className="mt-auto flex w-full flex-col items-center gap-1.5 pb-6 pt-8 text-center text-[11px] text-zinc-400 sm:pb-8 dark:text-zinc-500">
-        <p>{t("aiDisclaimer")}</p>
-        <p className="hidden items-center gap-1.5 sm:flex">
-          <kbd className="rounded bg-muted px-1.5 py-0.5 font-mono text-[10px]">1</kbd>
-          <span aria-hidden="true">–</span>
-          <kbd className="rounded bg-muted px-1.5 py-0.5 font-mono text-[10px]">
-            {specialists.length}
-          </kbd>
-          {tl("keysPick")}
-          <span aria-hidden="true">·</span>
-          <kbd className="rounded bg-muted px-1.5 py-0.5 font-mono text-[10px]">Esc</kbd>
-          {tl("keysReset")}
-          <span aria-hidden="true">·</span>
-          <Link
-            href="/guides"
-            className="underline-offset-2 hover:text-zinc-600 hover:underline dark:hover:text-zinc-300"
-          >
-            {tl("browseGuides")}
-          </Link>
-        </p>
-      </div>
     </section>
   );
 }

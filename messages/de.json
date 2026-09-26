@@ -36,9 +36,9 @@
     "aboutAria": "Über Atlas Munich"
   },
   "home": {
-    "heroTitle": "Wir haben alles auf die harte Tour gelernt,",
-    "heroTitleHighlight": "damit du es nicht musst.",
-    "heroSubtitle": "Guides, eine Karte und Leute, die es schon gemacht haben, für Marokkaner, die in München ankommen.",
+    "heroTitle": "Schenk den Tee ein.",
+    "heroTitleHighlight": "Wir zeigen dir München.",
+    "heroSubtitle": "Guides, eine Karte und Leute, die genau da standen, wo du jetzt stehst. Von Marokkanern in München.",
     "stats": {
       "guides": "Ratgeber",
       "places": "Orte",
@@ -142,7 +142,10 @@
       "title": "Du bist hier willkommen",
       "subtitle": "Von Marokkanern in München gebaut, für alle, die als Nächstes ankommen."
     },
-    "heroImageAlt": "Ein marokkanischer Neuankömmling geht mit der marokkanischen Flagge über den Schultern in Richtung Münchner Frauenkirche"
+    "heroVideo": {
+      "pause": "Film pausieren",
+      "play": "Film abspielen"
+    }
   },
   "places": {
     "directory": {
@@ -1780,7 +1783,78 @@
     "aiDisclaimer": "Antworten werden generiert und können falsch sein. Prüfe, was wichtig ist.",
     "typing": "schreibt…",
     "send": "Senden",
-    "browseGuidesCue": "Alternativ kannst du unseren Guide-Katalog durchstöbern"
+    "browseGuidesCue": "Alternativ kannst du unseren Guide-Katalog durchstöbern",
+    "landing": {
+      "pill": "Zellija KI, gemacht, um dir zu helfen",
+      "subtitle": "Wo drückt der Schuh?",
+      "cardsLabel": "Wähle, was dich beschäftigt",
+      "pains": {
+        "riad": {
+          "line": "Die Miete bringt mich um",
+          "helper": "Riad schreibt WG-Bewerbungen, auf die wirklich jemand antwortet"
+        },
+        "dalilah": {
+          "line": "Papierkram ohne Ende",
+          "helper": "Dalilah entwirrt Anmeldung, KVR und Aufenthaltstitel"
+        },
+        "ilham": {
+          "line": "Meine Abschlussarbeit stockt",
+          "helper": "Ilham hilft dir, sie zu gliedern, zu schreiben und zu schärfen"
+        },
+        "loubna": {
+          "line": "Ich brauche einen Arzt",
+          "helper": "Loubna findet Ärzte, erklärt die Versicherung, übersetzt Symptome"
+        }
+      },
+      "prompts": {
+        "zellija": [
+          "Chi 7aja khra? Frag mich alles über München",
+          "Wo esse ich halal am Marienplatz?",
+          "Welches Konto bekomme ich ohne Schufa?",
+          "Wie komme ich als Student ans Deutschlandticket?"
+        ],
+        "riad": [
+          "Füg eine WG-Anzeige ein, ich schreibe deine Bewerbung",
+          "Beschreib dein Wunschzimmer, ich entwerfe die Nachricht",
+          "Warum antwortet niemand auf meine WG-Nachrichten?"
+        ],
+        "dalilah": [
+          "Wann muss ich mich anmelden?",
+          "Was will die Ausländerbehörde von mir?",
+          "Mein Aufenthaltstitel läuft bald ab, was nun?"
+        ],
+        "ilham": [
+          "Hilf mir, eine Forschungslücke zu finden",
+          "Lies die Einleitung meiner Arbeit",
+          "Wie gliedere ich einen Literaturüberblick?"
+        ],
+        "loubna": [
+          "Finde mir einen englischsprachigen Hausarzt",
+          "Übersetze meine Symptome ins Deutsche",
+          "Reicht meine studentische Versicherung?"
+        ]
+      },
+      "quick": {
+        "food": {
+          "label": "Halal in meiner Nähe",
+          "prompt": "Wo finde ich gutes Halal-Essen in meiner Nähe?"
+        },
+        "pray": {
+          "label": "Moschee in der Nähe",
+          "prompt": "Wo ist die nächste Moschee zum Beten?"
+        },
+        "study": {
+          "label": "Ruhiger Lernort",
+          "prompt": "Wo finde ich einen ruhigen Ort zum Lernen?"
+        }
+      },
+      "placeholder": "Erzähl {name}, was los ist",
+      "clearFocus": "Zurück zu Zellija",
+      "openChat": "Chat mit {name} öffnen",
+      "keysPick": "zum Auswählen",
+      "keysReset": "zurück zu Zellija",
+      "browseGuides": "Lieber lesen? Zu den Guides"
+    }
   },
   "legal": {
     "privacy": {

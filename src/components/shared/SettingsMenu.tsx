@@ -29,9 +29,13 @@ const languages: { code: Locale; label: string }[] = [
 export function SettingsMenu({
   currentLocale,
   className,
+  tone = "default",
 }: {
   currentLocale: Locale;
   className?: string;
+  /** "hero" reads as cream-on-film chrome, for sitting over the homepage
+      video while it plays transparent behind the fixed header. */
+  tone?: "default" | "hero";
 }) {
   const router = useRouter();
   /* Locale-stripped, so the prefix can be swapped without doubling up. */
@@ -85,9 +89,16 @@ export function SettingsMenu({
         aria-expanded={isOpen}
         aria-haspopup="menu"
         className={cn(
-          "flex h-9 w-9 items-center justify-center rounded-full border border-border/50 bg-card text-zinc-600 shadow-sm transition-colors duration-200",
-          "hover:bg-muted hover:text-zinc-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-zellige/50 dark:text-zinc-300 dark:hover:text-zinc-50",
-          isOpen && "border-zellige/50 bg-zellige-soft text-zellige",
+          "flex h-9 w-9 items-center justify-center rounded-full border transition-colors duration-200 focus:outline-none focus-visible:ring-2",
+          tone === "hero"
+            ? cn(
+                "border-hero-cream/25 bg-hero-cream/10 text-hero-cream shadow-none hover:bg-hero-cream/20 focus-visible:ring-hero-gold",
+                isOpen && "bg-hero-cream/20"
+              )
+            : cn(
+                "border-border/50 bg-card text-zinc-600 shadow-sm hover:bg-muted hover:text-zinc-900 focus-visible:ring-zellige/50 dark:text-zinc-300 dark:hover:text-zinc-50",
+                isOpen && "border-zellige/50 bg-zellige-soft text-zellige"
+              ),
           isPending && "cursor-not-allowed opacity-50"
         )}
       >

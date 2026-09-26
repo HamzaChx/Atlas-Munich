@@ -1,32 +1,31 @@
 import { type Metadata } from "next";
-import { DedicatedChat, type QuickAction } from "@/components/chatbot/DedicatedChat";
-import { CHAT_THEMES, ASSISTANT_ACCENTS } from "@/components/chatbot/chat-themes";
-import { CHATBOT_CONFIG } from "@/chatbot/types";
+import { DedicatedChat } from "@/components/chatbot/DedicatedChat";
+import { AskLanding, type LandingSpecialist } from "@/components/chatbot/AskLanding";
+import { CHAT_THEMES } from "@/components/chatbot/chat-themes";
 import { assistants, isLive } from "@/data/assistants";
 
 export const metadata: Metadata = {
-  title: "Ask Zellija – Atlas Munich Guide",
+  title: "Chno darrek? Ask Zellija · Atlas Munich",
   description:
-    "Ask about housing, bureaucracy, university life, or places in Munich — or jump straight to a specialist.",
+    "Tell Zellija what's bothering you in Munich: rent, paperwork, health or your thesis. The right specialist takes it from there.",
 };
 
-// Live specialists become quick-action chips on Zellija's welcome screen, so
-// a reader who already knows who they need can skip straight there — the
-// same roster /tools used to show, read from the one place it's defined
-// instead of a second copy.
-const quickActions: QuickAction[] = assistants.filter(isLive).map((assistant) => ({
+// Every live specialist gets a pain card on Zellija's landing, read from the
+// one roster so a new helper shows up here without a second copy.
+const specialists: LandingSpecialist[] = assistants.filter(isLive).map((assistant) => ({
+  chatbot: assistant.chatbot!,
   name: assistant.name,
-  avatar: assistant.avatar!,
-  href: assistant.chatPath!,
-  accent: ASSISTANT_ACCENTS[assistant.chatbot!],
-  tagline: CHATBOT_CONFIG[assistant.chatbot!].tagline,
+  chatPath: assistant.chatPath!,
+  character: assistant.character!,
+  lineArt: assistant.lineArt,
 }));
 
 export default function ChatPage() {
   return (
-    <>
-      <link rel="preload" href="/zellija.jpeg" as="image" />
-      <DedicatedChat theme={CHAT_THEMES.zellija} backPath="/" quickActions={quickActions} />
-    </>
+    <DedicatedChat
+      theme={CHAT_THEMES.zellija}
+      backPath="/"
+      landing={<AskLanding specialists={specialists} />}
+    />
   );
 }

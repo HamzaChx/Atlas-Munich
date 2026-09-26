@@ -26,6 +26,10 @@
   --color-terracotta: var(--terracotta);
   --color-terracotta-soft: var(--terracotta-soft);
   --color-saffron: var(--saffron);
+  /* Homepage film hero, see the :root definitions for why these are fixed */
+  --color-hero-cream: var(--hero-cream);
+  --color-hero-gold: var(--hero-gold);
+  --color-hero-ink: var(--hero-ink);
   /* Fixed light-blue accent for use on the ink panel (same in both themes) */
   --color-zellige-bright: oklch(0.78 0.09 258);
 
@@ -242,6 +246,15 @@
   --terracotta: oklch(0.6 0.13 42);
   --terracotta-soft: oklch(0.955 0.025 55);
   --saffron: oklch(0.8 0.13 85);
+
+  /* Homepage film hero (HeroStage.tsx / Header.tsx over it). Fixed rather
+     than theme-aware: the film looks the same in both themes, so type and
+     chrome sitting on it read from the film's own lamp-warm light, not the
+     page theme. Cream for body text/chrome, gold (the tea glasses) for the
+     highlight, ink for text set on the cream pill. */
+  --hero-cream: oklch(0.955 0.025 80);
+  --hero-gold: oklch(0.865 0.135 85);
+  --hero-ink: oklch(0.24 0.035 55);
 
   /* Soft tints & accents per hue */
   --tint-terra: oklch(0.955 0.028 45);
@@ -518,34 +531,53 @@
   }
 }
 
-/* Homepage hero — warm plaster rather than a neutral grey. The very soft
-   color fields keep the page recognisably Atlas without competing with the
-   headline, actions, or arrival photograph. */
-.home-hero {
-  background-color: #fbf6ec;
-  background-image:
-    radial-gradient(circle at 82% 24%, rgb(224 169 65 / 0.1), transparent 29%),
-    radial-gradient(circle at 4% 72%, rgb(197 43 48 / 0.045), transparent 27%);
+/* Homepage film hero (HeroStage.tsx), edge to edge. On load the film settles
+   from a gentle push-in. The --hero-* colors themselves are global tokens
+   (see :root) so the fixed header can read them too while it floats over
+   this section, before scrolling onto the page's own surface. */
+.hero-media {
+  animation: hero-settle 2.4s var(--ease-out-expo) both;
+}
+@keyframes hero-settle {
+  from {
+    transform: scale(1.08);
+  }
 }
 
-.dark .home-hero {
-  background-color: #191816;
-  background-image:
-    radial-gradient(circle at 82% 24%, rgb(224 169 65 / 0.055), transparent 29%),
-    radial-gradient(circle at 4% 72%, rgb(197 43 48 / 0.04), transparent 27%);
+/* Scroll-linked, progressive enhancement: as the page moves on, the film
+   slowly pushes in and the copy lifts away ahead of it. Chained after the
+   load animations so the two never fight over the same property. */
+@supports (animation-timeline: scroll()) {
+  .hero-media {
+    animation:
+      hero-settle 2.4s var(--ease-out-expo) both,
+      hero-drift linear both;
+    animation-timeline: auto, scroll(root);
+    animation-range: normal, 0 100svh;
+    animation-composition: replace, add;
+  }
+  .hero-copy {
+    animation: hero-lift linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0 70svh;
+  }
 }
-
-.hero-visual-in {
-  opacity: 0;
-  transform: translateY(20px) scale(0.965);
-  transform-origin: center bottom;
-  animation: hero-visual-in 0.75s var(--ease-out-expo) 0.18s forwards;
-}
-
-@keyframes hero-visual-in {
+@keyframes hero-drift {
   to {
-    opacity: 1;
-    transform: none;
+    transform: scale(1.1) translateY(6%);
+  }
+}
+@keyframes hero-lift {
+  to {
+    opacity: 0;
+    transform: translateY(-4rem);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-media,
+  .hero-copy {
+    animation: none;
   }
 }
 
@@ -879,6 +911,107 @@
   to {
     opacity: 1;
     transform: translate(-50%, 0) scale(1);
+  }
+}
+
+/* ---- Ask landing ("Chno darrek?") ----
+   Motion is carried by nested wrappers so no two animations fight over one
+   transform: .ask-figure leans toward the pointer (--px/--py, set from JS),
+   .ask-lift answers hover and selection, .ask-bob idles. Hover uses the
+   individual `translate` property, which leaves `transform` free. */
+.ask-card {
+  transition:
+    translate 0.35s var(--ease-out-expo),
+    opacity 0.3s ease;
+}
+.ask-card-dimmed {
+  opacity: 0.5;
+}
+.ask-card-dimmed:focus-visible {
+  opacity: 1;
+}
+@media (hover: hover) {
+  .ask-card:hover {
+    translate: 0 -4px;
+  }
+  .ask-card-dimmed:hover {
+    opacity: 1;
+  }
+  .ask-card:hover .ask-lift {
+    transform: translateY(-6px) rotate(-4deg) scale(1.06);
+  }
+}
+.ask-figure {
+  transform: translate3d(calc(var(--px, 0) * 14px), calc(var(--py, 0) * 9px), 0);
+  transition: transform 0.4s var(--ease-out-expo);
+}
+.ask-lift {
+  transform-origin: 50% 90%;
+  transition: transform 0.45s var(--ease-out-expo);
+}
+.ask-card[data-selected] .ask-lift {
+  transform: translateY(-6px) rotate(-4deg) scale(1.06);
+}
+.ask-hop {
+  animation: ask-hop 0.6s var(--ease-out-expo);
+}
+@keyframes ask-hop {
+  0% {
+    transform: none;
+  }
+  35% {
+    transform: translateY(-16px) rotate(7deg) scale(1.12);
+  }
+  100% {
+    transform: translateY(-6px) rotate(-4deg) scale(1.06);
+  }
+}
+/* The question mark tilts its head now and then */
+.ask-qmark {
+  transform-origin: 40% 85%;
+  animation: ask-wonder 6s ease-in-out 1.6s infinite;
+}
+@keyframes ask-wonder {
+  0%,
+  82%,
+  100% {
+    rotate: 0deg;
+  }
+  86% {
+    rotate: 14deg;
+  }
+  91% {
+    rotate: -7deg;
+  }
+  95% {
+    rotate: 3deg;
+  }
+}
+.ask-caret {
+  animation: ask-caret 1.05s steps(1) infinite;
+}
+@keyframes ask-caret {
+  50% {
+    opacity: 0;
+  }
+}
+.ask-chip-in {
+  animation: dc-chip-in 0.35s var(--ease-out-expo) both;
+}
+/* The landing composer and the docked chat composer share this name, so
+   sending carries one into the other instead of cutting between pages. */
+::view-transition-group(chat-composer) {
+  animation-duration: 0.55s;
+  animation-timing-function: var(--ease-out-expo);
+}
+@media (prefers-reduced-motion: reduce) {
+  .ask-qmark,
+  .ask-hop,
+  .ask-caret {
+    animation: none;
+  }
+  .ask-figure {
+    transform: none;
   }
 }
 

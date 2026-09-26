@@ -36,9 +36,9 @@
     "aboutAria": "À propos d'Atlas Munich"
   },
   "home": {
-    "heroTitle": "Tout ce qu'on a dû apprendre à la dure,",
-    "heroTitleHighlight": "pour vous l'épargner.",
-    "heroSubtitle": "Des guides, une carte, et des gens qui l'ont déjà fait, pour les Marocains qui s'installent à Munich.",
+    "heroTitle": "Servez le thé.",
+    "heroTitleHighlight": "On vous guide dans Munich.",
+    "heroSubtitle": "Des guides, une carte, et des gens qui sont passés exactement par là. Fait par des Marocains de Munich.",
     "heroCommunity": "Hamza Chaouki",
     "stats": {
       "guides": "Guides",
@@ -142,7 +142,10 @@
       "title": "Vous êtes les bienvenus",
       "subtitle": "Créé par des Marocains à Munich, pour ceux qui arriveront ensuite."
     },
-    "heroImageAlt": "Un nouvel arrivant marocain marche vers la Frauenkirche de Munich avec le drapeau marocain sur les épaules"
+    "heroVideo": {
+      "pause": "Mettre le film en pause",
+      "play": "Lire le film"
+    }
   },
   "places": {
     "badge": "Lieux vérifiés",
@@ -1776,7 +1779,78 @@
     "aiDisclaimer": "Les réponses sont générées et peuvent être fausses. Vérifiez ce qui compte.",
     "typing": "écrit…",
     "send": "Envoyer",
-    "browseGuidesCue": "Vous pouvez aussi parcourir notre catalogue de guides"
+    "browseGuidesCue": "Vous pouvez aussi parcourir notre catalogue de guides",
+    "landing": {
+      "pill": "Zellija IA, conçue pour t'aider",
+      "subtitle": "Qu'est-ce qui te tracasse ?",
+      "cardsLabel": "Choisis ce qui te tracasse",
+      "pains": {
+        "riad": {
+          "line": "Le loyer me tue",
+          "helper": "Riad rédige des candidatures WG qui obtiennent vraiment des réponses"
+        },
+        "dalilah": {
+          "line": "Noyé sous la paperasse",
+          "helper": "Dalilah démêle Anmeldung, KVR et titres de séjour"
+        },
+        "ilham": {
+          "line": "Mon mémoire n'avance pas",
+          "helper": "Ilham t'aide à le structurer, l'écrire et l'affiner"
+        },
+        "loubna": {
+          "line": "J'ai besoin d'un médecin",
+          "helper": "Loubna trouve des médecins, explique l'assurance, traduit tes symptômes"
+        }
+      },
+      "prompts": {
+        "zellija": [
+          "Chi 7aja khra ? Pose-moi n'importe quelle question sur Munich",
+          "Où manger halal près de Marienplatz ?",
+          "Quel compte bancaire ouvrir sans Schufa ?",
+          "Comment avoir le Deutschlandticket étudiant ?"
+        ],
+        "riad": [
+          "Colle une annonce WG, j'écris ta candidature",
+          "Décris la chambre que tu cherches, je rédige le message",
+          "Pourquoi personne ne répond à mes messages WG ?"
+        ],
+        "dalilah": [
+          "Quand dois-je faire mon Anmeldung ?",
+          "Que demande l'Ausländerbehörde ?",
+          "Mon titre de séjour expire bientôt, je fais quoi ?"
+        ],
+        "ilham": [
+          "Aide-moi à trouver une lacune de recherche",
+          "Relis l'introduction de mon mémoire",
+          "Comment structurer une revue de littérature ?"
+        ],
+        "loubna": [
+          "Trouve-moi un Hausarzt qui parle français",
+          "Traduis mes symptômes en allemand",
+          "Mon assurance étudiante suffit-elle ?"
+        ]
+      },
+      "quick": {
+        "food": {
+          "label": "Halal près de moi",
+          "prompt": "Où trouver de la bonne nourriture halal près de moi ?"
+        },
+        "pray": {
+          "label": "Une mosquée proche",
+          "prompt": "Où se trouve la mosquée la plus proche pour prier ?"
+        },
+        "study": {
+          "label": "Un coin calme pour réviser",
+          "prompt": "Où trouver un endroit calme pour étudier ?"
+        }
+      },
+      "placeholder": "Dis à {name} ce qui se passe",
+      "clearFocus": "Revenir à Zellija",
+      "openChat": "Ouvrir le chat de {name}",
+      "keysPick": "pour choisir",
+      "keysReset": "pour revenir à Zellija",
+      "browseGuides": "Tu préfères lire ? Parcours les guides"
+    }
   },
   "legal": {
     "privacy": {

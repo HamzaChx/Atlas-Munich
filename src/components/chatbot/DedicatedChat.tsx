@@ -10,12 +10,16 @@
 
 import {
   Suspense,
+  ViewTransition,
+  startTransition,
   useState,
   useRef,
   useEffect,
   useCallback,
+  useMemo,
   type FormEvent,
   type KeyboardEvent,
+  type ReactNode,
 } from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";
@@ -26,6 +30,7 @@ import { useChatbot, blocksToText } from "@/chatbot/use-chatbot";
 import type { ChatBlock } from "@/chatbot/types";
 import { cn } from "@/lib/utils";
 import { takePendingMessage } from "./chat-seed";
+import { LandingContext, type LandingBridge } from "./landing-context";
 import {
   Send,
   Loader2,
@@ -205,15 +210,6 @@ function TypingIndicator({
 /*  Welcome screen                                                     */
 /* ------------------------------------------------------------------ */
 
-export interface QuickAction {
-  name: string;
-  avatar: string;
-  href: string;
-  accent: AssistantAccent;
-  /** Shown as a tooltip on hover, e.g. "Housing application writer" */
-  tagline?: string;
-}
-
 function WelcomeScreen({
   avatar,
   name,
@@ -223,7 +219,6 @@ function WelcomeScreen({
   accent,
   aiBadge,
   aiDisclaimer,
-  quickActions,
   onSend,
 }: {
   avatar: string;
@@ -234,8 +229,6 @@ function WelcomeScreen({
   accent: AssistantAccent;
   aiBadge: string;
   aiDisclaimer: string;
-  /** Direct links to specialist chats, shown only on Zellija's own page. */
-  quickActions?: QuickAction[];
   onSend: (msg: string) => void;
 }) {
   return (
@@ -293,38 +286,6 @@ function WelcomeScreen({
           </button>
         ))}
       </div>
-
-      {quickActions && quickActions.length > 0 && (
-        <div className="mt-6 flex flex-wrap items-center justify-center gap-2">
-          {quickActions.map((action) => {
-            const chip = (
-              <Link
-                key={action.href}
-                href={action.href}
-                className={cn(
-                  "flex items-center gap-2 rounded-full py-1.5 pl-1.5 pr-3.5 text-sm font-semibold text-zinc-700 outline-none transition-transform duration-200 hover:-translate-y-0.5 dark:text-zinc-200",
-                  action.accent.tint,
-                  action.accent.focus
-                )}
-              >
-                <span className="relative block h-6 w-6 overflow-hidden rounded-full">
-                  <Image src={action.avatar} alt="" fill sizes="24px" className="object-cover" />
-                </span>
-                {action.name}
-              </Link>
-            );
-
-            if (!action.tagline) return chip;
-
-            return (
-              <Tooltip key={action.href}>
-                <TooltipTrigger asChild>{chip}</TooltipTrigger>
-                <TooltipContent>{action.tagline}</TooltipContent>
-              </Tooltip>
-            );
-          })}
-        </div>
-      )}
     </div>
   );
 }
@@ -337,8 +298,9 @@ interface DedicatedChatProps {
   theme: DedicatedChatTheme;
   /** Path of the parent tool page, e.g. "/healthcare" */
   backPath: string;
-  /** Direct links to specialist chats, shown only on Zellija's own page. */
-  quickActions?: QuickAction[];
+  /** Replaces the whole empty state (header, welcome, composer) until the
+      first message. It sends through LandingContext. */
+  landing?: ReactNode;
 }
 
 /** Matches the canvas below, so the boundary costs no layout shift. */
@@ -355,7 +317,7 @@ export function DedicatedChat(props: DedicatedChatProps) {
   );
 }
 
-function DedicatedChatInner({ theme, backPath, quickActions }: DedicatedChatProps) {
+function DedicatedChatInner({ theme, backPath, landing }: DedicatedChatProps) {
   const {
     messages,
     isLoading,
@@ -518,6 +480,31 @@ function DedicatedChatInner({ theme, backPath, quickActions }: DedicatedChatProp
   // at once.
   const showTypingIndicator = isLoading && !messages.some((msg) => msg.isStreaming);
 
+  /* Sent as a transition so the landing's composer (a <ViewTransition> of
+     the same name) morphs into the docked one. Only the synchronous part of
+     sendMessage (adding the reader's message) belongs to the transition; the
+     stream that follows renders as it arrives. */
+  const landingBridge = useMemo<LandingBridge>(
+    () => ({
+      send: (text) => {
+        startTransition(() => {
+          void sendMessage(text);
+        });
+      },
+    }),
+    [sendMessage]
+  );
+  const showLanding = Boolean(landing) && !hasMessages;
+
+  // The landing's textarea is gone once the thread opens, so hand focus on.
+  const wasLanding = useRef(showLanding);
+  useEffect(() => {
+    if (wasLanding.current && !showLanding && window.matchMedia("(pointer: fine)").matches) {
+      inputRef.current?.focus({ preventScroll: true });
+    }
+    wasLanding.current = showLanding;
+  }, [showLanding]);
+
   const quietButton =
     "flex h-9 w-9 flex-shrink-0 cursor-pointer items-center justify-center rounded-full bg-card/70 text-zinc-600 transition-colors hover:bg-card dark:text-zinc-300";
 
@@ -540,268 +527,290 @@ function DedicatedChatInner({ theme, backPath, quickActions }: DedicatedChatProp
 
       {/* Full-height edge-to-edge agentic canvas */}
       <div className={cn("relative overflow-hidden", CANVAS)}>
-        {/* ---- Header ---- */}
-        <header
-          className={cn(
-            "absolute inset-x-0 top-0 z-10 backdrop-blur-2xl bg-card/70 border-b border-border/50"
-          )}
-        >
-          <div className="mx-auto w-full max-w-3xl flex flex-shrink-0 items-center gap-3 px-4 py-3">
-            <Link href={backPath} className={quietButton} aria-label="Back">
-              <ArrowLeft className="h-[18px] w-[18px]" />
-            </Link>
-
-            <div className="relative flex-shrink-0">
-              <Image
-                src={chatbotConfig.avatar}
-                alt={chatbotConfig.name}
-                width={80}
-                height={80}
-                sizes="40px"
-                priority
-                className={cn("h-10 w-10 rounded-full object-cover ring-2", accent.ring)}
-              />
-              <span className="absolute -bottom-0.5 -right-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-card">
-                <span className="dc-online-pulse h-2 w-2 rounded-full bg-acc-green" />
-              </span>
+        {showLanding ? (
+          <LandingContext.Provider value={landingBridge}>
+            <div className="min-h-0 flex-1 overflow-y-auto scrollbar-hide [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+              {landing}
             </div>
+          </LandingContext.Provider>
+        ) : (
+          <>
+            {/* ---- Header ---- */}
+            <header
+              className={cn(
+                "absolute inset-x-0 top-0 z-10 backdrop-blur-2xl bg-card/70 border-b border-border/50"
+              )}
+            >
+              <div className="mx-auto w-full max-w-3xl flex flex-shrink-0 items-center gap-3 px-4 py-3">
+                <Link href={backPath} className={quietButton} aria-label="Back">
+                  <ArrowLeft className="h-[18px] w-[18px]" />
+                </Link>
 
-            <div className="min-w-0 flex-1">
-              <div className="flex items-center gap-1.5">
-                <p className="truncate font-display text-[15px] font-bold leading-tight text-zinc-900 sm:text-base dark:text-zinc-50">
-                  {chatbotConfig.name}
-                </p>
-                <span className="flex-shrink-0 rounded-full bg-card/70 px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
-                  {aiBadge}
-                </span>
+                <div className="relative flex-shrink-0">
+                  <Image
+                    src={chatbotConfig.avatar}
+                    alt={chatbotConfig.name}
+                    width={80}
+                    height={80}
+                    sizes="40px"
+                    priority
+                    className={cn("h-10 w-10 rounded-full object-cover ring-2", accent.ring)}
+                  />
+                  <span className="absolute -bottom-0.5 -right-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-card">
+                    <span className="dc-online-pulse h-2 w-2 rounded-full bg-acc-green" />
+                  </span>
+                </div>
+
+                <div className="min-w-0 flex-1">
+                  <div className="flex items-center gap-1.5">
+                    <p className="truncate font-display text-[15px] font-bold leading-tight text-zinc-900 sm:text-base dark:text-zinc-50">
+                      {chatbotConfig.name}
+                    </p>
+                    <span className="flex-shrink-0 rounded-full bg-card/70 px-1.5 py-0.5 text-[9px] font-bold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
+                      {aiBadge}
+                    </span>
+                  </div>
+                  <p className={cn("truncate text-[11px] font-medium sm:text-xs", accent.acc)}>
+                    {tagline}
+                  </p>
+                </div>
+
+                {resources && (
+                  <button
+                    onClick={() => setInfoOpen(true)}
+                    className={quietButton}
+                    title={`About ${chatbotConfig.name}`}
+                    aria-label={`About ${chatbotConfig.name}`}
+                  >
+                    <HelpCircle className="h-4 w-4" />
+                  </button>
+                )}
+
+                {currentChatbot === "zellija" && (
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Link
+                        href="/guides"
+                        className={quietButton}
+                        aria-label={t("browseGuidesCue")}
+                      >
+                        <BookOpen className="h-4 w-4" />
+                      </Link>
+                    </TooltipTrigger>
+                    <TooltipContent>{t("browseGuidesCue")}</TooltipContent>
+                  </Tooltip>
+                )}
+
+                <button
+                  onClick={clearMessages}
+                  className={cn(
+                    quietButton,
+                    "group hover:bg-tint-terra hover:text-acc-terra dark:hover:bg-tint-terra dark:hover:text-acc-terra"
+                  )}
+                  title="Clear conversation"
+                  aria-label="Clear conversation"
+                >
+                  <Trash2 className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
+                </button>
               </div>
-              <p className={cn("truncate text-[11px] font-medium sm:text-xs", accent.acc)}>
-                {tagline}
-              </p>
-            </div>
+            </header>
 
             {resources && (
-              <button
-                onClick={() => setInfoOpen(true)}
-                className={quietButton}
-                title={`About ${chatbotConfig.name}`}
-                aria-label={`About ${chatbotConfig.name}`}
+              <BottomSheet open={infoOpen} onOpenChange={setInfoOpen}>
+                <BottomSheetContent title={chatbotConfig.name} description={tagline}>
+                  <p className="text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">
+                    {tResources("intro")}
+                  </p>
+
+                  <p className="mt-6 text-[11px] font-bold uppercase tracking-[0.12em] text-zinc-400 dark:text-zinc-500">
+                    {tResources(`${resources.linksKey}.title`)}
+                  </p>
+                  <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
+                    {tResources(`${resources.linksKey}.subtitle`)}
+                  </p>
+
+                  <div className="mb-2 mt-4 divide-y divide-border overflow-hidden rounded-2xl bg-muted/40">
+                    {resources.links.map((link) => {
+                      const LinkIcon = link.icon;
+                      return (
+                        <a
+                          key={link.name}
+                          href={link.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="group flex items-center gap-3 px-4 py-3 transition-colors hover:bg-muted"
+                        >
+                          <span
+                            className={cn(
+                              "flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl",
+                              accent.tint,
+                              accent.acc
+                            )}
+                          >
+                            <LinkIcon className="h-4 w-4" />
+                          </span>
+                          <div className="min-w-0 flex-1">
+                            <p className="text-sm font-semibold text-zinc-900 dark:text-zinc-50">
+                              {link.name}
+                            </p>
+                            <p className="truncate text-xs text-zinc-500 dark:text-zinc-400">
+                              {link.label}
+                            </p>
+                          </div>
+                          <ArrowUpRight
+                            className={cn(
+                              "h-4 w-4 flex-shrink-0 text-zinc-400 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5",
+                              accent.accHover
+                            )}
+                          />
+                        </a>
+                      );
+                    })}
+                  </div>
+                </BottomSheetContent>
+              </BottomSheet>
+            )}
+
+            {/* ---- Messages ---- */}
+            <div
+              ref={messagesContainerRef}
+              className="relative min-h-0 flex-1 overflow-y-auto scrollbar-hide [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+              role="log"
+              aria-live="polite"
+              aria-label="Chat messages"
+            >
+              <div
+                className={cn(
+                  "mx-auto w-full max-w-3xl px-4 sm:px-6 pt-24 pb-40",
+                  hasMessages ? "space-y-5" : "flex min-h-[calc(100%-8rem)] flex-col"
+                )}
               >
-                <HelpCircle className="h-4 w-4" />
-              </button>
-            )}
+                {!hasMessages && (
+                  <WelcomeScreen
+                    avatar={chatbotConfig.avatar}
+                    name={chatbotConfig.name}
+                    tagline={tagline}
+                    welcomeText={t(`welcome.${currentChatbot}`)}
+                    suggestions={suggestions}
+                    accent={accent}
+                    aiBadge={aiBadge}
+                    aiDisclaimer={aiDisclaimer}
+                    onSend={sendMessage}
+                  />
+                )}
 
-            {currentChatbot === "zellija" && (
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Link href="/guides" className={quietButton} aria-label={t("browseGuidesCue")}>
-                    <BookOpen className="h-4 w-4" />
-                  </Link>
-                </TooltipTrigger>
-                <TooltipContent>{t("browseGuidesCue")}</TooltipContent>
-              </Tooltip>
-            )}
+                {messages.map((msg, i) => (
+                  <ChatBubble
+                    key={msg.id}
+                    blocks={msg.blocks}
+                    messageId={msg.id}
+                    isUser={msg.role === "user"}
+                    avatar={chatbotConfig.avatar}
+                    accent={accent}
+                    timestamp={msg.timestamp}
+                    showAvatar={i === 0 || messages[i - 1].role !== msg.role}
+                    streaming={msg.isStreaming}
+                    statusLabel={msg.statusLabel}
+                    onConfirmHandoff={confirmHandoff}
+                    onDenyHandoff={denyHandoff}
+                    onConfirmLocationRequest={confirmLocationRequest}
+                    onDenyLocationRequest={denyLocationRequest}
+                  />
+                ))}
 
-            <button
-              onClick={clearMessages}
-              className={cn(
-                quietButton,
-                "group hover:bg-tint-terra hover:text-acc-terra dark:hover:bg-tint-terra dark:hover:text-acc-terra"
-              )}
-              title="Clear conversation"
-              aria-label="Clear conversation"
-            >
-              <Trash2 className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
-            </button>
-          </div>
-        </header>
+                {showTypingIndicator && (
+                  <TypingIndicator
+                    avatar={chatbotConfig.avatar}
+                    accent={accent}
+                    label={typingLabel}
+                  />
+                )}
 
-        {resources && (
-          <BottomSheet open={infoOpen} onOpenChange={setInfoOpen}>
-            <BottomSheetContent title={chatbotConfig.name} description={tagline}>
-              <p className="text-sm leading-relaxed text-zinc-600 dark:text-zinc-300">
-                {tResources("intro")}
-              </p>
+                {error && (
+                  <div className="flex items-start gap-2.5 rounded-2xl bg-tint-terra px-4 py-3 text-sm text-acc-terra">
+                    <AlertCircle className="mt-0.5 h-4 w-4 flex-shrink-0" />
+                    <p>{error}</p>
+                  </div>
+                )}
 
-              <p className="mt-6 text-[11px] font-bold uppercase tracking-[0.12em] text-zinc-400 dark:text-zinc-500">
-                {tResources(`${resources.linksKey}.title`)}
-              </p>
-              <p className="mt-1 text-sm text-zinc-500 dark:text-zinc-400">
-                {tResources(`${resources.linksKey}.subtitle`)}
-              </p>
-
-              <div className="mb-2 mt-4 divide-y divide-border overflow-hidden rounded-2xl bg-muted/40">
-                {resources.links.map((link) => {
-                  const LinkIcon = link.icon;
-                  return (
-                    <a
-                      key={link.name}
-                      href={link.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="group flex items-center gap-3 px-4 py-3 transition-colors hover:bg-muted"
-                    >
-                      <span
-                        className={cn(
-                          "flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl",
-                          accent.tint,
-                          accent.acc
-                        )}
-                      >
-                        <LinkIcon className="h-4 w-4" />
-                      </span>
-                      <div className="min-w-0 flex-1">
-                        <p className="text-sm font-semibold text-zinc-900 dark:text-zinc-50">
-                          {link.name}
-                        </p>
-                        <p className="truncate text-xs text-zinc-500 dark:text-zinc-400">
-                          {link.label}
-                        </p>
-                      </div>
-                      <ArrowUpRight
-                        className={cn(
-                          "h-4 w-4 flex-shrink-0 text-zinc-400 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5",
-                          accent.accHover
-                        )}
-                      />
-                    </a>
-                  );
-                })}
+                <div ref={messagesEndRef} />
               </div>
-            </BottomSheetContent>
-          </BottomSheet>
+
+              {showScrollFab && (
+                <button
+                  onClick={scrollToBottom}
+                  className="dc-scroll-fab-enter absolute bottom-4 left-1/2 z-20 flex -translate-x-1/2 cursor-pointer items-center gap-1.5 rounded-full bg-foreground px-4 py-2 text-xs font-semibold text-background shadow-[0_8px_24px_-8px_rgb(0_0_0/0.4)]"
+                  aria-label="Scroll to latest message"
+                >
+                  <ArrowDown className="h-3.5 w-3.5" />
+                  Latest
+                </button>
+              )}
+            </div>
+
+            {/* ---- Composer ---- */}
+            <form
+              onSubmit={handleSubmit}
+              className="absolute inset-x-0 bottom-0 z-10 flex-shrink-0 px-3 py-4 sm:px-6 sm:py-6 pt-12 bg-gradient-to-t from-card via-card/95 to-transparent pointer-events-none"
+              style={{ paddingBottom: "max(1.5rem, env(safe-area-inset-bottom))" }}
+            >
+              <ViewTransition name="chat-composer">
+                <div className="mx-auto flex max-w-3xl items-end gap-2.5 pointer-events-auto">
+                  <textarea
+                    ref={inputRef}
+                    value={input}
+                    onChange={(e) => setInput(e.target.value)}
+                    onKeyDown={handleKeyDown}
+                    placeholder={t("typeMessage")}
+                    rows={1}
+                    aria-label="Message input"
+                    style={{ maxHeight: "300px" }}
+                    className={cn(
+                      "w-full flex-1 resize-none overflow-y-auto scrollbar-hide [scrollbar-width:none] [&::-webkit-scrollbar]:hidden rounded-3xl border border-border/50 bg-card/80 backdrop-blur-md px-5 py-3 shadow-sm",
+                      // 16px on phones: iOS zooms the whole page in on focus for
+                      // anything smaller, and never zooms back out.
+                      "text-base text-zinc-900 placeholder:text-zinc-400 sm:text-[14px] dark:text-zinc-50 dark:placeholder:text-zinc-500",
+                      "outline-none transition-all duration-200 hover:bg-card/90",
+                      accent.focus
+                    )}
+                  />
+                  <button
+                    type="submit"
+                    disabled={!canSend}
+                    aria-label="Send message"
+                    className={cn(
+                      "flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full transition-all duration-200",
+                      canSend
+                        ? cn(
+                            "cursor-pointer text-card hover:scale-105 active:scale-95",
+                            accent.accBg
+                          )
+                        : "cursor-not-allowed bg-muted text-zinc-400 dark:text-zinc-500"
+                    )}
+                  >
+                    {isLoading ? (
+                      <Loader2 className="h-[18px] w-[18px] animate-spin" />
+                    ) : (
+                      <Send className="h-[18px] w-[18px]" />
+                    )}
+                  </button>
+                </div>
+              </ViewTransition>
+
+              <p className="mt-3 text-center text-[11px] text-zinc-400 dark:text-zinc-500 pointer-events-auto">
+                {aiDisclaimer}
+              </p>
+              <p className="mt-1 hidden text-center text-[11px] text-zinc-400 sm:block dark:text-zinc-500 pointer-events-auto">
+                <kbd className="rounded bg-muted px-1.5 py-0.5 font-mono text-[10px]">Enter</kbd> to
+                send,{" "}
+                <kbd className="rounded bg-muted px-1.5 py-0.5 font-mono text-[10px]">
+                  Shift + Enter
+                </kbd>{" "}
+                for a new line
+              </p>
+            </form>
+          </>
         )}
-
-        {/* ---- Messages ---- */}
-        <div
-          ref={messagesContainerRef}
-          className="relative min-h-0 flex-1 overflow-y-auto scrollbar-hide [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-          role="log"
-          aria-live="polite"
-          aria-label="Chat messages"
-        >
-          <div
-            className={cn(
-              "mx-auto w-full max-w-3xl px-4 sm:px-6 pt-24 pb-40",
-              hasMessages ? "space-y-5" : "flex min-h-[calc(100%-8rem)] flex-col"
-            )}
-          >
-            {!hasMessages && (
-              <WelcomeScreen
-                avatar={chatbotConfig.avatar}
-                name={chatbotConfig.name}
-                tagline={tagline}
-                welcomeText={t(`welcome.${currentChatbot}`)}
-                suggestions={suggestions}
-                accent={accent}
-                aiBadge={aiBadge}
-                aiDisclaimer={aiDisclaimer}
-                quickActions={quickActions}
-                onSend={sendMessage}
-              />
-            )}
-
-            {messages.map((msg, i) => (
-              <ChatBubble
-                key={msg.id}
-                blocks={msg.blocks}
-                messageId={msg.id}
-                isUser={msg.role === "user"}
-                avatar={chatbotConfig.avatar}
-                accent={accent}
-                timestamp={msg.timestamp}
-                showAvatar={i === 0 || messages[i - 1].role !== msg.role}
-                streaming={msg.isStreaming}
-                statusLabel={msg.statusLabel}
-                onConfirmHandoff={confirmHandoff}
-                onDenyHandoff={denyHandoff}
-                onConfirmLocationRequest={confirmLocationRequest}
-                onDenyLocationRequest={denyLocationRequest}
-              />
-            ))}
-
-            {showTypingIndicator && (
-              <TypingIndicator avatar={chatbotConfig.avatar} accent={accent} label={typingLabel} />
-            )}
-
-            {error && (
-              <div className="flex items-start gap-2.5 rounded-2xl bg-tint-terra px-4 py-3 text-sm text-acc-terra">
-                <AlertCircle className="mt-0.5 h-4 w-4 flex-shrink-0" />
-                <p>{error}</p>
-              </div>
-            )}
-
-            <div ref={messagesEndRef} />
-          </div>
-
-          {showScrollFab && (
-            <button
-              onClick={scrollToBottom}
-              className="dc-scroll-fab-enter absolute bottom-4 left-1/2 z-20 flex -translate-x-1/2 cursor-pointer items-center gap-1.5 rounded-full bg-foreground px-4 py-2 text-xs font-semibold text-background shadow-[0_8px_24px_-8px_rgb(0_0_0/0.4)]"
-              aria-label="Scroll to latest message"
-            >
-              <ArrowDown className="h-3.5 w-3.5" />
-              Latest
-            </button>
-          )}
-        </div>
-
-        {/* ---- Composer ---- */}
-        <form
-          onSubmit={handleSubmit}
-          className="absolute inset-x-0 bottom-0 z-10 flex-shrink-0 px-3 py-4 sm:px-6 sm:py-6 pt-12 bg-gradient-to-t from-card via-card/95 to-transparent pointer-events-none"
-          style={{ paddingBottom: "max(1.5rem, env(safe-area-inset-bottom))" }}
-        >
-          <div className="mx-auto flex max-w-3xl items-end gap-2.5 pointer-events-auto">
-            <textarea
-              ref={inputRef}
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyDown={handleKeyDown}
-              placeholder={t("typeMessage")}
-              rows={1}
-              aria-label="Message input"
-              style={{ maxHeight: "300px" }}
-              className={cn(
-                "w-full flex-1 resize-none overflow-y-auto scrollbar-hide [scrollbar-width:none] [&::-webkit-scrollbar]:hidden rounded-3xl border border-border/50 bg-card/80 backdrop-blur-md px-5 py-3 shadow-sm",
-                // 16px on phones: iOS zooms the whole page in on focus for
-                // anything smaller, and never zooms back out.
-                "text-base text-zinc-900 placeholder:text-zinc-400 sm:text-[14px] dark:text-zinc-50 dark:placeholder:text-zinc-500",
-                "outline-none transition-all duration-200 hover:bg-card/90",
-                accent.focus
-              )}
-            />
-            <button
-              type="submit"
-              disabled={!canSend}
-              aria-label="Send message"
-              className={cn(
-                "flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-full transition-all duration-200",
-                canSend
-                  ? cn("cursor-pointer text-card hover:scale-105 active:scale-95", accent.accBg)
-                  : "cursor-not-allowed bg-muted text-zinc-400 dark:text-zinc-500"
-              )}
-            >
-              {isLoading ? (
-                <Loader2 className="h-[18px] w-[18px] animate-spin" />
-              ) : (
-                <Send className="h-[18px] w-[18px]" />
-              )}
-            </button>
-          </div>
-
-          <p className="mt-3 text-center text-[11px] text-zinc-400 dark:text-zinc-500 pointer-events-auto">
-            {aiDisclaimer}
-          </p>
-          <p className="mt-1 hidden text-center text-[11px] text-zinc-400 sm:block dark:text-zinc-500 pointer-events-auto">
-            <kbd className="rounded bg-muted px-1.5 py-0.5 font-mono text-[10px]">Enter</kbd> to
-            send,{" "}
-            <kbd className="rounded bg-muted px-1.5 py-0.5 font-mono text-[10px]">
-              Shift + Enter
-            </kbd>{" "}
-            for a new line
-          </p>
-        </form>
       </div>
     </>
   );

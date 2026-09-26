@@ -54,6 +54,10 @@ export function Footer() {
                 alt=""
                 width={32}
                 height={32}
+                // See Header.tsx: the optimizer's indexed re-encode of this
+                // transparent PNG renders with a solid white ring in some
+                // browsers, so it's served unoptimized instead.
+                unoptimized
                 className="h-8 w-8 rounded-full transition-transform duration-300 group-hover:scale-105"
               />
               <span className="font-display text-lg font-bold tracking-tight text-zinc-900 dark:text-zinc-50">

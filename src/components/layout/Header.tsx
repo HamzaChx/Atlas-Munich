@@ -57,8 +57,8 @@ export function Header({ locale, translations }: HeaderProps) {
     { label: translations.community, href: "/community" },
   ];
 
-  /* The homepage starts on a quiet, header-safe surface, so the bar can stay
-     transparent there. As soon as the reader scrolls—or on any other page—
+  /* The homepage opens on a dark film, so the bar stays transparent there and
+     its text turns white. As soon as the reader scrolls (or on any other page)
      the regular theme surface gives the navigation a stable backdrop. */
   const overHomeHero = pathname === "/" && !scrolled;
   const headerBg = overHomeHero
@@ -84,10 +84,20 @@ export function Header({ locale, translations }: HeaderProps) {
             alt=""
             width={36}
             height={36}
+            // Next's image optimizer re-encodes this as an indexed PNG,
+            // which some browsers render with the transparent corners
+            // filled in solid white. The source is already a small, alpha
+            // PNG, so serving it as-is avoids the bug outright.
+            unoptimized
             className="h-8 w-8 rounded-full transition-transform duration-300 group-hover:scale-105 sm:h-9 sm:w-9 shadow-sm"
           />
-          <span className="font-display text-lg font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-xl">
-            <span className="text-zellige">Atlas</span> Munich
+          <span
+            className={cn(
+              "font-display text-lg font-bold tracking-tight transition-colors duration-500 sm:text-xl",
+              overHomeHero ? "text-hero-cream" : "text-zinc-900 dark:text-zinc-50"
+            )}
+          >
+            <span className={overHomeHero ? "text-hero-cream" : "text-zellige"}>Atlas</span> Munich
           </span>
         </Link>
 
@@ -100,9 +110,11 @@ export function Header({ locale, translations }: HeaderProps) {
                 href={item.href}
                 className={cn(
                   "relative rounded-full px-4 py-2 text-sm font-medium transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-zellige/50 focus-visible:ring-offset-2 focus-visible:ring-offset-background",
-                  isActive
-                    ? "bg-zinc-100 text-zinc-900 dark:bg-foreground/10 dark:text-zinc-50"
-                    : "text-zinc-500 hover:bg-zinc-100/70 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-foreground/[0.075] dark:hover:text-zinc-50"
+                  overHomeHero
+                    ? "text-hero-cream/85 hover:bg-hero-cream/12 hover:text-hero-cream"
+                    : isActive
+                      ? "bg-zinc-100 text-zinc-900 dark:bg-foreground/10 dark:text-zinc-50"
+                      : "text-zinc-500 hover:bg-zinc-100/70 hover:text-zinc-900 dark:text-zinc-400 dark:hover:bg-foreground/[0.075] dark:hover:text-zinc-50"
                 )}
               >
                 {item.label}
@@ -119,13 +131,18 @@ export function Header({ locale, translations }: HeaderProps) {
             aria-label={translations.aboutAria}
             title={translations.about}
             className={cn(
-              "hidden h-9 w-9 items-center justify-center rounded-full border border-border/50 bg-card text-zinc-600 shadow-sm transition-colors duration-200 hover:bg-muted hover:text-zinc-900 focus:outline-none focus-visible:ring-2 focus-visible:ring-zellige/50 md:flex dark:text-zinc-300 dark:hover:text-zinc-50",
-              pathname.startsWith("/about") && "border-zellige/50 bg-zellige-soft text-zellige"
+              "hidden h-9 w-9 items-center justify-center rounded-full border transition-colors duration-200 focus:outline-none focus-visible:ring-2 md:flex",
+              overHomeHero
+                ? "border-hero-cream/25 bg-hero-cream/10 text-hero-cream shadow-none hover:bg-hero-cream/20 focus-visible:ring-hero-gold"
+                : cn(
+                    "border-border/50 bg-card text-zinc-600 shadow-sm hover:bg-muted hover:text-zinc-900 focus-visible:ring-zellige/50 dark:text-zinc-300 dark:hover:text-zinc-50",
+                    pathname.startsWith("/about") && "border-zellige/50 bg-zellige-soft text-zellige"
+                  )
             )}
           >
             <HelpCircle className="h-4.5 w-4.5" aria-hidden="true" />
           </Link>
-          <SettingsMenu currentLocale={locale} className="hidden md:block" />
+          <SettingsMenu currentLocale={locale} tone={overHomeHero ? "hero" : "default"} className="hidden md:block" />
         </div>
       </div>
     </header>

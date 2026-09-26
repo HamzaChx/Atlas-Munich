@@ -28,5 +28,11 @@ export default await serwist({
     "public/*.webp",
     "public/atlas.png",
     "public/logo.png",
+    // The homepage film. Its poster also goes through /_next/image, and the
+    // loop is 1.9 MB, just under the 2 MB precache cap, so it would otherwise
+    // be pushed on every install. A cached video response also can't answer
+    // the Range requests Safari needs to play it.
+    "public/**/*.mp4",
+    "public/hero/**",
   ],
 });

@@ -36,9 +36,9 @@
     "aboutAria": "About Atlas Munich"
   },
   "home": {
-    "heroTitle": "Everything we had to learn the hard way,",
-    "heroTitleHighlight": "so you don't.",
-    "heroSubtitle": "Guides, a map, and people who have done it, for Moroccans making a home in Munich.",
+    "heroTitle": "Pour the tea.",
+    "heroTitleHighlight": "We'll walk you through Munich.",
+    "heroSubtitle": "Guides, a map, and people who stood exactly where you are standing now. Made by Moroccans in Munich.",
     "stats": {
       "guides": "Guides",
       "places": "Places",
@@ -119,7 +119,10 @@
       "title": "You are welcome here",
       "subtitle": "Built by Moroccans in Munich, for whoever arrives next."
     },
-    "heroImageAlt": "A Moroccan newcomer walking toward Munich's Frauenkirche with the Moroccan flag over his shoulders"
+    "heroVideo": {
+      "pause": "Pause the film",
+      "play": "Play the film"
+    }
   },
   "places": {
     "badge": "Verified Places",
@@ -1757,7 +1760,78 @@
     "aiDisclaimer": "Answers are generated and can be wrong. Check anything that matters.",
     "typing": "typing…",
     "send": "Send",
-    "browseGuidesCue": "Alternatively, you can browse our guide catalogue"
+    "browseGuidesCue": "Alternatively, you can browse our guide catalogue",
+    "landing": {
+      "pill": "Zellija AI, built to help you",
+      "subtitle": "What's bothering you?",
+      "cardsLabel": "Pick what's bothering you",
+      "pains": {
+        "riad": {
+          "line": "Rent is killing me",
+          "helper": "Riad writes WG applications that actually get replies"
+        },
+        "dalilah": {
+          "line": "Drowning in paperwork",
+          "helper": "Dalilah untangles Anmeldung, KVR and residence permits"
+        },
+        "ilham": {
+          "line": "My thesis won't finish itself",
+          "helper": "Ilham helps you structure, write and sharpen it"
+        },
+        "loubna": {
+          "line": "I need a doctor",
+          "helper": "Loubna finds doctors, explains insurance, translates symptoms"
+        }
+      },
+      "prompts": {
+        "zellija": [
+          "Chi 7aja khra? Ask me anything about Munich",
+          "Where can I eat halal near Marienplatz?",
+          "Which bank account works without Schufa?",
+          "How do I get the Deutschlandticket as a student?"
+        ],
+        "riad": [
+          "Paste a WG listing and I'll write your application",
+          "Describe the room you want, I'll draft the message",
+          "Why does nobody answer my WG messages?"
+        ],
+        "dalilah": [
+          "When do I have to do my Anmeldung?",
+          "What does the Ausländerbehörde need from me?",
+          "My residence permit expires soon, what now?"
+        ],
+        "ilham": [
+          "Help me find a research gap",
+          "Review my thesis introduction",
+          "How do I structure a literature review?"
+        ],
+        "loubna": [
+          "Find me an English-speaking Hausarzt",
+          "Translate my symptoms into German",
+          "Is my student insurance enough?"
+        ]
+      },
+      "quick": {
+        "food": {
+          "label": "Halal food near me",
+          "prompt": "Where can I find good halal food near me?"
+        },
+        "pray": {
+          "label": "A mosque nearby",
+          "prompt": "Where is the nearest mosque to pray?"
+        },
+        "study": {
+          "label": "A quiet place to study",
+          "prompt": "Where can I find a quiet place to study?"
+        }
+      },
+      "placeholder": "Tell {name} what's going on",
+      "clearFocus": "Back to Zellija",
+      "openChat": "Open {name}'s chat",
+      "keysPick": "to pick",
+      "keysReset": "back to Zellija",
+      "browseGuides": "Prefer reading? Browse the guides"
+    }
   },
   "legal": {
     "privacy": {

@@ -10,7 +10,8 @@
 import { useState, useRef, useEffect, type FormEvent, type KeyboardEvent } from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+// Locale-free (/fr/chat reads as /chat), so the hide list below holds in every locale
+import { usePathname } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
 import { useChatbot } from "@/chatbot/use-chatbot";
 import type { ChatBlock } from "@/chatbot/types";

@@ -22,6 +22,11 @@ export interface Assistant {
   /** Live helpers carry a persona, an avatar and somewhere to go. */
   chatbot?: ChatbotType;
   avatar?: string;
+  /** Cut-out character on a transparent ground, for tinted surfaces. */
+  character?: string;
+  /** Stick-figure line art as an ink mask (scripts/prepare-lineart.mjs).
+      Replaces `character` on the /chat pain cards when set. */
+  lineArt?: string;
   /** The explainer landing page. */
   href?: string;
   chatPath?: string;
@@ -42,6 +47,7 @@ export const assistants: Assistant[] = [
     hub: "map",
     chatbot: "riad",
     avatar: "/riad.webp",
+    character: "/characters/carrying_house_no_bg.png",
     href: "/chat/housing",
     chatPath: "/chat/housing",
     ...accentOf("riad"),
@@ -52,6 +58,7 @@ export const assistants: Assistant[] = [
     hub: "guide",
     chatbot: "dalilah",
     avatar: "/dalilah.webp",
+    character: "/characters/paperwork_stamp_no_bg.png",
     href: "/bureaucracy",
     chatPath: "/bureaucracy/chat",
     ...accentOf("dalilah"),
@@ -62,6 +69,7 @@ export const assistants: Assistant[] = [
     hub: "guide",
     chatbot: "ilham",
     avatar: "/ilham.webp",
+    character: "/characters/desk_worker_no_bg.png",
     href: "/academic",
     chatPath: "/academic/chat",
     ...accentOf("ilham"),
@@ -72,6 +80,7 @@ export const assistants: Assistant[] = [
     hub: "guide",
     chatbot: "loubna",
     avatar: "/loubna.webp",
+    character: "/characters/stressed_figure_no_bg.png",
     href: "/healthcare",
     chatPath: "/healthcare/chat",
     ...accentOf("loubna"),

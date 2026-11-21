@@ -9,11 +9,13 @@ export const guideTranslations: Record<string, GuideTranslation> = {
       {
         id: "the-munich-market",
         title: "Comprendre le marché munichois",
-        content: `Munich figure régulièrement parmi les villes les plus chères d'Allemagne en matière de location. La demande dépasse largement l'offre, en particulier pour les appartements meublés près des universités ou du centre-ville. Le loyer moyen d'un appartement d'une chambre en centre de Munich se situe entre 1 400 et 1 800 euros par mois, et même les chambres en colocation (appelées WG-Zimmer) peuvent coûter entre 600 et 1 000 euros.
+        content: `Munich figure régulièrement parmi les villes les plus chères d'Allemagne en matière de location. La demande dépasse largement l'offre, en particulier pour les appartements meublés près des universités ou du centre-ville. L'indice des loyers de la ville (Mietspiegel 2025) indique un loyer net hors charges moyen de 15,38 euros par mètre carré, et les nouvelles annonces sont souvent bien au-dessus.
 
-La bonne nouvelle, c'est qu'avec de la préparation et la bonne stratégie, il est tout à fait possible de trouver un bon logement. La plupart de ceux qui y parviennent ont leurs documents prêts à l'avance, répondent aux annonces rapidement, et traitent chaque candidature comme une candidature à un emploi.
+La bonne nouvelle, c'est qu'avec de la préparation et la bonne stratégie, il est tout à fait possible de trouver un bon logement. D'après notre expérience, la plupart de ceux qui y parviennent ont leurs documents prêts à l'avance, répondent aux annonces rapidement, et traitent chaque candidature comme une candidature à un emploi.
 
-Un point important à connaître dès le départ : en Allemagne, la plupart des propriétaires s'attendent à recevoir trois mois de relevés bancaires, une preuve de revenus ou une attestation d'inscription universitaire, un rapport de crédit SCHUFA, et une Selbstauskunft remplie (un formulaire de déclaration personnelle). Avoir ces documents prêts avant même de commencer vos recherches vous évitera beaucoup de stress.`,
+Un point important à connaître dès le départ : de nombreux propriétaires demandent une preuve de revenus ou une attestation d'inscription, un rapport de solvabilité et une Selbstauskunft remplie (un formulaire de déclaration personnelle). Aucun de ces documents n'est exigé par la loi, et ce qu'un propriétaire peut demander est limité. Il ne peut demander une preuve de revenus qu'une fois qu'il vous a choisi, il ne peut pas exiger votre copie gratuite des données SCHUFA, et il ne peut pas photocopier votre pièce d'identité. Préparez vos documents avant de commencer vos recherches, mais remettez-les étape par étape.
+
+Munich applique aussi un frein aux loyers (Mietpreisbremse), en vigueur jusqu'au 31 décembre 2029. Pour un nouveau contrat, le loyer de départ peut dépasser d'au plus 10 % le loyer de référence local, que vous pouvez consulter avec le calculateur gratuit en ligne du Mietspiegel de la ville. Les logements loués pour la première fois après le 1er octobre 2014 et la première location après une rénovation complète en sont exemptés. Si un propriétaire invoque une exception, il doit vous en informer avant la signature.`,
       },
       {
         id: "where-to-search",
@@ -24,9 +26,11 @@ Un point important à connaître dès le départ : en Allemagne, la plupart des 
 
 **WG-Gesucht** est la référence pour les chambres en WG et les logements étudiants. L'aspect communautaire signifie que les propriétaires sont souvent plus accessibles, et vous pouvez créer un profil personnel qui reste visible et invite les gens à vous contacter directement.
 
-**Immowelt** et **eBay Kleinanzeigen** méritent également d'être consultés, surtout eBay Kleinanzeigen pour les propriétaires particuliers qui contournent les grandes plateformes. Soyez simplement plus prudent sur eBay et évitez toute personne vous demandant une caution avant que vous n'ayez vu le logement en personne.
+**Immowelt** et **Kleinanzeigen** (anciennement eBay Kleinanzeigen) méritent également d'être consultés, surtout Kleinanzeigen pour les propriétaires particuliers qui contournent les grandes plateformes. Soyez particulièrement prudent. Ne payez jamais rien avant d'avoir vu le logement en personne et signé un contrat. Une caution n'est due qu'au début de la location, et des « frais de réservation » sont un signe d'arnaque.
 
-Au-delà des principaux portails, les tableaux d'affichage des universités (physiques et numériques) proposent souvent des chambres publiées par des étudiants quittant Munich. Les bureaux de logement étudiant de la TUM et de la LMU tiennent également des listes d'attente pour leurs résidences étudiantes, nettement moins chères. Ces listes peuvent être longues, alors inscrivez-vous le plus tôt possible, idéalement plusieurs mois avant votre arrivée.`,
+Certaines annonces passent par un agent immobilier (Makler). Selon le « Bestellerprinzip », vous ne payez les frais d'agence que si vous avez vous-même mandaté l'agent et qu'il n'a pris le logement en charge qu'en raison de votre recherche. Si c'est le propriétaire qui a mandaté l'agent, c'est lui qui paie. Un agent ne peut jamais vous demander d'avance.
+
+Au-delà des principaux portails, les tableaux d'affichage des universités (physiques et numériques) proposent souvent des chambres publiées par des étudiants quittant Munich. Le Studierendenwerk München Oberbayern gère plus de 9 000 chambres et appartements étudiants à Munich, Freising et Rosenheim, pour environ 400,60 euros par mois en moyenne. Il y a un délai d'attente, alors postulez le plus tôt possible, idéalement plusieurs mois avant votre arrivée.`,
         subsections: [
           {
             id: "wg-vs-private",
@@ -40,22 +44,22 @@ Un appartement privé vous offre plus d'indépendance et d'intimité. C'est la m
       {
         id: "your-application",
         title: "Constituer un dossier solide",
-        content: `À Munich, votre candidature est votre première impression. La plupart des propriétaires reçoivent des dizaines de réponses pour chaque annonce, alors se démarquer est essentiel. Les meilleures candidatures sont complètes, soignées et personnalisées.
+        content: `À Munich, votre candidature est votre première impression. D'après notre expérience, les annonces populaires reçoivent des dizaines de réponses, alors se démarquer est essentiel. Les meilleures candidatures sont complètes, soignées et personnalisées.
 
 Commencez par un court message d'introduction en allemand si possible. Vous n'avez pas besoin d'être bilingue, mais même quelques phrases en allemand suivies d'un texte en anglais montre un effort et fait bonne impression auprès des propriétaires particuliers. Présentez-vous, expliquez pourquoi vous venez à Munich, et dites quelque chose de précis sur l'appartement (pas simplement un copier-coller).
 
-Avec votre message, joignez vos documents sous forme d'un seul PDF bien présenté. Celui-ci devrait inclure une brève lettre de motivation, une photo récente (facultative mais courante en Allemagne), une copie de votre pièce d'identité ou passeport, votre attestation d'inscription ou contrat de travail, vos trois dernières fiches de paie ou une preuve de bourse ou de fonds suffisants, votre rapport SCHUFA, et une Selbstauskunft remplie (que les propriétaires fournissent souvent ou que vous pouvez télécharger sur WG-Gesucht).
+Avec votre message, préparez vos documents sous forme d'un seul PDF bien présenté : une brève lettre de motivation, votre attestation d'inscription ou des informations sur votre emploi et votre employeur, une preuve de revenus comme une fiche de paie, un relevé bancaire ou une attestation de bourse (en masquant les informations dont le propriétaire n'a pas besoin), un rapport de solvabilité destiné aux bailleurs, et une Selbstauskunft remplie (les propriétaires fournissent souvent la leur). N'envoyez pas de copie de votre passeport à des propriétaires que vous n'avez pas rencontrés, car les escrocs s'en servent pour usurper votre identité. Montrer votre pièce d'identité en personne suffit, et un propriétaire n'a pas le droit de la photocopier.
 
-La rapidité compte. Configurez des notifications sur les plateformes que vous utilisez et visez à répondre dans les deux premières heures suivant la mise en ligne d'une nouvelle annonce.`,
+La rapidité compte. D'après notre expérience, il est utile de configurer des notifications sur les plateformes que vous utilisez et de répondre dans les deux premières heures suivant la mise en ligne d'une nouvelle annonce.`,
       },
       {
         id: "viewing-and-deciding",
         title: "Les visites et votre décision",
         content: `Si vous êtes invité à une visite (Besichtigung), traitez-la comme un entretien dans les deux sens. Le propriétaire vous évalue, mais vous évaluez aussi le logement. Arrivez à l'heure, soyez présentable et soyez prêt à confirmer clairement votre situation.
 
-Lors de la visite, vérifiez l'état des fenêtres, du chauffage, des équipements de la salle de bain et des appareils inclus. Examinez l'entrée de l'immeuble, les boîtes aux lettres et l'entretien général. Renseignez-vous sur la situation internet, les charges (Nebenkosten) et si la caution correspond à trois mois de Kaltmiete, comme c'est la norme en Allemagne.
+Lors de la visite, vérifiez l'état des fenêtres, du chauffage, des équipements de la salle de bain et des appareils inclus. Examinez l'entrée de l'immeuble, les boîtes aux lettres et l'entretien général. Renseignez-vous sur la situation internet, les charges (Nebenkosten) et le montant de la caution. Le maximum légal est de trois mois de Kaltmiete, et vous pouvez la payer en trois mensualités.
 
-Si vous postulez depuis l'étranger et ne pouvez pas assister aux visites en personne, certains propriétaires accepteront une visite guidée par appel vidéo. Soyez transparent sur votre situation. De nombreux candidats internationaux font face exactement à ce défi, et les propriétaires raisonnables s'y accommodent souvent.
+Si vous postulez depuis l'étranger et ne pouvez pas assister aux visites en personne, certains propriétaires proposeront une visite guidée par appel vidéo. Soyez transparent sur votre situation. De nombreux candidats internationaux font face exactement à ce défi. Ne transférez pourtant aucun argent avant d'avoir vu le logement en personne et signé un contrat.
 
 Ne vous sentez pas obligé d'accepter un appartement sur lequel vous avez des doutes simplement parce que le marché est compétitif. Faites confiance à votre intuition, surtout si quelque chose dans l'annonce vous semble inhabituel.`,
       },
@@ -66,11 +70,11 @@ Ne vous sentez pas obligé d'accepter un appartement sur lequel vous avez des do
 
 Les chiffres clés à comprendre sont la Kaltmiete (le loyer de base hors charges), les Nebenkosten (les charges d'exploitation comme l'eau, le chauffage, l'entretien de l'immeuble) et la Warmmiete (le paiement mensuel total combinant les deux). Demandez toujours un détail de ce qui est inclus dans les Nebenkosten.
 
-La caution représente généralement deux à trois mois de Kaltmiete et est conservée sur un compte séparé. Par la loi, vous avez le droit de la récupérer dans un délai raisonnable après votre départ, déduction faite des retenues légitimes pour les dommages dépassant l'usure normale.
+La caution ne peut pas dépasser trois mois de Kaltmiete. Vous pouvez la payer en trois mensualités égales, la première au début de la location. Le propriétaire doit la conserver séparément de son propre patrimoine, et les intérêts vous reviennent. Après votre départ, elle vous est restituée, déduction faite des créances légitimes, par exemple pour des dommages dépassant l'usure normale.
 
-Vérifiez le préavis. Le standard est de trois mois, ce qui signifie que vous devez annoncer votre départ trois mois avant la date prévue, toujours par écrit et idéalement par lettre avec accusé de réception.
+Vérifiez le préavis. Pour un contrat à durée indéterminée, il est d'environ trois mois : votre lettre signée doit parvenir au propriétaire au plus tard le troisième jour ouvrable d'un mois, et la location prend alors fin à la fin du deuxième mois qui suit. Un e-mail ou un message WhatsApp ne suffit pas, envoyez donc une lettre signée, idéalement avec preuve de réception. Pour une chambre meublée dans le logement même du propriétaire, le préavis est plus court.
 
-Une fois que vous avez signé et emménagé, vous devrez enregistrer votre adresse au KVR dans les deux semaines. Cette Anmeldung est une obligation légale et ouvre de nombreuses autres étapes administratives, notamment l'ouverture d'un compte bancaire et la demande de titre de séjour.`,
+Une fois emménagé, vous devez enregistrer votre adresse dans l'un des Bürgerbüro de Munich (qui dépendent du KVR) dans les deux semaines. Apportez votre passeport ou votre carte d'identité et la Wohnungsgeberbestätigung. Il s'agit de la confirmation écrite d'emménagement que votre propriétaire doit vous remettre dans les deux semaines suivant votre emménagement, et votre contrat de location ne la remplace pas. L'enregistrement (Anmeldung) est une obligation légale, et de nombreuses démarches ultérieures demandent l'attestation d'enregistrement que vous recevez.`,
       },
     ],
     faqs: [
@@ -78,25 +82,25 @@ Une fois que vous avez signé et emménagé, vous devrez enregistrer votre adres
         id: "faq-apartment-1",
         question: "Ai-je besoin d'un rapport SCHUFA et comment en obtenir un ?",
         answer:
-          "La SCHUFA est le principal organisme de crédit en Allemagne. De nombreux propriétaires demandent un rapport SCHUFA pour confirmer que vous n'avez pas de dettes impayées. Vous pouvez en demander un exemplaire gratuit une fois par an sur le site de la SCHUFA. Si vous êtes nouveau en Allemagne et n'avez pas d'historique SCHUFA, certains propriétaires accepteront un relevé bancaire montrant des fonds suffisants à la place. Être transparent à ce sujet dans votre candidature vaut toujours mieux que de ne pas le mentionner.",
+          "La SCHUFA est l'organisme de renseignement de crédit le plus connu en Allemagne, une entreprise privée. De nombreux propriétaires demandent un rapport de solvabilité pour vérifier que vous payez vos factures. Vous pouvez demander gratuitement votre copie des données SCHUFA (Datenkopie nach Art. 15 DSGVO) sur meineschufa.de aussi souvent que nécessaire, et pas seulement une fois par an. Les propriétaires ne peuvent cependant pas exiger cette copie gratuite, car elle contient bien plus que ce dont ils ont besoin. S'ils veulent vérifier votre solvabilité, remettez-leur un rapport destiné à la location. Si vous êtes nouveau en Allemagne et n'avez pas d'historique SCHUFA, un relevé bancaire ou une fiche de paie peut montrer que vous pouvez payer le loyer. Être transparent à ce sujet dans votre candidature vaut toujours mieux que de ne pas le mentionner.",
       },
       {
         id: "faq-apartment-2",
         question: "Qu'est-ce qu'une Selbstauskunft et dois-je la remplir ?",
         answer:
-          "Une Selbstauskunft est un formulaire de déclaration personnelle dans lequel vous fournissez des informations sur vos revenus, votre emploi et votre historique locatif. De nombreux propriétaires l'exigent dans le cadre du processus de candidature. Vous pouvez généralement télécharger une version standard sur WG-Gesucht ou demander au propriétaire de vous envoyer sa version. Remplissez-la toujours honnêtement.",
+          "Une Selbstauskunft est un formulaire de déclaration personnelle dans lequel vous fournissez des informations sur vos revenus, votre emploi et les personnes qui emménageront avec vous. De nombreux propriétaires la demandent dans le cadre de la candidature, et ils fournissent souvent leur propre version. Remplissez-la toujours honnêtement. Un propriétaire peut vous interroger sur vos revenus, votre emploi et votre employeur, le nombre de personnes qui emménageront et une éventuelle procédure d'insolvabilité en cours. Les questions sur votre nationalité, votre casier judiciaire, une grossesse, votre adhésion à une association de locataires ou les coordonnées de votre ancien propriétaire ne sont pas autorisées, vous pouvez donc les laisser vides.",
       },
       {
         id: "faq-apartment-3",
         question: "Est-il sûr de payer une caution avant de voir l'appartement ?",
         answer:
-          "Non. Ne transférez jamais d'argent à un propriétaire avant d'avoir physiquement vu l'appartement ou, au minimum, de l'avoir vérifié via un appel vidéo avec une personne de confiance sur place. Si quelqu'un vous presse de payer une caution pour « sécuriser » un logement sans visite, c'est un signal d'alarme majeur d'une arnaque à la location.",
+          "Non. Ne payez jamais avant d'avoir vu le logement en personne et signé un contrat. Une caution n'est due qu'au début de la location. Les arnaques existent même après une vraie visite : en 2025, la police de Munich a signalé des étudiantes qui avaient payé la caution et le premier loyer le jour même de la visite et ont perdu cet argent. Si quelqu'un vous presse de payer pour « sécuriser » un logement, c'est un signal d'alarme majeur d'une arnaque à la location.",
       },
       {
         id: "faq-apartment-4",
         question: "Combien de temps à l'avance dois-je commencer mes recherches ?",
         answer:
-          "Commencez à chercher au moins deux à trois mois avant votre date d'emménagement souhaitée si possible. Le marché munichois est rapide et compétitif, et ce délai vous donne le temps de postuler à plusieurs logements sans vous sentir pressé. Si vous déménagez depuis l'étranger, rejoindre des groupes d'étudiants marocains à Munich peut également vous aider à trouver des sous-locations ou un hébergement temporaire pendant que vous cherchez sur place.",
+          "D'après notre expérience, il est utile de commencer à chercher deux à trois mois avant votre date d'emménagement souhaitée si possible. Le marché munichois est rapide et compétitif, et ce délai vous donne le temps de postuler à plusieurs logements sans vous sentir pressé. Si vous déménagez depuis l'étranger, rejoindre des groupes d'étudiants marocains à Munich peut également vous aider à trouver des sous-locations ou un hébergement temporaire pendant que vous cherchez sur place.",
       },
     ],
     resources: [
@@ -113,15 +117,77 @@ Une fois que vous avez signé et emménagé, vous devrez enregistrer votre adres
       },
       {
         id: "res-apartment-3",
-        title: "Studentenwerk Munich",
-        description: "Bureau officiel du logement étudiant de la TUM et de la LMU",
+        title: "Studierendenwerk München Oberbayern",
+        description: "Résidences étudiantes à Munich, Freising et Rosenheim",
       },
       {
         id: "res-apartment-4",
-        title: "SCHUFA Free Report",
-        description: "Demandez votre rapport de crédit SCHUFA annuel gratuit",
+        title: "Copie gratuite des données SCHUFA",
+        description:
+          "Demandez votre copie gratuite des données SCHUFA (Art. 15 RGPD), aussi souvent que nécessaire",
       },
     ],
+    dossier: {
+      facts: [
+        {
+          id: "deposit",
+          value:
+            "La caution ne peut pas dépasser trois mois de loyer hors charges, et vous pouvez la payer en trois mensualités.",
+        },
+        {
+          id: "no-prepayment",
+          value:
+            "Ne payez jamais rien avant d'avoir vu le logement en personne et signé le contrat.",
+        },
+        {
+          id: "broker-fee",
+          value:
+            "Vous ne payez des frais d'agence que si vous avez vous-même mandaté l'agent. Sinon, c'est le propriétaire qui paie.",
+        },
+        {
+          id: "rent-brake",
+          value:
+            "Jusqu'à fin 2029, un nouveau loyer ne peut pas dépasser de plus de 10 % le Mietspiegel. Les logements loués pour la première fois après octobre 2014 sont exemptés.",
+        },
+        {
+          id: "registration",
+          value:
+            "Votre propriétaire doit confirmer votre emménagement dans les deux semaines, et vous devez vous enregistrer dans les deux semaines suivant votre emménagement.",
+        },
+      ],
+      documents: [
+        {
+          id: "passport-or-id",
+          label: "Passeport ou carte d'identité",
+          note: "Montrez-le en personne. Un propriétaire n'a pas le droit de le photocopier, n'envoyez donc pas de copie.",
+        },
+        {
+          id: "proof-of-income",
+          label: "Preuve de revenus",
+          note: "Une fiche de paie ou un relevé bancaire, en masquant ce dont le propriétaire n'a pas besoin. Seulement une fois que vous êtes choisi.",
+        },
+        {
+          id: "job-or-enrolment",
+          label: "Attestation d'inscription ou informations sur votre emploi",
+          note: "Où vous étudiez, ou votre emploi et votre employeur.",
+        },
+        {
+          id: "tenant-credit-report",
+          label: "Rapport de solvabilité pour bailleurs",
+          note: "Un rapport destiné à la location. Un propriétaire ne peut pas exiger votre copie gratuite des données SCHUFA.",
+        },
+        {
+          id: "selbstauskunft",
+          label: "Formulaire de déclaration personnelle (Selbstauskunft)",
+          note: "Répondez honnêtement aux questions autorisées. Les questions sur la nationalité, une grossesse ou le casier judiciaire ne sont pas autorisées.",
+        },
+        {
+          id: "cover-letter",
+          label: "Courte lettre de motivation",
+          note: "Qui vous êtes, combien de personnes emménageront et pourquoi ce logement.",
+        },
+      ],
+    },
   },
 
   "anmeldung-city-registration": {
@@ -132,62 +198,64 @@ Une fois que vous avez signé et emménagé, vous devrez enregistrer votre adres
       {
         id: "what-is-anmeldung",
         title: "Qu'est-ce que l'Anmeldung et pourquoi est-elle importante ?",
-        content: `L'Anmeldung est l'enregistrement obligatoire de votre adresse auprès des autorités municipales allemandes. Il ne s'agit pas d'une simple formalité administrative : c'est une obligation légale pour toute personne résidant en Allemagne, qu'elle soit citoyenne allemande, ressortissante de l'UE ou étrangère venant de pays tiers.
+        content: `L'Anmeldung est l'enregistrement de votre adresse auprès de la ville de Munich. En Allemagne, ce n'est ni facultatif ni une simple formalité. C'est une obligation légale : vous devez vous enregistrer dans les deux semaines suivant votre emménagement dans un logement. La loi n'exige pas que l'adresse soit permanente.
 
-Une fois l'Anmeldung complétée, vous recevez un document officiel appelé Meldebescheinigung (attestation d'enregistrement). Ce document est indispensable pour presque toutes les démarches suivantes : ouvrir un compte bancaire, signer un contrat de téléphonie mobile, demander votre titre de séjour (Aufenthaltserlaubnis), et parfois même pour accéder à certaines offres de logement.
+De nombreuses autres démarches en dépendent. Les banques, les administrations et les propriétaires demandent souvent une preuve de votre adresse enregistrée, et c'est votre premier enregistrement qui déclenche l'envoi de votre numéro fiscal, dont votre employeur a besoin avant votre première fiche de paie. C'est pourquoi cette démarche doit figurer en tête de votre liste.
 
-Sans Meldebescheinigung, vous vous retrouverez bloqué à chaque étape administrative. C'est pourquoi cette démarche doit figurer en tête de votre liste dès votre arrivée à Munich.`,
+Lors du rendez-vous, vous recevez une confirmation d'enregistrement (Anmeldebestätigung), un document imprimé qui indique votre nouvelle adresse. Si l'on vous demande plus tard une Meldebescheinigung officielle, vous pouvez la demander séparément. Elle est gratuite au format PDF via le service en ligne de la ville une fois que vous êtes enregistré à Munich, ou coûte 5 euros sur papier. Conservez votre confirmation en lieu sûr.`,
       },
       {
         id: "when-to-register",
         title: "Quand s'enregistrer",
-        content: `La loi allemande vous impose d'effectuer votre Anmeldung dans les **14 jours** suivant votre installation à une adresse permanente. Attention : votre séjour à l'hôtel, dans un Airbnb ou dans une auberge de jeunesse ne compte pas comme adresse permanente. C'est uniquement à partir du moment où vous occupez un logement fixe, une chambre en WG, un appartement en location, ou une résidence universitaire, que le délai de 14 jours commence à courir.
+        content: `La loi allemande vous impose d'effectuer votre Anmeldung dans les **14 jours** suivant votre emménagement dans votre logement à Munich. Cela vaut aussi lorsque vous déménagez à l'intérieur de la ville. Vous ne pouvez pas vous enregistrer avant d'avoir emménagé, car un enregistrement à une date future n'est pas légalement possible. En pratique, enregistrez-vous dès que possible, car vos autres démarches en dépendent.
 
-Pour procéder à l'enregistrement, votre propriétaire ou le gestionnaire de votre résidence doit vous remettre un document clé : la **Wohnungsgeberbestätigung** (confirmation du bailleur). Ce formulaire officiel atteste que vous résidez bien à l'adresse déclarée. Sans ce document, vous ne pouvez pas compléter votre Anmeldung.
+Un séjour à l'hôtel ou en auberge de jeunesse ne compte pas comme un emménagement. Si vous n'êtes enregistré nulle part ailleurs en Allemagne, vous ne devez vous enregistrer qu'à partir du moment où ce séjour dépasse trois mois. En revanche, une sous-location ou un meublé temporaire compte comme un logement : le délai de 14 jours commence le jour de votre emménagement, même si vous prévoyez de déménager bientôt.
 
-Pensez à demander la Wohnungsgeberbestätigung à votre propriétaire dès que vous emménagez, idéalement le jour même ou le lendemain. La plupart des propriétaires sont habitués à cette procédure, mais certains peuvent avoir besoin d'un rappel ou d'une explication.`,
+Point important : vous ne pouvez vous enregistrer qu'à une adresse où vous vivez réellement. Votre propriétaire, ou la personne qui vous fournit le logement, doit confirmer votre emménagement par écrit dans les deux semaines. Cette confirmation s'appelle la **Wohnungsgeberbestätigung** (confirmation du bailleur). Demandez-la lors de la signature du bail ou dès votre emménagement. Si vous ne l'avez pas encore, vous pouvez quand même vous enregistrer en remplissant la déclaration de la ville expliquant pourquoi elle manque, puis la remettre plus tard.`,
       },
       {
         id: "what-you-need",
-        title: "Ce que vous devez apporter au KVR",
-        content: `Avant de vous rendre au rendez-vous, assurez-vous d'avoir tous les documents suivants avec vous :
+        title: "Ce que vous devez apporter au Bürgerbüro",
+        content: `Apportez les originaux des documents suivants à votre rendez-vous :
 
-**Passeport valide** ou pièce d'identité nationale en cours de validité.
+**Votre passeport ou votre carte d'identité.** Il en faut un en cours de validité pour chaque personne que vous enregistrez, enfants compris. Les citoyens allemands apportent leur carte d'identité, ainsi que leur passeport s'ils en ont un, afin que l'adresse puisse être mise à jour.
 
-**Wohnungsgeberbestätigung** signée par votre propriétaire ou le gestionnaire de votre résidence. Ce document doit comporter le nom et la signature du bailleur, ainsi que votre adresse complète.
+**Wohnungsgeberbestätigung.** Le formulaire signé par votre propriétaire qui confirme votre emménagement. Vous pouvez le télécharger sur le site de la ville et demander à votre propriétaire de le remplir et de le signer avant votre rendez-vous. Si vous ne l'avez pas encore, apportez à la place la déclaration de la ville sur la confirmation manquante.
 
-**Formulaire d'Anmeldung** rempli. Vous pouvez le télécharger à l'avance sur le site muenchen.de et le remplir chez vous, ce qui accélère considérablement le rendez-vous.
+**Le formulaire d'enregistrement (Meldeschein).** Il ne figure pas sur la liste des documents exigés par la ville, mais le remplir avant votre venue vous fait gagner du temps. Vous pouvez le télécharger sur le site de la ville. Les colocataires s'enregistrent chacun pour soi, mais les époux, partenaires et enfants qui emménagent ensemble partagent un seul formulaire, et l'un d'eux peut enregistrer tout le monde.
 
-**Photo biométrique** (parfois demandée, mais pas toujours obligatoire pour l'Anmeldung seule). Il vaut mieux en avoir une sous la main au cas où.
+**Une procuration, si quelqu'un s'enregistre à votre place.** La personne que vous envoyez a besoin d'une Vollmacht signée, de sa propre pièce d'identité et des pièces d'identité originales de toutes les personnes à enregistrer. Le formulaire de la ville comprend une page de Vollmacht.
 
-Vérifiez toujours sur le site officiel muenchen.de la liste actualisée des documents requis, car les exigences peuvent légèrement varier selon votre situation.`,
+**Vos papiers de véhicule, si vous avez une voiture.** Vous pouvez faire mettre à jour l'adresse sur vos papiers de véhicule lors du même rendez-vous si vous gardez votre plaque d'immatriculation. Cela coûte 12,60 euros.
+
+Avoir tous vos documents en ordre avant de partir rend le rendez-vous plus simple.`,
       },
       {
         id: "the-appointment",
         title: "Prendre rendez-vous et ce qui vous attend",
-        content: `L'Anmeldung se fait au KVR (Kreisverwaltungsreferat), l'autorité administrative centrale de Munich. Vous pouvez prendre rendez-vous en ligne directement sur le site muenchen.de, dans la section dédiée à l'Anmeldung. Les créneaux partent vite, surtout en début de semestre, donc réservez le plus tôt possible.
+        content: `Les rendez-vous pour l'Anmeldung se prennent via le système de réservation en ligne de la ville sur stadt.muenchen.de. Il existe six Bürgerbüros (bureaux du service aux citoyens) : Orleansplatz, Leonrodstraße, Scheidplatz, Forstenrieder Allee, Pasing et Ruppertstraße. Vous pouvez choisir n'importe lequel.
 
-Munich dispose de plusieurs Bürgerbüros (antennes administratives) répartis dans la ville, ce qui vous permet de choisir le bureau le plus proche de chez vous. Ces antennes traitent les mêmes démarches que le KVR central, et les délais de rendez-vous y sont parfois plus courts.
+Les Bürgerbüros ne reçoivent que sur rendez-vous, il n'est donc pas possible de s'y présenter sans réservation. D'après notre expérience, les créneaux partent le plus vite autour de la rentrée universitaire, en octobre et en avril. Si vous ne trouvez pas de rendez-vous dans votre délai de 14 jours, réservez le premier créneau disponible et surveillez les annulations. Si vous remplissez les conditions de l'enregistrement en ligne (voir ci-dessous), vous évitez complètement l'attente.
 
-Le rendez-vous lui-même est rapide : comptez entre 10 et 15 minutes. L'agent vérifiera vos documents, saisira vos informations dans le système, et vous remettra votre **Meldebescheinigung** directement sur place. Conservez ce document précieusement, vous en aurez besoin à de nombreuses reprises dans les semaines et mois à venir.`,
+Lors du rendez-vous, l'agent vérifie vos documents, traite votre enregistrement et vous remet votre **confirmation d'enregistrement** sur place. Conservez-la précieusement, car on pourra vous la demander.
+
+Les formulaires sont en allemand. D'après notre expérience, le personnel est généralement serviable, même si votre allemand est limité.`,
         subsections: [
           {
             id: "online-option",
             title: "Peut-on s'enregistrer en ligne ?",
-            content: `Depuis 2024, Munich expérimente un système d'Anmeldung en ligne dans le cadre d'un programme pilote. Cependant, cette option n'est pas encore disponible pour tous les profils et toutes les situations. Pour les nouveaux arrivants non-européens ou pour les premières inscriptions, la présence en personne reste la procédure standard et la plus fiable.
-
-Si vous souhaitez vérifier si vous êtes éligible à l'option en ligne, consultez le site muenchen.de. Mais ne comptez pas uniquement sur cette possibilité : prévoyez toujours un rendez-vous en personne comme solution principale.`,
+            content: `Oui, si vous remplissez les conditions. Munich accepte l'enregistrement en ligne via le service national wohnsitzanmeldung.gov.de, et il est gratuit. Il vous faut une carte d'identité allemande ou une carte eID avec la fonction d'identification en ligne activée, son code PIN à 6 chiffres, et un smartphone compatible NFC avec l'application AusweisApp. Vous téléversez aussi votre Wohnungsgeberbestätigung. Ce service est destiné aux personnes qui déménagent à l'intérieur de l'Allemagne, car il récupère vos données depuis votre enregistrement précédent. Si vous arrivez de l'étranger avec un passeport, enregistrez-vous en personne dans un Bürgerbüro.`,
           },
         ],
       },
       {
         id: "after-registration",
         title: "Après votre enregistrement",
-        content: `Une fois votre Anmeldung effectuée, deux à quatre semaines plus tard vous recevrez par courrier postal votre **Steueridentifikationsnummer** (numéro d'identification fiscale). Ce numéro à 11 chiffres est attribué automatiquement par le fisc allemand (Bundeszentralamt für Steuern) à toute personne enregistrée en Allemagne. Vous devrez le communiquer à votre employeur si vous travaillez, et il sera nécessaire pour votre déclaration fiscale.
+        content: `Une fois enregistré, vous recevez immédiatement votre confirmation d'enregistrement. Après votre premier enregistrement en Allemagne, l'Office fédéral central des impôts (Bundeszentralamt für Steuern, BZSt) vous envoie par courrier votre **Steueridentifikationsnummer** (numéro d'identification fiscale), à votre adresse enregistrée. Cela prend environ deux à quatre semaines. Inscrivez votre nom complet de façon lisible sur votre boîte aux lettres pour que le courrier vous parvienne. S'il n'arrive pas, vous pouvez demander au BZSt de le renvoyer via son formulaire en ligne.
 
-Si vous changez d'adresse à Munich, vous devez effectuer une **Ummeldung** (changement d'adresse) dans les 14 jours suivant votre déménagement. La procédure est identique à celle de l'Anmeldung initiale et nécessite une nouvelle Wohnungsgeberbestätigung de votre nouveau propriétaire.
+Votre numéro fiscal est un numéro permanent qui vous est attribué en Allemagne. Votre employeur en a besoin avant votre première fiche de paie. Si vous commencez un emploi peu après votre arrivée, prévenez votre employeur qu'il devra peut-être attendre quelques semaines, ou que vous le lui transmettrez dès réception de la lettre.
 
-Si vous quittez définitivement l'Allemagne, vous devez effectuer une **Abmeldung** (désenregistrement) auprès du KVR. Cette démarche est importante, notamment pour éviter de continuer à recevoir des courriers officiels à une ancienne adresse.`,
+Si vous changez d'adresse à Munich, vous devez effectuer une **Ummeldung** (changement d'adresse) dans les 14 jours suivant votre déménagement. Cela vaut même pour un déménagement dans le même immeuble, par exemple à un autre étage. La procédure est identique à celle de l'Anmeldung initiale. Vous n'avez pas besoin de vous désenregistrer de votre ancienne adresse en Allemagne, cela se fait automatiquement.`,
       },
     ],
     faqs: [
@@ -195,26 +263,26 @@ Si vous quittez définitivement l'Allemagne, vous devez effectuer une **Abmeldun
         id: "faq-anmeldung-1",
         question: "Que se passe-t-il si je dépasse le délai de 14 jours ?",
         answer:
-          "En théorie, un dépassement du délai de 14 jours peut entraîner une amende. En pratique, cette sanction est rarement appliquée, surtout pour les nouveaux arrivants qui rencontrent des difficultés logistiques. L'essentiel est de régulariser votre situation dès que possible. Si vous avez dépassé le délai, enregistrez-vous simplement sans attendre, les agents du KVR sont généralement compréhensifs avec les personnes de bonne foi.",
+          "Un enregistrement tardif constitue une infraction administrative passible d'une amende pouvant aller jusqu'à 1 000 euros. Si vous avez dépassé le délai, enregistrez-vous dès que possible. Ne tardez pas une fois que vous avez emménagé.",
       },
       {
         id: "faq-anmeldung-2",
         question:
           "Mon propriétaire refuse de me donner la Wohnungsgeberbestätigung. Que puis-je faire ?",
         answer:
-          "En droit allemand, votre propriétaire est légalement tenu de vous fournir la Wohnungsgeberbestätigung dans un délai de deux semaines suivant votre emménagement. Si votre propriétaire refuse ou tarde, contactez directement le KVR pour signaler la situation, ils peuvent intervenir. Si vous logez dans une résidence universitaire, l'administration de la résidence est chargée de vous fournir ce document et connaît bien la procédure.",
+          "En droit allemand, votre propriétaire doit vous fournir la Wohnungsgeberbestätigung dans un délai de deux semaines suivant votre emménagement. S'il refuse ou tarde, vous devez en informer sans délai le bureau d'enregistrement. À Munich, vous pouvez vous enregistrer malgré tout grâce à la déclaration de la ville sur la confirmation manquante, puis envoyer la confirmation plus tard via le formulaire de contact de la ville. D'après notre expérience, si vous logez dans une résidence universitaire, l'administration de la résidence s'occupe de ce document pour vous.",
       },
       {
         id: "faq-anmeldung-3",
         question: "Puis-je m'enregistrer à l'adresse d'un ami temporairement ?",
         answer:
-          "Oui, c'est possible, mais uniquement si votre ami (ou le propriétaire de son logement) accepte et signe la Wohnungsgeberbestätigung en votre faveur. Utiliser une adresse sans le consentement signé du propriétaire ou du locataire principal est invalide et peut poser des problèmes administratifs. Cette solution temporaire est utile en attendant de trouver votre propre logement, à condition qu'elle soit faite dans les règles.",
+          "Uniquement si vous y vivez réellement. La personne qui vous fournit la chambre doit signer la Wohnungsgeberbestätigung pour vous. Proposer une adresse pour un enregistrement alors que personne n'y emménage réellement est interdit et passible d'une amende pouvant aller jusqu'à 50 000 euros. Enregistrez-vous toujours à l'adresse où vous vivez réellement, même si elle est temporaire.",
       },
     ],
     resources: [
       {
         id: "res-anmeldung-1",
-        title: "Munich KVR Official Portal",
+        title: "Prise de rendez-vous au Bürgerbüro de Munich",
         description: "Prenez rendez-vous pour votre Anmeldung ici",
       },
       {
@@ -223,12 +291,64 @@ Si vous quittez définitivement l'Allemagne, vous devez effectuer une **Abmeldun
         description: "Formulaire officiel de confirmation du propriétaire",
       },
     ],
+    dossier: {
+      facts: [
+        {
+          id: "deadline",
+          value:
+            "Enregistrez-vous dans les deux semaines suivant votre emménagement. Il n'est pas possible de le faire avant d'avoir emménagé.",
+        },
+        {
+          id: "cost",
+          value:
+            "L'enregistrement est gratuit. La mise à jour de l'adresse sur vos papiers de véhicule lors du même rendez-vous coûte 12,60 euros.",
+        },
+        {
+          id: "where",
+          value:
+            "Rendez-vous dans l'un des six Bürgerbüros de Munich, uniquement sur rendez-vous. Pas de passage sans réservation.",
+        },
+        {
+          id: "online",
+          value:
+            "Si vous avez une carte d'identité allemande ou une carte eID avec la fonction en ligne et que vous déménagez à l'intérieur de l'Allemagne, vous pouvez vous enregistrer en ligne gratuitement.",
+        },
+      ],
+      documents: [
+        {
+          id: "valid-id",
+          label: "Passeport ou carte d'identité en cours de validité",
+          note: "Un pour chaque personne enregistrée, enfants compris.",
+        },
+        {
+          id: "wohnungsgeberbestaetigung",
+          label: "Wohnungsgeberbestätigung (confirmation du bailleur)",
+          note: "Signée par votre propriétaire. Si elle manque, apportez la déclaration de la ville sur la confirmation manquante.",
+        },
+        {
+          id: "registration-form",
+          label: "Formulaire d'enregistrement (Meldeschein)",
+          note: "Recommandé. Le remplir à l'avance fait gagner du temps.",
+        },
+        {
+          id: "power-of-attorney",
+          label: "Procuration (Vollmacht)",
+          note: "Uniquement si quelqu'un s'enregistre à votre place. Cette personne apporte aussi sa propre pièce d'identité.",
+        },
+        {
+          id: "vehicle-papers",
+          label: "Certificat d'immatriculation (Zulassungsbescheinigung Teil I)",
+          note: "Uniquement pour mettre à jour vos papiers de voiture lors du même rendez-vous, en gardant votre plaque.",
+        },
+      ],
+      action: { title: "Prendre rendez-vous au Bürgerbüro" },
+    },
   },
 
   "residence-permit-students": {
     title: "Obtenir votre titre de séjour en tant qu'étudiant à Munich",
     summary:
-      "Si vous êtes un étudiant non-européen en Allemagne, vous avez besoin d'un titre de séjour valide pour y rester et étudier légalement. Ce guide explique les différents types de permis, les documents requis et le processus complet de demande au KVR de Munich.",
+      "Si vous êtes un étudiant non-européen en Allemagne, vous avez besoin d'un titre de séjour valide pour y rester et étudier légalement. Ce guide explique les différents types de permis, les documents nécessaires et la demande en ligne auprès de la Servicestelle für Zuwanderung und Einbürgerung de Munich, qui fait partie du KVR.",
     sections: [
       {
         id: "do-you-need-one",
@@ -237,76 +357,82 @@ Si vous quittez définitivement l'Allemagne, vous devez effectuer une **Abmeldun
 
 **Les ressortissants de pays tiers**, dont les Marocains, les Algériens et les Tunisiens, ont quant à eux l'obligation d'obtenir une **Aufenthaltserlaubnis** (autorisation de séjour) pour pouvoir rester légalement en Allemagne au-delà de leur visa initial.
 
-Si vous êtes arrivé en Allemagne avec un visa national (type D) à des fins d'études, ce visa vous autorise à séjourner en Allemagne pendant la durée de sa validité, généralement trois mois. Avant son expiration, vous devez impérativement déposer une demande d'Aufenthaltserlaubnis auprès du KVR. Ne laissez jamais votre visa expirer sans avoir pris rendez-vous ou sans être en possession d'une Fiktionsbescheinigung, cela pourrait avoir de graves conséquences sur votre statut légal.`,
+La plupart des étudiants arrivent avec un visa national (type D), une vignette collée dans le passeport avec une date de fin précise. Déclarez d'abord votre adresse au Bürgerbüro. Ensuite, avant l'expiration de ce visa, déposez en ligne une demande de titre de séjour auprès de la Servicestelle für Zuwanderung und Einbürgerung, qui fait partie du KVR. C'est essentiel. Si vous déposez votre demande à temps, votre séjour reste légal jusqu'à la décision de l'administration. Si vous laissez d'abord expirer votre visa, vous perdez cette protection automatique, ce qui peut nuire à votre statut légal et à vos futures demandes de visa.
+
+Les ressortissants de quelques pays, comme les États-Unis, le Canada, le Royaume-Uni, le Japon ou l'Australie, peuvent entrer en Allemagne sans visa. Ils doivent tout de même demander le titre de séjour avant le début de leurs études.`,
       },
       {
         id: "permit-types",
         title: "Les différents types de titres de séjour",
         content: `Il existe plusieurs types d'autorisations de séjour adaptées aux différentes situations des étudiants étrangers :
 
-**Aufenthaltserlaubnis zu Studienzwecken**: C'est le titre de séjour standard pour les étudiants régulièrement inscrits dans un établissement d'enseignement supérieur reconnu. Il est délivré pour la durée de vos études et est renouvelable chaque année ou tous les deux ans selon les cas.
+**Aufenthaltserlaubnis zu Studienzwecken** (titre de séjour pour études, § 16b AufenthG) : c'est le titre de séjour standard pour les étudiants admis dans un cursus à temps plein d'une université publique ou reconnue par l'État. À Munich, il est généralement délivré pour trois ans, ou seulement pour la durée de vos études si elle est plus courte, et il peut être prolongé.
 
-**Titre de séjour pour cours de langue**: Si vous suivez d'abord un cours de langue intensive (Deutschkurs) en préparation de votre inscription universitaire, vous pouvez obtenir un titre de séjour spécifique pour cette période. Sa durée est limitée et ne vous autorise pas encore à travailler dans les mêmes conditions que les étudiants inscrits.
+**Cours de langue** : si vous avez une place garantie dans un cursus à temps plein, un cours de langue préparatoire ou un Studienkolleg est couvert par ce même titre de séjour pour études. Un cours de langue sans place à l'université nécessite un titre de séjour distinct pour cours de langue.
 
-**Titre de séjour pour candidats aux études (Studienbewerber)**: Ce permis est destiné aux personnes qui ont été admises conditionnellement dans une université et attendent la confirmation de leur inscription définitive. Il permet de rester sur place pendant la procédure d'admission.
+**Titre de séjour pour candidats aux études (Studienbewerber)** : il vous donne jusqu'à neuf mois pour postuler à une place à l'université alors que vous êtes déjà en Allemagne.
 
-**Visa de recherche d'emploi post-études**: Après l'obtention de votre diplôme, vous pouvez demander un visa de 18 mois pour chercher un emploi qualifié en Allemagne. C'est une opportunité précieuse pour rester à Munich et décrocher un poste dans votre domaine.`,
+**Titre de séjour pour la recherche d'emploi** : après vos études, l'Allemagne propose un titre de séjour qui vous laisse jusqu'à 18 mois pour chercher un emploi. Il s'agit d'une demande distincte, faite après l'obtention de votre diplôme.`,
       },
       {
         id: "documents-needed",
         title: "Documents nécessaires pour votre demande",
-        content: `Préparez l'ensemble des documents suivants avant votre rendez-vous à l'Ausländerbehörde. Se présenter avec un dossier incomplet peut entraîner un report de votre rendez-vous.
+        content: `Rassemblez tous vos documents avant de déposer votre demande. Vous les téléversez avec votre demande en ligne, et la Servicestelle indique que les documents manquants ou incomplets sont l'une des causes de retard les plus fréquentes.
 
-**Passeport valide** avec au moins deux pages vierges, valable plusieurs mois au-delà de la durée de séjour demandée.
+**Formulaire de demande** : le formulaire officiel, entièrement rempli.
 
-**Photos biométriques** récentes, au format standardisé (35 x 45 mm, fond blanc, sans lunettes). Prévoyez au moins deux exemplaires.
+**Pièces d'identité** : votre passeport valide et une photo biométrique récente. La photo est transmise par voie numérique par un studio photo ou une droguerie certifiés, ou vous pouvez la faire dans une cabine photo payante de la Servicestelle.
 
-**Immatrikulationsbescheinigung**: Attestation officielle d'inscription délivrée par votre université (TUM, LMU ou autre). Elle doit être récente, généralement datant de moins de trois mois.
+**Preuve d'admission** : votre lettre d'admission ou votre certificat d'inscription (Immatrikulationsbescheinigung). D'après notre expérience, vous pouvez télécharger le certificat d'inscription sur le portail étudiant de votre université.
 
-**Preuve de moyens financiers suffisants**: Soit un Sperrkonto (compte bloqué) d'un montant de 11 904 euros par an, soit 992 euros par mois (montant 2026), soit une lettre de bourse officielle (DAAD, institution marocaine, etc.) attestant de la prise en charge de vos frais de vie.
+**Preuve de moyens financiers** : vous devez montrer que vous pouvez subvenir à vos besoins pendant vos études. Pour une première demande, la solution habituelle est un compte bloqué (Sperrkonto) d'au moins 11 904 euros, qui libère 992 euros par mois. Fintiba et Expatrio sont des prestataires que beaucoup d'étudiants utilisent, ce n'est pas une recommandation officielle. Sont aussi acceptés une déclaration de prise en charge d'un garant (Verpflichtungserklärung), une attestation de bourse, ou une déclaration notariée de vos parents accompagnée de la preuve de leurs revenus des trois derniers mois.
 
-**Assurance maladie**: Une attestation d'assurance maladie valide délivrée par une caisse légale allemande telle que la TK (Techniker Krankenkasse), l'AOK ou la Barmer. Les assurances privées étrangères ne sont généralement pas acceptées.
+**Assurance maladie** : une preuve d'assurance maladie, par exemple la carte d'une caisse légale comme la TK, l'AOK ou la Barmer. Une assurance privée n'est acceptée que si le type et l'étendue de la couverture sont suffisants. L'assurance doit être valable au moins un an, et une assurance voyage ne suffit pas.
 
-**Meldebescheinigung**: Votre attestation d'enregistrement à Munich, obtenue lors de votre Anmeldung.
+**Visa d'entrée** : votre visa étudiant, si votre nationalité en exige un.
 
-**Formulaire de demande** rempli, Disponible sur le site du KVR de Munich à télécharger et à remplir avant le rendez-vous.`,
+**Déclaration de domicile** : elle ne figure pas sur la liste des documents, mais vous devez déclarer votre adresse au Bürgerbüro avant de déposer votre demande.
+
+L'administration vérifie l'authenticité des documents et vous écrira si elle a besoin d'autres pièces.`,
       },
       {
         id: "application-process",
-        title: "Le processus de demande étape par étape",
-        content: `L'Ausländerbehörde (service des étrangers) est un département distinct au sein du KVR, spécifiquement chargé des demandes de titres de séjour et des questions d'immigration. Ne confondez pas ce service avec le Bürgerbüro qui gère l'Anmeldung.
+        title: "Déposer votre demande",
+        content: `Vous ne prenez pas rendez-vous pour déposer votre demande. Vous envoyez votre demande et vos documents via le formulaire en ligne de la ville pour le titre de séjour pour études. Téléversez vos documents en PDF si possible. Vous pouvez aussi envoyer votre demande par la poste, mais vous ne recevez alors aucune confirmation automatique et le traitement peut prendre plus de temps. Par la poste, envoyez des copies, jamais les originaux.
 
-**Étape 1 : Prendre rendez-vous tôt.** Les créneaux disponibles à l'Ausländerbehörde de Munich partent très vite, surtout en début d'année académique. Consultez le portail de réservation dès que possible, idéalement plusieurs semaines avant l'expiration de votre visa actuel.
+La Servicestelle für Zuwanderung und Einbürgerung est distincte du Bürgerbüro qui gère l'Anmeldung. Utilisez donc bien le formulaire de titre de séjour, et non une réservation au Bürgerbüro.
 
-**Étape 2 : Se présenter au rendez-vous avec un dossier complet.** Lors du rendez-vous, vos données biométriques (photo et empreintes digitales) seront enregistrées. L'agent vérifiera vos documents et traitera votre demande sur place.
+Dès que vous envoyez votre demande en ligne, une confirmation s'affiche. Enregistrez-la en PDF. Elle indique que votre visa ou titre de séjour actuel reste valable au-delà de sa date d'expiration et que vous pouvez continuer à travailler dans les mêmes conditions qu'avant. C'est ce qu'on appelle la fiction légale (Legalfiktion). Vous pouvez présenter cette confirmation aux administrations ou à votre employeur.
 
-**Étape 3 : Recevoir une Fiktionsbescheinigung.** Si votre titre de séjour ne peut pas être délivré immédiatement (ce qui est fréquent), vous repartirez avec une **Fiktionsbescheinigung**: une attestation provisoire qui vous permet de rester légalement en Allemagne pendant le traitement de votre dossier. Conservez ce document sur vous en permanence.
+L'administration examine votre demande puis vous envoie un rendez-vous. Le traitement peut prendre jusqu'à 12 mois. Déposez donc votre demande le plus tôt possible et conservez précieusement votre confirmation. D'après notre expérience, il est utile d'apporter à ce rendez-vous les originaux de tout ce que vous avez téléversé.
 
-**Étape 4 : Retirer votre carte de titre de séjour.** La carte physique est généralement prête sous quatre à huit semaines. Vous recevrez une notification pour venir la récupérer au KVR.
+Un premier titre de séjour coûte 100 euros. Il n'y a pas de frais si votre bourse provient de fonds publics allemands, d'une fondation allemande ou d'un programme financé par l'UE.
 
-Lorsque vous récupérez votre titre de séjour, vérifiez la mention **Beschäftigung erlaubt** (emploi autorisé) ou les conditions spécifiques sur votre carte. Ces mentions déterminent si et dans quelles conditions vous êtes autorisé à travailler.`,
+Une fois votre carte de séjour électronique (eAT) commandée, elle est généralement prête à être retirée au bout de quatre à six semaines, et vous réservez le rendez-vous de retrait en ligne. Si vous choisissez l'envoi direct, elle vous est envoyée par la poste en trois semaines environ.
+
+À réception de votre carte, vérifiez l'orthographe de votre nom, la date de validité et les conditions qui y figurent. Une mention du § 16b, al. 3 AufenthG signifie que la règle des 140 jours de travail décrite ci-dessous s'applique à vous.`,
         subsections: [
           {
             id: "working-as-student",
             title: "Combien pouvez-vous travailler en tant qu'étudiant ?",
-            content: `En tant qu'étudiant non-européen en Allemagne, vous êtes autorisé à travailler **140 jours complets ou 280 demi-journées par année civile** (§ 16b, al. 3 AufenthG, relevé depuis 120/240 jours en mars 2024). Le travail effectué pendant les vacances universitaires est décompté de ce même quota. Les emplois étudiants au sein de votre université (HiWi, tutorat) et les stages obligatoires ne sont pas décomptés.
+            content: `En tant qu'étudiant non-européen en Allemagne, vous êtes autorisé à travailler **140 jours complets ou 280 demi-journées par année civile** (§ 16b, al. 3 AufenthG). Une journée de quatre heures de travail au maximum compte comme une demi-journée. Le travail effectué pendant les vacances universitaires est décompté du même quota. Les emplois d'assistant étudiant au sein de votre université (HiWi, tutorat) et les stages obligatoires prévus par votre règlement d'études ne sont pas décomptés. Les stages facultatifs sont décomptés, qu'ils soient rémunérés ou non. La limite s'applique par année civile : renouveler votre titre de séjour ne vous redonne pas 140 jours.
 
-Cette limite est fixée pour garantir que votre activité principale reste vos études. Le dépasser sans autorisation spéciale constitue une violation de votre titre de séjour et peut avoir de lourdes conséquences.
-
-La mention **Beschäftigung erlaubt** sur votre titre de séjour confirme que vous êtes autorisé à exercer une activité rémunérée dans ces limites. Si cette mention est absente ou restrictive, consultez l'Ausländerbehörde avant d'accepter un emploi.`,
+Veillez à ne pas dépasser cette limite, car cela peut mettre votre titre de séjour en danger. C'est à vous et à votre employeur de tenir le compte. Si vous souhaitez travailler plus de 140 jours, il vous faut l'autorisation de la Servicestelle avant de commencer, et elle n'est accordée qu'en cas de difficultés financières particulières.`,
           },
         ],
       },
       {
         id: "renewing-permit",
         title: "Renouveler votre titre de séjour",
-        content: `Le renouvellement de votre titre de séjour est une démarche à planifier bien en amont. **Commencez à vous en occuper six à huit semaines avant la date d'expiration** de votre permis actuel, idéalement, notez un rappel dans votre calendrier trois mois avant cette date pour être certain de ne pas être pris de court.
+        content: `Déposez votre demande de prolongation en ligne avant l'expiration de votre titre de séjour actuel, avec le même formulaire en ligne que pour votre première demande. Vous n'avez pas besoin de rendez-vous pour la déposer. Il n'existe pas de délai officiel minimum, mais le traitement peut prendre des mois. N'attendez donc pas le dernier moment.
 
-Pour le renouvellement, vous aurez besoin des mêmes types de documents que pour la demande initiale : une **Immatrikulationsbescheinigung** à jour pour le semestre en cours, une preuve de moyens financiers suffisants (mise à jour de votre Sperrkonto ou attestation de bourse), et la preuve d'une assurance maladie valide.
+Téléversez des versions à jour de vos documents : une **Immatrikulationsbescheinigung** récente, une preuve de moyens financiers actualisée et la preuve d'une assurance maladie toujours valable. À partir du 4e semestre, ajoutez votre relevé de notes. Si vous avez dépassé la durée normale des études (Regelstudienzeit), ajoutez une attestation de votre université confirmant que vous suivez vos études normalement, vos chances de réussite et la date prévue de votre diplôme.
 
-Si votre rendez-vous de renouvellement tombe après la date d'expiration de votre titre de séjour actuel, demandez impérativement une **Fiktionsbescheinigung** lors de la prise de rendez-vous ou dès que possible. Ce document provisoire vous permet de rester légalement en Allemagne et de continuer à travailler pendant que l'administration traite votre dossier.
+Si vous déposez votre demande avant l'expiration de votre titre, celui-ci reste valable, y compris ses conditions de travail, jusqu'à la décision de l'administration. La confirmation enregistrée après l'envoi en est la preuve. Si vous déposez votre demande en retard, vous perdez cette protection automatique, et l'administration ne la rétablit que pour éviter une situation de grande injustice.
 
-Ne tardez jamais à entamer ce processus : les délais d'attente pour les rendez-vous à l'Ausländerbehörde de Munich peuvent être longs, et un titre de séjour expiré peut bloquer votre accès aux services bancaires, à l'emploi, et à d'autres démarches administratives.`,
+Une prolongation coûte 93 euros, ou 96 euros si elle porte sur trois mois ou moins.
+
+Une bonne habitude : notez un rappel dans votre calendrier trois mois avant l'expiration de votre titre, pour toujours avoir le temps de rassembler vos documents.`,
       },
     ],
     faqs: [
@@ -314,31 +440,31 @@ Ne tardez jamais à entamer ce processus : les délais d'attente pour les rendez
         id: "faq-permit-1",
         question: "Qu'est-ce qu'un compte bloqué (Sperrkonto) et en ai-je besoin ?",
         answer:
-          "Un Sperrkonto est un compte bancaire bloqué sur lequel vous déposez un montant forfaitaire, actuellement 11 904 euros par an (992 euros par mois en 2026), pour prouver que vous disposez de ressources suffisantes pour vivre en Allemagne sans aide sociale. Chaque mois, vous pouvez débloquer et utiliser une tranche mensuelle de ce montant. Fintiba et Expatrio sont les prestataires les plus populaires auprès des étudiants internationaux, car leurs procédures sont rapides et entièrement en ligne. Si vous bénéficiez d'une bourse couvrant vos frais de vie, une lettre officielle de l'organisme attributaire peut remplacer le Sperrkonto. Vérifiez auprès du KVR quels justificatifs sont acceptés dans votre cas.",
+          "Un Sperrkonto est un compte bancaire bloqué en Allemagne qui prouve à l'administration que vous avez assez d'argent pour subvenir à vos besoins. Pour un premier titre de séjour pour études, il doit contenir au moins 11 904 euros, et vous pouvez retirer au maximum 992 euros par mois. Fintiba et Expatrio sont des prestataires que beaucoup d'étudiants utilisent, ce n'est pas une recommandation officielle. Le compte bloqué n'est pas toujours nécessaire : une déclaration de prise en charge d'un garant (Verpflichtungserklärung), une attestation de bourse ou une déclaration notariée de vos parents avec la preuve de leurs revenus sont aussi acceptées.",
       },
       {
         id: "faq-permit-2",
         question: "Puis-je voyager au Maroc pendant le renouvellement de mon titre de séjour ?",
         answer:
-          "C'est un point crucial : la Fiktionsbescheinigung que vous recevez en attendant le renouvellement de votre titre de séjour est valable sur le territoire allemand et dans l'espace Schengen, mais elle ne vous autorise pas à quitter l'espace Schengen et à y revenir. Si vous voyagez au Maroc avec une Fiktionsbescheinigung et sans titre de séjour valide, vous risquez de ne pas pouvoir rentrer en Allemagne. Attendez d'avoir votre nouveau titre de séjour en main avant tout voyage hors Schengen, et consultez l'Ausländerbehörde si vous avez un doute sur votre situation spécifique.",
+          "Cela dépend du type de fiction légale dont vous bénéficiez, alors vérifiez avant de réserver. Si vous avez déposé votre demande avant l'expiration de votre visa ou de votre titre de séjour, l'ancien titre continue de s'appliquer (Fortgeltungsfiktion). Si vous êtes entré sans visa et avez demandé votre premier titre sans en avoir aucun (Erlaubnisfiktion, § 81, al. 3 AufenthG), la Servicestelle indique que cela ne vous autorise pas à revenir en Allemagne. En voyage, emportez tous les documents qui prouvent votre droit au séjour, même à l'intérieur de l'espace Schengen. Si possible, voyagez pendant que votre carte de séjour est encore valable, et interrogez la Servicestelle sur votre cas avant de réserver vos billets.",
       },
       {
         id: "faq-permit-3",
         question: "Quelle est la différence entre le KVR et l'Ausländerbehörde ?",
         answer:
-          "Le KVR (Kreisverwaltungsreferat) est l'autorité administrative centrale de Munich, qui couvre un large éventail de démarches municipales, dont l'Anmeldung, les permis de conduire, les passeports, et bien d'autres. L'Ausländerbehörde est un département spécifique du KVR chargé exclusivement des questions d'immigration, de titres de séjour et de tout ce qui concerne le statut des ressortissants étrangers. Pour votre titre de séjour, vous devez vous adresser à l'Ausländerbehörde, pas au Bürgerbüro de quartier.",
+          "Le KVR (Kreisverwaltungsreferat) est le service municipal de Munich qui gère de nombreuses démarches administratives. Le service des étrangers de Munich (Ausländerbehörde) s'appelle désormais Servicestelle für Zuwanderung und Einbürgerung et fait partie du KVR. Il s'occupe des titres de séjour, des visas et des questions d'immigration. Vous déclarez votre adresse au Bürgerbüro, mais vous demandez votre titre de séjour en ligne auprès de la Servicestelle, qui vous envoie ensuite un rendez-vous.",
       },
     ],
     resources: [
       {
         id: "res-permit-1",
-        title: "Munich KVR Ausländerbehörde",
-        description: "Prenez rendez-vous pour votre titre de séjour ici",
+        title: "Titre de séjour pour études (Servicestelle de Munich)",
+        description: "Conditions, documents et demande en ligne",
       },
       {
         id: "res-permit-2",
         title: "Fintiba Blocked Account",
-        description: "Ouvrez rapidement un Sperrkonto pour votre demande de visa",
+        description: "Un prestataire de compte bloqué que beaucoup d'étudiants utilisent, pas une recommandation officielle",
       },
       {
         id: "res-permit-3",
@@ -346,6 +472,74 @@ Ne tardez jamais à entamer ce processus : les délais d'attente pour les rendez
         description: "Conseils pour les démarches d'immigration des étudiants TUM",
       },
     ],
+    dossier: {
+      facts: [
+        {
+          id: "apply-before-expiry",
+          value:
+            "Déposez votre demande avant l'expiration de votre visa D ou de votre titre actuel. Votre séjour reste alors légal jusqu'à la décision.",
+        },
+        {
+          id: "fees",
+          value: "Un premier titre coûte 100 euros. Une prolongation coûte 93 euros.",
+        },
+        {
+          id: "online-application",
+          value:
+            "Déclarez d'abord votre adresse, puis faites la demande avec le formulaire en ligne. Aucun rendez-vous n'est nécessaire pour la déposer. L'administration vous en envoie un.",
+        },
+        {
+          id: "blocked-account",
+          value:
+            "Pour une première demande, le compte bloqué doit contenir au moins 11 904 euros, avec 992 euros libérés par mois.",
+        },
+        {
+          id: "processing-time",
+          value: "Le traitement peut prendre jusqu'à 12 mois.",
+        },
+      ],
+      documents: [
+        {
+          id: "application-form",
+          label: "Formulaire de demande rempli",
+          note: "Le formulaire officiel, téléversé avec votre demande en ligne.",
+        },
+        {
+          id: "passport",
+          label: "Passeport valide",
+        },
+        {
+          id: "biometric-photo",
+          label: "Photo biométrique transmise numériquement",
+          note: "Par un studio photo ou une droguerie certifiés, ou la cabine payante de la Servicestelle.",
+        },
+        {
+          id: "admission",
+          label: "Lettre d'admission ou certificat d'inscription",
+        },
+        {
+          id: "health-insurance",
+          label: "Preuve d'assurance maladie",
+          note: "Valable au moins un an. Une assurance voyage ne suffit pas.",
+        },
+        {
+          id: "proof-of-funds",
+          label: "Preuve de financement",
+          note: "Compte bloqué, déclaration d'un garant, bourse ou déclaration notariée des parents.",
+        },
+        {
+          id: "entry-visa",
+          label: "Visa étudiant",
+          note: "Seulement si votre nationalité exige un visa.",
+        },
+        {
+          id: "transcripts",
+          label: "Relevé de notes",
+          note: "Pour les prolongations à partir du 4e semestre.",
+        },
+      ],
+      action: { title: "Faire la demande en ligne" },
+    },
   },
 
   "student-life-munich": {
@@ -461,6 +655,57 @@ L'honnêteté académique est prise très au sérieux en Allemagne. Le plagiat, 
   },
 
   "find-werkstudent-job": {
+    dossier: {
+      facts: [
+        {
+          id: "work-limit",
+          value:
+            "Les étudiants hors UE peuvent travailler 140 jours entiers ou 280 demi-journées par année civile. Le travail pendant les vacances universitaires compte dans la même limite.",
+        },
+        {
+          id: "twenty-hours",
+          value:
+            "Restez à 20 heures par semaine maximum pendant le semestre et vous ne payez ni assurance maladie, ni dépendance, ni chômage, seulement la retraite.",
+        },
+        {
+          id: "tax-allowance",
+          value:
+            "L'impôt sur le revenu n'est dû qu'au-delà de 12 348 euros de revenu imposable en 2026. En dessous, une déclaration permet en général de récupérer l'impôt prélevé.",
+        },
+      ],
+      documents: [
+        {
+          id: "cv",
+          label: "CV à l'allemande (Lebenslauf)",
+          note: "Antichronologique, une à deux pages, généralement avec photo.",
+        },
+        {
+          id: "cover-letter",
+          label: "Lettre de motivation (Anschreiben)",
+          note: "Une page, rédigée pour cette entreprise.",
+        },
+        {
+          id: "tax-id",
+          label: "Numéro fiscal (Steueridentifikationsnummer)",
+          note: "Envoyé à votre adresse enregistrée quelques semaines après votre Anmeldung.",
+        },
+        {
+          id: "social-security",
+          label: "Numéro de sécurité sociale (Sozialversicherungsnummer)",
+          note: "Attribué lors de votre premier emploi en Allemagne et envoyé par la Deutsche Rentenversicherung.",
+        },
+        {
+          id: "residence-permit",
+          label: "Votre titre de séjour",
+          note: "Ses conditions de travail doivent couvrir l'emploi. Gardez-en une copie sur vous au travail.",
+        },
+        {
+          id: "day-log",
+          label: "Un relevé de vos jours travaillés",
+          note: "C'est à vous de les prouver face à la limite de 140 jours.",
+        },
+      ],
+    },
     title: "Comment trouver un emploi Werkstudent à Munich",
     summary:
       "Un poste Werkstudent vous permet de gagner un revenu, d'acquérir de l'expérience professionnelle et de rester légalement en Allemagne tout en étudiant. Ce guide explique comment trouver de bonnes opportunités, rédiger une candidature à l'allemande, et comprendre les règles relatives aux heures de travail et aux impôts.",

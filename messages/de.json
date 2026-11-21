@@ -490,7 +490,34 @@
     "minRead": "Min. Lesezeit",
     "by": "von",
     "onThisPage": "Auf dieser Seite",
-    "atlasMunichTeam": "Atlas München Team"
+    "atlasMunichTeam": "Atlas München Team",
+    "dossier": {
+      "title": "Bevor du losgehst",
+      "from": "{name}s Checkliste",
+      "kinds": {
+        "deadline": "Frist",
+        "cost": "Kosten",
+        "where": "Wo",
+        "duration": "Vor Ort",
+        "money": "Geld",
+        "rule": "Regel"
+      },
+      "documentsBring": "Mitbringen",
+      "documentsPrepare": "Bereithalten",
+      "optional": "Falls nötig",
+      "progress": "{done} von {total} bereit",
+      "readyBring": "Alles eingepackt. Du bist bereit für deinen Termin.",
+      "readyPrepare": "Alles bereit. Du kannst dich jetzt bewerben.",
+      "reset": "Haken entfernen",
+      "print": "Checkliste drucken",
+      "checked": "Geprüft anhand von {source} am {date}",
+      "savedHere": "Deine Haken bleiben nur auf diesem Gerät."
+    },
+    "stepPrompt": {
+      "stuck": "Hängst du bei diesem Schritt?",
+      "ask": "{name} fragen",
+      "question": "Ich lese deinen Ratgeber „{guide}“ und hänge bei diesem Schritt: {step}. Kannst du mir helfen?"
+    }
   },
   "footer": {
     "description": "Dein vollständiger Handbuch zum Leben in München als marokkanischer Student oder junger Berufstätiger.",

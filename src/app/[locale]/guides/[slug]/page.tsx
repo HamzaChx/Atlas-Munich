@@ -3,6 +3,7 @@ import { Link } from "@/i18n/navigation";
 import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import { rehypeTermLists } from "@/lib/rehype-term-lists";
 import {
   Breadcrumbs,
   TableOfContents,
@@ -12,6 +13,9 @@ import {
   ReadingProgress,
 } from "@/components/shared";
 import { GuideFreshness } from "@/components/shared/GuideFreshness";
+import { GuideDossier } from "@/components/shared/GuideDossier";
+import { GuideStepPrompt } from "@/components/shared/GuideStepPrompt";
+import { personaForCategory } from "@/lib/guide-personas";
 import { freshnessAt } from "@/lib/date";
 import { guides, getGuideBySlug, getRelatedGuides } from "@/data/guides";
 import { localizeGuide, localizeGuides } from "@/data/guides-i18n";
@@ -75,13 +79,10 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   };
 }
 
-const categoryNumerals: Record<string, string> = {
-  "rent-housing": "01",
-  "kvr-residence": "02",
-  "university-life": "03",
-  career: "04",
-  "useful-apps": "05",
-};
+/* Label role for this page: sidebar group headings and the meta row. Kept at
+   zinc-600 so 12px uppercase clears 4.5:1 on plaster (zinc-400 sat near 2.6:1). */
+const labelClass =
+  "text-xs font-semibold uppercase tracking-[0.12em] text-zinc-600 dark:text-zinc-400";
 
 export default async function GuidePage({ params }: PageProps) {
   const { locale, slug } = await params;
@@ -100,8 +101,11 @@ export default async function GuidePage({ params }: PageProps) {
   const t = await getTranslations("guidePage");
   const tNav = await getTranslations("nav");
   const tCategories = await getTranslations("categories");
+  const tStep = await getTranslations("guidePage.stepPrompt");
 
   const category = getCategoryByKey(guide.categoryKey);
+  // The assistant who owns this topic: tints the dossier, answers the prompts.
+  const persona = personaForCategory(guide.categoryKey);
 
   const localizedGuide = await localizeGuide(guide, locale);
   // The related-guide cards at the foot of the page need the overlay too.
@@ -113,11 +117,8 @@ export default async function GuidePage({ params }: PageProps) {
       from: string;
       to: string;
       text: string;
-      link: string;
-      linkHover: string;
-      code: string;
-      codeBg: string;
-      codeBorder: string;
+      /** Sets --guide-accent for list markers and links in the article body. */
+      accent: string;
       hoverText: string;
       hoverBg: string;
       iconHoverBg: string;
@@ -129,11 +130,7 @@ export default async function GuidePage({ params }: PageProps) {
       from: "from-amber-500",
       to: "to-orange-500",
       text: "text-amber-700 dark:text-amber-500",
-      link: "prose-a:text-amber-700 dark:prose-a:text-amber-500",
-      linkHover: "hover:prose-a:text-amber-600 dark:hover:prose-a:text-amber-400",
-      code: "prose-code:text-amber-800 dark:prose-code:text-amber-300",
-      codeBg: "prose-code:bg-amber-50 dark:prose-code:bg-amber-500/10",
-      codeBorder: "prose-code:border-amber-100 dark:prose-code:border-amber-500/20",
+      accent: "[--guide-accent:var(--color-amber-700)] dark:[--guide-accent:var(--color-amber-500)]",
       hoverText: "group-hover:text-amber-700 dark:group-hover:text-amber-500",
       hoverBg: "hover:bg-amber-50 dark:hover:bg-amber-500/10",
       iconHoverBg: "group-hover:bg-amber-100 dark:group-hover:bg-amber-500/20",
@@ -145,11 +142,7 @@ export default async function GuidePage({ params }: PageProps) {
       from: "from-blue-500",
       to: "to-cyan-500",
       text: "text-blue-600 dark:text-blue-400",
-      link: "prose-a:text-blue-600 dark:prose-a:text-blue-400",
-      linkHover: "hover:prose-a:text-blue-500 dark:hover:prose-a:text-blue-300",
-      code: "prose-code:text-blue-700 dark:prose-code:text-blue-300",
-      codeBg: "prose-code:bg-blue-50 dark:prose-code:bg-blue-500/10",
-      codeBorder: "prose-code:border-blue-100 dark:prose-code:border-blue-500/20",
+      accent: "[--guide-accent:var(--color-blue-600)] dark:[--guide-accent:var(--color-blue-400)]",
       hoverText: "group-hover:text-blue-600 dark:group-hover:text-blue-400",
       hoverBg: "hover:bg-blue-50 dark:hover:bg-blue-500/10",
       iconHoverBg: "group-hover:bg-blue-100 dark:group-hover:bg-blue-500/20",
@@ -161,11 +154,7 @@ export default async function GuidePage({ params }: PageProps) {
       from: "from-emerald-500",
       to: "to-teal-500",
       text: "text-emerald-600 dark:text-emerald-400",
-      link: "prose-a:text-emerald-600 dark:prose-a:text-emerald-400",
-      linkHover: "hover:prose-a:text-emerald-500 dark:hover:prose-a:text-emerald-300",
-      code: "prose-code:text-emerald-700 dark:prose-code:text-emerald-300",
-      codeBg: "prose-code:bg-emerald-50 dark:prose-code:bg-emerald-500/10",
-      codeBorder: "prose-code:border-emerald-100 dark:prose-code:border-emerald-500/20",
+      accent: "[--guide-accent:var(--color-emerald-600)] dark:[--guide-accent:var(--color-emerald-400)]",
       hoverText: "group-hover:text-emerald-600 dark:group-hover:text-emerald-400",
       hoverBg: "hover:bg-emerald-50 dark:hover:bg-emerald-500/10",
       iconHoverBg: "group-hover:bg-emerald-100 dark:group-hover:bg-emerald-500/20",
@@ -177,11 +166,7 @@ export default async function GuidePage({ params }: PageProps) {
       from: "from-purple-500",
       to: "to-pink-500",
       text: "text-purple-600 dark:text-purple-400",
-      link: "prose-a:text-purple-600 dark:prose-a:text-purple-400",
-      linkHover: "hover:prose-a:text-purple-500 dark:hover:prose-a:text-purple-300",
-      code: "prose-code:text-purple-700 dark:prose-code:text-purple-300",
-      codeBg: "prose-code:bg-purple-50 dark:prose-code:bg-purple-500/10",
-      codeBorder: "prose-code:border-purple-100 dark:prose-code:border-purple-500/20",
+      accent: "[--guide-accent:var(--color-purple-600)] dark:[--guide-accent:var(--color-purple-400)]",
       hoverText: "group-hover:text-purple-600 dark:group-hover:text-purple-400",
       hoverBg: "hover:bg-purple-50 dark:hover:bg-purple-500/10",
       iconHoverBg: "group-hover:bg-purple-100 dark:group-hover:bg-purple-500/20",
@@ -193,11 +178,7 @@ export default async function GuidePage({ params }: PageProps) {
       from: "from-rose-500",
       to: "to-red-500",
       text: "text-rose-600 dark:text-rose-400",
-      link: "prose-a:text-rose-600 dark:prose-a:text-rose-400",
-      linkHover: "hover:prose-a:text-rose-500 dark:hover:prose-a:text-rose-300",
-      code: "prose-code:text-rose-700 dark:prose-code:text-rose-300",
-      codeBg: "prose-code:bg-rose-50 dark:prose-code:bg-rose-500/10",
-      codeBorder: "prose-code:border-rose-100 dark:prose-code:border-rose-500/20",
+      accent: "[--guide-accent:var(--color-rose-600)] dark:[--guide-accent:var(--color-rose-400)]",
       hoverText: "group-hover:text-rose-600 dark:group-hover:text-rose-400",
       hoverBg: "hover:bg-rose-50 dark:hover:bg-rose-500/10",
       iconHoverBg: "group-hover:bg-rose-100 dark:group-hover:bg-rose-500/20",
@@ -211,7 +192,6 @@ export default async function GuidePage({ params }: PageProps) {
   // The FAQ entry card's tinted plate: the same flat tint `theme.hoverBg`
   // already defines for hover states, just always-on rather than triggered.
   const faqPlate = theme.hoverBg.replace(/hover:/g, "");
-  const numeral = categoryNumerals[guide.categoryKey] || "00";
 
   const localizedCategoryTitle = category
     ? tCategories(`${category.key}.title`)
@@ -295,40 +275,35 @@ export default async function GuidePage({ params }: PageProps) {
             <Breadcrumbs items={breadcrumbs} />
           </div>
 
+          {/* The category already sits in the breadcrumb above, so the title
+              opens the page on its own, without a kicker restating it. */}
           <div className="max-w-4xl mx-auto text-center">
-            {/* Category Pill */}
-            <Link
-              href={categoryHref(guide.categoryKey)}
-              className={cn(
-                "mb-8 inline-flex items-center justify-center gap-3 transition-opacity hover:opacity-80",
-                theme.text
-              )}
-            >
-              <span className="font-display text-2xl font-black opacity-30">{numeral}</span>
-              <span className="text-xs font-bold uppercase tracking-[0.2em]">
-                {localizedCategoryTitle}
-              </span>
-            </Link>
-
             {/* Title */}
-            <h1 className="font-display text-4xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-5xl lg:text-7xl leading-[1.1]">
+            <h1 className="font-display text-4xl font-bold tracking-tight text-balance text-zinc-900 dark:text-zinc-50 sm:text-5xl lg:text-7xl leading-[1.08]">
               {localizedGuide.title}
             </h1>
 
             {/* Summary */}
-            <p className="mx-auto mt-8 text-lg leading-relaxed text-zinc-500 dark:text-zinc-400 sm:text-xl lg:text-2xl max-w-3xl">
+            <p className="mx-auto mt-7 max-w-3xl text-lg leading-relaxed text-balance text-zinc-600 dark:text-zinc-400 sm:text-xl lg:text-[1.375rem]">
               {localizedGuide.summary}
             </p>
 
-            {/* Typographic Meta Row */}
-            <div className="mt-12 flex flex-wrap items-center justify-center gap-4 text-[11px] font-bold uppercase tracking-[0.15em] text-zinc-400">
+            {/* Meta row */}
+            <div
+              className={cn(
+                "mt-10 flex flex-wrap items-center justify-center gap-x-3 gap-y-1",
+                labelClass
+              )}
+            >
               <span>
                 {localizedGuide.readingTime} {t("minRead")}
               </span>
-              <span className="h-1 w-1 rounded-full bg-zinc-300 dark:bg-zinc-700" />
               {guide.author && (
                 <>
-                  <span className="h-1 w-1 rounded-full bg-zinc-300 dark:bg-zinc-700" />
+                  <span
+                    aria-hidden="true"
+                    className="h-1 w-1 rounded-full bg-zinc-300 dark:bg-zinc-700"
+                  />
                   <span>
                     {t("by")}{" "}
                     {(guide.author === "Atlas Munich Team"
@@ -357,14 +332,27 @@ export default async function GuidePage({ params }: PageProps) {
           <div className="grid grid-cols-1 gap-12 lg:gap-24 lg:grid-cols-[1fr_300px]">
             {/* Main article canvas */}
             <article className="min-w-0">
+              {/* Before you go: the panic question first, the explanation below */}
+              {localizedGuide.dossier && (
+                <GuideDossier
+                  className="mb-14 lg:mb-20"
+                  slug={guide.slug}
+                  guideTitle={localizedGuide.title}
+                  dossier={localizedGuide.dossier}
+                  persona={persona}
+                  verifiedAt={guide.lastVerified}
+                  source={guide.primarySource}
+                />
+              )}
+
               {/* Mobile TOC - Borderless */}
               {localizedGuide.sections.length > 0 && (
                 <div className="lg:hidden mb-12">
-                  <h3 className="mb-4 text-xs font-bold uppercase tracking-widest text-zinc-400">
-                    {t("tableOfContents")}
+                  <h3 className={cn("mb-4", labelClass)}>
+                    {t("onThisPage")}
                   </h3>
                   <div className="pl-4 border-l border-zinc-100 dark:border-zinc-800">
-                    <TableOfContents sections={localizedGuide.sections} label={t("onThisPage")} />
+                    <TableOfContents sections={localizedGuide.sections} label="" />
                   </div>
                 </div>
               )}
@@ -373,69 +361,47 @@ export default async function GuidePage({ params }: PageProps) {
               <div className="space-y-0">
                 {localizedGuide.sections.map((section, index) => (
                   <section key={section.id} id={section.id} className="scroll-mt-28">
-                    {/* Minimal Divider */}
-                    {index !== 0 && (
-                      <div className="my-16 flex justify-center">
-                        <div className="h-px w-16 bg-zinc-200 dark:bg-zinc-800" />
-                      </div>
-                    )}
+                    {/* Divider, aligned with the text column it separates */}
+                    {index !== 0 && <div className="my-14 h-px w-16 bg-zinc-200 dark:bg-zinc-800" />}
 
                     {/* Section header */}
-                    <div className="mb-8">
-                      <h2 className="font-display text-2xl sm:text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 leading-tight">
-                        {section.title}
-                      </h2>
-                    </div>
+                    <h2 className="mb-5 max-w-[68ch] font-display text-2xl font-bold leading-tight tracking-tight text-balance text-zinc-900 dark:text-zinc-50 sm:text-3xl">
+                      {section.title}
+                    </h2>
 
                     {/* Section content */}
-                    <div>
-                      <div
-                        className={cn(
-                          "prose prose-lg dark:prose-invert max-w-none",
-                          "prose-headings:font-display prose-headings:text-zinc-900 dark:prose-headings:text-white prose-headings:font-bold prose-headings:tracking-tight",
-                          "prose-p:text-zinc-600 dark:prose-p:text-zinc-300 prose-p:leading-[1.85] prose-p:text-[1.125rem]",
-                          "prose-strong:text-zinc-900 dark:prose-strong:text-white prose-strong:font-bold",
-                          "prose-li:text-zinc-600 dark:prose-li:text-zinc-300 prose-li:leading-[1.85]",
-                          "prose-ul:space-y-2 prose-ol:space-y-2",
-                          theme.link,
-                          "prose-a:no-underline prose-a:font-semibold prose-a:border-b-2 prose-a:border-transparent",
-                          theme.linkHover,
-                          "hover:prose-a:border-current prose-a:transition-all",
-                          theme.code,
-                          theme.codeBg,
-                          "prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:text-sm prose-code:font-mono prose-code:border",
-                          theme.codeBorder,
-                          "prose-blockquote:border-l-2 prose-blockquote:border-zinc-900 dark:prose-blockquote:border-zinc-100 prose-blockquote:bg-transparent prose-blockquote:pl-6 prose-blockquote:py-2 prose-blockquote:font-display prose-blockquote:text-xl prose-blockquote:text-zinc-900 dark:prose-blockquote:text-zinc-100 prose-blockquote:font-normal prose-blockquote:not-italic",
-                          "prose-hr:border-zinc-100 dark:prose-hr:border-zinc-800"
-                        )}
-                      >
-                        <ReactMarkdown remarkPlugins={[remarkGfm]}>{section.content}</ReactMarkdown>
-                      </div>
-
-                      {/* Subsections */}
-                      {section.subsections?.map((sub) => (
-                        <div key={sub.id} id={sub.id} className="mt-12 scroll-mt-28">
-                          <h3 className="font-display text-xl sm:text-2xl font-bold text-zinc-900 dark:text-zinc-50 tracking-tight mb-6">
-                            {sub.title}
-                          </h3>
-                          <div
-                            className={cn(
-                              "prose prose-lg dark:prose-invert max-w-none",
-                              "prose-p:text-zinc-600 dark:prose-p:text-zinc-300 prose-p:leading-[1.85] prose-p:text-[1.125rem]",
-                              "prose-strong:text-zinc-900 dark:prose-strong:text-zinc-100",
-                              "prose-li:text-zinc-600 dark:prose-li:text-zinc-300 prose-li:leading-[1.85]",
-                              theme.link,
-                              "prose-a:no-underline prose-a:font-semibold prose-a:border-b-2 prose-a:border-transparent",
-                              theme.linkHover,
-                              "hover:prose-a:border-current prose-a:transition-all",
-                              "prose-blockquote:border-l-2 prose-blockquote:border-zinc-900 dark:prose-blockquote:border-zinc-100 prose-blockquote:bg-transparent prose-blockquote:pl-6 prose-blockquote:py-2 prose-blockquote:font-display prose-blockquote:text-xl prose-blockquote:text-zinc-900 dark:prose-blockquote:text-zinc-100 prose-blockquote:font-normal prose-blockquote:not-italic"
-                            )}
-                          >
-                            <ReactMarkdown remarkPlugins={[remarkGfm]}>{sub.content}</ReactMarkdown>
-                          </div>
-                        </div>
-                      ))}
+                    <div className={cn("guide-prose", theme.accent)}>
+                      <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeTermLists]}>
+                        {section.content}
+                      </ReactMarkdown>
                     </div>
+
+                    {/* Subsections */}
+                    {section.subsections?.map((sub) => (
+                      <div key={sub.id} id={sub.id} className="mt-11 scroll-mt-28">
+                        <h3 className="mb-4 max-w-[68ch] font-display text-xl font-bold tracking-tight text-balance text-zinc-900 dark:text-zinc-50 sm:text-[1.375rem]">
+                          {sub.title}
+                        </h3>
+                        <div className={cn("guide-prose", theme.accent)}>
+                          <ReactMarkdown remarkPlugins={[remarkGfm]} rehypePlugins={[rehypeTermLists]}>
+                            {sub.content}
+                          </ReactMarkdown>
+                        </div>
+                      </div>
+                    ))}
+
+                    {persona && (
+                      <GuideStepPrompt
+                        className="mt-7"
+                        persona={persona}
+                        question={tStep("question", {
+                          guide: localizedGuide.title,
+                          step: section.title,
+                        })}
+                        stuckLabel={tStep("stuck")}
+                        askLabel={tStep("ask", { name: persona.name })}
+                      />
+                    )}
                   </section>
                 ))}
               </div>
@@ -544,11 +510,11 @@ export default async function GuidePage({ params }: PageProps) {
                 {/* TOC */}
                 {localizedGuide.sections.length > 0 && (
                   <div>
-                    <h3 className="mb-6 text-xs font-bold uppercase tracking-[0.15em] text-zinc-400">
-                      {t("tableOfContents")}
+                    <h3 className={cn("mb-5", labelClass)}>
+                      {t("onThisPage")}
                     </h3>
                     <div className="pl-4 border-l border-zinc-100 dark:border-zinc-800">
-                      <TableOfContents sections={localizedGuide.sections} label={t("onThisPage")} />
+                      <TableOfContents sections={localizedGuide.sections} label="" />
                     </div>
                   </div>
                 )}
@@ -556,7 +522,7 @@ export default async function GuidePage({ params }: PageProps) {
                 {/* Resources */}
                 {localizedGuide.resources && localizedGuide.resources.length > 0 && (
                   <div>
-                    <h3 className="mb-6 text-xs font-bold uppercase tracking-[0.15em] text-zinc-400">
+                    <h3 className={cn("mb-5", labelClass)}>
                       {t("resources")}
                     </h3>
                     <div className="space-y-6 pl-4 border-l border-zinc-100 dark:border-zinc-800">
@@ -590,7 +556,7 @@ export default async function GuidePage({ params }: PageProps) {
 
                 {/* Share - Text Based Minimal */}
                 <div>
-                  <h3 className="mb-4 text-xs font-bold uppercase tracking-[0.15em] text-zinc-400">
+                  <h3 className={cn("mb-4", labelClass)}>
                     {t("shareThisGuide")}
                   </h3>
                   <ShareButton

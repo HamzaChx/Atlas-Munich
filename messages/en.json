@@ -467,7 +467,34 @@
     "staleTitle": "Last checked {months, plural, one {# month} other {# months}} ago",
     "staleBody": "Rules, fees, and deadlines in Germany change often, so parts of this guide may be out of date. Confirm anything important before you act on it.",
     "checkSource": "Check the official source",
-    "checkedAgo": "Checked {months, plural, one {# month} other {# months}} ago"
+    "checkedAgo": "Checked {months, plural, one {# month} other {# months}} ago",
+    "dossier": {
+      "title": "Before you go",
+      "from": "{name}'s checklist",
+      "kinds": {
+        "deadline": "Deadline",
+        "cost": "Cost",
+        "where": "Where",
+        "duration": "At the office",
+        "money": "Money",
+        "rule": "Rule"
+      },
+      "documentsBring": "What to bring",
+      "documentsPrepare": "What to have ready",
+      "optional": "If it applies",
+      "progress": "{done} of {total} ready",
+      "readyBring": "Everything's packed. You're ready for your appointment.",
+      "readyPrepare": "Everything's ready. You can apply with confidence.",
+      "reset": "Clear ticks",
+      "print": "Print checklist",
+      "checked": "Checked against {source} on {date}",
+      "savedHere": "Ticks are saved on this device only."
+    },
+    "stepPrompt": {
+      "stuck": "Stuck on this step?",
+      "ask": "Ask {name}",
+      "question": "I'm reading your guide \"{guide}\" and I'm stuck at this step: {step}. Can you help me?"
+    }
   },
   "footer": {
     "description": "Your complete guide to thriving in Munich as a Moroccan student or young professional.",

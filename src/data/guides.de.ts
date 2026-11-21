@@ -4,67 +4,71 @@ export const guideTranslations: Record<string, GuideTranslation> = {
   "find-apartment-munich": {
     title: "So findest du eine Wohnung in München",
     summary:
-      "München ist einer der umkämpftesten Wohnungsmärkte Deutschlands. Dieser Guide begleitet dich durch den gesamten Prozess – von der Suche auf den richtigen Plattformen bis zur Unterzeichnung deines Vertrags – damit du gut vorbereitet bist.",
+      "München ist einer der umkämpftesten Wohnungsmärkte Deutschlands. Dieser Guide begleitet dich durch den gesamten Prozess, von der Suche auf den richtigen Plattformen bis zur Unterzeichnung deines Vertrags, damit du gut vorbereitet bist.",
     sections: [
       {
         id: "the-munich-market",
         title: "Den Münchner Wohnungsmarkt verstehen",
-        content: `München gehört konstant zu den teuersten Städten Deutschlands, was Mieten betrifft. Die Nachfrage übersteigt das Angebot bei weitem, besonders bei möblierten Wohnungen in der Nähe von Universitäten oder der Innenstadt. Die durchschnittliche Miete für eine Ein-Zimmer-Wohnung in der Münchner Innenstadt liegt zwischen 1.400 und 1.800 Euro pro Monat – und selbst WG-Zimmer können zwischen 600 und 1.000 Euro kosten.
+        content: `München gehört konstant zu den teuersten Städten Deutschlands, was Mieten betrifft. Die Nachfrage übersteigt das Angebot bei weitem, besonders bei möblierten Wohnungen in der Nähe von Universitäten oder der Innenstadt. Laut Mietspiegel 2025 der Stadt liegt die durchschnittliche Nettokaltmiete bei 15,38 Euro pro Quadratmeter, und neue Inserate liegen oft deutlich darüber.
 
-Die gute Nachricht: Mit der richtigen Vorbereitung und Strategie ist es absolut möglich, eine gute Wohnung zu finden. Die meisten erfolgreichen Wohnungssuchenden haben ihre Unterlagen im Voraus bereit, antworten schnell auf Inserate und behandeln jede Bewerbung wie eine Jobbewerbung.
+Die gute Nachricht: Mit der richtigen Vorbereitung und Strategie ist es absolut möglich, eine gute Wohnung zu finden. Unserer Erfahrung nach haben die meisten erfolgreichen Wohnungssuchenden ihre Unterlagen im Voraus bereit, antworten schnell auf Inserate und behandeln jede Bewerbung wie eine Jobbewerbung.
 
-Ein wichtiger Punkt gleich zu Beginn: In Deutschland erwarten die meisten Vermieter drei Monate Kontoauszüge, einen Einkommensnachweis oder eine Immatrikulationsbescheinigung, einen SCHUFA-Bonitätsreport und eine ausgefüllte Selbstauskunft. Diese Unterlagen vorab bereit zu haben, erspart dir viel Stress.`,
+Ein wichtiger Punkt gleich zu Beginn: Viele Vermieter fragen nach einem Einkommensnachweis oder einer Immatrikulationsbescheinigung, einer Bonitätsauskunft und einer ausgefüllten Selbstauskunft. Nichts davon ist gesetzlich vorgeschrieben, und was ein Vermieter fragen darf, ist begrenzt. Einen Einkommensnachweis darf er erst verlangen, wenn er sich für dich entschieden hat. Deine kostenlose SCHUFA-Datenkopie darf er nicht verlangen, und deinen Ausweis darf er nicht kopieren. Halte deine Unterlagen bereit, bevor du mit der Suche anfängst, aber gib sie Schritt für Schritt heraus.
+
+In München gilt außerdem die Mietpreisbremse, und zwar bis zum 31. Dezember 2029. Bei einem neuen Vertrag darf die Anfangsmiete höchstens 10 Prozent über der ortsüblichen Vergleichsmiete liegen. Die kannst du mit dem kostenlosen Online-Rechner zum Mietspiegel der Stadt nachschauen. Ausgenommen sind Wohnungen, die nach dem 1. Oktober 2014 erstmals vermietet wurden, und die erste Vermietung nach einer umfassenden Modernisierung. Beruft sich der Vermieter auf eine Ausnahme, muss er dir das vor der Unterschrift sagen.`,
       },
       {
         id: "where-to-search",
         title: "Wo du nach Wohnungen suchen kannst",
         content: `Es lohnt sich, mehrere Plattformen gleichzeitig zu nutzen, da Inserate oft schon nach wenigen Stunden wieder verschwunden sind.
 
-**ImmobilienScout24** ist das größte deutsche Mietportal und ein guter Startpunkt für Einzelwohnungen und Apartments. **WG-Gesucht** ist die erste Anlaufstelle für WG-Zimmer und von Studierenden bevorzugte Unterkünfte. Auch **Immowelt** und **eBay Kleinanzeigen** sind es wert, dort regelmäßig zu schauen – hier findet man manchmal Angebote, die anderswo nicht auftauchen.
+**ImmobilienScout24** ist das größte deutsche Mietportal und ein guter Startpunkt für Einzelwohnungen und Apartments. **WG-Gesucht** ist die erste Anlaufstelle für WG-Zimmer und von Studierenden bevorzugte Unterkünfte. Auch bei **Immowelt** und **Kleinanzeigen** (früher eBay Kleinanzeigen) lohnt es sich, regelmäßig zu schauen. Dort findest du manchmal Angebote von privaten Vermietern, die anderswo nicht auftauchen. Sei dort besonders vorsichtig. Zahle nie etwas, bevor du die Wohnung persönlich gesehen und einen Vertrag unterschrieben hast. Die Kaution wird erst zu Beginn des Mietverhältnisses fällig, und eine "Reservierungsgebühr" ist ein Warnzeichen für Betrug.
 
-Vergiss außerdem die physischen Aushänge an schwarzen Brettern der TUM und LMU – manchmal gibt es dort kurzfristige Untermietangebote. Beide Universitäten betreiben auch Wartelisten für Studentenwohnheime über das Studentenwerk München, die du so früh wie möglich nutzen solltest.`,
+Manche Wohnungen werden über einen Makler angeboten. Nach dem Bestellerprinzip zahlst du die Maklerprovision nur, wenn du den Makler selbst beauftragt hast und er die Wohnung nur wegen deines Suchauftrags ins Angebot genommen hat. Hat der Vermieter den Makler beauftragt, zahlt der Vermieter. Einen Vorschuss darf ein Makler nie von dir verlangen.
+
+Schau auch an den schwarzen Brettern der Unis vorbei, ob vor Ort oder online. Dort gibt es manchmal Zimmer von Studierenden, die München verlassen. Das Studierendenwerk München Oberbayern betreibt mehr als 9.000 Zimmer und Apartments für Studierende in München, Freising und Rosenheim, im Schnitt für etwa 400,60 Euro im Monat. Es gibt eine Wartezeit, also bewirb dich so früh wie möglich, am besten Monate vor deiner Ankunft.`,
         subsections: [
           {
             id: "wg-vs-private",
             title: "WG vs. Einzelwohnung",
             content: `Eine WG (Wohngemeinschaft) ist eine Wohnung, die du dir mit anderen teilst. Es ist die günstigste und für viele Studierende auch die sozialste Möglichkeit, in München zu wohnen. WG-Zimmer sind in der Regel komplett möbliert und oft all-inclusive, was die Suche deutlich vereinfacht.
 
-Eine Einzelwohnung gibt dir mehr Privatsphäre und Unabhängigkeit, ist aber teurer und erfordert meist, dass du Möbel selbst besorgst. Wenn du gerade nach München kommst, ist eine WG oft der sinnvollste Einstieg – du lernst die Stadt kennen, sparst Geld und knüpfst schnell Kontakte.`,
+Eine Einzelwohnung gibt dir mehr Privatsphäre und Unabhängigkeit, ist aber teurer und erfordert meist, dass du Möbel selbst besorgst. Wenn du gerade nach München kommst, ist eine WG oft der sinnvollste Einstieg. Du lernst die Stadt kennen, sparst Geld und knüpfst schnell Kontakte.`,
           },
         ],
       },
       {
         id: "your-application",
         title: "Eine starke Bewerbung zusammenstellen",
-        content: `Auf dem Münchner Wohnungsmarkt gewinnt nicht immer der Erste – aber fast immer der am besten Vorbereitete.
+        content: `Auf dem Münchner Wohnungsmarkt gewinnt nicht immer der Erste, aber unserer Erfahrung nach fast immer der am besten Vorbereitete.
 
 Wenn du eine Anfrage schickst, schreib eine kurze, freundliche Nachricht auf Deutsch. Stell dich vor, nenn deinen Studiengang und die Universität, wann du einziehen möchtest und warum dich gerade diese Wohnung interessiert. Das zeigt dem Vermieter, dass du die Anfrage nicht automatisiert hast.
 
-Zum Bewerbungspaket solltest du eine **single, sauber formatierte PDF-Datei** zusammenstellen, die folgendes enthält: ein kurzes Anschreiben, ein Foto von dir, eine Kopie deines Reisepasses, deine Immatrikulationsbescheinigung, Gehaltsabrechnungen oder einen Stipendiennachweis, den SCHUFA-Report und eine ausgefüllte Selbstauskunft.
+Für deine Bewerbung stellst du am besten **eine einzige, sauber formatierte PDF-Datei** zusammen: ein kurzes Anschreiben, deine Immatrikulationsbescheinigung oder Angaben zu deinem Job und Arbeitgeber, einen Einkommensnachweis wie eine Gehaltsabrechnung, einen Kontoauszug oder einen Stipendiennachweis (Angaben, die der Vermieter nicht braucht, schwärzt du), eine Bonitätsauskunft für Vermieter und eine ausgefüllte Selbstauskunft (Vermieter haben oft ihr eigenes Formular). Schick keine Kopie deines Reisepasses an Vermieter, die du nicht kennst, denn Betrüger nutzen solche Kopien für Identitätsdiebstahl. Es reicht, deinen Ausweis persönlich zu zeigen, und kopieren darf der Vermieter ihn nicht.
 
-**Schnelligkeit ist alles.** Antworte auf Inserate innerhalb der ersten zwei Stunden, idealerweise noch früher. Vermieter wählen häufig unter den ersten fünf bis zehn Bewerbern aus – wer zu spät kommt, wird oft gar nicht mehr in Betracht gezogen.`,
+**Schnelligkeit zählt.** Unserer Erfahrung nach hilft es, Benachrichtigungen auf deinen Plattformen einzurichten und innerhalb der ersten zwei Stunden nach Veröffentlichung eines Inserats zu antworten.`,
       },
       {
         id: "viewing-and-deciding",
         title: "Besichtigungen und Entscheidungen",
-        content: `Eine Besichtigung (Besichtigung) ist kein einseitiger Termin. Du bewirbst dich beim Vermieter, aber der Vermieter muss sich auch bei dir bewerben. Nutze den Termin, um Fragen zu stellen und dir ein ehrliches Bild zu machen.
+        content: `Eine Besichtigung ist kein einseitiger Termin. Du bewirbst dich beim Vermieter, aber der Vermieter muss sich auch bei dir bewerben. Nutze den Termin, um Fragen zu stellen und dir ein ehrliches Bild zu machen.
 
-Achte auf folgende Dinge: Funktionieren Fenster, Heizung, Badezimmer und Haushaltsgeräte? Wie ist die Lage in Bezug auf Lärm, Licht und Verkehrsanbindung? Frag nach den Nebenkosten – am besten nach einer schriftlichen Aufschlüsselung. In Deutschland ist die Miete oft als Kaltmiete angegeben; die tatsächliche monatliche Gesamtbelastung (Warmmiete) liegt durch die Nebenkosten deutlich höher.
+Achte auf folgende Dinge: Funktionieren Fenster, Heizung, Badezimmer und Haushaltsgeräte? Wie ist die Lage in Bezug auf Lärm, Licht und Verkehrsanbindung? Frag nach den Nebenkosten, am besten nach einer schriftlichen Aufschlüsselung. In Deutschland ist die Miete oft als Kaltmiete angegeben. Die tatsächliche monatliche Gesamtbelastung (Warmmiete) liegt durch die Nebenkosten deutlich höher.
 
-Frag auch nach der Kaution: Üblich sind zwei bis drei Monate Kaltmiete, die auf einem separaten Konto hinterlegt werden.
+Frag auch, wie hoch die Kaution ist. Gesetzlich erlaubt sind höchstens drei Monatskaltmieten, und du darfst sie in drei Monatsraten zahlen.
 
-Wenn du noch im Ausland bist, sind viele Vermieter bereit, einen Video-Call anzubieten. Das ist heute Standard und vollkommen akzeptabel. Vertrau auch deinem Bauchgefühl – wenn sich etwas komisch anfühlt, ist es das wahrscheinlich auch.`,
+Wenn du noch im Ausland bist, bieten manche Vermieter eine Besichtigung per Video-Call an. Sei offen, was deine Situation angeht. Überweise aber trotzdem kein Geld, bevor du die Wohnung persönlich gesehen und einen Vertrag unterschrieben hast. Vertrau auch deinem Bauchgefühl. Wenn sich etwas komisch anfühlt, ist es das wahrscheinlich auch.`,
       },
       {
         id: "your-rental-contract",
         title: "Deinen Mietvertrag verstehen",
         content: `Bevor du unterschreibst, lies den Mietvertrag sorgfältig durch. Du musst nicht alles auf Anhieb verstehen, aber ein paar Punkte sind besonders wichtig.
 
-Der Mietvertrag legt die monatliche Kaltmiete fest sowie die Nebenkosten, zusammen ergibt das die Warmmiete. Die Kaution beträgt in der Regel zwei bis drei Monate Kaltmiete und muss auf einem separaten Konto hinterlegt werden – der Vermieter darf sie nicht einfach einbehalten, solange du die Wohnung ordentlich zurückgibst.
+Der Mietvertrag legt die monatliche Kaltmiete fest sowie die Nebenkosten, zusammen ergibt das die Warmmiete. Die Kaution darf höchstens drei Monatskaltmieten betragen. Du darfst sie in drei gleichen Monatsraten zahlen, die erste zu Beginn des Mietverhältnisses. Der Vermieter muss sie getrennt von seinem eigenen Vermögen anlegen, und die Zinsen gehören dir. Nach dem Auszug bekommst du sie zurück, abzüglich berechtigter Forderungen, zum Beispiel für Schäden über die normale Abnutzung hinaus.
 
-Die Kündigungsfrist beträgt in den meisten Fällen drei Monate und muss schriftlich eingereicht werden. Kündige nie mündlich oder per WhatsApp – das gilt rechtlich nicht.
+Bei einem unbefristeten Vertrag beträgt deine Kündigungsfrist etwa drei Monate: Dein unterschriebener Brief muss spätestens am dritten Werktag eines Monats beim Vermieter ankommen, dann endet das Mietverhältnis zum Ende des übernächsten Monats. Kündige nie mündlich, per E-Mail oder per WhatsApp, das gilt rechtlich nicht. Schick einen unterschriebenen Brief, am besten mit Zustellnachweis. Für ein möbliertes Zimmer in der Wohnung des Vermieters gilt eine kürzere Frist.
 
-Wichtig: Vergiss nach der Unterschrift nicht, die Anmeldung zu erledigen. Du hast ab dem Einzugsdatum zwei Wochen Zeit, dich beim Bürgerbüro anzumelden. Dafür brauchst du die Wohnungsgeberbestätigung von deinem Vermieter – sag ihm rechtzeitig Bescheid, damit er sie dir ausstellt.`,
+Wichtig: Nach dem Einzug musst du dich innerhalb von zwei Wochen in einem der Münchner Bürgerbüros (sie gehören zum KVR) anmelden. Bring deinen Reisepass oder Personalausweis und die Wohnungsgeberbestätigung mit. Das ist die schriftliche Einzugsbestätigung, die dir dein Vermieter innerhalb von zwei Wochen nach dem Einzug geben muss. Dein Mietvertrag ersetzt sie nicht. Die Anmeldung ist gesetzlich vorgeschrieben, und für viele spätere Schritte brauchst du die Meldebestätigung, die du dabei bekommst.`,
       },
     ],
     faqs: [
@@ -72,25 +76,25 @@ Wichtig: Vergiss nach der Unterschrift nicht, die Anmeldung zu erledigen. Du has
         id: "faq-apartment-1",
         question: "Brauche ich einen SCHUFA-Report und wie bekomme ich ihn?",
         answer:
-          "Die SCHUFA ist die deutsche Kreditauskunftei. Du kannst einmal im Jahr eine kostenlose Datenkopie auf der offiziellen SCHUFA-Website anfordern – das dauert in der Regel ein bis zwei Wochen. Wenn du neu in Deutschland bist und noch keine SCHUFA-Geschichte hast, akzeptieren viele Vermieter stattdessen aktuelle Kontoauszüge, die zeigen, dass du über ausreichend finanzielle Mittel verfügst. Sei offen und direkt darüber – das wirkt vertrauenswürdig.",
+          "Die SCHUFA ist die bekannteste deutsche Auskunftei, ein privates Unternehmen. Viele Vermieter wollen eine Bonitätsauskunft sehen, um zu prüfen, ob du deine Rechnungen zahlst. Deine SCHUFA-Datenkopie (Datenkopie nach Art. 15 DSGVO) kannst du auf meineschufa.de kostenlos anfordern, so oft du sie brauchst, nicht nur einmal im Jahr. Diese kostenlose Kopie darf der Vermieter aber nicht verlangen, weil sie viel mehr enthält, als er braucht. Will er deine Bonität prüfen, gib ihm eine Auskunft, die speziell für Vermieter gedacht ist. Wenn du neu in Deutschland bist und noch keine SCHUFA-Geschichte hast, können ein Kontoauszug oder eine Gehaltsabrechnung zeigen, dass du die Miete zahlen kannst. Sei offen und direkt darüber, das wirkt vertrauenswürdig.",
       },
       {
         id: "faq-apartment-2",
         question: "Was ist eine Selbstauskunft und muss ich sie ausfüllen?",
         answer:
-          "Eine Selbstauskunft ist ein Formular, auf dem du Angaben zu deinem Einkommen, deinem Arbeitsverhältnis und deiner Miethistorie machst. Die meisten Vermieter verlangen sie. Du kannst das Formular auf WG-Gesucht herunterladen oder direkt beim Vermieter anfragen. Fülle es ehrlich aus – falsche Angaben können zur Kündigung führen.",
+          "Eine Selbstauskunft ist ein Formular, auf dem du Angaben zu deinem Einkommen, deinem Job und den Personen machst, die mit dir einziehen. Viele Vermieter fragen danach und haben oft ihr eigenes Formular. Fülle es ehrlich aus, falsche Angaben können zur Kündigung führen. Fragen darf der Vermieter nach deinem Einkommen, deinem Beruf und Arbeitgeber, der Zahl der Personen, die einziehen, und nach einem laufenden Insolvenzverfahren. Fragen nach Staatsangehörigkeit, Vorstrafen, Schwangerschaft, Mitgliedschaft im Mieterverein oder den Kontaktdaten deines früheren Vermieters sind nicht erlaubt, die kannst du also leer lassen.",
       },
       {
         id: "faq-apartment-3",
         question: "Ist es sicher, eine Kaution zu überweisen, ohne die Wohnung gesehen zu haben?",
         answer:
-          "Nein – überweise niemals Geld, bevor du die Wohnung entweder persönlich besichtigt oder zumindest einen Video-Call gemacht hast. Wer dich unter Druck setzt, schnell Geld zu überweisen, ist mit großer Wahrscheinlichkeit ein Betrug. Das ist eines der häufigsten Warnzeichen auf Wohnungsportalen.",
+          "Nein. Zahle nie etwas, bevor du die Wohnung persönlich gesehen und einen Vertrag unterschrieben hast. Die Kaution wird erst zu Beginn des Mietverhältnisses fällig. Betrug gibt es sogar nach einer echten Besichtigung: 2025 berichtete die Münchner Polizei von Studentinnen, die Kaution und erste Miete noch am Tag der Besichtigung überwiesen und das Geld verloren haben. Wer dich unter Druck setzt, schnell Geld zu überweisen, ist mit großer Wahrscheinlichkeit ein Betrüger.",
       },
       {
         id: "faq-apartment-4",
         question: "Wie früh vor dem Einzug sollte ich mit der Suche beginnen?",
         answer:
-          "Idealerweise zwei bis drei Monate vor dem gewünschten Einzugsdatum. Der Münchner Wohnungsmarkt ist schnell und kompetitiv. Wenn du kurzfristig etwas brauchst, können marokkanische Studierendengruppen in München oft weiterhelfen – dort gibt es häufig Hinweise auf Untermieten oder temporäre Unterkünfte.",
+          "Unserer Erfahrung nach am besten zwei bis drei Monate vor dem gewünschten Einzugsdatum. Der Münchner Wohnungsmarkt ist schnell und kompetitiv. Wenn du kurzfristig etwas brauchst, können marokkanische Studierendengruppen in München oft weiterhelfen. Dort gibt es häufig Hinweise auf Untermieten oder temporäre Unterkünfte.",
       },
     ],
     resources: [
@@ -106,15 +110,77 @@ Wichtig: Vergiss nach der Unterschrift nicht, die Anmeldung zu erledigen. Du has
       },
       {
         id: "res-apartment-3",
-        title: "Studentenwerk München",
-        description: "Offizielles Studentenwohnheim-Büro für TUM und LMU",
+        title: "Studierendenwerk München Oberbayern",
+        description: "Studentenwohnheime in München, Freising und Rosenheim",
       },
       {
         id: "res-apartment-4",
-        title: "SCHUFA Kostenlose Auskunft",
-        description: "Kostenlose jährliche SCHUFA-Bonitätsauskunft anfordern",
+        title: "Kostenlose SCHUFA-Datenkopie",
+        description:
+          "Kostenlose SCHUFA-Datenkopie (Art. 15 DSGVO) anfordern, so oft du sie brauchst",
       },
     ],
+    dossier: {
+      facts: [
+        {
+          id: "deposit",
+          value:
+            "Die Kaution darf höchstens drei Monatskaltmieten betragen, und du darfst sie in drei Monatsraten zahlen.",
+        },
+        {
+          id: "no-prepayment",
+          value:
+            "Zahle nie etwas, bevor du die Wohnung persönlich gesehen und den Vertrag unterschrieben hast.",
+        },
+        {
+          id: "broker-fee",
+          value:
+            "Maklerprovision zahlst du nur, wenn du den Makler selbst beauftragt hast. Sonst zahlt der Vermieter.",
+        },
+        {
+          id: "rent-brake",
+          value:
+            "Bis Ende 2029 darf eine neue Miete höchstens 10 Prozent über dem Mietspiegel liegen. Wohnungen, die nach Oktober 2014 erstmals vermietet wurden, sind ausgenommen.",
+        },
+        {
+          id: "registration",
+          value:
+            "Dein Vermieter muss deinen Einzug innerhalb von zwei Wochen bestätigen, und du musst dich innerhalb von zwei Wochen nach dem Einzug anmelden.",
+        },
+      ],
+      documents: [
+        {
+          id: "passport-or-id",
+          label: "Reisepass oder Personalausweis",
+          note: "Zeig ihn persönlich. Kopieren darf ihn der Vermieter nicht, also schick keine Kopien.",
+        },
+        {
+          id: "proof-of-income",
+          label: "Einkommensnachweis",
+          note: "Gehaltsabrechnung oder Kontoauszug, Unnötiges geschwärzt. Erst nötig, wenn du ausgewählt wurdest.",
+        },
+        {
+          id: "job-or-enrolment",
+          label: "Immatrikulationsbescheinigung oder Angaben zum Job",
+          note: "Wo du studierst, oder dein Beruf und Arbeitgeber.",
+        },
+        {
+          id: "tenant-credit-report",
+          label: "Bonitätsauskunft für Vermieter",
+          note: "Eine Auskunft speziell für die Wohnungssuche. Deine kostenlose SCHUFA-Datenkopie darf der Vermieter nicht verlangen.",
+        },
+        {
+          id: "selbstauskunft",
+          label: "Selbstauskunft",
+          note: "Erlaubte Fragen ehrlich beantworten. Fragen nach Staatsangehörigkeit, Schwangerschaft oder Vorstrafen sind nicht erlaubt.",
+        },
+        {
+          id: "cover-letter",
+          label: "Kurzes Anschreiben",
+          note: "Wer du bist, wie viele Personen einziehen und warum genau diese Wohnung.",
+        },
+      ],
+    },
   },
 
   "anmeldung-city-registration": {
@@ -216,73 +282,87 @@ Wenn du München dauerhaft verlässt, musst du dich offiziell abmelden (Abmeldun
   "residence-permit-students": {
     title: "So beantragst du deinen Aufenthaltstitel als Student in München",
     summary:
-      "Wenn du kein EU-Bürger bist, brauchst du nach deiner Ankunft in Deutschland eine Aufenthaltserlaubnis. Dieser Guide erklärt dir, welche Art du benötigst, welche Unterlagen du mitbringen musst und wie der Prozess bei der Ausländerbehörde abläuft.",
+      "Wenn du kein EU-Bürger bist, brauchst du nach deiner Ankunft in Deutschland eine Aufenthaltserlaubnis. Dieser Guide erklärt dir, welche Art du benötigst, welche Unterlagen du vorbereiten musst und wie du sie online bei der Servicestelle für Zuwanderung und Einbürgerung beantragst, die zum KVR gehört.",
     sections: [
       {
         id: "do-you-need-one",
         title: "Wer braucht eine Aufenthaltserlaubnis?",
-        content: `EU-Bürgerinnen und -Bürger brauchen keine Aufenthaltserlaubnis – sie haben automatisch das Recht, in Deutschland zu studieren und zu arbeiten.
+        content: `EU-Bürgerinnen und EU-Bürger brauchen keine Aufenthaltserlaubnis. Sie haben automatisch das Recht, in Deutschland zu studieren und zu arbeiten.
 
-Wenn du aus einem Nicht-EU-Land kommst, zum Beispiel aus Marokko oder Algerien, brauchst du eine Aufenthaltserlaubnis. Du bist wahrscheinlich mit einem nationalen Visum (Kategorie D) eingereist, das in der Regel 90 Tage gültig ist. Bevor dieses Visum abläuft, musst du bei der Ausländerbehörde München einen Antrag auf Aufenthaltserlaubnis stellen – das ist absolut entscheidend. Warte nicht bis zur letzten Minute.`,
+Wenn du aus einem Nicht-EU-Land kommst, zum Beispiel aus Marokko, Algerien oder Tunesien, brauchst du eine Aufenthaltserlaubnis. Die meisten Studierenden reisen mit einem nationalen Visum (Kategorie D) ein, einem Aufkleber im Pass mit einem festen Enddatum. Melde zuerst deinen Wohnsitz im Bürgerbüro an. Dann beantragst du online deine Aufenthaltserlaubnis bei der Servicestelle für Zuwanderung und Einbürgerung, die zum KVR gehört, und zwar bevor dein Visum abläuft. Das ist absolut entscheidend. Wenn du rechtzeitig beantragst, bleibt dein Aufenthalt erlaubt, bis die Behörde entscheidet. Lässt du dein Visum vorher ablaufen, verlierst du diesen automatischen Schutz. Das kann deinem Aufenthaltsstatus und späteren Visumanträgen schaden.
+
+Staatsangehörige einiger Länder, zum Beispiel der USA, Kanadas, des Vereinigten Königreichs, Japans oder Australiens, dürfen ohne Visum einreisen. Auch sie müssen die Aufenthaltserlaubnis vor Beginn des Studiums beantragen.`,
       },
       {
         id: "permit-types",
         title: "Welche Art von Aufenthaltserlaubnis brauchst du?",
-        content: `Als eingeschriebener Studierender an einer deutschen Hochschule beantragst du eine **Aufenthaltserlaubnis zu Studienzwecken** gemäß § 16b AufenthG. Sie wird in der Regel für ein Jahr ausgestellt und kann dann verlängert werden, solange du nachweislich studierst.
+        content: `Wenn du zu einem Vollzeitstudium an einer staatlichen oder staatlich anerkannten Hochschule zugelassen bist, beantragst du eine **Aufenthaltserlaubnis zu Studienzwecken** nach § 16b AufenthG. In München wird sie in der Regel für drei Jahre erteilt, oder nur für die Dauer deines Studiums, wenn es kürzer ist. Danach kann sie verlängert werden.
 
-Es gibt außerdem eine Erlaubnis für Sprachkursaufenthalte sowie die sogenannte Studienbewerbererlaubnis, die du beantragen kannst, wenn du dich noch im Bewerbungsprozess befindest.
+Hast du einen sicheren Platz in einem Vollzeitstudium, dann deckt dieselbe Aufenthaltserlaubnis auch einen studienvorbereitenden Sprachkurs oder ein Studienkolleg ab. Für einen Sprachkurs ohne Studienplatz brauchst du eine eigene Aufenthaltserlaubnis für Sprachkurse.
 
-Nach dem Abschluss hast du Anspruch auf eine **18-monatige Aufenthaltserlaubnis zur Jobsuche**, sofern du aktiv nach einer qualifizierten Stelle suchst. Das ist einer der interessantesten Aspekte des deutschen Aufenthaltsrechts für internationale Studierende.`,
+Außerdem gibt es die Aufenthaltserlaubnis zur Studienbewerbung. Mit ihr hast du bis zu neun Monate Zeit, dich von Deutschland aus um einen Studienplatz zu bewerben.
+
+Nach deinem Abschluss gibt es eine **Aufenthaltserlaubnis zur Arbeitsplatzsuche**, mit der du bis zu 18 Monate nach einer Stelle suchen kannst. Das ist ein eigener Antrag, den du nach dem Abschluss stellst.`,
       },
       {
         id: "documents-needed",
-        title: "Welche Unterlagen musst du mitbringen?",
-        content: `Vergewissere dich, dass du folgende Dokumente dabei hast – idealerweise im Original und als Kopie:
+        title: "Welche Unterlagen brauchst du?",
+        content: `Sammle alle Unterlagen, bevor du den Antrag stellst. Du lädst sie mit deinem Online-Antrag hoch, und laut der Servicestelle sind fehlende oder unvollständige Unterlagen einer der häufigsten Gründe für Verzögerungen.
 
-**Reisepass** – kurrent gültig, mit ausreichender Restlaufzeit.
+**Antragsformular:** das vollständig ausgefüllte offizielle Formular.
 
-**Biometrische Passfotos** – aktuelle Fotos im biometrischen Format (35 x 45 mm).
+**Ausweisdokumente:** dein gültiger Reisepass und ein aktuelles biometrisches Passfoto. Das Foto wird von einem zertifizierten Fotostudio oder Drogeriemarkt digital übermittelt. Alternativ nutzt du gegen Gebühr ein Foto-Terminal in der Servicestelle.
 
-**Immatrikulationsbescheinigung** – ausgestellt von deiner Universität (TUM oder LMU), nicht älter als ein Semester.
+**Nachweis der Zulassung:** dein Zulassungsbescheid oder deine Immatrikulationsbescheinigung. Nach unserer Erfahrung kannst du die Immatrikulationsbescheinigung im Studierendenportal deiner Hochschule herunterladen.
 
-**Nachweis der finanziellen Absicherung** – entweder ein aktives Sperrkonto mit dem Mindestbetrag (11.904 Euro pro Jahr bzw. 992 Euro pro Monat, Stand 2026) oder ein Stipendiennachweis, zum Beispiel von DAAD oder einem anderen anerkannten Förderprogramm.
+**Nachweis der Finanzierung:** Du musst zeigen, dass du deinen Lebensunterhalt während des Studiums sichern kannst. Beim Erstantrag ist das meist ein Sperrkonto mit mindestens 11.904 Euro, von dem monatlich 992 Euro freigegeben werden. Fintiba und Expatrio sind Anbieter, die viele Studierende nutzen. Das ist keine offizielle Empfehlung. Ebenfalls akzeptiert werden eine Verpflichtungserklärung, eine Stipendienbescheinigung oder eine notariell beglaubigte Erklärung deiner Eltern mit Nachweisen über ihr Einkommen der letzten drei Monate.
 
-**Krankenversicherungsnachweis** – eine gesetzliche Krankenversicherung wie TK, AOK oder Barmer ist in der Regel erforderlich.
+**Krankenversicherung:** ein Nachweis, zum Beispiel die Versicherungskarte einer gesetzlichen Krankenkasse wie TK, AOK oder Barmer. Eine private Versicherung wird nur akzeptiert, wenn Art und Umfang des Schutzes ausreichen. Die Versicherung muss mindestens ein Jahr gültig sein, und eine Reisekrankenversicherung reicht nicht aus.
 
-**Meldebescheinigung** – der Nachweis deiner Anmeldung in München.
+**Einreisevisum:** dein Visum zum Studium, falls deine Staatsangehörigkeit eines braucht.
 
-**Ausgefülltes Antragsformular** – erhältlich auf der Website der Ausländerbehörde München.`,
+**Anmeldung:** Sie steht nicht auf der Liste der Unterlagen, aber du musst deinen Wohnsitz im Bürgerbüro anmelden, bevor du den Antrag stellst.
+
+Die Behörde prüft die Unterlagen auf Echtheit und schreibt dich an, wenn sie noch etwas braucht.`,
       },
       {
         id: "application-process",
-        title: "Der Antragsprozess bei der Ausländerbehörde",
-        content: `Die Ausländerbehörde ist nicht dasselbe wie das Bürgerbüro – sie ist eine eigene Abteilung innerhalb des KVR und ist ausschließlich für Aufenthaltstitel und Visaangelegenheiten zuständig.
+        title: "Der Antrag bei der Servicestelle",
+        content: `Für den Antrag buchst du keinen Termin. Du schickst deinen Antrag und deine Unterlagen über das Online-Formular der Stadt für die Aufenthaltserlaubnis zum Studium. Lade deine Unterlagen möglichst als PDF hoch. Du kannst den Antrag auch per Post schicken, bekommst dann aber keine automatische Bestätigung, und die Bearbeitung kann länger dauern. Per Post schickst du nur Kopien, nie Originale.
 
-Termine sind oft Wochen im Voraus ausgebucht, also check das Online-Buchungssystem regelmäßig auf Stornierungen. Komm pünktlich und vollständig vorbereitet zum Termin.
+Die Servicestelle für Zuwanderung und Einbürgerung ist nicht dasselbe wie das Bürgerbüro, wo du deine Anmeldung machst. Nutze also das Formular für die Aufenthaltserlaubnis und keine Terminbuchung beim Bürgerbüro.
 
-Beim Termin selbst werden deine Fingerabdrücke und biometrischen Daten aufgenommen. Die eigentliche Aufenthaltserlaubnis als physische Karte bekommst du nicht sofort – sie dauert in der Regel vier bis acht Wochen. In der Zwischenzeit erhältst du eine **Fiktionsbescheinigung**, ein vorläufiges Dokument, das bestätigt, dass dein Antrag läuft und du dich rechtmäßig in Deutschland aufhältst.
+Sobald du online absendest, wird dir eine Bestätigung angezeigt. Speichere sie als PDF. Darin steht, dass dein aktuelles Visum oder dein Aufenthaltstitel über das bisherige Ablaufdatum hinaus gültig bleibt und du im bisherigen Umfang weiterarbeiten darfst. Das nennt man Legalfiktion. Die Bestätigung kannst du bei Behörden oder bei deinem Arbeitgeber vorzeigen.
 
-Prüfe unbedingt, ob auf deiner Aufenthaltserlaubnis **Beschäftigung erlaubt** steht – das ist die Voraussetzung dafür, dass du als Werkstudent arbeiten darfst.`,
+Die Behörde prüft deinen Antrag und schickt dir dann einen Termin. Die Bearbeitung kann bis zu 12 Monate dauern. Stell den Antrag also so früh wie möglich und heb deine Bestätigung gut auf. Nach unserer Erfahrung lohnt es sich, zu diesem Termin die Originale von allem mitzubringen, was du hochgeladen hast.
+
+Die erste Aufenthaltserlaubnis kostet 100 Euro. Keine Gebühren zahlst du, wenn dein Stipendium aus deutschen öffentlichen Mitteln, von einer deutschen Stiftung oder aus einem EU-finanzierten Programm kommt.
+
+Wenn dein elektronischer Aufenthaltstitel (eAT) bestellt ist, kannst du ihn in der Regel nach vier bis sechs Wochen abholen. Den Abholtermin buchst du online. Wählst du den Direktversand, bekommst du ihn innerhalb von etwa drei Wochen per Post.
+
+Wenn du deine Karte hast, prüfe die Schreibweise deines Namens, das Gültigkeitsdatum und die eingetragenen Auflagen. Ein Verweis auf § 16b Abs. 3 AufenthG bedeutet, dass für dich die 140-Tage-Regel unten gilt.`,
         subsections: [
           {
             id: "working-as-student",
-            title: "Als Student arbeiten – was ist erlaubt?",
-            content: `Mit einer gültigen Aufenthaltserlaubnis zu Studienzwecken darfst du **140 volle Tage oder 280 halbe Tage pro Kalenderjahr** arbeiten (§ 16b Abs. 3 AufenthG, seit März 2024 angehoben von 120/240 Tagen). Arbeit in den Semesterferien wird auf dasselbe Arbeitstagekonto angerechnet. Studentische Nebentätigkeiten an deiner Hochschule (HiWi, Tutorium) und Pflichtpraktika zählen nicht mit.
+            title: "Als Student arbeiten: Was ist erlaubt?",
+            content: `Mit einer gültigen Aufenthaltserlaubnis zu Studienzwecken darfst du **140 volle Tage oder 280 halbe Tage pro Kalenderjahr** arbeiten (§ 16b Abs. 3 AufenthG). Ein Tag mit bis zu vier Stunden Arbeit zählt als halber Tag. Arbeit in den Semesterferien wird auf dasselbe Arbeitstagekonto angerechnet. Studentische Nebentätigkeiten an deiner Hochschule (HiWi, Tutorium) und Pflichtpraktika, die deine Prüfungsordnung vorschreibt, zählen nicht mit. Freiwillige Praktika zählen mit, egal ob bezahlt oder unbezahlt. Die Grenze gilt pro Kalenderjahr. Eine Verlängerung deiner Aufenthaltserlaubnis gibt dir also nicht automatisch neue 140 Tage.
 
-Den Vermerk zur Arbeitserlaubnis findest du direkt auf deiner Aufenthaltserlaubnis unter „Beschäftigung erlaubt". Zeig diesen deinem Arbeitgeber bei Vertragsabschluss.`,
+Achte darauf, die Grenze nicht zu überschreiten, sonst gefährdest du deine Aufenthaltserlaubnis. Mitzählen müssen du und dein Arbeitgeber selbst. Willst du mehr als 140 Tage arbeiten, brauchst du vorher eine Genehmigung der Servicestelle. Die gibt es nur bei besonderer finanzieller Not.`,
           },
         ],
       },
       {
         id: "renewing-permit",
         title: "Verlängerung deiner Aufenthaltserlaubnis",
-        content: `Fang mit der Verlängerung **6 bis 8 Wochen vor Ablauf** deiner aktuellen Erlaubnis an. Die Ausländerbehörde ist ausgebucht, und du willst keine lückenhafte Situation riskieren.
+        content: `Beantrage die Verlängerung online, bevor deine aktuelle Erlaubnis abläuft. Nutze dafür dasselbe Online-Formular wie beim Erstantrag. Einen Termin brauchst du für den Antrag nicht. Eine offizielle Mindestfrist gibt es nicht, aber die Bearbeitung kann Monate dauern. Warte also nicht bis zur letzten Minute.
 
-Du benötigst bei der Verlängerung im Wesentlichen dieselben Unterlagen wie beim Erstantrag, jeweils aktuell: Immatrikulationsbescheinigung, Nachweis der finanziellen Mittel, Krankenversicherungsnachweis.
+Lade aktuelle Versionen deiner Unterlagen hoch: Immatrikulationsbescheinigung, Nachweis der Finanzierung und Krankenversicherungsnachweis. Ab dem 4. Semester kommen deine bisherigen Leistungsnachweise dazu. Hast du die Regelstudienzeit überschritten, brauchst du außerdem eine Bescheinigung deiner Hochschule über ordnungsgemäßes Studium, Erfolgsaussichten und die voraussichtliche Dauer bis zum Abschluss.
 
-Wenn du rechtzeitig einen Termin beantragt hast, aber deine Erlaubnis in der Zwischenzeit abläuft, bekommst du wieder eine Fiktionsbescheinigung. Diese gilt als vorläufiger Aufenthaltstitel – du darfst weiter in Deutschland bleiben und arbeiten, bis die neue Karte ausgestellt wird.
+Stellst du den Antrag vor Ablauf, gilt deine bisherige Aufenthaltserlaubnis mit allen Auflagen, auch zur Arbeit, bis zur Entscheidung weiter. Die Bestätigung, die du nach dem Absenden speicherst, ist dein Nachweis. Stellst du den Antrag zu spät, verlierst du diesen automatischen Schutz. Die Behörde kann ihn dann nur noch anordnen, um eine unbillige Härte zu vermeiden.
 
-Tipp: Setz dir eine Erinnerung im Kalender drei Monate vor Ablauf. So hast du ausreichend Zeit.`,
+Eine Verlängerung kostet 93 Euro, oder 96 Euro, wenn sie für höchstens drei Monate gilt.
+
+Tipp: Setz dir eine Erinnerung im Kalender drei Monate vor Ablauf. So hast du genug Zeit, deine Unterlagen zu sammeln.`,
       },
     ],
     faqs: [
@@ -290,32 +370,32 @@ Tipp: Setz dir eine Erinnerung im Kalender drei Monate vor Ablauf. So hast du au
         id: "faq-permit-1",
         question: "Was genau ist ein Sperrkonto und wie richte ich eines ein?",
         answer:
-          "Ein Sperrkonto ist ein spezielles Bankkonto, auf dem du einen bestimmten Betrag hinterlegst, der beweist, dass du deinen Lebensunterhalt in Deutschland finanzieren kannst. Für 2026 liegt der Betrag bei 11.904 Euro pro Jahr (992 Euro pro Monat). Das Geld wird schrittweise monatlich freigegeben. Beliebte Anbieter sind Fintiba und Expatrio, die den Prozess auf Englisch begleiten. Wenn du ein Stipendium hast, das den Lebensunterhalt abdeckt, kann dieses das Sperrkonto ersetzen.",
+          "Ein Sperrkonto ist ein spezielles Bankkonto in Deutschland, mit dem du der Behörde zeigst, dass du genug Geld für deinen Lebensunterhalt hast. Für die erste Aufenthaltserlaubnis zum Studium müssen mindestens 11.904 Euro darauf liegen, und du kannst höchstens 992 Euro pro Monat abheben. Fintiba und Expatrio sind Anbieter, die viele Studierende nutzen. Das ist keine offizielle Empfehlung. Du brauchst nicht immer ein Sperrkonto: Eine Verpflichtungserklärung, eine Stipendienbescheinigung oder eine notariell beglaubigte Erklärung deiner Eltern mit Einkommensnachweisen werden ebenfalls akzeptiert.",
       },
       {
         id: "faq-permit-2",
         question:
           "Kann ich während der Verlängerung meiner Aufenthaltserlaubnis nach Marokko reisen?",
         answer:
-          "Das ist ein wichtiger Punkt: Die Fiktionsbescheinigung gilt nur innerhalb Deutschlands und berechtigt dich nicht zur Wiedereinreise in den Schengen-Raum, wenn du ausgereist bist. Plane Reisen nach Marokko deshalb so, dass deine aktuelle Aufenthaltserlaubnis noch gültig ist, wenn du zurückreist. Im Zweifelsfall wende dich direkt an die Ausländerbehörde München.",
+          "Das hängt davon ab, welche Art von Fiktion für dich gilt. Prüfe das also, bevor du buchst. Hast du den Antrag gestellt, bevor dein Visum oder deine Aufenthaltserlaubnis abgelaufen ist, gilt dein bisheriger Titel fort (Fortgeltungsfiktion). Bist du ohne Visum eingereist und hast deinen ersten Titel beantragt, ohne einen zu besitzen (Erlaubnisfiktion, § 81 Abs. 3 AufenthG), berechtigt dich das laut Servicestelle nicht zur Wiedereinreise nach Deutschland. Nimm auf Reisen alle Dokumente mit, die dein Aufenthaltsrecht belegen, auch innerhalb des Schengen-Raums. Reise wenn möglich, solange deine Aufenthaltskarte noch gültig ist, und frag die Servicestelle zu deinem Fall, bevor du Flüge buchst.",
       },
       {
         id: "faq-permit-3",
         question: "Was ist der Unterschied zwischen KVR und Ausländerbehörde?",
         answer:
-          "Das KVR (Kreisverwaltungsreferat) ist die übergeordnete städtische Behörde in München, die für viele Verwaltungsangelegenheiten zuständig ist. Die Ausländerbehörde ist eine Abteilung innerhalb des KVR und befasst sich ausschließlich mit Aufenthaltstiteln, Visa und Einwanderungsfragen. Die Anmeldung (Wohnsitz) erledigst du beim Bürgerbüro, deinen Aufenthaltstitel bei der Ausländerbehörde.",
+          "Das KVR (Kreisverwaltungsreferat) ist das städtische Referat in München, das für viele Verwaltungsangelegenheiten zuständig ist. Die Münchner Ausländerbehörde heißt heute Servicestelle für Zuwanderung und Einbürgerung und gehört zum KVR. Sie kümmert sich um Aufenthaltstitel, Visa und Einwanderungsfragen. Deinen Wohnsitz meldest du beim Bürgerbüro an, deine Aufenthaltserlaubnis beantragst du online bei der Servicestelle. Sie schickt dir dann einen Termin.",
       },
     ],
     resources: [
       {
         id: "res-permit-1",
-        title: "KVR München – Ausländerbehörde",
-        description: "Buche hier deinen Aufenthaltserlaubnis-Termin",
+        title: "Aufenthaltserlaubnis zum Studium (Servicestelle München)",
+        description: "Voraussetzungen, Unterlagen und Online-Antrag",
       },
       {
         id: "res-permit-2",
         title: "Fintiba Sperrkonto",
-        description: "Schnell ein Sperrkonto für deine Visumsbeantragung eröffnen",
+        description: "Ein Sperrkonto-Anbieter, den viele Studierende nutzen, keine offizielle Empfehlung",
       },
       {
         id: "res-permit-3",
@@ -323,6 +403,74 @@ Tipp: Setz dir eine Erinnerung im Kalender drei Monate vor Ablauf. So hast du au
         description: "Einwanderungsberatung speziell für TUM-Studierende",
       },
     ],
+    dossier: {
+      facts: [
+        {
+          id: "apply-before-expiry",
+          value:
+            "Stell den Antrag, bevor dein D-Visum oder dein aktueller Titel abläuft. Dann bleibt dein Aufenthalt bis zur Entscheidung erlaubt.",
+        },
+        {
+          id: "fees",
+          value: "Die erste Aufenthaltserlaubnis kostet 100 Euro. Eine Verlängerung kostet 93 Euro.",
+        },
+        {
+          id: "online-application",
+          value:
+            "Melde zuerst deinen Wohnsitz an und stell dann den Antrag über das Online-Formular. Für den Antrag brauchst du keinen Termin. Die Behörde schickt dir einen.",
+        },
+        {
+          id: "blocked-account",
+          value:
+            "Beim Erstantrag braucht dein Sperrkonto mindestens 11.904 Euro, davon werden monatlich 992 Euro freigegeben.",
+        },
+        {
+          id: "processing-time",
+          value: "Die Bearbeitung kann bis zu 12 Monate dauern.",
+        },
+      ],
+      documents: [
+        {
+          id: "application-form",
+          label: "Ausgefülltes Antragsformular",
+          note: "Das offizielle Formular, hochgeladen mit deinem Online-Antrag.",
+        },
+        {
+          id: "passport",
+          label: "Gültiger Reisepass",
+        },
+        {
+          id: "biometric-photo",
+          label: "Biometrisches Passfoto, digital übermittelt",
+          note: "Vom zertifizierten Fotostudio oder Drogeriemarkt, oder vom Foto-Terminal in der Servicestelle.",
+        },
+        {
+          id: "admission",
+          label: "Zulassungsbescheid oder Immatrikulationsbescheinigung",
+        },
+        {
+          id: "health-insurance",
+          label: "Krankenversicherungsnachweis",
+          note: "Mindestens ein Jahr gültig. Eine Reisekrankenversicherung reicht nicht.",
+        },
+        {
+          id: "proof-of-funds",
+          label: "Nachweis der Finanzierung",
+          note: "Sperrkonto, Verpflichtungserklärung, Stipendium oder notarielle Erklärung der Eltern.",
+        },
+        {
+          id: "entry-visa",
+          label: "Visum zum Studium",
+          note: "Nur wenn deine Staatsangehörigkeit ein Visum braucht.",
+        },
+        {
+          id: "transcripts",
+          label: "Leistungsnachweise",
+          note: "Für Verlängerungen ab dem 4. Semester.",
+        },
+      ],
+      action: { title: "Online beantragen" },
+    },
   },
 
   "student-life-munich": {
@@ -436,6 +584,57 @@ Nutze die **Sprechstunden** (Office Hours) deiner Professorinnen und Professoren
   },
 
   "find-werkstudent-job": {
+    dossier: {
+      facts: [
+        {
+          id: "work-limit",
+          value:
+            "Studierende aus Nicht-EU-Ländern dürfen 140 ganze oder 280 halbe Tage pro Kalenderjahr arbeiten. Arbeit in den Semesterferien zählt zum selben Limit.",
+        },
+        {
+          id: "twenty-hours",
+          value:
+            "Bleibst du in der Vorlesungszeit bei höchstens 20 Stunden pro Woche, zahlst du keine Kranken-, Pflege- oder Arbeitslosenversicherung, nur Rentenversicherung.",
+        },
+        {
+          id: "tax-allowance",
+          value:
+            "Einkommensteuer fällt erst über 12.348 Euro zu versteuerndem Einkommen im Jahr 2026 an. Liegst du darunter, bekommst du die einbehaltene Steuer mit einer Steuererklärung meist zurück.",
+        },
+      ],
+      documents: [
+        {
+          id: "cv",
+          label: "Lebenslauf nach deutschem Muster",
+          note: "Umgekehrt chronologisch, ein bis zwei Seiten, meist mit Foto.",
+        },
+        {
+          id: "cover-letter",
+          label: "Anschreiben",
+          note: "Eine Seite, für genau dieses Unternehmen geschrieben.",
+        },
+        {
+          id: "tax-id",
+          label: "Steueridentifikationsnummer",
+          note: "Kommt ein paar Wochen nach deiner Anmeldung per Post an deine Meldeadresse.",
+        },
+        {
+          id: "social-security",
+          label: "Sozialversicherungsnummer",
+          note: "Wird bei deinem ersten Job in Deutschland vergeben und von der Deutschen Rentenversicherung zugeschickt.",
+        },
+        {
+          id: "residence-permit",
+          label: "Dein Aufenthaltstitel",
+          note: "Seine Arbeitsbedingungen müssen den Job abdecken. Trag bei der Arbeit eine Kopie bei dir.",
+        },
+        {
+          id: "day-log",
+          label: "Eine Liste deiner Arbeitstage",
+          note: "Du musst sie gegenüber dem 140-Tage-Limit selbst nachweisen.",
+        },
+      ],
+    },
     title: "So findest du einen Werkstudenten-Job in München",
     summary:
       "Ein Werkstudenten-Job ist eine der besten Möglichkeiten, während des Studiums Berufserfahrung zu sammeln, Deutsch zu üben und deinen Lebensunterhalt mitzufinanzieren. Dieser Guide zeigt dir, wie du gezielt suchst, dich bewirbst und rechtlich auf der sicheren Seite bleibst.",

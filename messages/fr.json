@@ -490,7 +490,34 @@
     "staleTitle": "Dernière vérification il y a {months} mois",
     "staleBody": "Les règles, les frais et les délais changent souvent en Allemagne, certaines parties de ce guide peuvent donc être dépassées. Vérifiez tout point important avant d'agir.",
     "checkSource": "Consulter la source officielle",
-    "checkedAgo": "Vérifié il y a {months} mois"
+    "checkedAgo": "Vérifié il y a {months} mois",
+    "dossier": {
+      "title": "Avant de partir",
+      "from": "La liste de {name}",
+      "kinds": {
+        "deadline": "Délai",
+        "cost": "Coût",
+        "where": "Où",
+        "duration": "Sur place",
+        "money": "Argent",
+        "rule": "Règle"
+      },
+      "documentsBring": "À apporter",
+      "documentsPrepare": "À préparer",
+      "optional": "Si besoin",
+      "progress": "{done} sur {total} prêts",
+      "readyBring": "Tout est prêt. Vous pouvez aller à votre rendez-vous.",
+      "readyPrepare": "Tout est prêt. Vous pouvez postuler sereinement.",
+      "reset": "Tout décocher",
+      "print": "Imprimer la liste",
+      "checked": "Vérifié auprès de {source} le {date}",
+      "savedHere": "Vos coches restent uniquement sur cet appareil."
+    },
+    "stepPrompt": {
+      "stuck": "Bloqué à cette étape ?",
+      "ask": "Demander à {name}",
+      "question": "Je lis votre guide « {guide} » et je bloque à cette étape : {step}. Pouvez-vous m'aider ?"
+    }
   },
   "footer": {
     "description": "Votre guide complet pour réussir à Munich en tant qu'étudiant ou jeune professionnel marocain.",

@@ -39,8 +39,9 @@ const contributors: Contributor[] = [
   {
     name: "Hamza Chaouki",
     role: "Founder & Community Lead",
-    photo: "/hamzafounder.png",
+    photo: "/hamzafounder.jpeg",
     url: "https://hamzachaouki.com/",
+    linkedin: "https://www.linkedin.com/in/hamza-chaouki/",
     focalY: 55,
     tint: "bg-tint-terra",
     photoAccent: "text-[oklch(0.86_0.1_50)]",
@@ -50,6 +51,7 @@ const contributors: Contributor[] = [
     role: "AI & Technology Lead",
     photo: "/mohamedfounder.png",
     url: "https://mohamednejjar.com/",
+    linkedin: "https://www.linkedin.com/in/mohamed-nejjar1/",
     tint: "bg-tint-blue",
     photoAccent: "text-[oklch(0.86_0.085_250)]",
   },

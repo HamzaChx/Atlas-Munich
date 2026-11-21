@@ -37,27 +37,36 @@ interface GuideFreshnessProps {
   className?: string;
 }
 
-/** The full block for the top of a guide: date, source, and a warning once stale. */
+/** The line at the top of a guide: date (or age, once stale) and the source. */
 export function GuideFreshness({ verifiedAt, source, initial, className }: GuideFreshnessProps) {
   const t = useTranslations("guidePage");
   const locale = useLocale();
   const { stale, months } = useFreshness(verifiedAt, initial);
 
   return (
-    <div className={cn("flex flex-col items-center gap-4", className)}>
-      <p className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 text-sm text-zinc-500 dark:text-zinc-400">
+    <div className={cn("flex flex-col items-center", className)}>
+      <p className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1.5 text-sm text-zinc-600 dark:text-zinc-400">
         <span className="inline-flex items-center gap-2">
           <span
             aria-hidden="true"
             className={cn("h-2 w-2 rounded-full", stale ? "bg-acc-saffron" : "bg-acc-green")}
           />
-          <time dateTime={verifiedAt}>
-            {t("lastVerified", { date: fmtLongDate(verifiedAt, locale) })}
+          {/* Stale: the age is the news, so it replaces the date (kept in the
+              tooltip). The warning lives on this one line, not in a box that
+              greeted an anxious reader with doubt before any help. */}
+          <time
+            dateTime={verifiedAt}
+            title={stale ? fmtLongDate(verifiedAt, locale) : undefined}
+            className={cn(stale && "font-semibold text-zinc-800 dark:text-zinc-200")}
+          >
+            {stale
+              ? t("checkedAgo", { months })
+              : t("lastVerified", { date: fmtLongDate(verifiedAt, locale) })}
           </time>
         </span>
         <span aria-hidden="true" className="h-1 w-1 rounded-full bg-zinc-300 dark:bg-zinc-700" />
         <span>
-          {t("officialSource")}:{" "}
+          {stale ? t("checkSource") : t("officialSource")}:{" "}
           <a
             href={source.url}
             target="_blank"
@@ -69,28 +78,6 @@ export function GuideFreshness({ verifiedAt, source, initial, className }: Guide
           </a>
         </span>
       </p>
-
-      {stale && (
-        <div
-          role="note"
-          className="w-full max-w-2xl rounded-2xl bg-tint-saffron px-5 py-4 text-left dark:ring-1 dark:ring-border"
-        >
-          <p className="font-display text-[15px] font-bold text-zinc-900 dark:text-zinc-50">
-            {t("staleTitle", { months })}
-          </p>
-          <p className="mt-1 text-sm leading-relaxed text-zinc-700 dark:text-zinc-300">
-            {t("staleBody")}{" "}
-            <a
-              href={source.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="font-semibold text-acc-saffron underline underline-offset-4"
-            >
-              {t("checkSource")}
-            </a>
-          </p>
-        </div>
-      )}
     </div>
   );
 }

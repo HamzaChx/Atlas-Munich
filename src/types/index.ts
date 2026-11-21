@@ -58,6 +58,39 @@ export interface GuideSection {
   }[];
 }
 
+/** What a fact row on the "Before you go" card is about; each kind has a
+    localized label under guidePage.dossier.kinds. */
+export type GuideFactKind = "deadline" | "cost" | "where" | "duration" | "money" | "rule";
+
+export interface GuideFact {
+  id: string;
+  kind: GuideFactKind;
+  /** One plain sentence a newcomer can act on. */
+  value: string;
+}
+
+export interface GuideDocument {
+  id: string;
+  label: string;
+  note?: string;
+  /** Situational documents are marked as such on the card. */
+  optional?: boolean;
+}
+
+/**
+ * The "Before you go" summary at the top of a task guide. Every fact here must
+ * come from `primarySource` or another official page, checked on the guide's
+ * `lastVerified` date; a guide without verified facts simply has no dossier.
+ */
+export interface GuideDossier {
+  /** "bring" to an appointment (the default) or "prepare" for an application. */
+  documentsMode?: "bring" | "prepare";
+  facts: GuideFact[];
+  documents: GuideDocument[];
+  /** The official place to book or start, when there is one. */
+  action?: { title: string; url: string };
+}
+
 export interface Guide {
   slug: string;
   title: string;
@@ -81,6 +114,7 @@ export interface Guide {
   faqs?: FAQ[];
   resources?: ResourceLink[];
   relatedSlugs?: string[];
+  dossier?: GuideDossier;
 }
 
 // ============================================
@@ -232,6 +266,11 @@ export interface GuideTranslation {
     title: string;
     description?: string;
   }[];
+  dossier?: {
+    facts?: { id: string; value: string }[];
+    documents?: { id: string; label: string; note?: string }[];
+    action?: { title: string };
+  };
 }
 
 // ============================================

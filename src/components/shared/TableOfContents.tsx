@@ -62,7 +62,10 @@ export function TableOfContents({
 
   return (
     <nav className={cn("space-y-1", className)} aria-label="Table of contents">
-      <p className="mb-3 text-sm font-semibold text-zinc-900 dark:text-zinc-50">{label}</p>
+      {/* Pass label="" when the caller already heads the list itself. */}
+      {label && (
+        <p className="mb-3 text-sm font-semibold text-zinc-900 dark:text-zinc-50">{label}</p>
+      )}
       <ul className="space-y-1 text-sm">
         {sections.map((section) => (
           <li key={section.id}>

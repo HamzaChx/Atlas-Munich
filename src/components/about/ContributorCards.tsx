@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowUpRight, Plus } from "lucide-react";
+import { Globe, Linkedin, Plus } from "lucide-react";
 import { useCallback, useRef, type PointerEvent } from "react";
 
 import { cn } from "@/lib/utils";
@@ -11,6 +11,8 @@ export interface Contributor {
   role: string;
   photo: string;
   url: string;
+  /** Optional LinkedIn profile, shown as its own button on the card. */
+  linkedin?: string;
   tint: string;
   photoAccent: string;
   /** object-position Y, 0 = top of source photo, 100 = bottom */
@@ -18,6 +20,10 @@ export interface Contributor {
 }
 
 const MAX_TILT_DEG = 5;
+
+/* Glass icon chip. Sits above the card's stretched link (z-20 vs z-10). */
+const chipClass =
+  "pointer-events-auto relative z-20 flex h-8 w-8 items-center justify-center rounded-full border border-white/20 bg-white/15 text-white/90 backdrop-blur-md transition-[background-color,color,border-color] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] hover:border-white/30 hover:bg-white/25 hover:text-white";
 
 /**
  * Pointer-tracked tilt + glow, restrained on purpose: a few degrees of
@@ -30,6 +36,7 @@ export function ContributorCard({
   role,
   photo,
   url,
+  linkedin,
   tint,
   photoAccent,
   focalY = 22,
@@ -37,7 +44,7 @@ export function ContributorCard({
   const cardRef = useRef<HTMLDivElement>(null);
   const rafRef = useRef<number | null>(null);
 
-  const handlePointerMove = useCallback((event: PointerEvent<HTMLAnchorElement>) => {
+  const handlePointerMove = useCallback((event: PointerEvent<HTMLDivElement>) => {
     const card = cardRef.current;
     if (!card || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
@@ -60,15 +67,13 @@ export function ContributorCard({
     card.style.transform = "perspective(1000px) rotateX(0deg) rotateY(0deg) translateY(0)";
   }, []);
 
+  // The whole card links to the personal site via a stretched link. LinkedIn
+  // is a sibling link stacked above it, since links cannot nest.
   return (
-    <a
-      href={url}
-      target="_blank"
-      rel="noopener noreferrer"
+    <div
       onPointerMove={handlePointerMove}
       onPointerLeave={handlePointerLeave}
       className="group block"
-      aria-label={`${name} — ${role}`}
     >
       <div
         ref={cardRef}
@@ -92,19 +97,50 @@ export function ContributorCard({
           }}
         />
 
-        <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent px-5 pb-5 pt-14">
+        <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/85 via-black/40 to-transparent px-5 pb-5 pt-14">
           <p className="font-display text-lg font-bold text-white">{name}</p>
-          <div className="mt-1 flex items-center justify-between gap-3">
-            <span className={cn("text-xs font-semibold uppercase tracking-wide", photoAccent)}>
-              {role}
-            </span>
-            <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/15 text-white backdrop-blur-sm transition-colors group-hover:bg-white/25">
-              <ArrowUpRight className="h-4 w-4" />
-            </span>
+          <p className={cn("mt-1 text-xs font-semibold uppercase tracking-wide", photoAccent)}>
+            {role}
+          </p>
+          {/* Two equal glass chips, each with its own icon, so it is clear
+              which one goes where. The card itself also opens the website. */}
+          <div className="mt-3 flex items-center gap-2">
+            <a
+              href={url}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`${name} website`}
+              title="Website"
+              className={chipClass}
+            >
+              <Globe className="h-4 w-4" aria-hidden="true" />
+            </a>
+            {linkedin && (
+              <a
+                href={linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`${name} on LinkedIn`}
+                title="LinkedIn"
+                className={chipClass}
+              >
+                <Linkedin className="h-4 w-4" aria-hidden="true" />
+              </a>
+            )}
           </div>
         </div>
+
+        <a
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`${name} — ${role}`}
+          className="absolute inset-0 z-10"
+        >
+          <span className="sr-only">{`${name} — ${role}`}</span>
+        </a>
       </div>
-    </a>
+    </div>
   );
 }
 

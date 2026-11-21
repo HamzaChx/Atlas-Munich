@@ -11,7 +11,7 @@
 // Anything the overlay is missing falls back to English rather than blanking.
 // ============================================
 
-import type { Guide, GuideTranslation } from "@/types";
+import type { Guide, GuideDossier, GuideTranslation } from "@/types";
 import { withReadingTime } from "@/lib/reading-time";
 
 type Overlay = Record<string, GuideTranslation>;
@@ -99,6 +99,34 @@ function applyOverlay(guide: Guide, translation?: GuideTranslation): Guide {
       title: resources.get(resource.id)?.title ?? resource.title,
       description: resources.get(resource.id)?.description ?? resource.description,
     })),
+    dossier: guide.dossier && applyDossierOverlay(guide.dossier, translation.dossier),
+  };
+}
+
+/* Facts and documents match on id like everything else, so a ticked document
+   stays ticked when the reader switches language. */
+function applyDossierOverlay(
+  dossier: GuideDossier,
+  translation: GuideTranslation["dossier"]
+): GuideDossier {
+  if (!translation) return dossier;
+  const facts = byId(translation.facts);
+  const documents = byId(translation.documents);
+  return {
+    ...dossier,
+    facts: dossier.facts.map((fact) => ({
+      ...fact,
+      value: facts.get(fact.id)?.value ?? fact.value,
+    })),
+    documents: dossier.documents.map((doc) => ({
+      ...doc,
+      label: documents.get(doc.id)?.label ?? doc.label,
+      note: documents.get(doc.id)?.note ?? doc.note,
+    })),
+    action: dossier.action && {
+      ...dossier.action,
+      title: translation.action?.title ?? dossier.action.title,
+    },
   };
 }
 

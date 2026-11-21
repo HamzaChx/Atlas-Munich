@@ -2,9 +2,6 @@ import { setRequestLocale } from "next-intl/server";
 import { Metadata } from "next";
 import {
   Building2,
-  MessageSquareText,
-  ClipboardList,
-  CheckCircle2,
   Landmark,
   FileText,
   Radio,
@@ -44,19 +41,21 @@ const CONFIG: AssistantLandingConfig = {
   avatar: "/dalilah.webp",
   icon: Building2,
   chatPath: "/bureaucracy/chat",
-  stepIcons: [MessageSquareText, ClipboardList, CheckCircle2],
   linksKey: "authorities",
   links: [
     {
-      name: "KVR Munich",
+      name: "Bürgerbüro (KVR)",
       label: "City registration and Anmeldung",
-      url: "https://www.muenchen.de/rathaus/kreisverwaltungsreferat",
+      // The old muenchen.de/rathaus/* addresses return 404 (checked 2026-11-21).
+      url: "https://stadt.muenchen.de/service/info/wohnsitzanmeldung/1063475/n0/",
       icon: Building2,
     },
     {
-      name: "Ausländerbehörde",
-      label: "Residence permits and extensions",
-      url: "https://www.muenchen.de/rathaus/auslaenderbehoerde",
+      // Munich's Ausländerbehörde is now the Servicestelle für Zuwanderung
+      // und Einbürgerung (SZE), part of the KVR.
+      name: "Servicestelle für Zuwanderung",
+      label: "Residence permits and extensions (formerly Ausländerbehörde)",
+      url: "https://stadt.muenchen.de/service/en-GB/info/servicestelle-fur-zuwanderung-und-einburgerung/10424886/",
       icon: FileText,
     },
     {

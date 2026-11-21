@@ -1187,23 +1187,6 @@
   }
 }
 
-/* Guide graph: a one-shot ring on the node a reader just opened. Plays once
-   (no infinite loop, so it never becomes ambient motion that would need its
-   own pause control) via a remounted key in GuideGraph.tsx. */
-.tree-node-ping {
-  animation: tree-node-ping 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-@keyframes tree-node-ping {
-  0% {
-    transform: scale(0.5);
-    opacity: 0.6;
-  }
-  100% {
-    transform: scale(2.4);
-    opacity: 0;
-  }
-}
-
 /* ============================================================
    Guide explorer: the Lifestyle tree (GuideExplorer.tsx)
 

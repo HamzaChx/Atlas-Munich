@@ -1,17 +1,16 @@
 import Image from "next/image";
 import { Link } from "@/i18n/navigation";
 import { getTranslations } from "next-intl/server";
-import { ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 import { getHub } from "@/data/hubs";
 import { getAssistantsForHub, isLive } from "@/data/assistants";
 import { guides } from "@/data/guides";
 import { localizeGuides } from "@/data/guides-i18n";
-import { getGuideExplorer, getGuideTree } from "@/lib/guide-tree-server";
-import { GuideGraph, FaqTopicGrid } from "@/components/shared";
+import { getGuideExplorer } from "@/lib/guide-tree-server";
+import { FaqTopicGrid } from "@/components/shared";
 import { getFaqsByHub } from "@/data/faqs";
 import { faqPageJsonLd } from "@/lib/structured-data";
-import { cn } from "@/lib/utils";
 import { LifestyleGuides } from "./LifestyleGuides";
 import type { HubKey } from "@/types";
 
@@ -33,11 +32,7 @@ export async function HubPage({ hubKey, locale }: { hubKey: HubKey; locale: stri
     locale
   );
   const helpers = getAssistantsForHub(hubKey).filter(isLive);
-  const explorerLayout = hub.guidesLayout === "explorer";
-  /* The same tree as /guides, scoped to this hub's guides, or the explorer
-     when the hub asks for it. Only the one in use is built. */
-  const treeNodes = explorerLayout ? [] : await getGuideTree(locale, hubKey);
-  const explorerTopics = explorerLayout ? await getGuideExplorer(locale, hubKey) : [];
+  const explorerTopics = hubGuides.length > 0 ? await getGuideExplorer(locale, hubKey) : [];
   /* The questions that belong to this stage of the move. They used to live on
      a single /faq page where a reader had to know to look for them. */
   const hubFaqs = getFaqsByHub(hubKey);
@@ -53,54 +48,21 @@ export async function HubPage({ hubKey, locale }: { hubKey: HubKey; locale: stri
       )}
 
       <section className="mx-auto flex max-w-2xl flex-col items-center px-5 pb-10 pt-14 text-center sm:pb-14 sm:pt-20 2xl:max-w-3xl">
-        <span className="eyebrow">{t(`${hubKey}.badge`)}</span>
-        <h1 className="rise rise-1 mt-3 font-display text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-5xl 2xl:text-6xl">
+        <h1 className="rise rise-1 font-display text-3xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-5xl 2xl:text-6xl">
           {t(`${hubKey}.title`)} <span className="text-bloom">{t(`${hubKey}.titleHighlight`)}</span>
         </h1>
-        <p className="rise rise-2 mt-4 max-w-md text-base leading-relaxed text-zinc-500 dark:text-zinc-400 sm:text-lg 2xl:max-w-lg 2xl:text-xl">
+        <p className="rise rise-2 mt-4 max-w-md text-base leading-relaxed text-zinc-600 dark:text-zinc-400 sm:text-lg 2xl:max-w-lg 2xl:text-xl">
           {t(`${hubKey}.subtitle`)}
         </p>
       </section>
 
-      {/* The explorer's living tree needs a wide stage beside its panel. */}
-      <div
-        className={cn(
-          "mx-auto px-4 pb-20 sm:px-6 lg:px-8",
-          explorerLayout ? "max-w-7xl" : "max-w-6xl 2xl:max-w-[96rem] 2xl:px-12"
-        )}
-      >
+      {/* The tree needs a wide stage beside its panel. */}
+      <div className="mx-auto max-w-7xl px-4 pb-20 sm:px-6 lg:px-8">
         {hubGuides.length > 0 && (
-          <section className="reveal">
-            <div className="flex items-baseline justify-between gap-4">
-              <h2 className="font-display text-xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50 sm:text-2xl">
-                {t("guidesTitle")}
-              </h2>
-              <Link
-                href="/guides"
-                className={`group flex shrink-0 items-center gap-1 text-sm font-semibold transition-opacity hover:opacity-80 ${hub.acc}`}
-              >
-                {t("allGuides")}
-                <ArrowUpRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </Link>
-            </div>
-
-            {explorerLayout ? (
-              /* Straight on the page, no tinted panel: each topic brings its
-                 own colour to its branch, and a coloured ground would fight
-                 all five of them. */
-              <div className="mt-2">
-                <LifestyleGuides topics={explorerTopics} />
-              </div>
-            ) : (
-              /* The tree, scoped to this hub. First topic open so the page
-                 never lands as a wall of closed rows. */
-              <div className="mt-5 rounded-[1.75rem] bg-card p-4 shadow-[0_2px_20px_rgb(0_0_0/0.06)] sm:p-6 dark:shadow-none dark:ring-1 dark:ring-border">
-                <GuideGraph
-                  nodes={treeNodes}
-                  defaultOpenIds={treeNodes[0] ? [treeNodes[0].id] : []}
-                />
-              </div>
-            )}
+          /* Straight on the page, no tinted panel: each topic brings its own
+             colour to its branch, and a coloured ground would fight all five. */
+          <section aria-label={t("guidesTitle")}>
+            <LifestyleGuides topics={explorerTopics} />
           </section>
         )}
 

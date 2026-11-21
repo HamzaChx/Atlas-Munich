@@ -35,7 +35,7 @@ export function LandingMasonrySection() {
     {
       id: "lifestyle",
       img: "/masonry/career.png",
-      url: "/lifestyle",
+      url: "/guides",
       height: 560,
       title: "Every guide, one tree",
       category: "Lifestyle",

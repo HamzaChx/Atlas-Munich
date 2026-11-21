@@ -498,7 +498,7 @@
         "deadline": "Frist",
         "cost": "Kosten",
         "where": "Wo",
-        "duration": "Vor Ort",
+        "duration": "Dauer",
         "money": "Geld",
         "rule": "Regel"
       },
@@ -2975,7 +2975,7 @@
   },
   "hubs": {
     "explorer": {
-      "root": "Alltag",
+      "root": "Alle Ratgeber",
       "label": "Alltags-Guides",
       "hint": "Öffne ein Thema, wähl einen Guide, schau dir einen Schritt an. Immer nur ein Zweig auf einmal, damit es übersichtlich bleibt.",
       "search": "Themen und Abschnitte durchsuchen",

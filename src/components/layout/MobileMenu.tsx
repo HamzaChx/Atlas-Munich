@@ -14,16 +14,7 @@ import * as React from "react";
 import { createPortal } from "react-dom";
 import { Link, usePathname } from "@/i18n/navigation";
 import { useTranslations } from "next-intl";
-import {
-  Download,
-  MapPin,
-  MessageCircle,
-  Coffee,
-  Users,
-  Info,
-  X,
-  type LucideIcon,
-} from "lucide-react";
+import { BookOpen, Download, Info, MapPin, MessageCircle, Users, X, type LucideIcon } from "lucide-react";
 
 import { LanguageSwitcher, ThemeToggle } from "@/components/shared";
 import { useInstallPrompt } from "@/components/pwa/use-install-prompt";
@@ -74,7 +65,7 @@ export function MobileMenu({ open, onOpenChange, locale }: MobileMenuProps) {
   const links: MenuLink[] = [
     { label: t("ask"), href: "/chat", icon: MessageCircle },
     { label: t("map"), href: "/map", icon: MapPin },
-    { label: t("lifestyle"), href: "/lifestyle", icon: Coffee },
+    { label: t("guides"), href: "/guides", icon: BookOpen },
     { label: t("community"), href: "/community", icon: Users },
     { label: t("about"), href: "/about", icon: Info },
   ];

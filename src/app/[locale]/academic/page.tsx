@@ -3,8 +3,6 @@ import { Metadata } from "next";
 import {
   GraduationCap,
   Search,
-  PenLine,
-  Trophy,
   BookMarked,
   Library,
   BookOpen,
@@ -42,7 +40,6 @@ const CONFIG: AssistantLandingConfig = {
   avatar: "/ilham.webp",
   icon: GraduationCap,
   chatPath: "/academic/chat",
-  stepIcons: [Search, PenLine, Trophy],
   linksKey: "resources",
   links: [
     {

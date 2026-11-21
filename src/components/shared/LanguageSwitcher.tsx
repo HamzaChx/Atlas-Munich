@@ -18,14 +18,18 @@ const languages: { code: Locale; label: string }[] = [
 interface LanguageSwitcherProps {
   currentLocale: Locale;
   className?: string;
-  /** "inline" lays the locales out as tappable pills, for the mobile menu */
-  variant?: "dropdown" | "inline";
+  /** "inline" lays the locales out as tappable pills, for the mobile menu;
+      "segmented" is the compact EN FR DE control in the desktop header. */
+  variant?: "dropdown" | "inline" | "segmented";
+  /** "hero" reads as cream-on-film, over the homepage video. */
+  tone?: "default" | "hero";
 }
 
 export function LanguageSwitcher({
   currentLocale,
   className,
   variant = "dropdown",
+  tone = "default",
 }: LanguageSwitcherProps) {
   const router = useRouter();
   /* The locale-aware pathname: locale prefix stripped, so it can be re-added
@@ -77,6 +81,60 @@ export function LanguageSwitcher({
     document.addEventListener("keydown", handleEscape);
     return () => document.removeEventListener("keydown", handleEscape);
   }, []);
+
+  /* Always visible, three letters each: a reader who reads French better than
+     English sees FR without having to guess which icon hides it. The selected
+     code wears the brand tint and accent, never a black fill. */
+  if (variant === "segmented") {
+    return (
+      <div
+        role="group"
+        aria-label={common("language")}
+        className={cn(
+          "flex h-9 items-center rounded-full border p-0.5",
+          tone === "hero"
+            ? "border-hero-cream/25 bg-hero-cream/10"
+            : "border-border/60 bg-card shadow-sm",
+          isPending && "opacity-60",
+          className
+        )}
+      >
+        {languages.map((language) => {
+          const isSelected = language.code === currentLocale;
+          return (
+            <button
+              key={language.code}
+              type="button"
+              lang={language.code}
+              title={language.label}
+              aria-label={language.label}
+              aria-pressed={isSelected}
+              disabled={isPending}
+              onClick={() => handleLanguageChange(language.code)}
+              className={cn(
+                "flex h-full min-w-9 items-center justify-center rounded-full px-2.5 text-xs font-semibold uppercase tracking-wide transition-colors duration-200 outline-none focus-visible:ring-2",
+                tone === "hero"
+                  ? cn(
+                      "focus-visible:ring-hero-gold",
+                      isSelected
+                        ? "bg-hero-cream/20 text-hero-cream"
+                        : "text-hero-cream/75 hover:text-hero-cream"
+                    )
+                  : cn(
+                      "focus-visible:ring-zellige/50",
+                      isSelected
+                        ? "bg-zellige-soft text-zellige"
+                        : "text-zinc-600 hover:text-zinc-900 dark:text-zinc-400 dark:hover:text-zinc-50"
+                    )
+              )}
+            >
+              {language.code}
+            </button>
+          );
+        })}
+      </div>
+    );
+  }
 
   if (variant === "inline") {
     return (

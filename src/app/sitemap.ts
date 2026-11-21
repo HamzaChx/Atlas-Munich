@@ -50,9 +50,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...entry("/", { changeFrequency: "weekly", priority: 1.0 }),
     ...entry("/map", { changeFrequency: "weekly", priority: 0.95 }),
     ...entry("/chat", { changeFrequency: "weekly", priority: 0.95 }),
-    ...entry("/lifestyle", { changeFrequency: "weekly", priority: 0.95 }),
+    ...entry("/guides", { changeFrequency: "weekly", priority: 0.95 }),
     ...entry("/community", { changeFrequency: "monthly", priority: 0.8 }),
-    ...entry("/guides", { changeFrequency: "weekly", priority: 0.9 }),
   ];
 
   // Topic hub pages — high-intent landing pages per domain. /chat/housing is

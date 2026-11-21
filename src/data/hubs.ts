@@ -62,7 +62,9 @@ export const hubs: Hub[] = [
        in the tree on this page, in the order a newcomer meets them. A new
        category added here grows a new branch, nothing else to wire up. */
     key: "lifestyle",
-    route: "/lifestyle",
+    /* The key is historical; the page is /guides, the one home for every
+       guide, and the nav calls it Guides. /lifestyle redirects there. */
+    route: "/guides",
     categoryKeys: ["rent-housing", "kvr-residence", "university-life", "career", "useful-apps"],
     assistants: [],
     guidesLayout: "explorer",
@@ -97,7 +99,7 @@ export function getHubForCategory(categoryKey: CategoryKey): Hub | undefined {
 
 /**
  * Where to browse a category's guides: the owning hub, opened on that topic
- * when the hub draws the explorer tree (`/lifestyle#kvr-residence`). For
+ * when the hub draws the explorer tree (`/guides#kvr-residence`). For
  * visible links; structured data wants the plain route without the hash.
  */
 export function categoryHref(categoryKey: CategoryKey): string {

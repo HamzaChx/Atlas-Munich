@@ -82,11 +82,11 @@ const nextConfig: NextConfig = {
       /* The five thin /category pages fold into the hub that now owns them.
          Google will canonicalize these to the hub itself, which is the point:
          five pages listing one to three guides each become two real ones. */
-      ...moved("/category/rent-housing", "/lifestyle"),
-      ...moved("/category/kvr-residence", "/lifestyle"),
-      ...moved("/category/university-life", "/lifestyle"),
-      ...moved("/category/career", "/lifestyle"),
-      ...moved("/category/useful-apps", "/lifestyle"),
+      ...moved("/category/rent-housing", "/guides"),
+      ...moved("/category/kvr-residence", "/guides"),
+      ...moved("/category/university-life", "/guides"),
+      ...moved("/category/career", "/guides"),
+      ...moved("/category/useful-apps", "/guides"),
       // Anything else under /category, including keys added later, lands on the
       // full index rather than a 404. Must stay last.
       ...moved("/category/:slug*", "/guides"),
@@ -101,8 +101,11 @@ const nextConfig: NextConfig = {
       // Housing keeps its own specialist, just under the new /chat/* tree.
       ...moved("/housing/chat", "/chat/housing"),
       ...moved("/housing", "/chat/housing"),
-      // Career widened into Lifestyle so everyday topics beyond work fit.
-      ...moved("/career", "/lifestyle"),
+      // Career widened into Lifestyle, and Lifestyle (the guide tree) then
+      // became /guides itself: one home for every guide instead of two pages
+      // listing the same six. Both point straight at the current owner.
+      ...moved("/career", "/guides"),
+      ...moved("/lifestyle", "/guides"),
     ];
   },
   async headers() {

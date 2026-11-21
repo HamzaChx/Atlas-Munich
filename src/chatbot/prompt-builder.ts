@@ -123,9 +123,8 @@ Atlas Munich was founded by Hamza Chaouki (developer) and Mohamed Nejjar (AI spe
 <available-sections>
 - /chat - This page: ask anything, or use a quick-action chip to jump straight to a specialist
 - /map - Munich on a map: housing and districts, halal restaurants, mosques, groceries, study spots
-- /lifestyle - Every guide as one topic tree: housing, KVR and residence permits, university life, work, and everyday apps
+- /guides - Every guide as one searchable topic tree: housing, KVR and residence permits, university life, work, and everyday apps
 - /community - The WhatsApp group, how to contribute, and how to reach us
-- /guides - Comprehensive guides for Munich life (housing, KVR, university, career)
 - /chat/housing - Direct entry to the Housing Application Assistant (Riad)
 - /about - About Atlas Munich project
 - /healthcare - Healthcare Navigator: insurance, doctors, medical translation (Loubna)
@@ -1169,7 +1168,6 @@ function buildValidRoutesSection(): string {
     "/map",
     "/chat",
     "/chat/housing",
-    "/lifestyle",
     "/community",
     "/guides",
     "/bureaucracy",
@@ -1196,12 +1194,12 @@ function getCurrentSectionInfo(path: string, chatbotType: ChatbotType): string {
       sectionInfo += `Category: ${guide.categoryKey}\n`;
       sectionInfo += `Summary: ${guide.summary}\n`;
     }
-  } else if (path === "/lifestyle") {
+  } else if (path === "/guides") {
     const hub = hubs.find((h) => h.key === "lifestyle");
     const titles = (hub?.categoryKeys ?? [])
       .map((key) => categories.find((c) => c.key === key)?.title)
       .filter(Boolean);
-    sectionInfo += `The user is on the "lifestyle" hub, which covers: ${titles.join(", ")}\n`;
+    sectionInfo += `The user is browsing the Guides tree, which covers: ${titles.join(", ")}\n`;
   } else if (path === "/chat/housing") {
     sectionInfo +=
       "The user is on the Housing Application Assistant page, looking to write a rental application message for Munich.\n";
@@ -1210,8 +1208,6 @@ function getCurrentSectionInfo(path: string, chatbotType: ChatbotType): string {
       "The user is on Zellija's own chat page, the site's main ask-anything entry point.\n";
   } else if (path === "/map") {
     sectionInfo += "The user is browsing the Map.\n";
-  } else if (path === "/guides") {
-    sectionInfo += "The user is browsing all Guides.\n";
   } else if (path === "/about") {
     sectionInfo += "The user is on the About page.\n";
   } else if (path === "/community") {

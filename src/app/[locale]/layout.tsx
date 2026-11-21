@@ -176,15 +176,13 @@ export default async function RootLayout({
   delete clientMessages.placesData;
   delete clientMessages.legal;
 
-  // The four journey steps plus the About affordance, handed to the header as
-  // props so it does not have to pull the whole nav namespace client-side.
+  // The four destinations, handed to the header as props so it does not have
+  // to pull the whole nav namespace client-side.
   const navTranslations = messages.nav as {
     map: string;
     ask: string;
-    lifestyle: string;
+    guides: string;
     community: string;
-    about: string;
-    aboutAria: string;
   };
 
   const jsonLd = {

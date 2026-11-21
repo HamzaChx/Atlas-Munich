@@ -498,7 +498,7 @@
         "deadline": "Délai",
         "cost": "Coût",
         "where": "Où",
-        "duration": "Sur place",
+        "duration": "Durée",
         "money": "Argent",
         "rule": "Règle"
       },
@@ -3010,7 +3010,7 @@
       "subtitle": "Des étudiants et professionnels marocains déjà à Munich, à un message près."
     },
     "explorer": {
-      "root": "Vie quotidienne",
+      "root": "Tous les guides",
       "label": "Guides du quotidien",
       "hint": "Ouvrez un sujet, choisissez un guide, jetez un œil à une étape. Une branche à la fois, pour que rien ne déborde.",
       "search": "Rechercher un sujet ou une section",

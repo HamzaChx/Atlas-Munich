@@ -2,7 +2,6 @@ import { getMessages, getTranslations } from "next-intl/server";
 
 import { guides } from "@/data/guides";
 import { localizeGuides } from "@/data/guides-i18n";
-import { buildGuideTree, type ShortLabel, type TreeNode } from "@/data/guide-tree";
 import { getHub } from "@/data/hubs";
 import { freshnessAt, type Freshness } from "@/lib/date";
 import { plainExcerpt } from "@/lib/text";
@@ -10,6 +9,9 @@ import { minutesToRead } from "@/lib/reading-time";
 import type { CategoryKey, Guide, HubKey } from "@/types";
 
 type TreeMessages = Record<string, Record<string, string> | string>;
+
+/** Short tree label for "slug" or "slug.sectionId", if one is authored. */
+type ShortLabel = (path: string) => string | undefined;
 
 /**
  * Labels are read straight off the messages object rather than through `t()`,
@@ -28,16 +30,6 @@ async function getShortLabel(): Promise<ShortLabel> {
   };
 }
 
-/**
- * Builds the guide tree on the server, so the ~50 KB locale overlays and the
- * label table stay out of the client bundle. The tree component receives
- * finished, already-localized nodes as props.
- */
-export async function getGuideTree(locale: string, hub?: HubKey): Promise<TreeNode[]> {
-  const shortLabel = await getShortLabel();
-  const localized = await localizeGuides(guides, locale);
-  return buildGuideTree(localized, shortLabel, { hub });
-}
 
 export interface ExplorerSection {
   id: string;

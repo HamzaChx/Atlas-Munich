@@ -15,7 +15,5 @@ export { ThemeToggle } from "./ThemeToggle";
 export { ShareButton } from "./ShareButton";
 export { PageTransition, StaggerChildren, RevealSection } from "./PageTransition";
 export { LanguageSwitcher } from "./LanguageSwitcher";
-export { SettingsMenu } from "./SettingsMenu";
 export { ReadingProgress } from "./ReadingProgress";
 export { TripPlanner } from "./TripPlanner";
-export { GuideGraph } from "./GuideGraph";

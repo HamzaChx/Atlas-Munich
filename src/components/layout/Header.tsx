@@ -7,26 +7,25 @@
 // Six destinations named after kinds of page, which asked the reader to work
 // out which kind held their answer before they could go anywhere.
 //
-// It tells the journey now: Map, Studies, Lifestyle, Community. Four stages of
-// actually moving here. "Home" is gone because the logo has always done that
-// job, and About and settings sit apart from the story as chrome.
+// Four destinations now: Ask, Map, Guides, Community. "Home" is gone because
+// the logo has always done that job. On the right, only chrome a reader
+// actually uses: the language, visible rather than buried in a gear menu (a
+// newcomer reading French should see FR without hunting for it), and the
+// theme. About lives in the footer and the mobile menu.
 // ============================================
 
 import * as React from "react";
 import { Link, usePathname } from "@/i18n/navigation";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import { HelpCircle } from "lucide-react";
-import { SettingsMenu } from "@/components/shared";
+import { LanguageSwitcher, ThemeToggle } from "@/components/shared";
 import { Locale } from "@/i18n";
 
 interface NavTranslations {
   map: string;
   ask: string;
-  lifestyle: string;
+  guides: string;
   community: string;
-  about: string;
-  aboutAria: string;
 }
 
 interface HeaderProps {
@@ -53,7 +52,7 @@ export function Header({ locale, translations }: HeaderProps) {
   const navItems = [
     { label: translations.ask, href: "/chat" },
     { label: translations.map, href: "/map" },
-    { label: translations.lifestyle, href: "/lifestyle" },
+    { label: translations.guides, href: "/guides" },
     { label: translations.community, href: "/community" },
   ];
 
@@ -123,26 +122,14 @@ export function Header({ locale, translations }: HeaderProps) {
           })}
         </nav>
 
-        {/* Chrome, not journey: what the site is, and how you like it served.
-            Desktop only; on mobile both live in the More sheet. */}
-        <div className="col-start-3 flex items-center justify-self-end gap-1 sm:gap-2">
-          <Link
-            href="/about"
-            aria-label={translations.aboutAria}
-            title={translations.about}
-            className={cn(
-              "hidden h-9 w-9 items-center justify-center rounded-full border transition-colors duration-200 focus:outline-none focus-visible:ring-2 md:flex",
-              overHomeHero
-                ? "border-hero-cream/25 bg-hero-cream/10 text-hero-cream shadow-none hover:bg-hero-cream/20 focus-visible:ring-hero-gold"
-                : cn(
-                    "border-border/50 bg-card text-zinc-600 shadow-sm hover:bg-muted hover:text-zinc-900 focus-visible:ring-zellige/50 dark:text-zinc-300 dark:hover:text-zinc-50",
-                    pathname.startsWith("/about") && "border-zellige/50 bg-zellige-soft text-zellige"
-                  )
-            )}
-          >
-            <HelpCircle className="h-4.5 w-4.5" aria-hidden="true" />
-          </Link>
-          <SettingsMenu currentLocale={locale} tone={overHomeHero ? "hero" : "default"} className="hidden md:block" />
+        {/* Chrome, not journey. Desktop only; on mobile both live in the menu sheet. */}
+        <div className="col-start-3 hidden items-center justify-self-end gap-2 md:flex">
+          <LanguageSwitcher
+            currentLocale={locale}
+            variant="segmented"
+            tone={overHomeHero ? "hero" : "default"}
+          />
+          <ThemeToggle tone={overHomeHero ? "hero" : "default"} />
         </div>
       </div>
     </header>

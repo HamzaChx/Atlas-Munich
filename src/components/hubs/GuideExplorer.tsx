@@ -65,6 +65,19 @@ import type { CategoryKey } from "@/types";
 /** Case- and accent-insensitive, so "demenagement" finds "déménagement". */
 export const fold = (text: string) => text.normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase();
 
+/**
+ * Every word of the query appears somewhere across the fields, in any order,
+ * accent- and case-folded. "residence permit fee" finds a step whose excerpt
+ * mentions all three, which a whole-phrase match missed; the header search
+ * pill sends free text like that to /guides?q=.
+ */
+export function matchesAll(fields: string[], query: string): boolean {
+  const words = fold(query).split(/\s+/).filter(Boolean);
+  if (words.length === 0) return false;
+  const haystack = fields.map(fold).join(" ");
+  return words.every((word) => haystack.includes(word));
+}
+
 export function Highlight({ text, query }: { text: string; query: string }) {
   if (!query) return <>{text}</>;
   const at = fold(text).indexOf(fold(query));
@@ -88,8 +101,7 @@ interface Hits {
 }
 
 function search(topics: ExplorerTopic[], query: string): Hits {
-  const q = fold(query);
-  const has = (...fields: string[]) => fields.some((field) => fold(field).includes(q));
+  const has = (...fields: string[]) => matchesAll(fields, query);
   const hits: Hits = { topics: new Set(), guides: new Map() };
 
   for (const topic of topics) {
@@ -234,18 +246,25 @@ function usePacking(list: React.RefObject<HTMLOListElement | null>, layoutKey: s
 }
 
 interface GuideExplorerProps {
+  /** Seeds the search, e.g. from /guides?q= (the header search pill). */
+  initialQuery?: string;
+  /** Rendered beside the search, e.g. the Tree/Outline toggle. */
+  toolbar?: React.ReactNode;
   topics: ExplorerTopic[];
   className?: string;
 }
 
-export function GuideExplorer({ topics, className }: GuideExplorerProps) {
+export function GuideExplorer({ topics, className, initialQuery = "", toolbar }: GuideExplorerProps) {
   const t = useTranslations("hubs.explorer");
 
   const [openTopic, setOpenTopic] = React.useState<CategoryKey | null>(null);
   const [openGuide, setOpenGuide] = React.useState<string | null>(null);
   const [openStep, setOpenStep] = React.useState<string | null>(null);
-  const [query, setQuery] = React.useState("");
+  const [query, setQuery] = React.useState(initialQuery);
   const treeRef = React.useRef<HTMLOListElement>(null);
+  React.useEffect(() => {
+    if (initialQuery) setQuery(initialQuery);
+  }, [initialQuery]);
 
   const trimmed = query.trim();
   const hits = React.useMemo(() => (trimmed ? search(topics, trimmed) : null), [topics, trimmed]);
@@ -262,7 +281,7 @@ export function GuideExplorer({ topics, className }: GuideExplorerProps) {
   );
 
   /* Land on the branch named in the hash, now and on later changes (a link
-     to /lifestyle#<slug> followed while already on the page). */
+     to /guides#<slug> followed while already on the page). */
   React.useEffect(() => {
     const fromHash = () => {
       const key = decodeURIComponent(window.location.hash.slice(1));
@@ -348,41 +367,44 @@ export function GuideExplorer({ topics, className }: GuideExplorerProps) {
           </span>
         </div>
 
-        <div className="relative sm:w-72">
-          <Search
-            aria-hidden="true"
-            className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-400"
-          />
-          <input
-            type="search"
-            value={query}
-            onChange={(event) => setQuery(event.target.value)}
-            onKeyDown={(event) => {
-              if (event.key === "Escape" && query) {
-                event.preventDefault();
-                setQuery("");
-              } else if (event.key === "Enter") {
-                event.preventDefault();
-                firstHit();
-              } else if (event.key === "ArrowDown") {
-                event.preventDefault();
-                treeRef.current?.querySelector<HTMLElement>("[data-nav-item]")?.focus();
-              }
-            }}
-            placeholder={t("search")}
-            aria-label={t("search")}
-            className="h-11 w-full rounded-full bg-card pl-11 pr-10 text-base text-zinc-900 shadow-[0_1px_2px_rgb(0_0_0/0.04),0_4px_14px_-6px_rgb(0_0_0/0.1)] outline-none ring-1 ring-zinc-900/[0.04] placeholder:text-zinc-400 focus-visible:ring-2 focus-visible:ring-zellige/50 sm:text-sm dark:text-zinc-50 dark:shadow-none dark:ring-border [&::-webkit-search-cancel-button]:hidden"
-          />
-          {query && (
-            <button
-              type="button"
-              onClick={() => setQuery("")}
-              aria-label={t("clear")}
-              className="absolute right-1.5 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full text-zinc-400 transition-colors hover:bg-muted hover:text-zinc-700 dark:hover:text-zinc-200"
-            >
-              <X className="h-3.5 w-3.5" aria-hidden="true" />
-            </button>
-          )}
+        <div className="flex items-center gap-3">
+          {toolbar}
+          <div className="relative min-w-0 flex-1 sm:w-72 sm:flex-none">
+            <Search
+              aria-hidden="true"
+              className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-500 dark:text-zinc-400"
+            />
+            <input
+              type="search"
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              onKeyDown={(event) => {
+                if (event.key === "Escape" && query) {
+                  event.preventDefault();
+                  setQuery("");
+                } else if (event.key === "Enter") {
+                  event.preventDefault();
+                  firstHit();
+                } else if (event.key === "ArrowDown") {
+                  event.preventDefault();
+                  treeRef.current?.querySelector<HTMLElement>("[data-nav-item]")?.focus();
+                }
+              }}
+              placeholder={t("search")}
+              aria-label={t("search")}
+              className="h-11 w-full rounded-full bg-card pl-11 pr-10 text-base text-zinc-900 shadow-[0_1px_2px_rgb(0_0_0/0.04),0_4px_14px_-6px_rgb(0_0_0/0.1)] outline-none ring-1 ring-zinc-900/[0.04] placeholder:text-zinc-500 focus-visible:ring-2 focus-visible:ring-zellige/50 sm:text-sm dark:text-zinc-50 dark:placeholder:text-zinc-400 dark:shadow-none dark:ring-border [&::-webkit-search-cancel-button]:hidden"
+            />
+            {query && (
+              <button
+                type="button"
+                onClick={() => setQuery("")}
+                aria-label={t("clear")}
+                className="absolute right-1.5 top-1/2 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full text-zinc-400 transition-colors hover:bg-muted hover:text-zinc-700 dark:hover:text-zinc-200"
+              >
+                <X className="h-3.5 w-3.5" aria-hidden="true" />
+              </button>
+            )}
+          </div>
         </div>
       </div>
 

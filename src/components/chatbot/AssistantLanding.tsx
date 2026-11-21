@@ -8,9 +8,8 @@
 // ============================================
 
 import Image from "next/image";
-import { Link } from "@/i18n/navigation";
 import { getTranslations } from "next-intl/server";
-import { ArrowRight, ArrowUpRight, type LucideIcon } from "lucide-react";
+import { ArrowUpRight, type LucideIcon } from "lucide-react";
 import type { ChatbotType } from "@/chatbot/types";
 import { ZELLIGE_MOTIF_MASK } from "@/components/shared/zellige-motif";
 import { ASSISTANT_ACCENTS } from "./chat-themes";
@@ -32,14 +31,10 @@ export interface AssistantLandingConfig {
   /** Badge glyph sitting on the assistant's avatar */
   icon: LucideIcon;
   chatPath: string;
-  stepIcons: [LucideIcon, LucideIcon, LucideIcon];
   /** Translation key of the outbound links section */
   linksKey: "platforms" | "resources" | "authorities";
   links: AssistantLink[];
 }
-
-const INK_PILL =
-  "inline-flex items-center gap-2 rounded-full bg-zinc-900 px-6 py-3 text-sm font-semibold text-white shadow-md shadow-zinc-900/10 transition-colors hover:bg-zinc-800 dark:bg-zinc-50 dark:text-zinc-900 dark:shadow-none dark:hover:bg-zinc-200";
 
 const PANEL_CARD =
   "rounded-3xl bg-card shadow-[0_2px_16px_rgb(0_0_0/0.04)] dark:shadow-none dark:ring-1 dark:ring-border";
@@ -178,75 +173,6 @@ export async function AssistantLanding({ config }: { config: AssistantLandingCon
         </div>
       </section>
 
-      {/* ========== HOW IT WORKS ==========
-          Below the fold on purpose. Someone who already knows what they want
-          has typed it into the panel above and left; this is for the visitor
-          who arrived cold from a search result. */}
-      <section className="reveal mx-auto max-w-5xl px-4 pb-16 sm:px-6 sm:pb-20 lg:px-8">
-        <h2 className="font-display text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl dark:text-zinc-50">
-          {t("features.title")}
-        </h2>
-
-        <div className="mt-7 grid gap-4 sm:grid-cols-3 sm:gap-5">
-          {config.stepIcons.map((Icon, i) => (
-            <div key={i} className={`relative p-6 sm:p-7 ${PANEL_CARD}`}>
-              <span
-                className={`absolute right-6 top-6 font-display text-2xl font-bold tabular-nums text-zinc-200 dark:text-foreground/10`}
-              >
-                {`0${i + 1}`}
-              </span>
-              <span
-                className={`mb-4 flex h-12 w-12 items-center justify-center rounded-2xl ${accent.tint} ${accent.acc}`}
-              >
-                <Icon className="h-5 w-5" />
-              </span>
-              <h3 className="font-display text-base font-bold text-zinc-900 dark:text-zinc-50">
-                {t(`features.step${i + 1}Title`)}
-              </h3>
-              <p className="mt-2 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-                {t(`features.step${i + 1}Desc`)}
-              </p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      {/* ========== CLOSING CHAT BAND ========== */}
-      <section className="mx-auto max-w-5xl px-4 pb-20 sm:px-6 sm:pb-24 lg:px-8">
-        <div
-          className={`reveal relative overflow-hidden rounded-[2rem] px-6 py-12 text-center sm:py-14 dark:ring-1 dark:ring-border ${accent.tint}`}
-        >
-          <ZelligeWatermark
-            className={`left-0 top-1/2 h-[17rem] w-[17rem] -translate-x-[35%] -translate-y-1/2 ${accent.acc}`}
-            rotation="-12deg"
-          />
-
-          <div className="relative flex flex-col items-center">
-            <div className="relative mb-4">
-              <span className="absolute -inset-2 rounded-full bg-card/70" aria-hidden="true" />
-              <Image
-                src={config.avatar}
-                alt=""
-                width={128}
-                height={128}
-                quality={90}
-                sizes="64px"
-                className={`relative h-16 w-16 rounded-full object-cover ring-2 ${accent.ring}`}
-              />
-            </div>
-
-            <h2 className="font-display text-2xl font-bold tracking-tight text-zinc-900 sm:text-3xl dark:text-zinc-50">
-              {config.name}
-            </h2>
-            <p className={`mt-1 text-sm font-semibold ${accent.acc}`}>{tagline}</p>
-
-            <Link href={config.chatPath} className={`mt-7 ${INK_PILL}`}>
-              {t("cta")}
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }

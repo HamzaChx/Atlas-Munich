@@ -191,58 +191,64 @@ Wichtig: Nach dem Einzug musst du dich innerhalb von zwei Wochen in einem der M�
       {
         id: "what-is-anmeldung",
         title: "Was ist die Anmeldung und warum ist sie wichtig?",
-        content: `Die Anmeldung ist die offizielle Einwohnermeldefplicht in Deutschland. Wenn du in München wohnst, bist du gesetzlich verpflichtet, dich innerhalb von 14 Tagen nach deinem Einzug anzumelden. Das gilt auch für internationale Studierende.
+        content: `Die Anmeldung ist die Registrierung deiner Wohnadresse bei der Stadt München. In Deutschland ist sie weder freiwillig noch eine reine Formalität. Sie ist gesetzlich vorgeschrieben: Du musst dich innerhalb von zwei Wochen nach dem Einzug in eine Wohnung anmelden. Das Gesetz verlangt nicht, dass die Adresse dauerhaft ist. Das gilt auch für internationale Studierende.
 
-Diese Anmeldung ist keine reine Formalität – sie ist der Schlüssel zu fast allem anderen. Ohne Meldebescheinigung (die Bestätigung deiner Anmeldung) kannst du in der Regel kein Konto bei einer deutschen Bank eröffnen, keine Aufenthaltserlaubnis beantragen und auch keinen Handyvertrag oder Internetanschluss abschließen.
+Viele andere Schritte bauen darauf auf. Banken, Behörden und Vermieter fragen oft nach einem Nachweis deiner Meldeadresse, und deine erste Anmeldung löst auch deine Steuer-ID aus, die dein Arbeitgeber vor deiner ersten Gehaltsabrechnung braucht. Deshalb gehört sie ganz nach oben auf deine Liste.
 
-Nach der Anmeldung bekommst du automatisch deine Steuernummer per Post zugeschickt. Kurz gesagt: Die Anmeldung so früh wie möglich zu erledigen macht alles andere in München leichter.`,
+Beim Termin bekommst du eine Anmeldebestätigung, einen Ausdruck deiner Anmeldung mit deiner neuen Adresse. Falls später jemand eine offizielle Meldebescheinigung verlangt, kannst du sie separat beantragen. Als PDF ist sie über den Online-Service der Stadt kostenlos, sobald du in München gemeldet bist, auf Papier kostet sie 5 Euro. Bewahre deine Bestätigung gut auf.`,
       },
       {
         id: "when-to-register",
         title: "Wann musst du dich anmelden?",
-        content: `Die Frist beträgt 14 Tage ab dem Datum, an dem du in deine dauerhafte Unterkunft eingezogen bist. Wichtig: Ein Hotelzimmer, ein Hostel oder eine temporäre Unterkunft zählen nicht. Du musst eine feste Adresse haben, an der du tatsächlich wohnst.
+        content: `Du musst dich innerhalb von 14 Tagen nach dem Einzug in deine Münchner Wohnung anmelden. Das ist die gesetzliche Frist, und sie gilt auch bei einem Umzug innerhalb der Stadt. Vor dem Einzug kannst du dich nicht anmelden, denn eine Anmeldung mit einem Datum in der Zukunft ist rechtlich nicht möglich. Melde dich in der Praxis so bald wie möglich an, weil deine anderen Behördengänge davon abhängen.
 
-Dein Vermieter – ob Einzelperson, WG-Mitbewohnerin oder Studentenwohnheim – muss dir außerdem eine Wohnungsgeberbestätigung ausstellen. Das ist ein offizielles Formular, das bestätigt, dass du tatsächlich in der Wohnung lebst. Ohne dieses Dokument ist eine Anmeldung nicht möglich. Frag deinen Vermieter also rechtzeitig danach.`,
+Ein Aufenthalt im Hotel oder Hostel zählt nicht als Einzug. Wenn du sonst nirgends in Deutschland gemeldet bist, musst du dich erst anmelden, wenn der Aufenthalt im Hotel oder Hostel länger als drei Monate dauert. Eine Zwischenmiete oder eine möblierte Wohnung auf Zeit zählt dagegen als Wohnung. Die 14 Tage beginnen also am Tag deines Einzugs, auch wenn du bald wieder umziehen willst.
+
+Wichtig: Du kannst dich nur an einer Adresse anmelden, an der du tatsächlich wohnst. Dein Vermieter, oder wer dir die Wohnung überlässt, muss deinen Einzug innerhalb von zwei Wochen schriftlich bestätigen. Diese Bestätigung heißt Wohnungsgeberbestätigung. Frag beim Unterschreiben des Mietvertrags oder direkt beim Einzug danach. Wenn du sie noch nicht hast, kannst du dich trotzdem anmelden, indem du die Erklärung der Stadt zur fehlenden Wohnungsgeberbestätigung ausfüllst, und die Bestätigung später nachreichst.`,
       },
       {
         id: "what-you-need",
         title: "Was du zum Bürgerbüro mitbringen musst",
-        content: `Bringe folgende Unterlagen zu deinem Termin mit:
+        content: `Bring die folgenden Unterlagen im Original zu deinem Termin mit:
 
-**Reisepass oder Personalausweis** – das Original, keine Kopie.
+**Reisepass oder Personalausweis.** Du brauchst ein gültiges Dokument für jede Person, die du anmeldest, auch für Kinder. Deutsche bringen ihren Personalausweis mit, und ihren Reisepass, falls sie einen haben, damit die Adresse aktualisiert werden kann.
 
-**Wohnungsgeberbestätigung** – das Formular von deinem Vermieter, das deinen Einzug bestätigt. Es kann auf der Münchner Stadtverwaltungsseite heruntergeladen werden.
+**Wohnungsgeberbestätigung.** Das von deinem Vermieter unterschriebene Formular, das deinen Einzug bestätigt. Du kannst es auf der Website der Stadt herunterladen und deinen Vermieter bitten, es vor deinem Termin auszufüllen und zu unterschreiben. Wenn du es noch nicht hast, bring stattdessen die Erklärung der Stadt zur fehlenden Wohnungsgeberbestätigung mit.
 
-**Ausgefülltes Anmeldungsformular** – das Meldeformular, das du vorab online ausfüllen und ausdrucken kannst.
+**Das Anmeldeformular (Meldeschein).** Es steht nicht auf der Liste der Unterlagen, die die Stadt verlangt, aber wenn du es vorher ausfüllst, sparst du Zeit. Du kannst es auf der Website der Stadt herunterladen. WG-Mitbewohner melden sich jeweils selbst an, aber Ehepartner, Lebenspartner und Kinder, die zusammen einziehen, nutzen ein gemeinsames Formular, und eine Person kann alle anmelden.
 
-**Biometrisches Passfoto** – wird in manchen Bürgerbüros verlangt, in anderen nicht. Bring eines zur Sicherheit mit.
+**Eine Vollmacht, falls dich jemand anderes anmeldet.** Die Person, die du schickst, braucht eine unterschriebene Vollmacht, ihren eigenen Ausweis und die Original-Ausweise aller Personen, die angemeldet werden. Das Formular der Stadt enthält eine Seite für die Vollmacht.
 
-Alle Dokumente solltest du im Original sowie als Kopie dabeihaben, auch wenn die Kopie nicht immer verlangt wird.`,
+**Deine Fahrzeugpapiere, falls du ein Auto hast.** Du kannst beim selben Termin die Adresse in deinen Fahrzeugpapieren ändern lassen, wenn du dein Kennzeichen behältst. Das kostet 12,60 Euro.
+
+Wenn du vorher alles beisammen hast, läuft der Termin entspannter.`,
       },
       {
         id: "the-appointment",
         title: "Termin buchen und was dich erwartet",
-        content: `Du kannst deinen Termin online über das Münchner Stadtportal muenchen.de buchen. Suche dort nach „Anmeldung einer Wohnung". Da die Termine oft schnell ausgebucht sind, empfiehlt es sich, die Seite regelmäßig zu prüfen – Stornierungen erscheinen immer wieder kurzfristig.
+        content: `Deinen Termin buchst du über die Online-Terminvereinbarung der Stadt auf stadt.muenchen.de. Es gibt sechs Bürgerbüros: Orleansplatz, Leonrodstraße, Scheidplatz, Forstenrieder Allee, Pasing und Ruppertstraße. Du kannst jedes davon wählen.
 
-München hat mehrere Bürgerbüros in verschiedenen Stadtteilen. Wenn du nicht in der Innenstadt wohnst, ist das Büro in deiner Nähe oft die bessere Wahl.
+Die Bürgerbüros arbeiten nur nach Terminvereinbarung, ohne Termin geht es also nicht. Nach unserer Erfahrung sind die Termine rund um den Semesterstart im Oktober und April am schnellsten weg. Wenn du innerhalb deiner 14 Tage keinen Termin bekommst, buch den frühesten freien Termin und schau regelmäßig nach Stornierungen. Wenn du die Voraussetzungen für die Online-Anmeldung erfüllst (siehe unten), sparst du dir das Warten ganz.
 
-Der Termin selbst dauert nur 10 bis 15 Minuten. Du gibst deine Unterlagen ab, ein Sachbearbeiter prüft sie kurz, und du bekommst deine Meldebescheinigung direkt vor Ort ausgehändigt. Das Formular und weiterführende Infos sind auch auf der KVR-Website auf Englisch verfügbar.`,
+Beim Termin prüft ein Sachbearbeiter deine Unterlagen, bearbeitet die Anmeldung und gibt dir deine Anmeldebestätigung direkt vor Ort. Bewahre sie gut auf, denn du wirst vielleicht danach gefragt.
+
+Die Formulare sind auf Deutsch. Nach unserer Erfahrung sind die Mitarbeitenden meist hilfsbereit, auch wenn dein Deutsch noch nicht so gut ist.`,
         subsections: [
           {
             id: "online-option",
             title: "Kann man die Anmeldung online machen?",
-            content: `Seit 2024 gibt es einen Pilotversuch zur Online-Anmeldung in München, aber das System ist noch nicht flächendeckend verfügbar und funktioniert nicht für alle Fälle zuverlässig. Die persönliche Anmeldung im Bürgerbüro bleibt der Standard und die sicherste Methode. Überprüfe die aktuelle Lage auf muenchen.de – die Onlineoption wird nach und nach ausgeweitet.`,
+            content: `Ja, wenn du die Voraussetzungen erfüllst. München nimmt Online-Anmeldungen über den bundesweiten Dienst wohnsitzanmeldung.gov.de an, und das ist kostenlos. Du brauchst einen deutschen Personalausweis oder eine eID-Karte mit aktivierter Online-Ausweisfunktion, die 6-stellige PIN und ein NFC-fähiges Smartphone mit der AusweisApp. Außerdem lädst du deine Wohnungsgeberbestätigung hoch. Der Dienst ist für Umzüge innerhalb Deutschlands gedacht, weil er deine Daten aus deiner bisherigen Anmeldung abruft. Wenn du mit einem Reisepass aus dem Ausland kommst, meldest du dich persönlich in einem Bürgerbüro an.`,
           },
         ],
       },
       {
         id: "after-registration",
         title: "Was nach der Anmeldung passiert",
-        content: `Innerhalb von zwei bis vier Wochen nach deiner Anmeldung erhältst du per Post eine Steueridentifikationsnummer (Steuer-ID). Das ist eine eindeutige Nummer, die du deinem Arbeitgeber mitteilen musst, sobald du einen Werkstudenten-Job oder eine andere bezahlte Stelle hast.
+        content: `Nach der Anmeldung bekommst du sofort deine Anmeldebestätigung. Nach deiner ersten Anmeldung in Deutschland schickt dir das Bundeszentralamt für Steuern (BZSt) deine Steueridentifikationsnummer (Steuer-ID) per Post an deine Meldeadresse. Das dauert etwa zwei bis vier Wochen. Schreib deinen vollständigen Namen gut lesbar auf deinen Briefkasten, damit der Brief ankommt. Wenn er nicht kommt, kannst du ihn über das Online-Formular des BZSt erneut anfordern.
 
-Wenn du später umziehst, musst du eine Ummeldung vornehmen – also deine neue Adresse wieder innerhalb von 14 Tagen beim Bürgerbüro melden. Das Verfahren ist genauso wie bei der Erstanmeldung.
+Die Steuer-ID ist eine dauerhafte Nummer, die dir in Deutschland zugeteilt wird. Dein Arbeitgeber braucht sie vor deiner ersten Gehaltsabrechnung. Wenn du kurz nach deiner Ankunft einen Job anfängst, sag deinem Arbeitgeber, dass er vielleicht ein paar Wochen warten muss oder dass du sie nachreichst, sobald der Brief da ist.
 
-Wenn du München dauerhaft verlässt, musst du dich offiziell abmelden (Abmeldung). Das ist weniger dringend als die An- oder Ummeldung, aber dennoch gesetzlich vorgeschrieben.`,
+Wenn du innerhalb Münchens umziehst, musst du dich innerhalb von 14 Tagen ummelden (Ummeldung). Das gilt sogar bei einem Umzug im selben Haus, zum Beispiel in ein anderes Stockwerk. Das Verfahren ist genauso wie bei der Erstanmeldung. Von deiner alten Adresse in Deutschland musst du dich nicht abmelden, das passiert automatisch.`,
       },
     ],
     faqs: [
@@ -250,25 +256,25 @@ Wenn du München dauerhaft verlässt, musst du dich offiziell abmelden (Abmeldun
         id: "faq-anmeldung-1",
         question: "Was passiert, wenn ich die 14-Tage-Frist versäume?",
         answer:
-          "Theoretisch kann eine verspätete Anmeldung mit einem Bußgeld belegt werden, in der Praxis passiert das aber selten, besonders bei Studierenden. Melde dich trotzdem so bald wie möglich an – je länger du wartest, desto mehr verzögert sich alles andere (Konto, Aufenthaltstitel, Steuernummer).",
+          "Eine verspätete Anmeldung ist eine Ordnungswidrigkeit und kann mit einem Bußgeld von bis zu 1.000 Euro geahndet werden. Wenn du die Frist verpasst hast, melde dich so bald wie möglich an. Schieb es nach dem Einzug nicht auf.",
       },
       {
         id: "faq-anmeldung-2",
         question: "Was, wenn mein Vermieter mir keine Wohnungsgeberbestätigung ausstellt?",
         answer:
-          "Der Vermieter ist gesetzlich verpflichtet, dir dieses Formular innerhalb von zwei Wochen nach deinem Einzug auszustellen. Wenn er sich weigert, kannst du das Bürgerbüro oder die KVR kontaktieren – sie können dabei helfen, die Situation zu klären.",
+          "Der Vermieter ist gesetzlich verpflichtet, dir dieses Formular innerhalb von zwei Wochen nach deinem Einzug auszustellen. Wenn er sich weigert oder sich Zeit lässt, musst du das der Meldebehörde unverzüglich mitteilen. In München kannst du dich trotzdem anmelden, und zwar mit der Erklärung der Stadt zur fehlenden Wohnungsgeberbestätigung. Die Bestätigung reichst du später über das Kontaktformular der Stadt nach. Nach unserer Erfahrung kümmert sich im Studentenwohnheim die Verwaltung um dieses Formular.",
       },
       {
         id: "faq-anmeldung-3",
         question: "Kann ich mich vorübergehend bei einer Freundin oder einem Freund anmelden?",
         answer:
-          "Das ist grundsätzlich möglich, aber nur dann, wenn die Person, die dort wohnt, der Anmeldung zustimmt und die Wohnungsgeberbestätigung unterschreibt. Eine Anmeldung ohne die Zustimmung des Hauptmieters oder Vermieters ist nicht zulässig und kann rechtliche Konsequenzen haben.",
+          "Nur wenn du dort wirklich wohnst. Die Person, die dir das Zimmer überlässt, muss dir die Wohnungsgeberbestätigung unterschreiben. Eine Adresse für eine Anmeldung anzubieten, obwohl dort niemand tatsächlich einzieht, ist verboten und kann mit bis zu 50.000 Euro Bußgeld geahndet werden. Melde dich immer an der Adresse an, an der du tatsächlich wohnst, auch wenn es nur vorübergehend ist.",
       },
     ],
     resources: [
       {
         id: "res-anmeldung-1",
-        title: "Münchner KVR – Offizielles Portal",
+        title: "Terminvereinbarung im Münchner Bürgerbüro",
         description: "Buche hier deinen Anmeldung-Termin",
       },
       {
@@ -277,6 +283,58 @@ Wenn du München dauerhaft verlässt, musst du dich offiziell abmelden (Abmeldun
         description: "Offizielles Bestätigungsformular des Vermieters",
       },
     ],
+    dossier: {
+      facts: [
+        {
+          id: "deadline",
+          value:
+            "Melde dich innerhalb von zwei Wochen nach dem Einzug an. Vor dem Einzug geht es nicht.",
+        },
+        {
+          id: "cost",
+          value:
+            "Die Anmeldung ist kostenlos. Die Adressänderung in deinen Fahrzeugpapieren beim selben Termin kostet 12,60 Euro.",
+        },
+        {
+          id: "where",
+          value:
+            "Geh in eines der sechs Münchner Bürgerbüros, nur mit Termin. Ohne Termin geht es nicht.",
+        },
+        {
+          id: "online",
+          value:
+            "Hast du einen deutschen Personalausweis oder eine eID-Karte mit Online-Funktion und ziehst innerhalb Deutschlands um, kannst du dich stattdessen kostenlos online anmelden.",
+        },
+      ],
+      documents: [
+        {
+          id: "valid-id",
+          label: "Gültiger Reisepass oder Personalausweis",
+          note: "Einer für jede Person, die du anmeldest, auch für Kinder.",
+        },
+        {
+          id: "wohnungsgeberbestaetigung",
+          label: "Wohnungsgeberbestätigung",
+          note: "Von deinem Vermieter unterschrieben. Fehlt sie, bring die Erklärung der Stadt zur fehlenden Bestätigung mit.",
+        },
+        {
+          id: "registration-form",
+          label: "Anmeldeformular (Meldeschein)",
+          note: "Empfohlen. Wenn du es vorher ausfüllst, sparst du Zeit.",
+        },
+        {
+          id: "power-of-attorney",
+          label: "Vollmacht",
+          note: "Nur wenn dich jemand anderes anmeldet. Diese Person bringt auch ihren eigenen Ausweis mit.",
+        },
+        {
+          id: "vehicle-papers",
+          label: "Zulassungsbescheinigung Teil I",
+          note: "Nur wenn du beim selben Termin deine Fahrzeugpapiere ändern lassen willst und dein Kennzeichen behältst.",
+        },
+      ],
+      action: { title: "Termin im Bürgerbüro buchen" },
+    },
   },
 
   "residence-permit-students": {

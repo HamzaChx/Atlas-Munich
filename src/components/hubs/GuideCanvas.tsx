@@ -43,7 +43,7 @@ import { cn } from "@/lib/utils";
 import { CATEGORY_ACCENTS } from "@/lib/category-accents";
 import type { ExplorerTopic } from "@/lib/guide-tree-server";
 import type { CategoryKey } from "@/types";
-import { fold, Highlight, writeHash } from "./GuideExplorer";
+import { Highlight, matchesAll, writeHash } from "./GuideExplorer";
 import { BLADE, LeafGlyph, RIB } from "./tree-art";
 import { CanvasPanel } from "./GuideCanvasPanel";
 import {
@@ -75,7 +75,17 @@ export const NO_HOVER: Hover = { topic: null, guide: null, step: null };
 
 /* ---------- the stateful shell: open path, hash, search, panel ---------- */
 
-export function GuideCanvas({ topics }: { topics: ExplorerTopic[] }) {
+export function GuideCanvas({
+  topics,
+  initialQuery = "",
+  toolbar,
+}: {
+  topics: ExplorerTopic[];
+  /** Seeds the search, e.g. from /guides?q= (the header search pill). */
+  initialQuery?: string;
+  /** Rendered beside the search, e.g. the Tree/Outline toggle. */
+  toolbar?: React.ReactNode;
+}) {
   const t = useTranslations("hubs.explorer");
   const [open, setOpen] = React.useState<OpenPath>(CLOSED);
   const [hover, setHover] = React.useState<Hover>(NO_HOVER);
@@ -180,13 +190,17 @@ export function GuideCanvas({ topics }: { topics: ExplorerTopic[] }) {
             </span>
           </span>
         </div>
-        <CanvasSearch
-          topics={topics}
-          onPick={(path) => {
-            go(path);
-            stageRef.current?.scrollIntoView({ block: "center", behavior: "smooth" });
-          }}
-        />
+        <div className="flex items-center gap-3">
+          {toolbar}
+          <CanvasSearch
+            topics={topics}
+            initialQuery={initialQuery}
+            onPick={(path) => {
+              go(path);
+              stageRef.current?.scrollIntoView({ block: "center", behavior: "smooth" });
+            }}
+          />
+        </div>
       </div>
 
       <div className="mt-5 grid gap-4 lg:grid-cols-[minmax(0,1fr)_20rem] lg:gap-5">
@@ -226,20 +240,24 @@ interface Hit {
 
 function CanvasSearch({
   topics,
+  initialQuery,
   onPick,
 }: {
   topics: ExplorerTopic[];
+  initialQuery: string;
   onPick: (path: OpenPath) => void;
 }) {
   const t = useTranslations("hubs.explorer");
-  const [query, setQuery] = React.useState("");
+  const [query, setQuery] = React.useState(initialQuery);
+  React.useEffect(() => {
+    if (initialQuery) setQuery(initialQuery);
+  }, [initialQuery]);
   const [active, setActive] = React.useState(0);
   const trimmed = query.trim();
 
   const hits = React.useMemo<Hit[]>(() => {
     if (!trimmed) return [];
-    const q = fold(trimmed);
-    const has = (...fields: string[]) => fields.some((field) => fold(field).includes(q));
+    const has = (...fields: string[]) => matchesAll(fields, trimmed);
     const out: Hit[] = [];
     for (const topic of topics) {
       const accent = CATEGORY_ACCENTS[topic.key].dot;
@@ -281,10 +299,10 @@ function CanvasSearch({
   };
 
   return (
-    <div className="relative sm:w-72">
+    <div className="relative min-w-0 flex-1 sm:w-72 sm:flex-none">
       <Search
         aria-hidden="true"
-        className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-400"
+        className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-zinc-500 dark:text-zinc-400"
       />
       <input
         type="search"
@@ -314,7 +332,7 @@ function CanvasSearch({
             setQuery("");
           }
         }}
-        className="h-11 w-full rounded-full bg-card pl-11 pr-10 text-base text-zinc-900 shadow-[0_1px_2px_rgb(0_0_0/0.04),0_4px_14px_-6px_rgb(0_0_0/0.1)] outline-none ring-1 ring-zinc-900/[0.04] placeholder:text-zinc-400 focus-visible:ring-2 focus-visible:ring-zellige/50 sm:text-sm dark:text-zinc-50 dark:shadow-none dark:ring-border [&::-webkit-search-cancel-button]:hidden"
+        className="h-11 w-full rounded-full bg-card pl-11 pr-10 text-base text-zinc-900 shadow-[0_1px_2px_rgb(0_0_0/0.04),0_4px_14px_-6px_rgb(0_0_0/0.1)] outline-none ring-1 ring-zinc-900/[0.04] placeholder:text-zinc-500 focus-visible:ring-2 focus-visible:ring-zellige/50 sm:text-sm dark:text-zinc-50 dark:placeholder:text-zinc-400 dark:shadow-none dark:ring-border [&::-webkit-search-cancel-button]:hidden"
       />
       {query && (
         <button

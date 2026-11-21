@@ -2,9 +2,6 @@ import { setRequestLocale } from "next-intl/server";
 import { Metadata } from "next";
 import {
   Activity,
-  MessageSquareText,
-  ClipboardList,
-  CheckCircle2,
   ShieldCheck,
   Shield,
   Hospital,
@@ -43,7 +40,6 @@ const CONFIG: AssistantLandingConfig = {
   avatar: "/loubna.webp",
   icon: Activity,
   chatPath: "/healthcare/chat",
-  stepIcons: [MessageSquareText, ClipboardList, CheckCircle2],
   linksKey: "resources",
   links: [
     {

@@ -121,6 +121,8 @@ export function GuideDossier({
   const total = dossier.documents.length;
   const done = ticks.size;
   const allDone = total > 0 && done === total;
+  // "If it applies" only means something next to items that are not optional.
+  const markOptional = dossier.documents.some((d) => !d.optional);
 
   // On a tinted plate, secondary text takes the persona's accent or a softened
   // foreground, never a neutral gray.
@@ -240,7 +242,7 @@ export function GuideDossier({
                       >
                         {doc.label}
                       </span>
-                      {doc.optional && (
+                      {markOptional && doc.optional && (
                         <span className={cn("ml-2 text-xs font-semibold", acc)}>{t("optional")}</span>
                       )}
                       {doc.note && (

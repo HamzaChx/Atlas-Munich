@@ -12,7 +12,7 @@ const linkColumns = [
       { labelKey: "links.housingRent", href: "/guides/find-apartment-munich" },
       { labelKey: "links.kvrResidence", href: "/guides/residence-permit-students" },
       { labelKey: "links.universityLife", href: "/guides/student-life-munich" },
-      { labelKey: "links.careerJobs", href: "/lifestyle#find-werkstudent-job" },
+      { labelKey: "links.careerJobs", href: "/guides#find-werkstudent-job" },
     ],
   },
   {

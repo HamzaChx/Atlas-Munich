@@ -235,8 +235,8 @@ Once you have moved in, you must register your address at one of Munich's Bürge
     categoryKey: "kvr-residence",
     tags: ["newcomer", "urgent", "documents", "official"],
     author: "Atlas Munich Team",
-    lastUpdated: "2025-01-20",
-    lastVerified: "2025-01-20",
+    lastUpdated: "2026-11-21",
+    lastVerified: "2026-11-21",
     primarySource: {
       title: "Wohnsitzanmeldung (Landeshauptstadt München)",
       url: "https://stadt.muenchen.de/service/info/wohnsitzanmeldung/1063475/n0/",
@@ -421,8 +421,8 @@ If you move to a new address within Munich, you will need to update your registr
     categoryKey: "kvr-residence",
     tags: ["documents", "official", "urgent", "newcomer"],
     author: "Atlas Munich Team",
-    lastUpdated: "2026-09-24",
-    lastVerified: "2025-01-18",
+    lastUpdated: "2026-11-21",
+    lastVerified: "2026-11-21",
     primarySource: {
       title: "Residence permit for study (Landeshauptstadt München)",
       url: "https://stadt.muenchen.de/service/en-GB/info/servicestelle-fur-zuwanderung-und-einburgerung/10424886/",

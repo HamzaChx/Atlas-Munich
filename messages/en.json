@@ -475,7 +475,7 @@
         "deadline": "Deadline",
         "cost": "Cost",
         "where": "Where",
-        "duration": "At the office",
+        "duration": "How long",
         "money": "Money",
         "rule": "Rule"
       },
@@ -2990,7 +2990,7 @@
       "subtitle": "Moroccan students and professionals already in Munich, one message away."
     },
     "explorer": {
-      "root": "Lifestyle",
+      "root": "All guides",
       "label": "Lifestyle guides",
       "hint": "Open a topic, pick a guide, preview any step. One branch at a time, so it never gets crowded.",
       "search": "Search topics and sections",
